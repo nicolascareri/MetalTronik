@@ -1,5 +1,8 @@
 package com.example.metalTest.usuario.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +17,9 @@ public class Usuario {
 
     @Column
     private String apellido;
+
+    @Column
+    private int dni;
 
     public int getId() {
         return id;
@@ -37,5 +43,13 @@ public class Usuario {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+
+    public int getDni() {
+        return dni;
+    }
+
+    public void setDni(int dni) {
+        this.dni = dni;
     }
 }
