@@ -1,4 +1,4 @@
-package com.example.metalTest.configuration.swagger;
+package com.example.metalTest.swagger.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
