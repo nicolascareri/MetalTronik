@@ -1,0 +1,18 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Dni</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let user of users'>
+            <th scope="row">{{user.id}}</th>
+            <td>{{user.nombre}}</td>
+            <td>{{user.apellido}}</td>
+            <td>{{user.dni}}</td>
+        </tr>
+    </tbody>
+  </table>
