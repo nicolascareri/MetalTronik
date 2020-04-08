@@ -17,7 +17,6 @@ export class UsuarioComponent implements OnInit {
     this.userService.getUsers().subscribe(
       (data)  => { // Success
         this.users = data;
-        console.log(data)
       },
       (error) => {
         console.error(error);
