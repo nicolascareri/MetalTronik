@@ -3,4 +3,8 @@
 @import '~bootstrap/dist/css/bootstrap.css';
 
 /* or your 'styles.scss' with */
-@import "~bootstrap/scss/bootstrap"
+@import "~bootstrap/scss/bootstrap";
+html, body{
+    height: 100%;
+}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
