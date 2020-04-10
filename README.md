@@ -5,11 +5,11 @@ and [Spring Boot](https://spring.io/projects/spring-boot) version 2.2.6.RELEASE.
 
 ## Development server
 
-*git clone https://github.com/nicolascareri/MetalTronik.git
-*cd metaltronik/backend
-*mvn spring-boot:run
-*cd ../frontend
-*Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
++ git clone https://github.com/nicolascareri/MetalTronik.git
++ cd metaltronik/backend
++ mvn spring-boot:run
++ cd ../frontend
++ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding (frontend package)
 
