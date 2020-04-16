@@ -2,9 +2,6 @@ package com.example.metalTest.tarea.domain;
 
 import com.example.metalTest.usuario.domain.Usuario;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -65,7 +62,7 @@ public class Tarea {
         return fechaAlta;
     }
 
-    @JsonFormat(pattern="dd-MM-YYYY")
+    @JsonFormat(pattern="dd-MM-YYYY HH:mm", timezone = "GMT-3")
     public void setFechaAlta(Date fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
