@@ -37,7 +37,10 @@ public class TareaServiceImpl implements TareaService {
 
         tarea.setUsuario(usuarioRepository.findById(tareaRequest.getUsuario_cod()).get());
 
-        tarea.setFechaAlta(new Date(System.currentTimeMillis()));
+        Date date = new Date(System.currentTimeMillis());
+
+        tarea.setFechaAlta(date);
+        System.out.println(date);
         return tareaRepository.save(tarea);
     }
 
