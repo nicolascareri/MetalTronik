@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from "../user.service";
 import {MatTableDataSource} from '@angular/material/table';
+import {OrdenestrabajoService} from '../ordenestrabajo.service';
 
 @Component({
   selector: 'app-tabla',
@@ -12,11 +13,14 @@ import {MatTableDataSource} from '@angular/material/table';
 
 export class TablaComponent implements OnInit {
 
-  
-  users: any = [];
-  columnsToDisplay: any = ['id', 'nombre', 'apellido', 'dni'];
+  //users: any = [];
+  //columnsToDisplay: any = ['id', 'nombre', 'apellido', 'dni'];
+  ordenes: any = [];
+  columnsToDisplay: any = ['ordentrabajo_cod','planta', 'maquina.sector', 'maquina.maquina_cod', 
+                           'pedidoMateriales', 'tarea.descripcion', 'priodidad', 'tipo', 'fechaEntrega', 'fechaRealizar',
+                           'encargo.nombre', 'responsable.nombre', 'estado'];
   dataSource: any ;
-  constructor( private userService: UserService,) {}
+  constructor( private OrdenestrabajoService: OrdenestrabajoService) {}
 
   
   
@@ -33,11 +37,11 @@ export class TablaComponent implements OnInit {
 
     
 
-    this.userService.getUsers().subscribe(
+    this.OrdenestrabajoService.getAllOrdenes().subscribe(
 
       (data: any)  => { // Success
-        this.users = data;
-        this.dataSource = new MatTableDataSource(this.users);
+        this.ordenes = data;
+        this.dataSource = new MatTableDataSource(this.ordenes);
       },
       (error) => {
         console.error(error);
