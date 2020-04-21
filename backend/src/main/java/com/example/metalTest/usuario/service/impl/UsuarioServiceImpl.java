@@ -7,6 +7,7 @@ import com.example.metalTest.usuario.service.UsuarioService;
 import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,11 +35,13 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     }
 
+    @Transactional
     @Override
     public Usuario create(Usuario usuario){
         return usuarioRepository.save(usuario);
     }
 
+    @Transactional
     @Override
     public Usuario update(Integer id, Usuario usuario) throws ValidateFieldException{
         Optional<Usuario> op = usuarioRepository.findById(id);
@@ -51,4 +54,5 @@ public class UsuarioServiceImpl implements UsuarioService {
         u.setDni(usuario.getDni());
         return usuarioRepository.save(u);
     }
+
 }

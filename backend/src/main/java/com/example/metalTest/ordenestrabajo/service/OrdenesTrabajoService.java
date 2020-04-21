@@ -14,4 +14,6 @@ public interface OrdenesTrabajoService {
     OrdenesTrabajo getById(Integer id) throws ValidateFieldException;
 
     OrdenesTrabajo create(OrdenesTrabajoRequest ordenesTrabajoRequest);
+
+    OrdenesTrabajo update(OrdenesTrabajoRequest ordenesTrabajoRequest, Integer id) throws ValidateFieldException;
 }

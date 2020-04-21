@@ -20,7 +20,7 @@ public class OrdenesTrabajo {
     private int ordentrabajo_cod;
 
     @Column
-    private String planta;
+    private short planta;
 
     @OneToOne
     @JoinColumn
@@ -34,10 +34,10 @@ public class OrdenesTrabajo {
     private Tarea tarea;
 
     @Column
-    private String priodidad;
+    private short priodidad;
 
     @Column
-    private String tipo;
+    private short tipo;
 
     @Column
     @JsonFormat(pattern="dd-MM-yyyy HH:mm", timezone = "GMT-3")
@@ -56,7 +56,7 @@ public class OrdenesTrabajo {
     private Usuario responsable;
 
     @Column
-    private String estado;
+    private short estado;
 
 
 }
