@@ -10,6 +10,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TablaComponent } from './tabla/tabla.component';
 import { MatTableModule } from "@angular/material/table";
 import {MatInputModule} from '@angular/material/input';
+import {OrdenestrabajoService} from "./ordenestrabajo.service";
+import { ButtonComponent } from './button/button.component';
+import {MatButtonModule} from '@angular/material/button';
+import { FromComponent } from './from/from.component';
+import { FormComponent } from './form/form.component';
+import { FormsModule }   from '@angular/forms';
+import {MatSelectModule} from '@angular/material/select';
+
+
 
 
 
@@ -17,7 +26,10 @@ import {MatInputModule} from '@angular/material/input';
   declarations: [
     AppComponent,
     UsuarioComponent,
-    TablaComponent
+    TablaComponent,
+    ButtonComponent,
+    FromComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
@@ -26,10 +38,13 @@ import {MatInputModule} from '@angular/material/input';
     BrowserAnimationsModule,
     MatSliderModule,
     MatTableModule,
-  
-    MatInputModule
+    MatInputModule,
+    MatButtonModule,
+    FormsModule,
+    MatSelectModule
   ],
-  providers: [UserService],
+  providers: [UserService, 
+    OrdenestrabajoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
