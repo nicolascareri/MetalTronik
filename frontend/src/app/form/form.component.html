@@ -1,26 +1,15 @@
-<form>
+<div class="form-container">
+  <h1>Alta orden de trabajo</h1>
 
-    <div class="example-container">
-        <mat-form-field>
-          <input matInput placeholder="Input">
-        </mat-form-field>
-      
-        <mat-form-field>
-          <textarea matInput placeholder="Textarea"></textarea>
-        </mat-form-field>
-      
-        <mat-form-field>
-          <mat-select placeholder="Select">
-            <mat-option value="option">Option</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-    
+  <form [formGroup]="ordenForm" (ngSubmit)="saveForm()">
+   
+    <!-- <input type="text" formControlName="apellido" placeholder="User last name">
+    <input type="number" formControlName="dni" placeholder="User dni">
+      <input type="text" formControlName="nombre"  placeholder="User name"> -->
+      <button type="submit" class="btn-send">Send</button>
+  </form>
 
-
-
-</form>
-
+</div>
   
   
   

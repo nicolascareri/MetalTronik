@@ -8,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ButtonComponent implements OnInit {
 
-  constructor() { }
+  text: any;
+
+  constructor(
+    
+  ) { }
 
 
   goForm(){

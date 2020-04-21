@@ -13,4 +13,8 @@ export class OrdenestrabajoService {
     return this.http.get('http://localhost:8080/api/ordenes-trabajo');
   }
 
+  postOrder(userForm){
+    return this.http.post<any>('http://localhost:8080/api/ordenes-trabajo', userForm.value);
+  }
+
 }
