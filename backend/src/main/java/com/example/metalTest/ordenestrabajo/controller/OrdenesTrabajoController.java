@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -26,14 +27,21 @@ public class OrdenesTrabajoController {
     public ResponseEntity<List<OrdenesTrabajo>> getAll(){
         return new ResponseEntity<>(ordenesTrabajoService.getAll(), HttpStatus.OK);
     }
-    @GetMapping("/api/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<OrdenesTrabajo> getById(@PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<>(ordenesTrabajoService.getById(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<OrdenesTrabajo> create(@RequestBody OrdenesTrabajoRequest ordenesTrabajoRequest){
+    public ResponseEntity<OrdenesTrabajo> create(@Valid @RequestBody OrdenesTrabajoRequest ordenesTrabajoRequest){
         return new ResponseEntity<>(ordenesTrabajoService.create(ordenesTrabajoRequest), HttpStatus.CREATED);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<OrdenesTrabajo> update(@Valid @RequestBody OrdenesTrabajoRequest ordenesTrabajoRequest,
+                                                 @PathVariable Integer id) throws ValidateFieldException{
+        return new ResponseEntity<>(ordenesTrabajoService.update(ordenesTrabajoRequest, id), HttpStatus.OK);
+    }
+
 
 }
