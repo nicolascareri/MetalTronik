@@ -12,6 +12,7 @@ import com.example.metalTest.usuario.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -54,6 +55,7 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         }
     }
 
+    @Transactional
     @Override
     public OrdenesTrabajo create(OrdenesTrabajoRequest ordenesTrabajoRequest) {
         OrdenesTrabajo ordenesTrabajo = ordenesTrabajoMapper.ordenesTrabajoRequestToOrdenesTrabajo(ordenesTrabajoRequest);
@@ -62,6 +64,27 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         ordenesTrabajo.setTarea(tareaRepository.findById(ordenesTrabajoRequest.getTarea_cod()).get());
         ordenesTrabajo.setEncargo(usuarioRepository.findById(ordenesTrabajoRequest.getEncargo_cod()).get());
         ordenesTrabajo.setResponsable(usuarioRepository.findById(ordenesTrabajoRequest.getResponsable_cod()).get());
+        return ordenesTrabajoRepository.save(ordenesTrabajo);
+    }
+
+    @Override
+    public OrdenesTrabajo update(OrdenesTrabajoRequest ordenesTrabajoRequest, Integer id) throws ValidateFieldException {
+        Optional<OrdenesTrabajo> opt = ordenesTrabajoRepository.findById(id);
+        if(!opt.isPresent()){
+            throw new ValidateFieldException("La orden de trabajo a la que intenta acceder no existe", "id", String.valueOf(id));
+        }
+        OrdenesTrabajo ordenesTrabajo = opt.get();
+        ordenesTrabajo.setPlanta(ordenesTrabajoRequest.getPlanta());
+        ordenesTrabajo.setMaquina(maquinaRepository.getByCod(ordenesTrabajoRequest.getMaquina_cod()));
+        ordenesTrabajo.setPedidoMateriales(ordenesTrabajoRequest.getPedidoMateriales());
+        ordenesTrabajo.setTarea(tareaRepository.findById(ordenesTrabajoRequest.getTarea_cod()).get());
+        ordenesTrabajo.setPriodidad(ordenesTrabajoRequest.getPriodidad());
+        ordenesTrabajo.setTipo(ordenesTrabajoRequest.getTipo());
+        ordenesTrabajo.setFechaEntrega(new Date(System.currentTimeMillis()));
+        ordenesTrabajo.setFechaRealizar(ordenesTrabajoRequest.getFechaRealizar());
+        ordenesTrabajo.setEncargo(usuarioRepository.findById(ordenesTrabajoRequest.getEncargo_cod()).get());
+        ordenesTrabajo.setResponsable(usuarioRepository.findById(ordenesTrabajoRequest.getResponsable_cod()).get());
+        ordenesTrabajo.setEstado(ordenesTrabajoRequest.getEstado());
         return ordenesTrabajoRepository.save(ordenesTrabajo);
     }
 }

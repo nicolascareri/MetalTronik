@@ -8,6 +8,7 @@ import com.example.metalTest.tarea.service.TareaService;
 import com.example.metalTest.usuario.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,6 +31,7 @@ public class TareaServiceImpl implements TareaService {
         return tareaRepository.findAll();
     }
 
+    @Transactional
     @Override
     public Tarea create(TareaRequest tareaRequest) {
 
