@@ -15,8 +15,8 @@ import { ButtonComponent } from './button/button.component';
 import {MatButtonModule} from '@angular/material/button';
 import { FromComponent } from './from/from.component';
 import { FormComponent } from './form/form.component';
-import { FormsModule }   from '@angular/forms';
-import {MatSelectModule} from '@angular/material/select';
+import { OrdenestrabajoComponent } from './ordenestrabajo/ordenestrabajo.component';
+import { ReactiveFormsModule } from "@angular/forms";
 
 
 
@@ -29,7 +29,8 @@ import {MatSelectModule} from '@angular/material/select';
     TablaComponent,
     ButtonComponent,
     FromComponent,
-    FormComponent
+    FormComponent,
+    OrdenestrabajoComponent
   ],
   imports: [
     BrowserModule,
@@ -40,8 +41,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatTableModule,
     MatInputModule,
     MatButtonModule,
-    FormsModule,
-    MatSelectModule
+    ReactiveFormsModule
   ],
   providers: [UserService, 
     OrdenestrabajoService],
