@@ -1,6 +1,6 @@
 package com.example.metalTest.maquina.mapper;
 
-import com.example.metalTest.maquina.controller.response.MaquinaRequest;
+import com.example.metalTest.maquina.controller.request.MaquinaRequest;
 import com.example.metalTest.maquina.domain.Maquina;
 import org.mapstruct.Mapper;
 
