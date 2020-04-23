@@ -24,7 +24,7 @@ public class OrdenesTrabajoRequest {
     @NotNull
     private String pedidoMateriales;
     @NotNull
-    private int tarea_cod;
+    private String tarea;
     @NotNull
     @Min(1)
     @Max(7)
@@ -34,8 +34,6 @@ public class OrdenesTrabajoRequest {
     @Max(3)
     private short tipo;
     @NotNull
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm")
-    @JsonDeserialize(using = JsonDateDeserializer.class)
     private Date fechaRealizar;
     @NotNull
     private int encargo_cod;

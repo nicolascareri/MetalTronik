@@ -1,13 +1,13 @@
 package com.example.metalTest.common.ordenes;
 
-public enum Estado {
+public enum EstadoOrden {
 
-    ACTIVO((short) 30),
-    ELIMINADO((short) 80);
+    PENDIENTE((short) 1),
+    OK((short) 2);
 
     private short value;
 
-    Estado(short value){
+    EstadoOrden(short value){
         this.value = value;
     }
 
@@ -18,4 +18,5 @@ public enum Estado {
     public void setValue(short value) {
         this.value = value;
     }
+
 }

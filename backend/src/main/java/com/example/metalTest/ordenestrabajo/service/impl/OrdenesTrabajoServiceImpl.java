@@ -7,10 +7,8 @@ import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
 import com.example.metalTest.ordenestrabajo.mapper.OrdenesTrabajoMapper;
 import com.example.metalTest.ordenestrabajo.repository.OrdenesTrabajoRepository;
 import com.example.metalTest.ordenestrabajo.service.OrdenesTrabajoService;
-import com.example.metalTest.tarea.repository.TareaRepository;
 import com.example.metalTest.usuario.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,9 +30,6 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
 
     @Autowired
     UsuarioRepository usuarioRepository;
-
-    @Autowired
-    TareaRepository tareaRepository;
 
 
 
@@ -61,7 +56,6 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         OrdenesTrabajo ordenesTrabajo = ordenesTrabajoMapper.ordenesTrabajoRequestToOrdenesTrabajo(ordenesTrabajoRequest);
         ordenesTrabajo.setFechaEntrega(new Date(System.currentTimeMillis()));
         ordenesTrabajo.setMaquina(maquinaRepository.getByCod(ordenesTrabajoRequest.getMaquina_cod()));
-        ordenesTrabajo.setTarea(tareaRepository.findById(ordenesTrabajoRequest.getTarea_cod()).get());
         ordenesTrabajo.setEncargo(usuarioRepository.findById(ordenesTrabajoRequest.getEncargo_cod()).get());
         ordenesTrabajo.setResponsable(usuarioRepository.findById(ordenesTrabajoRequest.getResponsable_cod()).get());
         return ordenesTrabajoRepository.save(ordenesTrabajo);
@@ -77,7 +71,7 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         ordenesTrabajo.setPlanta(ordenesTrabajoRequest.getPlanta());
         ordenesTrabajo.setMaquina(maquinaRepository.getByCod(ordenesTrabajoRequest.getMaquina_cod()));
         ordenesTrabajo.setPedidoMateriales(ordenesTrabajoRequest.getPedidoMateriales());
-        ordenesTrabajo.setTarea(tareaRepository.findById(ordenesTrabajoRequest.getTarea_cod()).get());
+        ordenesTrabajo.setTarea(ordenesTrabajoRequest.getTarea());
         ordenesTrabajo.setPriodidad(ordenesTrabajoRequest.getPriodidad());
         ordenesTrabajo.setTipo(ordenesTrabajoRequest.getTipo());
         ordenesTrabajo.setFechaEntrega(new Date(System.currentTimeMillis()));
