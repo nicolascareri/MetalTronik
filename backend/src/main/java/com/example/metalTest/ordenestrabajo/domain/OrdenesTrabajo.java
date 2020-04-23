@@ -1,7 +1,6 @@
 package com.example.metalTest.ordenestrabajo.domain;
 
 import com.example.metalTest.maquina.domain.Maquina;
-import com.example.metalTest.tarea.domain.Tarea;
 import com.example.metalTest.usuario.domain.Usuario;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
@@ -29,9 +28,8 @@ public class OrdenesTrabajo {
     @Column
     private String pedidoMateriales;
 
-    @OneToOne
-    @JoinColumn
-    private Tarea tarea;
+    @Column
+    private String tarea;
 
     @Column
     private short priodidad;

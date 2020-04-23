@@ -18,7 +18,4 @@ public class Maquina {
     @Column(unique = true)
     private String maquina_cod;
 
-    @Column
-    private String sector;
-
 }
