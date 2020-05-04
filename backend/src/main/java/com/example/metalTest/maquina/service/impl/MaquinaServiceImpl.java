@@ -1,6 +1,7 @@
 package com.example.metalTest.maquina.service.impl;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
+import com.example.metalTest.common.ordenes.Estado;
 import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
 import com.example.metalTest.maquina.service.MaquinaService;
@@ -39,9 +40,13 @@ public class MaquinaServiceImpl implements MaquinaService {
         if (maquinaRepository.checkCodigoExistance(maquina.getMaquina_cod()) != 0) {
             throw new ValidateFieldException("El codigo ya tiene una maquina asociada", "maquina_cod", maquina.getMaquina_cod());
         }
-        else{
-            return maquinaRepository.save(maquina);
+
+        if(maquina.getEstado() != Estado.ACTIVO.getValue() && maquina.getEstado() != Estado.ELIMINADO.getValue()){
+            throw new ValidateFieldException("Valor en campo invalido","estado",String.valueOf(maquina.getEstado()));
+
         }
+
+        return maquinaRepository.save(maquina);
 
     }
 

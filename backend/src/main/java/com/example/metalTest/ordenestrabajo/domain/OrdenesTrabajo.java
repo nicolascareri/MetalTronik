@@ -1,6 +1,7 @@
 package com.example.metalTest.ordenestrabajo.domain;
 
 import com.example.metalTest.maquina.domain.Maquina;
+import com.example.metalTest.sector.domain.Sector;
 import com.example.metalTest.usuario.domain.Usuario;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
@@ -56,5 +57,8 @@ public class OrdenesTrabajo {
     @Column
     private short estado;
 
+    @OneToOne
+    @JoinColumn
+    private Sector sector;
 
 }

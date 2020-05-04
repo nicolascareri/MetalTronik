@@ -43,4 +43,6 @@ public class OrdenesTrabajoRequest {
     @Min(1)
     @Max(2)
     private short estado;
+    @NotNull
+    private int sector_cod;
 }
