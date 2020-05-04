@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -33,8 +34,12 @@ public class SectorController {
     }
 
     @PostMapping
-    public ResponseEntity<Sector> create(@RequestBody SectorRequest sectorRequest) throws ValidateFieldException {
+    public ResponseEntity<Sector> create(@Valid @RequestBody SectorRequest sectorRequest) throws ValidateFieldException {
         return new ResponseEntity<>(sectorService.create(sectorMapper.sectorRequestToSector(sectorRequest)), HttpStatus.CREATED);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Sector> update(@Valid @RequestBody SectorRequest sectorRequest, @PathVariable Integer id) throws ValidateFieldException {
+        return new ResponseEntity<>(sectorService.update(sectorMapper.sectorRequestToSector(sectorRequest), id), HttpStatus.OK);
     }
 
 }

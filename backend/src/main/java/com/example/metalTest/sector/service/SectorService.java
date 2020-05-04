@@ -11,4 +11,6 @@ public interface SectorService {
     Sector getById(Integer id) throws ValidateFieldException;
 
     Sector create(Sector sector) throws ValidateFieldException;
+
+    Sector update(Sector sectorRequestToSector, Integer id) throws ValidateFieldException;
 }

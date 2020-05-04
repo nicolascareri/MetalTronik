@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
@@ -33,13 +34,13 @@ public class UsuarioController {
 
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Usuario> updateUsuario(@RequestBody UsuarioRequest usuarioRequest, @PathVariable Integer id ) throws ValidateFieldException {
+    public ResponseEntity<Usuario> updateUsuario(@Valid @RequestBody UsuarioRequest usuarioRequest, @PathVariable Integer id ) throws ValidateFieldException {
         Usuario usuario = usuarioMapper.usuarioRequestToUsuario(usuarioRequest);
         return new ResponseEntity<>(usuarioService.update(id, usuario), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Usuario> createUsuario(@RequestBody UsuarioRequest usuarioRequest) throws ValidateFieldException {
+    public ResponseEntity<Usuario> createUsuario(@Valid @RequestBody UsuarioRequest usuarioRequest) throws ValidateFieldException {
         Usuario usuario = usuarioMapper.usuarioRequestToUsuario(usuarioRequest);
         return new ResponseEntity<>(usuarioService.create(usuario), HttpStatus.CREATED);
     }

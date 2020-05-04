@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 @Entity
 public class Usuario {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
@@ -20,6 +21,10 @@ public class Usuario {
 
     @Column
     private int dni;
+
+    @Column
+    private short estado;
+
 
     public int getId() {
         return id;
@@ -51,5 +56,13 @@ public class Usuario {
 
     public void setDni(int dni) {
         this.dni = dni;
+    }
+
+    public short getEstado() {
+        return estado;
+    }
+
+    public void setEstado(short estado) {
+        this.estado = estado;
     }
 }
