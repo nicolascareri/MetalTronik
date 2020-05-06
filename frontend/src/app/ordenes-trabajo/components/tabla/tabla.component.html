@@ -1,0 +1,159 @@
+
+  
+
+
+<div>
+
+  <mat-form-field class="filter">
+    <mat-label style="font-weight: bold;">Filtrar</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Material, responsable, maquina...">
+  </mat-form-field>
+
+  <app-button [routerLink]="['form']"></app-button>
+
+
+
+<div class="data">
+
+  
+
+  
+  <table mat-table [dataSource]="dataSource" class="table">
+    
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="ordentrabajo_cod">
+      <th mat-header-cell *matHeaderCellDef> Cod orden </th>
+      <td mat-cell *matCellDef="let ordenes"> {{ordenes.ordentrabajo_cod}} </td>
+    </ng-container>
+    
+    <!-- Position Column -->
+    <ng-container matColumnDef="planta">
+      <th mat-header-cell *matHeaderCellDef> Planta </th>
+      <td mat-cell *matCellDef="let ordenes" [ngSwitch]="ordenes.planta"> 
+        <span *ngSwitchCase="1">
+          {{plantas.A.ID}}
+      </span>
+      <span *ngSwitchCase="2">
+        {{plantas.B.ID}}
+      </span>
+    </td>
+  </ng-container>
+  
+  <!-- Name Column -->
+  <ng-container matColumnDef="sector">
+    <th mat-header-cell *matHeaderCellDef> Sector </th>
+    <td mat-cell *matCellDef="let ordenes"> {{ordenes.sector.descripcion}} </td>
+  </ng-container>
+  
+  <!-- Weight Column -->
+  <ng-container matColumnDef="maquina.maquina_cod">
+    <th mat-header-cell *matHeaderCellDef> Cod maquina </th>
+    <td mat-cell *matCellDef="let ordenes"> {{ordenes.maquina.maquina_cod}} </td>
+  </ng-container>
+  
+  
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="pedidoMateriales">
+    <th mat-header-cell *matHeaderCellDef> Pedido de materiales </th>
+    <td mat-cell *matCellDef="let ordenes"> {{ordenes.pedidoMateriales}} </td>
+  </ng-container>
+  
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="tarea">
+    <th mat-header-cell *matHeaderCellDef> Tarea </th>
+    <td mat-cell *matCellDef="let ordenes"> {{ordenes.tarea}} </td>
+  </ng-container>
+  
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="priodidad">
+    <th mat-header-cell *matHeaderCellDef> Prioridad </th>
+    <td mat-cell *matCellDef="let ordenes" [ngSwitch]="ordenes.priodidad">  
+      <span *ngSwitchCase="1">
+        {{prioridades.A.ID}}
+      </span>
+      <span *ngSwitchCase="2">
+        {{prioridades.B.ID}}
+      </span>
+      <span *ngSwitchCase="3">
+        {{prioridades.C.ID}}
+      </span>
+      <span *ngSwitchCase="4">
+        {{prioridades.D.ID}}
+      </span>
+      <span *ngSwitchCase="5">
+        {{prioridades.E.ID}}
+      </span>
+      <span *ngSwitchCase="6">
+        {{prioridades.F.ID}}
+      </span>
+      <span *ngSwitchCase="7">
+        {{prioridades.G.ID}}
+      </span>
+    </td>
+  </ng-container>
+  
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="tipo">
+    <th mat-header-cell *matHeaderCellDef> Tipo </th>
+    <td mat-cell *matCellDef="let ordenes" [ngSwitch]="ordenes.tipo"> 
+      <span *ngSwitchCase="1">
+        {{tipos.A.ID}}
+      </span>
+      <span *ngSwitchCase="2">
+        {{tipos.B.ID}}
+      </span>
+      <span *ngSwitchCase="3">
+        {{tipos.C.ID}}
+      </span>
+    </td>
+  </ng-container>
+  
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="fechaEntrega">
+    <th mat-header-cell *matHeaderCellDef> Fecha de entrega </th>
+    <td mat-cell *matCellDef="let ordenes"> {{ordenes.fechaEntrega}} </td>
+  </ng-container>
+  
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="fechaRealizar">
+    <th mat-header-cell *matHeaderCellDef> Fecha a realizar </th>
+    <td mat-cell *matCellDef="let ordenes"> {{ordenes.fechaRealizar}} </td>
+  </ng-container>
+  
+  
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="encargo.nombre">
+    <th mat-header-cell *matHeaderCellDef> Encargo </th>
+    <td mat-cell *matCellDef="let ordenes"> {{ordenes.encargo.nombre}} </td>
+  </ng-container>
+  
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="responsable.nombre">
+    <th mat-header-cell *matHeaderCellDef> Responsable </th>
+    <td mat-cell *matCellDef="let ordenes"> {{ordenes.responsable.nombre}} </td>
+  </ng-container>
+  
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="estado">
+    <th mat-header-cell *matHeaderCellDef> Estado </th>
+    <td mat-cell *matCellDef="let ordenes" [ngSwitch]="ordenes.estado">
+      <span *ngSwitchCase="1">
+        {{estados.A.ID}}
+      </span>
+      <span *ngSwitchCase="2">
+        {{estados.B.ID}}
+      </span>
+    </td>
+  </ng-container>
+  
+  
+  
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+</table>
+
+
+
+</div>
+
+</div>

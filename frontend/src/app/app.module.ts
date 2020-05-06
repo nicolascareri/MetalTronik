@@ -1,22 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatSliderModule } from "@angular/material/slider";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UserService } from './user.service';
+import { UserService } from './usuarios/services/user.service';
 import { HttpClientModule} from '@angular/common/http';
-import { UsuarioComponent } from './usuario/usuario.component';
+import { UsuarioComponent } from './usuarios/components/usuario/usuario.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TablaComponent } from './tabla/tabla.component';
-import { MatTableModule } from "@angular/material/table";
-import {MatInputModule} from '@angular/material/input';
-import {OrdenestrabajoService} from "./ordenestrabajo.service";
-import { ButtonComponent } from './button/button.component';
-import {MatButtonModule} from '@angular/material/button';
-import { FromComponent } from './from/from.component';
-import { FormComponent } from './form/form.component';
-import { OrdenestrabajoComponent } from './ordenestrabajo/ordenestrabajo.component';
-import { ReactiveFormsModule } from "@angular/forms";
+import { OrdenestrabajoService } from "./ordenes-trabajo/services/ordenestrabajo.service";
+import { CoreModule } from './core/core.module';
+import { OrdenesTrabajoModule } from "./ordenes-trabajo/ordenes-trabajo.module";
+import { MainModule } from './main/main.module';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+
 
 
 
@@ -26,25 +22,22 @@ import { ReactiveFormsModule } from "@angular/forms";
   declarations: [
     AppComponent,
     UsuarioComponent,
-    TablaComponent,
-    ButtonComponent,
-    FromComponent,
-    FormComponent,
-    OrdenestrabajoComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule,
-    MatSliderModule,
-    MatTableModule,
-    MatInputModule,
-    MatButtonModule,
-    ReactiveFormsModule
+    CoreModule,
+    OrdenesTrabajoModule,
+    MainModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [UserService, 
-    OrdenestrabajoService],
+    OrdenestrabajoService,],
   bootstrap: [AppComponent]
 })
+
+
 export class AppModule { }

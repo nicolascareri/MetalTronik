@@ -1,0 +1,45 @@
+.form-container{
+    font: 95% Arial, Helvetica, sans-serift;
+    max-width: 600px;
+    padding: 16px;
+    margin: 10px auto;
+    background-color: lightgray;
+}
+
+.form-container h1{
+    background-color: teal;
+    padding: 20px 0;
+    font-size: 140%;
+    font-weight: 300;
+    text-align: center;
+    color: white;
+    margin: -16px -16px 16px -16px;
+}
+
+.form-container input[type="text"],
+.form-container select,
+.form-container input[type="datetime-local"],
+.form-container input[type="number"] {
+    transition: all 0, 30% ease-in-out;
+    outline: none;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: white;
+    margin-bottom: 4%;
+    border: 1px solid white;
+    padding: 3%;
+    color: black;
+    font: 95% Arial, Helvetica, sans-serif; 
+}
+
+.btn-send{
+    width: 100%;
+    padding: 3%;
+    background-color: teal;
+    color: white;
+    font-size: 15px;
+}
+
+.form-container .btn-send:hover{
+    background-color: #006868;
+}
