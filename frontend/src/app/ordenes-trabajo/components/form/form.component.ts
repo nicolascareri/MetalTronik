@@ -96,6 +96,7 @@ export class FormComponent implements OnInit {
         this.OrdenestrabajoService.postOrder(this.ordenForm).subscribe(order => console.log(order)
         );
 
+      alert("Orden enviada");
         
       }
       

@@ -1,12 +1,14 @@
 .form-container{
+    border-radius: 5px;
     font: 95% Arial, Helvetica, sans-serift;
-    max-width: 600px;
+    max-width: 700px;
     padding: 16px;
-    margin: 10px auto;
+    margin: 50px auto;
     background-color: lightgray;
 }
 
 .form-container h1{
+    border-radius: 5px;
     background-color: teal;
     padding: 20px 0;
     font-size: 140%;
@@ -20,6 +22,7 @@
 .form-container select,
 .form-container input[type="datetime-local"],
 .form-container input[type="number"] {
+    border-radius: 5px;
     transition: all 0, 30% ease-in-out;
     outline: none;
     box-sizing: border-box;
@@ -33,6 +36,8 @@
 }
 
 .btn-send{
+    border: none;
+    border-radius: 5px;
     width: 100%;
     padding: 3%;
     background-color: teal;
@@ -42,4 +47,19 @@
 
 .form-container .btn-send:hover{
     background-color: #006868;
+}
+
+.form-container select{
+    margin-top: 5px;
+    border-radius: 5px;
+    
+}
+
+.form-container form{
+    margin-top: 25px;
+}
+
+.form-container label{
+    margin-left: 5px;
+    margin-top: 5px;
 }
