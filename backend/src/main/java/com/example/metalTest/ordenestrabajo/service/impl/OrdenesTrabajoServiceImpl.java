@@ -7,6 +7,7 @@ import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
 import com.example.metalTest.ordenestrabajo.mapper.OrdenesTrabajoMapper;
 import com.example.metalTest.ordenestrabajo.repository.OrdenesTrabajoRepository;
 import com.example.metalTest.ordenestrabajo.service.OrdenesTrabajoService;
+import com.example.metalTest.planta.repository.PlantaRepository;
 import com.example.metalTest.sector.repository.SectorRepository;
 import com.example.metalTest.usuario.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,8 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
     @Autowired
     SectorRepository sectorRepository;
 
+    @Autowired
+    PlantaRepository plantaRepository;
 
 
 
@@ -59,6 +62,7 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
     public OrdenesTrabajo create(OrdenesTrabajoRequest ordenesTrabajoRequest) {
         OrdenesTrabajo ordenesTrabajo = ordenesTrabajoMapper.ordenesTrabajoRequestToOrdenesTrabajo(ordenesTrabajoRequest);
         ordenesTrabajo.setFechaEntrega(new Date(System.currentTimeMillis()));
+        ordenesTrabajo.setPlanta(plantaRepository.findById(ordenesTrabajoRequest.getPlanta_cod()).get());
         ordenesTrabajo.setMaquina(maquinaRepository.getByCod(ordenesTrabajoRequest.getMaquina_cod()));
         ordenesTrabajo.setEncargo(usuarioRepository.findById(ordenesTrabajoRequest.getEncargo_cod()).get());
         ordenesTrabajo.setResponsable(usuarioRepository.findById(ordenesTrabajoRequest.getResponsable_cod()).get());
@@ -73,7 +77,7 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
             throw new ValidateFieldException("La orden de trabajo a la que intenta acceder no existe", "id", String.valueOf(id));
         }
         OrdenesTrabajo ordenesTrabajo = opt.get();
-        ordenesTrabajo.setPlanta(ordenesTrabajoRequest.getPlanta());
+        ordenesTrabajo.setPlanta(plantaRepository.findById(ordenesTrabajoRequest.getPlanta_cod()).get());
         ordenesTrabajo.setMaquina(maquinaRepository.getByCod(ordenesTrabajoRequest.getMaquina_cod()));
         ordenesTrabajo.setPedidoMateriales(ordenesTrabajoRequest.getPedidoMateriales());
         ordenesTrabajo.setTarea(ordenesTrabajoRequest.getTarea());

@@ -1,6 +1,7 @@
 package com.example.metalTest.ordenestrabajo.domain;
 
 import com.example.metalTest.maquina.domain.Maquina;
+import com.example.metalTest.planta.domain.Planta;
 import com.example.metalTest.sector.domain.Sector;
 import com.example.metalTest.usuario.domain.Usuario;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -19,8 +20,9 @@ public class OrdenesTrabajo {
     @Column
     private int ordentrabajo_cod;
 
-    @Column
-    private short planta;
+    @OneToOne
+    @JoinColumn
+    private Planta planta;
 
     @OneToOne
     @JoinColumn
