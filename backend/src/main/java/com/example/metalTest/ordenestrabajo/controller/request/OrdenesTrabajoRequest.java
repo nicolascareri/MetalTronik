@@ -45,4 +45,6 @@ public class OrdenesTrabajoRequest {
     private short estado;
     @NotNull
     private int sector_cod;
+
+    private String observaciones;
 }
