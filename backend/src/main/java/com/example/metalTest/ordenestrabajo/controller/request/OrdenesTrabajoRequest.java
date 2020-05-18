@@ -36,6 +36,8 @@ public class OrdenesTrabajoRequest {
     @NotNull
     private Date fechaRealizar;
     @NotNull
+    private Date fechaEntrega;
+    @NotNull
     private int encargo_cod;
     @NotNull
     private int responsable_cod;
