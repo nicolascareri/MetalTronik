@@ -58,7 +58,6 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
     @Override
     public OrdenesTrabajo create(OrdenesTrabajoRequest ordenesTrabajoRequest) {
         OrdenesTrabajo ordenesTrabajo = ordenesTrabajoMapper.ordenesTrabajoRequestToOrdenesTrabajo(ordenesTrabajoRequest);
-        ordenesTrabajo.setFechaEntrega(new Date(System.currentTimeMillis()));
         ordenesTrabajo.setMaquina(maquinaRepository.getByCod(ordenesTrabajoRequest.getMaquina_cod()));
         ordenesTrabajo.setEncargo(usuarioRepository.findById(ordenesTrabajoRequest.getEncargo_cod()).get());
         ordenesTrabajo.setResponsable(usuarioRepository.findById(ordenesTrabajoRequest.getResponsable_cod()).get());
@@ -79,7 +78,7 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         ordenesTrabajo.setTarea(ordenesTrabajoRequest.getTarea());
         ordenesTrabajo.setPriodidad(ordenesTrabajoRequest.getPriodidad());
         ordenesTrabajo.setTipo(ordenesTrabajoRequest.getTipo());
-        ordenesTrabajo.setFechaEntrega(new Date(System.currentTimeMillis()));
+        ordenesTrabajo.setFechaEntrega(ordenesTrabajoRequest.getFechaEntrega());
         ordenesTrabajo.setFechaRealizar(ordenesTrabajoRequest.getFechaRealizar());
         ordenesTrabajo.setEncargo(usuarioRepository.findById(ordenesTrabajoRequest.getEncargo_cod()).get());
         ordenesTrabajo.setResponsable(usuarioRepository.findById(ordenesTrabajoRequest.getResponsable_cod()).get());
