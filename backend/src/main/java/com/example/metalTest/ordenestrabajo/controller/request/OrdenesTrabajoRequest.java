@@ -13,9 +13,7 @@ import java.util.Date;
 public class OrdenesTrabajoRequest {
 
     @NotNull
-    @Min(1)
-    @Max(2)
-    private short planta;
+    private int planta_cod;
     @NotNull
     private String maquina_cod;
     @NotNull
