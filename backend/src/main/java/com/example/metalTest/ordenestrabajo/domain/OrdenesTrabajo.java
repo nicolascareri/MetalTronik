@@ -64,4 +64,7 @@ public class OrdenesTrabajo {
     @Column
     private String observaciones;
 
+    @Column
+    private int ordenTerciarizacion;
+
 }

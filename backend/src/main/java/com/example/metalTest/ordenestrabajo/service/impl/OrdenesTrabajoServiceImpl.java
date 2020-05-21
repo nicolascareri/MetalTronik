@@ -86,6 +86,7 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         ordenesTrabajo.setEstado(ordenesTrabajoRequest.getEstado());
         ordenesTrabajo.setSector(sectorRepository.findById(ordenesTrabajoRequest.getSector_cod()).get());
         ordenesTrabajo.setObservaciones(ordenesTrabajoRequest.getObservaciones());
+        ordenesTrabajo.setOrdenTerciarizacion(ordenesTrabajoRequest.getOrdenTerciarizacion());
         return ordenesTrabajoRepository.save(ordenesTrabajo);
     }
 }

@@ -1,8 +1,5 @@
 package com.example.metalTest.ordenestrabajo.controller.request;
 
-import com.example.metalTest.common.util.JsonDateDeserializer;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -47,4 +44,8 @@ public class OrdenesTrabajoRequest {
     private int sector_cod;
 
     private String observaciones;
+
+    @NotNull
+    @Min(message = "No puede ser nulo", value = 1)
+    private int ordenTerciarizacion;
 }
