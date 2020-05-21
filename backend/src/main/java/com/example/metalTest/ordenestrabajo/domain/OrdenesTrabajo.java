@@ -61,4 +61,7 @@ public class OrdenesTrabajo {
     @JoinColumn
     private Sector sector;
 
+    @Column
+    private String observaciones;
+
 }
