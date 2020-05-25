@@ -20,7 +20,7 @@ export class TablaComponent implements OnInit {
   ordenes: any = [];
   columnsToDisplay: any = ['ordentrabajo_cod','planta', 'sector', 'maquina.maquina_cod', 
                            'pedidoMateriales', 'tarea', 'priodidad', 'tipo', 'fechaEntrega', 'fechaRealizar',
-                           'encargo.nombre', 'responsable.nombre', 'estado'];
+                           'encargo.nombre', 'responsable.nombre', 'estado', 'observaciones', 'ordenTerciarizacion'];
   dataSource: any ;
 
   plantas: any = PLANTATABLE;

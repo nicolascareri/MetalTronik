@@ -50,7 +50,7 @@ export const PRIORIDADES = [
     {
         
         id: '3',
-        desc: 'EN LO INMEDIATO:'
+        desc: 'EN LO INMEDIATO'
     },
     {
         id: '4',
