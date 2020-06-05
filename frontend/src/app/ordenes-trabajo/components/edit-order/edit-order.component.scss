@@ -1,0 +1,143 @@
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .edit-btn{
+    background-color: teal;
+    color: white;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    position: relative;
+    //left: 785px;
+    //top: 25px;
+  }
+
+
+  .form-container{
+    background-color: lightgray;
+    font: 95% Arial, Helvetica, sans-serift;
+    border-radius: 5px;
+    max-width: 100%;
+    padding: 16px;
+    margin: 50px;
+}
+
+.form-container h1{
+    background-color: teal;
+    font-size: 140%;
+    font-weight: 300;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    padding: 14px 0;
+    margin: -16px -16px 16px -16px;
+}
+
+.form-container .part1 {
+    display:inline-block;
+    max-width: 20%;
+    margin-right: 5%;
+}
+
+.form-container .part2{
+    display:inline-block;
+    max-width: 20%;
+    margin-right: 5%;    
+}
+
+.form-container .part3{
+    display:inline-block; 
+    max-width: 20%;
+    margin-right: 5%;
+}
+
+.form-container .part4{
+    display:inline-block;
+    position: absolute;
+    max-width: 20%;
+    margin-right: 5%;
+}
+
+.form-container input[type="text"],
+.form-container select,
+.form-container input[type="datetime-local"],
+.form-container input[type="number"] {
+    font: 95% Arial, Helvetica, sans-serif; 
+    background-color: white;
+    color: black;
+    //display: block; 
+    //font-size: 25px;
+    border: 1px solid white;
+    border-radius: 5px;
+    //transition: all 0, 30% ease-in-out;
+    //outline: none;
+    //box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 14%;
+    padding: 6px;
+}
+
+.btn-send{
+    background-color: teal;
+    color: white;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    width: 23%;
+    padding: 1%;
+}
+
+.form-container .btn-send:hover{
+    background-color: #006868;
+}
+
+// .form-container select{
+//     //margin-top: 5px;
+//     //border-radius: 5px;
+    
+// }
+
+// .form-container form{
+//     margin-top: 25px;
+// }
+
+// .form-container label{
+    
+//     //margin-left: 5px;
+//     //margin-top: 10px;
+// }

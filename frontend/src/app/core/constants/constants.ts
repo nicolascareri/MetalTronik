@@ -20,7 +20,8 @@ export const ENDPOINTS = {
 
     ORDENES_TRABAJO: {
         GET: 'api/ordenes-trabajo',
-        POST: 'api/ordenes-trabajo'
+        POST: 'api/ordenes-trabajo',
+        PUT: 'api/ordenes-trabajo/'
     },
 
     SECTORES: {

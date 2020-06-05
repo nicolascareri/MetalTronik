@@ -12,129 +12,133 @@
   <app-button [routerLink]="['form']"></app-button>
 
 
-
-<div class="data">
-
+  <!-- <app-edit-order [originalOrder]="ordenes"></app-edit-order> -->
   
+  <div class="data">
+  <table mat-table [dataSource]="dataSourceOrdenes" class="table">
 
-  
-  <table mat-table [dataSource]="dataSource" class="table">
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let ordenes">
+        <button id="myBtn" class="edit-btn" (click)="openModal(ordenes)">Editar</button>
+      </td>
+    </ng-container>
     
-    <!-- Symbol Column -->
+   
     <ng-container matColumnDef="ordentrabajo_cod">
       <th mat-header-cell *matHeaderCellDef> Cod orden </th>
       <td mat-cell *matCellDef="let ordenes"> {{ordenes.ordentrabajo_cod}} </td>
     </ng-container>
     
-    <!-- Position Column -->
+   
     <ng-container matColumnDef="planta">
       <th mat-header-cell *matHeaderCellDef> Planta </th>
       <td mat-cell *matCellDef="let ordenes"> {{ordenes.planta.nombre}} </td>
   </ng-container>
   
-  <!-- Name Column -->
+ 
   <ng-container matColumnDef="sector">
     <th mat-header-cell *matHeaderCellDef> Sector </th>
     <td mat-cell *matCellDef="let ordenes"> {{ordenes.sector.descripcion}} </td>
   </ng-container>
   
-  <!-- Weight Column -->
+  
   <ng-container matColumnDef="maquina.maquina_cod">
     <th mat-header-cell *matHeaderCellDef> Cod maquina </th>
     <td mat-cell *matCellDef="let ordenes"> {{ordenes.maquina.maquina_cod}} </td>
   </ng-container>
   
   
-  <!-- Symbol Column -->
+ 
   <ng-container matColumnDef="pedidoMateriales">
     <th mat-header-cell *matHeaderCellDef> Pedido de materiales </th>
     <td mat-cell *matCellDef="let ordenes"> {{ordenes.pedidoMateriales}} </td>
   </ng-container>
   
-  <!-- Symbol Column -->
+  
   <ng-container matColumnDef="tarea">
     <th mat-header-cell *matHeaderCellDef> Tarea </th>
     <td mat-cell *matCellDef="let ordenes"> {{ordenes.tarea}} </td>
   </ng-container>
   
-  <!-- Symbol Column -->
+  
   <ng-container matColumnDef="priodidad">
     <th mat-header-cell *matHeaderCellDef> Prioridad </th>
     <td mat-cell *matCellDef="let ordenes" [ngSwitch]="ordenes.priodidad">  
       <span *ngSwitchCase="1">
-        {{prioridades.A.ID}}
+        {{prioridadesTable.A.ID}}
       </span>
       <span *ngSwitchCase="2">
-        {{prioridades.B.ID}}
+        {{prioridadesTable.B.ID}}
       </span>
       <span *ngSwitchCase="3">
-        {{prioridades.C.ID}}
+        {{prioridadesTable.C.ID}}
       </span>
       <span *ngSwitchCase="4">
-        {{prioridades.D.ID}}
+        {{prioridadesTable.D.ID}}
       </span>
       <span *ngSwitchCase="5">
-        {{prioridades.E.ID}}
+        {{prioridadesTable.E.ID}}
       </span>
       <span *ngSwitchCase="6">
-        {{prioridades.F.ID}}
+        {{prioridadesTable.F.ID}}
       </span>
       <span *ngSwitchCase="7">
-        {{prioridades.G.ID}}
+        {{prioridadesTable.G.ID}}
       </span>
     </td>
   </ng-container>
   
-  <!-- Symbol Column -->
+
   <ng-container matColumnDef="tipo">
     <th mat-header-cell *matHeaderCellDef> Tipo </th>
     <td mat-cell *matCellDef="let ordenes" [ngSwitch]="ordenes.tipo"> 
       <span *ngSwitchCase="1">
-        {{tipos.A.ID}}
+        {{tiposTable.A.ID}}
       </span>
       <span *ngSwitchCase="2">
-        {{tipos.B.ID}}
+        {{tiposTable.B.ID}}
       </span>
       <span *ngSwitchCase="3">
-        {{tipos.C.ID}}
+        {{tiposTable.C.ID}}
       </span>
     </td>
   </ng-container>
   
-  <!-- Symbol Column -->
+  
   <ng-container matColumnDef="fechaEntrega">
     <th mat-header-cell *matHeaderCellDef> Fecha de entrega </th>
     <td mat-cell *matCellDef="let ordenes"> {{ordenes.fechaEntrega}} </td>
   </ng-container>
   
-  <!-- Symbol Column -->
+  
   <ng-container matColumnDef="fechaRealizar">
     <th mat-header-cell *matHeaderCellDef> Fecha a realizar </th>
     <td mat-cell *matCellDef="let ordenes"> {{ordenes.fechaRealizar}} </td>
   </ng-container>
   
   
-  <!-- Symbol Column -->
+ 
   <ng-container matColumnDef="encargo.nombre">
     <th mat-header-cell *matHeaderCellDef> Encargo </th>
     <td mat-cell *matCellDef="let ordenes"> {{ordenes.encargo.nombre}} </td>
   </ng-container>
   
-  <!-- Symbol Column -->
+
   <ng-container matColumnDef="responsable.nombre">
     <th mat-header-cell *matHeaderCellDef> Responsable </th>
     <td mat-cell *matCellDef="let ordenes"> {{ordenes.responsable.nombre}} </td>
   </ng-container>
   
-  <!-- Symbol Column -->
+ 
   <ng-container matColumnDef="estado">
     <th mat-header-cell *matHeaderCellDef> Estado </th>
     <td mat-cell *matCellDef="let ordenes" [ngSwitch]="ordenes.estado">
       <span *ngSwitchCase="1">
-        {{estados.A.ID}}
+        {{estadosTable.A.ID}}
       </span>
       <span *ngSwitchCase="2">
-        {{estados.B.ID}}
+        {{estadosTable.B.ID}}
       </span>
     </td>
   </ng-container>
@@ -149,6 +153,10 @@
     <td mat-cell *matCellDef="let ordenes"> {{ordenes.ordenTerciarizacion}} </td>
   </ng-container>
 
+ 
+
+
+
   
   
   <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
@@ -156,6 +164,145 @@
 </table>
 
 
+
+</div>
+}
+
+<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<div id="myModal" class="modal">
+
+  <div class="modal-content">
+
+    <!-- <app-form [titulo]="'Editar orden'"></app-form> -->
+    
+<div class="form-container">
+
+  <h1>Editar Orden</h1> 
+
+  <form [formGroup]="form" (ngSubmit)="onSave()">
+    
+    <div class="part1">
+      <label for="encargo_cod">Responsable de encargo</label>
+      <select formControlName="encargo_cod">  
+        <option value="" disabled>Seleccionar responsable de encargo</option>
+        <option *ngFor="let user of dataSourceUsers" [ngValue]="user.id">
+         {{ user.nombre }} {{ user.apellido }}
+        </option>
+      </select> 
+    
+
+
+    
+      <label for="estado">Estado de la orden</label>
+      <select formControlName="estado">
+        <option value="" disabled>Seleccionar estado de la orden</option>
+        <option *ngFor="let estado of estadosForm" [ngValue]="estado.id">
+         {{estado.desc}}
+        </option>
+      </select> 
+    
+
+    
+      <label for="fechaRealizar">Fecha a realizar</label>
+      <input type="datetime-local" formControlName="fechaRealizar" placeholder="DD-MM-YYYY HH:MM" id="inputDate">
+    
+
+    
+      <label for="maquina_cod">Maquina</label>
+      <select formControlName="maquina_cod">
+        <option value="" disabled>Seleccionar maquina</option>
+        <option *ngFor="let machine of dataSourceMachines" [ngValue]="machine.maquina_cod">
+         {{machine.maquina_cod}}
+        </option>
+      </select> 
+    </div>
+
+    <div class="part2">
+      <label for="pedidoMateriales">Materiales</label>
+      <input type="text" formControlName="pedidoMateriales"  placeholder="Pedido de materiales">
+    
+
+    
+      <label for="planta">Planta</label>
+      <select formControlName="planta_cod">
+        <option value="" disabled>Seleccionar planta</option>
+        <option *ngFor="let planta of dataSourcePlants" [ngValue]="planta.id">
+         {{planta.nombre}}
+        </option>
+      </select> 
+    
+
+    
+      <label for="sector">Sector</label>
+      <select formControlName="sector_cod">
+        <option value="" disabled>Seleccione sector</option>
+        <option *ngFor="let sector of dataSourceSectors" [ngValue]="sector.id">
+         {{sector.descripcion}}
+        </option>
+      </select> 
+    
+
+    
+      <label for="prioridad">Prioridad</label>
+      <select formControlName="priodidad">
+        <option value="" disabled>Seleccionar prioridad</option>
+        <option *ngFor="let prio of prioridadesForm" [ngValue]="prio.id">
+         {{prio.desc}}
+        </option>
+      </select> 
+    </div>
+
+    <div class="part3">
+      <label for="responsable_cod">Responsable</label>
+      <select formControlName="responsable_cod">
+        <option value="" disabled>Seleccione responsable</option>
+        <option *ngFor="let user of dataSourceUsers" [ngValue]="user.id">
+          {{ user.nombre }} {{ user.apellido }}
+        </option>
+      </select> 
+    
+      
+
+  
+      <label for="tarea">Tarea</label>
+      <input type="text" formControlName="tarea"  placeholder="Tarea a realizar">
+    
+
+    
+      <label for="tipo">Tipo</label>
+      <select formControlName="tipo">
+        <option value="" disabled>Seleccionar tipo</option>
+        <option *ngFor="let tip of tipoForm" [ngValue]="tip.id">
+          {{tip.desc}}
+        </option>
+      </select>
+
+      <label for="tarea">Observaciones</label>
+      <input type="text" formControlName="observaciones"  placeholder="...">
+      
+    </div>
+
+    <div class="part4">
+      <label for="ordenTerciarizacion">Orden de terciarizacion</label>
+      <input type="number" formControlName="ordenTerciarizacion"  placeholder="...">
+
+      <label for="fechaEntrega">Fecha de entrega</label>
+      <input type="datetime-local" formControlName="fechaEntrega" placeholder="DD-MM-YYYY HH:MM" id="inputDate">
+    </div>
+
+  
+
+    <button type="submit" class="btn-send">Guardar</button>
+    
+  </form>
+ 
+</div>
+  
+  
+  
+
+  </div>
 
 </div>
 
