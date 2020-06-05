@@ -1,5 +1,7 @@
+
 <div class="form-container">
-  <h1>Nueva orden de trabajo</h1>
+
+  <h1>Nueva orden</h1> 
 
   <form [formGroup]="ordenForm" (ngSubmit)="saveForm()">
     
@@ -116,8 +118,134 @@
 
     <button type="submit" class="btn-send" >Crear orden</button>
   </form>
+ 
+</div>
 
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<!-- 
+<div class="form-container" *ngIf="titulo == 'Editar orden'">
+
+  <h1>{{titulo}}</h1> 
+
+  <form [formGroup]="ordenForm" (ngSubmit)="editOrder()">
+    
+    <div class="part1">
+      <label for="encargo_cod">Responsable de encargo</label>
+      <select formControlName="encargo_cod">  
+        <option value="" disabled>Selecciona un responsable de encargo</option>
+        <option *ngFor="let user of users" [ngValue]="user.id">
+         {{ user.nombre }} {{ user.apellido }}
+        </option>
+      </select> 
+    
+
+
+    
+      <label for="estado">Estado de la orden</label>
+      <select formControlName="estado">
+        <option value="" disabled>Seleccionar estado de la orden</option>
+        <option *ngFor="let estado of estados" [ngValue]="estado.id">
+         {{estado.desc}}
+        </option>
+      </select> 
+    
+
+    
+      <label for="fechaRealizar">Fecha a realizar</label>
+      <input type="datetime-local" formControlName="fechaRealizar" placeholder="DD-MM-YYYY HH:MM" id="inputDate">
+    
+
+    
+      <label for="maquina_cod">Maquina</label>
+      <select formControlName="maquina_cod">
+        <option value="" disabled>Seleccionar maquina</option>
+        <option *ngFor="let machine of machines" [ngValue]="machine.maquina_cod">
+         {{machine.maquina_cod}}
+        </option>
+      </select> 
+    </div>
+
+    <div class="part2">
+      <label for="pedidoMateriales">Materiales</label>
+      <input type="text" formControlName="pedidoMateriales"  placeholder="Pedido de materiales">
+    
+
+    
+      <label for="planta">Planta</label>
+      <select formControlName="planta_cod">
+        <option value="" disabled>Seleccionar planta</option>
+        <option *ngFor="let planta of plants" [ngValue]="planta.id">
+         {{planta.nombre}}
+        </option>
+      </select> 
+    
+
+    
+      <label for="sector">Sector</label>
+      <select formControlName="sector_cod">
+        <option value="" disabled>Seleccione sector</option>
+        <option *ngFor="let sector of sectors" [ngValue]="sector.id">
+         {{sector.descripcion}}
+        </option>
+      </select> 
+    
+
+    
+      <label for="prioridad">Prioridad</label>
+      <select formControlName="priodidad">
+        <option value="" disabled>Seleccionar prioridad</option>
+        <option *ngFor="let prio of prioridades" [ngValue]="prio.id">
+         {{prio.desc}}
+        </option>
+      </select> 
+    </div>
+
+    <div class="part3">
+      <label for="responsable_cod">Responsable</label>
+      <select formControlName="responsable_cod">
+        <option value="" disabled>Seleccione responsable</option>
+        <option *ngFor="let user of users" [ngValue]="user.id">
+          {{ user.nombre }} {{ user.apellido }}
+        </option>
+      </select> 
+    
+      
+
+  
+      <label for="tarea">Tarea</label>
+      <input type="text" formControlName="tarea"  placeholder="Descripcion de la tarea">
+    
+
+    
+      <label for="tipo">Tipo</label>
+      <select formControlName="tipo">
+        <option value="" disabled>Seleccionar tipo</option>
+        <option *ngFor="let tip of tipo" [ngValue]="tip.id">
+          {{tip.desc}}
+        </option>
+      </select>
+
+      <label for="tarea">Observaciones</label>
+      <input type="text" formControlName="observaciones"  placeholder="...">
+      
+    </div>
+
+    <div class="part4">
+      <label for="ordenTerciarizacion">Orden de terciarizacion</label>
+      <input type="number" formControlName="ordenTerciarizacion"  placeholder="...">
+
+      <label for="fechaEntrega">Fecha de entrega</label>
+      <input type="datetime-local" formControlName="fechaEntrega" placeholder="DD-MM-YYYY HH:MM" id="inputDate">
+    </div>
+
+  
+
+    <button type="submit" class="btn-send">Guardar</button>
+    
+  </form>
+ 
 </div>
   
   
-  
+   -->

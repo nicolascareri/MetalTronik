@@ -41,11 +41,11 @@ public class OrdenesTrabajo {
     private short tipo;
 
     @Column
-    @JsonFormat(pattern="dd-MM-yyyy HH:mm", timezone = "GMT-3")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm", timezone = "GMT-3")
     private Date fechaEntrega;
 
     @Column
-    @JsonFormat(pattern="dd-MM-yyyy HH:mm", timezone = "GMT-3")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm", timezone = "GMT-3")
     private Date fechaRealizar;
 
     @OneToOne

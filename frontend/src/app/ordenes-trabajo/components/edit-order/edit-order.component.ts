@@ -1,22 +1,26 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { UserService } from "../../../usuarios/services/user.service";
-import { OrdenestrabajoService } from "../../services/ordenestrabajo.service";
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, FormGroup,  FormControl } from "@angular/forms";
+import { OrdenestrabajoService } from "./../../services/ordenestrabajo.service";
 import { SectorService } from "../../services/sector.service";
 import { MaquinaService } from "../../services/maquina.service";
 import { PLANTAS, PRIORIDADES, ESTADO_ORDEN, TIPO } from "src/app/core/constants/constants";
 import { PlantaService } from "../../services/planta.service";
-import { EditOrderComponent } from "../edit-order/edit-order.component";
-import { Router } from "@angular/router"
+import { UserService } from "../../../usuarios/services/user.service";
+
 
 @Component({
-  selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss']
+  selector: 'app-edit-order',
+  templateUrl: './edit-order.component.html',
+  styleUrls: ['./edit-order.component.scss']
 })
-export class FormComponent implements OnInit {
 
-  
+export class EditOrderComponent implements OnInit {
+
+  @Input() originalOrder: any; 
+  @Output() close = new EventEmitter();
+
+  form: FormGroup;
+
   createFormGroup(){
     return new FormGroup({
       encargo_cod: new FormControl(''),
@@ -37,33 +41,10 @@ export class FormComponent implements OnInit {
     })
   }
 
-  // createFormEdit(){
-  //   return new FormGroup({
-  //     encargo_cod: this.orderToEdit.encargo_cod,
-  //     estado: this.orderToEdit.estado,
-  //     fechaRealizar: this.orderToEdit.fechaRealizar,
-  //     maquina_cod: this.orderToEdit.maquina_cod,
-  //     pedidoMateriales: this.orderToEdit.pedidoMateriales,
-  //     planta_cod: this.orderToEdit.planta_cod,
-  //     priodidad: this.orderToEdit.priodidad,
-  //     responsable_cod: this.orderToEdit.responsable_cod,
-  //     sector_cod: this.orderToEdit.sector_cod,
-  //     tarea: this.orderToEdit.tarea,
-  //     observaciones: this.orderToEdit.observaciones,
-  //     ordenTerciarizacion : this.orderToEdit.ordenTerciarizacion,
-  //     fechaEntrega : this.orderToEdit.fechaEntrega,
-  //     tipo: this.orderToEdit.tipo,
-      
-  //   })
-  // }
+  
+  
 
 
-
-  //@Input()titulo : string = "Nueva orden";
-  // @Input()originalOrder : OrdenestrabajoService;
-  //editComponent : EditOrderComponent;
-  // orderToEdit : any = this.editComponent.originalOrder;
-  // editForm: FormGroup;
 
   plantas: any = PLANTAS;
   prioridades: any = PRIORIDADES;
@@ -83,14 +64,24 @@ export class FormComponent implements OnInit {
   dataSourcePlants: any;
 
 
-  constructor(private OrdenestrabajoService: OrdenestrabajoService, private UserService: UserService,
-              private SectorService: SectorService, private MaquinaService: MaquinaService, private PlantaService: PlantaService, private router:Router) {
-    this.ordenForm = this.createFormGroup();
-   }
+
+
+
+  constructor(
+
+    private OrdenestrabajoService: OrdenestrabajoService,
+    private UserService: UserService,
+    private SectorService: SectorService, 
+    private MaquinaService: MaquinaService, 
+    private PlantaService: PlantaService,
+    private fb: FormBuilder
+
+    ) {
+      this.form = this.createFormGroup();
+    }
 
   ngOnInit(): void {
 
-    
     this.PlantaService.getPlantas().subscribe(
 
       (data: any)  => { // Success
@@ -159,22 +150,68 @@ export class FormComponent implements OnInit {
       );
       
       
+    this.closeModal();
+    
+    
+  }
+
+  openModal(){
+      let modal = document.getElementById("myModal");
+      modal.style.display = "block";
+      console.log(this.originalOrder);
+      this.setOriginalValues(this.originalOrder);
+      console.log(this.form);
+      
+      
+  }
+
+  closeModal(){
+    window.onclick = function(event) {
+      let modal = document.getElementById("myModal");
+      if (event.target == modal) {
+        modal.style.display = "none";
+        console.log(this.originalOrder);
+      }
     }
-      
-      resetForm() {
-        this.ordenForm.reset();
-      }
-      
-      saveForm() {
-        console.log(this.ordenForm.value);
-        this.OrdenestrabajoService.postOrder(this.ordenForm).subscribe(
-          order => alert("Se ha creado la orden nro: " + order.ordentrabajo_cod)
-        );
-        this.router.navigate(['main/ordenes'])
-      
-        
-      }
- 
-      
+  }
+
+
+  // setOriginalValues(originalOrder){
+  //   this.form.controls['encargo_cod'].setValue(originalOrder.encargo.id);
+    
+  // }
+  setOriginalValues(originalOrder){
+    this.form.setValue({
+      encargo_cod: originalOrder.encargo.id,
+      estado: originalOrder.estado,
+      fechaRealizar: originalOrder.fechaRealizar,
+      maquina_cod: originalOrder.maquina.maquina_cod,
+      pedidoMateriales: originalOrder.pedidoMateriales,
+      planta_cod: originalOrder.planta.nombre,
+      priodidad: originalOrder.priodidad,
+      responsable_cod: originalOrder.responsable.id,
+      sector_cod: originalOrder.sector.id,
+      tarea: originalOrder.tarea,
+      observaciones: originalOrder.observaciones,
+      ordenTerciarizacion : originalOrder.ordenTerciarizacion,
+      fechaEntrega : originalOrder.fechaEntrega,
+      tipo: originalOrder.tipo,
+
+    })
+  }
+
+  
+
+  onSave() {
+    console.log(this.originalOrder.ordentrabajo_cod);
+    console.log(this.form.value);
+    this.OrdenestrabajoService.updateOrder(this.originalOrder.ordentrabajo_cod, this.form.value).subscribe(order => console.log(order));
+    //this.onCancel();
+  }
+
+  onCancel() {
+    this.originalOrder = null;
+    this.close.emit();
+  }
 
 }

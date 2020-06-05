@@ -9,11 +9,13 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { EditOrderComponent } from './components/edit-order/edit-order.component';
+
 
 
 
 @NgModule({
-  declarations: [FormComponent, TablaComponent],
+  declarations: [FormComponent, TablaComponent, EditOrderComponent],
   imports: [
     RouterModule,
     CommonModule,
