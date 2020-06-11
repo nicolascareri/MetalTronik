@@ -2,7 +2,9 @@ package com.example.metalTest.ordenestrabajo.domain;
 
 import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.planta.domain.Planta;
+import com.example.metalTest.prioridades.domain.Prioridades;
 import com.example.metalTest.sector.domain.Sector;
+import com.example.metalTest.tipo.domain.Tipo;
 import com.example.metalTest.usuario.domain.Usuario;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
@@ -10,6 +12,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.TimeZone;
 
 @Getter
 @Setter
@@ -34,11 +37,13 @@ public class OrdenesTrabajo {
     @Column
     private String tarea;
 
-    @Column
-    private short priodidad;
+    @OneToOne
+    @JoinColumn
+    private Prioridades priodidad;
 
-    @Column
-    private short tipo;
+    @OneToOne
+    @JoinColumn
+    private Tipo tipo;
 
     @Column
     @JsonFormat(pattern="yyyy-MM-dd HH:mm", timezone = "GMT-3")

@@ -8,7 +8,9 @@ import com.example.metalTest.ordenestrabajo.mapper.OrdenesTrabajoMapper;
 import com.example.metalTest.ordenestrabajo.repository.OrdenesTrabajoRepository;
 import com.example.metalTest.ordenestrabajo.service.OrdenesTrabajoService;
 import com.example.metalTest.planta.repository.PlantaRepository;
+import com.example.metalTest.prioridades.repository.PrioridadesRepository;
 import com.example.metalTest.sector.repository.SectorRepository;
+import com.example.metalTest.tipo.repository.TipoRepository;
 import com.example.metalTest.usuario.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +41,11 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
     @Autowired
     PlantaRepository plantaRepository;
 
+    @Autowired
+    PrioridadesRepository prioridadesRepository;
+
+    @Autowired
+    TipoRepository tipoRepository;
 
 
     @Override
@@ -66,6 +73,8 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         ordenesTrabajo.setEncargo(usuarioRepository.findById(ordenesTrabajoRequest.getEncargo_cod()).get());
         ordenesTrabajo.setResponsable(usuarioRepository.findById(ordenesTrabajoRequest.getResponsable_cod()).get());
         ordenesTrabajo.setSector(sectorRepository.findById(ordenesTrabajoRequest.getSector_cod()).get());
+        ordenesTrabajo.setTipo(tipoRepository.findById(ordenesTrabajoRequest.getTipo_cod()).get());
+        ordenesTrabajo.setPriodidad(prioridadesRepository.findById(ordenesTrabajoRequest.getPriodidad_cod()).get());
         return ordenesTrabajoRepository.save(ordenesTrabajo);
     }
 
@@ -80,8 +89,8 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         ordenesTrabajo.setMaquina(maquinaRepository.getByCod(ordenesTrabajoRequest.getMaquina_cod()));
         ordenesTrabajo.setPedidoMateriales(ordenesTrabajoRequest.getPedidoMateriales());
         ordenesTrabajo.setTarea(ordenesTrabajoRequest.getTarea());
-        ordenesTrabajo.setPriodidad(ordenesTrabajoRequest.getPriodidad());
-        ordenesTrabajo.setTipo(ordenesTrabajoRequest.getTipo());
+        ordenesTrabajo.setPriodidad(prioridadesRepository.findById(ordenesTrabajoRequest.getPriodidad_cod()).get());
+        ordenesTrabajo.setTipo(tipoRepository.findById(ordenesTrabajoRequest.getTipo_cod()).get());
         ordenesTrabajo.setFechaEntrega(ordenesTrabajoRequest.getFechaEntrega());
         ordenesTrabajo.setFechaRealizar(ordenesTrabajoRequest.getFechaRealizar());
         ordenesTrabajo.setEncargo(usuarioRepository.findById(ordenesTrabajoRequest.getEncargo_cod()).get());
