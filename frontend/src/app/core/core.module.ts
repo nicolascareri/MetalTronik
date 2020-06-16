@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ButtonComponent } from './components/button/button.component';
 import { RouterModule } from '@angular/router';
 import { OrdenesTrabajoRoutingModule } from '../ordenes-trabajo/ordenes-trabajo-routing.module';
+import { UsuariosRoutingModule } from "../usuarios/usuarios-routing.module";
 
 
 
@@ -13,7 +14,8 @@ import { OrdenesTrabajoRoutingModule } from '../ordenes-trabajo/ordenes-trabajo-
     CommonModule,
     MatButtonModule,
     RouterModule,
-    OrdenesTrabajoRoutingModule
+    OrdenesTrabajoRoutingModule,
+    UsuariosRoutingModule
   ],
   exports: [
     ButtonComponent
