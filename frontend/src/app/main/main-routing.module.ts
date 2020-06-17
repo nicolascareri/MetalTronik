@@ -26,7 +26,12 @@ const routes: Routes = [
             {
                 path: 'usuarios',
                 loadChildren: 'src/app/usuarios/usuarios.module#UsuariosModule',
+            },
+            {
+                path: 'maquinas',
+                loadChildren: 'src/app/maquina/maquina.module#MaquinaModule',
             }
+            
 
         ]
 

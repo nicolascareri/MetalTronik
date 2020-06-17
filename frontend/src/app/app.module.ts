@@ -9,9 +9,11 @@ import { OrdenestrabajoService } from "./ordenes-trabajo/services/ordenestrabajo
 import { CoreModule } from './core/core.module';
 import { OrdenesTrabajoModule } from "./ordenes-trabajo/ordenes-trabajo.module";
 import { MainModule } from './main/main.module';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 import { UsuariosModule } from "./usuarios/usuarios.module";
+import { MaquinaModule } from "./maquina/maquina.module";
+
 
 
 
@@ -21,7 +23,7 @@ import { UsuariosModule } from "./usuarios/usuarios.module";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +35,8 @@ import { UsuariosModule } from "./usuarios/usuarios.module";
     MainModule,
     MatSidenavModule,
     MatListModule,
-    UsuariosModule
+    UsuariosModule,
+    MaquinaModule
   ],
   providers: [UserService, 
     OrdenestrabajoService,],

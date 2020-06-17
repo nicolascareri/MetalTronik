@@ -1,7 +1,7 @@
 import { NgModule, Component } from "@angular/core";
 import { RouterModule, Routes } from '@angular/router';
-import { TablaComponent } from 'src/app/usuarios/components/tabla/tabla.component';
-import { FormComponent } from 'src/app/usuarios/components/form/form.component';
+import { TablaComponent } from 'src/app/maquina/components/tabla/tabla.component';
+// import { FormComponent } from 'src/app/maquina/components/';
 
 const routes: Routes = [
     {
@@ -12,14 +12,14 @@ const routes: Routes = [
                 component: TablaComponent
             },
             {
-                path: 'table', 
+                path: 'tabla', 
                 component: TablaComponent
             },
         
-            {
-                path: 'user', 
-                component: FormComponent
-            }
+            // {
+            //     path: 'machine', 
+            //     component: FormComponent
+            // }
             
         ]
     }
@@ -38,6 +38,6 @@ const routes: Routes = [
 
 })
 
-export class UsuariosRoutingModule{
+export class MaquinaRoutingModule{
 
 }
