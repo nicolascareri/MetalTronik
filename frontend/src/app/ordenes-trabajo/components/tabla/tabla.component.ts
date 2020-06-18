@@ -5,7 +5,7 @@ import {OrdenestrabajoService} from '../../services/ordenestrabajo.service';
 import { TIPOTABLE , PLANTATABLE, PRIORIDADESTABLE, ESTADOTABLE} from "src/app/core/constants/constants";
 import { FormBuilder, FormGroup,  FormControl } from "@angular/forms";
 import { SectorService } from "../../services/sector.service";
-import { MaquinaService } from "../../services/maquina.service";
+import { MaquinaService } from "../../../maquina/services/maquina.service";
 import { PRIORIDADES, ESTADO_ORDEN, TIPO } from "src/app/core/constants/constants";
 import { PlantaService } from "../../services/planta.service";
 
@@ -43,6 +43,9 @@ export class TablaComponent implements OnInit {
   dataSourceSectors: any;
   dataSourceMachines: any;
   dataSourcePlants: any;
+
+  DataOrderToEdit: any;
+
   
 
 
@@ -97,9 +100,9 @@ export class TablaComponent implements OnInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSourceOrdenes.filter = filterValue.trim().toLowerCase();
-    console.log(this.dataSourceOrdenes);
-    console.log(this.dataSourceOrdenes.filter);
+    this.DataOrderToEdit.filter = filterValue.trim().toLowerCase();
+    console.log(this.DataOrderToEdit);
+    console.log(this.DataOrderToEdit.filter);
     
   }
 
@@ -170,6 +173,7 @@ export class TablaComponent implements OnInit {
       
       
     this.closeModal();
+    this.transformToEdit(this.dataSourceOrdenes);
 
 
   }
@@ -214,6 +218,27 @@ setOriginalValues(originalOrder){
     tipo: originalOrder.tipo,
 
   })
+}
+
+transformToEdit(dataSourceOrdenes){
+  this.DataOrderToEdit.setValue({
+    encargo_cod: dataSourceOrdenes.encargo.id,
+    estado: dataSourceOrdenes.estado,
+    fechaRealizar: dataSourceOrdenes.fechaRealizar.toString().replace(" ", "T"),
+    maquina_cod: dataSourceOrdenes.maquina.maquina_cod,
+    pedidoMateriales: dataSourceOrdenes.pedidoMateriales,
+    planta_cod: dataSourceOrdenes.planta.id,
+    priodidad: dataSourceOrdenes.priodidad,
+    responsable_cod: dataSourceOrdenes.responsable.id,
+    sector_cod: dataSourceOrdenes.sector.id,
+    tarea: dataSourceOrdenes.tarea,
+    observaciones: dataSourceOrdenes.observaciones,
+    ordenTerciarizacion : dataSourceOrdenes.ordenTerciarizacion,
+    fechaEntrega : dataSourceOrdenes.fechaEntrega.toString().replace(" ", "T"),
+    tipo: dataSourceOrdenes.tipo,
+
+  })
+
 }
 
 

@@ -19,9 +19,9 @@ export class SidenavComponent implements OnDestroy {
     {name:"Home", route:"", icon:"home"},
     {name:"Indicadores", route:"", icon:"assessment"},
     {name:"Ordenes", route:"ordenes", icon:"calendar_today"},
-    {name:"Usuarios", route:"", icon:"recent_actors"},
+    {name:"Usuarios", route:"usuarios", icon:"recent_actors"},
     {name:"Sectores", route:"", icon:"layers"},
-    {name:"Maquinas", route:"", icon:"build"},
+    {name:"Maquinas", route:"maquinas", icon:"build"},
     
   ]
 

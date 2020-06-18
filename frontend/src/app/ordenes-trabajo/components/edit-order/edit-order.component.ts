@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup,  FormControl } from "@angular/forms";
 import { OrdenestrabajoService } from "./../../services/ordenestrabajo.service";
 import { SectorService } from "../../services/sector.service";
-import { MaquinaService } from "../../services/maquina.service";
+import { MaquinaService } from "../../../maquina/services/maquina.service";
 import { PLANTAS, PRIORIDADES, ESTADO_ORDEN, TIPO } from "src/app/core/constants/constants";
 import { PlantaService } from "../../services/planta.service";
 import { UserService } from "../../../usuarios/services/user.service";

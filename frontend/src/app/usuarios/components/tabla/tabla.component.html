@@ -1,0 +1,49 @@
+<div>
+
+    <mat-form-field class="filter">
+      <mat-label style="font-weight: bold;">Filtrar</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Material, responsable, maquina...">
+    </mat-form-field>
+  
+    <app-button [routerLink]="['form']"></app-button>
+  
+  
+    <!-- <app-edit-order [originalOrder]="ordenes"></app-edit-order> -->
+    
+    <div class="data">
+    <table mat-table [dataSource]="dataSourceUsers" class="table">
+  
+      <!-- <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let usuario">
+          <button id="myBtn" class="edit-btn" (click)="openModal(usuario)">Editar</button>
+        </td>
+      </ng-container> -->
+      
+     
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let usuario"> {{usuario.id}} </td>
+      </ng-container>
+      
+     
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let usuario"> {{usuario.nombre}} </td>
+    </ng-container>
+    
+   
+    <ng-container matColumnDef="apellido">
+      <th mat-header-cell *matHeaderCellDef> Apellido </th>
+      <td mat-cell *matCellDef="let usuario"> {{usuario.apellido}} </td>
+    </ng-container>
+
+    
+    
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+  </table>
+  
+  
+  
+  </div>

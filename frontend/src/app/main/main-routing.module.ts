@@ -22,7 +22,16 @@ const routes: Routes = [
             {
                 path: 'ordenes',
                 loadChildren: 'src/app/ordenes-trabajo/ordenes-trabajo.module#OrdenesTrabajoModule',
+            },
+            {
+                path: 'usuarios',
+                loadChildren: 'src/app/usuarios/usuarios.module#UsuariosModule',
+            },
+            {
+                path: 'maquinas',
+                loadChildren: 'src/app/maquina/maquina.module#MaquinaModule',
             }
+            
 
         ]
 
