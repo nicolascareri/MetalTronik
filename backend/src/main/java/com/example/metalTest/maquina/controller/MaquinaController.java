@@ -33,15 +33,13 @@ public class MaquinaController {
     public ResponseEntity<Maquina> getById(@PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<>(maquinaService.getById(id), HttpStatus.OK);
     }
-
-    @GetMapping("/codigo/{cod}")
-    public ResponseEntity<Maquina> getByCod(@PathVariable String maquina_cod) throws ValidateFieldException {
-        return new ResponseEntity<>(maquinaService.getByCod(maquina_cod), HttpStatus.OK);
-    }
     @PostMapping
     public ResponseEntity<Maquina> create(@Valid @RequestBody MaquinaRequest maquinaRequest) throws ValidateFieldException {
-        return new ResponseEntity<>(maquinaService.save(maquinaMapper.maquinaRequestToMaquina(maquinaRequest)), HttpStatus.CREATED);
+        return new ResponseEntity<>(maquinaService.save(maquinaRequest), HttpStatus.CREATED);
     }
-
+    @PutMapping("/{id}")
+    public ResponseEntity<Maquina> update(@Valid @RequestBody MaquinaRequest maquinaRequest, @PathVariable Integer id) throws ValidateFieldException {
+        return new ResponseEntity<>(maquinaService.update(maquinaRequest, id), HttpStatus.OK);
+    }
 
 }

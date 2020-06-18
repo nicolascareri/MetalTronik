@@ -1,10 +1,17 @@
 package com.example.metalTest.usuario.controller.request;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.Column;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
+@Getter
+@Setter
 public class UsuarioRequest {
 
     @NotBlank
@@ -15,36 +22,34 @@ public class UsuarioRequest {
     private int dni;
     @NotNull
     private short estado;
+    @NotBlank
+    private String nombre_usuario;
+    @NotBlank
+    private String contrasenia;
+    @NotNull
+    private int legajo;
 
-    public String getNombre() {
-        return nombre;
-    }
+    @NotNull
+    private Date fnacimiento;
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+    @NotBlank
+    private String cargo;
 
-    public String getApellido() {
-        return apellido;
-    }
+    @NotBlank
+    private String correo_electronico;
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
+    @NotBlank
+    private String pais;
 
-    public int getDni() {
-        return dni;
-    }
+    @NotBlank
+    private String provincia;
 
-    public void setDni(int dni) {
-        this.dni = dni;
-    }
+    @NotBlank
+    private String ciudad;
 
-    public short getEstado() {
-        return estado;
-    }
+    @NotBlank
+    private String direccion;
 
-    public void setEstado(short estado) {
-        this.estado = estado;
-    }
+    @NotNull
+    private int codigo_postal;
 }

@@ -25,10 +25,6 @@ public class OrdenesTrabajo {
 
     @OneToOne
     @JoinColumn
-    private Planta planta;
-
-    @OneToOne
-    @JoinColumn
     private Maquina maquina;
 
     @Column
@@ -63,10 +59,6 @@ public class OrdenesTrabajo {
 
     @Column
     private short estado;
-
-    @OneToOne
-    @JoinColumn
-    private Sector sector;
 
     @Column
     private String observaciones;

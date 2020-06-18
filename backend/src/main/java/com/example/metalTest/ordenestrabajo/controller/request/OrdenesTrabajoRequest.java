@@ -18,9 +18,6 @@ import java.util.Date;
 public class OrdenesTrabajoRequest {
 
     @NotNull
-    @ValidEntity(repository = PlantaRepository.class)
-    private int planta_cod;
-    @NotNull
     private String maquina_cod;
     @NotNull
     private String pedidoMateriales;
@@ -46,9 +43,6 @@ public class OrdenesTrabajoRequest {
     @Min(1)
     @Max(2)
     private short estado;
-    @NotNull
-    @ValidEntity(repository = SectorRepository.class)
-    private int sector_cod;
 
     private String observaciones;
 
