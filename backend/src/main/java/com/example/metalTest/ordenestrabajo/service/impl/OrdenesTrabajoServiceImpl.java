@@ -36,12 +36,6 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
     UsuarioRepository usuarioRepository;
 
     @Autowired
-    SectorRepository sectorRepository;
-
-    @Autowired
-    PlantaRepository plantaRepository;
-
-    @Autowired
     PrioridadesRepository prioridadesRepository;
 
     @Autowired
@@ -68,11 +62,9 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
     @Override
     public OrdenesTrabajo create(OrdenesTrabajoRequest ordenesTrabajoRequest) {
         OrdenesTrabajo ordenesTrabajo = ordenesTrabajoMapper.ordenesTrabajoRequestToOrdenesTrabajo(ordenesTrabajoRequest);
-        ordenesTrabajo.setPlanta(plantaRepository.findById(ordenesTrabajoRequest.getPlanta_cod()).get());
         ordenesTrabajo.setMaquina(maquinaRepository.getByCod(ordenesTrabajoRequest.getMaquina_cod()));
         ordenesTrabajo.setEncargo(usuarioRepository.findById(ordenesTrabajoRequest.getEncargo_cod()).get());
         ordenesTrabajo.setResponsable(usuarioRepository.findById(ordenesTrabajoRequest.getResponsable_cod()).get());
-        ordenesTrabajo.setSector(sectorRepository.findById(ordenesTrabajoRequest.getSector_cod()).get());
         ordenesTrabajo.setTipo(tipoRepository.findById(ordenesTrabajoRequest.getTipo_cod()).get());
         ordenesTrabajo.setPriodidad(prioridadesRepository.findById(ordenesTrabajoRequest.getPriodidad_cod()).get());
         return ordenesTrabajoRepository.save(ordenesTrabajo);
@@ -85,7 +77,6 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
             throw new ValidateFieldException("La orden de trabajo a la que intenta acceder no existe", "id", String.valueOf(id));
         }
         OrdenesTrabajo ordenesTrabajo = opt.get();
-        ordenesTrabajo.setPlanta(plantaRepository.findById(ordenesTrabajoRequest.getPlanta_cod()).get());
         ordenesTrabajo.setMaquina(maquinaRepository.getByCod(ordenesTrabajoRequest.getMaquina_cod()));
         ordenesTrabajo.setPedidoMateriales(ordenesTrabajoRequest.getPedidoMateriales());
         ordenesTrabajo.setTarea(ordenesTrabajoRequest.getTarea());
@@ -96,7 +87,6 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         ordenesTrabajo.setEncargo(usuarioRepository.findById(ordenesTrabajoRequest.getEncargo_cod()).get());
         ordenesTrabajo.setResponsable(usuarioRepository.findById(ordenesTrabajoRequest.getResponsable_cod()).get());
         ordenesTrabajo.setEstado(ordenesTrabajoRequest.getEstado());
-        ordenesTrabajo.setSector(sectorRepository.findById(ordenesTrabajoRequest.getSector_cod()).get());
         ordenesTrabajo.setObservaciones(ordenesTrabajoRequest.getObservaciones());
         ordenesTrabajo.setOrdenTerciarizacion(ordenesTrabajoRequest.getOrdenTerciarizacion());
         return ordenesTrabajoRepository.save(ordenesTrabajo);

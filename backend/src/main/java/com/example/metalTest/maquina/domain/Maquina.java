@@ -1,5 +1,7 @@
 package com.example.metalTest.maquina.domain;
 
+import com.example.metalTest.planta.domain.Planta;
+import com.example.metalTest.sector.domain.Sector;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.UniqueElements;
@@ -20,5 +22,28 @@ public class Maquina {
 
     @Column
     private short estado;
+
+    @OneToOne
+    @JoinColumn
+    private Planta planta;
+
+    @OneToOne
+    @JoinColumn
+    private Sector sector;
+
+    @Column
+    private String equipo;
+
+    @Column
+    private int nro_serie;
+
+    @Column
+    private String modelo;
+
+    @Column
+    private String descripcion;
+
+    @Column
+    private String datos_tecnicos;
 
 }

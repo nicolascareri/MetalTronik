@@ -56,12 +56,8 @@ public class UsuarioServiceImpl implements UsuarioService {
         if(usuario.getEstado() != Estado.ACTIVO.getValue() && usuario.getEstado() != Estado.ELIMINADO.getValue()){
             throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(usuario.getEstado()));
         }
-        Usuario u = op.get();
-        u.setNombre(usuario.getNombre());
-        u.setApellido(usuario.getApellido());
-        u.setDni(usuario.getDni());
-        u.setEstado(usuario.getEstado());
-        return usuarioRepository.save(u);
+        usuario.setId(id);
+        return usuarioRepository.save(usuario);
     }
 
 }

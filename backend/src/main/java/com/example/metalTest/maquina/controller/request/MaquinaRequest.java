@@ -1,5 +1,8 @@
 package com.example.metalTest.maquina.controller.request;
 
+import com.example.metalTest.common.validator.ValidEntity;
+import com.example.metalTest.planta.repository.PlantaRepository;
+import com.example.metalTest.sector.repository.SectorRepository;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,5 +18,28 @@ public class MaquinaRequest {
 
     @NotNull
     private short estado;
+
+    @NotNull
+    @ValidEntity(repository = PlantaRepository.class)
+    private int planta_cod;
+
+    @NotNull
+    @ValidEntity(repository = SectorRepository.class)
+    private int sector_cod;
+
+    @NotBlank
+    private String equipo;
+
+    @NotBlank
+    private String modelo;
+
+    @NotNull
+    private int nro_serie;
+
+    @NotBlank
+    private String descripcion;
+
+    @NotBlank
+    private String datos_tecnicos;
 
 }
