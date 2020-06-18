@@ -1,7 +1,9 @@
 package com.example.metalTest.ordenestrabajo.controller.request;
 import com.example.metalTest.common.validator.ValidEntity;
 import com.example.metalTest.planta.repository.PlantaRepository;
+import com.example.metalTest.prioridades.repository.PrioridadesRepository;
 import com.example.metalTest.sector.repository.SectorRepository;
+import com.example.metalTest.tipo.repository.TipoRepository;
 import com.example.metalTest.usuario.repository.UsuarioRepository;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,13 +27,11 @@ public class OrdenesTrabajoRequest {
     @NotNull
     private String tarea;
     @NotNull
-    @Min(1)
-    @Max(7)
-    private short priodidad;
+    @ValidEntity(repository = PrioridadesRepository.class)
+    private int priodidad_cod;
     @NotNull
-    @Min(1)
-    @Max(3)
-    private short tipo;
+    @ValidEntity(repository = TipoRepository.class)
+    private int tipo_cod;
     @NotNull
     private Date fechaRealizar;
     @NotNull
