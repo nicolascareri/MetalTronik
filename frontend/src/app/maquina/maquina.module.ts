@@ -7,23 +7,20 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TablaComponent } from './components/tabla/tabla.component';
-import { UsuariosRoutingModule } from "./usuarios-routing.module";
-import { FormComponent } from "./components/form/form.component";
-
+// import { FormComponent } from "./components/form/form.component";
 
 
 
 @NgModule({
-  declarations: [TablaComponent,FormComponent],
+  declarations: [TablaComponent],
   imports: [
-    CommonModule,
-    CoreModule,
-    MatSliderModule,
-    MatTableModule,
-    MatInputModule,
-    ReactiveFormsModule,
+    CommonModule, 
     RouterModule,
-    UsuariosRoutingModule
+    MatTableModule,
+    MatSliderModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    CoreModule
   ]
 })
-export class UsuariosModule { }
+export class MaquinaModule { }

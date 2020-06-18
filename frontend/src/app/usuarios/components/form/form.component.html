@@ -1,0 +1,23 @@
+
+<div class="form-container">
+
+    <h1>Nuevo usuario</h1> 
+  
+    <form [formGroup]="userForm" (ngSubmit)="saveForm()">
+      
+        <label for="nombre">Nombre</label>
+        <input type="text" formControlName="nombre"  placeholder="Nombre del usuario">
+
+        <label for="apellido">Apellido</label>
+        <input type="text" formControlName="apellido"  placeholder="Apellido del usuario">
+
+        <label for="dni">Dni</label>
+        <input type="number" formControlName="dni"  placeholder="DNI del usuario">
+      
+  
+      
+       
+      <button type="submit" class="btn-send" >Registrar usuario</button>
+    </form>
+   
+  </div>
