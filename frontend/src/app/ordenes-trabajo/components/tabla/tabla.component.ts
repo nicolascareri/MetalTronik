@@ -37,9 +37,9 @@ export class TablaComponent implements OnInit {
 
   ordenForm: FormGroup;
 
- 
+
   dataSourceUsers: any;
-  dataSourceOrdenes: any;
+  dataSourceOrdenes = new MatTableDataSource();
   dataSourceSectors: any;
   dataSourceMachines: any;
   dataSourcePlants: any;
@@ -96,74 +96,42 @@ export class TablaComponent implements OnInit {
     }
 
   
-  
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.DataOrderToEdit.filter = filterValue.trim().toLowerCase();
-    console.log(this.DataOrderToEdit);
-    console.log(this.DataOrderToEdit.filter);
+  applyFilter(filterValue: String) {
+    this.dataSourceOrdenes.filter = filterValue.trim().toLowerCase();
     
   }
 
+  nestedFilterCheck(search, data, key) {
+    if (typeof data[key] === 'object') {
+      for (const k in data[key]) {
+        if (data[key][k] !== null) {
+          search = this.nestedFilterCheck(search, data[key], k);
+        }
+      }
+    } else {
+      search += data[key];
+    }
+    return search;
+  }
 
   ngOnInit(): void {
-
+    
+    this.dataSourceOrdenes.filterPredicate = (data, filter: string)  => {
+      const accumulator = (currentTerm, key) => {
+        return this.nestedFilterCheck(currentTerm, data, key);
+      };
+      const dataStr = Object.keys(data).reduce(accumulator, '').toLowerCase();
+      // Transform the filter by converting it to lowercase and removing whitespace.
+      const transformedFilter = filter.trim().toLowerCase();
+      return dataStr.indexOf(transformedFilter) !== -1;
+    };
+    
     this.PlantaService.getPlantas().subscribe(
-
-      (data: any)  => { // Success
-        this.dataSourcePlants = data;
-        console.log(this.dataSourcePlants);
-      },
-      (error) => {
-        console.error(error);
-      }
-
-    );
-
-
-    this.MaquinaService.getMaquinas().subscribe(
-
-      (data: any)  => { // Success
-        this.dataSourceMachines = data;
-        console.log(this.dataSourceMachines);
-      },
-      (error) => {
-        console.error(error);
-      }
-
-    );
-
-    this.SectorService.getSectores().subscribe(
-
-      (data: any)  => { // Success
-        this.dataSourceSectors = data;
-        console.log(this.dataSourceSectors);
-      },
-      (error) => {
-        console.error(error);
-      }
-
-    );
-
-    this.UserService.getUsers().subscribe(
-
-      (data: any)  => { // Success
-        this.dataSourceUsers = data;
-        console.log(this.dataSourceUsers);
-      },
-      (error) => {
-        console.error(error);
-      }
-
-    );
-    
-    
-    this.OrdenestrabajoService.getAllOrdenes().subscribe(
       
       (data: any)  => { // Success
-        this.dataSourceOrdenes = data;
-        console.log(this.dataSourceOrdenes);
+        this.dataSourcePlants = data;
+        
       },
       (error) => {
         console.error(error);
@@ -172,19 +140,71 @@ export class TablaComponent implements OnInit {
       );
       
       
-    this.closeModal();
-    this.transformToEdit(this.dataSourceOrdenes);
-
-
-  }
-
-  openModal(ordenes){
-    let modal = document.getElementById("myModal");
+      this.MaquinaService.getMaquinas().subscribe(
+        
+        (data: any)  => { // Success
+          this.dataSourceMachines = data;
+  
+        },
+        (error) => {
+          console.error(error);
+        }
+        
+        );
+        
+        this.SectorService.getSectores().subscribe(
+          
+          (data: any)  => { // Success
+            this.dataSourceSectors = data;
+            
+          },
+          (error) => {
+            console.error(error);
+          }
+          
+          );
+          
+          this.UserService.getUsers().subscribe(
+            
+            (data: any)  => { // Success
+              this.dataSourceUsers = data;
+              
+            },
+            (error) => {
+              console.error(error);
+            }
+            
+            );
+            
+            
+            this.OrdenestrabajoService.getAllOrdenes().subscribe(
+              
+              (data: any)  => { // Success
+                this.dataSourceOrdenes.data = data;
+                
+                
+                
+              },
+              (error) => {
+                console.error(error);
+              }
+              
+              );
+              
+              
+              this.closeModal();
+              this.transformToEdit(this.dataSourceOrdenes);
+              
+              
+            }
+            
+            openModal(ordenes){
+              let modal = document.getElementById("myModal");
     modal.style.display = "block";
     this.originalOrder = ordenes;
-    console.log(this.originalOrder);
+    
     this.setOriginalValues(this.originalOrder);
-    console.log(this.form);
+    
     
     
 }
@@ -194,7 +214,7 @@ closeModal(){
     let modal = document.getElementById("myModal");
     if (event.target == modal) {
       modal.style.display = "none";
-      console.log(this.originalOrder);
+      
     }
   }
 }
