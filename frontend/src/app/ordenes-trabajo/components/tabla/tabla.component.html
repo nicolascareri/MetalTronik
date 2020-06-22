@@ -6,7 +6,7 @@
 
   <mat-form-field class="filter">
     <mat-label style="font-weight: bold;">Filtrar</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Material, responsable, maquina...">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Material, responsable, maquina...">
   </mat-form-field>
 
   <app-button [routerLink]="['form']"></app-button>
@@ -33,13 +33,13 @@
    
     <ng-container matColumnDef="planta">
       <th mat-header-cell *matHeaderCellDef> Planta </th>
-      <td mat-cell *matCellDef="let ordenes"> {{ordenes.planta.nombre}} </td>
+      <td mat-cell *matCellDef="let ordenes"> {{ordenes.maquina.planta.nombre}} </td>
   </ng-container>
   
  
   <ng-container matColumnDef="sector">
     <th mat-header-cell *matHeaderCellDef> Sector </th>
-    <td mat-cell *matCellDef="let ordenes"> {{ordenes.sector.descripcion}} </td>
+    <td mat-cell *matCellDef="let ordenes"> {{ordenes.maquina.sector.descripcion}} </td>
   </ng-container>
   
   
@@ -64,45 +64,12 @@
   
   <ng-container matColumnDef="priodidad">
     <th mat-header-cell *matHeaderCellDef> Prioridad </th>
-    <td mat-cell *matCellDef="let ordenes" [ngSwitch]="ordenes.priodidad">  
-      <span *ngSwitchCase="1">
-        {{prioridadesTable.A.ID}}
-      </span>
-      <span *ngSwitchCase="2">
-        {{prioridadesTable.B.ID}}
-      </span>
-      <span *ngSwitchCase="3">
-        {{prioridadesTable.C.ID}}
-      </span>
-      <span *ngSwitchCase="4">
-        {{prioridadesTable.D.ID}}
-      </span>
-      <span *ngSwitchCase="5">
-        {{prioridadesTable.E.ID}}
-      </span>
-      <span *ngSwitchCase="6">
-        {{prioridadesTable.F.ID}}
-      </span>
-      <span *ngSwitchCase="7">
-        {{prioridadesTable.G.ID}}
-      </span>
-    </td>
+    <td mat-cell *matCellDef="let ordenes">{{ordenes.priodidad.nombre}}</td>
   </ng-container>
-  
 
   <ng-container matColumnDef="tipo">
     <th mat-header-cell *matHeaderCellDef> Tipo </th>
-    <td mat-cell *matCellDef="let ordenes" [ngSwitch]="ordenes.tipo"> 
-      <span *ngSwitchCase="1">
-        {{tiposTable.A.ID}}
-      </span>
-      <span *ngSwitchCase="2">
-        {{tiposTable.B.ID}}
-      </span>
-      <span *ngSwitchCase="3">
-        {{tiposTable.C.ID}}
-      </span>
-    </td>
+    <td mat-cell *matCellDef="let ordenes">{{ordenes.tipo.nombre}}</td>
   </ng-container>
   
   
@@ -133,14 +100,7 @@
  
   <ng-container matColumnDef="estado">
     <th mat-header-cell *matHeaderCellDef> Estado </th>
-    <td mat-cell *matCellDef="let ordenes" [ngSwitch]="ordenes.estado">
-      <span *ngSwitchCase="1">
-        {{estadosTable.A.ID}}
-      </span>
-      <span *ngSwitchCase="2">
-        {{estadosTable.B.ID}}
-      </span>
-    </td>
+    <td mat-cell *matCellDef="let ordenes">{{ordenes.estado}} </td>
   </ng-container>
 
   <ng-container matColumnDef="observaciones">
