@@ -14,6 +14,17 @@ export class FormComponent implements OnInit {
       nombre: new FormControl(''),
       apellido: new FormControl(''),
       dni: new FormControl(''),
+      fnacimiento: new FormControl(''),
+      cargo:  new FormControl(''),
+      legajo: new FormControl(''),
+      nombre_usuario: new FormControl(''),
+      contrasenia: new FormControl(''),
+      ciudad: new FormControl(''),
+      pais: new FormControl(''),
+      provincia: new FormControl(''),
+      codigo_postal: new FormControl(''),
+      direccion: new FormControl(''),
+      correo_electronico: new FormControl(''),
       estado: new FormControl(30)
     })
   }

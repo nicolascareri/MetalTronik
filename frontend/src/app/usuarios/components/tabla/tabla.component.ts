@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup,  FormControl } from "@angular/forms";
+import { FormGroup,  FormControl } from "@angular/forms";
 import { UserService } from "../../../usuarios/services/user.service";
 
 @Component({
@@ -9,7 +9,8 @@ import { UserService } from "../../../usuarios/services/user.service";
 })
 export class TablaComponent implements OnInit {
 
-  columnsToDisplay: any = ['id','nombre','apellido'];
+  columnsToDisplay: any = ['id','dni','nombre','apellido','fnacimiento','cargo','legajo','nombre_usuario','contrasenia',
+                           'ciudad','pais','provincia','codigo_postal','direccion','correo_electronico'];
 
   dataSourceUsers: any;
 
@@ -18,8 +19,20 @@ export class TablaComponent implements OnInit {
   createFormGroup(){
     return new FormGroup({
       id: new FormControl(''),
+      dni: new FormControl(''),
       nombre: new FormControl(''),
-      apellido: new FormControl('')
+      apellido: new FormControl(''),
+      fnacimiento: new FormControl(''),
+      cargo:  new FormControl(''),
+      legajo: new FormControl(''),
+      nombre_usuario: new FormControl(''),
+      contrasenia: new FormControl(''),
+      ciudad: new FormControl(''),
+      pais: new FormControl(''),
+      provincia: new FormControl(''),
+      codigo_postal: new FormControl(''),
+      direccion: new FormControl(''),
+      correo_electronico: new FormControl('')
     })
   }
 

@@ -29,25 +29,23 @@
       <th mat-header-cell *matHeaderCellDef> Cod orden </th>
       <td mat-cell *matCellDef="let ordenes"> {{ordenes.ordentrabajo_cod}} </td>
     </ng-container>
+
+    <ng-container matColumnDef="maquina.maquina_cod">
+      <th mat-header-cell *matHeaderCellDef> Cod maquina </th>
+      <td mat-cell *matCellDef="let ordenes"> {{ordenes.maquina.maquina_cod}} </td>
+    </ng-container>
     
    
-    <ng-container matColumnDef="planta">
+    <ng-container matColumnDef="maquina.planta.nombre">
       <th mat-header-cell *matHeaderCellDef> Planta </th>
       <td mat-cell *matCellDef="let ordenes"> {{ordenes.maquina.planta.nombre}} </td>
   </ng-container>
   
  
-  <ng-container matColumnDef="sector">
+  <ng-container matColumnDef="maquina.sector.descripcion">
     <th mat-header-cell *matHeaderCellDef> Sector </th>
     <td mat-cell *matCellDef="let ordenes"> {{ordenes.maquina.sector.descripcion}} </td>
   </ng-container>
-  
-  
-  <ng-container matColumnDef="maquina.maquina_cod">
-    <th mat-header-cell *matHeaderCellDef> Cod maquina </th>
-    <td mat-cell *matCellDef="let ordenes"> {{ordenes.maquina.maquina_cod}} </td>
-  </ng-container>
-  
   
  
   <ng-container matColumnDef="pedidoMateriales">
@@ -62,12 +60,12 @@
   </ng-container>
   
   
-  <ng-container matColumnDef="priodidad">
+  <ng-container matColumnDef="priodidad.nombre">
     <th mat-header-cell *matHeaderCellDef> Prioridad </th>
     <td mat-cell *matCellDef="let ordenes">{{ordenes.priodidad.nombre}}</td>
   </ng-container>
 
-  <ng-container matColumnDef="tipo">
+  <ng-container matColumnDef="tipo.nombre">
     <th mat-header-cell *matHeaderCellDef> Tipo </th>
     <td mat-cell *matCellDef="let ordenes">{{ordenes.tipo.nombre}}</td>
   </ng-container>
@@ -184,31 +182,31 @@
     
 
     
-      <label for="planta">Planta</label>
+      <!-- <label for="planta">Planta</label>
       <select formControlName="planta_cod">
         <option value="" disabled>Seleccionar planta</option>
         <option *ngFor="let planta of dataSourcePlants" [ngValue]="planta.id">
          {{planta.nombre}}
         </option>
-      </select> 
+      </select>  -->
     
 
-    
+<!--     
       <label for="sector">Sector</label>
       <select formControlName="sector_cod">
         <option value="" disabled>Seleccione sector</option>
         <option *ngFor="let sector of dataSourceSectors" [ngValue]="sector.id">
          {{sector.descripcion}}
         </option>
-      </select> 
+      </select>  -->
     
 
     
-      <label for="prioridad">Prioridad</label>
-      <select formControlName="priodidad">
+      <label for="prioridad_cod">Prioridad</label>
+      <select formControlName="priodidad_cod">
         <option value="" disabled>Seleccionar prioridad</option>
-        <option *ngFor="let prio of prioridadesForm" [ngValue]="prio.id">
-         {{prio.desc}}
+        <option *ngFor="let prioridad of dataSourcePrioridades" [ngValue]="prioridad.id">
+         {{prioridad.nombre}}
         </option>
       </select> 
     </div>
@@ -230,11 +228,11 @@
     
 
     
-      <label for="tipo">Tipo</label>
-      <select formControlName="tipo">
+      <label for="tipo_cod">Tipo</label>
+      <select formControlName="tipo_cod">
         <option value="" disabled>Seleccionar tipo</option>
-        <option *ngFor="let tip of tipoForm" [ngValue]="tip.id">
-          {{tip.desc}}
+        <option *ngFor="let tipo of dataSourceTipos" [ngValue]="tipo.id">
+          {{tipo.nombre}}
         </option>
       </select>
 

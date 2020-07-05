@@ -1,54 +1,4 @@
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
-  
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-  }
-  
-  /* The Close Button */
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
-
-  .edit-btn{
-    background-color: teal;
-    color: white;
-    font-size: 15px;
-    border: none;
-    border-radius: 5px;
-    position: relative;
-    //left: 785px;
-    //top: 25px;
-  }
-
-
-  .form-container{
+.form-container{
     background-color: lightgray;
     font: 95% Arial, Helvetica, sans-serift;
     border-radius: 5px;
@@ -107,8 +57,8 @@
     //transition: all 0, 30% ease-in-out;
     //outline: none;
     //box-sizing: border-box;
-    width: 100%;
-    margin-bottom: 14%;
+    width: 19%;
+    margin-bottom: 4%;
     padding: 6px;
 }
 
@@ -118,8 +68,9 @@
     font-size: 15px;
     border: none;
     border-radius: 5px;
-    width: 23%;
+    width: 12%;
     padding: 1%;
+    background-position-x: 12px;
 }
 
 .form-container .btn-send:hover{

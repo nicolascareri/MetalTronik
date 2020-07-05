@@ -1,0 +1,45 @@
+<div class="form-container">
+
+    <h1>Registrar maquina</h1> 
+  
+    <form [formGroup]="machinesForm" (ngSubmit)="saveForm()">
+
+        <label for="maquina_cod">Codigo maquina</label>
+        <input type="text" formControlName="maquina_cod"  placeholder="Ingrese codigo de maquina">
+
+        <label for="nro_serie">Nro Serie</label>
+        <input type="number" formControlName="nro_serie"  placeholder="Ingrese numero de serie">
+
+        <label for="modelo">Modelo</label>
+        <input type="text" formControlName="modelo"  placeholder="Ingrese modelo de maquina">
+
+        <label for="equipo">Equipo</label>
+        <input type="text" formControlName="equipo"  placeholder="Ingrese equipo">
+
+        <label for="datos_tecnicos">Datos tecnicos</label>
+        <input type="text" formControlName="datos_tecnicos"  placeholder="Ingrese datos tecnicos">
+
+        <label for="descripcion">Descripcion</label>
+        <input type="text" formControlName="descripcion"  placeholder="Ingrese descripcion">
+
+        <label for="planta_cod">Planta</label>
+        <select formControlName="planta_cod">  
+          <option value="" disabled>Seleccionar planta</option>
+          <option *ngFor="let planta of plants" [ngValue]="planta.id">
+           {{ planta.nombre }} 
+          </option>
+        </select> 
+
+        <label for="sector_cod">Sector</label>
+        <select formControlName="sector_cod">  
+          <option value="" disabled>Seleccionar sector</option>
+          <option *ngFor="let sector of sectors" [ngValue]="sector.id">
+           {{ sector.descripcion }} 
+          </option>
+        </select> 
+      
+       
+      <button type="submit" class="btn-send" >Registrar maquina</button>
+    </form>
+   
+  </div>

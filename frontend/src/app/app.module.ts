@@ -21,6 +21,7 @@ import { MaquinaModule } from "./maquina/maquina.module";
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
