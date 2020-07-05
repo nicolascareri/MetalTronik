@@ -4,7 +4,7 @@
 .data {
     display: block;
     //width: 95vw;
-    //overflow: auto;
+    overflow: auto;
     margin: 35px;
   
     .table {
@@ -27,7 +27,7 @@
     }
   
   table th{
-    //padding: 12px;
+    padding: 12px;
     font-weight: bolder;
     font-size: 15px;
     border: none;
@@ -40,7 +40,7 @@
   }
   
   td.mat-cell{
-    //padding: 10px;
+    padding: 42px;
     padding-top: 20px;
     border-bottom-width: 3px;
     border-bottom-style: solid;
