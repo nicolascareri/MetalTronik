@@ -19,9 +19,6 @@ import java.util.List;
 public class OrdenesTrabajoController {
 
     @Autowired
-    OrdenesTrabajoMapper ordenesTrabajoMapper;
-
-    @Autowired
     OrdenesTrabajoService ordenesTrabajoService;
 
     @GetMapping

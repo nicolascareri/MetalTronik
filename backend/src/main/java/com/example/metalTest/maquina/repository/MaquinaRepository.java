@@ -12,7 +12,4 @@ public interface MaquinaRepository extends JpaRepository<Maquina, Integer> {
     @Query("SELECT COUNT(m) FROM Maquina m WHERE m.maquina_cod = :cod")
     Long checkCodigoExistance(@Param("cod") String cod);
 
-    @Query("SELECT m FROM Maquina m WHERE m.maquina_cod = :cod")
-    Maquina getByCod(@Param("cod") String cod);
-
 }
