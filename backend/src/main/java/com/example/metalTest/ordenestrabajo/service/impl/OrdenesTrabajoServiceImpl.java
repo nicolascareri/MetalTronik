@@ -1,6 +1,7 @@
 package com.example.metalTest.ordenestrabajo.service.impl;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
+import com.example.metalTest.common.ordenes.EstadoOrden;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
 import com.example.metalTest.ordenestrabajo.controller.request.OrdenesTrabajoRequest;
 import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
@@ -62,11 +63,12 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
     @Override
     public OrdenesTrabajo create(OrdenesTrabajoRequest ordenesTrabajoRequest) {
         OrdenesTrabajo ordenesTrabajo = ordenesTrabajoMapper.ordenesTrabajoRequestToOrdenesTrabajo(ordenesTrabajoRequest);
-        ordenesTrabajo.setMaquina(maquinaRepository.getByCod(ordenesTrabajoRequest.getMaquina_cod()));
+        ordenesTrabajo.setMaquina(maquinaRepository.findById(ordenesTrabajoRequest.getMaquina_cod()).get());
         ordenesTrabajo.setEncargo(usuarioRepository.findById(ordenesTrabajoRequest.getEncargo_cod()).get());
         ordenesTrabajo.setResponsable(usuarioRepository.findById(ordenesTrabajoRequest.getResponsable_cod()).get());
         ordenesTrabajo.setTipo(tipoRepository.findById(ordenesTrabajoRequest.getTipo_cod()).get());
         ordenesTrabajo.setPriodidad(prioridadesRepository.findById(ordenesTrabajoRequest.getPriodidad_cod()).get());
+        ordenesTrabajo.setEstado(EstadoOrden.PENDIENTE.getValue());
         return ordenesTrabajoRepository.save(ordenesTrabajo);
     }
 
@@ -74,10 +76,10 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
     public OrdenesTrabajo update(OrdenesTrabajoRequest ordenesTrabajoRequest, Integer id) throws ValidateFieldException {
         Optional<OrdenesTrabajo> opt = ordenesTrabajoRepository.findById(id);
         if(!opt.isPresent()){
-            throw new ValidateFieldException("La orden de trabajo a la que intenta acceder no existe", "id", String.valueOf(id));
+            throw new ValidateFieldException("La orden de trabajo a la que intenta acceder no existe", "id",                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             String.valueOf(id));
         }
         OrdenesTrabajo ordenesTrabajo = opt.get();
-        ordenesTrabajo.setMaquina(maquinaRepository.getByCod(ordenesTrabajoRequest.getMaquina_cod()));
+        ordenesTrabajo.setMaquina(maquinaRepository.findById(ordenesTrabajoRequest.getMaquina_cod()).get());
         ordenesTrabajo.setPedidoMateriales(ordenesTrabajoRequest.getPedidoMateriales());
         ordenesTrabajo.setTarea(ordenesTrabajoRequest.getTarea());
         ordenesTrabajo.setPriodidad(prioridadesRepository.findById(ordenesTrabajoRequest.getPriodidad_cod()).get());
@@ -86,7 +88,6 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         ordenesTrabajo.setFechaRealizar(ordenesTrabajoRequest.getFechaRealizar());
         ordenesTrabajo.setEncargo(usuarioRepository.findById(ordenesTrabajoRequest.getEncargo_cod()).get());
         ordenesTrabajo.setResponsable(usuarioRepository.findById(ordenesTrabajoRequest.getResponsable_cod()).get());
-        ordenesTrabajo.setEstado(ordenesTrabajoRequest.getEstado());
         ordenesTrabajo.setObservaciones(ordenesTrabajoRequest.getObservaciones());
         ordenesTrabajo.setOrdenTerciarizacion(ordenesTrabajoRequest.getOrdenTerciarizacion());
         return ordenesTrabajoRepository.save(ordenesTrabajo);
