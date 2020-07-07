@@ -30,7 +30,12 @@ const routes: Routes = [
             {
                 path: 'maquinas',
                 loadChildren: 'src/app/maquina/maquina.module#MaquinaModule',
+            },
+            {
+                path: 'mantenimientosCorrectivos',
+                loadChildren: 'src/app/matenimiento-correctivo/mantenimiento-correctivo.module#MantenimientoCorrectivoModule',
             }
+
             
 
         ]

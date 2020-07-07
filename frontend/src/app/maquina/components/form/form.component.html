@@ -25,7 +25,7 @@
         <label for="planta_cod">Planta</label>
         <select formControlName="planta_cod">  
           <option value="" disabled>Seleccionar planta</option>
-          <option *ngFor="let planta of plants" [ngValue]="planta.id">
+          <option *ngFor="let planta of dataSourcePlants" [ngValue]="planta.id">
            {{ planta.nombre }} 
           </option>
         </select> 
@@ -33,7 +33,7 @@
         <label for="sector_cod">Sector</label>
         <select formControlName="sector_cod">  
           <option value="" disabled>Seleccionar sector</option>
-          <option *ngFor="let sector of sectors" [ngValue]="sector.id">
+          <option *ngFor="let sector of dataSourceSectors" [ngValue]="sector.id">
            {{ sector.descripcion }} 
           </option>
         </select> 

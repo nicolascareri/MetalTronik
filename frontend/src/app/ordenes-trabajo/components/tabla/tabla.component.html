@@ -98,12 +98,15 @@
  
   <ng-container matColumnDef="estado">
     <th mat-header-cell *matHeaderCellDef> Estado </th>
-    <td mat-cell *matCellDef="let ordenes">{{ordenes.estado}} </td>
+    <td mat-cell *matCellDef="let ordenes"> 
+      <div *ngIf="ordenes.estado == 1">Pendiente</div>
+      <div *ngIf="ordenes.estado == 2">Ok</div>  
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="observaciones">
     <th mat-header-cell *matHeaderCellDef> Observaciones </th>
-    <td mat-cell *matCellDef="let ordenes"> {{ordenes.observaciones}} </td>
+    <td mat-cell *matCellDef="let ordenes" > {{ordenes.observaciones}} </td>
   </ng-container>
   
   <ng-container matColumnDef="ordenTerciarizacion">
