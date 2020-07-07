@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import { FormBuilder, FormGroup,  FormControl } from "@angular/forms";
+import { FormGroup, FormControl } from "@angular/forms";
 import { MaquinaService } from "../../services/maquina.service";
 
 

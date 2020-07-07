@@ -40,7 +40,7 @@ export class FormComponent implements OnInit {
  
   // plantas: any = PLANTAS;
   // prioridades: any = PRIORIDADES;
-  estados: any = ESTADO_ORDEN;
+  // estados: any = ESTADO_ORDEN;
   // tipo: any = TIPO;
   
   ordenForm: FormGroup;

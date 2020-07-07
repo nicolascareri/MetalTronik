@@ -11,8 +11,7 @@ import { SectorService } from "../../services/sector.service";
 })
 export class FormComponent implements OnInit {
 
-  sectors: any;
-  plants: any;
+
   dataSourcePlants: any;
   dataSourceSectors: any;
 
@@ -44,8 +43,7 @@ export class FormComponent implements OnInit {
     this.PlantaService.getPlantas().subscribe(
 
       (data: any)  => { // Success
-        this.plants = data;
-        this.dataSourcePlants = this.plants;
+        this.dataSourcePlants = data;
         console.log(this.dataSourcePlants);
       },
       (error) => {
@@ -57,8 +55,7 @@ export class FormComponent implements OnInit {
     this.SectorService.getSectores().subscribe(
 
       (data: any)  => { // Success
-        this.sectors = data;
-        this.dataSourceSectors = this.sectors;
+        this.dataSourceSectors = data;
         console.log(this.dataSourceSectors);
       },
       (error) => {

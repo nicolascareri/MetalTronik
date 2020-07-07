@@ -13,6 +13,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { UsuariosModule } from "./usuarios/usuarios.module";
 import { MaquinaModule } from "./maquina/maquina.module";
+import { MantenimientoCorrectivoModule } from './matenimiento-correctivo/mantenimiento-correctivo.module';
+import { TablaComponent } from './tabla/tabla.component';
 
 
 
@@ -25,6 +27,8 @@ import { MaquinaModule } from "./maquina/maquina.module";
 @NgModule({
   declarations: [
     AppComponent,
+    TablaComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,8 @@ import { MaquinaModule } from "./maquina/maquina.module";
     MatSidenavModule,
     MatListModule,
     UsuariosModule,
-    MaquinaModule
+    MaquinaModule,
+    MantenimientoCorrectivoModule
   ],
   providers: [UserService, 
     OrdenestrabajoService,],

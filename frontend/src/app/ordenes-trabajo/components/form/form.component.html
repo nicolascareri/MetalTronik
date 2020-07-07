@@ -14,18 +14,6 @@
         </option>
       </select> 
     
-
-
-    
-      <label for="estado">Estado de la orden</label>
-      <select formControlName="estado">
-        <option value="" disabled>Seleccionar estado de la orden</option>
-        <option *ngFor="let estado of estados" [ngValue]="estado.id">
-         {{estado.desc}}
-        </option>
-      </select> 
-    
-
     
       <label for="fechaRealizar">Fecha a realizar</label>
       <input type="datetime-local" formControlName="fechaRealizar" placeholder="DD-MM-YYYY HH:MM" id="inputDate">

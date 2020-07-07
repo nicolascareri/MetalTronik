@@ -1,0 +1,70 @@
+<div class="form-container">
+
+    <h1>Crear mantenimiento correctivo</h1> 
+  
+    <form [formGroup]="mantenimientoCorrectivoForm" (ngSubmit)="saveForm()">
+
+      <label for="nrocorrectivo">Nro de mantenimiento correctivo</label>
+        <input type="number" formControlName="nrocorrectivo"  placeholder="Ingrese nro de mantenimiento correctivo">
+
+      <label for="tipofalla">Tipo de falla</label>
+        <input type="number" formControlName="tipofalla"  placeholder="Ingrese nro de tipo de falla">
+      
+
+       <label for="encargo1_cod">Encargado 1</label>
+        <select formControlName="encargo1_cod">  
+          <option value="" disabled>Seleccionar encargado</option>
+          <option *ngFor="let user of dataSourceUsers" [ngValue]="user.id">
+           {{ user.nombre }}    {{ user.apellido }} 
+          </option>
+        </select>
+        
+        <label for="encargo2_cod">Encargado 2</label>
+        <select formControlName="encargo2_cod">  
+          <option value="" disabled>Seleccionar encargado</option>
+          <option *ngFor="let user of dataSourceUsers" [ngValue]="user.id">
+           {{ user.nombre }}    {{ user.apellido }} 
+          </option>
+        </select> 
+
+        <label for="encargo3_cod">Encargado 3</label>
+        <select formControlName="encargo3_cod">  
+          <option value="" disabled>Seleccionar encargado</option>
+          <option *ngFor="let user of dataSourceUsers" [ngValue]="user.id">
+           {{ user.nombre }}    {{ user.apellido }} 
+          </option>
+        </select> 
+
+        <label for="fechainicio">Fecha Inicio</label>
+        <input type="date" formControlName="fechainicio"  placeholder="Ingrese fecha de inicio">
+
+        <label for="fechaFin">Fecha fin</label>
+        <input type="date" formControlName="fechaFin"  placeholder="Ingrese fecha de fin">
+
+        <!-- <label for="horasProduccionAfectadas">Horas de produccion afectadas</label>
+        <input type="number" formControlName="horasProduccionAfectadas"  placeholder="Ingrese fecha de fin"> -->
+
+        <label for="maquina_cod">Maquina</label>
+        <select formControlName="maquina_cod">  
+          <option value="" disabled>Seleccionar maquina</option>
+          <option *ngFor="let machine of dataSourceMachines" [ngValue]="machine.id">
+           {{ machine.maquina_cod }}
+          </option>
+        </select>
+        
+        <label for="ordenTrabajo_cod">Orden de trabajo</label>
+        <select formControlName="ordenTrabajo_cod">  
+          <option value="" disabled>Seleccionar order de trabajo</option>
+          <option *ngFor="let order of dataSourceOrders" [ngValue]="order.ordentrabajo_cod">
+           {{ order.ordentrabajo_cod }}
+          </option>
+        </select> 
+
+        <label for="observaciones">Observaciones</label>
+        <input type="text" formControlName="observaciones"  placeholder="Observaciones">
+      
+       
+      <button type="submit" class="btn-send" >Crear mantenimiento correctivo</button>
+    </form>
+   
+  </div>
