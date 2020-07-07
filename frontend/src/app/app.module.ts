@@ -14,7 +14,7 @@ import { MatListModule } from '@angular/material/list';
 import { UsuariosModule } from "./usuarios/usuarios.module";
 import { MaquinaModule } from "./maquina/maquina.module";
 import { MantenimientoCorrectivoModule } from './matenimiento-correctivo/mantenimiento-correctivo.module';
-import { TablaComponent } from './tabla/tabla.component';
+
 
 
 
@@ -27,7 +27,6 @@ import { TablaComponent } from './tabla/tabla.component';
 @NgModule({
   declarations: [
     AppComponent,
-    TablaComponent,
     
   ],
   imports: [
