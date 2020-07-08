@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -29,12 +30,12 @@ public class MantenimientoCorrectivoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MantenimientoCorrectivo> update(@RequestBody MantenimientoCorrectivoRequest mantenimientoCorrectivoRequest, @PathVariable Integer id) throws ValidateFieldException {
+    public ResponseEntity<MantenimientoCorrectivo> update(@Valid @RequestBody MantenimientoCorrectivoRequest mantenimientoCorrectivoRequest, @PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<>(mantenimientoCorrectivoService.update(mantenimientoCorrectivoRequest, id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<MantenimientoCorrectivo> create(@RequestBody MantenimientoCorrectivoRequest mantenimientoCorrectivoRequest){
+    public ResponseEntity<MantenimientoCorrectivo> create(@Valid @RequestBody MantenimientoCorrectivoRequest mantenimientoCorrectivoRequest){
         return new ResponseEntity<>(mantenimientoCorrectivoService.create(mantenimientoCorrectivoRequest), HttpStatus.CREATED);
     }
 

@@ -33,6 +33,8 @@ public class MantenimientoCorrectivoRequest {
 
     private String observaciones;
 
+    private String repuestosColocados;
+
     @ValidEntity(repository = OrdenesTrabajoRepository.class)
     private int ordenTrabajo_cod;
 
@@ -43,9 +45,7 @@ public class MantenimientoCorrectivoRequest {
     @ValidEntity(repository = UsuarioRepository.class)
     private int encargo1_cod;
 
-    @ValidEntity(repository = UsuarioRepository.class)
     private int encargo2_cod;
 
-    @ValidEntity(repository = UsuarioRepository.class)
     private int encargo3_cod;
 }

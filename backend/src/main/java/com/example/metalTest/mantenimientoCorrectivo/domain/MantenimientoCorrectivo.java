@@ -41,6 +41,9 @@ public class MantenimientoCorrectivo {
     @Column
     private String observaciones;
 
+    @Column
+    private String repuestosColocados;
+
     @JoinColumn
     @OneToOne
     private OrdenesTrabajo ordenTrabajo;
