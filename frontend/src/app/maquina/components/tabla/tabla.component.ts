@@ -10,8 +10,7 @@ import { MaquinaService } from "../../services/maquina.service";
 })
 export class TablaComponent implements OnInit {
 
-  columnsToDisplay: any = ['id','maquina_cod','nro_serie','modelo','equipo','datos_tecnicos','descripcion',
-                           'planta.nombre','sector.descripcion' ];
+  columnsToDisplay: any = ['id', 'planta.nombre','sector.descripcion', 'maquina_cod','nro_serie','modelo','equipo','datos_tecnicos','descripcion' ];
 
   dataSourceMachines: any;
   form: FormGroup;

@@ -12,12 +12,12 @@ const routes: Routes = [
                 component: TablaComponent
             },
             {
-                path: 'table', 
+                path: 'tablausuarios', 
                 component: TablaComponent
             },
         
             {
-                path: 'user', 
+                path: 'formuser', 
                 component: FormComponent
             }
             
