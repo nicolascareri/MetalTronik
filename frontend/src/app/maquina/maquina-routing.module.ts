@@ -12,11 +12,11 @@ const routes: Routes = [
                 component: TablaComponent
             },
             {
-                path: 'tabla', 
+                path: 'tablamaquinas', 
                 component: TablaComponent
             },
             {
-                path: 'machine', 
+                path: 'formmaquina', 
                 component: FormComponent
             }
             

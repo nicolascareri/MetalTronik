@@ -36,10 +36,10 @@
         </select> 
 
         <label for="fechainicio">Fecha Inicio</label>
-        <input type="date" formControlName="fechainicio"  placeholder="Ingrese fecha de inicio">
+        <input type="datetime-local" formControlName="fechainicio"  placeholder="Ingrese fecha de inicio">
 
         <label for="fechaFin">Fecha fin</label>
-        <input type="date" formControlName="fechaFin"  placeholder="Ingrese fecha de fin">
+        <input type="datetime-local" formControlName="fechaFin"  placeholder="Ingrese fecha de fin">
 
         <!-- <label for="horasProduccionAfectadas">Horas de produccion afectadas</label>
         <input type="number" formControlName="horasProduccionAfectadas"  placeholder="Ingrese fecha de fin"> -->
@@ -56,7 +56,7 @@
         <select formControlName="ordenTrabajo_cod">  
           <option value="" disabled>Seleccionar order de trabajo</option>
           <option *ngFor="let order of dataSourceOrders" [ngValue]="order.ordentrabajo_cod">
-           {{ order.ordentrabajo_cod }}
+            <div *ngIf="order.estado == 1"> {{ order.ordentrabajo_cod }}</div>
           </option>
         </select> 
 

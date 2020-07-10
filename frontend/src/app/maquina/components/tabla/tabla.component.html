@@ -26,6 +26,16 @@
           <th mat-header-cell *matHeaderCellDef> ID </th>
           <td mat-cell *matCellDef="let machine"> {{machine.id}} </td>
         </ng-container>
+
+        <ng-container matColumnDef="planta.nombre">
+          <th mat-header-cell *matHeaderCellDef> Planta </th>
+          <td mat-cell *matCellDef="let machine"> {{machine.planta.nombre}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="sector.descripcion">
+          <th mat-header-cell *matHeaderCellDef> Sector </th>
+          <td mat-cell *matCellDef="let machine"> {{machine.sector.descripcion}} </td>
+        </ng-container>
       
      
         <ng-container matColumnDef="maquina_cod">
@@ -58,15 +68,7 @@
           <td mat-cell *matCellDef="let machine"> {{machine.descripcion}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="planta.nombre">
-          <th mat-header-cell *matHeaderCellDef> Planta </th>
-          <td mat-cell *matCellDef="let machine"> {{machine.planta.nombre}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="sector.descripcion">
-          <th mat-header-cell *matHeaderCellDef> Sector </th>
-          <td mat-cell *matCellDef="let machine"> {{machine.sector.descripcion}} </td>
-        </ng-container>
+       
     
   
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>

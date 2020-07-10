@@ -23,7 +23,7 @@
       <label for="maquina_cod">Maquina</label>
       <select formControlName="maquina_cod">
         <option value="" disabled>Seleccionar maquina</option>
-        <option *ngFor="let machine of dataSourceMachines" [ngValue]="machine.maquina_cod">
+        <option *ngFor="let machine of dataSourceMachines" [ngValue]="machine.id">
          {{machine.maquina_cod}}
         </option>
       </select> 
