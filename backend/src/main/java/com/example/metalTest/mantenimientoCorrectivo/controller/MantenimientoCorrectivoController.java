@@ -35,7 +35,7 @@ public class MantenimientoCorrectivoController {
     }
 
     @PostMapping
-    public ResponseEntity<MantenimientoCorrectivo> create(@Valid @RequestBody MantenimientoCorrectivoRequest mantenimientoCorrectivoRequest){
+    public ResponseEntity<MantenimientoCorrectivo> create(@Valid @RequestBody MantenimientoCorrectivoRequest mantenimientoCorrectivoRequest) throws ValidateFieldException {
         return new ResponseEntity<>(mantenimientoCorrectivoService.create(mantenimientoCorrectivoRequest), HttpStatus.CREATED);
     }
 

@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class MantenimientoCorrectivoServiceImpl implements MantenimientoCorrectivoService {
@@ -46,7 +47,7 @@ public class MantenimientoCorrectivoServiceImpl implements MantenimientoCorrecti
     }
 
     @Override
-    public MantenimientoCorrectivo create(MantenimientoCorrectivoRequest mantenimientoCorrectivoRequest) {
+    public MantenimientoCorrectivo create(MantenimientoCorrectivoRequest mantenimientoCorrectivoRequest) throws ValidateFieldException {
         MantenimientoCorrectivo mantenimientoCorrectivo = mantenimientoCorrectivoMapper.mantenimientoCorrectivoRequestToMantenimientoCorrectivo(mantenimientoCorrectivoRequest);
         mantenimientoCorrectivo.setMaquina(maquinaRepository.findById(mantenimientoCorrectivoRequest.getMaquina_cod()).get());
         mantenimientoCorrectivo.setEncargo1(usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo1_cod()).get());
@@ -66,6 +67,12 @@ public class MantenimientoCorrectivoServiceImpl implements MantenimientoCorrecti
             ordenesTrabajo.setEstado(EstadoOrden.OK.getValue());
             mantenimientoCorrectivo.setOrdenTrabajo(ordenesTrabajo);
         }
+        if (mantenimientoCorrectivoRequest.getFechainicio().after(mantenimientoCorrectivoRequest.getFechaFin())){
+            throw new ValidateFieldException("La fecha de fin no puede ser menor que la fecha de inicio", "Fecha de entrega", String.valueOf(mantenimientoCorrectivoRequest.getFechaFin()));
+        }
+        long diffInMillies = Math.abs(mantenimientoCorrectivoRequest.getFechaFin().getTime() - mantenimientoCorrectivoRequest.getFechainicio().getTime());
+        long diff = TimeUnit.HOURS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+        mantenimientoCorrectivo.setTiempoReparacion(diff);
         return mantenimientoCorrectivoRepository.save(mantenimientoCorrectivo);
     }
 
@@ -107,6 +114,12 @@ public class MantenimientoCorrectivoServiceImpl implements MantenimientoCorrecti
             ordenesTrabajo.setEstado(EstadoOrden.OK.getValue());
             mantenimientoCorrectivo.setOrdenTrabajo(ordenesTrabajo);
         }
+        if (mantenimientoCorrectivoRequest.getFechainicio().after(mantenimientoCorrectivoRequest.getFechaFin())){
+            throw new ValidateFieldException("La fecha de fin no puede ser menor que la fecha de inicio", "Fecha de entrega", String.valueOf(mantenimientoCorrectivoRequest.getFechaFin()));
+        }
+        long diffInMillies = Math.abs(mantenimientoCorrectivoRequest.getFechaFin().getTime() - mantenimientoCorrectivoRequest.getFechainicio().getTime());
+        long diff = TimeUnit.HOURS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+        mantenimientoCorrectivo.setTiempoReparacion(diff);
         mantenimientoCorrectivo.setId(id);
         return mantenimientoCorrectivoRepository.save(mantenimientoCorrectivo);
     }

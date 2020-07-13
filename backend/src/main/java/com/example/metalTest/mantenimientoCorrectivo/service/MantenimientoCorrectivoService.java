@@ -9,7 +9,7 @@ import java.util.List;
 public interface MantenimientoCorrectivoService {
     List<MantenimientoCorrectivo> getAll();
 
-    MantenimientoCorrectivo create(MantenimientoCorrectivoRequest mantenimientoCorrectivoRequest);
+    MantenimientoCorrectivo create(MantenimientoCorrectivoRequest mantenimientoCorrectivoRequest) throws ValidateFieldException;
 
     MantenimientoCorrectivo update(MantenimientoCorrectivoRequest mantenimientoCorrectivoRequest, Integer id) throws ValidateFieldException;
 

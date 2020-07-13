@@ -13,7 +13,7 @@ public interface OrdenesTrabajoService {
 
     OrdenesTrabajo getById(Integer id) throws ValidateFieldException;
 
-    OrdenesTrabajo create(OrdenesTrabajoRequest ordenesTrabajoRequest);
+    OrdenesTrabajo create(OrdenesTrabajoRequest ordenesTrabajoRequest) throws ValidateFieldException;
 
     OrdenesTrabajo update(OrdenesTrabajoRequest ordenesTrabajoRequest, Integer id) throws ValidateFieldException;
 }

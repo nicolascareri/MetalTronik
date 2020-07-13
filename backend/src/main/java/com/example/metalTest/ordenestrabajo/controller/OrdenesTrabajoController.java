@@ -31,7 +31,7 @@ public class OrdenesTrabajoController {
     }
 
     @PostMapping
-    public ResponseEntity<OrdenesTrabajo> create(@Valid @RequestBody OrdenesTrabajoRequest ordenesTrabajoRequest){
+    public ResponseEntity<OrdenesTrabajo> create(@Valid @RequestBody OrdenesTrabajoRequest ordenesTrabajoRequest) throws ValidateFieldException {
         return new ResponseEntity<>(ordenesTrabajoService.create(ordenesTrabajoRequest), HttpStatus.CREATED);
     }
 
