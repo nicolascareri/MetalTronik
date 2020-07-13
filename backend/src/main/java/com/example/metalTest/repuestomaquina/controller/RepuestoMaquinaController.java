@@ -31,7 +31,7 @@ public class RepuestoMaquinaController {
     }
 
     @GetMapping("/maquina/{id}")
-    public ResponseEntity<RepuestoMaquina> getByMaquina(@PathVariable Integer id) throws ValidateFieldException {
+    public ResponseEntity<List<RepuestoMaquina>> getByMaquina(@PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<>(repuestoMaquinaService.getByMaquina(id), HttpStatus.OK);
     }
 

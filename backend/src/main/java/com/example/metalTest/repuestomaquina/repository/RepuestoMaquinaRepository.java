@@ -5,11 +5,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.util.Optional;
+import java.util.List;
 
 public interface RepuestoMaquinaRepository extends JpaRepository<RepuestoMaquina, Integer> {
 
     @Query("SELECT r FROM RepuestoMaquina r WHERE r.maquina.id = :id")
-    Optional<RepuestoMaquina> findByMaquina(@Param("id") Integer id);
+    List<RepuestoMaquina> findByMaquina(@Param("id") Integer id);
 
 }
