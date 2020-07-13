@@ -24,7 +24,7 @@ export class FormComponent implements OnInit {
       encargo3_cod: new FormControl(''),
       fechaFin: new FormControl(''),
       fechainicio: new FormControl(''),
-      // horasProduccionAfectadas: new FormControl(''),
+      horasProduccionAfectadas: new FormControl(''),
       maquina_cod: new FormControl(''),
       nrocorrectivo: new FormControl(''),
       observaciones: new FormControl(''),

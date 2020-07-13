@@ -1,8 +1,9 @@
 Formulario de "Usuario"
- -Ir a la seccion Usuario y en la barra de busqueda borrar 'tablausuarios' y agregar 'formuser'
+ -Ir a la seccion Usuario y en la barra de busqueda borrar 'tablausuarios' y agregar 'formuser'.
 
 Formulario de "Maquina"
- -Ir a la seccion Maquina y en la barra de busqueda borrar 'tablamaquinas' y agregar 'formaquina'
+ -Ir a la seccion Maquina y en la barra de busqueda borrar 'tablamaquinas' y agregar 'formaquina'.
 
 Formulario "Mantenimiento Correctivo"
- -Ir a la seccion Mantenimiento Correctivo y en la barra de busqueda borrar 'tablacorrectivos' y agregar 'formcorrectivo'
+ -Ir a la seccion Mantenimiento Correctivo y en la barra de busqueda borrar 'tablacorrectivos' y agregar 'formcorrectivo'.
+ 

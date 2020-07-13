@@ -20,9 +20,10 @@ export class SidenavComponent implements OnDestroy {
     {name:"Indicadores", route:"", icon:"assessment"},
     {name:"Ordenes", route:"ordenes", icon:"calendar_today"},
     {name:"Usuarios", route:"usuarios/tablausuarios", icon:"recent_actors"},
-    {name:"Sectores", route:"", icon:"layers"},
+    // {name:"Sectores", route:"", icon:"layers"},
     {name:"Maquinas", route:"maquinas/tablamaquinas", icon:"build"},
-    {name:"Mantenimiento Correctivo", route:"mantenimientosCorrectivos/tablacorrectivos", icon:"layers"}
+    {name:"Mantenimiento Correctivo", route:"mantenimientosCorrectivos/tablacorrectivos", icon:"assignment"},
+    {name:"Configuracion", route:" ", icon:"settings"}
     
   ]
 
