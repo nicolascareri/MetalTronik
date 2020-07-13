@@ -52,7 +52,7 @@ public class MantenimientoCorrectivo {
     private int nrocorrectivo;
 
     @Column
-    private int tiempoReparacion;
+    private long tiempoReparacion;
 
     @JoinColumn
     @OneToOne
