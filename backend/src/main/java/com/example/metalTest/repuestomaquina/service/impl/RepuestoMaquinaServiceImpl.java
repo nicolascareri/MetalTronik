@@ -60,11 +60,7 @@ public class RepuestoMaquinaServiceImpl implements RepuestoMaquinaService {
     }
 
     @Override
-    public RepuestoMaquina getByMaquina(Integer id) throws ValidateFieldException {
-        Optional<RepuestoMaquina> opt = repuestoMaquinaRepository.findByMaquina(id);
-        if (!opt.isPresent()){
-            throw new ValidateFieldException("La maquina que desea acceder no existe", "id", String.valueOf(id));
-        }
-        return opt.get();
+    public List<RepuestoMaquina> getByMaquina(Integer id) throws ValidateFieldException {
+        return repuestoMaquinaRepository.findByMaquina(id);
     }
 }

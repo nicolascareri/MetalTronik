@@ -15,5 +15,5 @@ public interface RepuestoMaquinaService {
 
     RepuestoMaquina update(RepuestoMaquinaRequest repuestoMaquinaRequest, Integer id) throws ValidateFieldException;
 
-    RepuestoMaquina getByMaquina(Integer id) throws ValidateFieldException;
+    List<RepuestoMaquina> getByMaquina(Integer id) throws ValidateFieldException;
 }
