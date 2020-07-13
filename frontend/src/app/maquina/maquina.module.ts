@@ -8,11 +8,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TablaComponent } from './components/tabla/tabla.component';
 import { FormComponent } from "./components/form/form.component";
+import {MatTabsModule} from '@angular/material/tabs';
+import { TablaPlantaComponent } from "../planta/components/tabla-planta/tabla-planta.component";
+import { TablaSectorComponent } from "../sector/components/tabla-sector/tabla-sector.component";
 
 
 
 @NgModule({
-  declarations: [TablaComponent,FormComponent],
+  declarations: [TablaComponent,FormComponent, TablaPlantaComponent, TablaSectorComponent],
   imports: [
     CommonModule, 
     RouterModule,
@@ -21,6 +24,8 @@ import { FormComponent } from "./components/form/form.component";
     ReactiveFormsModule,
     MatInputModule,
     CoreModule,
+    MatTabsModule,
+    
   ]
 })
 export class MaquinaModule { }

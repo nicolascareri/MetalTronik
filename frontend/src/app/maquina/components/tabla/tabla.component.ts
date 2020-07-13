@@ -3,6 +3,8 @@ import { FormGroup, FormControl } from "@angular/forms";
 import { MaquinaService } from "../../services/maquina.service";
 
 
+
+
 @Component({
   selector: 'app-tabla',
   templateUrl: './tabla.component.html',

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MaquinaService } from "../../services/maquina.service";
-import { PlantaService } from "../../services/planta.service";
-import { SectorService } from "../../services/sector.service";
+import { PlantaService } from "../../../planta/services/planta.service";
+import { SectorService } from "../../../sector/services/sector.service";
 
 @Component({
   selector: 'app-form',
