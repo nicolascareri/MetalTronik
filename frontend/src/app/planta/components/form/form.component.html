@@ -1,0 +1,13 @@
+<div class="form-container">
+
+    <h1>Registrar planta</h1> 
+  
+    <form [formGroup]="formPlanta" (ngSubmit)="saveForm()">
+
+        <label for="nombre">Nombre de la planta</label>
+        <input type="text" formControlName="nombre"  placeholder="Ingrese nombre de la planta">      
+       
+      <button type="submit" class="btn-send">Registrar planta</button>
+    </form>
+   
+  </div>
