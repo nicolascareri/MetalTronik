@@ -1,0 +1,13 @@
+<div class="form-container">
+
+    <h1>Registrar Sector</h1> 
+  
+    <form [formGroup]="form" (ngSubmit)="saveForm()">
+
+        <label for="descripcion">Nombre del sector</label>
+        <input type="text" formControlName="descripcion"  placeholder="Ingrese nombre del sector">      
+       
+      <button type="submit" class="btn-send">Registrar sector</button>
+    </form>
+   
+  </div>
