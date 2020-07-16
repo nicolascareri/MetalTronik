@@ -40,7 +40,7 @@ public class RepuestoMaquinaController {
         return new ResponseEntity<>(repuestoMaquinaService.create(repuestoMaquinaRequest), HttpStatus.CREATED);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<RepuestoMaquina> update(@Valid @RequestBody RepuestoMaquinaRequest repuestoMaquinaRequest, @PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<>(repuestoMaquinaService.update(repuestoMaquinaRequest, id), HttpStatus.OK);
     }

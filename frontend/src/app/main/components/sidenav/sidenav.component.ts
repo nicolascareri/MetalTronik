@@ -20,7 +20,7 @@ export class SidenavComponent implements OnDestroy {
     {name:"Ordenes", route:"ordenes", icon:"calendar_today"},
     {name:"Mantenimiento Correctivo", route:"mantenimientosCorrectivos/tablacorrectivos", icon:"assignment"},
     {name:"Maquinas, Sectores y Plantas", route:"maquinas/tablamaquinas", icon:"build"},
-    {name:"Usuarios", route:"usuarios/tablausuarios", icon:"recent_actors"},
+    {name:"Usuarios", route:"usuarios", icon:"recent_actors"},
     {name:"Indicadores", route:"", icon:"assessment"},
     {name:"Configuracion", route:" ", icon:"settings"}
   ]

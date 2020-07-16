@@ -3,10 +3,6 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { ButtonComponent } from './components/button/button.component';
 import { RouterModule } from '@angular/router';
-import { OrdenesTrabajoRoutingModule } from '../ordenes-trabajo/ordenes-trabajo-routing.module';
-import { UsuariosRoutingModule } from "../usuarios/usuarios-routing.module";
-import { MaquinaRoutingModule } from "../maquina/maquina-routing.module";
-import { MantenimientoCorrectivoRoutingModule } from "../matenimiento-correctivo/mantenimiento-correctivo-routing.module";
 
 
 
@@ -16,10 +12,6 @@ import { MantenimientoCorrectivoRoutingModule } from "../matenimiento-correctivo
     CommonModule,
     MatButtonModule,
     RouterModule,
-    OrdenesTrabajoRoutingModule,
-    UsuariosRoutingModule,
-    MaquinaRoutingModule,
-    MantenimientoCorrectivoRoutingModule
   ],
   exports: [
     ButtonComponent
