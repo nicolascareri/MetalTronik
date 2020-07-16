@@ -36,7 +36,6 @@ export class TablaComponent implements OnInit {
   // tiposTable: any = TIPOTABLE;
   // prioridadesTable: any = PRIORIDADESTABLE;
   estadosTable: any = ESTADOTABLE;
-
   estadosForm: any = ESTADO_ORDEN;
   // prioridadesForm: any = PRIORIDADES;
   // tipoForm: any = TIPO;

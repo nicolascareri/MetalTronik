@@ -11,7 +11,7 @@
         <input type="number" formControlName="tipofalla"  placeholder="Ingrese nro de tipo de falla">
       
 
-       <label for="encargo1_cod">Encargado 1</label>
+       <label for="encargo1_cod">Realizo 1</label>
         <select formControlName="encargo1_cod">  
           <option value="" disabled>Seleccionar encargado</option>
           <option *ngFor="let user of dataSourceUsers" [ngValue]="user.id">
@@ -19,7 +19,7 @@
           </option>
         </select>
         
-        <label for="encargo2_cod">Encargado 2</label>
+        <label for="encargo2_cod">Realizo 2</label>
         <select formControlName="encargo2_cod">  
           <option value="" disabled>Seleccionar encargado</option>
           <option *ngFor="let user of dataSourceUsers" [ngValue]="user.id">
@@ -27,7 +27,7 @@
           </option>
         </select> 
 
-        <label for="encargo3_cod">Encargado 3</label>
+        <label for="encargo3_cod">Realizo 3</label>
         <select formControlName="encargo3_cod">  
           <option value="" disabled>Seleccionar encargado</option>
           <option *ngFor="let user of dataSourceUsers" [ngValue]="user.id">
@@ -64,7 +64,7 @@
         <input type="text" formControlName="observaciones"  placeholder="Observaciones">
       
        
-      <button type="submit" class="btn-send" >Crear mantenimiento correctivo</button>
+      <button type="submit" class="btn-send">Crear mantenimiento correctivo</button>
     </form>
    
   </div>

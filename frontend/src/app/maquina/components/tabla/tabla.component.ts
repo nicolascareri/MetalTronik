@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { FormGroup, FormControl } from "@angular/forms";
 import { MaquinaService } from "../../services/maquina.service";
 
@@ -14,7 +15,7 @@ export class TablaComponent implements OnInit {
 
   columnsToDisplay: any = ['id', 'planta.nombre','sector.descripcion', 'maquina_cod','nro_serie','modelo','equipo','datos_tecnicos','descripcion' ];
 
-  dataSourceMachines: any;
+  dataSourceMachines = new MatTableDataSource();
   form: FormGroup;
   
 
@@ -33,17 +34,41 @@ export class TablaComponent implements OnInit {
     this.form = this.createFormGroup();
    }
 
-   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
+  applyFilter(filterValue: String) {
     this.dataSourceMachines.filter = filterValue.trim().toLowerCase();
-    console.log(this.dataSourceMachines);
-    console.log(this.dataSourceMachines.filter);
-    
+  }
+
+  nestedFilterCheck(search, data, key) {
+    if (typeof data[key] === 'object') {
+      for (const k in data[key]) {
+        if (data[key][k] !== null) {
+          search = this.nestedFilterCheck(search, data[key], k);
+        }
+      }
+    } else {
+      search += data[key];
+    }
+    return search;
+  }
+
+  filter(){
+    this.dataSourceMachines.filterPredicate = (data, filter: string)  => {
+      const accumulator = (currentTerm, key) => {
+        return this.nestedFilterCheck(currentTerm, data, key);
+      };
+      const dataStr = Object.keys(data).reduce(accumulator, '').toLowerCase();
+      // Transform the filter by converting it to lowercase and removing whitespace.
+      const transformedFilter = filter.trim().toLowerCase();
+      return dataStr.indexOf(transformedFilter) !== -1;
+    };
   }
 
 
   ngOnInit(): void {
 
+    
+    
+  
     this.MaquinaService.getMaquinas().subscribe(
 
       (data: any)  => { // Success
@@ -55,6 +80,11 @@ export class TablaComponent implements OnInit {
       }
 
     );
+
+
+    this.filter();
+
+
   }
 
 }
