@@ -1,9 +1,9 @@
 <div>
 
-    <!-- <mat-form-field class="filter">
-      <mat-label style="font-weight: bold;">Filtrar</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Material, responsable, maquina...">
-    </mat-form-field> -->
+  <mat-form-field class="filter">
+    <mat-label style="font-weight: bold;">Filtrar</mat-label>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Material, responsable, maquina...">
+  </mat-form-field>
   
     <app-button [routerLink]="['formulario']"></app-button>
   
@@ -11,6 +11,8 @@
     <!-- <app-edit-order [originalOrder]="ordenes"></app-edit-order> -->
     
   <div class="data">
+
+    
 
     <table mat-table [dataSource]="dataSourceMantenimientosCorrectivos" class="table">
  

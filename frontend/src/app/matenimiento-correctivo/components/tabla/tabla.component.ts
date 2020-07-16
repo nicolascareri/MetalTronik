@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from "@angular/forms";
+import { MatTableDataSource } from '@angular/material/table';
 import { MantenimientoCorrectivoService } from "../../services/mantenimiento-correctivo.service";
 
 @Component({
@@ -9,7 +10,7 @@ import { MantenimientoCorrectivoService } from "../../services/mantenimiento-cor
 })
 export class TablaComponent implements OnInit {
 
-  dataSourceMantenimientosCorrectivos: any;
+  dataSourceMantenimientosCorrectivos = new MatTableDataSource();
 
   form: FormGroup;
 
@@ -21,8 +22,39 @@ export class TablaComponent implements OnInit {
   
   constructor(private MantenimientoCorrectivoService: MantenimientoCorrectivoService) { }
 
+  applyFilter(filterValue: String) {
+    this.dataSourceMantenimientosCorrectivos.filter = filterValue.trim().toLowerCase();
+  }
+
+  nestedFilterCheck(search, data, key) {
+    if (typeof data[key] === 'object') {
+      for (const k in data[key]) {
+        if (data[key][k] !== null) {
+          search = this.nestedFilterCheck(search, data[key], k);
+        }
+      }
+    } else {
+      search += data[key];
+    }
+    return search;
+  }
+
+  
+
 
   ngOnInit(): void {
+
+    
+    this.dataSourceMantenimientosCorrectivos.filterPredicate = (data, filter: string)  => {
+      const accumulator = (currentTerm, key) => {
+        return this.nestedFilterCheck(currentTerm, data, key);
+      };
+      const dataStr = Object.keys(data).reduce(accumulator, '').toLowerCase();
+      // Transform the filter by converting it to lowercase and removing whitespace.
+      const transformedFilter = filter.trim().toLowerCase();
+      return dataStr.indexOf(transformedFilter) !== -1;
+    };
+  
 
     this.MantenimientoCorrectivoService.getMantenimientosCorrectivos().subscribe(
 
@@ -35,6 +67,7 @@ export class TablaComponent implements OnInit {
       }
 
     );
+
 
 
   }
