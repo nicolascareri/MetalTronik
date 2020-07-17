@@ -1,14 +1,15 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TipoService {
 
-  constructor(protected http: HttpClient) { }
+  constructor(protected http: HttpClient) {
+  }
 
-  getTipos(){
+  getTipos() {
     return this.http.get('http://localhost:8080/api/tipo');
   }
 }

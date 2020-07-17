@@ -1,22 +1,24 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup,  FormControl } from "@angular/forms";
-import { UserService } from "../../../usuarios/services/user.service";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {UserService} from '../../../usuarios/services/user.service';
 
 @Component({
-  selector: 'app-tabla',
+  selector: 'app-tabla-usuario',
   templateUrl: './tabla.component.html',
   styleUrls: ['./tabla.component.scss']
 })
-export class TablaComponent implements OnInit {
+export class TablaUsuarioComponent implements OnInit {
 
-  columnsToDisplay: any = ['id','dni','nombre','apellido','fnacimiento','cargo','legajo','nombre_usuario','contrasenia',
-                           'ciudad','pais','provincia','codigo_postal','direccion','correo_electronico'];
+  columnsToDisplay: any = ['id', 'dni', 'nombre', 'apellido', 'fnacimiento', 'cargo', 'legajo', 'nombre_usuario', 'contrasenia',
+    'ciudad', 'pais', 'provincia', 'codigo_postal', 'direccion', 'correo_electronico'];
 
   dataSourceUsers: any;
 
   form: FormGroup;
+  //Editar
+  @Input() originalUser: any;
 
-  createFormGroup(){
+  createFormGroup() {
     return new FormGroup({
       id: new FormControl(''),
       dni: new FormControl(''),
@@ -35,9 +37,6 @@ export class TablaComponent implements OnInit {
       correo_electronico: new FormControl('')
     })
   }
-
-  //Editar
-  @Input() originalUser: any; 
   @Output() close = new EventEmitter();
 
 
@@ -51,7 +50,7 @@ export class TablaComponent implements OnInit {
     this.dataSourceUsers.filter = filterValue.trim().toLowerCase();
     console.log(this.dataSourceUsers);
     console.log(this.dataSourceUsers.filter);
-    
+
   }
 
   ngOnInit(): void {
@@ -68,9 +67,7 @@ export class TablaComponent implements OnInit {
 
     );
 
-    
 
-    
   }
 
 //   openModal(ordenes){
@@ -80,8 +77,8 @@ export class TablaComponent implements OnInit {
 //     console.log(this.originalUser);
 //     this.setOriginalValues(this.originalUser);
 //     console.log(this.form);
-    
-    
+
+
 // }
 
 }

@@ -1,14 +1,15 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MantenimientoCorrectivoService {
 
-  constructor(protected http: HttpClient) { }
+  constructor(protected http: HttpClient) {
+  }
 
-  getMantenimientosCorrectivos(){
+  getMantenimientosCorrectivos() {
     return this.http.get('http://localhost:8080/api/mantenimiento-correctivo');
   }
 

@@ -1,31 +1,32 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { CoreModule } from '../core/core.module';
-import { MatTableModule } from '@angular/material/table';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatInputModule } from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { TablaComponent } from './components/tabla/tabla.component';
-import { FormComponent } from "./components/form/form.component";
+import {CommonModule} from '@angular/common';
+import {NgModule} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
-import { TablaPlantaComponent } from "../planta/components/tabla-planta/tabla-planta.component";
-import { TablaSectorComponent } from "../sector/components/tabla-sector/tabla-sector.component";
-
+import {RouterModule} from '@angular/router';
+import {CoreModule} from '../core/core.module';
+import {FormMaquinaComponent} from './components/form/form.component';
+import {TablaMaquinaComponent} from './components/tabla/tabla.component';
+import {PlantaModule} from '../planta/planta.module';
+import {SectorModule} from '../sector/sector.module';
+import {MaquinaRoutingModule} from './maquina-routing.module';
 
 
 @NgModule({
-  declarations: [TablaComponent,FormComponent, TablaPlantaComponent, TablaSectorComponent],
+  declarations: [TablaMaquinaComponent, FormMaquinaComponent],
   imports: [
-    CommonModule, 
+    CommonModule,
     RouterModule,
     MatTableModule,
-    MatSliderModule,
     ReactiveFormsModule,
     MatInputModule,
     CoreModule,
     MatTabsModule,
-    
+    PlantaModule,
+    SectorModule,
+    MaquinaRoutingModule,
+
   ]
 })
 export class MaquinaModule { }

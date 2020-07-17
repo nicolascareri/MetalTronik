@@ -1,26 +1,27 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl } from "@angular/forms";
-import { MatTableDataSource } from '@angular/material/table';
-import { MantenimientoCorrectivoService } from "../../services/mantenimiento-correctivo.service";
+import {Component, OnInit} from '@angular/core';
+import {FormGroup} from '@angular/forms';
+import {MatTableDataSource} from '@angular/material/table';
+import {MantenimientoCorrectivoService} from '../../services/mantenimiento-correctivo.service';
 
 @Component({
-  selector: 'app-tabla',
+  selector: 'app-tabla-mantenimiento-correctivo',
   templateUrl: './tabla.component.html',
   styleUrls: ['./tabla.component.scss']
 })
-export class TablaComponent implements OnInit {
+export class TablaMantenimientoCorrectivoComponent implements OnInit {
 
   dataSourceMantenimientosCorrectivos = new MatTableDataSource();
 
   form: FormGroup;
 
-  columnsToDisplay: any = ['nrocorrectivo', 'ordenTrabajo.ordentrabajo_cod', 'ordenTrabajo.tipo.nombre', 
-                           'ordenTrabajo.maquina.sector.descripcion', 'tipofalla', 'fechainicio', 'fechaFin', 'tiempoReparacion', 
-                           'horasProduccionAfectadas', 'observaciones', 'encargo1', 'encargo2', 'encargo3'
-                          ];
+  columnsToDisplay: any = ['nrocorrectivo', 'ordenTrabajo.ordentrabajo_cod', 'ordenTrabajo.tipo.nombre',
+    'ordenTrabajo.maquina.sector.descripcion', 'tipofalla', 'fechainicio', 'fechaFin', 'tiempoReparacion',
+    'horasProduccionAfectadas', 'observaciones', 'encargo1', 'encargo2', 'encargo3'
+  ];
 
-  
-  constructor(private MantenimientoCorrectivoService: MantenimientoCorrectivoService) { }
+
+  constructor(private MantenimientoCorrectivoService: MantenimientoCorrectivoService) {
+  }
 
   applyFilter(filterValue: String) {
     this.dataSourceMantenimientosCorrectivos.filter = filterValue.trim().toLowerCase();
@@ -39,12 +40,10 @@ export class TablaComponent implements OnInit {
     return search;
   }
 
-  
-
 
   ngOnInit(): void {
 
-    
+
     this.dataSourceMantenimientosCorrectivos.filterPredicate = (data, filter: string)  => {
       const accumulator = (currentTerm, key) => {
         return this.nestedFilterCheck(currentTerm, data, key);
@@ -54,7 +53,7 @@ export class TablaComponent implements OnInit {
       const transformedFilter = filter.trim().toLowerCase();
       return dataStr.indexOf(transformedFilter) !== -1;
     };
-  
+
 
     this.MantenimientoCorrectivoService.getMantenimientosCorrectivos().subscribe(
 

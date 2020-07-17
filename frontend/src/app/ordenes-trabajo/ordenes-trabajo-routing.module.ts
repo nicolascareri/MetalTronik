@@ -1,22 +1,22 @@
-import { NgModule, Component } from "@angular/core";
-import { RouterModule, Routes } from '@angular/router';
-import { TablaComponent } from './components/tabla/tabla.component';
-import { FormComponent } from './components/form/form.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {FormComponent} from './components/form/form.component';
+import {TablaComponent} from './components/tabla/tabla.component';
 
 const routes: Routes = [
-    {
+  {
+    path: '',
+    children: [
+      {
         path: '',
-        children: [ 
-            {
-                path: '',
-                component: TablaComponent
-            },
-            {
-                path: 'form', 
-                component: FormComponent
-            }
-            
-        ]
+        component: TablaComponent
+      },
+      {
+        path: 'form',
+        component: FormComponent
+      }
+
+    ]
     }
 ]
 @NgModule ({

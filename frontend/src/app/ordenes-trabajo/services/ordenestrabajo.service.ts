@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { ENDPOINTS } from 'src/app/core/constants/constants';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {ENDPOINTS} from 'src/app/core/constants/constants';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +12,6 @@ export class OrdenestrabajoService {
   private url = ENDPOINTS;
   orders: any = this.getAllOrdenes();
 
-
-  
-  
-  
 
   constructor(protected http: HttpClient) { }
 

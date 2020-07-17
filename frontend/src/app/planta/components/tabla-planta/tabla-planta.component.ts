@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup,  FormControl } from "@angular/forms";
-import { PlantaService } from "../../services/planta.service";
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {PlantaService} from '../../services/planta.service';
 
 @Component({
   selector: 'app-tabla-planta',
@@ -22,10 +22,9 @@ export class TablaPlantaComponent implements OnInit {
   }
 
 
-  constructor(private PlantaService: PlantaService) 
-  {
+  constructor(private PlantaService: PlantaService) {
     this.form = this.createFormGroup();
-   }
+  }
 
   ngOnInit(): void {
 

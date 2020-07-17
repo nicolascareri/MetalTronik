@@ -1,27 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { PlantaService } from "../../services/planta.service";
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {PlantaService} from '../../services/planta.service';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
-export class FormComponent implements OnInit {
+export class FormPlantaComponent implements OnInit {
 
-  createFormGroup(){
+  constructor(private PlantaService: PlantaService) {
+    this.formPlanta = this.createFormGroup();
+  }
+
+  formPlanta: FormGroup;
+
+  createFormGroup() {
     return new FormGroup({
       nombre: new FormControl(''),
       estado: new FormControl(30)
     })
   }
-
-  formPlanta: FormGroup;
-
-  constructor(private PlantaService: PlantaService) 
-  {
-    this.formPlanta  = this.createFormGroup();
-   }
 
   ngOnInit(): void {
   }
@@ -29,7 +28,7 @@ export class FormComponent implements OnInit {
   resetForm() {
     this.formPlanta.reset();
   }
-  
+
   saveForm() {
     console.log(this.formPlanta.value);
     this.PlantaService.postPlanta(this.formPlanta).subscribe(

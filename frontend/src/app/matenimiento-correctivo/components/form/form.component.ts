@@ -1,23 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { MantenimientoCorrectivoService } from "../../services/mantenimiento-correctivo.service";
-import { OrdenestrabajoService } from "../../../ordenes-trabajo/services/ordenestrabajo.service";
-import { MaquinaService } from "../../../maquina/services/maquina.service";
-import { UserService } from "../../../usuarios/services/user.service";
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {MantenimientoCorrectivoService} from '../../services/mantenimiento-correctivo.service';
+import {OrdenestrabajoService} from '../../../ordenes-trabajo/services/ordenestrabajo.service';
+import {MaquinaService} from '../../../maquina/services/maquina.service';
+import {UserService} from '../../../usuarios/services/user.service';
 
 @Component({
-  selector: 'app-form',
+  selector: 'app-form-mantenimiento-correctivo',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
-export class FormComponent implements OnInit {
+export class FormMantenimientoCorrectivoComponent implements OnInit {
 
   mantenimientoCorrectivoForm: FormGroup;
   dataSourceOrders: any;
   dataSourceMachines: any;
   dataSourceUsers: any;
 
-  createFormGroup(){
+  constructor(private MantenimientoCorrectivoService: MantenimientoCorrectivoService,
+              private OrdenestrabajoService: OrdenestrabajoService,
+              private MaquinaService: MaquinaService,
+              private UserService: UserService
+  )
+  {
+    this.mantenimientoCorrectivoForm = this.createFormGroup();
+  }
+
+  createFormGroup() {
     return new FormGroup({
       encargo1_cod: new FormControl(''),
       encargo2_cod: new FormControl(''),
@@ -31,18 +40,6 @@ export class FormComponent implements OnInit {
       ordenTrabajo_cod: new FormControl(''),
       tipofalla: new FormControl('')
     })
-  }
-
-
-  
-
-  constructor(private MantenimientoCorrectivoService: MantenimientoCorrectivoService,
-              private OrdenestrabajoService: OrdenestrabajoService,
-              private MaquinaService: MaquinaService,
-              private UserService: UserService
-              ) 
-  {
-    this.mantenimientoCorrectivoForm = this.createFormGroup();
   }
 
   ngOnInit(): void {
@@ -82,21 +79,21 @@ export class FormComponent implements OnInit {
 
     );
 
-    
+
   }
 
   resetForm() {
     this.mantenimientoCorrectivoForm.reset();
   }
-  
+
   saveForm() {
     console.log(this.mantenimientoCorrectivoForm.value);
     this.MantenimientoCorrectivoService.postMantenimientoCorrectivo(this.mantenimientoCorrectivoForm).subscribe(
       maquina => alert("Se ha creado la maquina numero: " + maquina.id)
     );
     //this.router.navigate(['main/ordenes'])
-  
-    
+
+
   }
 
 }
