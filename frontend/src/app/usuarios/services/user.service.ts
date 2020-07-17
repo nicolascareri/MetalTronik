@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +7,8 @@ import { HttpClient } from '@angular/common/http';
 export class UserService {
 
 
-  constructor(protected http: HttpClient) { }
+  constructor(protected http: HttpClient) {
+  }
 
   getUsers() {
     return this.http.get('http://localhost:8080/api/usuario');
@@ -16,8 +17,8 @@ export class UserService {
   postUser(userForm){
     return this.http.post<any>('http://localhost:8080/api/usuario', userForm.value);
   }
-  
-    
+
+
 }
 
 

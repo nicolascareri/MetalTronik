@@ -1,15 +1,14 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
 
-import { OrdenestrabajoService } from "../../services/ordenestrabajo.service";
+import {OrdenestrabajoService} from '../../services/ordenestrabajo.service';
 // import { SectorService } from "../../services/sector.service";
-import { MaquinaService } from "../../../maquina/services/maquina.service";
-import { UserService } from "../../../usuarios/services/user.service";
-import { PrioridadesService } from "../../services/prioridades.service";
-import { TipoService } from "../../services/tipo.service";
-import { ESTADO_ORDEN } from "src/app/core/constants/constants";
+import {MaquinaService} from '../../../maquina/services/maquina.service';
+import {UserService} from '../../../usuarios/services/user.service';
+import {PrioridadesService} from '../../services/prioridades.service';
+import {TipoService} from '../../services/tipo.service';
 // import { PlantaService } from "../../services/planta.service";
-import { Router } from "@angular/router"
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -18,31 +17,24 @@ import { Router } from "@angular/router"
 })
 export class FormComponent implements OnInit {
 
-  
-  createFormGroup(){
-    return new FormGroup({
-      encargo_cod: new FormControl(''),
-      estado: new FormControl(''),
-      fechaRealizar: new FormControl(''),
-      maquina_cod: new FormControl(''),
-      pedidoMateriales: new FormControl(''),
-      priodidad_cod: new FormControl(''),
-      responsable_cod: new FormControl(''),
-      tarea: new FormControl(''),
-      observaciones: new FormControl(''),
-      ordenTerciarizacion : new FormControl(''),
-      fechaEntrega : new FormControl(''),
-      tipo_cod: new FormControl(''),
-      
-    })
+
+  constructor(private OrdenestrabajoService: OrdenestrabajoService,
+              private UserService: UserService,
+              // private SectorService: SectorService,
+              private MaquinaService: MaquinaService,
+              // private PlantaService: PlantaService,
+              private PrioridadesService: PrioridadesService,
+              private TipoService: TipoService,
+              private router: Router) {
+    this.ordenForm = this.createFormGroup();
   }
 
- 
+
   // plantas: any = PLANTAS;
   // prioridades: any = PRIORIDADES;
   // estados: any = ESTADO_ORDEN;
   // tipo: any = TIPO;
-  
+
   ordenForm: FormGroup;
   // users: any;
   // orders: any;
@@ -57,22 +49,27 @@ export class FormComponent implements OnInit {
   dataSourceTipos: any;
   dataSourcePrioridades: any;
 
+  createFormGroup(){
+    return new FormGroup({
+      encargo_cod: new FormControl(''),
+      estado: new FormControl(''),
+      fechaRealizar: new FormControl(''),
+      maquina_cod: new FormControl(''),
+      pedidoMateriales: new FormControl(''),
+      priodidad_cod: new FormControl(''),
+      responsable_cod: new FormControl(''),
+      tarea: new FormControl(''),
+      observaciones: new FormControl(''),
+      ordenTerciarizacion : new FormControl(''),
+      fechaEntrega : new FormControl(''),
+      tipo_cod: new FormControl(''),
 
-  constructor(private OrdenestrabajoService: OrdenestrabajoService, 
-              private UserService: UserService,
-              // private SectorService: SectorService, 
-              private MaquinaService: MaquinaService, 
-              // private PlantaService: PlantaService, 
-              private PrioridadesService: PrioridadesService,
-              private TipoService: TipoService,
-              private router:Router) 
-  {
-    this.ordenForm = this.createFormGroup();
+    })
   }
 
   ngOnInit(): void {
 
-    
+
     // this.PlantaService.getPlantas().subscribe(
 
     //   (data: any)  => { // Success
@@ -140,10 +137,9 @@ export class FormComponent implements OnInit {
       }
 
     );
-    
-    
+
+
     this.OrdenestrabajoService.getAllOrdenes().subscribe(
-      
       (data: any)  => { // Success
         this.dataSourceOrdenes = data;
         console.log(this.dataSourceOrdenes);
@@ -151,26 +147,24 @@ export class FormComponent implements OnInit {
       (error) => {
         console.error(error);
       }
-      
-      );
-      
-      
-    }
-      
-      resetForm() {
+    );
+
+
+  }
+
+  resetForm() {
         this.ordenForm.reset();
       }
-      
-      saveForm() {
+
+  saveForm() {
         console.log(this.ordenForm.value);
         this.OrdenestrabajoService.postOrder(this.ordenForm).subscribe(
           order => alert("Se ha creado la orden nro: " + order.ordentrabajo_cod)
         );
         this.router.navigate(['main/ordenes'])
-      
-        
-      }
- 
-      
+
+
+  }
+
 
 }

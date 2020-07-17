@@ -1,19 +1,18 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from "@angular/router";
-import { MainComponent } from './components/main/main.component';
-import { HomeComponent } from './components/home/home.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {HomeComponent} from './components/home/home.component';
+import {MainComponent} from './components/main/main.component';
 
 
 const routes: Routes = [
-    {
-        path: 'main',
-        component: MainComponent,
-        children: [
-            {
-                path: '',
-                redirectTo: 'home',
-                pathMatch: 'full'
-            
+  {
+    path: 'main',
+    component: MainComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'home',
+                pathMatch: 'prefix'
             },
             {
                 path: 'home',
@@ -36,18 +35,17 @@ const routes: Routes = [
                 loadChildren: 'src/app/matenimiento-correctivo/mantenimiento-correctivo.module#MantenimientoCorrectivoModule',
             }
 
-            
 
-        ]
+    ]
 
     },
     { path: '', pathMatch: 'full', redirectTo: 'main' }
 ];
 @NgModule ({
-    imports:[   
-        RouterModule.forChild(routes)
-    ],
-    exports:[
+  imports: [
+    RouterModule.forChild(routes)
+  ],
+    exports: [
 
         RouterModule
 

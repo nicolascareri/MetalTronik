@@ -1,14 +1,26 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { TablaPlantaComponent } from './components/tabla-planta/tabla-planta.component';
-import { FormComponent } from './components/form/form.component';
-
+import {CommonModule} from '@angular/common';
+import {NgModule} from '@angular/core';
+import {FormPlantaComponent} from './components/form/form.component';
+import {TablaPlantaComponent} from './components/tabla-planta/tabla-planta.component';
+import {CoreModule} from '../core/core.module';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatTableModule} from '@angular/material/table';
+import {RouterModule} from '@angular/router';
+import {TablaSectorComponent} from '../sector/components/tabla-sector/tabla-sector.component';
 
 
 @NgModule({
-  declarations: [TablaPlantaComponent, FormComponent],
+  declarations: [TablaPlantaComponent, FormPlantaComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    CoreModule,
+    ReactiveFormsModule,
+    MatTableModule,
+    RouterModule
+  ],
+  exports: [
+    TablaPlantaComponent, FormPlantaComponent
   ]
 })
-export class PlantaModule { }
+export class PlantaModule {
+}

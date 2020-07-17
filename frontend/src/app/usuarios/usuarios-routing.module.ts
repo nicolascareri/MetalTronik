@@ -1,31 +1,26 @@
-import { NgModule, Component } from "@angular/core";
-import { RouterModule, Routes } from '@angular/router';
-import { TablaComponent } from 'src/app/usuarios/components/tabla/tabla.component';
-import { FormComponent } from 'src/app/usuarios/components/form/form.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {FormUsuarioComponent} from 'src/app/usuarios/components/form/form.component';
+import {TablaUsuarioComponent} from 'src/app/usuarios/components/tabla/tabla.component';
 
 const routes: Routes = [
-    {
+  {
+    path: '',
+    children: [
+      {
         path: '',
-        children: [ 
-            {
-                path: '',
-                component: TablaComponent
-            },
-            {
-                path: 'tablausuarios', 
-                component: TablaComponent
-            },
-        
-            {
-                path: 'formuser', 
-                component: FormComponent
-            }
-            
-        ]
+        component: TablaUsuarioComponent
+      },
+      {
+        path: 'form',
+        component: FormUsuarioComponent
+      }
+
+    ]
     }
 ]
 @NgModule ({
-     imports:[
+     imports: [
 
          RouterModule.forChild(routes)
 

@@ -1,21 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { MaquinaService } from "../../services/maquina.service";
-import { PlantaService } from "../../../planta/services/planta.service";
-import { SectorService } from "../../../sector/services/sector.service";
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {MaquinaService} from '../../services/maquina.service';
+import {PlantaService} from '../../../planta/services/planta.service';
+import {SectorService} from '../../../sector/services/sector.service';
 
 @Component({
-  selector: 'app-form',
+  selector: 'app-form-maquina',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
-export class FormComponent implements OnInit {
+export class FormMaquinaComponent implements OnInit {
 
 
   dataSourcePlants: any;
   dataSourceSectors: any;
 
-  createFormGroup(){
+  createFormGroup() {
     return new FormGroup({
       maquina_cod: new FormControl(''),
       nro_serie: new FormControl(''),
@@ -71,15 +71,15 @@ export class FormComponent implements OnInit {
   resetForm() {
     this.machinesForm.reset();
   }
-  
+
   saveForm() {
     console.log(this.machinesForm.value);
     this.MaquinaService.postMaquina(this.machinesForm).subscribe(
       maquina => alert("Se ha creado la maquina numero: " + maquina.id)
     );
     //this.router.navigate(['main/ordenes'])
-  
-    
+
+
   }
 
 }

@@ -1,21 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { UserService } from "../../../usuarios/services/user.service";
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {UserService} from '../../../usuarios/services/user.service';
 
 @Component({
-  selector: 'app-form',
+  selector: 'app-form-usuario',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
-export class FormComponent implements OnInit {
+export class FormUsuarioComponent implements OnInit {
 
-  createFormGroup(){
+  createFormGroup() {
     return new FormGroup({
       nombre: new FormControl(''),
       apellido: new FormControl(''),
       dni: new FormControl(''),
       fnacimiento: new FormControl(''),
-      cargo:  new FormControl(''),
+      cargo: new FormControl(''),
       legajo: new FormControl(''),
       nombre_usuario: new FormControl(''),
       contrasenia: new FormControl(''),
@@ -42,15 +42,15 @@ export class FormComponent implements OnInit {
   resetForm() {
     this.userForm.reset();
   }
-  
+
   saveForm() {
     console.log(this.userForm.value);
     this.UserService.postUser(this.userForm).subscribe(
       user => alert("Se ha creado el usuario numero: " + user.id)
     );
     //this.router.navigate(['main/ordenes'])
-  
-    
+
+
   }
 
 }

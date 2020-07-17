@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup,  FormControl } from "@angular/forms";
-import { SectorService } from "../../services/sector.service";
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {SectorService} from '../../services/sector.service';
 
 @Component({
   selector: 'app-tabla-sector',
@@ -22,10 +22,9 @@ export class TablaSectorComponent implements OnInit {
   }
 
 
-  constructor(private SectorService:SectorService ) 
-  {
+  constructor(private SectorService: SectorService) {
     this.form = this.createFormGroup();
-   }
+  }
 
   ngOnInit(): void {
 

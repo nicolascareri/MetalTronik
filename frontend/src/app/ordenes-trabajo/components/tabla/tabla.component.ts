@@ -1,19 +1,16 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup,  FormControl } from "@angular/forms";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
 import {MatTableDataSource} from '@angular/material/table';
 
-import { ESTADOTABLE } from "src/app/core/constants/constants";
-import { ESTADO_ORDEN } from "src/app/core/constants/constants";
+import {ESTADO_ORDEN, ESTADOTABLE} from 'src/app/core/constants/constants';
 
 import {OrdenestrabajoService} from '../../services/ordenestrabajo.service';
-import { PlantaService } from "../../services/planta.service";
-import { SectorService } from "../../services/sector.service";
-import { UserService } from "../../../usuarios/services/user.service";
-import { MaquinaService } from "../../../maquina/services/maquina.service";
-import { PrioridadesService } from "../../services/prioridades.service";
-import { TipoService } from "../../services/tipo.service";
-
-
+import {PlantaService} from '../../services/planta.service';
+import {SectorService} from '../../services/sector.service';
+import {UserService} from '../../../usuarios/services/user.service';
+import {MaquinaService} from '../../../maquina/services/maquina.service';
+import {PrioridadesService} from '../../services/prioridades.service';
+import {TipoService} from '../../services/tipo.service';
 
 
 @Component({
@@ -23,14 +20,13 @@ import { TipoService } from "../../services/tipo.service";
 })
 
 
-
 export class TablaComponent implements OnInit {
 
   // ordenes: any = [];
 
-  columnsToDisplay: any = ['edit','ordentrabajo_cod', 'maquina.maquina_cod', 'maquina.planta.nombre', 'maquina.sector.descripcion', 
-                           'pedidoMateriales', 'tarea', 'priodidad.nombre', 'tipo.nombre', 'fechaEntrega', 'fechaRealizar',
-                           'encargo.nombre', 'responsable.nombre', 'estado', 'observaciones', 'ordenTerciarizacion'];
+  columnsToDisplay: any = ['edit', 'ordentrabajo_cod', 'maquina.maquina_cod', 'maquina.planta.nombre', 'maquina.sector.descripcion',
+    'pedidoMateriales', 'tarea', 'priodidad.nombre', 'tipo.nombre', 'fechaEntrega', 'fechaRealizar',
+    'encargo.nombre', 'responsable.nombre', 'estado', 'observaciones', 'ordenTerciarizacion'];
 
   // plantas: any = PLANTATABLE;
   // tiposTable: any = TIPOTABLE;
@@ -53,14 +49,23 @@ export class TablaComponent implements OnInit {
 
   DataOrderToEdit: any;
 
-  
 
-
-
-  @Input() originalOrder: any; 
+  @Input() originalOrder: any;
   @Output() close = new EventEmitter();
 
   form: FormGroup;
+
+  constructor(private OrdenestrabajoService: OrdenestrabajoService,
+              private UserService: UserService,
+              private SectorService: SectorService,
+              private MaquinaService: MaquinaService,
+              private PlantaService: PlantaService,
+              private PrioridadesService: PrioridadesService,
+              private TiposService: TipoService
+  )
+  {
+    this.form = this.createFormGroup();
+  }
 
   createFormGroup(){
     return new FormGroup({
@@ -78,25 +83,11 @@ export class TablaComponent implements OnInit {
       ordenTerciarizacion : new FormControl(''),
       fechaEntrega : new FormControl(''),
       tipo_cod: new FormControl(''),
-      
+
     })
   }
 
 
-
-  constructor( private OrdenestrabajoService: OrdenestrabajoService,
-    private UserService: UserService,
-    private SectorService: SectorService, 
-    private MaquinaService: MaquinaService, 
-    private PlantaService: PlantaService,
-    private PrioridadesService: PrioridadesService,
-    private TiposService: TipoService
-    ) 
-  {
-    this.form = this.createFormGroup();
-  }
-
-  
   //////////FILTRO////////////
   applyFilter(filterValue: String) {
     this.dataSourceOrdenes.filter = filterValue.trim().toLowerCase();
@@ -115,7 +106,6 @@ export class TablaComponent implements OnInit {
     return search;
   }
   ///////////////////////////
-
 
   ngOnInit(): void {
 
@@ -147,74 +137,68 @@ export class TablaComponent implements OnInit {
       }
     );
 
-    
+
     this.PlantaService.getPlantas().subscribe(
-      (data: any)  => { // Success
+      (data: any) => { // Success
         this.dataSourcePlants = data;
       },
       (error) => {
         console.error(error);
       }
-      
     );
-      
-      
-    this.MaquinaService.getMaquinas().subscribe(   
-      (data: any)  => { // Success
+
+
+    this.MaquinaService.getMaquinas().subscribe(
+      (data: any) => { // Success
         this.dataSourceMachines = data;
 
       },
       (error) => {
         console.error(error);
       }
-        
     );
-    
-    
+
+
     this.SectorService.getSectores().subscribe(
-          
+
       (data: any)  => { // Success
         this.dataSourceSectors = data;
-            
+
       },
       (error) => {
         console.error(error);
-      }    
+      }
     );
-          
+
     this.UserService.getUsers().subscribe(
-            
-      (data: any)  => { // Success
+      (data: any) => { // Success
         this.dataSourceUsers = data;
-              
+
       },
       (error) => {
         console.error(error);
       }
-            
     );
-            
-            
-    this.OrdenestrabajoService.getAllOrdenes().subscribe(        
-      (data: any)  => { // Success
-        this.dataSourceOrdenes.data = data;        
+
+
+    this.OrdenestrabajoService.getAllOrdenes().subscribe(
+      (data: any) => { // Success
+        this.dataSourceOrdenes.data = data;
       },
       (error) => {
         console.error(error);
       }
-              
     );
-              
-              
-              
+
+
     this.closeModal();
 
     this.transformToEdit(this.dataSourceOrdenes);
-              
-              
+
+
   }
-            
-  
+
+
   openModal(ordenes){
     let modal = document.getElementById("myModal");
     modal.style.display = "block";
@@ -227,7 +211,7 @@ export class TablaComponent implements OnInit {
       let modal = document.getElementById("myModal");
       if (event.target == modal) {
         modal.style.display = "none";
-      
+
       }
     }
   }
@@ -277,17 +261,16 @@ export class TablaComponent implements OnInit {
     console.log(this.originalOrder.ordentrabajo_cod);
     console.log(this.form.value);
     this.OrdenestrabajoService.updateOrder(this.originalOrder.ordentrabajo_cod, this.form.value).subscribe(order => console.log(order));
-    let modal = document.getElementById("myModal");
-    modal.style.display = "none";
+    let modal = document.getElementById('myModal');
+    modal.style.display = 'none';
     window.location.reload();
-  
-  } 
+
+  }
 
   onCancel() {
     this.originalOrder = null;
     this.close.emit();
   }
 
- 
 
 }

@@ -1,33 +1,29 @@
-import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { FormGroup, FormControl } from "@angular/forms";
-import { MaquinaService } from "../../services/maquina.service";
-
-
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {MatTableDataSource} from '@angular/material/table';
+import {FormControl, FormGroup} from '@angular/forms';
+import {MaquinaService} from '../../services/maquina.service';
 
 
 @Component({
-  selector: 'app-tabla',
+  selector: 'app-tabla-maquina',
   templateUrl: './tabla.component.html',
   styleUrls: ['./tabla.component.scss']
 })
-export class TablaComponent implements OnInit {
+export class TablaMaquinaComponent implements OnInit {
 
-  columnsToDisplay: any = ['id', 'planta.nombre','sector.descripcion', 'maquina_cod','nro_serie','modelo','equipo','datos_tecnicos','descripcion' ];
+  columnsToDisplay: any = ['id', 'planta.nombre', 'sector.descripcion', 'maquina_cod', 'nro_serie', 'modelo', 'equipo', 'datos_tecnicos', 'descripcion'];
 
   dataSourceMachines = new MatTableDataSource();
   form: FormGroup;
-  
+  // Editar
+  @Input() originalUser: any;
 
-  createFormGroup(){
+  createFormGroup() {
     return new FormGroup({
       id: new FormControl(''),
       maquina_cod: new FormControl('')
     })
   }
-
-  //Editar
-  @Input() originalUser: any; 
   @Output() close = new EventEmitter();
 
   constructor(private MaquinaService: MaquinaService) {
@@ -63,12 +59,9 @@ export class TablaComponent implements OnInit {
     };
   }
 
-
   ngOnInit(): void {
 
-    
-    
-  
+
     this.MaquinaService.getMaquinas().subscribe(
 
       (data: any)  => { // Success

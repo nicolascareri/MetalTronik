@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
-import {ChangeDetectorRef, OnDestroy} from '@angular/core';
 
 @Component({
   selector: 'app-sidenav',
@@ -16,13 +15,13 @@ export class SidenavComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
 
   fillerNav = [
-    {name:"Home", route:"", icon:"home"},
-    {name:"Ordenes", route:"ordenes", icon:"calendar_today"},
-    {name:"Mantenimiento Correctivo", route:"mantenimientosCorrectivos/tablacorrectivos", icon:"assignment"},
-    {name:"Maquinas, Sectores y Plantas", route:"maquinas/tablamaquinas", icon:"build"},
-    {name:"Usuarios", route:"usuarios", icon:"recent_actors"},
-    {name:"Indicadores", route:"", icon:"assessment"},
-    {name:"Configuracion", route:" ", icon:"settings"}
+    {name: 'Home', route: '', icon: 'home'},
+    {name: 'Ordenes', route: 'ordenes', icon: 'calendar_today'},
+    {name: 'Mantenimiento Correctivo', route: 'mantenimientosCorrectivos', icon: 'assignment'},
+    {name: 'Maquinas, Sectores y Plantas', route: 'maquinas', icon: 'build'},
+    {name: 'Usuarios', route: 'usuarios', icon: 'recent_actors'},
+    {name: 'Indicadores', route: '', icon: 'assessment'},
+    {name: 'Configuracion', route: '', icon: 'settings'}
   ]
 
   // fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);

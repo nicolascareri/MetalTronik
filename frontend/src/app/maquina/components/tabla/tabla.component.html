@@ -2,30 +2,30 @@
 
   <mat-tab-group>
 
-    <mat-tab label="Maquina">  
+    <mat-tab label="Maquina">
 
     <mat-form-field class="filter">
       <mat-label style="font-weight: bold;">Filtrar</mat-label>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Material, responsable, maquina...">
     </mat-form-field>
-  
-    <!-- <app-button [routerLink]="['http://localhost:4200/main/maquinas/tablamaquinas']"></app-button> -->
-  
-  
+
+    <app-button [routerLink]="['form']"></app-button>
+
+
     <!-- <app-edit-order [originalOrder]="ordenes"></app-edit-order> -->
-    
+
     <div class="data">
 
       <table mat-table [dataSource]="dataSourceMachines" class="table">
- 
+
       <!-- <ng-container matColumnDef="edit">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let usuario">
           <button id="myBtn" class="edit-btn" (click)="openModal(usuario)">Editar</button>
         </td>
       </ng-container>  -->
-      
-     
+
+
           <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef> ID </th>
             <td mat-cell *matCellDef="let machine"> {{machine.id}} </td>
@@ -40,8 +40,8 @@
             <th mat-header-cell *matHeaderCellDef> Sector </th>
             <td mat-cell *matCellDef="let machine"> {{machine.sector.descripcion}} </td>
           </ng-container>
-      
-     
+
+
           <ng-container matColumnDef="maquina_cod">
             <th mat-header-cell *matHeaderCellDef> Cod Maquina </th>
             <td mat-cell *matCellDef="let machine"> {{machine.maquina_cod}} </td>
@@ -72,9 +72,9 @@
             <td mat-cell *matCellDef="let machine"> {{machine.descripcion}} </td>
           </ng-container>
 
-       
-    
-  
+
+
+
           <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
           <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
 
