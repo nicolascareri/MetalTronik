@@ -33,7 +33,7 @@ public class MantenimientoCorrectivo {
     private Date fechaFin;
 
     @Column
-    private int tipofalla;
+    private short tipofalla;
 
     @Column
     private int horasProduccionAfectadas;

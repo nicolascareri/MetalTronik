@@ -30,7 +30,7 @@ public class MantenimientoCorrectivoRequest {
     @NotNull
     @Min(1)
     @Max(2)
-    private int tipofalla;
+    private short tipofalla;
 
     @NotNull
     private int horasProduccionAfectadas;

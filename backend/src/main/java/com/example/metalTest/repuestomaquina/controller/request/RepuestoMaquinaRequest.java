@@ -21,7 +21,6 @@ public class RepuestoMaquinaRequest {
     @NotNull
     private int cantidadInstalada;
 
-    @NotNull
     @ValidEntity(repository = MaquinaRepository.class)
     private int maquina_cod;
 
