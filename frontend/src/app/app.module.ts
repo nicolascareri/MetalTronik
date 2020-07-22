@@ -14,6 +14,7 @@ import {OrdenesTrabajoModule} from './ordenes-trabajo/ordenes-trabajo.module';
 import {OrdenestrabajoService} from './ordenes-trabajo/services/ordenestrabajo.service';
 import {UserService} from './usuarios/services/user.service';
 import {UsuariosModule} from './usuarios/usuarios.module';
+import {ConfiguracionModule} from "./configuracion/configuracion.module";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {UsuariosModule} from './usuarios/usuarios.module';
     MatListModule,
     UsuariosModule,
     MaquinaModule,
-    MantenimientoCorrectivoModule
+    MantenimientoCorrectivoModule,
+    ConfiguracionModule
   ],
   providers: [UserService,
     OrdenestrabajoService, ],

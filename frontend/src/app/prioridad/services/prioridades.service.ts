@@ -12,4 +12,9 @@ export class PrioridadesService {
   getPrioridades() {
     return this.http.get('http://localhost:8080/api/prioridades');
   }
+
+  postPrioridad(form){
+    return this.http.post<any>('http://localhost:8080/api/prioridades', form.value);
+  }
+
 }

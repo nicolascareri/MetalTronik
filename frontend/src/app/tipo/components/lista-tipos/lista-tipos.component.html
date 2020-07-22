@@ -1,0 +1,9 @@
+<mat-list role="list">
+
+    <form [formGroup]="form" (ngSubmit)="addTipo()">
+        <input type="text" formControlName="nombre"  placeholder="Agregar tipo">      
+        <button type="submit" class="btn-send">Agregar</button>
+    </form>
+
+    <mat-list-item role="listitem" *ngFor="let tipo of dataSourceTipos">{{tipo.nombre}}</mat-list-item>
+</mat-list>
