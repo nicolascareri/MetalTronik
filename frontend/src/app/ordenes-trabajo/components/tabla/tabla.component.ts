@@ -5,22 +5,25 @@ import {MatTableDataSource} from '@angular/material/table';
 import {ESTADO_ORDEN, ESTADOTABLE} from 'src/app/core/constants/constants';
 
 import {OrdenestrabajoService} from '../../services/ordenestrabajo.service';
-import {PlantaService} from '../../services/planta.service';
-import {SectorService} from '../../services/sector.service';
+import {PlantaService} from '../../../planta/services/planta.service';
+import {SectorService} from '../../../sector/services/sector.service';
 import {UserService} from '../../../usuarios/services/user.service';
 import {MaquinaService} from '../../../maquina/services/maquina.service';
-import {PrioridadesService} from '../../services/prioridades.service';
-import {TipoService} from '../../services/tipo.service';
+import {PrioridadesService} from '../../../prioridad/services/prioridades.service';
+import {TipoService} from '../../../tipo/services/tipo.service';
 
 
 @Component({
-  selector: 'app-tabla',
+  selector: 'app-tablaOrdenes',
   templateUrl: './tabla.component.html',
   styleUrls: ['./tabla.component.scss']
 })
 
 
-export class TablaComponent implements OnInit {
+export class TablaOrdenesComponent implements OnInit {
+
+
+
 
   // ordenes: any = [];
 

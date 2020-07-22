@@ -33,6 +33,10 @@ const routes: Routes = [
             {
                 path: 'mantenimientosCorrectivos',
                 loadChildren: 'src/app/matenimiento-correctivo/mantenimiento-correctivo.module#MantenimientoCorrectivoModule',
+            },
+            {
+              path: 'configuracion',
+              loadChildren: 'src/app/configuracion/configuracion.module#ConfiguracionModule',
             }
 
 
