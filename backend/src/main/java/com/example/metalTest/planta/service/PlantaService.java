@@ -1,7 +1,6 @@
 package com.example.metalTest.planta.service;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
-import com.example.metalTest.planta.controller.request.PlantaRequest;
 import com.example.metalTest.planta.domain.Planta;
 
 import java.util.List;

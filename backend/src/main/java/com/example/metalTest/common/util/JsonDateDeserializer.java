@@ -18,15 +18,15 @@ public class JsonDateDeserializer extends JsonDeserializer<Date> {
 
     @NotNull
     @Override
-    public Date deserialize(JsonParser jsonParser, DeserializationContext deserializationContext){
+    public Date deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) {
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         df.setLenient(false);
-        try{
+        try {
             return df.parse(jsonParser.getText());
-        } catch (ParseException e){
+        } catch (ParseException e) {
             e.printStackTrace();
             return null;
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
             return null;
         }

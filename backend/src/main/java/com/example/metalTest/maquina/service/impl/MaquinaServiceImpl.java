@@ -38,10 +38,9 @@ public class MaquinaServiceImpl implements MaquinaService {
     @Override
     public Maquina getById(Integer id) throws ValidateFieldException {
         Optional<Maquina> opt = maquinaRepository.findById(id);
-        if(opt.isPresent()){
+        if (opt.isPresent()) {
             return opt.get();
-        }
-        else {
+        } else {
             throw new ValidateFieldException("La maquina que desea acceder no existe", "id", id.toString());
         }
 
@@ -55,8 +54,8 @@ public class MaquinaServiceImpl implements MaquinaService {
             throw new ValidateFieldException("El codigo ya tiene una maquina asociada", "maquina_cod", maquina.getMaquina_cod());
         }
 
-        if(maquina.getEstado() != Estado.ACTIVO.getValue() && maquina.getEstado() != Estado.ELIMINADO.getValue()){
-            throw new ValidateFieldException("Valor en campo invalido","estado",String.valueOf(maquina.getEstado()));
+        if (maquina.getEstado() != Estado.ACTIVO.getValue() && maquina.getEstado() != Estado.ELIMINADO.getValue()) {
+            throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(maquina.getEstado()));
 
         }
         maquina.setPlanta(plantaRepository.findById(maquinaRequest.getPlanta_cod()).get());
@@ -72,7 +71,7 @@ public class MaquinaServiceImpl implements MaquinaService {
             throw new ValidateFieldException("El usuario que desea acceder no existe", "id", String.valueOf(id));
         }
         Maquina maquina = op.get();
-        if(maquina.getEstado() != Estado.ACTIVO.getValue() && maquina.getEstado() != Estado.ELIMINADO.getValue()){
+        if (maquina.getEstado() != Estado.ACTIVO.getValue() && maquina.getEstado() != Estado.ELIMINADO.getValue()) {
             throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(maquina.getEstado()));
         }
         maquina.setPlanta(plantaRepository.findById(maquinaRequest.getPlanta_cod()).get());

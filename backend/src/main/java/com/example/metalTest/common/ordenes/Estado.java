@@ -7,7 +7,7 @@ public enum Estado {
 
     private short value;
 
-    Estado(short value){
+    Estado(short value) {
         this.value = value;
     }
 

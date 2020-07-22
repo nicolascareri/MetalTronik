@@ -26,11 +26,10 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public Usuario getById(Integer id) throws ValidateFieldException {
         Optional<Usuario> op = usuarioRepository.findById(id);
-        if (op.isPresent()){
+        if (op.isPresent()) {
             return op.get();
-        }
-        else{
-            throw  new ValidateFieldException("El usuario quE desea acceder no existe", "id", id.toString());
+        } else {
+            throw new ValidateFieldException("El usuario quE desea acceder no existe", "id", id.toString());
         }
 
     }
@@ -39,21 +38,21 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public Usuario create(Usuario usuario) throws ValidateFieldException {
 
-       if(usuario.getEstado() != Estado.ACTIVO.getValue() && usuario.getEstado() != Estado.ELIMINADO.getValue()){
+        if (usuario.getEstado() != Estado.ACTIVO.getValue() && usuario.getEstado() != Estado.ELIMINADO.getValue()) {
             throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(usuario.getEstado()));
-       }
+        }
 
-       return usuarioRepository.save(usuario);
+        return usuarioRepository.save(usuario);
     }
 
     @Transactional
     @Override
-    public Usuario update(Integer id, Usuario usuario) throws ValidateFieldException{
+    public Usuario update(Integer id, Usuario usuario) throws ValidateFieldException {
         Optional<Usuario> op = usuarioRepository.findById(id);
         if (!op.isPresent()) {
             throw new ValidateFieldException("El usuario que desea acceder no existe", "id", String.valueOf(id));
         }
-        if(usuario.getEstado() != Estado.ACTIVO.getValue() && usuario.getEstado() != Estado.ELIMINADO.getValue()){
+        if (usuario.getEstado() != Estado.ACTIVO.getValue() && usuario.getEstado() != Estado.ELIMINADO.getValue()) {
             throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(usuario.getEstado()));
         }
         usuario.setId(id);

@@ -23,7 +23,7 @@ public class Sector {
     private short estado;
 
     @Column
-    @JsonFormat(pattern="dd-MM-yyyy HH:mm")
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
     private Date fechaAlta;
 
 }

@@ -4,7 +4,6 @@ import com.example.metalTest.planta.domain.Planta;
 import com.example.metalTest.sector.domain.Sector;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 

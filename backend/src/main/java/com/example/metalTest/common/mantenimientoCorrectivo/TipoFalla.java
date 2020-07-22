@@ -6,7 +6,7 @@ public enum TipoFalla {
 
     private short value;
 
-    TipoFalla(short value){
+    TipoFalla(short value) {
         this.value = value;
     }
 

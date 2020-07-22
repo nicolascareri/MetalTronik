@@ -4,7 +4,7 @@ public class ValidateFieldException extends Exception {
     private String field;
     private String rejectedValue;
 
-    public ValidateFieldException(String message, String field, String rejectedValue){
+    public ValidateFieldException(String message, String field, String rejectedValue) {
         super(message);
         this.field = field;
         this.rejectedValue = rejectedValue;

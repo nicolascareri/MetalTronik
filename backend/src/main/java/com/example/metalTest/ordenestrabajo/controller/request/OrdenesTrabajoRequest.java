@@ -1,15 +1,13 @@
 package com.example.metalTest.ordenestrabajo.controller.request;
+
 import com.example.metalTest.common.validator.ValidEntity;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
-import com.example.metalTest.planta.repository.PlantaRepository;
 import com.example.metalTest.prioridades.repository.PrioridadesRepository;
-import com.example.metalTest.sector.repository.SectorRepository;
 import com.example.metalTest.tipo.repository.TipoRepository;
 import com.example.metalTest.usuario.repository.UsuarioRepository;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.Date;

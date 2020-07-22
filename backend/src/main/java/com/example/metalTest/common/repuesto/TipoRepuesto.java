@@ -7,7 +7,7 @@ public enum TipoRepuesto {
 
     private short value;
 
-    TipoRepuesto(short value){
+    TipoRepuesto(short value) {
         this.value = value;
     }
 

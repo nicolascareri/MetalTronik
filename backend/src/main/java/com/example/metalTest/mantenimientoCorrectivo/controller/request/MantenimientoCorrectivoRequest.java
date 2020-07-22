@@ -3,7 +3,6 @@ package com.example.metalTest.mantenimientoCorrectivo.controller.request;
 import com.example.metalTest.common.validator.ValidEntity;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
 import com.example.metalTest.ordenestrabajo.repository.OrdenesTrabajoRepository;
-import com.example.metalTest.sector.repository.SectorRepository;
 import com.example.metalTest.usuario.repository.UsuarioRepository;
 import lombok.Getter;
 import lombok.Setter;

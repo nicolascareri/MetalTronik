@@ -11,5 +11,5 @@ public interface PlantaRepository extends JpaRepository<Planta, Integer> {
 
     @Query("SELECT COUNT(p) FROM Planta p WHERE lower(p.nombre) LIKE lower(:nombre)" +
             "AND (:id is NULL or p.id <>:id)")
-    Long checkNombreExistance(@Param("nombre") String nombre,@Param("id") int id);
+    Long checkNombreExistance(@Param("nombre") String nombre, @Param("id") int id);
 }

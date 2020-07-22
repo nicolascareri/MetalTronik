@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = ValidEntityValidator.class)
 public @interface ValidEntity {
-    Class <?extends JpaRepository> repository();
+    Class<? extends JpaRepository> repository();
 
     String message() default "La entidad no se encuentra en la base";
 

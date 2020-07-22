@@ -20,7 +20,7 @@ public class MantenimientoCorrectivoController {
     MantenimientoCorrectivoService mantenimientoCorrectivoService;
 
     @GetMapping
-    public ResponseEntity<List<MantenimientoCorrectivo>> getAll(){
+    public ResponseEntity<List<MantenimientoCorrectivo>> getAll() {
         return new ResponseEntity<>(mantenimientoCorrectivoService.getAll(), HttpStatus.OK);
     }
 

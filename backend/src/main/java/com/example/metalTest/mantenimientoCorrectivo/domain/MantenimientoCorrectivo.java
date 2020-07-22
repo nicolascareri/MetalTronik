@@ -2,7 +2,6 @@ package com.example.metalTest.mantenimientoCorrectivo.domain;
 
 import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
-import com.example.metalTest.sector.domain.Sector;
 import com.example.metalTest.usuario.domain.Usuario;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
@@ -25,11 +24,11 @@ public class MantenimientoCorrectivo {
     private Maquina maquina;
 
     @Column
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm", timezone = "GMT-3")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT-3")
     private Date fechainicio;
 
     @Column
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm", timezone = "GMT-3")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT-3")
     private Date fechaFin;
 
     @Column
