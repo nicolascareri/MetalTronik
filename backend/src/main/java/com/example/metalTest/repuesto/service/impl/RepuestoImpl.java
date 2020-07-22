@@ -74,5 +74,6 @@ public class RepuestoImpl implements RepuestoService {
         Repuesto repuesto = optionalRepuesto.get();
         repuesto.setMaquina(maquinaRepository.findById(repuestoMaquinaRequest.getMaquina()).get());
         repuesto.setCantidadInstalada(repuestoMaquinaRequest.getCantidadInstalada());
+        return repuestoRepository.save(repuesto);
     }
 }
