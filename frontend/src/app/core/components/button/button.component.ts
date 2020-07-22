@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
 
 @Component({
@@ -6,15 +6,17 @@ import {Component, Input, OnInit} from '@angular/core';
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss']
 })
+
 export class ButtonComponent implements OnInit {
+
+  @Input() name: string = "testeo";
+
+
 
   constructor() { }
 
 
-  goForm(){
-
-  }
-
+  
   ngOnInit(): void {
 
 

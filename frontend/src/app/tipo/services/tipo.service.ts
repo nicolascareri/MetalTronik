@@ -12,4 +12,8 @@ export class TipoService {
   getTipos() {
     return this.http.get('http://localhost:8080/api/tipo');
   }
+
+  postTipo(form){
+    return this.http.post<any>('http://localhost:8080/api/tipo', form.value)
+  }
 }

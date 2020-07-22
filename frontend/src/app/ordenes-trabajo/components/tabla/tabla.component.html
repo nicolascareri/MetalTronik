@@ -5,7 +5,7 @@
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Material, responsable, maquina...">
   </mat-form-field>
 
-  <app-button [routerLink]="['form']"></app-button>
+  <app-button [routerLink]="['form']" [name]="['Nueva orden']"></app-button>
 
 
   <!-- <app-edit-order [originalOrder]="ordenes"></app-edit-order> -->
@@ -16,7 +16,9 @@
       <ng-container matColumnDef="edit">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let ordenes">
-          <button id="myBtn" class="edit-btn" (click)="openModal(ordenes)">Editar</button>
+          <button id="myBtn" class="edit-btn" (click)="openModal(ordenes)">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
+          </button>
         </td>
       </ng-container>
     

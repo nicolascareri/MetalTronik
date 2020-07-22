@@ -5,8 +5,8 @@ import {OrdenestrabajoService} from '../../services/ordenestrabajo.service';
 // import { SectorService } from "../../services/sector.service";
 import {MaquinaService} from '../../../maquina/services/maquina.service';
 import {UserService} from '../../../usuarios/services/user.service';
-import {PrioridadesService} from '../../services/prioridades.service';
-import {TipoService} from '../../services/tipo.service';
+import {PrioridadesService} from '../../../prioridad/services/prioridades.service';
+import {TipoService} from '../../../tipo/services/tipo.service';
 // import { PlantaService } from "../../services/planta.service";
 import {Router} from '@angular/router';
 

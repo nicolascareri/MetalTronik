@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {FormComponent} from './components/form/form.component';
-import {TablaOrdenesComponent} from './components/tabla/tabla.component';
+import {TablaConfiguracionComponent} from "./components/tabla/tabla.component";
 
 const routes: Routes = [
   {
@@ -9,18 +8,14 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: TablaOrdenesComponent
-      },
-      {
-        path: 'form',
-        component: FormComponent
+        component: TablaConfiguracionComponent
       }
 
     ]
     }
-]
+];
 @NgModule ({
-     imports:[
+     imports: [
 
          RouterModule.forChild(routes)
 
@@ -33,6 +28,6 @@ const routes: Routes = [
 
 })
 
-export class OrdenesTrabajoRoutingModule{
+export class ConfiguracionRountingModule{
 
 }

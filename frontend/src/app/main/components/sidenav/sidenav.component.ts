@@ -18,10 +18,11 @@ export class SidenavComponent implements OnDestroy {
     {name: 'Home', route: '', icon: 'home'},
     {name: 'Ordenes', route: 'ordenes', icon: 'calendar_today'},
     {name: 'Mantenimiento Correctivo', route: 'mantenimientosCorrectivos', icon: 'assignment'},
-    {name: 'Maquinas, Sectores y Plantas', route: 'maquinas', icon: 'build'},
+    {name: 'Maquinas', route: 'maquinas', icon: 'build'},
+    {name: 'Repuestos de maquinas', route: ' ', icon: 'build_circle'},
     {name: 'Usuarios', route: 'usuarios', icon: 'recent_actors'},
     {name: 'Indicadores', route: '', icon: 'assessment'},
-    {name: 'Configuracion', route: '', icon: 'settings'}
+    {name: 'Configuracion', route: 'configuracion', icon: 'settings'}
   ]
 
   // fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);

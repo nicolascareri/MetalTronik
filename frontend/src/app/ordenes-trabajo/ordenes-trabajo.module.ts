@@ -7,12 +7,13 @@ import {MatTableModule} from '@angular/material/table';
 import {RouterModule} from '@angular/router';
 import {CoreModule} from '../core/core.module';
 import {FormComponent} from './components/form/form.component';
-import {TablaComponent} from './components/tabla/tabla.component';
+import {TablaOrdenesComponent} from './components/tabla/tabla.component';
 import {OrdenesTrabajoRoutingModule} from './ordenes-trabajo-routing.module';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
-  declarations: [FormComponent, TablaComponent],
+  declarations: [FormComponent, TablaOrdenesComponent],
   imports: [
     RouterModule,
     CommonModule,
@@ -22,6 +23,7 @@ import {OrdenesTrabajoRoutingModule} from './ordenes-trabajo-routing.module';
     MatTableModule,
     MatInputModule,
     ReactiveFormsModule,
+    MatIconModule
 
   ]
 })
