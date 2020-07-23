@@ -7,11 +7,11 @@ import com.example.metalTest.maquina.domain.Maquina;
 import java.util.List;
 
 public interface MaquinaService {
-    public List<Maquina> getAll();
+    List<Maquina> getAll();
 
-    public Maquina getById(Integer id) throws ValidateFieldException;
+    Maquina getById(Integer id) throws ValidateFieldException;
 
-    public Maquina save(MaquinaRequest maquina) throws ValidateFieldException;
+    Maquina save(MaquinaRequest maquina) throws ValidateFieldException;
 
-    public Maquina update(MaquinaRequest  maquinaRequestToMaquina, Integer id) throws ValidateFieldException;
+    Maquina update(MaquinaRequest maquinaRequestToMaquina, Integer id) throws ValidateFieldException;
 }

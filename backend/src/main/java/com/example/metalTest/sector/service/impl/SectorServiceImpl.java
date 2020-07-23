@@ -26,8 +26,8 @@ public class SectorServiceImpl implements SectorService {
     @Override
     public Sector getById(Integer id) throws ValidateFieldException {
         Optional<Sector> opt = sectorRepository.findById(id);
-        if (!opt.isPresent()){
-            throw new ValidateFieldException("El sector que al que desea acceder no existe","id",String.valueOf(id));
+        if (!opt.isPresent()) {
+            throw new ValidateFieldException("El sector que al que desea acceder no existe", "id", String.valueOf(id));
         }
         return opt.get();
     }
@@ -35,11 +35,11 @@ public class SectorServiceImpl implements SectorService {
     @Override
     public Sector create(Sector sector) throws ValidateFieldException {
 
-        if (sector.getEstado() != Estado.ACTIVO.getValue() && sector.getEstado() != Estado.ELIMINADO.getValue()){
+        if (sector.getEstado() != Estado.ACTIVO.getValue() && sector.getEstado() != Estado.ELIMINADO.getValue()) {
             throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(sector.getEstado()));
         }
 
-        if(sectorRepository.checkDescripcionExistance(sector.getDescripcion(), sector.getId()) != 0){
+        if (sectorRepository.checkDescripcionExistance(sector.getDescripcion(), sector.getId()) != 0) {
             throw new ValidateFieldException("Valor en campo invalido", "descripcion",
                     String.valueOf(sector.getDescripcion()));
         }
@@ -52,18 +52,18 @@ public class SectorServiceImpl implements SectorService {
     @Override
     public Sector update(Sector sector, Integer id) throws ValidateFieldException {
         Optional<Sector> opt = sectorRepository.findById(id);
-        if(!opt.isPresent()){
+        if (!opt.isPresent()) {
             throw new ValidateFieldException("El sector que desea acceder no existe", "id", String.valueOf(id));
         }
-        if(sector.getEstado() != Estado.ACTIVO.getValue() && sector.getEstado() != Estado.ELIMINADO.getValue()){
-            throw new ValidateFieldException("Valor en campo invalido","estado", String.valueOf(sector.getEstado()));
+        if (sector.getEstado() != Estado.ACTIVO.getValue() && sector.getEstado() != Estado.ELIMINADO.getValue()) {
+            throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(sector.getEstado()));
         }
 
         Sector update = opt.get();
         sector.setId(id);
         Date date = new Date(System.currentTimeMillis());
         sector.setFechaAlta(date);
-        if(sectorRepository.checkDescripcionExistance(sector.getDescripcion(), sector.getId()) != 0){
+        if (sectorRepository.checkDescripcionExistance(sector.getDescripcion(), sector.getId()) != 0) {
             throw new ValidateFieldException("Valor en campo invalido", "descripcion",
                     String.valueOf(sector.getDescripcion()));
         }

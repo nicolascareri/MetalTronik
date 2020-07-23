@@ -23,19 +23,22 @@ public class TipoController {
     TipoMapper tipoMapper;
 
     @GetMapping
-    public ResponseEntity<List<Tipo>> getAll(){
+    public ResponseEntity<List<Tipo>> getAll() {
         return new ResponseEntity<>(tipoService.getAll(), HttpStatus.OK);
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<Tipo> getById(@PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<>(tipoService.getById(id), HttpStatus.OK);
     }
+
     @PostMapping
     public ResponseEntity<Tipo> create(@RequestBody TipoRequest tipoRequest) throws ValidateFieldException {
         return new ResponseEntity<>(tipoService.create(tipoMapper.tipoRequestToTipo(tipoRequest)), HttpStatus.CREATED);
     }
+
     @PutMapping("/{id}")
-    public ResponseEntity<Tipo> update (@RequestBody TipoRequest tipoRequest, @PathVariable Integer id) throws ValidateFieldException {
+    public ResponseEntity<Tipo> update(@RequestBody TipoRequest tipoRequest, @PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<>(tipoService.update(tipoMapper.tipoRequestToTipo(tipoRequest), id), HttpStatus.OK);
     }
 

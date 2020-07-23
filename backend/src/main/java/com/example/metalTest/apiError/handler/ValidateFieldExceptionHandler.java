@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class ValidateFieldExceptionHandler {
-    @ExceptionHandler(value = { ValidateFieldException.class })
+    @ExceptionHandler(value = {ValidateFieldException.class})
     public ResponseEntity<ValidateFieldResponse> HandleValidateFieldException(ValidateFieldException ex) {
-        ValidateFieldResponse validateFieldResponse = new ValidateFieldResponse(ex.getMessage(),ex.getField(),
+        ValidateFieldResponse validateFieldResponse = new ValidateFieldResponse(ex.getMessage(), ex.getField(),
                 ex.getRejectedValue());
         return new ResponseEntity<>(validateFieldResponse, HttpStatus.BAD_REQUEST);
     }

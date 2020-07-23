@@ -25,16 +25,16 @@ public class TipoServiceImpl implements TipoService {
     @Override
     public Tipo getById(Integer id) throws ValidateFieldException {
         Optional<Tipo> opt = tipoRepository.findById(id);
-        if(!opt.isPresent()){
-            throw new ValidateFieldException("El tipo que desea acceder no existe","id", String.valueOf(id));
+        if (!opt.isPresent()) {
+            throw new ValidateFieldException("El tipo que desea acceder no existe", "id", String.valueOf(id));
         }
         return opt.get();
     }
 
     @Override
     public Tipo create(Tipo tipo) throws ValidateFieldException {
-        if(tipo.getEstado() != Estado.ACTIVO.getValue() && tipo.getEstado() != Estado.ELIMINADO.getValue()){
-            throw new ValidateFieldException("Valor en campo invalido","estado", String.valueOf(tipo.getEstado()));
+        if (tipo.getEstado() != Estado.ACTIVO.getValue() && tipo.getEstado() != Estado.ELIMINADO.getValue()) {
+            throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(tipo.getEstado()));
         }
         return tipoRepository.save(tipo);
     }
@@ -42,11 +42,11 @@ public class TipoServiceImpl implements TipoService {
     @Override
     public Tipo update(Tipo tipo, Integer id) throws ValidateFieldException {
         Optional<Tipo> opt = tipoRepository.findById(id);
-        if(!opt.isPresent()){
-            throw new ValidateFieldException("El tipo que desea acceder no existe","id",String.valueOf(id));
+        if (!opt.isPresent()) {
+            throw new ValidateFieldException("El tipo que desea acceder no existe", "id", String.valueOf(id));
         }
-        if(tipo.getEstado() != Estado.ACTIVO.getValue() && tipo.getEstado() != Estado.ELIMINADO.getValue()){
-            throw new ValidateFieldException("Valor en campo invalido","estado", String.valueOf(tipo.getEstado()));
+        if (tipo.getEstado() != Estado.ACTIVO.getValue() && tipo.getEstado() != Estado.ELIMINADO.getValue()) {
+            throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(tipo.getEstado()));
         }
         tipo.setId(id);
         return tipoRepository.save(tipo);

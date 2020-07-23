@@ -33,7 +33,7 @@ public class Usuario {
     private int legajo;
 
     @Column
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm", timezone = "GMT-3")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT-3")
     private Date fnacimiento;
 
     @Column

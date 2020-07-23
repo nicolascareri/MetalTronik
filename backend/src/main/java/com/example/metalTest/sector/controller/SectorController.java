@@ -24,7 +24,7 @@ public class SectorController {
     SectorMapper sectorMapper;
 
     @GetMapping
-    public ResponseEntity<List<Sector>> getAll(){
+    public ResponseEntity<List<Sector>> getAll() {
         return new ResponseEntity<>(sectorService.getAll(), HttpStatus.OK);
     }
 
@@ -37,6 +37,7 @@ public class SectorController {
     public ResponseEntity<Sector> create(@Valid @RequestBody SectorRequest sectorRequest) throws ValidateFieldException {
         return new ResponseEntity<>(sectorService.create(sectorMapper.sectorRequestToSector(sectorRequest)), HttpStatus.CREATED);
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<Sector> update(@Valid @RequestBody SectorRequest sectorRequest, @PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<>(sectorService.update(sectorMapper.sectorRequestToSector(sectorRequest), id), HttpStatus.OK);

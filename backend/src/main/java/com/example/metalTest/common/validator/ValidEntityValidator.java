@@ -24,9 +24,8 @@ public class ValidEntityValidator implements ConstraintValidator<ValidEntity, Ob
 
     @Override
     public boolean isValid(Object o, ConstraintValidatorContext constraintValidatorContext) {
-        if (o != null){
+        if (o != null) {
             return repository.existsById(o);
-        }
-        else return !required;
+        } else return !required;
     }
 }

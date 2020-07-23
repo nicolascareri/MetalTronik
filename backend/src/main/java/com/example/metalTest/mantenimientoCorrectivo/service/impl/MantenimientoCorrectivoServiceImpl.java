@@ -52,22 +52,22 @@ public class MantenimientoCorrectivoServiceImpl implements MantenimientoCorrecti
         mantenimientoCorrectivo.setMaquina(maquinaRepository.findById(mantenimientoCorrectivoRequest.getMaquina_cod()).get());
         mantenimientoCorrectivo.setEncargo1(usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo1_cod()).get());
         Optional<Usuario> optionalUsuario2 = usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo2_cod());
-        if (optionalUsuario2.isPresent()){
+        if (optionalUsuario2.isPresent()) {
             Usuario encargo2 = optionalUsuario2.get();
             mantenimientoCorrectivo.setEncargo2(encargo2);
         }
         Optional<Usuario> optionalUsuario3 = usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo3_cod());
-        if (optionalUsuario3.isPresent()){
+        if (optionalUsuario3.isPresent()) {
             Usuario encargo3 = optionalUsuario2.get();
             mantenimientoCorrectivo.setEncargo3(encargo3);
         }
         Optional<OrdenesTrabajo> optionalOrdenesTrabajo = ordenesTrabajoRepository.findById(mantenimientoCorrectivoRequest.getOrdenTrabajo_cod());
-        if (optionalOrdenesTrabajo.isPresent()){
+        if (optionalOrdenesTrabajo.isPresent()) {
             OrdenesTrabajo ordenesTrabajo = optionalOrdenesTrabajo.get();
             ordenesTrabajo.setEstado(EstadoOrden.OK.getValue());
             mantenimientoCorrectivo.setOrdenTrabajo(ordenesTrabajo);
         }
-        if (mantenimientoCorrectivoRequest.getFechainicio().after(mantenimientoCorrectivoRequest.getFechaFin())){
+        if (mantenimientoCorrectivoRequest.getFechainicio().after(mantenimientoCorrectivoRequest.getFechaFin())) {
             throw new ValidateFieldException("La fecha de fin no puede ser menor que la fecha de inicio", "Fecha de entrega", String.valueOf(mantenimientoCorrectivoRequest.getFechaFin()));
         }
         long diffInMillies = Math.abs(mantenimientoCorrectivoRequest.getFechaFin().getTime() - mantenimientoCorrectivoRequest.getFechainicio().getTime());
@@ -81,8 +81,8 @@ public class MantenimientoCorrectivoServiceImpl implements MantenimientoCorrecti
 
         Optional<MantenimientoCorrectivo> opt = mantenimientoCorrectivoRepository.findById(id);
 
-        if (!opt.isPresent()){
-            throw new ValidateFieldException("El mantenimiento correctivo que desea acceder no existe","id",String.valueOf(id));
+        if (!opt.isPresent()) {
+            throw new ValidateFieldException("El mantenimiento correctivo que desea acceder no existe", "id", String.valueOf(id));
 
         }
 
@@ -95,26 +95,26 @@ public class MantenimientoCorrectivoServiceImpl implements MantenimientoCorrecti
         mantenimientoCorrectivo.setEncargo1(usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo1_cod()).get());
 
         Optional<Usuario> optionalUsuario2 = usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo2_cod());
-        if (optionalUsuario2.isPresent()){
+        if (optionalUsuario2.isPresent()) {
             Usuario encargo2 = optionalUsuario2.get();
             mantenimientoCorrectivo.setEncargo2(encargo2);
         }
 
         Optional<Usuario> optionalUsuario3 = usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo3_cod());
-        if (optionalUsuario3.isPresent()){
+        if (optionalUsuario3.isPresent()) {
             Usuario encargo3 = optionalUsuario2.get();
             mantenimientoCorrectivo.setEncargo3(encargo3);
         }
 
         Optional<OrdenesTrabajo> optionalOrdenesTrabajo = ordenesTrabajoRepository.findById(mantenimientoCorrectivoRequest.getOrdenTrabajo_cod());
-        if (optionalOrdenesTrabajo.isPresent()){
+        if (optionalOrdenesTrabajo.isPresent()) {
             OrdenesTrabajo oldOrden = old.getOrdenTrabajo();
             oldOrden.setEstado(EstadoOrden.PENDIENTE.getValue());
             OrdenesTrabajo ordenesTrabajo = optionalOrdenesTrabajo.get();
             ordenesTrabajo.setEstado(EstadoOrden.OK.getValue());
             mantenimientoCorrectivo.setOrdenTrabajo(ordenesTrabajo);
         }
-        if (mantenimientoCorrectivoRequest.getFechainicio().after(mantenimientoCorrectivoRequest.getFechaFin())){
+        if (mantenimientoCorrectivoRequest.getFechainicio().after(mantenimientoCorrectivoRequest.getFechaFin())) {
             throw new ValidateFieldException("La fecha de fin no puede ser menor que la fecha de inicio", "Fecha de entrega", String.valueOf(mantenimientoCorrectivoRequest.getFechaFin()));
         }
         long diffInMillies = Math.abs(mantenimientoCorrectivoRequest.getFechaFin().getTime() - mantenimientoCorrectivoRequest.getFechainicio().getTime());
@@ -127,8 +127,8 @@ public class MantenimientoCorrectivoServiceImpl implements MantenimientoCorrecti
     @Override
     public MantenimientoCorrectivo getById(Integer id) throws ValidateFieldException {
         Optional<MantenimientoCorrectivo> opt = mantenimientoCorrectivoRepository.findById(id);
-        if (!opt.isPresent()){
-            throw new ValidateFieldException("El mantenimiento correctivo que desea acceder no existe","id",String.valueOf(id));
+        if (!opt.isPresent()) {
+            throw new ValidateFieldException("El mantenimiento correctivo que desea acceder no existe", "id", String.valueOf(id));
         }
         return opt.get();
     }

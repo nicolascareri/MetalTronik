@@ -11,10 +11,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
-    public static final String DEFAULT_INCLUDE_PATTERN  = "/.*";
+    public static final String DEFAULT_INCLUDE_PATTERN = "/.*";
 
     @Bean
-    public Docket api(){
+    public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select().apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())

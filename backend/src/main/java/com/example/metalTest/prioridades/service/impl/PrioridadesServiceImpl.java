@@ -24,7 +24,7 @@ public class PrioridadesServiceImpl implements PrioridadesService {
     @Override
     public Prioridades getById(Integer id) throws ValidateFieldException {
         Optional<Prioridades> opt = prioridadesRepository.findById(id);
-        if (!opt.isPresent()){
+        if (!opt.isPresent()) {
             throw new ValidateFieldException("La prioridad que desea acceder no existe", "id", String.valueOf(id));
         }
         return opt.get();
@@ -32,8 +32,8 @@ public class PrioridadesServiceImpl implements PrioridadesService {
 
     @Override
     public Prioridades create(Prioridades prioridades) throws ValidateFieldException {
-        if(prioridades.getEstado() != Estado.ACTIVO.getValue() && prioridades.getEstado() != Estado.ELIMINADO.getValue()){
-            throw new ValidateFieldException("Valor en campo invalido","estado", String.valueOf(prioridades.getEstado()));
+        if (prioridades.getEstado() != Estado.ACTIVO.getValue() && prioridades.getEstado() != Estado.ELIMINADO.getValue()) {
+            throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(prioridades.getEstado()));
         }
         return prioridadesRepository.save(prioridades);
     }
@@ -41,11 +41,11 @@ public class PrioridadesServiceImpl implements PrioridadesService {
     @Override
     public Prioridades update(Prioridades prioridades, Integer id) throws ValidateFieldException {
         Optional<Prioridades> opt = prioridadesRepository.findById(id);
-        if (!opt.isPresent()){
+        if (!opt.isPresent()) {
             throw new ValidateFieldException("La prioridad que desea acceder no existe", "id", String.valueOf(id));
         }
-        if(prioridades.getEstado() != Estado.ACTIVO.getValue() && prioridades.getEstado() != Estado.ELIMINADO.getValue()){
-            throw new ValidateFieldException("Valor en campo invalido","estado", String.valueOf(prioridades.getEstado()));
+        if (prioridades.getEstado() != Estado.ACTIVO.getValue() && prioridades.getEstado() != Estado.ELIMINADO.getValue()) {
+            throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(prioridades.getEstado()));
         }
         prioridades.setId(id);
         return prioridadesRepository.save(prioridades);

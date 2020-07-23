@@ -1,14 +1,12 @@
-package com.example.metalTest.common.ordenes;
+package com.example.metalTest.common.mantenimientoCorrectivo;
 
-public enum Tipo {
-
-    PREVENTIVO((short) 1),
-    CORRECTIVO((short) 2),
-    MEJORATIVO((short) 3);
+public enum TipoFalla {
+    ELECTRICA((short) 1),
+    MECANICA((short) 2);
 
     private short value;
 
-    Tipo(short value){
+    TipoFalla(short value) {
         this.value = value;
     }
 
@@ -19,5 +17,4 @@ public enum Tipo {
     public void setValue(short value) {
         this.value = value;
     }
-
 }

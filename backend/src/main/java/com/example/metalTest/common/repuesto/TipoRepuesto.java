@@ -1,13 +1,13 @@
-package com.example.metalTest.common.ordenes;
+package com.example.metalTest.common.repuesto;
 
-public enum Planta {
-
-    BAVIO((short) 1),
-    PLANTA50((short)2);
+public enum TipoRepuesto {
+    COMUN((short) 1),
+    CRITICO((short) 2),
+    CONSUMIBLE((short) 3);
 
     private short value;
 
-    Planta(short value){
+    TipoRepuesto(short value) {
         this.value = value;
     }
 
@@ -18,5 +18,4 @@ public enum Planta {
     public void setValue(short value) {
         this.value = value;
     }
-
 }
