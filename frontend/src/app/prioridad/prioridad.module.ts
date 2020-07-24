@@ -9,6 +9,7 @@ import { ListaPrioridadesComponent } from './components/lista-prioridades/lista-
   declarations: [ListaPrioridadesComponent],
   imports: [
     CommonModule,
+  
   ]
 })
 export class PrioridadModule { }

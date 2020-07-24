@@ -1,0 +1,17 @@
+
+<div class="container-fluid">
+
+    <mat-card>
+        <mat-form-field appearance="fill">
+            <mat-label>Selecciona una maquina</mat-label>
+            <mat-select [(value)]="seleccion">
+              <mat-option>Ninguna</mat-option>
+              <mat-option *ngFor="let maquina of dataSourceMaquinas" value="{{maquina.maquina_cod}}">{{maquina.maquina_cod}}</mat-option>
+              
+            </mat-select>
+          </mat-form-field>
+          
+          <p>Seleccionaste la maquina: <b>{{seleccion}}</b></p>
+    </mat-card>
+
+</div>
