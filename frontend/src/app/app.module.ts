@@ -9,12 +9,14 @@ import {AppComponent} from './app.component';
 import {CoreModule} from './core/core.module';
 import {MainModule} from './main/main.module';
 import {MaquinaModule} from './maquina/maquina.module';
-import {MantenimientoCorrectivoModule} from './matenimiento-correctivo/mantenimiento-correctivo.module';
+import {MantenimientoCorrectivoModule} from './mantenimiento-correctivo/mantenimiento-correctivo.module';
 import {OrdenesTrabajoModule} from './ordenes-trabajo/ordenes-trabajo.module';
 import {OrdenestrabajoService} from './ordenes-trabajo/services/ordenestrabajo.service';
 import {UserService} from './usuarios/services/user.service';
 import {UsuariosModule} from './usuarios/usuarios.module';
 import {ConfiguracionModule} from "./configuracion/configuracion.module";
+import {RepuestoMaquinaModule} from "./repuesto-maquina/repuesto-maquina.module";
+
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import {ConfiguracionModule} from "./configuracion/configuracion.module";
     UsuariosModule,
     MaquinaModule,
     MantenimientoCorrectivoModule,
-    ConfiguracionModule
+    ConfiguracionModule,
+    RepuestoMaquinaModule
   ],
   providers: [UserService,
     OrdenestrabajoService, ],

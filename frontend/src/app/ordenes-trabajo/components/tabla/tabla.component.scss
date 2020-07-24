@@ -1,23 +1,26 @@
 /* Structure */
 
 
-.data {
-  display: block;
-  width: 95vw;
-  overflow: auto;
-  margin: 35px;
+// .data {
+//   display: block;
+//   width: 95vw;
+//   overflow: auto;
+//   margin: 35px;
+// }
 
-  .table {
-      width: 100vw;
-      max-width: 100%;
-      overflow: auto;
-      margin-bottom: 10px;
-      display: table;
-      border-collapse: collapse;
+
+
+  // .table {
+  //     width: 100vw;
+  //     max-width: 100%;
+  //     overflow: auto;
+  //     margin-bottom: 10px;
+  //     display: table;
+  //     border-collapse: collapse;
       
-      background-color: rgb(238, 238, 238);
-  }
-}
+  //     background-color: rgb(238, 238, 238);
+  // }
+
 
 .filter{
   top: 25px;
@@ -27,25 +30,25 @@
 
   }
 
-table th{
-  padding: 12px;
-  font-weight: bolder;
-  font-size: 15px;
-  border: none;
-  padding-bottom: 20px;
-}
+// table th{
+//   padding: 12px;
+//   font-weight: bolder;
+//   font-size: 15px;
+//   border: none;
+//   padding-bottom: 20px;
+// }
 
-table td span {
-    padding-top: 35px;
-    font: 95% Arial, Helvetica, sans-serift;
-}
+// table td span {
+//     padding-top: 35px;
+//     font: 95% Arial, Helvetica, sans-serift;
+// }
 
-td.mat-cell{
-  padding: 10px;
-  padding-top: 20px;
-  border-bottom-width: 3px;
-  border-bottom-style: solid;
-}
+// td.mat-cell{
+//   padding: 10px;
+//   padding-top: 20px;
+//   border-bottom-width: 3px;
+//   border-bottom-style: solid;
+// }
 
 .mat-form-field {
     font-size: 14px;
@@ -91,8 +94,8 @@ td.mat-cell{
 }
 
 .edit-btn{
-  background-color: teal;
-  color: white;
+  background-color: white;
+  color: black;
   font-size: 15px;
   border: none;
   border-radius: 5px;

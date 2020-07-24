@@ -4,6 +4,7 @@ import { ListaTiposComponent } from './components/lista-tipos/lista-tipos.compon
 
 
 
+
 @NgModule({
   declarations: [ListaTiposComponent],
   imports: [

@@ -1,9 +1,16 @@
 <mat-list role="list">
 
     <form [formGroup]="form" (ngSubmit)="addTipo()">
-        <input type="text" formControlName="nombre"  placeholder="Agregar tipo">      
-        <button type="submit" class="btn-send">Agregar</button>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" formControlName="nombre" placeholder="Agregar tipo" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="submit">Agregar</button>
+            </div>
+          </div>
     </form>
 
-    <mat-list-item role="listitem" *ngFor="let tipo of dataSourceTipos">{{tipo.nombre}}</mat-list-item>
+    <mat-list-item role="listitem" *ngFor="let tipo of dataSourceTipos">
+        {{tipo.nombre}}
+        
+    </mat-list-item>
 </mat-list>

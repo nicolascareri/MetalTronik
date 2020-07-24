@@ -1,0 +1,10 @@
+<div class="table-responsive">
+
+    <table mat-table [dataSource]="ds" class="table table-hover">
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+
+    </table>
+
+</div>

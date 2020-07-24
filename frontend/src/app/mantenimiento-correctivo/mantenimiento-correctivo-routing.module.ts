@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {FormMantenimientoCorrectivoComponent} from '../matenimiento-correctivo/components/form/form.component';
+import {FormMantenimientoCorrectivoComponent} from '../mantenimiento-correctivo/components/form/form.component';
 import {TablaMantenimientoCorrectivoComponent} from './components/tabla/tabla.component';
 
 const routes: Routes = [
