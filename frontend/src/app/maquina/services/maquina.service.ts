@@ -18,4 +18,6 @@ export class MaquinaService {
     return this.http.post<any>('http://localhost:8080/api/maquina', machinesForm.value);
   }
 
+  
+
 }
