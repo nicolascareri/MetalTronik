@@ -4,6 +4,7 @@ import { TablaRepuestosComponent } from './components/tabla-repuestos/tabla-repu
 import { RepuestoRoutingModule } from "./repuesto-routing.module";
 import {MatCardModule} from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select';
+import {MatTableModule} from '@angular/material/table';
 
 
 
@@ -13,7 +14,8 @@ import {MatSelectModule} from '@angular/material/select';
     CommonModule,
     RepuestoRoutingModule,
     MatCardModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTableModule
     
   ]
 })

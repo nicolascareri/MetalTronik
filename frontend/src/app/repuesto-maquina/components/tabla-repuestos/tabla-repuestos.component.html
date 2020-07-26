@@ -6,12 +6,59 @@
             <mat-label>Selecciona una maquina</mat-label>
             <mat-select [(value)]="seleccion">
               <mat-option>Ninguna</mat-option>
-              <mat-option *ngFor="let maquina of dataSourceMaquinas" value="{{maquina.maquina_cod}}">{{maquina.maquina_cod}}</mat-option>
-              
-            </mat-select>
+              <mat-option *ngFor="let maquina of dataSourceMaquinas" value="{{maquina.id}}">
+                {{maquina.maquina_cod}}
+              </mat-option>
+            </mat-select> 
           </mat-form-field>
           
           <p>Seleccionaste la maquina: <b>{{seleccion}}</b></p>
+         
+
+          <button (click)="getRepuestos(seleccion)">Buscar Repuestos</button>
+          
+          <div class="container-fluid">
+            <table mat-table [dataSource]="dataSourceRepuestos" class="mat-elevation-z8">
+
+              <ng-container matColumnDef="maquina.maquina_cod">
+                <th mat-header-cell *matHeaderCellDef> Codigo de maquina </th>
+                <td mat-cell *matCellDef="let repuesto"> {{repuesto.maquina.maquina_cod}} </td>
+              </ng-container>
+            
+              <ng-container matColumnDef="maquina.planta.nombre">
+                <th mat-header-cell *matHeaderCellDef> Planta </th>
+                <td mat-cell *matCellDef="let repuesto"> {{repuesto.maquina.planta.nombre}} </td>
+              </ng-container>
+            
+              <ng-container matColumnDef="maquina.sector.descripcion">
+                <th mat-header-cell *matHeaderCellDef> Sector </th>
+                <td mat-cell *matCellDef="let repuesto"> {{repuesto.maquina.sector.descripcion}} </td>
+              </ng-container>
+            
+              <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef> Nombre de repuesto </th>
+                <td mat-cell *matCellDef="let repuesto"> {{repuesto.nombre}} </td>
+              </ng-container>
+            
+              <ng-container matColumnDef="modelo">
+                <th mat-header-cell *matHeaderCellDef> Modelo de repuesto </th>
+                <td mat-cell *matCellDef="let repuesto"> {{repuesto.modelo}} </td>
+              </ng-container>
+            
+              <ng-container matColumnDef="cantidadInstalada">
+                <th mat-header-cell *matHeaderCellDef> Cantidad instalada </th>
+                <td mat-cell *matCellDef="let repuesto"> {{repuesto.cantidadInstalada}} </td>
+              </ng-container>
+            
+            
+              <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+              <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+            
+            </table>
+          </div>
+          
+
     </mat-card>
 
 </div>
+
