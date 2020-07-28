@@ -3,6 +3,7 @@ package com.example.metalTest.repuesto.controller;
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.repuesto.controller.request.RepuestoMaquinaRequest;
 import com.example.metalTest.repuesto.controller.request.RepuestoRequest;
+import com.example.metalTest.repuesto.controller.response.RepuestoMaquinaResponse;
 import com.example.metalTest.repuesto.domain.Repuesto;
 import com.example.metalTest.repuesto.service.RepuestoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class RepuestoController {
     }
 
     @PostMapping()
-    public ResponseEntity<Repuesto> create(@Valid @RequestBody RepuestoRequest repuestoRequest) {
+    public ResponseEntity<Repuesto> create(@Valid @RequestBody RepuestoRequest repuestoRequest) throws ValidateFieldException {
         return new ResponseEntity<>(repuestoService.create(repuestoRequest), HttpStatus.CREATED);
     }
 
@@ -45,9 +46,9 @@ public class RepuestoController {
         return new ResponseEntity<>(repuestoService.update(repuestoRequest, id), HttpStatus.OK);
     }
 
-    @PutMapping("/{id}/vincular")
-    public ResponseEntity<Repuesto> vincular(@Valid @RequestBody RepuestoMaquinaRequest repuestoMaquinaRequest, @PathVariable Integer id) throws ValidateFieldException {
-        return new ResponseEntity<>(repuestoService.vincular(repuestoMaquinaRequest,id), HttpStatus.OK);
+    @PutMapping("/maquina/{id}/vincular")
+    public ResponseEntity<List<RepuestoMaquinaResponse>> vincular(@Valid @RequestBody List<RepuestoMaquinaRequest> repuestoMaquinaRequestList, @PathVariable Integer id) throws ValidateFieldException {
+        return new ResponseEntity<>(repuestoService.vincular(repuestoMaquinaRequestList,id), HttpStatus.OK);
     }
 
 

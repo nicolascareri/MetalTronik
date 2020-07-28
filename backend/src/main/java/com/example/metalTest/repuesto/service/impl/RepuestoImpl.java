@@ -1,9 +1,11 @@
 package com.example.metalTest.repuesto.service.impl;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
+import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
 import com.example.metalTest.repuesto.controller.request.RepuestoMaquinaRequest;
 import com.example.metalTest.repuesto.controller.request.RepuestoRequest;
+import com.example.metalTest.repuesto.controller.response.RepuestoMaquinaResponse;
 import com.example.metalTest.repuesto.domain.Repuesto;
 import com.example.metalTest.repuesto.mapper.RepuestoMapper;
 import com.example.metalTest.repuesto.repository.RepuestoRepository;
@@ -11,6 +13,7 @@ import com.example.metalTest.repuesto.service.RepuestoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,9 +45,12 @@ public class RepuestoImpl implements RepuestoService {
 
 
     @Override
-    public Repuesto create(RepuestoRequest repuestoRequest) {
+    public Repuesto create(RepuestoRequest repuestoRequest) throws ValidateFieldException {
         Repuesto repuesto = repuestoMapper.repuestoRequestToRepuesto(repuestoRequest);
-        repuesto.setMaquina(maquinaRepository.findById(repuestoRequest.getMaquina_cod()).get());
+        Optional<Maquina> optionalMaquina = maquinaRepository.findById(repuestoRequest.getMaquina_cod());
+        if (optionalMaquina.isPresent()) {
+            repuesto.setMaquina(optionalMaquina.get());
+        }
         return repuestoRepository.save(repuesto);
     }
 
@@ -66,14 +72,20 @@ public class RepuestoImpl implements RepuestoService {
     }
 
     @Override
-    public Repuesto vincular(RepuestoMaquinaRequest repuestoMaquinaRequest, Integer id) throws ValidateFieldException {
-        Optional<Repuesto> optionalRepuesto = repuestoRepository.findById(id);
-        if (!optionalRepuesto.isPresent()){
-            throw new ValidateFieldException("El repuesto que desea acceder no existe", "id", String.valueOf(id));
+    public List<RepuestoMaquinaResponse> vincular(List<RepuestoMaquinaRequest> repuestoMaquinaRequestList, Integer id) throws ValidateFieldException {
+        Optional<Maquina> optionalMaquina = maquinaRepository.findById(id);
+        if (!optionalMaquina.isPresent()){
+            throw new ValidateFieldException("La maquina que desea acceder no existe", "id", String.valueOf(id));
         }
-        Repuesto repuesto = optionalRepuesto.get();
-        repuesto.setMaquina(maquinaRepository.findById(repuestoMaquinaRequest.getMaquina()).get());
-        repuesto.setCantidadInstalada(repuestoMaquinaRequest.getCantidadInstalada());
-        return repuestoRepository.save(repuesto);
+        Maquina maquina = optionalMaquina.get();
+        List<RepuestoMaquinaResponse> repuestoResponseList = new ArrayList<RepuestoMaquinaResponse>();
+        repuestoMaquinaRequestList.forEach(repuestoMaquinaRequest -> {
+            Repuesto repuesto = repuestoRepository.findById(repuestoMaquinaRequest.getRepuesto_cod()).get();
+            repuesto.setMaquina(maquina);
+            repuesto.setCantidadInstalada(repuestoMaquinaRequest.getCantidadInstalada());
+            RepuestoMaquinaResponse repuestoMaquinaResponse = repuestoMapper.repuestoToRepuestoMaquinaResponse(repuestoRepository.save(repuesto));
+            repuestoResponseList.add(repuestoMaquinaResponse);
+        });
+        return repuestoResponseList;
     }
 }
