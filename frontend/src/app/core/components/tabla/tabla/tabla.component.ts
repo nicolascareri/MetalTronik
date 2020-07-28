@@ -10,6 +10,7 @@ export class TablaComponent implements OnInit {
   @Input() columnsToDisplay: any;
 
   @Input() ds: any;
+  
   constructor() { }
 
   ngOnInit(): void {
