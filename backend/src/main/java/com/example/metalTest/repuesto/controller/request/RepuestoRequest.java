@@ -4,6 +4,7 @@ import com.example.metalTest.common.validator.ValidEntity;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.Column;
 import javax.validation.constraints.Max;
@@ -23,7 +24,6 @@ public class RepuestoRequest {
 
     private int cantidadInstalada;
 
-    @ValidEntity(repository = MaquinaRepository.class)
     private int maquina_cod;
 
     private String codigoProducto;
