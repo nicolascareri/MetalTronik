@@ -4,7 +4,7 @@
     <mat-card>
         <mat-form-field appearance="fill">
             <mat-label>Selecciona una maquina</mat-label>
-            <mat-select [(value)]="seleccion">
+            <mat-select [(value)]="seleccion"  (selectionChange)="getRepuestos(seleccion)">
               <mat-option>Ninguna</mat-option>
               <mat-option *ngFor="let maquina of dataSourceMaquinas" value="{{maquina.id}}">
                 {{maquina.maquina_cod}}
@@ -12,13 +12,24 @@
             </mat-select> 
           </mat-form-field>
           
-          <p>Seleccionaste la maquina: <b>{{seleccion}}</b></p>
-         
+          <!-- <p>Seleccionaste la maquina: <b>{{seleccion}}</b></p> -->
+          <p>Repuestos asociados: {{cantidad}} </p>
 
-          <button (click)="getRepuestos(seleccion)">Buscar Repuestos</button>
+          <div *ngIf="cantidad == 0">
+
+            <p style="color: red;">La maquina seleccionada no tiene repuestos asociados.</p>
+            
+
+          </div>
+         
           
           <div class="container-fluid">
-            <table mat-table [dataSource]="dataSourceRepuestos" class="mat-elevation-z8">
+
+            <table mat-table [dataSource]="dataSourceRepuestos" class="table mat-elevation-z8">
+
+              
+            
+            
 
               <ng-container matColumnDef="maquina.maquina_cod">
                 <th mat-header-cell *matHeaderCellDef> Codigo de maquina </th>

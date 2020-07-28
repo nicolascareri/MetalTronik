@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MaquinaService } from "../../../maquina/services/maquina.service";
 import { RepuestoMaquinaService } from "../../services/repuesto-maquina.service";
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 @Component({
   selector: 'app-tabla-repuestos',
   templateUrl: './tabla-repuestos.component.html',
@@ -11,6 +12,8 @@ export class TablaRepuestosComponent implements OnInit {
   seleccion: any;
 
   dataSourceRepuestos: any;
+
+  cantidad: any;
 
   columnsToDisplay: any = ['maquina.maquina_cod', 'maquina.planta.nombre', 
                           'maquina.sector.descripcion', 'nombre', 'modelo', 'cantidadInstalada'];
@@ -30,6 +33,7 @@ export class TablaRepuestosComponent implements OnInit {
       (data: any) => {
         this.dataSourceRepuestos = data;
         console.log(this.dataSourceRepuestos)
+        this.cantidad = this.dataSourceRepuestos.length
       },
       (error) => {
         console.log(error);
@@ -38,9 +42,12 @@ export class TablaRepuestosComponent implements OnInit {
 
   }
 
+  
+  
 
   ngOnInit(): void {
 
+    
 
     this.MaquinaService.getMaquinas().subscribe(
       (data: any) => {
