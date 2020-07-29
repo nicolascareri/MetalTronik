@@ -12,4 +12,6 @@ public interface MovimientoService {
     Movimiento create(MovimientoRequest movimientoRequest) throws ValidateFieldException;
 
     Movimiento update(MovimientoRequest movimientoRequest, Integer id);
+
+    List<Movimiento> getByTipo(Short tipo) throws ValidateFieldException;
 }
