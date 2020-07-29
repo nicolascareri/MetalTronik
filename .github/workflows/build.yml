@@ -23,7 +23,6 @@ jobs:
     - name: Build
       run: |
       mvn -B package --file pom.xml,
-      cd ./frontend,
       npm run build:prod.
 
        
