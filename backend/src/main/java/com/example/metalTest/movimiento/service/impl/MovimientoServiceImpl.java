@@ -10,14 +10,11 @@ import com.example.metalTest.movimiento.service.MovimientoService;
 import com.example.metalTest.repuesto.domain.Repuesto;
 import com.example.metalTest.repuesto.repository.RepuestoRepository;
 import com.example.metalTest.sector.repository.SectorRepository;
-import com.example.metalTest.usuario.domain.Usuario;
 import com.example.metalTest.usuario.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.validation.ValidationException;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MovimientoServiceImpl implements MovimientoService {
@@ -69,5 +66,13 @@ public class MovimientoServiceImpl implements MovimientoService {
         Movimiento movimiento = movimientoMapper.movimientoRequestToMovimiento(movimientoRequest);
         //setear repuesto
         return movimientoRepository.save(movimiento);
+    }
+
+    @Override
+    public List<Movimiento> getByTipo(Short tipo) throws ValidateFieldException {
+        if (!tipo.equals(TipoMovimiento.ENTRADA.getValue()) && !tipo.equals(TipoMovimiento.SALIDA.getValue())){
+            throw new ValidateFieldException("El tipo de movimiento no existe", "tipoMovimiento",String.valueOf(tipo));
+        }
+        return movimientoRepository.findByTipo(tipo);
     }
 }
