@@ -1,5 +1,9 @@
 # This workflow will build a Java project with Maven and an Angular Project with node
-
+# cd backend,
+# mvn -B package --file pom.xml,
+# cd ..,
+# cd frontend,
+# npm run build:prod.
 name: PROJECT CI with Maven and Nodejs
 
 on:
@@ -18,10 +22,8 @@ jobs:
         java-version: 1.8
     - name: Build
       run: |
-      mvn -B package --file pom.xml.
-#       cd backend,
-#       mvn -B package --file pom.xml,
-#       cd ..,
-#       cd frontend,
-#       npm run build:prod.
+      mvn -B package --file pom.xml,
+      cd ./frontend,
+      npm run build:prod.
+
        
