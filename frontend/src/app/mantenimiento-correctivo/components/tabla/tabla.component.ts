@@ -58,7 +58,7 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
     this.MantenimientoCorrectivoService.getMantenimientosCorrectivos().subscribe(
 
       (data: any)  => { // Success
-        this.dataSourceMantenimientosCorrectivos = data;
+        this.dataSourceMantenimientosCorrectivos.data = data;
         console.log(this.dataSourceMantenimientosCorrectivos);
       },
       (error) => {

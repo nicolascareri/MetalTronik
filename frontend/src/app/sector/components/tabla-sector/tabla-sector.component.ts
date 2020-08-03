@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
+import { MatTableDataSource } from "@angular/material/table";
 import {SectorService} from '../../services/sector.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class TablaSectorComponent implements OnInit {
 
   columnsToDisplay: any = ['descripcion'];
 
-  dataSourceSectors: any;
+  dataSourceSectors = new MatTableDataSource();
 
   form: FormGroup;
 
@@ -26,11 +27,38 @@ export class TablaSectorComponent implements OnInit {
     this.form = this.createFormGroup();
   }
 
+  applyFilter(filterValue: String) {
+    this.dataSourceSectors.filter = filterValue.trim().toLowerCase();
+  }
+
+  nestedFilterCheck(search, data, key) {
+    if (typeof data[key] === 'object') {
+      for (const k in data[key]) {
+        if (data[key][k] !== null) {
+          search = this.nestedFilterCheck(search, data[key], k);
+        }
+      }
+    } else {
+      search += data[key];
+    }
+    return search;
+  }
+
   ngOnInit(): void {
+
+    this.dataSourceSectors.filterPredicate = (data, filter: string)  => {
+      const accumulator = (currentTerm, key) => {
+        return this.nestedFilterCheck(currentTerm, data, key);
+      };
+      const dataStr = Object.keys(data).reduce(accumulator, '').toLowerCase();
+      // Transform the filter by converting it to lowercase and removing whitespace.
+      const transformedFilter = filter.trim().toLowerCase();
+      return dataStr.indexOf(transformedFilter) !== -1;
+    };
 
     this.SectorService.getSectores().subscribe(
       (data: any) => {
-        this.dataSourceSectors = data;
+        this.dataSourceSectors.data = data;
         console.log(this.dataSourceSectors)
       },
       (error) => {

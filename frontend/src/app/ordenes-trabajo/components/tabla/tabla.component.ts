@@ -94,6 +94,8 @@ export class TablaOrdenesComponent implements OnInit {
   //////////FILTRO////////////
   applyFilter(filterValue: String) {
     this.dataSourceOrdenes.filter = filterValue.trim().toLowerCase();
+    console.log(this.dataSourceOrdenes);
+    
   }
 
   nestedFilterCheck(search, data, key) {
@@ -187,6 +189,8 @@ export class TablaOrdenesComponent implements OnInit {
     this.OrdenestrabajoService.getAllOrdenes().subscribe(
       (data: any) => { // Success
         this.dataSourceOrdenes.data = data;
+        console.log(this.dataSourceOrdenes);
+        
       },
       (error) => {
         console.error(error);

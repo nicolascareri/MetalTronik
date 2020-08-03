@@ -47,7 +47,7 @@ export class TablaMaquinaComponent implements OnInit {
     return search;
   }
 
-  filter(){
+  ngOnInit(): void {
     this.dataSourceMachines.filterPredicate = (data, filter: string)  => {
       const accumulator = (currentTerm, key) => {
         return this.nestedFilterCheck(currentTerm, data, key);
@@ -57,15 +57,10 @@ export class TablaMaquinaComponent implements OnInit {
       const transformedFilter = filter.trim().toLowerCase();
       return dataStr.indexOf(transformedFilter) !== -1;
     };
-  }
-
-  ngOnInit(): void {
-
-
     this.MaquinaService.getMaquinas().subscribe(
 
       (data: any)  => { // Success
-        this.dataSourceMachines = data;
+        this.dataSourceMachines.data = data;
         console.log(this.dataSourceMachines);
       },
       (error) => {
@@ -73,10 +68,6 @@ export class TablaMaquinaComponent implements OnInit {
       }
 
     );
-
-
-    this.filter();
-
 
   }
 
