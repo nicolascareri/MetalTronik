@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RepuestoMaquinaService } from "../../services/repuesto-maquina.service";
 import { MaquinaService } from "../../../maquina/services/maquina.service";
 import { MatListOption } from '@angular/material/list'
-import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 
 
@@ -15,19 +15,12 @@ export class ListaRepuestosComponent implements OnInit {
 
   form: FormGroup;
 
-  createFormGroup() {
-    return new FormGroup({
-      repuesto_cod: new FormControl(''),
-      cantidadInstalada: new FormControl('')
-    })
-  }
-
-
   dataSourceRepuestos: any;
   dataSourceMaquinas: any;
   
 
-  repuestos: any[];
+  repuestos: any = [];
+  seleccion: any = [];
   maquinaId: any;
 
 
@@ -42,31 +35,31 @@ export class ListaRepuestosComponent implements OnInit {
   ]
 
   agruopData(){
-
+    
+    const ctrl = this.form.controls;
+    
+    
     const repuesto = {
-      "cantidadInstalada": '',
-      "repuesto_cod": ''
+      "cantidadInstalada": ctrl.cantidadInstalada.value,
+      "repuesto_cod": ctrl.repuesto.value.id
     };
 
-    // this.repuestos.forEach(repuesto => repuesto.cantidadInstalada = this.cntInstalada);
-    // console.log(this.cntInstalada);
-    
-    
-    this.repuestos.forEach(repuesto => console.log(repuesto.nombre + " " + repuesto.cantidadInstalada));
-    
+    this.repuestos.push(repuesto);
+
+
+
+    const seleccion = {
+      "cantidadInstalada": ctrl.cantidadInstalada.value,
+      "nombre": ctrl.repuesto.value.nombre
+    }
+    this.seleccion.push(seleccion);
+
     
   }
   
 
   onGroupsChange(options: MatListOption[]) {
     this.repuestos = options.map(o => o.value);
-    // console.log(options.map(o => o.value));
-    // console.log("Hijole: " + this.repuestos);
-
-
-    
-   
-    this.repuestos.forEach(repuesto => console.log(repuesto.nombre + " " + repuesto.cantidadInstalada));
   }
 
 
@@ -76,24 +69,18 @@ export class ListaRepuestosComponent implements OnInit {
     
   }
 
-
-
-
-
-
   constructor(private RepuestoMaquinaService: RepuestoMaquinaService,
               private MaquinaService: MaquinaService,
               private formBuilder: FormBuilder) 
   {
-    this.form = this.createFormGroup();
   }
 
   ngOnInit(): void {
     
-    
+  
     this.form = this.formBuilder.group({
-
-      repuesto: ['']
+      repuesto: [''],
+      cantidadInstalada: ['']
 
     });
 

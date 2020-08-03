@@ -1,38 +1,38 @@
 <div class="container-fluid">
   <mat-card>
-    <mat-selection-list #repuesto (selectionChange)="onGroupsChange(repuesto.selectedOptions.selected)">
-        <mat-list-option *ngFor="let repuesto of dataSourceRepuestos" [value]="repuesto">
-          {{repuesto.nombre}}
-        </mat-list-option>
-    </mat-selection-list>
+    <form [formGroup]="form">
+    
+      <mat-label>Selecciona un repuesto</mat-label>
+          <mat-select formControlName="repuesto">
+            <mat-option *ngFor="let repuesto of dataSourceRepuestos" [value]="repuesto">
+              {{repuesto.nombre}}
+            </mat-option>
+          </mat-select> 
+          Cantidad: <input type="number" (ngValue)='cntInstalada' formControlName="cantidadInstalada">
       
-      <p>
-        Cantidad de repuestos seleccionados: {{repuesto.selectedOptions.selected.length}}
-      </p>
+
 
       <p>Seleccion:</p>
-      <form [formGroup]="form">
         <ul class="list-group list-group-flush">
-          <li  class="list-group-item" *ngFor="let r of repuestos">
-            {{ r.nombre }}
+          <li  class="list-group-item" *ngFor="let r of seleccion">
+            {{ r.nombre }} {{r.cantidadInstalada}}
             <br>
-            Cantidad: <input type="number" (ngValue)='cntInstalada' formControlName="repuesto">
           </li>
         </ul>
+        
+        
+        <mat-form-field appearance="fill">
+          <mat-label>Selecciona una maquina</mat-label>
+          <mat-select #maquina (selectionChange)="getMaquinaForSelect($event.value)">
+            <mat-option *ngFor="let maquina of dataSourceMaquinas" [value]="maquina">
+              {{maquina.maquina_cod}}
+            </mat-option>
+          </mat-select> 
+        </mat-form-field>
+        
+        
+        <button (click)="agruopData()">Asociar repuesto/s</button>  
       </form>
-
-
-      <mat-form-field appearance="fill">
-        <mat-label>Selecciona una maquina</mat-label>
-        <mat-select #maquina (selectionChange)="getMaquinaForSelect($event.value)">
-          <mat-option *ngFor="let maquina of dataSourceMaquinas" [value]="maquina">
-            {{maquina.maquina_cod}}
-          </mat-option>
-        </mat-select> 
-      </mat-form-field>
-
-
-      <button (click)="agruopData()">Asociar repuesto/s</button>  
   </mat-card>
 
 </div>
