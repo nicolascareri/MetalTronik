@@ -16,12 +16,11 @@
           <p>Repuestos asociados: {{cantidad}} </p>
 
           <div *ngIf="cantidad == 0">
-
             <p style="color: red;">La maquina seleccionada no tiene repuestos asociados.</p>
-            
-
           </div>
-         
+
+          
+          <app-button [routerLink]="['lista-repuestos']" [name]="['Asociar repuestos']"></app-button>
           
           <div class="container-fluid">
 
