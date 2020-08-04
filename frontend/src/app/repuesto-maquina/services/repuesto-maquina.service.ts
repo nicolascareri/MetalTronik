@@ -18,6 +18,6 @@ export class RepuestoMaquinaService {
   }
 
   asociarRepuestos(id, repuestos:[]){
-    return this.http.put<any>('htpp://localhost:8080/repuesto-maquina/maquina/' + id + "/" , repuestos);
-  }
+    return this.http.put<any>('http://localhost:8080/api/repuesto-maquina/maquina/' + id + '/vincular' , repuestos);
+  }                          //http://localhost:8080/api/repuesto-maquina/maquina/42/vincular
 }
