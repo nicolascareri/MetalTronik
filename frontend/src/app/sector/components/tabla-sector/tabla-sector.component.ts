@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import { MatTableDataSource } from "@angular/material/table";
 import {SectorService} from '../../services/sector.service';
+import { fileURLToPath } from 'url';
 
 @Component({
   selector: 'app-tabla-sector',
@@ -44,8 +45,7 @@ export class TablaSectorComponent implements OnInit {
     return search;
   }
 
-  ngOnInit(): void {
-
+  filtro(){
     this.dataSourceSectors.filterPredicate = (data, filter: string)  => {
       const accumulator = (currentTerm, key) => {
         return this.nestedFilterCheck(currentTerm, data, key);
@@ -55,6 +55,11 @@ export class TablaSectorComponent implements OnInit {
       const transformedFilter = filter.trim().toLowerCase();
       return dataStr.indexOf(transformedFilter) !== -1;
     };
+  }
+
+  ngOnInit(): void {
+
+    this.filtro();
 
     this.SectorService.getSectores().subscribe(
       (data: any) => {

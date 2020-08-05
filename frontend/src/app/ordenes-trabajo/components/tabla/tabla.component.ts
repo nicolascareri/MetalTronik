@@ -110,10 +110,8 @@ export class TablaOrdenesComponent implements OnInit {
     }
     return search;
   }
-  ///////////////////////////
-
-  ngOnInit(): void {
-
+  
+  filtro(){
     this.dataSourceOrdenes.filterPredicate = (data, filter: string)  => {
       const accumulator = (currentTerm, key) => {
         return this.nestedFilterCheck(currentTerm, data, key);
@@ -123,6 +121,12 @@ export class TablaOrdenesComponent implements OnInit {
       const transformedFilter = filter.trim().toLowerCase();
       return dataStr.indexOf(transformedFilter) !== -1;
     };
+  }
+  ///////////////////////////
+  
+  ngOnInit(): void {
+
+    this.filtro();
 
     this.PrioridadesService.getPrioridades().subscribe(
       (data: any) => {
