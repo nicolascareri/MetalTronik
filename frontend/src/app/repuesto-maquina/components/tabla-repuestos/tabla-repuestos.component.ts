@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MaquinaService } from "../../../maquina/services/maquina.service";
 import { RepuestoMaquinaService } from "../../services/repuesto-maquina.service";
-import { analyzeAndValidateNgModules } from '@angular/compiler';
+
 @Component({
   selector: 'app-tabla-repuestos',
   templateUrl: './tabla-repuestos.component.html',
