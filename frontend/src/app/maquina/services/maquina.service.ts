@@ -18,6 +18,10 @@ export class MaquinaService {
     return this.http.post<any>('http://localhost:8080/api/maquina', machinesForm.value);
   }
 
+  getMaquinasSinRepuestos(){
+    return this.http.get('http://localhost:8080/api/maquina/sinrepuesto');
+  }
+
   
 
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RepuestoMaquinaService } from "../../services/repuesto-maquina.service";
 import { MaquinaService } from "../../../maquina/services/maquina.service";
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { log } from 'util';
+
 
 
 
@@ -15,33 +15,31 @@ export class ListaRepuestosComponent implements OnInit {
 
   form: FormGroup;
 
-  dataSourceRepuestos: any;
+ 
+  dataSourceRepuestos: any = [];
   dataSourceMaquinas: any;
   
 
+
   repuestos: any = [];
+  modelos: any = [];
+  modeloValue: any;
   seleccion: any = [];
   maquinaId: any;
   cntInstalada: any;
-
-  // asociacion: [
-  //   {
-  //       nombre: " ",
-  //       cantidadInstalada: ' '
-  //   }
-
-  // ]
+  idSeleccion = 0;
+  repuestosFilter: any;
 
 
   constructor(private RepuestoMaquinaService: RepuestoMaquinaService,
-              private MaquinaService: MaquinaService,
-              private formBuilder: FormBuilder) 
-  {
+    private MaquinaService: MaquinaService,
+    private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
+
     
-  
+
     this.form = this.formBuilder.group({
       repuesto: [''],
       cantidadInstalada: ['']
@@ -50,10 +48,16 @@ export class ListaRepuestosComponent implements OnInit {
     this.RepuestoMaquinaService.getRepuestos().subscribe(
       (data: any) => {
         this.dataSourceRepuestos = data;
+
+        
+        data.forEach(element => {
+          this.modelos.push(element.modelo)
+        });
       },
+
       (error) => {
         console.log(error);
-        
+
       }
     );
 
@@ -66,21 +70,19 @@ export class ListaRepuestosComponent implements OnInit {
         console.log(error);
       }
     );
-  
+
+
   }
 
-  asociar(){
-    console.log(this.maquinaId);
-    
+  asociar() {
     this.RepuestoMaquinaService.asociarRepuestos(this.maquinaId, this.repuestos).subscribe(repuestos => alert("Exitos" + repuestos));
-    
   }
 
-  
-  agruopData(){
-    
+
+  agruopData() {
+
     const ctrl = this.form.controls;
-    
+
     const repuesto = {
       "cantidadInstalada": ctrl.cantidadInstalada.value,
       "repuesto_cod": ctrl.repuesto.value.id
@@ -89,27 +91,44 @@ export class ListaRepuestosComponent implements OnInit {
     this.repuestos.push(repuesto);
 
     const seleccion = {
+      "id": this.idSeleccion,
       "cantidadInstalada": ctrl.cantidadInstalada.value,
       "nombre": ctrl.repuesto.value.nombre
     }
+
+    this.idSeleccion++;
     this.seleccion.push(seleccion);
-    
+
+    console.log(this.seleccion);
+
+
   }
-  
-
-  // onGroupsChange(options: MatListOption[]) {
-  //   this.repuestos = options.map(o => o.value);
-  // }
 
 
-  getMaquinaForSelect(event){
+  getMaquinaForSelect(event) {
     this.maquinaId = event.id;
     console.log(event.maquina_cod + " Id: " + this.maquinaId);
   }
 
-  
- 
-  
- 
+  deleteSelection(id) {
+    this.seleccion.splice(id, 1);
+    console.log(this.seleccion);
+  }
 
-}
+  obtenerModelos(){
+   this.repuestosFilter = this.dataSourceRepuestos.filter(r => r.modelo == this.modeloValue); 
+  }
+    
+    
+    
+    
+    
+    
+  }
+
+
+
+
+
+
+

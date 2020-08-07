@@ -13,8 +13,9 @@ export class TablaRepuestosComponent implements OnInit {
 
   dataSourceRepuestos: any;
   dataSourceAllRepuestos: any;
+  dataSourceMaquinasSinRepuestos: any;
 
-  cantidad: any = 0;;
+  cantidad: any = 0;
   cantidadTotal: any = 0;
 
   columnsToDisplay: any = ['nombre', 'modelo', 'cantidadInstalada', 'maquina.maquina_cod', 'maquina.planta.nombre', 
@@ -68,6 +69,17 @@ export class TablaRepuestosComponent implements OnInit {
         console.log(error);
       }
     );
+
+    this.MaquinaService.getMaquinasSinRepuestos().subscribe(
+      (data: any) => {
+        this.dataSourceMaquinasSinRepuestos = data;
+      },
+      (error) => {
+        console.log(error);
+        
+      }
+    );
+
   }
 
 

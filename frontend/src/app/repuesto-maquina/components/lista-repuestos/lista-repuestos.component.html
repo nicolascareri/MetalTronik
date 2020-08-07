@@ -12,7 +12,18 @@
         <mat-select formControlName="repuesto">
           <mat-option *ngFor="let repuesto of dataSourceRepuestos" [value]="repuesto">
             {{repuesto.nombre}}
-            {{repuesto.modelo}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <br>
+      <mat-label>Selecciona un modelo para filtrar repuestos</mat-label>
+      <br>
+
+      <mat-form-field appearance="fill">
+        <mat-select>
+          <mat-option *ngFor="let m of modelos" [value]="m" (ngValue)="modeloValue">
+            {{m}}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -45,8 +56,15 @@
 
       <ul class="list-group list-group-flush">
         <li class="list-group-item" *ngFor="let r of seleccion">
-          {{ r.nombre }} {{r.cantidadInstalada}}
+          Nombre de repuesto:
+          <b>{{ r.nombre }}</b>
           <br>
+          Cantidad a instalar elegida:
+          <b>
+            {{r.cantidadInstalada}}
+          </b>
+          <br>
+          <button (click)="deleteSelection(r.id)">Eliminar de la seleccion</button>
         </li>
       </ul>
 
