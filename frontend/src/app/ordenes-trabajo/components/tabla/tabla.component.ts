@@ -94,6 +94,8 @@ export class TablaOrdenesComponent implements OnInit {
   //////////FILTRO////////////
   applyFilter(filterValue: String) {
     this.dataSourceOrdenes.filter = filterValue.trim().toLowerCase();
+    console.log(this.dataSourceOrdenes);
+    
   }
 
   nestedFilterCheck(search, data, key) {
@@ -108,10 +110,8 @@ export class TablaOrdenesComponent implements OnInit {
     }
     return search;
   }
-  ///////////////////////////
-
-  ngOnInit(): void {
-
+  
+  filtro(){
     this.dataSourceOrdenes.filterPredicate = (data, filter: string)  => {
       const accumulator = (currentTerm, key) => {
         return this.nestedFilterCheck(currentTerm, data, key);
@@ -121,6 +121,12 @@ export class TablaOrdenesComponent implements OnInit {
       const transformedFilter = filter.trim().toLowerCase();
       return dataStr.indexOf(transformedFilter) !== -1;
     };
+  }
+  ///////////////////////////
+  
+  ngOnInit(): void {
+
+    this.filtro();
 
     this.PrioridadesService.getPrioridades().subscribe(
       (data: any) => {
@@ -187,6 +193,8 @@ export class TablaOrdenesComponent implements OnInit {
     this.OrdenestrabajoService.getAllOrdenes().subscribe(
       (data: any) => { // Success
         this.dataSourceOrdenes.data = data;
+        console.log(this.dataSourceOrdenes);
+        
       },
       (error) => {
         console.error(error);

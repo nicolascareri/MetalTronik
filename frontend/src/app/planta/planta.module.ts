@@ -7,6 +7,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
 import {RouterModule} from '@angular/router';
 import {TablaSectorComponent} from '../sector/components/tabla-sector/tabla-sector.component';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import {TablaSectorComponent} from '../sector/components/tabla-sector/tabla-sect
     CoreModule,
     ReactiveFormsModule,
     MatTableModule,
+    MatInputModule,
     RouterModule
   ],
   exports: [

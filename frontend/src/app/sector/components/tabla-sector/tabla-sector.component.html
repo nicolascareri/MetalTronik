@@ -1,9 +1,9 @@
 <div>
 
-    <!-- <mat-form-field class="filter">
+    <mat-form-field class="filter">
       <mat-label style="font-weight: bold;">Filtrar</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Material, responsable, maquina...">
-    </mat-form-field> -->
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Material, responsable, maquina...">
+    </mat-form-field>
 
     <app-button [routerLink]="['formsector']" [name]="['Nuevo sector']"></app-button>
 

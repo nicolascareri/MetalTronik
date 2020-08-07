@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {UserService} from '../../../usuarios/services/user.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-tabla-usuario',
@@ -12,7 +13,7 @@ export class TablaUsuarioComponent implements OnInit {
   columnsToDisplay: any = ['id', 'dni', 'nombre', 'apellido', 'fnacimiento', 'cargo', 'legajo', 'nombre_usuario', 'contrasenia',
     'ciudad', 'pais', 'provincia', 'codigo_postal', 'direccion', 'correo_electronico'];
 
-  dataSourceUsers: any;
+  dataSourceUsers = new MatTableDataSource();
 
   form: FormGroup;
   //Editar
@@ -45,20 +46,43 @@ export class TablaUsuarioComponent implements OnInit {
     this.form = this.createFormGroup();
    }
 
-   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
+  applyFilter(filterValue: String) {
     this.dataSourceUsers.filter = filterValue.trim().toLowerCase();
-    console.log(this.dataSourceUsers);
-    console.log(this.dataSourceUsers.filter);
+  }
 
+  nestedFilterCheck(search, data, key) {
+    if (typeof data[key] === 'object') {
+      for (const k in data[key]) {
+        if (data[key][k] !== null) {
+          search = this.nestedFilterCheck(search, data[key], k);
+        }
+      }
+    } else {
+      search += data[key];
+    }
+    return search;
+  }
+
+  filtro(){
+    this.dataSourceUsers.filterPredicate = (data, filter: string)  => {
+      const accumulator = (currentTerm, key) => {
+        return this.nestedFilterCheck(currentTerm, data, key);
+      };
+      const dataStr = Object.keys(data).reduce(accumulator, '').toLowerCase();
+      // Transform the filter by converting it to lowercase and removing whitespace.
+      const transformedFilter = filter.trim().toLowerCase();
+      return dataStr.indexOf(transformedFilter) !== -1;
+    };
   }
 
   ngOnInit(): void {
 
+    this.filtro();
+
     this.UserService.getUsers().subscribe(
 
       (data: any)  => { // Success
-        this.dataSourceUsers = data;
+        this.dataSourceUsers.data = data;
         console.log(this.dataSourceUsers);
       },
       (error) => {

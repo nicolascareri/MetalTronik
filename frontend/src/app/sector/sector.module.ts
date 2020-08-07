@@ -6,6 +6,7 @@ import {CoreModule} from '../core/core.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
 import {RouterModule} from '@angular/router';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import {RouterModule} from '@angular/router';
     CoreModule,
     ReactiveFormsModule,
     MatTableModule,
+    MatInputModule,
     RouterModule
   ],
   exports: [

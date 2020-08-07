@@ -40,10 +40,7 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
     return search;
   }
 
-
-  ngOnInit(): void {
-
-
+  filtro(){
     this.dataSourceMantenimientosCorrectivos.filterPredicate = (data, filter: string)  => {
       const accumulator = (currentTerm, key) => {
         return this.nestedFilterCheck(currentTerm, data, key);
@@ -53,12 +50,16 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
       const transformedFilter = filter.trim().toLowerCase();
       return dataStr.indexOf(transformedFilter) !== -1;
     };
+  }
 
+  ngOnInit(): void {
+
+    this.filtro();
 
     this.MantenimientoCorrectivoService.getMantenimientosCorrectivos().subscribe(
 
       (data: any)  => { // Success
-        this.dataSourceMantenimientosCorrectivos = data;
+        this.dataSourceMantenimientosCorrectivos.data = data;
         console.log(this.dataSourceMantenimientosCorrectivos);
       },
       (error) => {

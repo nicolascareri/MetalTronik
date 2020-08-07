@@ -43,4 +43,9 @@ public class MaquinaController {
         return new ResponseEntity<>(maquinaService.update(maquinaRequest, id), HttpStatus.OK);
     }
 
+    @GetMapping("/sinrepuesto")
+    public ResponseEntity<List<Maquina>> getAllMaquinaSinRepuesto(){
+        return new ResponseEntity<>(maquinaService.getAllSinRepuesto(), HttpStatus.OK);
+    }
+
 }
