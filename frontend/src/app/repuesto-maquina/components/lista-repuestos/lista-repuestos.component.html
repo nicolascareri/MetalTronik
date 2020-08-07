@@ -12,6 +12,7 @@
         <mat-select formControlName="repuesto">
           <mat-option *ngFor="let repuesto of dataSourceRepuestos" [value]="repuesto">
             {{repuesto.nombre}}
+            {{repuesto.modelo}}
           </mat-option>
         </mat-select>
       </mat-form-field>
