@@ -14,4 +14,6 @@ public interface MaquinaService {
     Maquina save(MaquinaRequest maquina) throws ValidateFieldException;
 
     Maquina update(MaquinaRequest maquinaRequestToMaquina, Integer id) throws ValidateFieldException;
+
+    List<Maquina> getAllSinRepuesto();
 }

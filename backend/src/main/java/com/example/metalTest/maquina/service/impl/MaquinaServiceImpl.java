@@ -79,4 +79,9 @@ public class MaquinaServiceImpl implements MaquinaService {
         maquina.setId(id);
         return maquinaRepository.save(maquina);
     }
+
+    @Override
+    public List<Maquina> getAllSinRepuesto() {
+        return maquinaRepository.findAllWithoutRepuesto();
+    }
 }

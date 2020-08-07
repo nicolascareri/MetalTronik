@@ -6,10 +6,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface MaquinaRepository extends JpaRepository<Maquina, Integer> {
 
     @Query("SELECT COUNT(m) FROM Maquina m WHERE m.maquina_cod = :cod")
     Long checkCodigoExistance(@Param("cod") String cod);
 
+    @Query("SELECT m FROM Maquina m WHERE m.id NOT IN " +
+            "(SELECT r.maquina.id FROM Repuesto r WHERE r.maquina.id IS NOT NULL)")
+    List<Maquina> findAllWithoutRepuesto();
 }
