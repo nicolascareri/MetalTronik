@@ -25,6 +25,7 @@ export class ListaRepuestosComponent implements OnInit {
   modelos: any = [];
   modeloValue: any;
   seleccion: any = [];
+  seleccionRepuesto: any = 'all';
   maquinaId: any;
   cntInstalada: any;
   idSeleccion = 0;
@@ -38,28 +39,14 @@ export class ListaRepuestosComponent implements OnInit {
 
   ngOnInit(): void {
 
-    
+    this.getRepuestos();
 
     this.form = this.formBuilder.group({
       repuesto: [''],
       cantidadInstalada: ['']
     });
 
-    this.RepuestoMaquinaService.getRepuestos().subscribe(
-      (data: any) => {
-        this.dataSourceRepuestos = data;
-
-        
-        data.forEach(element => {
-          this.modelos.push(element.modelo)
-        });
-      },
-
-      (error) => {
-        console.log(error);
-
-      }
-    );
+    
 
     this.MaquinaService.getMaquinas().subscribe(
       (data: any) => {
@@ -110,13 +97,53 @@ export class ListaRepuestosComponent implements OnInit {
     console.log(event.maquina_cod + " Id: " + this.maquinaId);
   }
 
-  deleteSelection(id) {
-    this.seleccion.splice(id, 1);
+  deleteSelection() {
+    
+    this.seleccion.pop()
+    
     console.log(this.seleccion);
   }
 
-  obtenerModelos(){
-   this.repuestosFilter = this.dataSourceRepuestos.filter(r => r.modelo == this.modeloValue); 
+  filtrarPorModelo(m){
+    this.seleccionRepuesto = ' ';
+   this.repuestosFilter = this.dataSourceRepuestos.filter(r => r.modelo == m);
+  //  console.log(this.dataSourceRepuestos);
+   console.log(this.repuestosFilter);
+   
+  //  console.log(this.modeloValue);
+   console.log(m);   
+  }
+
+  getRepuestos(){
+    this.RepuestoMaquinaService.getRepuestos().subscribe(
+      (data: any) => {
+        this.dataSourceRepuestos = data;
+
+        
+        data.forEach(element => {
+          if (!this.modelos.includes(element.modelo)) {
+            this.modelos.push(element.modelo)
+          }
+          
+        });
+      },
+
+      (error) => {
+        console.log(error);
+
+      }
+      
+    );
+  }
+
+  changeDataSource(){
+    let dataSource;   
+    if(this.seleccionRepuesto == 'all'){
+      dataSource = this.dataSourceRepuestos
+    }else{
+      dataSource = this.repuestosFilter;
+    }
+    return dataSource;
   }
     
     

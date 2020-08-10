@@ -34,6 +34,7 @@ export class TablaRepuestosComponent implements OnInit {
   ngOnInit(): void {
 
     this.RepuestoMaquinaService.getRepuestos().subscribe(
+      
       (data: any) => {
         // data.map(repuesto => {
         //   if (repuesto.maquina) {
@@ -41,7 +42,7 @@ export class TablaRepuestosComponent implements OnInit {
         //   }
         // });
        
-
+          this.cantidadTotal = 0;
           data.forEach(element => {
             if(element.maquina){
             this.cantidadTotal += element.cantidadInstalada;
