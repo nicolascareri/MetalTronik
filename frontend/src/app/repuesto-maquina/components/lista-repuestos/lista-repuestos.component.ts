@@ -62,7 +62,7 @@ export class ListaRepuestosComponent implements OnInit {
   }
 
   asociar() {
-    this.RepuestoMaquinaService.asociarRepuestos(this.maquinaId, this.repuestos).subscribe(repuestos => alert("Exitos" + repuestos));
+    this.RepuestoMaquinaService.asociarRepuestos(this.maquinaId, this.repuestos).subscribe(repuestos => alert(`Exito: ${JSON.stringify(repuestos)}`));
   }
 
 
@@ -112,6 +112,7 @@ export class ListaRepuestosComponent implements OnInit {
    
   //  console.log(this.modeloValue);
    console.log(m);   
+   this.seleccionRepuesto = 'all';
   }
 
   getRepuestos(){

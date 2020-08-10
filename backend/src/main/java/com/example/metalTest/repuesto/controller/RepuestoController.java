@@ -15,6 +15,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT})
 @RequestMapping("/api/repuesto-maquina")
 public class RepuestoController {
 
