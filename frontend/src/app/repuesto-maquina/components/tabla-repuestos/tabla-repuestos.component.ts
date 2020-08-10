@@ -13,8 +13,9 @@ export class TablaRepuestosComponent implements OnInit {
 
   dataSourceRepuestos: any;
   dataSourceAllRepuestos: any;
+  dataSourceMaquinasSinRepuestos: any;
 
-  cantidad: any = 0;;
+  cantidad: any = 0;
   cantidadTotal: any = 0;
 
   columnsToDisplay: any = ['nombre', 'modelo', 'cantidadInstalada', 'maquina.maquina_cod', 'maquina.planta.nombre', 
@@ -33,6 +34,7 @@ export class TablaRepuestosComponent implements OnInit {
   ngOnInit(): void {
 
     this.RepuestoMaquinaService.getRepuestos().subscribe(
+      
       (data: any) => {
         // data.map(repuesto => {
         //   if (repuesto.maquina) {
@@ -40,7 +42,7 @@ export class TablaRepuestosComponent implements OnInit {
         //   }
         // });
        
-
+          this.cantidadTotal = 0;
           data.forEach(element => {
             if(element.maquina){
             this.cantidadTotal += element.cantidadInstalada;
@@ -68,6 +70,17 @@ export class TablaRepuestosComponent implements OnInit {
         console.log(error);
       }
     );
+
+    this.MaquinaService.getMaquinasSinRepuestos().subscribe(
+      (data: any) => {
+        this.dataSourceMaquinasSinRepuestos = data;
+      },
+      (error) => {
+        console.log(error);
+        
+      }
+    );
+
   }
 
 

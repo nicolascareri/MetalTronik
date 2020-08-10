@@ -25,6 +25,14 @@
         <div>
           <div *ngIf="seleccion == 'all'">
             Cantidad total de repuestos asociados: {{cantidadTotal}}
+            <div *ngIf="dataSourceMaquinasSinRepuestos != null">
+            <dl class="list-group list-group-flush">
+              <dt>Las siguientes maquinas no tienen repuestos asociados</dt>
+              <dd style="color: #D58E00;" class="list-group-item" *ngFor="let m of dataSourceMaquinasSinRepuestos">
+                {{m.maquina_cod}}
+              </dd>
+            </dl>
+          </div>
           </div> 
           <div *ngIf="seleccion != 'all'">
             Cantidad de repuestos asociados a la maquina: {{cantidad}} 

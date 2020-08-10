@@ -9,10 +9,22 @@
       <br>
 
       <mat-form-field appearance="fill">
-        <mat-select formControlName="repuesto">
-          <mat-option *ngFor="let repuesto of dataSourceRepuestos" [value]="repuesto">
+        <mat-select formControlName="repuesto" (selectionChange)="seleccionRepuesto">
+          <mat-option value="all">Todos</mat-option>
+          <mat-option *ngFor="let repuesto of changeDataSource()" [value]="repuesto">
             {{repuesto.nombre}}
-            {{repuesto.modelo}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <br>
+      <mat-label>Selecciona un modelo para filtrar repuestos</mat-label>
+      <br>
+
+      <mat-form-field appearance="fill">
+        <mat-select [(value)]="modeloValue" (selectionChange)="filtrarPorModelo(modeloValue)">
+          <mat-option *ngFor="let m of modelos" [value]="m">
+            {{m}}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -40,15 +52,27 @@
       <button style="margin: 1%;" type="button" class="btn btn-primary btn-sm" (click)="agruopData()">Agregar</button>
 
       <hr class="my-7">
+      <div>
+        <p>Seleccion:</p>
 
-      <p>Seleccion:</p>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let r of seleccion">
+            Nombre de repuesto:
+            <b>{{ r.nombre }}</b>
+            <br>
+            Cantidad a instalar elegida:
+            <b>
+              {{r.cantidadInstalada}}
+            </b>
+            <br>
+          </li>
 
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item" *ngFor="let r of seleccion">
-          {{ r.nombre }} {{r.cantidadInstalada}}
-          <br>
-        </li>
-      </ul>
+        </ul>
+        <button (click)="deleteSelection()" class="btn btn-secondary btn-sm">Eliminar ultima seleccion</button>
+      </div>
+
+
+      <hr class="my-7">
 
 
       <mat-form-field appearance="fill">
