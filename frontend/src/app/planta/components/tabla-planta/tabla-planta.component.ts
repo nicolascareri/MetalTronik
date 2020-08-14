@@ -64,7 +64,6 @@ export class TablaPlantaComponent implements OnInit {
 
       (data: any)  => { // Success
         this.dataSourcePlants.data = data;
-        console.log(this.dataSourcePlants);
       },
       (error) => {
         console.error(error);

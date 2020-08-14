@@ -51,10 +51,8 @@ export class ListaRepuestosComponent implements OnInit {
     this.MaquinaService.getMaquinas().subscribe(
       (data: any) => {
         this.dataSourceMaquinas = data;
-        console.log(this.dataSourceMaquinas)
       },
       (error) => {
-        console.log(error);
       }
     );
 
@@ -86,32 +84,21 @@ export class ListaRepuestosComponent implements OnInit {
     this.idSeleccion++;
     this.seleccion.push(seleccion);
 
-    console.log(this.seleccion);
-
 
   }
 
 
   getMaquinaForSelect(event) {
     this.maquinaId = event.id;
-    console.log(event.maquina_cod + " Id: " + this.maquinaId);
   }
 
   deleteSelection() {
-    
     this.seleccion.pop()
-    
-    console.log(this.seleccion);
   }
 
   filtrarPorModelo(m){
     this.seleccionRepuesto = ' ';
    this.repuestosFilter = this.dataSourceRepuestos.filter(r => r.modelo == m);
-  //  console.log(this.dataSourceRepuestos);
-   console.log(this.repuestosFilter);
-   
-  //  console.log(this.modeloValue);
-   console.log(m);   
    this.seleccionRepuesto = 'all';
   }
 
@@ -130,7 +117,7 @@ export class ListaRepuestosComponent implements OnInit {
       },
 
       (error) => {
-        console.log(error);
+        console.error(error);
 
       }
       

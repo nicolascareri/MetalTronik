@@ -70,24 +70,10 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
 
 
-    // this.PlantaService.getPlantas().subscribe(
-
-    //   (data: any)  => { // Success
-    //     this.dataSourcePlants = data;
-    //     console.log(this.dataSourcePlants);
-    //   },
-    //   (error) => {
-    //     console.error(error);
-    //   }
-
-    // );
-
-
     this.MaquinaService.getMaquinas().subscribe(
 
       (data: any)  => { // Success
         this.dataSourceMachines = data;
-        console.log(this.dataSourceMachines);
       },
       (error) => {
         console.error(error);
@@ -113,24 +99,10 @@ export class FormComponent implements OnInit {
       }
     );
 
-    // this.SectorService.getSectores().subscribe(
-
-    //   (data: any)  => { // Success
-    //     this.sectors = data;
-    //     this.dataSourceSectors = this.sectors;
-    //     console.log(this.dataSourceSectors);
-    //   },
-    //   (error) => {
-    //     console.error(error);
-    //   }
-
-    // );
-
     this.UserService.getUsers().subscribe(
 
       (data: any)  => { // Success
         this.dataSourceUsers = data;
-        console.log(this.dataSourceUsers);
       },
       (error) => {
         console.error(error);
@@ -142,7 +114,6 @@ export class FormComponent implements OnInit {
     this.OrdenestrabajoService.getAllOrdenes().subscribe(
       (data: any)  => { // Success
         this.dataSourceOrdenes = data;
-        console.log(this.dataSourceOrdenes);
       },
       (error) => {
         console.error(error);
@@ -162,8 +133,6 @@ export class FormComponent implements OnInit {
           order => alert("Se ha creado la orden nro: " + order.ordentrabajo_cod)
         );
         this.router.navigate(['main/ordenes'])
-
-
   }
 
 

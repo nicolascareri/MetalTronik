@@ -1,10 +1,21 @@
-<div class="table-responsive">
-
-    <table mat-table [dataSource]="ds" class="table table-hover">
-
-        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-        <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
-
-    </table>
-
-</div>
+<table class="table">
+    <thead>
+      <tr class="table__header">
+        <th *ngFor="let header of columns" >
+          <span> {{header}} </span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table__body" *ngFor="let row of displayData">
+        <td class="table__body__column" 
+          *ngFor="let header of columns">
+          {{row[header] || row[header] === 0 ? row[header] : '' }}
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+    </tfoot>
+  </table>
+  
+  

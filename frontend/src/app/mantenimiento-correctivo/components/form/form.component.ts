@@ -48,7 +48,6 @@ export class FormMantenimientoCorrectivoComponent implements OnInit {
 
       (data: any)  => { // Success
         this.dataSourceOrders = data;
-        console.log(this.dataSourceOrders);
       },
       (error) => {
         console.error(error);
@@ -60,7 +59,6 @@ export class FormMantenimientoCorrectivoComponent implements OnInit {
 
       (data: any)  => { // Success
         this.dataSourceMachines = data;
-        console.log(this.dataSourceMachines);
       },
       (error) => {
         console.error(error);
@@ -71,7 +69,6 @@ export class FormMantenimientoCorrectivoComponent implements OnInit {
     this.UserService.getUsers().subscribe(
       (data: any) => {
         this.dataSourceUsers = data;
-        console.log(this.dataSourceUsers);
       },
       (error) => {
         console.error(error);

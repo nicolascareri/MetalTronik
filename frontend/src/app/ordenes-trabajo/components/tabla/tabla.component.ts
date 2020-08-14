@@ -27,7 +27,7 @@ export class TablaOrdenesComponent implements OnInit {
 
   // ordenes: any = [];
 
-  columnsToDisplay: any = ['edit', 'ordentrabajo_cod', 'maquina.maquina_cod', 'maquina.planta.nombre', 'maquina.sector.descripcion',
+  columnsToDisplay: any = ['ordentrabajo_cod', 'maquina.maquina_cod', 'maquina.planta.nombre', 'maquina.sector.descripcion',
     'pedidoMateriales', 'tarea', 'priodidad.nombre', 'tipo.nombre', 'fechaEntrega', 'fechaRealizar',
     'encargo.nombre', 'responsable.nombre', 'estado', 'observaciones', 'ordenTerciarizacion'];
 
@@ -94,8 +94,6 @@ export class TablaOrdenesComponent implements OnInit {
   //////////FILTRO////////////
   applyFilter(filterValue: String) {
     this.dataSourceOrdenes.filter = filterValue.trim().toLowerCase();
-    console.log(this.dataSourceOrdenes);
-    
   }
 
   nestedFilterCheck(search, data, key) {
@@ -160,7 +158,6 @@ export class TablaOrdenesComponent implements OnInit {
     this.MaquinaService.getMaquinas().subscribe(
       (data: any) => { // Success
         this.dataSourceMachines = data;
-
       },
       (error) => {
         console.error(error);
@@ -193,8 +190,6 @@ export class TablaOrdenesComponent implements OnInit {
     this.OrdenestrabajoService.getAllOrdenes().subscribe(
       (data: any) => { // Success
         this.dataSourceOrdenes.data = data;
-        console.log(this.dataSourceOrdenes);
-        
       },
       (error) => {
         console.error(error);
@@ -269,8 +264,6 @@ export class TablaOrdenesComponent implements OnInit {
 
 
   onSave() {
-    console.log(this.originalOrder.ordentrabajo_cod);
-    console.log(this.form.value);
     this.OrdenestrabajoService.updateOrder(this.originalOrder.ordentrabajo_cod, this.form.value).subscribe(order => console.log(order));
     let modal = document.getElementById('myModal');
     modal.style.display = 'none';

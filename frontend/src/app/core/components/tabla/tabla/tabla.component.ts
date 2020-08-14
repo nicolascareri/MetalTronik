@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-tabla',
@@ -7,13 +7,23 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TablaComponent implements OnInit {
 
-  @Input() columnsToDisplay: any;
+  @Input() columns: any;
+  @Input() ds: any = [{}];
+  displayData: any;
 
-  @Input() ds: any;
-  
   constructor() { }
 
   ngOnInit(): void {
   }
+  
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+    
+    if ( changes.ds ) {
+      this.ds = this.ds ? this.ds : [];
+      this.displayData = this.ds;
+    }
+  }
+
 
 }

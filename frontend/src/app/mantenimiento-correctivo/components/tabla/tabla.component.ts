@@ -60,7 +60,6 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
 
       (data: any)  => { // Success
         this.dataSourceMantenimientosCorrectivos.data = data;
-        console.log(this.dataSourceMantenimientosCorrectivos);
       },
       (error) => {
         console.error(error);

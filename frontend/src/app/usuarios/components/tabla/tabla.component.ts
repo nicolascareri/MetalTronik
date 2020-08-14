@@ -83,7 +83,6 @@ export class TablaUsuarioComponent implements OnInit {
 
       (data: any)  => { // Success
         this.dataSourceUsers.data = data;
-        console.log(this.dataSourceUsers);
       },
       (error) => {
         console.error(error);
@@ -94,15 +93,5 @@ export class TablaUsuarioComponent implements OnInit {
 
   }
 
-//   openModal(ordenes){
-//     let modal = document.getElementById("myModal");
-//     modal.style.display = "block";
-//     this.originalUser = ordenes;
-//     console.log(this.originalUser);
-//     this.setOriginalValues(this.originalUser);
-//     console.log(this.form);
-
-
-// }
 
 }

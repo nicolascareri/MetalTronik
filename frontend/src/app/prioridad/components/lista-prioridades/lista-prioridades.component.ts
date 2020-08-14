@@ -30,17 +30,14 @@ export class ListaPrioridadesComponent implements OnInit {
     this.PrioridadesService.getPrioridades().subscribe(
       (data: any) => {
         this.dataSourcePrioridades = data;
-        console.log(this.dataSourcePrioridades)
       },
       (error) => {
-        console.log(error);
       }
     );
 
   }
 
   addPrioridad() {
-    console.log(this.form.value);
     this.PrioridadesService.postPrioridad(this.form).subscribe(
       prioridad =>  location.reload()
       

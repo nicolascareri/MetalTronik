@@ -44,7 +44,6 @@ export class FormMaquinaComponent implements OnInit {
 
       (data: any)  => { // Success
         this.dataSourcePlants = data;
-        console.log(this.dataSourcePlants);
       },
       (error) => {
         console.error(error);
@@ -56,7 +55,6 @@ export class FormMaquinaComponent implements OnInit {
 
       (data: any)  => { // Success
         this.dataSourceSectors = data;
-        console.log(this.dataSourceSectors);
       },
       (error) => {
         console.error(error);
@@ -73,7 +71,6 @@ export class FormMaquinaComponent implements OnInit {
   }
 
   saveForm() {
-    console.log(this.machinesForm.value);
     this.MaquinaService.postMaquina(this.machinesForm).subscribe(
       maquina => alert("Se ha creado la maquina numero: " + maquina.id)
     );

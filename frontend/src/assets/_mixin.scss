@@ -1,0 +1,167 @@
+@import '_variables.scss';
+
+// Mixins
+@mixin shadow-card ()
+{
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+} 
+
+@mixin  min-section-hg {
+    $hg : calc( 100vh - #{$footer-hg} - #{$header-hg});
+    min-height: $hg;
+}
+@mixin  width-section {
+    $wd : calc( 100vw - #{$side-nav-wd } - #{$section-margin}*2);
+    min-width: $wd;
+}
+
+@mixin width-section-aside {
+    $wd : calc( 94vw  - #{$side-nav-wd} - #{$aside-status-wd} - #{$section-margin});
+    min-width: $wd;
+    
+}
+
+@mixin paddind-section {
+    padding: 32px 50px;
+}
+
+@mixin section-title {
+    color: $extreme-ligthblue;
+                font-size: 22px;
+                font-weight: 500;
+}
+
+@mixin input-style {
+    background: $background-input;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: $font-size-m;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px; 
+    transition: all 0.5s ease-in-out;
+    width: 100%;
+
+}
+
+// Abm
+
+@mixin abm-section {
+    @include min-section-hg();
+    @include width-section();
+
+    background-color: $background-section;
+    margin-bottom: 150px; 
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 90%;
+        padding: 20px 0 20px 45px;
+
+        &__title {
+            font-weight: normal;
+            font-size: $font-size-l;
+            line-height: 26px;
+            text-transform: uppercase;
+        }
+        &__subtitle {
+            padding-top: 25px; 
+            font-weight: normal;
+            font-size: $font-size-m;
+            line-height: 22px;
+            &__subtitle2 {
+                font-weight: 500;
+                padding-bottom: 15px;
+                margin-left: 45px;
+                color: $extreme-ligthblue;
+            }
+        }
+        &__button > button.button  {
+            width: 300px ;
+        }
+    }
+    &__content {
+        margin: 0 45px;
+    }
+}
+
+@mixin card-layout {
+    @include shadow-card();
+    @include paddind-section(); 
+    display: flex;
+    flex-direction: column;
+    background-color: $white;
+    &__header {
+        color: $extreme-ligthblue;
+        font-weight: 500;
+        font-size: $font-size-l;
+        line-height: 26px;
+        text-transform: uppercase;
+    }
+    &__subtitle{
+        color: $black;
+        font-weight: 500;
+        margin-top: 20px; 
+        font-size: $font-size-m;
+        line-height: 26px;
+        text-transform: uppercase;
+    }
+    &__footer{
+        display: flex;
+        justify-content: flex-end;
+    }
+    .--uppercase {
+        ::ng-deep input {
+            text-transform: uppercase;
+        }
+    }
+}
+
+@mixin card {
+    .card {
+        @include card-layout();
+
+        justify-content: stretch;
+        width: 70%;
+        position: fixed;
+        z-index: 90;
+        top: 50%; 
+        right: 50%;
+        transform: translate(50%,-50%);
+        &__footer {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            margin: 64px 0 0;
+            &::ng-deep button {
+                width: 300px;
+                margin: 10px;
+            }
+        }
+    
+
+    }
+}
+
+@mixin warning-div {
+    background: $warning-message;
+    font-weight: 500;
+    font-size: $font-size-l;
+    font-style: normal;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+@mixin warning-icon {
+    color: $red;
+    margin: 3px 24px 3px 11px;  
+}

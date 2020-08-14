@@ -52,7 +52,7 @@ export class TablaRepuestosComponent implements OnInit {
         this.dataSourceAllRepuestos = data;
       },
       (error) => {
-        console.log(error);
+        console.error(error);
         
       }
     );
@@ -64,10 +64,8 @@ export class TablaRepuestosComponent implements OnInit {
     this.MaquinaService.getMaquinas().subscribe(
       (data: any) => {
         this.dataSourceMaquinas = data;
-        // console.log(this.dataSourceMaquinas)
       },
       (error) => {
-        console.log(error);
       }
     );
 
@@ -76,38 +74,25 @@ export class TablaRepuestosComponent implements OnInit {
         this.dataSourceMaquinasSinRepuestos = data;
       },
       (error) => {
-        console.log(error);
-        
+        console.error(error);
       }
     );
 
   }
 
-
-
-
+  
   getRepuestosByMaquina(id){
     this.cantidad = 0;
     this.RepuestoMaquinaService.getRepuestosById(id).subscribe(
       (data: any) => {
-        // data.map(repuesto => {
-        //   if (repuesto.maquina) {
-        //     this.cantidad += repuesto.cantidadInstalada;
-        //   }
-        // });
         data.forEach(element => {
           if(element.maquina){
-          
           this.cantidad += element.cantidadInstalada;
           }
         });
-      
         this.dataSourceRepuestos = data;
-        console.log(this.dataSourceRepuestos)
-        
       },
       (error) => {
-        console.log(error);
       }
     );
 
@@ -117,21 +102,9 @@ export class TablaRepuestosComponent implements OnInit {
     let dataSource;   
     if (this.seleccion == 'all') {
       dataSource = this.dataSourceAllRepuestos;
-      // this.cantidad = 0;
-      // dataSource.map(repuesto => {
-      //   if (repuesto.maquina) {
-      //     this.cantidad += repuesto.cantidadInstalada;
-      //   }
-      // });
-      // // this.cantidad += this.dataSourceAllRepuestos.data.forEach(element => {
-      // //   element.cantidadInstalada;
-      // });;
     }else{
       dataSource = this.dataSourceRepuestos;
-      // this.cantidadTotal = this.dataSourceRepuestos.length;
     }
     return dataSource;
   }
-
-
 }
