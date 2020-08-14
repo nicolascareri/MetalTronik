@@ -5,10 +5,11 @@ import {MatButtonModule} from '@angular/material/button';
 import {ButtonComponent} from './components/button/button.component';
 import {RouterModule} from '@angular/router';
 import { TablaComponent } from './components/tabla/tabla/tabla.component';
+import { InputComponent } from './components/input/input.component';
 
 
 @NgModule({
-  declarations: [ButtonComponent, TablaComponent],
+  declarations: [ButtonComponent, TablaComponent, InputComponent],
   imports: [
     CommonModule,
     MatButtonModule,
