@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {OrdenestrabajoService} from '../../services/ordenestrabajo.service';
 // import { SectorService } from "../../services/sector.service";
@@ -26,7 +26,6 @@ export class FormComponent implements OnInit {
               private PrioridadesService: PrioridadesService,
               private TipoService: TipoService,
               private router: Router) {
-    this.ordenForm = this.createFormGroup();
   }
 
 
@@ -49,27 +48,11 @@ export class FormComponent implements OnInit {
   dataSourceTipos: any;
   dataSourcePrioridades: any;
 
-  createFormGroup(){
-    return new FormGroup({
-      encargo_cod: new FormControl(''),
-      estado: new FormControl(''),
-      fechaRealizar: new FormControl(''),
-      maquina_cod: new FormControl(''),
-      pedidoMateriales: new FormControl(''),
-      priodidad_cod: new FormControl(''),
-      responsable_cod: new FormControl(''),
-      tarea: new FormControl(''),
-      observaciones: new FormControl(''),
-      ordenTerciarizacion : new FormControl(''),
-      fechaEntrega : new FormControl(''),
-      tipo_cod: new FormControl(''),
 
-    })
-  }
 
   ngOnInit(): void {
 
-
+    this.ordenForm = this.createFormGroup();
     // this.PlantaService.getPlantas().subscribe(
 
     //   (data: any)  => { // Success
@@ -97,7 +80,13 @@ export class FormComponent implements OnInit {
 
     this.PrioridadesService.getPrioridades().subscribe(
       (data: any) => {
-        this.dataSourcePrioridades = data;
+        this.dataSourcePrioridades = data.map(
+          val => { return {
+              "id": val.id,
+              "descripcion": val.nombre
+            }
+          }
+        );
       },
       (error) => {
         console.error(error);
@@ -150,6 +139,24 @@ export class FormComponent implements OnInit {
     );
 
 
+  }
+
+  createFormGroup(){
+    return new FormGroup({
+      encargo_cod: new FormControl(''),
+      estado: new FormControl(''),
+      fechaRealizar: new FormControl(''),
+      maquina_cod: new FormControl(''),
+      pedidoMateriales: new FormControl(''),
+      priodidad_cod: new FormControl(''),
+      responsable_cod: new FormControl(''),
+      tarea: new FormControl(''),
+      observaciones: new FormControl('', Validators.required),
+      ordenTerciarizacion : new FormControl(''),
+      fechaEntrega : new FormControl(''),
+      tipo_cod: new FormControl(''),
+
+    })
   }
 
   resetForm() {

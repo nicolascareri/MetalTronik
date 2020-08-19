@@ -26,6 +26,7 @@ export class InputComponent implements OnInit {
   @Input() comments: any;
   @Input() commentMode = 1;
   @Input() typeInputFilter = false;
+  @Input() disableControl = '';
 
   @Output() select = new EventEmitter();
   @Output() valueChange = new EventEmitter();
@@ -103,15 +104,15 @@ export class InputComponent implements OnInit {
     return this.control.errors;
   }
 
-  mouseOverComments(mouseOverIn: boolean) {
-    if (this.myComments) {
-      if (mouseOverIn) {
-        this.showModalComments = true;
-      } else {
-        this.showModalComments = false;
-      }
-    }
-  }
+  // mouseOverComments(mouseOverIn: boolean) {
+  //   if (this.myComments) {
+  //     if (mouseOverIn) {
+  //       this.showModalComments = true;
+  //     } else {
+  //       this.showModalComments = false;
+  //     }
+  //   }
+  // }
 
   // preventSCandNumbers(ev) {
   //   // prevent special characters and only number

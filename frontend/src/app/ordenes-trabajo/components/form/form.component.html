@@ -1,46 +1,40 @@
-
 <div class="form-container">
 
-  <h1>Nueva orden</h1> 
+  <h1>Nueva orden</h1>
 
   <form [formGroup]="ordenForm" (ngSubmit)="saveForm()">
-    
+
     <div class="part1">
       <label for="encargo_cod">Responsable de encargo</label>
-      <select formControlName="encargo_cod">  
+      <select formControlName="encargo_cod">
         <option value="" disabled>Selecciona un responsable de encargo</option>
         <option *ngFor="let user of dataSourceUsers" [ngValue]="user.id">
-         {{ user.nombre }} {{ user.apellido }}
+          {{ user.nombre }} {{ user.apellido }}
         </option>
-      </select> 
-    
-    
+      </select>
+
+
       <label for="fechaRealizar">Fecha a realizar</label>
       <input type="datetime-local" formControlName="fechaRealizar" placeholder="DD-MM-YYYY HH:MM" id="inputDate">
-    
 
-    
+
+
       <label for="maquina_cod">Maquina</label>
       <select formControlName="maquina_cod">
         <option value="" disabled>Seleccionar maquina</option>
         <option *ngFor="let machine of dataSourceMachines" [ngValue]="machine.id">
-         {{machine.maquina_cod}}
+          {{machine.maquina_cod}}
         </option>
-      </select> 
+      </select>
     </div>
 
     <div class="part2">
       <label for="pedidoMateriales">Materiales</label>
-      <input type="text" formControlName="pedidoMateriales"  placeholder="Pedido de materiales">
-      
-    
-      <label for="prioridad_cod">Prioridad</label>
-      <select formControlName="priodidad_cod">
-        <option value="" disabled>Seleccionar prioridad</option>
-        <option *ngFor="let prioridad of dataSourcePrioridades" [ngValue]="prioridad.id">
-         {{prioridad.nombre}}
-        </option>
-      </select> 
+      <input type="text" formControlName="pedidoMateriales" placeholder="Pedido de materiales">
+
+      <app-input [type]="['select-pair']" [parentForm]="['ordenForm']" [control]="['ordenForm.controls.priodidad_cod']" [options]="dataSourcePrioridades"></app-input>
+
+     
     </div>
 
     <div class="part3">
@@ -50,16 +44,16 @@
         <option *ngFor="let user of dataSourceUsers" [ngValue]="user.id">
           {{ user.nombre }} {{ user.apellido }}
         </option>
-      </select> 
-    
-      
+      </select>
 
-  
+
+
+
       <label for="tarea">Tarea</label>
-      <input type="text" formControlName="tarea"  placeholder="Descripcion de la tarea">
-    
+      <input type="text" formControlName="tarea" placeholder="Descripcion de la tarea">
 
-    
+
+
       <label for="tipo_cod">Tipo</label>
       <select formControlName="tipo_cod">
         <option value="" disabled>Seleccionar tipo</option>
@@ -68,24 +62,24 @@
         </option>
       </select>
 
-      <label for="tarea">Observaciones</label>
-      <input type="text" formControlName="observaciones"  placeholder="...">
-      
+      <app-input [type]="['input']" [parentForm]="ordenForm" [control]="['ordenForm.controls.observaciones']"
+        [placeholder]="['Observaciones']"></app-input>
+
     </div>
 
     <div class="part4">
       <label for="ordenTerciarizacion">Orden de terciarizacion</label>
-      <input type="number" formControlName="ordenTerciarizacion"  placeholder="...">
+      <input type="number" formControlName="ordenTerciarizacion" placeholder="...">
 
       <label for="fechaEntrega">Fecha de entrega</label>
       <input type="datetime-local" formControlName="fechaEntrega" placeholder="DD-MM-YYYY HH:MM" id="inputDate">
     </div>
 
-  
 
-    <button type="submit" class="btn-send" >Crear orden</button>
+
+    <button type="submit" class="btn-send">Crear orden</button>
   </form>
- 
+
 </div>
 
 <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////// -->

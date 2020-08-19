@@ -6,6 +6,7 @@ import {ButtonComponent} from './components/button/button.component';
 import {RouterModule} from '@angular/router';
 import { TablaComponent } from './components/tabla/tabla/tabla.component';
 import { InputComponent } from './components/input/input.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -14,12 +15,14 @@ import { InputComponent } from './components/input/input.component';
     CommonModule,
     MatButtonModule,
     RouterModule,
-    MatTableModule
+    MatTableModule,
+    ReactiveFormsModule
   ],
   exports: [
     ButtonComponent,
     MatTableModule,
-    TablaComponent
+    TablaComponent,
+    InputComponent
     
   ]
 })
