@@ -49,7 +49,8 @@
       <br>
       <input type="number" (ngValue)='cntInstalada' formControlName="cantidadInstalada">
 
-      <button style="margin: 1%;" type="button" class="btn btn-primary btn-sm" (click)="agruopData()">Agregar</button>
+      
+      <app-button [name]="['Agregar']" type="submit" [click]="agruopData()"></app-button>
 
       <hr class="my-7">
       <div>
@@ -88,7 +89,7 @@
         Confirmar
       </button>
 
-    
+
 
 
 

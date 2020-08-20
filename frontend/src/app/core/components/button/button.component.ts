@@ -9,8 +9,8 @@ import {Component, OnInit, Input} from '@angular/core';
 
 export class ButtonComponent implements OnInit {
 
-  @Input() name: string = "testeo";
-
+  @Input() name: string = " ";
+  @Input() click: any;
 
 
   constructor() { }
