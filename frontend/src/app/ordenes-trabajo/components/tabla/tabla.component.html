@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<!-- <div class="container-fluid">
   <mat-form-field class="filter">
     <mat-label style="font-weight: bold;">Filtrar</mat-label>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Material, responsable, maquina...">
@@ -6,13 +6,13 @@
 
   <app-button [routerLink]="['form']" [name]="['Nueva orden']"></app-button>
   
-</div>
+</div> -->
 
 
 
 <div class="table-responsive">
 
-  <app-tabla [ds]='dataSourceOrdenes.data' [columns]='columnsToDisplay'></app-tabla>
+  <app-tabla [ds]='dataSourceOrdenes' [columns]='columnsToDisplay'></app-tabla>
 
   <!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 

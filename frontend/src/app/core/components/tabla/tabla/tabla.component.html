@@ -1,16 +1,16 @@
-<table class="table">
+<table class="table" [ngStyle]="{'width': width}">
     <thead>
-      <tr class="table__header">
-        <th *ngFor="let header of columns" >
-          <span> {{header}} </span>
+      <tr class="table__header" [ngClass]="{'table__header--tall': search,'table__header--short': !search }">
+        <th *ngFor="let header of columns" [ngStyle]="{'width': header.width}" >
+          <span> {{header.name}} </span>
         </th>
       </tr>
     </thead>
     <tbody>
-      <tr class="table__body" *ngFor="let row of displayData">
+      <tr class="table__body" *ngFor="let row of displayData" [ngClass]="{ 'table__body__clickeable': hasClickRowFunction }">
         <td class="table__body__column" 
-          *ngFor="let header of columns">
-          {{row[header] || row[header] === 0 ? row[header] : '' }}
+          *ngFor="let header of columns" [ngStyle]="{'width': header.width}">
+          {{row[header.name] || row[header.name] === 0 ? row[header.name] : '' }}
         </td>
       </tr>
     </tbody>
