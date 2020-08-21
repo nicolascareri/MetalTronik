@@ -17,19 +17,15 @@ export const ENDPOINTS = {
         GET: 'api/usuario',
         POST: 'api/usuario'
     },
-
     ORDENES_TRABAJO: {
-        GET: 'api/ordenes-trabajo',
+        GET: 'api/ordenes-trabajo/',
         POST: 'api/ordenes-trabajo',
         PUT: 'api/ordenes-trabajo/'
     },
-
     SECTORES: {
         GET: 'api/sector',
         POST: 'api/sector'
     }
-
-
 }
 
 export const MENUS = {

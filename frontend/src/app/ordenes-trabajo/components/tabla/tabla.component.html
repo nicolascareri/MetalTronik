@@ -21,7 +21,7 @@
     <ng-container matColumnDef="edit">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let ordenes">
-        <button id="myBtn" class="edit-btn" (click)="openModal(ordenes)">
+        <button id="myBtn" class="edit-btn" (click)="openForm(ordenes.ordentrabajo_cod)">
           <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
         </button>
       </td>

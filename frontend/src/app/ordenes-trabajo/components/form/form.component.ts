@@ -1,21 +1,19 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, AfterViewInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-
+import { first } from "rxjs/operators"
 import {OrdenestrabajoService} from '../../services/ordenestrabajo.service';
-// import { SectorService } from "../../services/sector.service";
 import {MaquinaService} from '../../../maquina/services/maquina.service';
 import {UserService} from '../../../usuarios/services/user.service';
 import {PrioridadesService} from '../../../prioridad/services/prioridades.service';
 import {TipoService} from '../../../tipo/services/tipo.service';
-// import { PlantaService } from "../../services/planta.service";
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, AfterViewInit {
 
 
   constructor(private OrdenestrabajoService: OrdenestrabajoService,
@@ -25,22 +23,11 @@ export class FormComponent implements OnInit {
               // private PlantaService: PlantaService,
               private PrioridadesService: PrioridadesService,
               private TipoService: TipoService,
-              private router: Router) {
+              private router: Router,
+              private route: ActivatedRoute) {
     this.ordenForm = this.createFormGroup();
   }
-
-
-  // plantas: any = PLANTAS;
-  // prioridades: any = PRIORIDADES;
-  // estados: any = ESTADO_ORDEN;
-  // tipo: any = TIPO;
-
   ordenForm: FormGroup;
-  // users: any;
-  // orders: any;
-  // sectors: any;
-  // machines: any;
-  // plants: any;
   dataSourceUsers: any;
   dataSourceOrdenes: any;
   dataSourceSectors: any;
@@ -48,7 +35,119 @@ export class FormComponent implements OnInit {
   dataSourcePlants: any;
   dataSourceTipos: any;
   dataSourcePrioridades: any;
+  public ordenId: any;
+  public mode = 'add';
 
+  ngOnInit(): void {
+
+    this.ordenId = this.route.snapshot.params.id;
+    this.getMaquinas();
+    this.getPrioridades();
+    this.getTipos();
+    this.getUsuarios();
+    this.getOrdenes();
+    
+  }
+  ngAfterViewInit(): void {
+    if (this.ordenId){
+      this.getOrden(this.ordenId);
+    }
+  }
+  getOrden(id){
+    this.OrdenestrabajoService.getOrder(id).pipe(first()).subscribe(
+      orden => {
+        this.loadOrden(orden);
+      }
+    )
+  }
+  loadOrden(orden){
+    this.mode = "edit";
+    this.ordenForm.controls.encargo_cod.setValue(orden.encargo.encargo_cod);
+    this.ordenForm.controls.estado.setValue(orden.estado);
+    this.ordenForm.controls.fechaEntrega.setValue(orden.fechaEntrega)
+    this.ordenForm.controls.fechaRealizar.setValue(orden.fechaRealizar)
+    this.ordenForm.controls.maquina_cod.setValue(orden.maquina.maquina_cod)
+    this.ordenForm.controls.observaciones.setValue(orden.observaciones)
+    this.ordenForm.controls.ordenTerciarizacion.setValue(orden.ordenTerciarizacion)
+    this.ordenForm.controls.pedidoMateriales.setValue(orden.pedidoMateriales)
+    this.ordenForm.controls.priodidad_cod.setValue(orden.priodidad.prioridad_cod)
+    this.ordenForm.controls.responsable_cod.setValue(orden.responsable_cod)
+    this.ordenForm.controls.tarea.setValue(orden.tarea)
+    this.ordenForm.controls.tipo_cod.setValue(orden.tipo_cod)
+  }
+  getOrdenes(){
+    this.OrdenestrabajoService.getAllOrdenes().subscribe(
+      (data: any)  => { // Success
+        this.dataSourceOrdenes = data;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+  getUsuarios(){
+    this.UserService.getUsers().subscribe(
+
+      (data: any)  => { // Success
+        this.dataSourceUsers = data;
+      },
+      (error) => {
+        console.error(error);
+      }
+
+    );
+  }
+  getMaquinas(){
+    this.MaquinaService.getMaquinas().subscribe(
+
+      (data: any)  => { // Success
+        this.dataSourceMachines = data;
+      },
+      (error) => {
+        console.error(error);
+      }
+
+    );
+  }
+  getPrioridades(){
+        this.PrioridadesService.getPrioridades().subscribe(
+      (data: any) => {
+        this.dataSourcePrioridades = data;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+  getTipos(){
+    this.TipoService.getTipos().subscribe(
+      (data: any) => {
+        this.dataSourceTipos = data;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+  resetForm() {
+        this.ordenForm.reset();
+      }
+
+  saveForm() {
+        if (this.mode === 'add') {
+          this.OrdenestrabajoService.postOrder(this.ordenForm).subscribe(
+            order => alert("Se ha creado la orden nro: " + order.ordentrabajo_cod)
+          );
+        } else {
+          this.OrdenestrabajoService.updateOrder(this.ordenId, this.ordenForm).subscribe(
+            order => {
+              console.log(order);
+            });
+        }
+        this.router.navigate(['main/ordenes'])
+
+
+  }
   createFormGroup(){
     return new FormGroup({
       encargo_cod: new FormControl(''),
@@ -66,105 +165,4 @@ export class FormComponent implements OnInit {
 
     })
   }
-
-  ngOnInit(): void {
-
-
-    // this.PlantaService.getPlantas().subscribe(
-
-    //   (data: any)  => { // Success
-    //     this.dataSourcePlants = data;
-    //     console.log(this.dataSourcePlants);
-    //   },
-    //   (error) => {
-    //     console.error(error);
-    //   }
-
-    // );
-
-
-    this.MaquinaService.getMaquinas().subscribe(
-
-      (data: any)  => { // Success
-        this.dataSourceMachines = data;
-        console.log(this.dataSourceMachines);
-      },
-      (error) => {
-        console.error(error);
-      }
-
-    );
-
-    this.PrioridadesService.getPrioridades().subscribe(
-      (data: any) => {
-        this.dataSourcePrioridades = data;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-
-    this.TipoService.getTipos().subscribe(
-      (data: any) => {
-        this.dataSourceTipos = data;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-
-    // this.SectorService.getSectores().subscribe(
-
-    //   (data: any)  => { // Success
-    //     this.sectors = data;
-    //     this.dataSourceSectors = this.sectors;
-    //     console.log(this.dataSourceSectors);
-    //   },
-    //   (error) => {
-    //     console.error(error);
-    //   }
-
-    // );
-
-    this.UserService.getUsers().subscribe(
-
-      (data: any)  => { // Success
-        this.dataSourceUsers = data;
-        console.log(this.dataSourceUsers);
-      },
-      (error) => {
-        console.error(error);
-      }
-
-    );
-
-
-    this.OrdenestrabajoService.getAllOrdenes().subscribe(
-      (data: any)  => { // Success
-        this.dataSourceOrdenes = data;
-        console.log(this.dataSourceOrdenes);
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-
-
-  }
-
-  resetForm() {
-        this.ordenForm.reset();
-      }
-
-  saveForm() {
-        console.log(this.ordenForm.value);
-        this.OrdenestrabajoService.postOrder(this.ordenForm).subscribe(
-          order => alert("Se ha creado la orden nro: " + order.ordentrabajo_cod)
-        );
-        this.router.navigate(['main/ordenes'])
-
-
-  }
-
-
 }

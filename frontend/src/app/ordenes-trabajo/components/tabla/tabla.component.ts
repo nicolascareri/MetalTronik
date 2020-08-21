@@ -11,6 +11,7 @@ import {UserService} from '../../../usuarios/services/user.service';
 import {MaquinaService} from '../../../maquina/services/maquina.service';
 import {PrioridadesService} from '../../../prioridad/services/prioridades.service';
 import {TipoService} from '../../../tipo/services/tipo.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -64,7 +65,8 @@ export class TablaOrdenesComponent implements OnInit {
               private MaquinaService: MaquinaService,
               private PlantaService: PlantaService,
               private PrioridadesService: PrioridadesService,
-              private TiposService: TipoService
+              private TiposService: TipoService,
+              private router: Router
   )
   {
     this.form = this.createFormGroup();
@@ -210,11 +212,8 @@ export class TablaOrdenesComponent implements OnInit {
   }
 
 
-  openModal(ordenes){
-    let modal = document.getElementById("myModal");
-    modal.style.display = "block";
-    this.originalOrder = ordenes;
-    this.setOriginalValues(this.originalOrder);
+  openForm(ordenId){
+    this.router.navigate(['main/ordenes/form/'+ordenId]);
   }
 
   closeModal(){
