@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class ButtonComponent implements OnInit {
   constructor() { }
 
 
-  
+
   ngOnInit(): void {
 
 

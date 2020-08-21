@@ -1,29 +1,25 @@
 <div [ngSwitch]="type" class="input__container" [ngClass]="{'--invalid': isInvalid(),'--comment': myComments}">
 
     <input *ngSwitchCase="'input'" class="input__text" [maxlength]="maxlength" [placeholder]="placeholder"
-        [type]="'input'" [id]="name" [formControl]="control"
-        (focusout)="checkWhitespaces()">
+        [type]="'input'" [id]="name" [formControl]="control" (focusout)="checkWhitespaces()">
 
     <input *ngSwitchCase="'onlyNumber'" class="input__text" [maxlength]="maxlength" [placeholder]="placeholder"
-        [type]="'number'" pattern="\d*" [id]="name"
-        [formControl]="control">
+        [type]="'number'" pattern="\d*" [id]="name" [formControl]="control">
 
     <input *ngSwitchCase="'float-2'" class="input__text" [maxlength]="maxlength" [placeholder]="placeholder"
-        [type]="'number'" step=".01" [id]="name"
-        [formControl]="control">
+        [type]="'number'" step=".01" [id]="name" [formControl]="control">
 
     <input *ngSwitchCase="'tel'" class="input__text" [maxlength]="maxlength" [placeholder]="placeholder" [type]="'text'"
         [id]="name" [formControl]="control">
 
     <input *ngSwitchCase="'password'" class="input__text" [maxlength]="maxlength" [placeholder]="placeholder"
-        [type]="'password'" [id]="name"  [formControl]="control">
+        [type]="'password'" [id]="name" [formControl]="control">
 
     <input *ngSwitchCase="'email'" class="input__text" [maxlength]="maxlength" [placeholder]="placeholder"
-        [type]="'email'" [id]="name"  [formControl]="control">
+        [type]="'email'" [id]="name" [formControl]="control">
 
     <input *ngSwitchCase="'prefijo'" class="input__text input__text--uppercase" [maxlength]="'2'"
-        [placeholder]="placeholder" [type]="'text'" pattern="[a-zA-Z]+" [id]="name" 
-         [formControl]="control">
+        [placeholder]="placeholder" [type]="'text'" pattern="[a-zA-Z]+" [id]="name" [formControl]="control">
 
     <textarea *ngSwitchCase="'textarea'" class="input__textarea" [maxlength]="maxlength" [name]="name" [rows]="rows"
         cols="50" [placeholder]="placeholder" [formControl]="control"></textarea>

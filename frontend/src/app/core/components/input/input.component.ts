@@ -9,7 +9,7 @@ import { Subject } from 'rxjs';
 })
 export class InputComponent implements OnInit {
 
-  
+
   @Input() label = '';
   @Input() placeholder = '';
   @Input() name = '';
@@ -51,9 +51,9 @@ export class InputComponent implements OnInit {
   ) { }
 
 
-//   ngAfterViewChecked(): void {
-//     this.cdRef.detectChanges();
-//  }
+  //   ngAfterViewChecked(): void {
+  //     this.cdRef.detectChanges();
+  //  }
 
   ngOnInit() {
     this.showLabel = this.name !== '';
@@ -199,11 +199,11 @@ export class InputComponent implements OnInit {
   checkWhitespaces() {
     const inputInstance = this.control.value;
     if (inputInstance !== null) {
-    const withOutSpaces = inputInstance.trim();
-    const transf = withOutSpaces.split(/[ ]+/);
-    const finalInput = transf.join(' ');
-    this.control.setValue(finalInput);
-  }
+      const withOutSpaces = inputInstance.trim();
+      const transf = withOutSpaces.split(/[ ]+/);
+      const finalInput = transf.join(' ');
+      this.control.setValue(finalInput);
+    }
   }
 
 
