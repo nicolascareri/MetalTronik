@@ -1,7 +1,7 @@
 @import "../../../../../assets/themes";
 
 @mixin header {
-    background-color: $primary-ligthblue;
+    background-color: $primary-teal;
     color :$white;
     display: flex;
     align-items: center;
@@ -12,7 +12,6 @@ $bg-striped-ligth: $white;
     //do not remove this important
     display: none !important;
 }
-
 .table {
     margin: 0 $margin-left;
     &__header {
@@ -27,6 +26,7 @@ $bg-striped-ligth: $white;
             height: 50px;
         }
         th {
+            border: none;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -35,7 +35,7 @@ $bg-striped-ligth: $white;
             text-shadow: 1px 1px #193c6685;
             font-size: 16px;
             font-weight: 400;
-            height: 77%;
+            height: 90%;
         }
         &__select {
             display: flex;
@@ -66,8 +66,7 @@ $bg-striped-ligth: $white;
 
             }
             &__icon {
-                // TODO: temporary color 
-                background: $extreme-ligthblue;
+                background: $extreme-teal;
                 border-radius: 0 6px 6px 0;
                 user-select: none;
                 cursor: pointer;
@@ -106,7 +105,7 @@ $bg-striped-ligth: $white;
         &__clickeable {
             cursor: pointer;
             &:hover {
-                background: #0080c4;
+                background: #008B8B;
                 color: $white;
                 & td.clickeable-column {
                     color: $white;
@@ -118,6 +117,7 @@ $bg-striped-ligth: $white;
             }
         }
         td {
+            border-top: none !important;
             min-width: 20px;
             &.clickeable-column {
                 cursor: pointer;

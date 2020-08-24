@@ -28,78 +28,107 @@ export class TablaOrdenesComponent implements OnInit {
   public columnsToDisplay: any[] = [
     {
       id: 1,
-      name:'ordentrabajo',
-      width: '10%'
+      property:'ordentrabajo',
+      name: 'Nro. Orden de Trabajo',
+      sort: 'up',
+      filterValue: '',
+      width: '15%'
     }, 
     {
       id: 2,
-      name:'maquina',
-      width: '10%'
+      property:'maquina',
+      name: 'Codigo de Maquina',
+      sort: '',
+      filterValue: '',
+      width: '14%'
     },
     {
       id: 3,
-      name:'planta',
-      width: '10%'
+      property:'planta',
+      name: 'Planta',
+      sort: '',
+      filterValue: '',
+      width: '15%'
     }, 
     {
       id: 4,
-      name:'sector',
-      width: '10%'
+      property:'sector',
+      name: 'Sector',
+      sort: '',
+      filterValue: '',
+      width: '15%'
     },
     {
       id: 5,
-      name:'pedidoMateriales',
-      width: '10%'
+      property:'tarea',
+      name: 'Tarea',
+      sort: '',
+      filterValue: '',
+      width: '15%'
     }, 
     {
       id: 6,
-      name:'tarea',
-      width: '10%'
+      property:'tipo',
+      name: 'Tipo',
+      sort: '',
+      filterValue: '',
+      width: '15%'
     }, 
     {
       id: 7,
-      name:'tipo',
-      width: '10%'
+      property:'prioridad',
+      name: 'Prioridad',
+      sort: '',
+      filterValue: '',
+      width: '15%'
     }, 
     {
       id: 8,
-      name:'priodidad',
-      width: '10%'
+      property:'fechaEntrega',
+      name: 'Fecha Entrega',
+      sort: '',
+      filterValue: '',
+      width: '350px'
     }, 
     {
       id: 9,
-      name:'fechaEntrega',
-      width: '10%'
-    }, 
-    {
-      id: 10,
-      name:'fechaRealizar',
-      width: '10%'
+      property:'fechaRealizar',
+      name: 'Fecha Realizar',
+      sort: '',
+      filterValue: '',
+      width: '350px'
     },
     {
+      id: 10,
+      property:'encargo',
+      name: 'Encargó',
+      sort: '',
+      filterValue: '',
+      width: '20%'
+    }, 
+    {
       id: 11,
-      name:'encargo',
-      width: '10%'
+      property:'responsable',
+      name: 'Responsable',
+      sort: '',
+      filterValue: '',
+      width: '20%'
     }, 
     {
       id: 12,
-      name:'responsable',
-      width: '10%'
-    }, 
+      property:'estado',
+      name: 'Estado',
+      sort: '',
+      filterValue: '',
+      width: '20%'
+    },  
     {
       id: 13,
-      name:'estado',
-      width: '10%'
-    }, 
-    {
-      id: 14,
-      name:'observaciones',
-      width: '10%'
-    }, 
-    {
-      id: 15,
-      name:'ordenTerciarizacion',
-      width: '10%'
+      property:'ordenTerciarizacion',
+      name: 'Nro. Orden de Terciarizacion',
+      sort: '',
+      filterValue: '',
+      width: '20%'
     }
   ];
 
@@ -142,12 +171,16 @@ export class TablaOrdenesComponent implements OnInit {
     this.transformToEdit(this.dataSourceOrdenes);
   }
 
+  clickedRow(row){
+    console.log(row);
+  }
+
   getOrdenes(){
     this.OrdenestrabajoService.getAllOrdenes()
     .pipe(first())
     .subscribe(
       (data: any) => {
-        this.dataSourceOrdenes = this.coreService.replaceFormat(data, ['maquina', 'encargo', 'responsable', 'prioridad', 'tipo', 'fechaEntrega', 'fechaRealizar']);
+        this.dataSourceOrdenes = this.coreService.replaceFormat(data, ['maquina', 'encargo', 'responsable', 'prioridad', 'tipo', 'fechaEntrega', 'fechaRealizar', 'ordentrabajo', 'estado']);
       },
       (error) => {
         console.error(error);

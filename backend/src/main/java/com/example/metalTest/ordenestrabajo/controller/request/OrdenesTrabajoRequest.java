@@ -25,7 +25,7 @@ public class OrdenesTrabajoRequest {
     private String tarea;
     @NotNull
     @ValidEntity(repository = PrioridadesRepository.class)
-    private int priodidad_cod;
+    private int prioridad_cod;
     @NotNull
     @ValidEntity(repository = TipoRepository.class)
     private int tipo_cod;

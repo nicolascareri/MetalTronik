@@ -12,7 +12,7 @@
 
 <div class="table-responsive">
 
-  <app-tabla [ds]='dataSourceOrdenes' [columns]='columnsToDisplay'></app-tabla>
+  <app-tabla class="table" [ds]='dataSourceOrdenes' [columns]='columnsToDisplay' [width]="'90%'" (clickRow)="clickedRow($event)"></app-tabla>
 
   <!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
