@@ -69,7 +69,13 @@ export class FormComponent implements OnInit {
     this.MaquinaService.getMaquinas().subscribe(
 
       (data: any)  => { // Success
-        this.dataSourceMachines = data;
+        this.dataSourceMachines = data.map(
+          val => { return {
+              "id": val.id,
+              "descripcion": val.maquina_cod
+            }
+          }
+        );
         console.log(this.dataSourceMachines);
       },
       (error) => {
@@ -95,7 +101,13 @@ export class FormComponent implements OnInit {
 
     this.TipoService.getTipos().subscribe(
       (data: any) => {
-        this.dataSourceTipos = data;
+        this.dataSourceTipos = data.map(
+          val => { return {
+              "id": val.id,
+              "descripcion": val.nombre
+            }
+          }
+        );
       },
       (error) => {
         console.error(error);
@@ -118,7 +130,13 @@ export class FormComponent implements OnInit {
     this.UserService.getUsers().subscribe(
 
       (data: any)  => { // Success
-        this.dataSourceUsers = data;
+        this.dataSourceUsers = data.map(
+          val => { return {
+              "id": val.id,
+              "descripcion": val.nombre + " " + val.apellido
+            }
+          }
+        );
         console.log(this.dataSourceUsers);
       },
       (error) => {

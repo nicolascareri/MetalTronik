@@ -1,7 +1,9 @@
 <div [ngSwitch]="type" class="input__container" [ngClass]="{'--invalid': isInvalid(),'--comment': myComments}">
 
+    <input *ngSwitchCase="'datetime-local'" class="date"  [type]="'datetime-local'" [formControl]="control"  [placeholder]="placeholder">
+
     <input *ngSwitchCase="'input'" class="input__text" [maxlength]="maxlength" [placeholder]="placeholder"
-        [type]="'input'" [id]="name" [formControl]="control" (focusout)="checkWhitespaces()">
+        [type]="'input'" [id]="name" [formControl]="control">
 
     <input *ngSwitchCase="'onlyNumber'" class="input__text" [maxlength]="maxlength" [placeholder]="placeholder"
         [type]="'number'" pattern="\d*" [id]="name" [formControl]="control">

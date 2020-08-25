@@ -1,14 +1,18 @@
 <div class="form-container">
 
-    <h1>Registrar Sector</h1> 
-  
-    <form [formGroup]="form" (ngSubmit)="saveForm()">
+  <h1>Registrar Sector</h1>
 
-        <label for="descripcion">Nombre del sector</label>
-        <input type="text" formControlName="descripcion"  placeholder="Ingrese nombre del sector">      
-       
-      
-      <app-button [name]="['Registrar sector']" type="submit"></app-button>
-    </form>
-   
-  </div>
+  <form [formGroup]="form" (ngSubmit)="saveForm()">
+
+    <label for="descripcion">Nombre del sector</label>
+    <app-input [type]="'input'" 
+               [parentForm]="form"  
+               [control]="form.controls.descripcion"
+               [placeholder]="'Ingrese nombre del sector'">
+    </app-input>
+
+
+    <app-button [name]="['Registrar sector']" type="submit"></app-button>
+  </form>
+
+</div>

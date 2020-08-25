@@ -1,57 +1,119 @@
-
 <div class="form-container">
 
-    <h1>Nuevo usuario</h1> 
-  
-    <form [formGroup]="userForm" (ngSubmit)="saveForm()">
-      
-        <label for="nombre">Nombre</label>
-        <input type="text" formControlName="nombre"  placeholder="Nombre del usuario">
+  <h1>Nuevo usuario</h1>
 
-        <label for="apellido">Apellido</label>
-        <input type="text" formControlName="apellido"  placeholder="Apellido del usuario">
+  <form [formGroup]="userForm" (ngSubmit)="saveForm()">
 
-        <label for="dni">Dni</label>
-        <input type="number" formControlName="dni"  placeholder="DNI del usuario">
+    <label for="nombre">Nombre</label>
+    <app-input [type]="'input'"
+               [parentForm]="userForm" 
+               [control]="userForm.controls.nombre"
+               [placeholder]="'Nombre del usuario'">
+    </app-input>
 
-        <label for="fnacimiento">Fecha de nacimiento</label>
-        <input type="date" formControlName="fnacimiento"  placeholder="Fecha de nacimiento">
+    <label for="apellido">Apellido</label>
+    <app-input [type]="'input'"
+               [parentForm]="userForm" 
+               [control]="userForm.controls.apellido"
+               [placeholder]="'Apellido del usuario'">
+    </app-input>
 
-        <label for="cargo">Cargo</label>
-        <input type="text" formControlName="cargo"  placeholder="Cargo del empleado">
+    <label for="dni">Dni</label>
+    <app-input [type]="'onlyNumber'"
+               [parentForm]="userForm" 
+               [control]="userForm.controls.dni"
+               [placeholder]="'DNI del usuario'">
+    </app-input>
 
-        <label for="legajo">Legajo</label>
-        <input type="number" formControlName="legajo"  placeholder="Legajo del empleado">
+    <label for="fnacimiento">Fecha de nacimiento</label>
+    <app-input [type]="'datetime-local'" 
+               [parentForm]="userForm"  
+               [control]="userForm.controls.fnacimiento"
+               [placeholder]="'Fecha de nacimiento'">
+    </app-input>
 
-        <label for="nombre_usuario">Nombre de usuario</label>
-        <input type="text" formControlName="nombre_usuario"  placeholder="Nombre de usuario para el sistema">
+    <label for="cargo">Cargo</label>
+    <app-input [type]="'input'"
+               [parentForm]="userForm" 
+               [control]="userForm.controls.cargo"
+               [placeholder]="'Cargo del empleado'">
+    </app-input>
+    
 
-        <label for="contrasenia">Contraseña de usuario</label>
-        <input type="text" formControlName="contrasenia"  placeholder="Contraseña para el sistema">
+    <label for="legajo">Legajo</label>
+    <app-input [type]="'onlyNumber'"
+               [parentForm]="userForm" 
+               [control]="userForm.controls.legajo"
+               [placeholder]="'Legajo del empleado'">
+    </app-input>
+    
+    <label for="nombre_usuario">Nombre de usuario</label>
+    <app-input [type]="'onlyNumber'"
+               [parentForm]="userForm" 
+               [control]="userForm.controls.nombre_usuario"
+               [placeholder]="'Nombre de usuario para el sistema'">
+    </app-input>
+    
 
-        <label for="ciudad">Ciudad</label>
-        <input type="text" formControlName="ciudad"  placeholder="Ciudad natal">
+    <label for="contrasenia">Contraseña de usuario</label>
+    <app-input [type]="'onlyNumber'"
+               [parentForm]="userForm" 
+               [control]="userForm.controls.contrasenia"
+               [placeholder]="'Contraseña para el sistema'">
+    </app-input>
+    
 
-        <label for="pais">Pais</label>
-        <input type="text" formControlName="pais"  placeholder="Pais natal">
+    <label for="ciudad">Ciudad</label>
+    <app-input [type]="'onlyNumber'"
+               [parentForm]="userForm" 
+               [control]="userForm.controls.ciudad"
+               [placeholder]="'Ciudad natal'">
+    </app-input>
+    
 
-        <label for="provincia">Provincia</label>
-        <input type="text" formControlName="provincia"  placeholder="Provincia">
 
-        <label for="codigo_postal">Codigo postal</label>
-        <input type="text" formControlName="codigo_postal"  placeholder="Codigo postal">
+    <label for="pais">Pais</label>
+    <app-input [type]="'onlyNumber'"
+               [parentForm]="userForm" 
+               [control]="userForm.controls.pais"
+               [placeholder]="'Pais natal'">
+    </app-input>
+    
 
-        <label for="direccion">Direccion</label>
-        <input type="text" formControlName="direccion"  placeholder="Direccion de residencia">
+    <label for="provincia">Provincia</label>
+    <app-input [type]="'onlyNumber'"
+               [parentForm]="userForm" 
+               [control]="userForm.controls.provincia"
+               [placeholder]="'provincia'">
+    </app-input>
+    
 
-        <label for="correo_electronico">Correo electronico</label>
-        <input type="email" formControlName="correo_electronico"  placeholder="Cuenta de correo">
-      
-  
-      
-       
-   
-      <app-button [name]="['Registrar Usuario']" type="submit"></app-button>
-    </form>
-   
-  </div>
+    <label for="codigo_postal">Codigo postal</label>
+    <app-input [type]="'onlyNumber'"
+               [parentForm]="userForm" 
+               [control]="userForm.controls.codigo_postal"
+               [placeholder]="'Codigo postal'">
+    </app-input>
+    
+
+    <label for="direccion">Direccion</label>
+    <app-input [type]="'onlyNumber'"
+               [parentForm]="userForm" 
+               [control]="userForm.controls.direccion"
+               [placeholder]="'Direccion de residencia'">
+    </app-input>
+    
+
+    <label for="correo_electronico">Correo electronico</label>
+    <app-input [type]="'onlyNumber'"
+               [parentForm]="userForm" 
+               [control]="userForm.controls.correo_electronico"
+               [placeholder]="'Cuenta de correo'">
+    </app-input>
+    
+
+
+    <app-button [name]="['Registrar Usuario']" type="submit"></app-button>
+  </form>
+
+</div>
