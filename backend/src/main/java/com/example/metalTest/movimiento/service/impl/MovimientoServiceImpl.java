@@ -46,18 +46,18 @@ public class MovimientoServiceImpl implements MovimientoService {
         movimiento.setRepuesto(repuesto);
         int precio = repuesto.getPrecio();
         int existencia = repuesto.getExistencia();
-        if (movimiento.getTipoMovimiento() == TipoMovimiento.ENTRADA.getValue()){
-            repuesto.setPrecio(precio + movimiento.getPrecio());
-            repuesto.setExistencia(existencia + movimiento.getCantidad());
-            //setear proveedor cuando sea entidad
-        }else if (movimiento.getTipoMovimiento() == TipoMovimiento.SALIDA.getValue()){
-            repuesto.setExistencia(existencia - movimiento.getCantidad());
-            movimiento.setSolicitante(usuarioRepository.findById(movimientoRequest.getSolicitante_cod()).get());
-            movimiento.setSector(sectorRepository.findById(movimientoRequest.getSector_cod()).get());
-        }
-        else {
-            throw new ValidateFieldException("El tipo de movimiento no existe", "tipoMovimiento",String.valueOf(movimiento.getTipoMovimiento()));
-        }
+//        if (movimiento.getTipoMovimiento() == TipoMovimiento.ENTRADA.getValue()){
+//            repuesto.setPrecio(precio + movimiento.getPrecio());
+//            repuesto.setExistencia(existencia + movimiento.getCantidad());
+//            //setear proveedor cuando sea entidad
+//        }else if (movimiento.getTipoMovimiento() == TipoMovimiento.SALIDA.getValue()){
+//            repuesto.setExistencia(existencia - movimiento.getCantidad());
+//            movimiento.setSolicitante(usuarioRepository.findById(movimientoRequest.getSolicitante_cod()).get());
+//            movimiento.setSector(sectorRepository.findById(movimientoRequest.getSector_cod()).get());
+//        }
+//        else {
+//            throw new ValidateFieldException("El tipo de movimiento no existe", "tipoMovimiento",String.valueOf(movimiento.getTipoMovimiento()));
+//        }
         return movimientoRepository.save(movimiento);
     }
 
@@ -70,9 +70,10 @@ public class MovimientoServiceImpl implements MovimientoService {
 
     @Override
     public List<Movimiento> getByTipo(Short tipo) throws ValidateFieldException {
-        if (!tipo.equals(TipoMovimiento.ENTRADA.getValue()) && !tipo.equals(TipoMovimiento.SALIDA.getValue())){
-            throw new ValidateFieldException("El tipo de movimiento no existe", "tipoMovimiento",String.valueOf(tipo));
-        }
-        return movimientoRepository.findByTipo(tipo);
+//        if (!tipo.equals(TipoMovimiento.ENTRADA.getValue()) && !tipo.equals(TipoMovimiento.SALIDA.getValue())){
+//            throw new ValidateFieldException("El tipo de movimiento no existe", "tipoMovimiento",String.valueOf(tipo));
+//        }
+//        return movimientoRepository.findByTipo(tipo);
+        return null;
     }
 }

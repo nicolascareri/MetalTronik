@@ -39,7 +39,6 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
     @Autowired
     TipoRepository tipoRepository;
 
-
     @Override
     public List<OrdenesTrabajo> getAll() {
         return ordenesTrabajoRepository.findAll();
