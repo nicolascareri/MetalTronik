@@ -15,20 +15,7 @@ export class FormMaquinaComponent implements OnInit {
   dataSourcePlants: any;
   dataSourceSectors: any;
 
-  // createFormGroup() {
-  //   return new FormGroup({
-  //     maquina_cod: new FormControl(''),
-  //     nro_serie: new FormControl(''),
-  //     modelo: new FormControl(''),
-  //     equipo: new FormControl(''),
-  //     datos_tecnicos: new FormControl(''),
-  //     descripcion: new FormControl(''),
-  //     planta_cod: new FormControl(''),
-  //     sector_cod: new FormControl(''),
-  //     estado: new FormControl(30)
-  //   })
-  // }
-
+  
   machinesForm: FormGroup = new FormGroup({
     maquina_cod: new FormControl(''),
     nro_serie: new FormControl(''),

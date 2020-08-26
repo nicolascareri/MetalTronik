@@ -3,16 +3,9 @@
 
 .data {
     display: block;
-    //width: 95vw;
-    //overflow: auto;
     margin: 35px;
   
     .table {
-        //width: 100vw;
-        //max-width: 100%;
-        //overflow: auto;
-        //margin-bottom: 10px;
-        //display: table;
         border-collapse: collapse;
         background-color: rgb(238, 238, 238);
     }
@@ -27,7 +20,6 @@
     }
   
   table th{
-    //padding: 12px;
     font-weight: bolder;
     font-size: 15px;
     border: none;

@@ -1,9 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {MatTableDataSource} from '@angular/material/table';
-
 import {ESTADO_ORDEN, ESTADOTABLE} from 'src/app/core/constants/constants';
-
 import {OrdenestrabajoService} from '../../services/ordenestrabajo.service';
 import {PlantaService} from '../../../planta/services/planta.service';
 import {SectorService} from '../../../sector/services/sector.service';
@@ -22,23 +20,13 @@ import {TipoService} from '../../../tipo/services/tipo.service';
 
 export class TablaOrdenesComponent implements OnInit {
 
-
-
-
-  // ordenes: any = [];
-
   columnsToDisplay: any = ['edit', 'ordentrabajo_cod', 'maquina.maquina_cod', 'maquina.planta.nombre', 'maquina.sector.descripcion',
     'pedidoMateriales', 'tarea', 'priodidad.nombre', 'tipo.nombre', 'fechaEntrega', 'fechaRealizar',
     'encargo.nombre', 'responsable.nombre', 'estado', 'observaciones', 'ordenTerciarizacion'];
 
-  // plantas: any = PLANTATABLE;
-  // tiposTable: any = TIPOTABLE;
-  // prioridadesTable: any = PRIORIDADESTABLE;
+  
   estadosTable: any = ESTADOTABLE;
   estadosForm: any = ESTADO_ORDEN;
-  // prioridadesForm: any = PRIORIDADES;
-  // tipoForm: any = TIPO;
-
   ordenForm: FormGroup;
 
 
@@ -49,7 +37,6 @@ export class TablaOrdenesComponent implements OnInit {
   dataSourcePlants: any;
   dataSourcePrioridades: any;
   dataSourceTipos: any;
-
   DataOrderToEdit: any;
 
 
@@ -77,10 +64,8 @@ export class TablaOrdenesComponent implements OnInit {
       fechaRealizar: new FormControl(''),
       maquina_cod: new FormControl(''),
       pedidoMateriales: new FormControl(''),
-      // planta: new FormControl(''),
       priodidad_cod: new FormControl(''),
       responsable_cod: new FormControl(''),
-      // sector: new FormControl(''),
       tarea: new FormControl(''),
       observaciones: new FormControl(''),
       ordenTerciarizacion : new FormControl(''),

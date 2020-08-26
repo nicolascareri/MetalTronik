@@ -26,9 +26,6 @@
     <textarea *ngSwitchCase="'textarea'" class="input__textarea" [maxlength]="maxlength" [name]="name" [rows]="rows"
         cols="50" [placeholder]="placeholder" [formControl]="control"></textarea>
 
-    <!-- <app-trumbowyg [ngClass]="{'invalid': isInvalid()}" [initialContent]="control.value" [update]="update$"
-        (savedContent)="formatChange($event)" *ngSwitchCase="'format'"></app-trumbowyg> -->
-
     <div *ngSwitchCase="'radiobutton'" [ngClass]="{'input__radio--disable': control.disabled}" class="input__radio">
         <label *ngFor="let option of options" for="option">
             <input type="radio" class="material_radio" [formControl]="control" [name]="name" [value]="option.value"
@@ -70,74 +67,9 @@
         </div>
     </div>
 
-    <!-- <app-input-search *ngSwitchCase="'input-search'" [label]="label" [placeholder]="placeholder" [name]="name"
-        [items]="options" [isNumberInput]="typeInputFilter" [parentForm]="parentForm" [myControl]="control"
-        [isDisable]="disable" (valueChange)="onValueChange($event)" (selectedItem)="selected($event)">
-    </app-input-search> -->
-
-    <!-- <app-date-picker *ngSwitchCase="'date-picker'" [label]="label" [placeholder]="placeholder" [name]="name"
-        [parentForm]="parentForm" [myControl]="control" [isDisabled]="disable"></app-date-picker>
-
-    <app-year-picker *ngSwitchCase="'year-picker'" [label]="label" [placeholder]="placeholder" [name]="name"
-        [parentForm]="parentForm" [myControl]="control"></app-year-picker>
-
-    <app-date-picker-monthyear *ngSwitchCase="'yearmonth-picker'" [label]="label" [placeholder]="placeholder"
-        [name]="name" [parentForm]="parentForm" [myControl]="control"></app-date-picker-monthyear> -->
-
-    <!-- <app-input-search-filter *ngSwitchCase="'input-search-filter'" [placeholder]="placeholder" [myControl]="control">
-    </app-input-search-filter> -->
-
     <i matTooltip="Este campo tiene comentarios" *ngIf=" commentMode == 1 && myComments"
         class="material-icons input__icon__view-comment">priority_high</i>
     <i matTooltip="Borrar comentario" *ngIf="commentMode >= 2 && myComments"
         class="material-icons input__icon__del-comment" (click)="deleteComment()">close</i>
 
 </div>
-
-<!-- <div class="message" *ngIf="isInvalid() || myComments">
-    <div [ngClass]="{'input__comment--show': showModalComments || ( commentMode === 3 && myComments)}"
-        class="input__comment">
-        {{myComments}}
-    </div>
-    <div>
-        <div *ngIf="errorType?.required == true">
-            Este campo es requerido
-        </div>
-        <div *ngIf="errorType?.unique == true">
-           duplicado
-        </div>
-        <div *ngIf="errorType?.maxlength">
-            largo maximo
-        </div>
-        <div *ngIf="errorType?.pattern">
-            {{'ERROR.EMAIL_NOT_VALID' | translate}}
-        </div>
-        <div *ngIf="errorType?.minlength">
-            {{'ERROR.MINLENGTH' | translate}} {{errorType?.minlength.requiredLength + ' '}} caracteres
-        </div>
-        <div *ngIf="errorType?.cuitInvalido">
-            {{'ERROR.CUIT_INVALIDO' | translate}}
-        </div>
-        <div *ngIf="errorType?.reverseDate">
-            {{'ERROR.REVERSE_DATE' | translate}}
-        </div>
-        <div *ngIf="errorType?.minorDate">
-            {{'ERROR.MINOR_DATE' | translate}}
-        </div>
-        <div *ngIf="errorType?.beforeToday">
-            {{'ERROR.OLD_DATE' | translate}}
-        </div>
-        <div *ngIf="errorType?.difusion">
-            {{'ERROR.DIFUSION' | translate}}
-        </div>
-        <div *ngIf="errorType?.cierre">
-            {{'ERROR.CIERRE' | translate}}
-        </div>
-        <div *ngIf="errorType?.max">
-            {{'ERROR.MAX' | translate}} {{errorType?.max.max + ' '}}
-        </div>
-        <div *ngIf="errorType?.min">
-            {{'ERROR.MIN' | translate}} {{errorType?.min.min + ' '}}
-        </div>
-    </div>
-</div> -->

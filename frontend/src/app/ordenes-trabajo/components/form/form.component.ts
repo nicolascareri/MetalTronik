@@ -1,13 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-
 import {OrdenestrabajoService} from '../../services/ordenestrabajo.service';
-// import { SectorService } from "../../services/sector.service";
 import {MaquinaService} from '../../../maquina/services/maquina.service';
 import {UserService} from '../../../usuarios/services/user.service';
 import {PrioridadesService} from '../../../prioridad/services/prioridades.service';
 import {TipoService} from '../../../tipo/services/tipo.service';
-// import { PlantaService } from "../../services/planta.service";
 import {Router} from '@angular/router';
 
 @Component({
@@ -20,26 +17,14 @@ export class FormComponent implements OnInit {
 
   constructor(private OrdenestrabajoService: OrdenestrabajoService,
               private UserService: UserService,
-              // private SectorService: SectorService,
               private MaquinaService: MaquinaService,
-              // private PlantaService: PlantaService,
               private PrioridadesService: PrioridadesService,
               private TipoService: TipoService,
               private router: Router) {
   }
 
 
-  // plantas: any = PLANTAS;
-  // prioridades: any = PRIORIDADES;
-  // estados: any = ESTADO_ORDEN;
-  // tipo: any = TIPO;
-
   ordenForm: FormGroup;
-  // users: any;
-  // orders: any;
-  // sectors: any;
-  // machines: any;
-  // plants: any;
   dataSourceUsers: any;
   dataSourceOrdenes: any;
   dataSourceSectors: any;
@@ -53,22 +38,9 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
 
     this.ordenForm = this.createFormGroup();
-    // this.PlantaService.getPlantas().subscribe(
-
-    //   (data: any)  => { // Success
-    //     this.dataSourcePlants = data;
-    //     console.log(this.dataSourcePlants);
-    //   },
-    //   (error) => {
-    //     console.error(error);
-    //   }
-
-    // );
-
-
     this.MaquinaService.getMaquinas().subscribe(
 
-      (data: any)  => { // Success
+      (data: any)  => { 
         this.dataSourceMachines = data.map(
           val => { return {
               "id": val.id,
@@ -114,22 +86,10 @@ export class FormComponent implements OnInit {
       }
     );
 
-    // this.SectorService.getSectores().subscribe(
-
-    //   (data: any)  => { // Success
-    //     this.sectors = data;
-    //     this.dataSourceSectors = this.sectors;
-    //     console.log(this.dataSourceSectors);
-    //   },
-    //   (error) => {
-    //     console.error(error);
-    //   }
-
-    // );
 
     this.UserService.getUsers().subscribe(
 
-      (data: any)  => { // Success
+      (data: any)  => { 
         this.dataSourceUsers = data.map(
           val => { return {
               "id": val.id,
@@ -147,7 +107,7 @@ export class FormComponent implements OnInit {
 
 
     this.OrdenestrabajoService.getAllOrdenes().subscribe(
-      (data: any)  => { // Success
+      (data: any)  => { 
         this.dataSourceOrdenes = data;
         console.log(this.dataSourceOrdenes);
       },

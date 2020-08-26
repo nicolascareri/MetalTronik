@@ -8,21 +8,11 @@
     <app-button [routerLink]="['formcorrectivo']" [name]="['Nuevo mantenimiento correctivo']"></app-button>
 
 
-    <!-- <app-edit-order [originalOrder]="ordenes"></app-edit-order> -->
-
   <div class="data">
 
 
 
     <table mat-table [dataSource]="dataSourceMantenimientosCorrectivos" class="table">
-
-      <!-- <ng-container matColumnDef="edit">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let usuario">
-          <button id="myBtn" class="edit-btn" (click)="openModal(usuario)">Editar</button>
-        </td>
-      </ng-container>  -->
-
 
         <ng-container matColumnDef="nrocorrectivo">
           <th mat-header-cell *matHeaderCellDef> Nro Correctivo </th>
