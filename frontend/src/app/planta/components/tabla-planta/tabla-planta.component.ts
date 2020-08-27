@@ -10,9 +10,19 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class TablaPlantaComponent implements OnInit {
 
-  columnsToDisplay: any = ['nombre'];
+  public columnsToDisplay: any[] = [
+    {
+      id: 1,
+      property:'nombre',
+      name: 'Nombre de la planta',
+      sort: 'up',
+      filterValue: '',
+      width: '15%'
+    }
+  ];
 
-  dataSourcePlants = new MatTableDataSource();
+
+  public dataSourcePlants;
 
   form: FormGroup;
 
@@ -58,12 +68,10 @@ export class TablaPlantaComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.filtro();
-
     this.PlantaService.getPlantas().subscribe(
 
       (data: any)  => { // Success
-        this.dataSourcePlants.data = data;
+        this.dataSourcePlants = data;
       },
       (error) => {
         console.error(error);

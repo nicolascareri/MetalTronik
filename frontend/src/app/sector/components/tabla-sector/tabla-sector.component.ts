@@ -11,9 +11,19 @@ import { fileURLToPath } from 'url';
 })
 export class TablaSectorComponent implements OnInit {
 
-  columnsToDisplay: any = ['descripcion'];
 
-  dataSourceSectors = new MatTableDataSource();
+  public columnsToDisplay: any[] = [
+    {
+      id: 1,
+      property:'descripcion',
+      name: 'Nombre del sector',
+      sort: 'up',
+      filterValue: '',
+      width: '15%'
+    }
+  ];
+
+  public dataSourceSectors;
 
   form: FormGroup;
 
@@ -59,11 +69,9 @@ export class TablaSectorComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.filtro();
-
     this.SectorService.getSectores().subscribe(
       (data: any) => {
-        this.dataSourceSectors.data = data;
+        this.dataSourceSectors = data;
         console.log(this.dataSourceSectors)
       },
       (error) => {

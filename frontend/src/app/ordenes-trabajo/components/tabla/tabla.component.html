@@ -1,18 +1,10 @@
-<!-- <div class="container-fluid">
-  <mat-form-field class="filter">
-    <mat-label style="font-weight: bold;">Filtrar</mat-label>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Material, responsable, maquina...">
-  </mat-form-field>
-
-  <app-button [routerLink]="['form']" [name]="['Nueva orden']"></app-button>
-  
-</div> -->
-
-
-
 <div class="table-responsive">
 
-  <app-tabla class="table" [ds]='dataSourceOrdenes' [columns]='columnsToDisplay' [width]="'90%'" (clickRow)="clickedRow($event)"></app-tabla>
+  <app-tabla class="table" [ds]='dataSourceOrdenes' 
+                           [columns]='columnsToDisplay' 
+                           [width]="'90%'"
+                           (clickRow)="clickedRow($event)">
+  </app-tabla>
 
   <!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 

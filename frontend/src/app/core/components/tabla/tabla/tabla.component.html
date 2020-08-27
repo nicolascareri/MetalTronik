@@ -1,25 +1,25 @@
 <table class="table" [ngStyle]="{'width': width}">
-    <thead>
-      <tr class="table__header" [ngClass]="{'table__header--tall': search,'table__header--short': !search }">
-        <th *ngFor="let header of columns" [ngStyle]="{'width': header.width}" >
-          <span class="table__header__text"> {{header.name}} </span>
-          <div *ngIf="search && !header.tooltip" class="table__header__finder">
-            <input *ngIf= "!header.tooltip" class="table__header__finder__input" type="text" placeholder="..." [value]="header.filterValue"  (change)="filter(header.property, $event.target.value)">
-            <i class="table__header__finder__icon material-icons">search</i>
+  <thead>
+    <tr class="table__header" [ngClass]="{'table__header--tall': search,'table__header--short': !search }">
+      <th *ngFor="let header of columns" [ngStyle]="{'width': header.width}">
+        <span class="table__header__text"> {{header.name}} </span>
+        <div *ngIf="search && !header.tooltip" class="table__header__finder">
+          <input *ngIf="!header.tooltip" class="table__header__finder__input" type="text" placeholder="..."
+            [value]="header.filterValue" (change)="filter(header.property, $event.target.value)">
+          <i class="table__header__finder__icon material-icons">search</i>
         </div>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="table__body" *ngFor="let row of displayData" (click)="recordSelected(row)" [ngClass]="{ 'table__body__clickeable': hasClickRowFunction }">
-        <td class="table__body__column" 
-          *ngFor="let header of columns" [ngClass]="{'hide': header?.hide, 'clickeable-column': header.action }" [ngStyle]="{'width': header.width}" >
-          {{row[header.property] || row[header.property] === 0 ? row[header.property] : '' }}
-        </td>
-      </tr>
-    </tbody>
-    <tfoot>
-    </tfoot>
-  </table>
-  
-  
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="table__body" *ngFor="let row of displayData" (click)="recordSelected(row)"
+      [ngClass]="{ 'table__body__clickeable': hasClickRowFunction }">
+      <td class="table__body__column" *ngFor="let header of columns"
+        [ngClass]="{'hide': header?.hide, 'clickeable-column': header.action }" [ngStyle]="{'width': header.width}">
+        {{row[header.property] || row[header.property] === 0 ? row[header.property] : '' }}
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+  </tfoot>
+</table>

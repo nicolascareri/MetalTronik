@@ -1,113 +1,15 @@
 <div>
 
-  <mat-form-field class="filter">
-    <mat-label style="font-weight: bold;">Filtrar</mat-label>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Material, responsable, maquina...">
-  </mat-form-field>
-
-    <app-button [routerLink]="['formcorrectivo']" [name]="['Nuevo mantenimiento correctivo']"></app-button>
-
-
-    <!-- <app-edit-order [originalOrder]="ordenes"></app-edit-order> -->
+  <app-button [routerLink]="['formcorrectivo']" [name]="['Nuevo mantenimiento correctivo']"></app-button>
 
   <div class="data">
 
-
-
-    <table mat-table [dataSource]="dataSourceMantenimientosCorrectivos" class="table">
-
-      <!-- <ng-container matColumnDef="edit">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let usuario">
-          <button id="myBtn" class="edit-btn" (click)="openModal(usuario)">Editar</button>
-        </td>
-      </ng-container>  -->
-
-
-        <ng-container matColumnDef="nrocorrectivo">
-          <th mat-header-cell *matHeaderCellDef> Nro Correctivo </th>
-          <td mat-cell *matCellDef="let correctivo"> {{correctivo.nrocorrectivo}} </td>
-        </ng-container>
-
-
-        <ng-container matColumnDef="ordenTrabajo.ordentrabajo_cod">
-          <th mat-header-cell *matHeaderCellDef> Cod Orden </th>
-          <td mat-cell *matCellDef="let correctivo"> {{correctivo.ordenTrabajo.ordentrabajo_cod}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="ordenTrabajo.tipo.nombre">
-          <th mat-header-cell *matHeaderCellDef> Tipo </th>
-          <td mat-cell *matCellDef="let correctivo"> {{correctivo.ordenTrabajo.tipo.nombre}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="ordenTrabajo.maquina.sector.descripcion">
-          <th mat-header-cell *matHeaderCellDef> Sector </th>
-          <td mat-cell *matCellDef="let correctivo"> {{correctivo.ordenTrabajo.maquina.sector.descripcion}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="tipofalla">
-          <th mat-header-cell *matHeaderCellDef> Tipo de falla </th>
-          <td mat-cell *matCellDef="let correctivo"> {{correctivo.tipofalla}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="fechainicio">
-          <th mat-header-cell *matHeaderCellDef> Fecha de inicio </th>
-          <td mat-cell *matCellDef="let correctivo"> {{correctivo.fechainicio}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="fechaFin">
-          <th mat-header-cell *matHeaderCellDef> Fecha de fin </th>
-          <td mat-cell *matCellDef="let correctivo"> {{correctivo.fechaFin}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="tiempoReparacion">
-          <th mat-header-cell *matHeaderCellDef> Tiempo de reparacion </th>
-          <td mat-cell *matCellDef="let correctivo"> {{correctivo.tiempoReparacion}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="horasProduccionAfectadas">
-          <th mat-header-cell *matHeaderCellDef> Horas de produccion afectadas </th>
-          <td mat-cell *matCellDef="let correctivo"> {{correctivo.horasProduccionAfectadas}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="observaciones">
-            <th mat-header-cell *matHeaderCellDef> Observaciones </th>
-            <td mat-cell *matCellDef="let correctivo"> {{correctivo.observaciones}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="encargo1">
-            <th mat-header-cell *matHeaderCellDef> Realizo 1 </th>
-            <td mat-cell *matCellDef="let correctivo">
-              <div *ngIf="correctivo.encargo1 == null"> - </div>
-              <div *ngIf="correctivo.encargo1 != null"> {{correctivo.encargo1.nombre}} {{correctivo.encargo1.apellido}} </div>
-            </td>
-          </ng-container>
-
-          <ng-container matColumnDef="encargo2">
-            <th mat-header-cell *matHeaderCellDef> Realizo 2 </th>
-            <td mat-cell *matCellDef="let correctivo">
-              <div *ngIf="correctivo.encargo2 == null"> - </div>
-              <div *ngIf="correctivo.encargo2 != null"> {{correctivo.encargo2.nombre}} {{correctivo.encargo2.apellido}} </div>
-            </td>
-          </ng-container>
-
-          <ng-container matColumnDef="encargo3">
-            <th mat-header-cell *matHeaderCellDef> Realizo 3 </th>
-            <td mat-cell *matCellDef="let correctivo">
-              <div *ngIf="correctivo.encargo3 == null"> - </div>
-              <div *ngIf="correctivo.encargo3 != null"> {{correctivo.encargo3.nombre}} {{correctivo.encargo3.apellido}} </div>
-            </td>
-          </ng-container>
-
-
-        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-        <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
-
-    </table>
-
-
-
+    <app-tabla class="table" [ds]='dataSourceMantenimientosCorrectivos' 
+                             [columns]='columnsToDisplay' 
+                             [width]="'90%'"
+                             (clickRow)="clickedRow($event)">
+    </app-tabla>
+    
   </div>
 
 </div>
-

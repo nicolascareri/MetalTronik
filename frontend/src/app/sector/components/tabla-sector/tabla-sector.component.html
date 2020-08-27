@@ -1,36 +1,17 @@
 <div>
 
-    <mat-form-field class="filter">
-      <mat-label style="font-weight: bold;">Filtrar</mat-label>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Material, responsable, maquina...">
-    </mat-form-field>
-
-    <app-button [routerLink]="['formsector']" [name]="['Nuevo sector']"></app-button>
+  <app-button [routerLink]="['formsector']" [name]="['Nuevo sector']"></app-button>
 
 
-    <!-- <app-edit-order [originalOrder]="ordenes"></app-edit-order> -->
+  <!-- <app-edit-order [originalOrder]="ordenes"></app-edit-order> -->
 
-    <div class="data">
-    <table mat-table [dataSource]="dataSourceSectors" class="table">
+  <div class="data">
 
-      <!-- <ng-container matColumnDef="edit">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let usuario">
-          <button id="myBtn" class="edit-btn" (click)="openModal(usuario)">Editar</button>
-        </td>
-      </ng-container> -->
-
-
-      <ng-container matColumnDef="descripcion">
-        <th mat-header-cell *matHeaderCellDef> Sectores </th>
-        <td mat-cell *matCellDef="let sector"> {{sector.descripcion}} </td>
-      </ng-container>
-
-
-    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
-  </table>
-
+    <app-tabla class="table" [ds]='dataSourceSectors' 
+                             [columns]='columnsToDisplay' 
+                             [width]="'90%'"
+                             (clickRow)="clickedRow($event)">
+    </app-tabla>
 
 
   </div>

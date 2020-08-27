@@ -11,9 +11,75 @@ import {MaquinaService} from '../../services/maquina.service';
 })
 export class TablaMaquinaComponent implements OnInit {
 
-  columnsToDisplay: any = ['id', 'planta.nombre', 'sector.descripcion', 'maquina_cod', 'nro_serie', 'modelo', 'equipo', 'datos_tecnicos', 'descripcion'];
+  public columnsToDisplay: any[] = [
+    {
+      id: 1,
+      property:'planta',
+      name: 'Planta',
+      sort: 'up',
+      filterValue: '',
+      width: '15%'
+    }, 
+    {
+      id: 2,
+      property:'sector',
+      name: 'Sector',
+      sort: '',
+      filterValue: '',
+      width: '14%'
+    },
+    {
+      id: 3,
+      property:'maquina_cod',
+      name: 'Codigo de maquina',
+      sort: '',
+      filterValue: '',
+      width: '15%'
+    }, 
+    {
+      id: 4,
+      property:'nro_serie',
+      name: 'Nro de serie',
+      sort: '',
+      filterValue: '',
+      width: '15%'
+    },
+    {
+      id: 5,
+      property:'modelo',
+      name: 'Modelo',
+      sort: '',
+      filterValue: '',
+      width: '15%'
+    }, 
+    {
+      id: 6,
+      property:'equipo',
+      name: 'Equipo',
+      sort: '',
+      filterValue: '',
+      width: '15%'
+    }, 
+    {
+      id: 7,
+      property:'datos_tecnicos',
+      name: 'Datos tecnicos',
+      sort: '',
+      filterValue: '',
+      width: '15%'
+    }, 
+    {
+      id: 8,
+      property:'descripcion',
+      name: 'Descripcion',
+      sort: '',
+      filterValue: '',
+      width: '350px'
+    }
+  ];
 
-  dataSourceMachines = new MatTableDataSource();
+  public dataSourceMachines;
+
   form: FormGroup;
   // Editar
   @Input() originalUser: any;
@@ -61,12 +127,11 @@ export class TablaMaquinaComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.filtro();
 
     this.MaquinaService.getMaquinas().subscribe(
 
       (data: any)  => { // Success
-        this.dataSourceMachines.data = data;
+        this.dataSourceMachines = data;
         console.log(this.dataSourceMachines);
       },
       (error) => {
