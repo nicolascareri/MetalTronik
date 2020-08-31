@@ -11,6 +11,7 @@ import { PrioridadesService } from '../../../prioridad/services/prioridades.serv
 import { TipoService } from '../../../tipo/services/tipo.service';
 import { CoreService } from 'src/app/core/service/core.service';
 import { from } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -153,7 +154,8 @@ export class TablaOrdenesComponent implements OnInit {
     private plantaService: PlantaService,
     private prioridadesService: PrioridadesService,
     private tiposService: TipoService,
-    private coreService: CoreService
+    private coreService: CoreService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -165,12 +167,10 @@ export class TablaOrdenesComponent implements OnInit {
     this.getSectores();
     this.getMaquinas();
     this.getUsuarios();
-    this.closeModal();
-    this.transformToEdit(this.dataSourceOrdenes);
   }
 
   clickedRow(row){
-    console.log(row);
+    this.router.navigate(['main/ordenes/form/' + row.ordentrabajo_cod]);
   }
 
   getOrdenes(){
@@ -272,76 +272,7 @@ export class TablaOrdenesComponent implements OnInit {
 
     })
   }
-
-  openModal(ordenes) {
-    let modal = document.getElementById("myModal");
-    modal.style.display = "block";
-    this.originalOrder = ordenes;
-    this.setOriginalValues(this.originalOrder);
+  openForm(ordenId){
+    this.router.navigate(['main/ordenes/form/'+ordenId]);
   }
-
-  closeModal() {
-    window.onclick = function (event) {
-      let modal = document.getElementById("myModal");
-      if (event.target == modal) {
-        modal.style.display = "none";
-
-      }
-    }
-  }
-
-  setOriginalValues(originalOrder) {
-    this.form.setValue({
-      encargo_cod: originalOrder.encargo.id,
-      estado: originalOrder.estado,
-      fechaRealizar: originalOrder.fechaRealizar.toString().replace(" ", "T"),
-      maquina_cod: originalOrder.maquina.maquina_cod,
-      pedidoMateriales: originalOrder.pedidoMateriales,
-      // planta: originalOrder.maquina.planta.id,
-      priodidad_cod: originalOrder.priodidad.id,
-      responsable_cod: originalOrder.responsable.id,
-      // sector: originalOrder.maquina.sector.id,
-      tarea: originalOrder.tarea,
-      observaciones: originalOrder.observaciones,
-      ordenTerciarizacion: originalOrder.ordenTerciarizacion,
-      fechaEntrega: originalOrder.fechaEntrega.toString().replace(" ", "T"),
-      tipo_cod: originalOrder.tipo.id,
-
-    })
-  }
-
-  transformToEdit(dataSourceOrdenes) {
-    this.DataOrderToEdit.setValue({
-      encargo_cod: dataSourceOrdenes.encargo.id,
-      estado: dataSourceOrdenes.estado,
-      fechaRealizar: dataSourceOrdenes.fechaRealizar.toString().replace(" ", "T"),
-      maquina_cod: dataSourceOrdenes.maquina.maquina_cod,
-      pedidoMateriales: dataSourceOrdenes.pedidoMateriales,
-      priodidad_cod: dataSourceOrdenes.priodidad.id,
-      responsable_cod: dataSourceOrdenes.responsable.id,
-      tarea: dataSourceOrdenes.tarea,
-      observaciones: dataSourceOrdenes.observaciones,
-      ordenTerciarizacion: dataSourceOrdenes.ordenTerciarizacion,
-      fechaEntrega: dataSourceOrdenes.fechaEntrega.toString().replace(" ", "T"),
-      tipo_cod: dataSourceOrdenes.tipo.id,
-    })
-  }
-
-
-
-  onSave() {
-    this.OrdenestrabajoService.updateOrder(this.originalOrder.ordentrabajo_cod, this.form.value).subscribe(order => console.log(order));
-    let modal = document.getElementById('myModal');
-    modal.style.display = 'none';
-    window.location.reload();
-
-  }
-
-  onCancel() {
-    this.originalOrder = null;
-    this.close.emit();
-  }
-
-
-
 }
