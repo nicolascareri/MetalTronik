@@ -8,10 +8,12 @@ import com.example.metalTest.maquina.mapper.MaquinaMapper;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
 import com.example.metalTest.maquina.service.MaquinaService;
 import com.example.metalTest.planta.repository.PlantaRepository;
+import com.example.metalTest.repuestoMaquina.domain.RepuestoMaquina;
 import com.example.metalTest.sector.repository.SectorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,7 +51,8 @@ public class MaquinaServiceImpl implements MaquinaService {
     @Override
     public Maquina save(MaquinaRequest maquinaRequest) throws ValidateFieldException {
         Maquina maquina = maquinaMapper.maquinaRequestToMaquina(maquinaRequest);
-
+        List<RepuestoMaquina> repuestoMaquinaList = new ArrayList<>();
+        maquina.setRepuestoMaquinaList(repuestoMaquinaList);
         if (maquinaRepository.checkCodigoExistance(maquina.getMaquina_cod()) != 0) {
             throw new ValidateFieldException("El codigo ya tiene una maquina asociada", "maquina_cod", maquina.getMaquina_cod());
         }
@@ -61,7 +64,6 @@ public class MaquinaServiceImpl implements MaquinaService {
         maquina.setPlanta(plantaRepository.findById(maquinaRequest.getPlanta_cod()).get());
         maquina.setSector(sectorRepository.findById(maquinaRequest.getSector_cod()).get());
         return maquinaRepository.save(maquina);
-
     }
 
     @Override
@@ -80,8 +82,4 @@ public class MaquinaServiceImpl implements MaquinaService {
         return maquinaRepository.save(maquina);
     }
 
-    @Override
-    public List<Maquina> getAllSinRepuesto() {
-        return maquinaRepository.findAllWithoutRepuesto();
-    }
 }

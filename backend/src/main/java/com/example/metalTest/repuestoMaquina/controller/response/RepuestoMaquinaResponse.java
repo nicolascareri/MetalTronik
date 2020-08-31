@@ -1,6 +1,7 @@
-package com.example.metalTest.repuesto.controller.response;
+package com.example.metalTest.repuestoMaquina.controller.response;
 
 import com.example.metalTest.maquina.domain.Maquina;
+import com.example.metalTest.repuesto.controller.response.RepuestoReducidoResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,8 +13,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class RepuestoMaquinaResponse {
 
-    private String nombre;
+    private RepuestoReducidoResponse repuesto;
     private int cantidadInstalada;
-    private Maquina maquina;
+    private MaquinaReducidoResponse maquina;
 
 }

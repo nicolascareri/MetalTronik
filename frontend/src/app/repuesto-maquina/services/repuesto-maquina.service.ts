@@ -14,10 +14,10 @@ export class RepuestoMaquinaService {
   }
 
   getRepuestos(){
-    return this.http.get('http://localhost:8080/api/repuesto-maquina');
+    return this.http.get('http://localhost:8080/api/repuesto');
   }
 
   asociarRepuestos(id, repuestos:[]){
-    return this.http.put<any>('http://localhost:8080/api/repuesto-maquina/maquina/' + id + '/vincular' , repuestos);
+    return this.http.put('http://localhost:8080/api/repuesto-maquina/maquina/' + id + '/vincular' , repuestos);
   }                          //http://localhost:8080/api/repuesto-maquina/maquina/42/vincular
 }

@@ -1,9 +1,7 @@
 package com.example.metalTest.repuesto.controller;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
-import com.example.metalTest.repuesto.controller.request.RepuestoMaquinaRequest;
 import com.example.metalTest.repuesto.controller.request.RepuestoRequest;
-import com.example.metalTest.repuesto.controller.response.RepuestoMaquinaResponse;
 import com.example.metalTest.repuesto.domain.Repuesto;
 import com.example.metalTest.repuesto.service.RepuestoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT})
-@RequestMapping("/api/repuesto-maquina")
+@RequestMapping("/api/repuesto")
 public class RepuestoController {
 
     @Autowired
@@ -46,11 +44,5 @@ public class RepuestoController {
     public ResponseEntity<Repuesto> update(@Valid @RequestBody RepuestoRequest repuestoRequest, @PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<>(repuestoService.update(repuestoRequest, id), HttpStatus.OK);
     }
-
-    @PutMapping("/maquina/{id}/vincular")
-    public ResponseEntity<List<RepuestoMaquinaResponse>> vincular(@Valid @RequestBody List<RepuestoMaquinaRequest> repuestoMaquinaRequestList, @PathVariable Integer id) throws ValidateFieldException {
-        return new ResponseEntity<>(repuestoService.vincular(repuestoMaquinaRequestList,id), HttpStatus.OK);
-    }
-
 
 }

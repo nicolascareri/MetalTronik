@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface RepuestoRepository extends JpaRepository<Repuesto, Integer> {
 
-    @Query("SELECT r FROM Repuesto r WHERE r.maquina.id = :id")
+    @Query("SELECT r FROM RepuestoMaquina r WHERE r.repuestoMaquinaPk.maquina.id = :id")
     List<Repuesto> findByMaquina(@Param("id") Integer id);
 
 }
