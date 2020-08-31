@@ -125,7 +125,7 @@ export class FormComponent implements OnInit {
       fechaRealizar: new FormControl(''),
       maquina_cod: new FormControl(''),
       pedidoMateriales: new FormControl(''),
-      priodidad_cod: new FormControl(''),
+      prioridad_cod: new FormControl(''),
       responsable_cod: new FormControl(''),
       tarea: new FormControl(''),
       observaciones: new FormControl('', Validators.required),

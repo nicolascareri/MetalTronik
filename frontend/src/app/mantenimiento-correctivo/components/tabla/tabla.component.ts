@@ -27,7 +27,7 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
       name: 'Codigo de orden de trabajo',
       sort: '',
       filterValue: '',
-      width: '20%'
+      width: '25%'
     },
     {
       id: 3,
