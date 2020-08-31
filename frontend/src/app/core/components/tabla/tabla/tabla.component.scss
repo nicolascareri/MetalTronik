@@ -1,0 +1,176 @@
+@import "../../../../../assets/themes";
+
+@mixin header {
+    background-color: $primary-teal;
+    color :$white;
+    display: flex;
+    align-items: center;
+}
+
+$bg-striped-ligth: $white;
+.hide {
+    //do not remove this important
+    display: none !important;
+}
+.table {
+    margin: 0 $margin-left;
+    &__header {
+        @include header();
+        color: $white;
+        border-radius: 10px 10px 0 0;
+        padding: 5px;
+        &--tall {
+            height: 90px;
+        }
+        &--short {
+            height: 50px;
+        }
+        th {
+            border: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            text-shadow: 1px 1px #193c6685;
+            font-size: 16px;
+            font-weight: 400;
+            height: 90%;
+        }
+        &__select {
+            display: flex;
+            &__input {
+                width: 100%;
+                border-radius:  6px 0 0 6px;
+                @include input-style();
+                border-radius: 5px 0 0 5px;
+                padding: 3px 10px !important;
+
+            }
+            &__icon {
+                // TODO: temporary color 
+                background: $extreme-ligthblue;
+                border-radius: 0 6px 6px 0;
+                user-select: none;
+                cursor: pointer;
+            }
+        }
+        &__finder {
+            display: flex;
+            &__input {
+                width: 100%;
+                border-radius:  6px 0 0 6px;
+                @include input-style();
+                border-radius: 5px 0 0 5px;
+                padding: 3px 10px !important;
+
+            }
+            &__icon {
+                background: $extreme-teal;
+                border-radius: 0 6px 6px 0;
+                user-select: none;
+                cursor: pointer;
+            }
+        }
+        &__text {
+            display: flex;
+            margin-bottom: 5px;
+            height: 23px;
+            &__ico {
+                color: $white;
+            }
+            
+        }
+        &__text:hover {
+            font-weight: 500;
+            cursor: pointer;
+            user-select: none; /* Standard */
+        }
+    }
+    &__body {
+        display: flex;
+        align-items: center;
+        font-size: $font-size-s;
+        min-height: 36px;
+        &__column {
+            padding: 0 20px;
+            text-align: center;
+            min-height: 17px;
+            &__add-button{
+                color: $green;
+            }
+        }
+        &:nth-child(odd) { background: $white;}
+        &:nth-child(even) { background: $bg-striped-dark;}
+        &__clickeable {
+            cursor: pointer;
+            &:hover {
+                background: #008B8B;
+                color: $white;
+                & td.clickeable-column {
+                    color: $white;
+                    &:hover {
+                        font-weight: bolder;
+                        text-decoration: underline;
+                    }
+                } 
+            }
+        }
+        td {
+            border-top: none !important;
+            min-width: 20px;
+            &.clickeable-column {
+                cursor: pointer;
+                text-decoration: underline;
+                color: $secundary-ligthblue;
+                &:hover {
+                    cursor: pointer;
+                    font-weight: bolder;
+                    text-decoration: underline;
+                }
+            }
+            &.clickeable-column {
+                cursor: pointer;
+                text-decoration: underline;
+                color: $secundary-ligthblue;
+                &:hover {
+                    cursor: pointer;
+                    font-weight: bolder;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+    input[type="checkbox"], input[type="radio"], td > i.material-icons {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+    }
+    &__footer {
+        padding: 10px;
+        font-size: $font-size-s;
+        &__pagination-control {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            padding: 20px;
+            &__text {
+                display: flex;
+                margin-bottom: 5px;
+                height: 23px;
+                padding: 5px;
+                font-weight: bold;
+                &__ico {
+                    font-weight: bold;
+                    color: $primary-ligthblue;
+                    &--disabled {
+                        color: $grey;
+                    }
+                }     
+                &__ico:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }    
+}

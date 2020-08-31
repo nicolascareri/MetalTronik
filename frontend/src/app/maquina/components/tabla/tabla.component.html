@@ -4,81 +4,14 @@
 
     <mat-tab label="Maquina">
 
-    <mat-form-field class="filter">
-      <mat-label style="font-weight: bold;">Filtrar</mat-label>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Material, responsable, maquina...">
-    </mat-form-field>
-
     <app-button [routerLink]="['form']" [name]="['Nueva maquina']"></app-button>
-
-
-    <!-- <app-edit-order [originalOrder]="ordenes"></app-edit-order> -->
 
     <div class="data">
 
-      <table mat-table [dataSource]="dataSourceMachines" class="table">
-
-      <!-- <ng-container matColumnDef="edit">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let usuario">
-          <button id="myBtn" class="edit-btn" (click)="openModal(usuario)">Editar</button>
-        </td>
-      </ng-container>  -->
-
-
-          <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef> ID </th>
-            <td mat-cell *matCellDef="let machine"> {{machine.id}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="planta.nombre">
-            <th mat-header-cell *matHeaderCellDef> Planta </th>
-            <td mat-cell *matCellDef="let machine"> {{machine.planta.nombre}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="sector.descripcion">
-            <th mat-header-cell *matHeaderCellDef> Sector </th>
-            <td mat-cell *matCellDef="let machine"> {{machine.sector.descripcion}} </td>
-          </ng-container>
-
-
-          <ng-container matColumnDef="maquina_cod">
-            <th mat-header-cell *matHeaderCellDef> Cod Maquina </th>
-            <td mat-cell *matCellDef="let machine"> {{machine.maquina_cod}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="nro_serie">
-            <th mat-header-cell *matHeaderCellDef> Nro Serie </th>
-            <td mat-cell *matCellDef="let machine"> {{machine.nro_serie}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="modelo">
-            <th mat-header-cell *matHeaderCellDef> Modelo </th>
-            <td mat-cell *matCellDef="let machine"> {{machine.modelo}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="equipo">
-            <th mat-header-cell *matHeaderCellDef> Equipo </th>
-            <td mat-cell *matCellDef="let machine"> {{machine.equipo}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="datos_tecnicos">
-            <th mat-header-cell *matHeaderCellDef> Datos tecnicos </th>
-            <td mat-cell *matCellDef="let machine"> {{machine.maquina_cod}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="descripcion">
-            <th mat-header-cell *matHeaderCellDef> Descripcion </th>
-            <td mat-cell *matCellDef="let machine"> {{machine.descripcion}} </td>
-          </ng-container>
-
-
-
-
-          <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-          <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
-
-        </table>
+      <app-tabla class="table" [ds]='dataSourceMachines' 
+                               [columns]='columnsToDisplay' 
+                               [width]="'90%'">
+      </app-tabla>
 
       </div>
 

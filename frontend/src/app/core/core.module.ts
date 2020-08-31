@@ -5,6 +5,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {ButtonComponent} from './components/button/button.component';
 import {RouterModule} from '@angular/router';
 import { TablaComponent } from './components/tabla/tabla/tabla.component';
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { TablaComponent } from './components/tabla/tabla/tabla.component';
     CommonModule,
     MatButtonModule,
     RouterModule,
-    MatTableModule
+    MatTableModule,
+    MatAutocompleteModule
   ],
   exports: [
     ButtonComponent,
