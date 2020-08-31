@@ -33,9 +33,24 @@ export class CoreService {
               break;
             case 'encargo': 
                 if(result.encargo){
-                  result.encargo = result.encargo.nombre;
+                  result.encargo = result.encargo.nombre + " " + result.encargo.apellido;
                 }
                 break;
+            case 'encargo1': 
+                if(result.encargo1){
+                  result.encargo1 = result.encargo1.nombre + " " + result.encargo1.apellido;
+                }
+                break;
+            case 'encargo2': 
+                if(result.encargo2){
+                  result.encargo2 = result.encargo2.nombre + " " + result.encargo2.apellido;
+                }
+                break;
+            case 'encargo3': 
+                if(result.encargo3){
+                  result.encargo3 = result.encargo3.nombre + " " + result.encargo3.apellido;
+                }
+                break;    
             case 'responsable':
               if(result.responsable){
                 result.responsable = result.responsable.nombre;
@@ -59,10 +74,25 @@ export class CoreService {
               }
               break;
             case 'ordentrabajo':
-              if(result.ordentrabajo_cod){
-                result.ordentrabajo = result.ordentrabajo_cod;
+              if(result.ordentrabajo){
+                result.ordentrabajo = result.ordentrabajo.ordentrabajo_cod;
               }
               break;
+            case 'tipo':
+              if(result.tipo){
+                result.tipo = result.tipo.nombre;
+              }
+              break;
+            case 'planta':
+                if(result.planta){
+                  result.planta = result.planta.nombre;
+                }
+                break;
+            case 'sector':
+                  if(result.sector){
+                    result.sector = result.sector.descripcion;
+                  }
+                  break;
             case 'estado':
               if(result.estado){
                 result.estado === 1? result.estado = 'Pendiente': result.estado = 'Ok';

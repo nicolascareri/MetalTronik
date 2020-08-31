@@ -2,15 +2,11 @@
 
   <app-button [routerLink]="['formplanta']" [name]="['Nueva planta']"></app-button>
 
-
-  <!-- <app-edit-order [originalOrder]="ordenes"></app-edit-order> -->
-
   <div class="data">
 
     <app-tabla class="table" [ds]='dataSourcePlants' 
                              [columns]='columnsToDisplay' 
-                             [width]="'90%'"
-                             (clickRow)="clickedRow($event)">
+                             [width]="'90%'">
     </app-tabla>
 
 

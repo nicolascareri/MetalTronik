@@ -1,9 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MatTableDataSource } from '@angular/material/table';
 import { first } from 'rxjs/operators'
 import { ESTADO_ORDEN, ESTADOTABLE } from 'src/app/core/constants/constants';
-
 import { OrdenestrabajoService } from '../../services/ordenestrabajo.service';
 import { PlantaService } from '../../../planta/services/planta.service';
 import { SectorService } from '../../../sector/services/sector.service';
@@ -28,7 +26,7 @@ export class TablaOrdenesComponent implements OnInit {
   public columnsToDisplay: any[] = [
     {
       id: 1,
-      property:'ordentrabajo',
+      property:'ordentrabajo_cod',
       name: 'Nro. Orden de Trabajo',
       sort: 'up',
       filterValue: '',
@@ -319,10 +317,8 @@ export class TablaOrdenesComponent implements OnInit {
       fechaRealizar: dataSourceOrdenes.fechaRealizar.toString().replace(" ", "T"),
       maquina_cod: dataSourceOrdenes.maquina.maquina_cod,
       pedidoMateriales: dataSourceOrdenes.pedidoMateriales,
-      // planta: dataSourceOrdenes.maquina.planta.id,
       priodidad_cod: dataSourceOrdenes.priodidad.id,
       responsable_cod: dataSourceOrdenes.responsable.id,
-      // sector: dataSourceOrdenes.maquina.sector.id,
       tarea: dataSourceOrdenes.tarea,
       observaciones: dataSourceOrdenes.observaciones,
       ordenTerciarizacion: dataSourceOrdenes.ordenTerciarizacion,
@@ -346,37 +342,6 @@ export class TablaOrdenesComponent implements OnInit {
     this.close.emit();
   }
 
-
-  //////////FILTRO////////////
-/*   applyFilter(filterValue: String) {
-    this.dataSourceOrdenes.filter = filterValue.trim().toLowerCase();
-  }
-
-  nestedFilterCheck(search, data, key) {
-    if (typeof data[key] === 'object') {
-      for (const k in data[key]) {
-        if (data[key][k] !== null) {
-          search = this.nestedFilterCheck(search, data[key], k);
-        }
-      }
-    } else {
-      search += data[key];
-    }
-    return search;
-  }
-
-  filtro() {
-    this.dataSourceOrdenes.filterPredicate = (data, filter: string) => {
-      const accumulator = (currentTerm, key) => {
-        return this.nestedFilterCheck(currentTerm, data, key);
-      };
-      const dataStr = Object.keys(data).reduce(accumulator, '').toLowerCase();
-      // Transform the filter by converting it to lowercase and removing whitespace.
-      const transformedFilter = filter.trim().toLowerCase();
-      return dataStr.indexOf(transformedFilter) !== -1;
-    };
-  } */
-  ///////////////////////////
 
 
 }

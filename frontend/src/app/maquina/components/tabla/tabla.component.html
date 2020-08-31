@@ -4,22 +4,13 @@
 
     <mat-tab label="Maquina">
 
-    <mat-form-field class="filter">
-      <mat-label style="font-weight: bold;">Filtrar</mat-label>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Material, responsable, maquina...">
-    </mat-form-field>
-
     <app-button [routerLink]="['form']" [name]="['Nueva maquina']"></app-button>
-
-
-    <!-- <app-edit-order [originalOrder]="ordenes"></app-edit-order> -->
 
     <div class="data">
 
       <app-tabla class="table" [ds]='dataSourceMachines' 
                                [columns]='columnsToDisplay' 
-                               [width]="'90%'"
-                               (clickRow)="clickedRow($event)">
+                               [width]="'90%'">
       </app-tabla>
 
       </div>

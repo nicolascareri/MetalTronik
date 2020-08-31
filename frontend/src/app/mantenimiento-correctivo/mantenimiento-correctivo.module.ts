@@ -4,6 +4,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatTableModule} from '@angular/material/table';
+import {MatCardModule} from '@angular/material/card';
 import {RouterModule} from '@angular/router';
 import {CoreModule} from '../core/core.module';
 import {FormMantenimientoCorrectivoComponent} from './components/form/form.component';
@@ -21,7 +22,8 @@ import {MantenimientoCorrectivoRoutingModule} from './mantenimiento-correctivo-r
     MatTableModule,
     MatSliderModule,
     MatInputModule,
-    MantenimientoCorrectivoRoutingModule
+    MantenimientoCorrectivoRoutingModule,
+    MatCardModule
   ]
 })
 export class MantenimientoCorrectivoModule { }

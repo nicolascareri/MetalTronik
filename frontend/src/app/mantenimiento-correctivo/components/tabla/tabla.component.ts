@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {FormGroup} from '@angular/forms';
-import {MatTableDataSource} from '@angular/material/table';
-import {MantenimientoCorrectivoService} from '../../services/mantenimiento-correctivo.service';
+import { Component, OnInit } from '@angular/core';
+import { MantenimientoCorrectivoService } from '../../services/mantenimiento-correctivo.service';
+import { CoreService } from 'src/app/core/service/core.service';
+import { first } from 'rxjs/operators'
 
 @Component({
   selector: 'app-tabla-mantenimiento-correctivo',
@@ -10,40 +10,36 @@ import {MantenimientoCorrectivoService} from '../../services/mantenimiento-corre
 })
 export class TablaMantenimientoCorrectivoComponent implements OnInit {
 
-  dataSourceMantenimientosCorrectivos;
-
-  form: FormGroup;
-
-  
+  public dataSourceMantenimientosCorrectivos;
 
   public columnsToDisplay: any[] = [
     {
       id: 1,
-      property:'nrocorrectivo',
+      property: 'nrocorrectivo',
       name: 'Nro. correctivo',
       sort: 'up',
       filterValue: '',
       width: '15%'
-    }, 
+    },
     {
       id: 2,
-      property:'ordenTrabajo.ordentrabajo_cod',
+      property: 'ordentrabajo_cod',
       name: 'Codigo de orden de trabajo',
       sort: '',
       filterValue: '',
-      width: '14%'
+      width: '20%'
     },
     {
       id: 3,
-      property:'ordenTrabajo.tipo.nombre',
+      property: 'tipo',
       name: 'Tipo de orden de trabajo',
       sort: '',
       filterValue: '',
-      width: '15%'
-    }, 
+      width: '20%'
+    },
     {
       id: 4,
-      property:'ordenTrabajo.maquina.sector.descripcion',
+      property: 'sector',
       name: 'Sector',
       sort: '',
       filterValue: '',
@@ -51,39 +47,39 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
     },
     {
       id: 5,
-      property:'tipofalla',
+      property: 'tipofalla',
       name: 'Tipo de falla',
       sort: '',
       filterValue: '',
       width: '15%'
-    }, 
+    },
     {
       id: 6,
-      property:'fechainicio',
+      property: 'fechainicio',
       name: 'Fecha de inicio',
       sort: '',
       filterValue: '',
       width: '15%'
-    }, 
+    },
     {
       id: 7,
-      property:'fechaFin',
+      property: 'fechaFin',
       name: 'Fecha de fin',
       sort: '',
       filterValue: '',
       width: '15%'
-    }, 
+    },
     {
       id: 8,
-      property:'tiempoReparacion',
+      property: 'tiempoReparacion',
       name: 'Tiempo de reparacion',
       sort: '',
       filterValue: '',
       width: '350px'
-    }, 
+    },
     {
       id: 9,
-      property:'horasProduccionAfectadas',
+      property: 'horasProduccionAfectadas',
       name: 'Horas de produccion afectadas',
       sort: '',
       filterValue: '',
@@ -91,31 +87,31 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
     },
     {
       id: 10,
-      property:'observaciones',
+      property: 'observaciones',
       name: 'Observaciones',
       sort: '',
       filterValue: '',
       width: '20%'
-    }, 
+    },
     {
       id: 11,
-      property:'encargo1',
+      property: 'encargo1',
       name: 'Encargado 1',
       sort: '',
       filterValue: '',
       width: '20%'
-    }, 
+    },
     {
       id: 12,
-      property:'encargo2',
+      property: 'encargo2',
       name: 'Encargado 2',
       sort: '',
       filterValue: '',
       width: '20%'
-    },  
+    },
     {
       id: 13,
-      property:'encargo3',
+      property: 'encargo3',
       name: 'Encargado 3',
       sort: '',
       filterValue: '',
@@ -124,54 +120,26 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
   ];
 
 
-  constructor(private MantenimientoCorrectivoService: MantenimientoCorrectivoService) {
-  }
+  constructor(private MantenimientoCorrectivoService: MantenimientoCorrectivoService,
+              private coreService: CoreService) {
 
-  applyFilter(filterValue: String) {
-    this.dataSourceMantenimientosCorrectivos.filter = filterValue.trim().toLowerCase();
-  }
-
-  nestedFilterCheck(search, data, key) {
-    if (typeof data[key] === 'object') {
-      for (const k in data[key]) {
-        if (data[key][k] !== null) {
-          search = this.nestedFilterCheck(search, data[key], k);
-        }
-      }
-    } else {
-      search += data[key];
-    }
-    return search;
-  }
-
-  filtro(){
-    this.dataSourceMantenimientosCorrectivos.filterPredicate = (data, filter: string)  => {
-      const accumulator = (currentTerm, key) => {
-        return this.nestedFilterCheck(currentTerm, data, key);
-      };
-      const dataStr = Object.keys(data).reduce(accumulator, '').toLowerCase();
-      // Transform the filter by converting it to lowercase and removing whitespace.
-      const transformedFilter = filter.trim().toLowerCase();
-      return dataStr.indexOf(transformedFilter) !== -1;
-    };
   }
 
   ngOnInit(): void {
+    this.getMantenimientos();
+  }
 
-
-    this.MantenimientoCorrectivoService.getMantenimientosCorrectivos().subscribe(
-
-      (data: any)  => { // Success
-        this.dataSourceMantenimientosCorrectivos = data;
+  getMantenimientos(){
+    this.MantenimientoCorrectivoService.getMantenimientosCorrectivos().pipe(first()).subscribe(
+      (data: any) => {
+        this.dataSourceMantenimientosCorrectivos = this.coreService.replaceFormat(data, ['encargo1', 'encargo2', 'encargo3',
+          'ordentrabajo', 'maquina', 'tipo']);
       },
       (error) => {
         console.error(error);
       }
 
     );
-
-
-
   }
 
 }

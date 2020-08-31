@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MaquinaService } from "../../../maquina/services/maquina.service";
 import { RepuestoMaquinaService } from "../../services/repuesto-maquina.service";
+import { CoreService } from 'src/app/core/service/core.service';
 
 @Component({
   selector: 'app-tabla-repuestos',
@@ -18,48 +19,92 @@ export class TablaRepuestosComponent implements OnInit {
   cantidad: any = 0;
   cantidadTotal: any = 0;
 
-  columnsToDisplay: any = ['nombre', 'modelo', 'cantidadInstalada', 'maquina.maquina_cod', 'maquina.planta.nombre', 
-                          'maquina.sector.descripcion'];
-  
- 
+
+  public columnsToDisplay: any[] = [
+    {
+      id: 1,
+      property: 'nombre',
+      name: 'Nombre',
+      sort: 'up',
+      filterValue: '',
+      width: '15%'
+    },
+    {
+      id: 2,
+      property: 'modelo',
+      name: 'Modelo',
+      sort: '',
+      filterValue: '',
+      width: '20%'
+    },
+    {
+      id: 3,
+      property: 'cantidadInstalada',
+      name: 'Cantidad instalada',
+      sort: '',
+      filterValue: '',
+      width: '20%'
+    },
+    {
+      id: 4,
+      property: 'maquina',
+      name: 'Codigo maquina',
+      sort: '',
+      filterValue: '',
+      width: '15%'
+    },
+    {
+      id: 5,
+      property: 'planta',
+      name: 'Planta',
+      sort: '',
+      filterValue: '',
+      width: '15%'
+    },
+    {
+      id: 6,
+      property: 'sector',
+      name: 'Sector',
+      sort: '',
+      filterValue: '',
+      width: '15%'
+    }
+  ];
+
+
 
   dataSourceMaquinas: any;
 
 
 
   constructor(private MaquinaService: MaquinaService,
-              private RepuestoMaquinaService: RepuestoMaquinaService) { }
-  
+    private RepuestoMaquinaService: RepuestoMaquinaService,
+    private coreService: CoreService) { }
+
 
   ngOnInit(): void {
 
     this.RepuestoMaquinaService.getRepuestos().subscribe(
-      
+
       (data: any) => {
-        // data.map(repuesto => {
-        //   if (repuesto.maquina) {
-        //     this.cantidad += repuesto.cantidadInstalada;
-        //   }
-        // });
-       
-          this.cantidadTotal = 0;
-          data.forEach(element => {
-            if(element.maquina){
+        this.cantidadTotal = 0;
+        data.forEach(element => {
+          if (element.maquina) {
             this.cantidadTotal += element.cantidadInstalada;
-            }
-          });
-        
-        this.dataSourceAllRepuestos = data;
+          }
+        });
+
+        this.dataSourceAllRepuestos = this.coreService.replaceFormat(data, ['maquina']);
       },
       (error) => {
         console.error(error);
-        
+
       }
     );
 
 
 
-    
+
 
     this.MaquinaService.getMaquinas().subscribe(
       (data: any) => {
@@ -80,14 +125,14 @@ export class TablaRepuestosComponent implements OnInit {
 
   }
 
-  
-  getRepuestosByMaquina(id){
+
+  getRepuestosByMaquina(id) {
     this.cantidad = 0;
     this.RepuestoMaquinaService.getRepuestosById(id).subscribe(
       (data: any) => {
         data.forEach(element => {
-          if(element.maquina){
-          this.cantidad += element.cantidadInstalada;
+          if (element.maquina) {
+            this.cantidad += element.cantidadInstalada;
           }
         });
         this.dataSourceRepuestos = data;
@@ -98,11 +143,11 @@ export class TablaRepuestosComponent implements OnInit {
 
   }
 
-  changeDataSource(){
-    let dataSource;   
+  changeDataSource() {
+    let dataSource;
     if (this.seleccion == 'all') {
       dataSource = this.dataSourceAllRepuestos;
-    }else{
+    } else {
       dataSource = this.dataSourceRepuestos;
     }
     return dataSource;
