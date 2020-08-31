@@ -1,12 +1,12 @@
-import {Component, OnInit, AfterViewInit} from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { first } from "rxjs/operators"
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {OrdenestrabajoService} from '../../services/ordenestrabajo.service';
-import {MaquinaService} from '../../../maquina/services/maquina.service';
-import {UserService} from '../../../usuarios/services/user.service';
-import {PrioridadesService} from '../../../prioridad/services/prioridades.service';
-import {TipoService} from '../../../tipo/services/tipo.service';
-import {Router, ActivatedRoute} from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { OrdenestrabajoService } from '../../services/ordenestrabajo.service';
+import { MaquinaService } from '../../../maquina/services/maquina.service';
+import { UserService } from '../../../usuarios/services/user.service';
+import { PrioridadesService } from '../../../prioridad/services/prioridades.service';
+import { TipoService } from '../../../tipo/services/tipo.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -17,12 +17,12 @@ export class FormComponent implements OnInit, AfterViewInit {
 
 
   constructor(private OrdenestrabajoService: OrdenestrabajoService,
-              private UserService: UserService,
-              private MaquinaService: MaquinaService,
-              private PrioridadesService: PrioridadesService,
-              private TipoService: TipoService,
-              private router: Router,
-              private route: ActivatedRoute) {
+    private UserService: UserService,
+    private MaquinaService: MaquinaService,
+    private PrioridadesService: PrioridadesService,
+    private TipoService: TipoService,
+    private router: Router,
+    private route: ActivatedRoute) {
     this.ordenForm = this.createFormGroup();
   }
   ordenForm: FormGroup;
@@ -44,21 +44,21 @@ export class FormComponent implements OnInit, AfterViewInit {
     this.getTipos();
     this.getUsuarios();
     this.getOrdenes();
-    
+
   }
   ngAfterViewInit(): void {
-    if (this.ordenId){
+    if (this.ordenId) {
       this.getOrden(this.ordenId);
     }
   }
-  getOrden(id){
+  getOrden(id) {
     this.OrdenestrabajoService.getOrder(id).pipe(first()).subscribe(
       orden => {
         this.loadOrden(orden);
       }
     )
   }
-  loadOrden(orden){
+  loadOrden(orden) {
     this.mode = "edit";
     this.ordenForm.controls.encargo_cod.setValue(orden.encargo.encargo_cod);
     this.ordenForm.controls.estado.setValue(orden.estado);
@@ -73,9 +73,9 @@ export class FormComponent implements OnInit, AfterViewInit {
     this.ordenForm.controls.tarea.setValue(orden.tarea)
     this.ordenForm.controls.tipo_cod.setValue(orden.tipo_cod)
   }
-  getOrdenes(){
+  getOrdenes() {
     this.OrdenestrabajoService.getAllOrdenes().subscribe(
-      (data: any)  => { // Success
+      (data: any) => { // Success
         this.dataSourceOrdenes = data;
       },
       (error) => {
@@ -83,12 +83,12 @@ export class FormComponent implements OnInit, AfterViewInit {
       }
     );
   }
-  getUsuarios(){
+  getUsuarios() {
     this.UserService.getUsers().subscribe(
-
-      (data: any)  => { 
+      (data: any) => {
         this.dataSourceUsers = data.map(
-          val => { return {
+          val => {
+            return {
               "id": val.id,
               "descripcion": val.nombre + " " + val.apellido
             }
@@ -100,15 +100,14 @@ export class FormComponent implements OnInit, AfterViewInit {
         console.error(error);
       }
     );
-
-   
   }
 
-  getPrioridades(){
+  getPrioridades() {
     this.PrioridadesService.getPrioridades().subscribe(
       (data: any) => {
         this.dataSourcePrioridades = data.map(
-          val => { return {
+          val => {
+            return {
               "id": val.id,
               "descripcion": val.nombre
             }
@@ -118,16 +117,15 @@ export class FormComponent implements OnInit, AfterViewInit {
       (error) => {
         console.error(error);
       }
-
     );
   }
 
-
-  getMaquinas(){
+  getMaquinas() {
     this.MaquinaService.getMaquinas().subscribe(
       (data: any) => {
         this.dataSourceMachines = data.map(
-          val => { return {
+          val => {
+            return {
               "id": val.id,
               "descripcion": val.descripcion
             }
@@ -138,14 +136,13 @@ export class FormComponent implements OnInit, AfterViewInit {
         console.error(error);
       }
     );
-
-  
   }
-  getTipos(){
+  getTipos() {
     this.TipoService.getTipos().subscribe(
       (data: any) => {
         this.dataSourceTipos = data.map(
-          val => { return {
+          val => {
+            return {
               "id": val.id,
               "descripcion": val.nombre
             }
@@ -158,23 +155,23 @@ export class FormComponent implements OnInit, AfterViewInit {
     );
   }
   resetForm() {
-        this.ordenForm.reset();
-      }
+    this.ordenForm.reset();
+  }
 
   saveForm() {
-        if (this.mode === 'add') {
-          this.OrdenestrabajoService.postOrder(this.ordenForm).subscribe(
-            order => alert("Se ha creado la orden nro: " + order.ordentrabajo_cod)
-          );
-        } else {
-          this.OrdenestrabajoService.updateOrder(this.ordenId, this.ordenForm).subscribe(
-            order => {
-              console.log(order);
-            });
-        }
-        this.router.navigate(['main/ordenes'])
+    if (this.mode === 'add') {
+      this.OrdenestrabajoService.postOrder(this.ordenForm).subscribe(
+        order => alert("Se ha creado la orden nro: " + order.ordentrabajo_cod)
+      );
+    } else {
+      this.OrdenestrabajoService.updateOrder(this.ordenId, this.ordenForm).subscribe(
+        order => {
+          console.log(order);
+        });
+    }
+    this.router.navigate(['main/ordenes'])
   }
-  createFormGroup(){
+  createFormGroup() {
     return new FormGroup({
       encargo_cod: new FormControl(''),
       estado: new FormControl(''),
@@ -185,8 +182,8 @@ export class FormComponent implements OnInit, AfterViewInit {
       responsable_cod: new FormControl(''),
       tarea: new FormControl(''),
       observaciones: new FormControl(''),
-      ordenTerciarizacion : new FormControl(''),
-      fechaEntrega : new FormControl(''),
+      ordenTerciarizacion: new FormControl(''),
+      fechaEntrega: new FormControl(''),
       tipo_cod: new FormControl(''),
 
     })

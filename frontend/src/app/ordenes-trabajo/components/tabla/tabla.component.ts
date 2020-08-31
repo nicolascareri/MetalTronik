@@ -272,12 +272,7 @@ export class TablaOrdenesComponent implements OnInit {
 
     })
   }
-
-
   openForm(ordenId){
     this.router.navigate(['main/ordenes/form/'+ordenId]);
   }
-
-
-
 }
