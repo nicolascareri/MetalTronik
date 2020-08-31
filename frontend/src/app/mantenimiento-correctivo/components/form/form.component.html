@@ -5,63 +5,84 @@
     <form [formGroup]="mantenimientoCorrectivoForm" (ngSubmit)="saveForm()">
 
       <label for="nrocorrectivo">Nro de mantenimiento correctivo</label>
-        <input type="number" formControlName="nrocorrectivo"  placeholder="Ingrese nro de mantenimiento correctivo">
+      <app-input [type]="'onlyNumber'" 
+                 [parentForm]="mantenimientoCorrectivoForm"  
+                 [control]="mantenimientoCorrectivoForm.controls.nrocorrectivo"
+                 [placeholder]="'Ingrese nro de mantenimiento correctivo'">
+      </app-input>
 
       <label for="tipofalla">Tipo de falla</label>
-        <input type="number" formControlName="tipofalla"  placeholder="Ingrese nro de tipo de falla">
+      <app-input [type]="'onlyNumber'" 
+                 [parentForm]="mantenimientoCorrectivoForm" 
+                 [control]="mantenimientoCorrectivoForm.controls.tipofalla"
+                 [placeholder]="'Ingrese nro de tipo de falla'">
+      </app-input>
+
       
-
-       <label for="encargo1_cod">Realizo 1</label>
-        <select formControlName="encargo1_cod">  
-          <option value="" disabled>Seleccionar encargado</option>
-          <option *ngFor="let user of dataSourceUsers" [ngValue]="user.id">
-           {{ user.nombre }}    {{ user.apellido }} 
-          </option>
-        </select>
+      <label for="encargo1_cod">Realizo 1</label>
+      <app-input [type]="'select-pair'"
+                 [parentForm]="mantenimientoCorrectivoForm" 
+                 [control]="mantenimientoCorrectivoForm.controls.encargo1_cod" 
+                 [options]="dataSourceUsers">
+      </app-input>
         
-        <label for="encargo2_cod">Realizo 2</label>
-        <select formControlName="encargo2_cod">  
-          <option value="" disabled>Seleccionar encargado</option>
-          <option *ngFor="let user of dataSourceUsers" [ngValue]="user.id">
-           {{ user.nombre }}    {{ user.apellido }} 
-          </option>
-        </select> 
+      <label for="encargo2_cod">Realizo 2</label>
+      <app-input [type]="'select-pair'"
+                 [parentForm]="mantenimientoCorrectivoForm" 
+                 [control]="mantenimientoCorrectivoForm.controls.encargo2_cod" 
+                 [options]="dataSourceUsers">
+      </app-input>
 
-        <label for="encargo3_cod">Realizo 3</label>
-        <select formControlName="encargo3_cod">  
-          <option value="" disabled>Seleccionar encargado</option>
-          <option *ngFor="let user of dataSourceUsers" [ngValue]="user.id">
-           {{ user.nombre }}    {{ user.apellido }} 
-          </option>
-        </select> 
+      <label for="encargo3_cod">Realizo 3</label>
+      <app-input [type]="'select-pair'"
+                 [parentForm]="mantenimientoCorrectivoForm" 
+                 [control]="mantenimientoCorrectivoForm.controls.encargo3_cod" 
+                 [options]="dataSourceUsers">
+      </app-input>
 
-        <label for="fechainicio">Fecha Inicio</label>
-        <input type="datetime-local" formControlName="fechainicio"  placeholder="Ingrese fecha de inicio">
+      <label for="fechainicio">Fecha Inicio</label>
+      <app-input [type]="'datetime-local'" 
+                 [parentForm]="mantenimientoCorrectivoForm"  
+                 [control]="mantenimientoCorrectivoForm.controls.fechainicio"
+                 [placeholder]="'Ingrese fecha de inicio'">
+      </app-input>
 
-        <label for="fechaFin">Fecha fin</label>
-        <input type="datetime-local" formControlName="fechaFin"  placeholder="Ingrese fecha de fin">
+      <label for="fechaFin">Fecha fin</label>
+      <app-input [type]="'datetime-local'" 
+                 [parentForm]="mantenimientoCorrectivoForm"  
+                 [control]="mantenimientoCorrectivoForm.controls.fechaFin"
+                 [placeholder]="'Ingrese fecha de inicio'">
+      </app-input>
 
-        <label for="horasProduccionAfectadas">Horas de produccion afectadas</label>
-        <input type="number" formControlName="horasProduccionAfectadas"  placeholder="Ingrese cantidad de horas afectadas para la produccion">
+      <label for="horasProduccionAfectadas">Horas de produccion afectadas</label>
+      <app-input [type]="'onlyNumber'" 
+                 [parentForm]="mantenimientoCorrectivoForm"  
+                 [control]="mantenimientoCorrectivoForm.controls.horasProduccionAfectadas"
+                 [placeholder]="'Ingrese cantidad de horas afectadas para la produccion'">
+      </app-input>
 
-        <label for="maquina_cod">Maquina</label>
-        <select formControlName="maquina_cod">  
-          <option value="" disabled>Seleccionar maquina</option>
-          <option *ngFor="let machine of dataSourceMachines" [ngValue]="machine.id">
-           {{ machine.maquina_cod }}
-          </option>
-        </select>
+      <label for="maquina_cod">Maquina</label>
+      <app-input [type]="'select-pair'"
+                 [parentForm]="mantenimientoCorrectivoForm" 
+                 [control]="mantenimientoCorrectivoForm.controls.maquina_cod" 
+                 [options]="dataSourceMachines">
+      </app-input>
+      
         
-        <label for="ordenTrabajo_cod">Orden de trabajo</label>
-        <select formControlName="ordenTrabajo_cod">  
-          <option value="" disabled>Seleccionar order de trabajo</option>
-          <option *ngFor="let order of dataSourceOrders" [ngValue]="order.ordentrabajo_cod">
-            <div *ngIf="order.estado == 1"> {{ order.ordentrabajo_cod }}</div>
-          </option>
-        </select> 
+      <label for="ordenTrabajo_cod">Orden de trabajo</label>
+      <app-input [type]="'select-pair'"
+                 [parentForm]="mantenimientoCorrectivoForm" 
+                 [control]="mantenimientoCorrectivoForm.controls.ordenTrabajo_cod" 
+                 [options]="dataSourceOrders">
+      </app-input>
 
-        <label for="observaciones">Observaciones</label>
-        <input type="text" formControlName="observaciones"  placeholder="Observaciones">
+      <label for="observaciones">Observaciones</label>
+      <app-input [type]="'input'" 
+                 [parentForm]="mantenimientoCorrectivoForm"  
+                 [control]="mantenimientoCorrectivoForm.controls.observaciones"
+                 [placeholder]="'Observaciones'">
+      </app-input>
+       
       
        
       <button type="submit" class="btn-send">Crear mantenimiento correctivo</button>

@@ -1,0 +1,46 @@
+package com.example.metalTest.salida.service.impl;
+
+import com.example.metalTest.repuesto.domain.Repuesto;
+import com.example.metalTest.repuesto.repository.RepuestoRepository;
+import com.example.metalTest.salida.controller.request.SalidaRequest;
+import com.example.metalTest.salida.domain.Salida;
+import com.example.metalTest.salida.mapper.SalidaMapper;
+import com.example.metalTest.salida.repository.SalidaRepository;
+import com.example.metalTest.salida.service.SalidaService;
+import com.example.metalTest.sector.repository.SectorRepository;
+import com.example.metalTest.usuario.repository.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class SalidaServiceImpl implements SalidaService {
+    @Autowired
+    SalidaRepository salidaRepository;
+    @Autowired
+    SalidaMapper salidaMapper;
+    @Autowired
+    SectorRepository sectorRepository;
+    @Autowired
+    UsuarioRepository usuarioRepository;
+    @Autowired
+    RepuestoRepository repuestoRepository;
+
+
+    @Override
+    public List<Salida> getAll() {
+        return salidaRepository.findAll();
+    }
+
+    @Override
+    public Salida create(SalidaRequest salidaRequest) {
+        Salida salida = salidaMapper.salidaRequestToSalida(salidaRequest);
+        Repuesto repuesto = repuestoRepository.findById(salidaRequest.getRepuesto_cod()).get();
+        repuesto.setExistencia(repuesto.getExistencia() - salidaRequest.getCantidad());
+        salida.setRepuesto(repuesto);
+        salida.setSector(sectorRepository.findById(salidaRequest.getSector_cod()).get());
+        salida.setSolicitante(usuarioRepository.findById(salidaRequest.getSolicitante_cod()).get());
+        return salidaRepository.save(salida);
+    }
+}

@@ -11,13 +11,6 @@
       </mat-select>
     </mat-form-field>
 
-    <!-- <p>Seleccionaste la maquina: <b>{{seleccion}}</b></p> -->
-
-
-   
-
-
-
 
     <div class="container-fluid">
 
@@ -46,74 +39,10 @@
 
       
 
-      <table mat-table [dataSource]="changeDataSource()" class="table mat-elevation-z8">
-      
-
-        <ng-container matColumnDef="nombre">
-          <th mat-header-cell *matHeaderCellDef> Nombre de repuesto </th>
-          <td mat-cell *matCellDef="let repuesto"> {{repuesto.nombre}} </td>
-        </ng-container>
-
-        
-        <ng-container matColumnDef="modelo">
-          <th mat-header-cell *matHeaderCellDef> Modelo de repuesto </th>
-          <td mat-cell *matCellDef="let repuesto"> {{repuesto.modelo}} </td>
-        </ng-container>
-
-
-        <ng-container matColumnDef="cantidadInstalada">
-          <th mat-header-cell *matHeaderCellDef> Cantidad instalada </th>
-          <td mat-cell *matCellDef="let repuesto"> {{repuesto.cantidadInstalada}} </td>
-        </ng-container>
-
-        
-        <ng-container matColumnDef="maquina.maquina_cod">
-          <th mat-header-cell *matHeaderCellDef> Asociado a maquina  </th>
-          <td mat-cell *matCellDef="let repuesto">
-            <div *ngIf="repuesto.maquina != null">
-              <b>{{repuesto.maquina.maquina_cod}}</b> 
-            </div>
-            <div *ngIf="repuesto.maquina == null">
-              <p style="color: #D58E00;"><b>-</b></p> 
-            </div>
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="maquina.planta.nombre">
-          <th mat-header-cell *matHeaderCellDef> Planta </th>
-          <td mat-cell *matCellDef="let repuesto">
-            <div *ngIf="repuesto.maquina != null">
-              {{repuesto.maquina.planta.nombre}} 
-            </div>
-            <div *ngIf="repuesto.maquina == null">
-              <p style="color: #D58E00;"><b>-</b></p> 
-            </div>
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="maquina.sector.descripcion">
-          <th mat-header-cell *matHeaderCellDef> Sector </th>
-          <td mat-cell *matCellDef="let repuesto">
-            <div *ngIf="repuesto.maquina != null">
-              {{repuesto.maquina.sector.descripcion}} 
-            </div>
-            <div *ngIf="repuesto.maquina == null">
-              <p style="color: #D58E00;"><b>-</b></p> 
-            </div> 
-          </td>
-        </ng-container>
-      
-
-       
-
-
-        
-
-
-        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-        <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
-
-      </table>
+      <app-tabla class="table" [ds]='changeDataSource()' 
+                             [columns]='columnsToDisplay' 
+                             [width]="'90%'">
+      </app-tabla>
     </div>
 
     <app-button [routerLink]="['lista-repuestos']" [name]="['Nueva asociación']"></app-button>

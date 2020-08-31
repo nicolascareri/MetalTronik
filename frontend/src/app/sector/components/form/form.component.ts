@@ -30,7 +30,6 @@ export class FormSectorComponent implements OnInit {
   }
 
   saveForm() {
-    console.log(this.form.value);
     this.SectorService.postSector(this.form).subscribe(
       sector => alert("Se ha creado el sector numero: " + sector.id)
     );

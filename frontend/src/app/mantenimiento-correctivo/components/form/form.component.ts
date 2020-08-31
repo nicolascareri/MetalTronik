@@ -47,7 +47,13 @@ export class FormMantenimientoCorrectivoComponent implements OnInit {
     this.OrdenestrabajoService.getAllOrdenes().subscribe(
 
       (data: any)  => { // Success
-        this.dataSourceOrders = data;
+        this.dataSourceOrders = data.map(
+          val => { return {
+              "id": val.id,
+              "descripcion": val.ordentrabajo_cod
+            }
+          }
+        );
         console.log(this.dataSourceOrders);
       },
       (error) => {
@@ -59,7 +65,13 @@ export class FormMantenimientoCorrectivoComponent implements OnInit {
     this.MaquinaService.getMaquinas().subscribe(
 
       (data: any)  => { // Success
-        this.dataSourceMachines = data;
+        this.dataSourceMachines = data.map(
+          val => { return {
+              "id": val.id,
+              "descripcion": val.maquina_cod
+            }
+          }
+        );
         console.log(this.dataSourceMachines);
       },
       (error) => {
@@ -70,8 +82,14 @@ export class FormMantenimientoCorrectivoComponent implements OnInit {
 
     this.UserService.getUsers().subscribe(
       (data: any) => {
-        this.dataSourceUsers = data;
-        console.log(this.dataSourceUsers);
+        this.dataSourceUsers = data.map(
+          val => { return {
+              "id": val.id,
+              "descripcion": val.nombre + " " + val.apellido
+            }
+          }
+        );
+        
       },
       (error) => {
         console.error(error);

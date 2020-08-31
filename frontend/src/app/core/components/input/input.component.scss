@@ -1,0 +1,295 @@
+@import "../../../../assets/themes.scss";
+
+.input {
+    position: relative;
+    padding: 20px;
+
+    .required {
+        font-size: $font-size-s;
+        position: relative;
+        top: -3px;
+        left: 3px;
+        color: $red;
+    }
+
+    &__container {
+        position: relative;
+    }
+    &__text {
+        @include input-style();
+        height: $height-fields ;
+        &:focus {
+            background-color: $white;
+            border-color: $primary-ligthblue;
+            box-shadow:  0 0px 2px $primary-ligthblue;
+            border-radius: 5px;
+        }
+        &--uppercase {
+            text-transform: uppercase;
+        }
+        &:disabled{
+            opacity: 1;
+            background: white;        
+        }
+        
+    }
+    &__textarea {
+        @include input-style();
+        padding: 15px;
+        &:focus {
+            background-color: $white;
+            border-color: $primary-ligthblue;
+            box-shadow:  0 0px 2px $primary-ligthblue;
+            border-radius: 5px;
+        }
+        &--uppercase {
+            text-transform: uppercase;
+        }
+        &:disabled{
+            opacity: 1;
+            background: white; 
+        }
+    }
+    &__label {
+        margin-bottom: 5px;
+        display: inline-block;
+        font-weight: 500;
+    }
+    &__icon {
+        position: relative;
+        top: 7px;
+        left: 20px;
+        cursor: pointer;
+        &__add-comment {
+            position: relative;
+            top: 5px;
+            margin: 0 5px 0 0;
+            color: #1075b7;
+            cursor: pointer;
+            font-size: 19px;
+        }
+        &__view-comment {
+            position: absolute;
+            top: 11px;
+            right: -6px;
+            margin: 0 5px 0 0;
+            color: #f51409;
+            height: 35px;
+            border-radius: 23px;
+            font-size: 19px;
+        }
+        &__del-comment {
+            position: absolute;
+            top: 11px;
+            right: 0;
+            margin: 0 5px 0 0;
+            color: #f51409;
+            cursor: pointer;
+            height: 35px;
+            border-radius: 23px;
+            font-size: 19px;
+        }
+    }
+
+    &__comment {
+        display: none;
+        max-height: 0;
+        position: absolute;
+        padding: 20px;
+        min-width:300px;
+        top: 20px;
+        max-width:30vw;
+        background: $yellow-ligth;
+        z-index: 999999;
+        @include shadow-card;
+        transition:  cubic-bezier(0, 0, .2, 2);
+        text-align: start;
+        &--show {
+            min-height: 8px;
+            display: flex;
+            max-height: fit-content;
+        }
+
+        &:before {
+            content: ' ';
+            position: absolute;
+            top: -20px;
+            left: 0px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 12px 20px 12px;
+            border-color: transparent transparent  $yellow-ligth transparent;
+        }
+    }
+
+    &__radio {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        font-size: 18px;
+        height: 58px;
+        :disabled {
+            opacity: 1;
+            background: white; 
+        }
+        &--disable {
+            color: $grey;
+        }
+    }
+
+}  
+
+@keyframes messageActive {
+	0% {
+        box-shadow: 0 0 4px rgba(255, 166, 0, 0.993)
+	}
+
+	50% {
+        box-shadow: 0 0 4px rgba(255, 166, 0, 0.1)
+    }
+    
+    100% {
+        box-shadow: 0 0 4px rgba(255, 166, 0, 0.993)
+	}
+}
+
+.invalid ::ng-deep .trumbowyg-box.trumbowyg-editor-visible.trumbowyg-en.trumbowyg {
+    border: 2px solid $red;
+}
+::ng-deep .trumbowyg-box.trumbowyg-editor-visible.trumbowyg-en.trumbowyg {
+    border-radius: 5px;
+    transition: all 0.5s ease-in-out;
+}
+.--invalid input{
+    border: 2px solid $red;
+}
+.--comment {
+    input,.select select , textarea{
+        border: 2px solid rgba(255, 166, 0, 0.993);
+        animation: messageActive 1s ease-in-out infinite;
+    }
+}
+
+
+.select {
+    position: relative;
+    display: inline-block;
+    min-width: 100%;
+    &__icon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width:1.9em;
+        pointer-events:none;
+        &--disabled{
+            display: none;
+        }
+    }
+    select {
+        @include input-style();
+        height: $height-fields;
+        padding-right:1.5em;
+        width: 100%;
+        appearance: none;
+        font:inherit;
+        line-height:1.3em;
+        color:inherit;
+        &:disabled{
+            opacity: 1;
+            background: white; 
+        }
+        &:focus {
+            background-color: $white;
+            border-color: $primary-ligthblue;
+            box-shadow:  0 0px 2px $primary-ligthblue;
+            border-radius: 5px;
+        }
+    }
+}
+
+
+
+.material_radio
+{
+  position: relative;
+  margin: 25px;
+}
+
+.material_radio:before
+{
+  border: 3px solid #ccc;
+  border-radius: 100%;
+  content: "";
+  cursor: pointer;
+  display: block;
+  height: 15px;
+  position: absolute;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  width: 15px;
+  z-index: 1;
+  top: -3px;
+}
+
+.material_radio:checked:before
+{
+  -moz-transform: scale(.75);
+  -ms-transform: scale(.75);
+  -o-transform: scale(.75);
+  -webkit-transform: scale(.75);
+  transform: scale(.75);
+  background: #ccc;
+}
+
+.material_radio:after
+{
+  background: #fff;
+  content: "";
+  display: block;
+  height: 15px;
+  position: absolute;
+  top: 0;
+  width: 15px;
+  z-index: 0;
+}
+
+.material_radio:checked:before{
+    background-color:$extreme-ligthblue;
+}
+.message {
+    position: relative;
+    margin-top: 3px;
+    color: $red;
+    font-weight: 500;
+    font-size: 14px;
+    font-style: italic;
+    text-align: end;
+}
+/* OTHERS */
+
+*:focus {
+    outline: none;
+} 
+
+.date {
+    font: 95% Arial, Helvetica, sans-serif; 
+    background-color: white;
+    color: black;
+    //display: block; 
+    //font-size: 25px;
+    border: 1px solid white;
+    border-radius: 5px;
+    //transition: all 0, 30% ease-in-out;
+    //outline: none;
+    //box-sizing: border-box;
+    // width: 19%;
+    margin-bottom: 4%;
+    // padding: 6px;
+}

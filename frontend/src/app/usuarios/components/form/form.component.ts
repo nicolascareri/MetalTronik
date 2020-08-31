@@ -44,7 +44,6 @@ export class FormUsuarioComponent implements OnInit {
   }
 
   saveForm() {
-    console.log(this.userForm.value);
     this.UserService.postUser(this.userForm).subscribe(
       user => alert("Se ha creado el usuario numero: " + user.id)
     );

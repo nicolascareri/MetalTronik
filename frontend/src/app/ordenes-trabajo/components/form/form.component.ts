@@ -1,6 +1,6 @@
 import {Component, OnInit, AfterViewInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
 import { first } from "rxjs/operators"
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {OrdenestrabajoService} from '../../services/ordenestrabajo.service';
 import {MaquinaService} from '../../../maquina/services/maquina.service';
 import {UserService} from '../../../usuarios/services/user.service';
@@ -18,9 +18,7 @@ export class FormComponent implements OnInit, AfterViewInit {
 
   constructor(private OrdenestrabajoService: OrdenestrabajoService,
               private UserService: UserService,
-              // private SectorService: SectorService,
               private MaquinaService: MaquinaService,
-              // private PlantaService: PlantaService,
               private PrioridadesService: PrioridadesService,
               private TipoService: TipoService,
               private router: Router,
@@ -88,8 +86,34 @@ export class FormComponent implements OnInit, AfterViewInit {
   getUsuarios(){
     this.UserService.getUsers().subscribe(
 
-      (data: any)  => { // Success
-        this.dataSourceUsers = data;
+      (data: any)  => { 
+        this.dataSourceUsers = data.map(
+          val => { return {
+              "id": val.id,
+              "descripcion": val.nombre + " " + val.apellido
+            }
+          }
+        );
+        console.log(this.dataSourceUsers);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+
+   
+  }
+
+  getPrioridades(){
+    this.PrioridadesService.getPrioridades().subscribe(
+      (data: any) => {
+        this.dataSourcePrioridades = data.map(
+          val => { return {
+              "id": val.id,
+              "descripcion": val.nombre
+            }
+          }
+        );
       },
       (error) => {
         console.error(error);
@@ -97,32 +121,36 @@ export class FormComponent implements OnInit, AfterViewInit {
 
     );
   }
+
+
   getMaquinas(){
     this.MaquinaService.getMaquinas().subscribe(
-
-      (data: any)  => { // Success
-        this.dataSourceMachines = data;
-      },
-      (error) => {
-        console.error(error);
-      }
-
-    );
-  }
-  getPrioridades(){
-        this.PrioridadesService.getPrioridades().subscribe(
       (data: any) => {
-        this.dataSourcePrioridades = data;
+        this.dataSourceMachines = data.map(
+          val => { return {
+              "id": val.id,
+              "descripcion": val.descripcion
+            }
+          }
+        );
       },
       (error) => {
         console.error(error);
       }
     );
+
+  
   }
   getTipos(){
     this.TipoService.getTipos().subscribe(
       (data: any) => {
-        this.dataSourceTipos = data;
+        this.dataSourceTipos = data.map(
+          val => { return {
+              "id": val.id,
+              "descripcion": val.nombre
+            }
+          }
+        );
       },
       (error) => {
         console.error(error);
@@ -145,8 +173,6 @@ export class FormComponent implements OnInit, AfterViewInit {
             });
         }
         this.router.navigate(['main/ordenes'])
-
-
   }
   createFormGroup(){
     return new FormGroup({

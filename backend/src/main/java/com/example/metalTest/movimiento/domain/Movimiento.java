@@ -22,28 +22,9 @@ public class Movimiento {
     private Repuesto repuesto;
 
     @Column
-    private short tipoMovimiento;
-
-    @Column
-    private int precio;
-
-    @Column
     private Date fecha;
-
-    @Column
-    private String numeroOrdenCompra;
-
-    @Column //futura entidad
-    private String proveedor;
 
     @Column
     private int cantidad;
 
-    @JoinColumn
-    @OneToOne
-    private Sector sector;
-
-    @JoinColumn
-    @OneToOne
-    private Usuario solicitante;
 }

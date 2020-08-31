@@ -1,0 +1,75 @@
+// Main Colors
+$primary-teal: teal;
+$extreme-teal: #33A0A0;
+$primary-ligthblue:#1075b7;
+$extreme-ligthblue: #48BDED;
+$extreme-second-ligthblue: #6abee0;
+$secundary-ligthblue:#187CA5;
+$third-ligthblue:#A9DAF0;
+$fourd-ligthblue: #1ea2cb;
+$dark-blue:#193C66;
+$orange: #fe9e13;
+$green: #32D590;
+$white: #FFFFFF;
+$red: #E14646;
+$grey: #8f8f8f;
+$grey-light: #D9D9D9;
+$black: black;
+$yellow-ligth: #fff5c5;
+$yellow:#fada26;
+$ligth-gray: #d3d3d3; 
+
+// Buttons Colors
+$green-enable: $green;
+$green-disable:#A4D6C1;
+$green-hover: darken($green-enable, 15%);
+$blue-enable : $primary-ligthblue;
+$blue-disable:#9CC6D8;
+$blue-hover: darken($blue-enable, 15%);
+$red-enable : $red;
+$red-disable: #e4a5a5;
+$red-hover: darken($red-enable, 15%);
+$dark-blue-enable: $dark-blue;
+$dark-blue-disable: ligthen($dark-blue-enable, 15%);
+$dark-blue-hover: darken($dark-blue-enable, 15%);
+$white-enable: $white;
+$white-disable: ligthen($white-enable, 15%);
+$white-hover: darken($white-enable, 15%);
+$bg-striped-dark: #F4F4F4;
+
+// Background
+$background-color: #F7F7F7;
+$background-input: #F7F7F7;
+$background-white: $white;
+$warning-message: $yellow-ligth;
+$background-submenu: #EBF5FA;
+$background-nav: #F7F7F7;
+$background-green-card: #E4FFD7;
+$background-red-card: #FFE4E4;
+$background-yellow-card: #FAF4DE;
+
+// $background-section: #fcfcfc;
+$background-section: $white;
+// font colors
+$text-color-ligth: $white;
+
+
+
+// Sizes
+$height-fields : 40px;
+$side-nav-wd: 200px;
+$aside-status-wd: 15vw;
+$section-margin: 50px;
+$section-margin-top: 33px;
+$section-margin-left: 10px;
+
+
+$section-medium-wd: calc(100vw - #{$side-nav-wd} - #{$aside-status-wd} - 120px);
+$header-hg: 79px;
+$footer-hg: 100px;
+$margin-left: 45px;
+$font-size-xs: 8px;
+$font-size-s: 12px;
+$font-size-m: 14px;
+$font-size-l: 16px;
+$font-size-xl: 24px;

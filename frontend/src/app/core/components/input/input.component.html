@@ -1,0 +1,75 @@
+<div [ngSwitch]="type" class="input__container" [ngClass]="{'--invalid': isInvalid(),'--comment': myComments}">
+
+    <input *ngSwitchCase="'datetime-local'" class="date"  [type]="'datetime-local'" [formControl]="control"  [placeholder]="placeholder">
+
+    <input *ngSwitchCase="'input'" class="input__text" [maxlength]="maxlength" [placeholder]="placeholder"
+        [type]="'input'" [id]="name" [formControl]="control">
+
+    <input *ngSwitchCase="'onlyNumber'" class="input__text" [maxlength]="maxlength" [placeholder]="placeholder"
+        [type]="'number'" pattern="\d*" [id]="name" [formControl]="control">
+
+    <input *ngSwitchCase="'float-2'" class="input__text" [maxlength]="maxlength" [placeholder]="placeholder"
+        [type]="'number'" step=".01" [id]="name" [formControl]="control">
+
+    <input *ngSwitchCase="'tel'" class="input__text" [maxlength]="maxlength" [placeholder]="placeholder" [type]="'text'"
+        [id]="name" [formControl]="control">
+
+    <input *ngSwitchCase="'password'" class="input__text" [maxlength]="maxlength" [placeholder]="placeholder"
+        [type]="'password'" [id]="name" [formControl]="control">
+
+    <input *ngSwitchCase="'email'" class="input__text" [maxlength]="maxlength" [placeholder]="placeholder"
+        [type]="'email'" [id]="name" [formControl]="control">
+
+    <input *ngSwitchCase="'prefijo'" class="input__text input__text--uppercase" [maxlength]="'2'"
+        [placeholder]="placeholder" [type]="'text'" pattern="[a-zA-Z]+" [id]="name" [formControl]="control">
+
+    <textarea *ngSwitchCase="'textarea'" class="input__textarea" [maxlength]="maxlength" [name]="name" [rows]="rows"
+        cols="50" [placeholder]="placeholder" [formControl]="control"></textarea>
+
+    <div *ngSwitchCase="'radiobutton'" [ngClass]="{'input__radio--disable': control.disabled}" class="input__radio">
+        <label *ngFor="let option of options" for="option">
+            <input type="radio" class="material_radio" [formControl]="control" [name]="name" [value]="option.value"
+                checked>{{option.label}}
+        </label>
+    </div>
+
+    <div *ngSwitchCase="'select'">
+        <div *ngIf="!isDisable" class="select">
+            <select (change)="onChange($event.target)" name="mySelect" [formControl]="control">
+                <option [ngValue]="null" disabled selected hidden>Selecciona...</option>
+                <option *ngFor="let option of options" [ngValue]="option">{{option}}</option>
+            </select>
+            <i class="select__icon material-icons">keyboard_arrow_down</i>
+        </div>
+        <div *ngIf="isDisable" class="select">
+            <select name="mySelect" [formControl]="control" disabled>
+                <option [ngValue]="null" disabled selected hidden>Selecciona...</option>
+                <option *ngFor="let option of options" [ngValue]="option">{{option}}</option>
+            </select>
+            <i class="select__icon select__icon--disabled material-icons">keyboard_arrow_down</i>
+        </div>
+    </div>
+
+    <div *ngSwitchCase="'select-pair'">
+        <div *ngIf="!isDisable" class="select">
+            <select (change)="onChangePair($event.target)" name="mySelect" [formControl]="control">
+                <option [ngValue]="null" disabled selected hidden>Selecciona...</option>
+                <option *ngFor="let option of options" [ngValue]="option.id">{{option.descripcion}}</option>
+            </select>
+            <i class="select__icon material-icons">keyboard_arrow_down</i>
+        </div>
+        <div *ngIf="isDisable" class="select">
+            <select (change)="onChangePair($event.target.value)" name="mySelect" disabled [formControl]="control">
+                <option [ngValue]="null" disabled selected hidden>No corresponde</option>
+                <option *ngFor="let option of options" [ngValue]="option.id">{{option.descripcion}}</option>
+            </select>
+            <i class="select__icon select__icon--disabled material-icons">keyboard_arrow_down</i>
+        </div>
+    </div>
+
+    <i matTooltip="Este campo tiene comentarios" *ngIf=" commentMode == 1 && myComments"
+        class="material-icons input__icon__view-comment">priority_high</i>
+    <i matTooltip="Borrar comentario" *ngIf="commentMode >= 2 && myComments"
+        class="material-icons input__icon__del-comment" (click)="deleteComment()">close</i>
+
+</div>

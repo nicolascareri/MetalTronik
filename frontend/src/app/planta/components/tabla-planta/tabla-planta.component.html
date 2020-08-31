@@ -1,35 +1,13 @@
 <div>
 
-    <mat-form-field class="filter">
-      <mat-label style="font-weight: bold;">Filtrar</mat-label>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Material, responsable, maquina...">
-    </mat-form-field>
+  <app-button [routerLink]="['formplanta']" [name]="['Nueva planta']"></app-button>
 
-    <app-button [routerLink]="['formplanta']" [name]="['Nueva planta']"></app-button>
+  <div class="data">
 
-
-    <!-- <app-edit-order [originalOrder]="ordenes"></app-edit-order> -->
-
-    <div class="data">
-    <table mat-table [dataSource]="dataSourcePlants" class="table">
-
-      <!-- <ng-container matColumnDef="edit">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let usuario">
-          <button id="myBtn" class="edit-btn" (click)="openModal(usuario)">Editar</button>
-        </td>
-      </ng-container> -->
-
-
-      <ng-container matColumnDef="nombre">
-        <th mat-header-cell *matHeaderCellDef> Plantas </th>
-        <td mat-cell *matCellDef="let planta"> {{planta.nombre}} </td>
-      </ng-container>
-
-
-    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
-  </table>
+    <app-tabla class="table" [ds]='dataSourcePlants' 
+                             [columns]='columnsToDisplay' 
+                             [width]="'90%'">
+    </app-tabla>
 
 
 

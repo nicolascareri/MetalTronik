@@ -15,27 +15,24 @@ export class FormMaquinaComponent implements OnInit {
   dataSourcePlants: any;
   dataSourceSectors: any;
 
-  createFormGroup() {
-    return new FormGroup({
-      maquina_cod: new FormControl(''),
-      nro_serie: new FormControl(''),
-      modelo: new FormControl(''),
-      equipo: new FormControl(''),
-      datos_tecnicos: new FormControl(''),
-      descripcion: new FormControl(''),
-      planta_cod: new FormControl(''),
-      sector_cod: new FormControl(''),
-      estado: new FormControl(30)
-    })
-  }
-
-  machinesForm: FormGroup;
+  
+  machinesForm: FormGroup = new FormGroup({
+    maquina_cod: new FormControl(''),
+    nro_serie: new FormControl(''),
+    modelo: new FormControl(''),
+    equipo: new FormControl(''),
+    datos_tecnicos: new FormControl(''),
+    descripcion: new FormControl(''),
+    planta_cod: new FormControl(''),
+    sector_cod: new FormControl(''),
+    estado: new FormControl(30)
+  });
 
   constructor(private MaquinaService: MaquinaService,
               private PlantaService: PlantaService,
               private SectorService: SectorService)
   {
-    this.machinesForm  = this.createFormGroup();
+    
   }
 
   ngOnInit(): void {
@@ -43,7 +40,13 @@ export class FormMaquinaComponent implements OnInit {
     this.PlantaService.getPlantas().subscribe(
 
       (data: any)  => { // Success
-        this.dataSourcePlants = data;
+        this.dataSourcePlants = data.map(
+          val => { return {
+              "id": val.id,
+              "descripcion": val.nombre
+            }
+          }
+        );
         console.log(this.dataSourcePlants);
       },
       (error) => {
@@ -55,7 +58,13 @@ export class FormMaquinaComponent implements OnInit {
     this.SectorService.getSectores().subscribe(
 
       (data: any)  => { // Success
-        this.dataSourceSectors = data;
+        this.dataSourceSectors = data.map(
+          val => { return {
+              "id": val.id,
+              "descripcion": val.descripcion
+            }
+          }
+        );
         console.log(this.dataSourceSectors);
       },
       (error) => {
@@ -73,7 +82,6 @@ export class FormMaquinaComponent implements OnInit {
   }
 
   saveForm() {
-    console.log(this.machinesForm.value);
     this.MaquinaService.postMaquina(this.machinesForm).subscribe(
       maquina => alert("Se ha creado la maquina numero: " + maquina.id)
     );
