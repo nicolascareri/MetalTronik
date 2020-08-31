@@ -1,13 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {OrdenestrabajoService} from '../../services/ordenestrabajo.service';
-// import { SectorService } from "../../services/sector.service";
 import {MaquinaService} from '../../../maquina/services/maquina.service';
 import {UserService} from '../../../usuarios/services/user.service';
 import {PrioridadesService} from '../../../prioridad/services/prioridades.service';
 import {TipoService} from '../../../tipo/services/tipo.service';
-// import { PlantaService } from "../../services/planta.service";
 import {Router} from '@angular/router';
 
 @Component({
@@ -20,27 +17,14 @@ export class FormComponent implements OnInit {
 
   constructor(private OrdenestrabajoService: OrdenestrabajoService,
               private UserService: UserService,
-              // private SectorService: SectorService,
               private MaquinaService: MaquinaService,
-              // private PlantaService: PlantaService,
               private PrioridadesService: PrioridadesService,
               private TipoService: TipoService,
               private router: Router) {
-    this.ordenForm = this.createFormGroup();
   }
 
 
-  // plantas: any = PLANTAS;
-  // prioridades: any = PRIORIDADES;
-  // estados: any = ESTADO_ORDEN;
-  // tipo: any = TIPO;
-
   ordenForm: FormGroup;
-  // users: any;
-  // orders: any;
-  // sectors: any;
-  // machines: any;
-  // plants: any;
   dataSourceUsers: any;
   dataSourceOrdenes: any;
   dataSourceSectors: any;
@@ -49,31 +33,22 @@ export class FormComponent implements OnInit {
   dataSourceTipos: any;
   dataSourcePrioridades: any;
 
-  createFormGroup(){
-    return new FormGroup({
-      encargo_cod: new FormControl(''),
-      estado: new FormControl(''),
-      fechaRealizar: new FormControl(''),
-      maquina_cod: new FormControl(''),
-      pedidoMateriales: new FormControl(''),
-      priodidad_cod: new FormControl(''),
-      responsable_cod: new FormControl(''),
-      tarea: new FormControl(''),
-      observaciones: new FormControl(''),
-      ordenTerciarizacion : new FormControl(''),
-      fechaEntrega : new FormControl(''),
-      tipo_cod: new FormControl(''),
 
-    })
-  }
 
   ngOnInit(): void {
 
-
+    this.ordenForm = this.createFormGroup();
     this.MaquinaService.getMaquinas().subscribe(
 
-      (data: any)  => { // Success
-        this.dataSourceMachines = data;
+      (data: any)  => { 
+        this.dataSourceMachines = data.map(
+          val => { return {
+              "id": val.id,
+              "descripcion": val.maquina_cod
+            }
+          }
+        );
+        console.log(this.dataSourceMachines);
       },
       (error) => {
         console.error(error);
@@ -83,7 +58,13 @@ export class FormComponent implements OnInit {
 
     this.PrioridadesService.getPrioridades().subscribe(
       (data: any) => {
-        this.dataSourcePrioridades = data;
+        this.dataSourcePrioridades = data.map(
+          val => { return {
+              "id": val.id,
+              "descripcion": val.nombre
+            }
+          }
+        );
       },
       (error) => {
         console.error(error);
@@ -92,17 +73,31 @@ export class FormComponent implements OnInit {
 
     this.TipoService.getTipos().subscribe(
       (data: any) => {
-        this.dataSourceTipos = data;
+        this.dataSourceTipos = data.map(
+          val => { return {
+              "id": val.id,
+              "descripcion": val.nombre
+            }
+          }
+        );
       },
       (error) => {
         console.error(error);
       }
     );
 
+
     this.UserService.getUsers().subscribe(
 
-      (data: any)  => { // Success
-        this.dataSourceUsers = data;
+      (data: any)  => { 
+        this.dataSourceUsers = data.map(
+          val => { return {
+              "id": val.id,
+              "descripcion": val.nombre + " " + val.apellido
+            }
+          }
+        );
+        console.log(this.dataSourceUsers);
       },
       (error) => {
         console.error(error);
@@ -112,7 +107,7 @@ export class FormComponent implements OnInit {
 
 
     this.OrdenestrabajoService.getAllOrdenes().subscribe(
-      (data: any)  => { // Success
+      (data: any)  => { 
         this.dataSourceOrdenes = data;
       },
       (error) => {
@@ -121,6 +116,24 @@ export class FormComponent implements OnInit {
     );
 
 
+  }
+
+  createFormGroup(){
+    return new FormGroup({
+      encargo_cod: new FormControl(''),
+      estado: new FormControl(''),
+      fechaRealizar: new FormControl(''),
+      maquina_cod: new FormControl(''),
+      pedidoMateriales: new FormControl(''),
+      prioridad_cod: new FormControl(''),
+      responsable_cod: new FormControl(''),
+      tarea: new FormControl(''),
+      observaciones: new FormControl('', Validators.required),
+      ordenTerciarizacion : new FormControl(''),
+      fechaEntrega : new FormControl(''),
+      tipo_cod: new FormControl(''),
+
+    })
   }
 
   resetForm() {

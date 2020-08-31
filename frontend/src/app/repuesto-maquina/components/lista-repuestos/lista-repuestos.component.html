@@ -29,27 +29,13 @@
         </mat-select>
       </mat-form-field>
 
-      <!-- <div class="input-group">
-            <select class="custom-select" formControlName="repuesto">
-              <option *ngFor="let repuesto of dataSourceRepuestos" [value]="repuesto">
-                {{repuesto.nombre}}
-              </option>
-            </select>
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="button">Button</button>
-            </div>
-          </div> -->
-
-
-      <!-- <mat-label>Favorite food</mat-label>
-            <input matInput placeholder="Ex. Pizza" value="Sushi"> -->
-
       <br>
       Cantidad:
       <br>
       <input type="number" (ngValue)='cntInstalada' formControlName="cantidadInstalada">
 
-      <button style="margin: 1%;" type="button" class="btn btn-primary btn-sm" (click)="agruopData()">Agregar</button>
+
+      <app-button [name]="['Agregar']" type="submit" [click]="agruopData()"></app-button>
 
       <hr class="my-7">
       <div>
@@ -87,6 +73,8 @@
       <button style="margin: 1%;" type="button" class="btn btn-primary btn-sm" (click)="asociar()">
         Confirmar
       </button>
+
+
 
 
 

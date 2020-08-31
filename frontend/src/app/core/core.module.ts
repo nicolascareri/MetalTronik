@@ -5,22 +5,24 @@ import {MatButtonModule} from '@angular/material/button';
 import {ButtonComponent} from './components/button/button.component';
 import {RouterModule} from '@angular/router';
 import { TablaComponent } from './components/tabla/tabla/tabla.component';
-import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { InputComponent } from './components/input/input.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
-  declarations: [ButtonComponent, TablaComponent],
+  declarations: [ButtonComponent, TablaComponent, InputComponent],
   imports: [
     CommonModule,
     MatButtonModule,
     RouterModule,
     MatTableModule,
-    MatAutocompleteModule
+    ReactiveFormsModule
   ],
   exports: [
     ButtonComponent,
     MatTableModule,
-    TablaComponent
+    TablaComponent,
+    InputComponent
     
   ]
 })

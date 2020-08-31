@@ -1,7 +1,7 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {HomeComponent} from './components/home/home.component';
-import {MainComponent} from './components/main/main.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
+import { MainComponent } from './components/main/main.component';
 
 
 const routes: Routes = [
@@ -12,54 +12,54 @@ const routes: Routes = [
       {
         path: '',
         redirectTo: 'home',
-                pathMatch: 'prefix'
-            },
-            {
-                path: 'home',
-                component: HomeComponent
-            },
-            {
-                path: 'ordenes',
-                loadChildren: 'src/app/ordenes-trabajo/ordenes-trabajo.module#OrdenesTrabajoModule',
-            },
-            {
-                path: 'usuarios',
-                loadChildren: 'src/app/usuarios/usuarios.module#UsuariosModule',
-            },
-            {
-                path: 'maquinas',
-                loadChildren: 'src/app/maquina/maquina.module#MaquinaModule',
-            },
-            {
-                path: 'mantenimientosCorrectivos',
-                loadChildren: 'src/app/mantenimiento-correctivo/mantenimiento-correctivo.module#MantenimientoCorrectivoModule',
-            },
-            {
-              path: 'configuracion',
-              loadChildren: 'src/app/configuracion/configuracion.module#ConfiguracionModule',
-            },
-            {
-              path: 'repuestos',
-              loadChildren: 'src/app/repuesto-maquina/repuesto-maquina.module#RepuestoMaquinaModule',
-            }
+        pathMatch: 'prefix'
+      },
+      {
+        path: 'home',
+        component: HomeComponent
+      },
+      {
+        path: 'ordenes',
+        loadChildren: 'src/app/ordenes-trabajo/ordenes-trabajo.module#OrdenesTrabajoModule',
+      },
+      {
+        path: 'usuarios',
+        loadChildren: 'src/app/usuarios/usuarios.module#UsuariosModule',
+      },
+      {
+        path: 'maquinas',
+        loadChildren: 'src/app/maquina/maquina.module#MaquinaModule',
+      },
+      {
+        path: 'mantenimientosCorrectivos',
+        loadChildren: 'src/app/mantenimiento-correctivo/mantenimiento-correctivo.module#MantenimientoCorrectivoModule',
+      },
+      {
+        path: 'configuracion',
+        loadChildren: 'src/app/configuracion/configuracion.module#ConfiguracionModule',
+      },
+      {
+        path: 'repuestos',
+        loadChildren: 'src/app/repuesto-maquina/repuesto-maquina.module#RepuestoMaquinaModule',
+      }
 
 
     ]
 
-    },
-    { path: '', pathMatch: 'full', redirectTo: 'main' }
+  },
+  { path: '', pathMatch: 'full', redirectTo: 'main' }
 ];
-@NgModule ({
+@NgModule({
   imports: [
     RouterModule.forChild(routes)
   ],
-    exports: [
+  exports: [
 
-        RouterModule
+    RouterModule
 
-    ]
+  ]
 })
 
-export class MainRoutingModule{
+export class MainRoutingModule {
 
 }

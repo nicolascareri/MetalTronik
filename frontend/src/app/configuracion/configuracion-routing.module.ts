@@ -1,6 +1,6 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {TablaConfiguracionComponent} from "./components/tabla/tabla.component";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { TablaConfiguracionComponent } from "./components/tabla/tabla.component";
 
 const routes: Routes = [
   {
@@ -12,22 +12,23 @@ const routes: Routes = [
       }
 
     ]
-    }
+  }
 ];
-@NgModule ({
-     imports: [
 
-         RouterModule.forChild(routes)
+@NgModule({
+  imports: [
 
-     ],
-     exports:[
+    RouterModule.forChild(routes)
 
-        RouterModule
+  ],
+  exports: [
 
-     ]
+    RouterModule
+
+  ]
 
 })
 
-export class ConfiguracionRountingModule{
+export class ConfiguracionRountingModule {
 
 }

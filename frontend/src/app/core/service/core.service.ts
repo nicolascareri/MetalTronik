@@ -69,18 +69,14 @@ export class CoreService {
               }
               break;
             case 'tipo':
-              if(result.tipo){
-                result.tipo = result.tipo.nombre;
-              }
-              break;
+                if(result.tipo){
+                  result.tipo = result.tipo.nombre;
+                }
+                break;
             case 'ordentrabajo':
-              if(result.ordentrabajo){
-                result.ordentrabajo = result.ordentrabajo.ordentrabajo_cod;
-              }
-              break;
-            case 'tipo':
-              if(result.tipo){
-                result.tipo = result.tipo.nombre;
+              if(result.ordenTrabajo){
+                result.ordentrabajo_cod = result.ordenTrabajo.ordentrabajo_cod;
+                result.tipo = result.ordenTrabajo.tipo.nombre;
               }
               break;
             case 'planta':
