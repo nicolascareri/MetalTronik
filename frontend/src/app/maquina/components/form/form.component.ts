@@ -82,7 +82,6 @@ export class FormMaquinaComponent implements OnInit {
   }
 
   saveForm() {
-    console.log(this.machinesForm.value);
     this.MaquinaService.postMaquina(this.machinesForm).subscribe(
       maquina => alert("Se ha creado la maquina numero: " + maquina.id)
     );

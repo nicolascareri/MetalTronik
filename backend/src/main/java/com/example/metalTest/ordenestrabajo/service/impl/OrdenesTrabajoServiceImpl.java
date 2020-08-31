@@ -39,7 +39,6 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
     @Autowired
     TipoRepository tipoRepository;
 
-
     @Override
     public List<OrdenesTrabajo> getAll() {
         return ordenesTrabajoRepository.findAll();
@@ -63,7 +62,7 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         ordenesTrabajo.setEncargo(usuarioRepository.findById(ordenesTrabajoRequest.getEncargo_cod()).get());
         ordenesTrabajo.setResponsable(usuarioRepository.findById(ordenesTrabajoRequest.getResponsable_cod()).get());
         ordenesTrabajo.setTipo(tipoRepository.findById(ordenesTrabajoRequest.getTipo_cod()).get());
-        ordenesTrabajo.setPriodidad(prioridadesRepository.findById(ordenesTrabajoRequest.getPriodidad_cod()).get());
+        ordenesTrabajo.setPrioridad(prioridadesRepository.findById(ordenesTrabajoRequest.getPrioridad_cod()).get());
         ordenesTrabajo.setEstado(EstadoOrden.PENDIENTE.getValue());
         if (ordenesTrabajoRequest.getFechaEntrega().after(ordenesTrabajoRequest.getFechaRealizar())) {
             throw new ValidateFieldException("La fecha de entrega no puede ser menor que la fecha de realizar", "Fecha de entrega", String.valueOf(ordenesTrabajoRequest.getFechaRealizar()));
@@ -81,7 +80,7 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         ordenesTrabajo.setMaquina(maquinaRepository.findById(ordenesTrabajoRequest.getMaquina_cod()).get());
         ordenesTrabajo.setPedidoMateriales(ordenesTrabajoRequest.getPedidoMateriales());
         ordenesTrabajo.setTarea(ordenesTrabajoRequest.getTarea());
-        ordenesTrabajo.setPriodidad(prioridadesRepository.findById(ordenesTrabajoRequest.getPriodidad_cod()).get());
+        ordenesTrabajo.setPrioridad(prioridadesRepository.findById(ordenesTrabajoRequest.getPrioridad_cod()).get());
         ordenesTrabajo.setTipo(tipoRepository.findById(ordenesTrabajoRequest.getTipo_cod()).get());
         ordenesTrabajo.setFechaEntrega(ordenesTrabajoRequest.getFechaEntrega());
         ordenesTrabajo.setFechaRealizar(ordenesTrabajoRequest.getFechaRealizar());

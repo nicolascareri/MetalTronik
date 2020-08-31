@@ -30,7 +30,6 @@ export class FormPlantaComponent implements OnInit {
   }
 
   saveForm() {
-    console.log(this.formPlanta.value);
     this.PlantaService.postPlanta(this.formPlanta).subscribe(
       planta => alert("Se ha creado la planta numero: " + planta.id)
     );

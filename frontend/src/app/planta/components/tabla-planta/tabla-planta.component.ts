@@ -10,61 +10,30 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class TablaPlantaComponent implements OnInit {
 
-  columnsToDisplay: any = ['nombre'];
+  public columnsToDisplay: any[] = [
+    {
+      id: 1,
+      property:'nombre',
+      name: 'Nombre de la planta',
+      sort: 'up',
+      filterValue: '',
+      width: '15%'
+    }
+  ];
 
-  dataSourcePlants = new MatTableDataSource();
 
-  form: FormGroup;
-
-  createFormGroup(){
-    return new FormGroup({
-      nombre: new FormControl('')
-    })
-  }
-
+  public dataSourcePlants;
 
   constructor(private PlantaService: PlantaService) {
-    this.form = this.createFormGroup();
   }
 
-  applyFilter(filterValue: String) {
-    this.dataSourcePlants.filter = filterValue.trim().toLowerCase();
-  }
-
-  nestedFilterCheck(search, data, key) {
-    if (typeof data[key] === 'object') {
-      for (const k in data[key]) {
-        if (data[key][k] !== null) {
-          search = this.nestedFilterCheck(search, data[key], k);
-        }
-      }
-    } else {
-      search += data[key];
-    }
-    return search;
-  }
-
-  filtro(){
-    this.dataSourcePlants.filterPredicate = (data, filter: string)  => {
-      const accumulator = (currentTerm, key) => {
-        return this.nestedFilterCheck(currentTerm, data, key);
-      };
-      const dataStr = Object.keys(data).reduce(accumulator, '').toLowerCase();
-      // Transform the filter by converting it to lowercase and removing whitespace.
-      const transformedFilter = filter.trim().toLowerCase();
-      return dataStr.indexOf(transformedFilter) !== -1;
-    };
-  }
 
   ngOnInit(): void {
-
-    this.filtro();
 
     this.PlantaService.getPlantas().subscribe(
 
       (data: any)  => { // Success
-        this.dataSourcePlants.data = data;
-        console.log(this.dataSourcePlants);
+        this.dataSourcePlants = data;
       },
       (error) => {
         console.error(error);

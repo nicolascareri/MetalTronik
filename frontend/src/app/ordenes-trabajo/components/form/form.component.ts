@@ -109,7 +109,6 @@ export class FormComponent implements OnInit {
     this.OrdenestrabajoService.getAllOrdenes().subscribe(
       (data: any)  => { 
         this.dataSourceOrdenes = data;
-        console.log(this.dataSourceOrdenes);
       },
       (error) => {
         console.error(error);
@@ -147,8 +146,6 @@ export class FormComponent implements OnInit {
           order => alert("Se ha creado la orden nro: " + order.ordentrabajo_cod)
         );
         this.router.navigate(['main/ordenes'])
-
-
   }
 
 

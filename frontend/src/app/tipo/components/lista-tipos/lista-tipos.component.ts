@@ -30,10 +30,8 @@ export class ListaTiposComponent implements OnInit {
     this.TipoService.getTipos().subscribe(
       (data: any) => {
         this.dataSourceTipos = data;
-        console.log(this.dataSourceTipos)
       },
       (error) => {
-        console.log(error);
       }
     );
 
@@ -41,7 +39,6 @@ export class ListaTiposComponent implements OnInit {
   }
 
   addTipo() {
-    console.log(this.form.value);
     this.TipoService.postTipo(this.form).subscribe(
       prioridad =>  location.reload()
       

@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface MovimientoRepository extends JpaRepository<Movimiento, Integer> {
-    @Query("SELECT m FROM Movimiento m WHERE m.tipoMovimiento = :tipo")
-    List<Movimiento> findByTipo(@Param("tipo") Short tipo);
+//    @Query("SELECT m FROM Movimiento m WHERE m.tipoMovimiento = :tipo")
+//    List<Movimiento> findByTipo(@Param("tipo") Short tipo);
 }

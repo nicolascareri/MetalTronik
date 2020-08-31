@@ -32,7 +32,7 @@ public class OrdenesTrabajo {
 
     @OneToOne
     @JoinColumn
-    private Prioridades priodidad;
+    private Prioridades prioridad;
 
     @OneToOne
     @JoinColumn
