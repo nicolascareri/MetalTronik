@@ -170,7 +170,7 @@ export class TablaOrdenesComponent implements OnInit {
   }
 
   clickedRow(row){
-    console.log(row);
+    this.router.navigate(['main/ordenes/form/' + row.ordentrabajo_cod]);
   }
 
   getOrdenes(){

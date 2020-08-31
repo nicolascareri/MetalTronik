@@ -60,18 +60,20 @@ export class FormComponent implements OnInit, AfterViewInit {
   }
   loadOrden(orden) {
     this.mode = "edit";
-    this.ordenForm.controls.encargo_cod.setValue(orden.encargo.encargo_cod);
+    console.log(orden);
+    
+    this.ordenForm.controls.encargo_cod.setValue(orden.encargo.id);
     this.ordenForm.controls.estado.setValue(orden.estado);
-    this.ordenForm.controls.fechaEntrega.setValue(orden.fechaEntrega)
-    this.ordenForm.controls.fechaRealizar.setValue(orden.fechaRealizar)
-    this.ordenForm.controls.maquina_cod.setValue(orden.maquina.maquina_cod)
+    this.ordenForm.controls.fechaEntrega.setValue(orden.fechaEntrega.replace(' ', 'T'))
+    this.ordenForm.controls.fechaRealizar.setValue(orden.fechaRealizar.replace(' ', 'T'))
+    this.ordenForm.controls.maquina_cod.setValue(orden.maquina.id)
     this.ordenForm.controls.observaciones.setValue(orden.observaciones)
     this.ordenForm.controls.ordenTerciarizacion.setValue(orden.ordenTerciarizacion)
     this.ordenForm.controls.pedidoMateriales.setValue(orden.pedidoMateriales)
-    this.ordenForm.controls.priodidad_cod.setValue(orden.priodidad.prioridad_cod)
-    this.ordenForm.controls.responsable_cod.setValue(orden.responsable_cod)
+    this.ordenForm.controls.prioridad_cod.setValue(orden.prioridad.id)
+    this.ordenForm.controls.responsable_cod.setValue(orden.responsable.id)
     this.ordenForm.controls.tarea.setValue(orden.tarea)
-    this.ordenForm.controls.tipo_cod.setValue(orden.tipo_cod)
+    this.ordenForm.controls.tipo_cod.setValue(orden.tipo.id)
   }
   getOrdenes() {
     this.OrdenestrabajoService.getAllOrdenes().subscribe(
@@ -94,7 +96,6 @@ export class FormComponent implements OnInit, AfterViewInit {
             }
           }
         );
-        console.log(this.dataSourceUsers);
       },
       (error) => {
         console.error(error);
@@ -127,7 +128,7 @@ export class FormComponent implements OnInit, AfterViewInit {
           val => {
             return {
               "id": val.id,
-              "descripcion": val.descripcion
+              "descripcion": val.maquina_cod
             }
           }
         );
@@ -178,7 +179,7 @@ export class FormComponent implements OnInit, AfterViewInit {
       fechaRealizar: new FormControl(''),
       maquina_cod: new FormControl(''),
       pedidoMateriales: new FormControl(''),
-      priodidad_cod: new FormControl(''),
+      prioridad_cod: new FormControl(''),
       responsable_cod: new FormControl(''),
       tarea: new FormControl(''),
       observaciones: new FormControl(''),
