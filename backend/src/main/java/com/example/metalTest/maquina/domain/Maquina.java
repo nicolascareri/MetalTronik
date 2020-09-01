@@ -52,6 +52,5 @@ public class Maquina {
     private String datos_tecnicos;
 
     @OneToMany(mappedBy = "repuestoMaquinaPk.maquina", fetch = FetchType.LAZY ,cascade = { CascadeType.ALL })
-    @JsonIgnoreProperties("repuesto")
     private List<RepuestoMaquina> repuestoMaquinaList = new ArrayList<>();
 }

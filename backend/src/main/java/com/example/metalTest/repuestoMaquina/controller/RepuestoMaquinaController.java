@@ -20,7 +20,7 @@ public class RepuestoMaquinaController {
     RepuestoMaquinaService repuestoMaquinaService;
 
     @PutMapping("/maquina/{id}/vincular")
-    public ResponseEntity<List<RepuestoMaquina>> vincular(@Valid @RequestBody List<RepuestoMaquinaRequest> repuestoMaquinaRequestList, @PathVariable Integer id) throws ValidateFieldException {
+    public ResponseEntity<List<RepuestoMaquinaResponse>> vincular(@Valid @RequestBody List<RepuestoMaquinaRequest> repuestoMaquinaRequestList, @PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<>(repuestoMaquinaService.vincular(repuestoMaquinaRequestList, id), HttpStatus.OK);
     }
 

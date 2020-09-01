@@ -16,5 +16,5 @@ public class RepuestoMaquinaRequest {
     private int repuesto_cod;
 
     @NotNull
-    private int cantidadInstalada;
+    private Integer cantidad_instalada;
 }

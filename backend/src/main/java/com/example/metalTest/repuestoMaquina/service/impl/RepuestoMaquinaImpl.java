@@ -7,8 +7,10 @@ import com.example.metalTest.repuesto.domain.Repuesto;
 import com.example.metalTest.repuesto.mapper.RepuestoMapper;
 import com.example.metalTest.repuesto.repository.RepuestoRepository;
 import com.example.metalTest.repuestoMaquina.controller.request.RepuestoMaquinaRequest;
+import com.example.metalTest.repuestoMaquina.controller.response.RepuestoMaquinaResponse;
 import com.example.metalTest.repuestoMaquina.domain.RepuestoMaquina;
 import com.example.metalTest.repuestoMaquina.domain.RepuestoMaquinaPk;
+import com.example.metalTest.repuestoMaquina.mapper.RepuestoMaquinaMapper;
 import com.example.metalTest.repuestoMaquina.service.RepuestoMaquinaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,8 +31,11 @@ public class RepuestoMaquinaImpl implements RepuestoMaquinaService {
     @Autowired
     RepuestoMapper repuestoMapper;
 
+    @Autowired
+    RepuestoMaquinaMapper repuestoMaquinaMapper;
+
     @Override
-    public List<RepuestoMaquina> vincular(List<RepuestoMaquinaRequest> repuestoMaquinaRequestList, Integer id) throws ValidateFieldException {
+    public List<RepuestoMaquinaResponse> vincular(List<RepuestoMaquinaRequest> repuestoMaquinaRequestList, Integer id) throws ValidateFieldException {
         Optional<Maquina> optionalMaquina = maquinaRepository.findById(id);
         if (!optionalMaquina.isPresent()){
             throw new ValidateFieldException("La maquina que desea acceder no existe", "id", String.valueOf(id));
@@ -43,12 +48,17 @@ public class RepuestoMaquinaImpl implements RepuestoMaquinaService {
             RepuestoMaquinaPk repuestoMaquinaPk = new RepuestoMaquinaPk();
             repuestoMaquinaPk.setMaquina(maquina);
             repuestoMaquinaPk.setRepuesto(repuesto);
-            repuestoMaquina.setCantidad_instalada(repuestoMaquinaRequest.getCantidadInstalada());
+            repuestoMaquina.setCantidad_instalada(repuestoMaquinaRequest.getCantidad_instalada());
             repuestoMaquina.setRepuestoMaquinaPk(repuestoMaquinaPk);
             repuestoMaquinaList.add(repuestoMaquina);
         });
+        repuestoMaquinaRequestList.forEach(repuestoMaquinaRequest -> {
+            Repuesto repuesto = repuestoRepository.findById(repuestoMaquinaRequest.getRepuesto_cod()).get();
+            repuesto.setRepuestoMaquinaList(repuestoMaquinaList);
+            repuestoRepository.save(repuesto);
+        });
         maquina.setRepuestoMaquinaList(repuestoMaquinaList);
         maquinaRepository.save(maquina);
-        return repuestoMaquinaList;
+        return repuestoMaquinaMapper.repuestoMaquinaListToRepuestoMaquinaResponseList(repuestoMaquinaList);
     }
 }

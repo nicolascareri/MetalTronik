@@ -5,7 +5,9 @@ import com.example.metalTest.repuestoMaquina.controller.response.RepuestoMaquina
 import com.example.metalTest.repuestoMaquina.domain.RepuestoMaquina;
 import com.example.metalTest.sector.domain.Sector;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -14,8 +16,9 @@ import java.util.List;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class MaquinaResponse {
-
     private int id;
     private String maquina_cod;
     private short estado;

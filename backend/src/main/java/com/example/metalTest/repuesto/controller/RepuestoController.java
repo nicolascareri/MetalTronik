@@ -2,6 +2,8 @@ package com.example.metalTest.repuesto.controller;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.repuesto.controller.request.RepuestoRequest;
+import com.example.metalTest.repuesto.controller.response.RepuestoReducidoResponse;
+import com.example.metalTest.repuesto.controller.response.RepuestoResponse;
 import com.example.metalTest.repuesto.domain.Repuesto;
 import com.example.metalTest.repuesto.service.RepuestoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +23,12 @@ public class RepuestoController {
     RepuestoService repuestoService;
 
     @GetMapping
-    public ResponseEntity<List<Repuesto>> getAll() {
+    public ResponseEntity<List<RepuestoReducidoResponse>> getAll() {
         return new ResponseEntity<>(repuestoService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Repuesto> getById(@PathVariable Integer id) throws ValidateFieldException {
+    public ResponseEntity<RepuestoResponse> getById(@PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<>(repuestoService.getById(id), HttpStatus.OK);
     }
 

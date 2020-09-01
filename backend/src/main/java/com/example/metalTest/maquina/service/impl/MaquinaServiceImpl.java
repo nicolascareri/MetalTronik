@@ -3,6 +3,8 @@ package com.example.metalTest.maquina.service.impl;
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.common.ordenes.Estado;
 import com.example.metalTest.maquina.controller.request.MaquinaRequest;
+import com.example.metalTest.maquina.controller.response.MaquinaReducidoResponse;
+import com.example.metalTest.maquina.controller.response.MaquinaResponse;
 import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.maquina.mapper.MaquinaMapper;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
@@ -33,15 +35,15 @@ public class MaquinaServiceImpl implements MaquinaService {
     SectorRepository sectorRepository;
 
     @Override
-    public List<Maquina> getAll() {
-        return maquinaRepository.findAll();
+    public List<MaquinaReducidoResponse> getAll() {
+        return maquinaMapper.toMaquinaReducidoResponseList(maquinaRepository.findAll());
     }
 
     @Override
-    public Maquina getById(Integer id) throws ValidateFieldException {
+    public MaquinaResponse getById(Integer id) throws ValidateFieldException {
         Optional<Maquina> opt = maquinaRepository.findById(id);
         if (opt.isPresent()) {
-            return opt.get();
+            return maquinaMapper.toMaquinaResponse(opt.get());
         } else {
             throw new ValidateFieldException("La maquina que desea acceder no existe", "id", id.toString());
         }
