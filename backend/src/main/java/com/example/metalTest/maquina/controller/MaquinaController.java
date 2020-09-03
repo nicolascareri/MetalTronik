@@ -2,6 +2,8 @@ package com.example.metalTest.maquina.controller;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.maquina.controller.request.MaquinaRequest;
+import com.example.metalTest.maquina.controller.response.MaquinaReducidoResponse;
+import com.example.metalTest.maquina.controller.response.MaquinaResponse;
 import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.maquina.mapper.MaquinaMapper;
 import com.example.metalTest.maquina.service.MaquinaService;
@@ -24,12 +26,12 @@ public class MaquinaController {
     MaquinaMapper maquinaMapper;
 
     @GetMapping
-    public ResponseEntity<List<Maquina>> getAll() {
+    public ResponseEntity<List<MaquinaReducidoResponse>> getAll() {
         return new ResponseEntity<>(maquinaService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Maquina> getById(@PathVariable Integer id) throws ValidateFieldException {
+    public ResponseEntity<MaquinaResponse> getById(@PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<>(maquinaService.getById(id), HttpStatus.OK);
     }
 
@@ -43,9 +45,5 @@ public class MaquinaController {
         return new ResponseEntity<>(maquinaService.update(maquinaRequest, id), HttpStatus.OK);
     }
 
-    @GetMapping("/sinrepuesto")
-    public ResponseEntity<List<Maquina>> getAllMaquinaSinRepuesto(){
-        return new ResponseEntity<>(maquinaService.getAllSinRepuesto(), HttpStatus.OK);
-    }
 
 }
