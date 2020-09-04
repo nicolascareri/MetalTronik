@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../../usuarios/services/user.service';
-import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tabla-usuario',
@@ -125,17 +125,24 @@ export class TablaUsuarioComponent implements OnInit {
     ];
   
 
-  dataSourceUsers = new MatTableDataSource();
+  public dataSourceUsers;
 
-  constructor(private UserService: UserService) {
+  constructor(private UserService: UserService,
+              private router: Router) {
    }
 
 
   ngOnInit(): void {
+    this.getUsuarios();
+  }
 
+  clickedRow(row){
+    this.router.navigate(['main/usuarios/form/' + row.id]);
+  }
+
+  getUsuarios(){
     this.UserService.getUsers().subscribe(
-
-      (data: any)  => { // Success
+      (data: any)  => { 
         this.dataSourceUsers = data;
       },
       (error) => {
@@ -143,8 +150,6 @@ export class TablaUsuarioComponent implements OnInit {
       }
 
     );
-
-
   }
 
 

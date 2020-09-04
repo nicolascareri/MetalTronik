@@ -9,6 +9,10 @@ export class MantenimientoCorrectivoService {
   constructor(protected http: HttpClient) {
   }
 
+  getMantenimiento(id){
+    return this.http.get('http://localhost:8080/api/mantenimiento-correctivo/' + id);
+  }
+
   getMantenimientosCorrectivos() {
     return this.http.get('http://localhost:8080/api/mantenimiento-correctivo');
   }

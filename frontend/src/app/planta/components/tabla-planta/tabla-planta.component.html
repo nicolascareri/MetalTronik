@@ -6,7 +6,8 @@
 
     <app-tabla class="table" [ds]='dataSourcePlants' 
                              [columns]='columnsToDisplay' 
-                             [width]="'90%'">
+                             [width]="'90%'"
+                             (clickRow)="clickedRow($event)">
     </app-tabla>
 
 

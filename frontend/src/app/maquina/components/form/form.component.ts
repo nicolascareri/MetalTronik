@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import {MaquinaService} from '../../services/maquina.service';
-import {PlantaService} from '../../../planta/services/planta.service';
-import {SectorService} from '../../../sector/services/sector.service';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { MaquinaService } from '../../services/maquina.service';
+import { PlantaService } from '../../../planta/services/planta.service';
+import { SectorService } from '../../../sector/services/sector.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-form-maquina',
@@ -12,11 +14,11 @@ import {SectorService} from '../../../sector/services/sector.service';
 export class FormMaquinaComponent implements OnInit {
 
 
-  dataSourcePlants: any;
-  dataSourceSectors: any;
-
-  
-  machinesForm: FormGroup = new FormGroup({
+  public dataSourcePlants: any;
+  public dataSourceSectors: any;
+  public maquinaId: any;
+  public mode = 'add';
+  public machinesForm: FormGroup = new FormGroup({
     maquina_cod: new FormControl(''),
     nro_serie: new FormControl(''),
     modelo: new FormControl(''),
@@ -29,19 +31,52 @@ export class FormMaquinaComponent implements OnInit {
   });
 
   constructor(private MaquinaService: MaquinaService,
-              private PlantaService: PlantaService,
-              private SectorService: SectorService)
-  {
-    
+    private PlantaService: PlantaService,
+    private SectorService: SectorService,
+    private router: Router,
+    private route: ActivatedRoute) {
+
   }
 
   ngOnInit(): void {
+    this.maquinaId = this.route.snapshot.params.id;
+    this.getPlantas();
+    this.getSectores();
+  }
 
+  ngAfterViewInit(): void {
+    if (this.maquinaId) {
+      this.getMaquina(this.maquinaId);
+    }
+  }
+
+  getMaquina(id) {
+    this.MaquinaService.getMaquina(id).pipe(first()).subscribe(
+      maquina => {
+        this.loadMaquina(maquina);
+      }
+    )
+  }
+
+  loadMaquina(maquina) {
+    this.mode = "edit";
+    console.log(maquina);
+    this.machinesForm.controls.maquina_cod.setValue(maquina.maquina_cod);
+    this.machinesForm.controls.nro_serie.setValue(maquina.nro_serie);
+    this.machinesForm.controls.modelo.setValue(maquina.modelo);
+    this.machinesForm.controls.equipo.setValue(maquina.equipo);
+    this.machinesForm.controls.datos_tecnicos.setValue(maquina.datos_tecnicos);
+    this.machinesForm.controls.descripcion.setValue(maquina.descripcion);
+    this.machinesForm.controls.planta_cod.setValue(maquina.planta_cod.id);
+    this.machinesForm.controls.sector_cod.setValue(maquina.sector_cod.id);
+  }
+
+  getPlantas() {
     this.PlantaService.getPlantas().subscribe(
-
-      (data: any)  => { // Success
+      (data: any) => {
         this.dataSourcePlants = data.map(
-          val => { return {
+          val => {
+            return {
               "id": val.id,
               "descripcion": val.nombre
             }
@@ -52,14 +87,15 @@ export class FormMaquinaComponent implements OnInit {
       (error) => {
         console.error(error);
       }
-
     );
+  }
 
+  getSectores() {
     this.SectorService.getSectores().subscribe(
-
-      (data: any)  => { // Success
+      (data: any) => {
         this.dataSourceSectors = data.map(
-          val => { return {
+          val => {
+            return {
               "id": val.id,
               "descripcion": val.descripcion
             }
@@ -70,24 +106,24 @@ export class FormMaquinaComponent implements OnInit {
       (error) => {
         console.error(error);
       }
-
     );
-
   }
-
-
 
   resetForm() {
     this.machinesForm.reset();
   }
 
   saveForm() {
-    this.MaquinaService.postMaquina(this.machinesForm).subscribe(
-      maquina => alert("Se ha creado la maquina numero: " + maquina.id)
-    );
-    //this.router.navigate(['main/ordenes'])
-
-
+    if (this.mode === 'add') {
+      this.MaquinaService.postMaquina(this.machinesForm).subscribe(
+        maquina => alert("Se ha creado la maquina numero: " + maquina.id)
+      );
+    } else {
+      this.MaquinaService.updateMaquina(this.maquinaId, this.machinesForm).subscribe(
+        maquina => {
+          console.log(maquina);
+        });
+    }
   }
 
 }

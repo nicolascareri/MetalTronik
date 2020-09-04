@@ -15,6 +15,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class FormComponent implements OnInit, AfterViewInit {
 
+  public ordenForm: FormGroup;
+  public dataSourceUsers: any;
+  public dataSourceOrdenes: any;
+  public dataSourceSectors: any;
+  public dataSourceMachines: any;
+  public dataSourcePlants: any;
+  public dataSourceTipos: any;
+  public dataSourcePrioridades: any;
+  public ordenId: any;
+  public mode = 'add';
 
   constructor(private OrdenestrabajoService: OrdenestrabajoService,
     private UserService: UserService,
@@ -25,16 +35,6 @@ export class FormComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute) {
     this.ordenForm = this.createFormGroup();
   }
-  ordenForm: FormGroup;
-  dataSourceUsers: any;
-  dataSourceOrdenes: any;
-  dataSourceSectors: any;
-  dataSourceMachines: any;
-  dataSourcePlants: any;
-  dataSourceTipos: any;
-  dataSourcePrioridades: any;
-  public ordenId: any;
-  public mode = 'add';
 
   ngOnInit(): void {
 
@@ -46,11 +46,13 @@ export class FormComponent implements OnInit, AfterViewInit {
     this.getOrdenes();
 
   }
+
   ngAfterViewInit(): void {
     if (this.ordenId) {
       this.getOrden(this.ordenId);
     }
   }
+
   getOrden(id) {
     this.OrdenestrabajoService.getOrder(id).pipe(first()).subscribe(
       orden => {
@@ -58,10 +60,10 @@ export class FormComponent implements OnInit, AfterViewInit {
       }
     )
   }
+
   loadOrden(orden) {
     this.mode = "edit";
     console.log(orden);
-    
     this.ordenForm.controls.encargo_cod.setValue(orden.encargo.id);
     this.ordenForm.controls.estado.setValue(orden.estado);
     this.ordenForm.controls.fechaEntrega.setValue(orden.fechaEntrega.replace(' ', 'T'))
@@ -75,6 +77,7 @@ export class FormComponent implements OnInit, AfterViewInit {
     this.ordenForm.controls.tarea.setValue(orden.tarea)
     this.ordenForm.controls.tipo_cod.setValue(orden.tipo.id)
   }
+
   getOrdenes() {
     this.OrdenestrabajoService.getAllOrdenes().subscribe(
       (data: any) => { // Success
@@ -85,6 +88,7 @@ export class FormComponent implements OnInit, AfterViewInit {
       }
     );
   }
+
   getUsuarios() {
     this.UserService.getUsers().subscribe(
       (data: any) => {
@@ -138,6 +142,7 @@ export class FormComponent implements OnInit, AfterViewInit {
       }
     );
   }
+
   getTipos() {
     this.TipoService.getTipos().subscribe(
       (data: any) => {
@@ -155,6 +160,7 @@ export class FormComponent implements OnInit, AfterViewInit {
       }
     );
   }
+  
   resetForm() {
     this.ordenForm.reset();
   }
@@ -172,6 +178,7 @@ export class FormComponent implements OnInit, AfterViewInit {
     }
     this.router.navigate(['main/ordenes'])
   }
+  
   createFormGroup() {
     return new FormGroup({
       encargo_cod: new FormControl(''),

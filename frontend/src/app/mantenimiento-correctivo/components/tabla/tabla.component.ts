@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MantenimientoCorrectivoService } from '../../services/mantenimiento-correctivo.service';
 import { CoreService } from 'src/app/core/service/core.service';
 import { first } from 'rxjs/operators'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tabla-mantenimiento-correctivo',
@@ -9,8 +10,6 @@ import { first } from 'rxjs/operators'
   styleUrls: ['./tabla.component.scss']
 })
 export class TablaMantenimientoCorrectivoComponent implements OnInit {
-
-  public dataSourceMantenimientosCorrectivos;
 
   public columnsToDisplay: any[] = [
     {
@@ -119,9 +118,12 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
     }
   ];
 
+  public dataSourceMantenimientosCorrectivos;
+
 
   constructor(private MantenimientoCorrectivoService: MantenimientoCorrectivoService,
-              private coreService: CoreService) {
+              private coreService: CoreService,
+              private router: Router) {
 
   }
 
@@ -140,6 +142,12 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
       }
 
     );
+  }
+
+  clickedRow(row){
+    this.router.navigate(['main/mantenimientosCorrectivos/formcorrectivo/' + row.id]);
+    console.log(row);
+
   }
 
 }
