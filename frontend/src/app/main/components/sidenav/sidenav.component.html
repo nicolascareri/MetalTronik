@@ -1,30 +1,16 @@
-<div class="example-container" [class.example-is-mobile]="mobileQuery.matches" *ngIf="shouldRun">
-  <mat-toolbar color="primary" class="toolbar">
-    <button class="btn-side" mat-icon-button (click)="snav.toggle()">
-      <mat-icon class="icon">menu</mat-icon>
-    </button>
-    <h1 class="app-name">Metaltronik</h1>
-  </mat-toolbar>
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">METALTRONIK</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item nav-link" [routerLink]="nav.route" *ngFor="let nav of fillerNav">
+          {{nav.name}} 
+      </li>
+    </ul>
+  </div>
+</nav>
 
-  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'over'" [fixedInViewport]="mobileQuery.matches"
-      fixedTopGap="56">
-      <mat-nav-list>
-        <a mat-list-item [routerLink]="nav.route" *ngFor="let nav of fillerNav">
-          <mat-icon class="iconItem">{{nav.icon}}</mat-icon>
-          {{nav.name}}
-        </a>
-      </mat-nav-list>
-    </mat-sidenav>
 
-    <mat-sidenav-content>
-      <div>
-
-        <router-outlet></router-outlet>
-
-      </div>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-</div>
-
-<div *ngIf="!shouldRun">Please open on Stackblitz to see result</div>
+<router-outlet></router-outlet>
