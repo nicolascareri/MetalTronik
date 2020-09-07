@@ -1,5 +1,6 @@
-<div class="table-responsive">
+<div class="form-container">
 
+  <mat-card class="card-header">
   <app-tabla class="table" [ds]='dataSourceOrdenes' 
                            [columns]='columnsToDisplay' 
                            [width]="'90%'"
@@ -7,5 +8,7 @@
   </app-tabla>
 
   <app-button [routerLink]="['form']" [name]="['Nueva orden']"></app-button>
+  </mat-card>
 
 </div>
+

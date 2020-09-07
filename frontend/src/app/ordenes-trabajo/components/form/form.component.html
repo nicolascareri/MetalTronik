@@ -1,112 +1,162 @@
 <div class="form-container">
 
-  <h1>Nueva orden</h1>
+  <div class="card">
 
-  <form [formGroup]="ordenForm" (ngSubmit)="saveForm()">
+    <h5 class="card-header">
+      Nueva orden
+    </h5>
 
-    <div class="part1">
-      <label for="encargo_cod">Responsable de encargo</label>
-      <app-input [type]="'select-pair'"
-                 [parentForm]="ordenForm" 
-                 [control]="ordenForm.controls.encargo_cod" 
-                 [options]="dataSourceUsers">
-      </app-input>
+    <div class="card-body">
+      <form [formGroup]="ordenForm" (ngSubmit)="saveForm()">
 
-
-      <label for="fechaRealizar">Fecha a realizar</label>
-      <app-input [type]="'datetime-local'"
-                 [parentForm]="ordenForm"    
-                 [control]="ordenForm.controls.fechaRealizar"
-                 [placeholder]="'DD-MM-YYYY'">
-      </app-input>
-  
-
-      <label for="maquina_cod">Maquina</label>
-      <app-input [type]="'select-pair'"
-                 [parentForm]="ordenForm" 
-                 [control]="ordenForm.controls.maquina_cod" 
-                 [options]="dataSourceMachines">
-      </app-input>
-      
-    </div>
-    <div class="part2">
-      
-      <label for="pedidoMateriales">Materiales</label>
-      <app-input [type]="'input'"
-                 [parentForm]="ordenForm" 
-                 [control]="ordenForm.controls.pedidoMateriales"
-                 [placeholder]="'Ingrese materiales'">
-      </app-input>
-      
-
-      <label for="prioridad_cod">Prioridades</label>
-      <app-input [type]="'select-pair'" 
-                 [parentForm]="ordenForm" 
-                 [control]="ordenForm.controls.prioridad_cod"
-                 [options]="dataSourcePrioridades">
-      </app-input>
-
-
-    </div>
-
-    <div class="part3">
-      <label for="responsable_cod">Responsable</label>
-      <app-input [type]="'select-pair'"
-                 [parentForm]="ordenForm" 
-                 [control]="ordenForm.controls.responsable_cod" 
-                 [options]="dataSourceUsers">
-      </app-input>
-      
-
-
-      <label for="tarea">Tarea</label>
-      <app-input [type]="'input'"
-                 [parentForm]="ordenForm" 
-                 [control]="ordenForm.controls.tarea"
-                 [placeholder]="'Descripcion de la tarea'">
-      </app-input>
-
-
-      <label for="tipo_cod">Tipo</label>
-      <app-input [type]="'select-pair'"
-                 [parentForm]="ordenForm" 
-                 [control]="ordenForm.controls.tipo_cod" 
-                 [options]="dataSourceTipos">
-      </app-input>
-      
-      <label for="observaciones">Observaciones</label>
-      <app-input [type]="'input'" 
-                 [parentForm]="ordenForm" 
-                 [control]="ordenForm.controls.observaciones"
-                 [placeholder]="'Observaciones'">
-      </app-input>
-
-    </div>
-
-    <div class="part4">
-
-      <label for="ordenTerciarizacion">Orden de terciarizacion</label>
-      <app-input [type]="'onlyNumber'" 
-                 [parentForm]="ordenForm"  
-                 [control]="ordenForm.controls.ordenTerciarizacion"
-                 [placeholder]="'Ingrese numero orden de terciarizacion'">
-      </app-input>
-
-
-      <label for="fechaEntrega">Fecha de entrega</label>
-      <app-input [type]="'datetime-local'" 
-                 [parentForm]="ordenForm"  
-                 [control]="ordenForm.controls.fechaEntrega"
-                 [placeholder]="'DD-MM-YYYY'">
-      </app-input>
+        <div class="form-row">
     
+          <div class="col">
+          <label for="encargo_cod">Responsable de encargo</label>
+          <app-input [type]="'select-pair'"
+                     [parentForm]="ordenForm" 
+                     [control]="ordenForm.controls.encargo_cod" 
+                     [options]="dataSourceUsers"
+                     [required]="true">
+                     
+          </app-input>
+          </div>
+    
+          <div class="col">
+          <label for="fechaRealizar">Fecha a realizar</label>
+          <app-input [type]="'datetime-local'"
+                     [parentForm]="ordenForm"    
+                     [control]="ordenForm.controls.fechaRealizar"
+                     [placeholder]="'DD-MM-YYYY'"
+                     [required]="true">
+          </app-input>
+          </div>
+    
+        </div>
+    
+        <div class="form-row">
+    
+          <div class="col">
+          <label for="maquina_cod">Maquina</label>
+          <app-input [type]="'select-pair'"
+                     [parentForm]="ordenForm" 
+                     [control]="ordenForm.controls.maquina_cod" 
+                     [options]="dataSourceMachines"
+                     [required]="true">
+          </app-input>
+          </div>
+    
+          <div class="col">
+          <label for="pedidoMateriales">Materiales</label>
+          <app-input [type]="'input'"
+                     [parentForm]="ordenForm" 
+                     [control]="ordenForm.controls.pedidoMateriales"
+                     [placeholder]="'Ingrese materiales'"
+                     [required]="true">
+          </app-input>
+          </div>
+    
+        </div>
+    
+        
+        <div class="form-row">
+    
+          <div class="col">
+          <label for="prioridad_cod">Prioridades</label>
+          <app-input [type]="'select-pair'" 
+                     [parentForm]="ordenForm" 
+                     [control]="ordenForm.controls.prioridad_cod"
+                     [options]="dataSourcePrioridades"
+                     [required]="true">
+          </app-input>
+          </div>
+    
+        
+          <div class="col">
+          <label for="responsable_cod">Responsable</label>
+          <app-input [type]="'select-pair'"
+                     [parentForm]="ordenForm" 
+                     [control]="ordenForm.controls.responsable_cod" 
+                     [options]="dataSourceUsers"
+                     [required]="true">
+          </app-input>
+          </div>
+        </div>
+          
+    
+        <div class="form-row">
+    
+          <div class="col">
+          <label for="tarea">Tarea</label>
+          <app-input [type]="'input'"
+                     [parentForm]="ordenForm" 
+                     [control]="ordenForm.controls.tarea"
+                     [placeholder]="'Descripcion de la tarea'"
+                     [required]="true">
+          </app-input>
+          </div>
+    
+          <div class="col">
+          <label for="tipo_cod">Tipo</label>
+          <app-input [type]="'select-pair'"
+                     [parentForm]="ordenForm" 
+                     [control]="ordenForm.controls.tipo_cod" 
+                     [options]="dataSourceTipos"
+                     [required]="true">
+          </app-input>
+          </div>
+        </div>
+    
+        <div class="form-row">
+    
+          <div class="col">
+          <label for="observaciones">Observaciones</label>
+          <app-input [type]="'input'" 
+                     [parentForm]="ordenForm" 
+                     [control]="ordenForm.controls.observaciones"
+                     [placeholder]="'Observaciones'"
+                     [required]="true">
+          </app-input>
+          </div>
+    
+      
+          <div class="col">
+          <label for="ordenTerciarizacion">Orden de terciarizacion</label>
+          <app-input [type]="'onlyNumber'" 
+                     [parentForm]="ordenForm"  
+                     [control]="ordenForm.controls.ordenTerciarizacion"
+                     [placeholder]="'Ingrese numero orden de terciarizacion'"
+                     [required]="true">
+          </app-input>
+          </div>
+        </div>
+    
+        <div class="form-row">
+    
+          <div class="col">
+          <label for="fechaEntrega">Fecha de entrega</label>
+          <app-input [type]="'datetime-local'" 
+                     [parentForm]="ordenForm"  
+                     [control]="ordenForm.controls.fechaEntrega"
+                     [placeholder]="'DD-MM-YYYY'"
+                     [required]="true">
+          </app-input>
+          </div>
+        
+        </div>
+      
+        <app-button [name]="['Crear Orden']" type="submit"></app-button>
+      </form>
+
+      
+
     </div>
 
+  </div>
 
-
-    <app-button [name]="['Crear Orden']" type="submit"></app-button>
   
-  </form>
+
+  
   
 </div>
   

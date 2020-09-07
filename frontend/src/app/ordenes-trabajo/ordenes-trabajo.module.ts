@@ -10,6 +10,7 @@ import {FormComponent} from './components/form/form.component';
 import {TablaOrdenesComponent} from './components/tabla/tabla.component';
 import {OrdenesTrabajoRoutingModule} from './ordenes-trabajo-routing.module';
 import {MatIconModule} from '@angular/material/icon';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatTableModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule
 
   ]
 })

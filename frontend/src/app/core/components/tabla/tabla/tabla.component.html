@@ -1,4 +1,4 @@
-<table class="table" [ngStyle]="{'width': width}">
+<table class="table table-responsive" [ngStyle]="{'width': width}">
   <thead>
     <tr class="table__header" [ngClass]="{'table__header--tall': search,'table__header--short': !search }">
       <th *ngFor="let header of columns" [ngStyle]="{'width': header.width}">
