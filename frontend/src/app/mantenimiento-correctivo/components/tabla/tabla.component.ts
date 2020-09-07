@@ -145,9 +145,8 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
   }
 
   clickedRow(row){
-    this.router.navigate(['main/mantenimientosCorrectivos/formcorrectivo/' + row.id]);
     console.log(row);
-
+    this.router.navigate(['main/mantenimientosCorrectivos/formcorrectivo/' + row.id]);
   }
 
 }

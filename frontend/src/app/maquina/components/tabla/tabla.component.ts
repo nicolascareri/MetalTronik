@@ -92,9 +92,7 @@ export class TablaMaquinaComponent implements OnInit {
   }
 
   clickedRow(row){
-    this.router.navigate(['main/maquinas/form' + row.maquina_cod]);
-    console.log(row);
-    
+    this.router.navigate(['main/maquinas/form/' + row.id]);
   }
 
   getMaquinas(){

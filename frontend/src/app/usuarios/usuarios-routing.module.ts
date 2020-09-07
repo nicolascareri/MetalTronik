@@ -14,10 +14,13 @@ const routes: Routes = [
       {
         path: 'form',
         component: FormUsuarioComponent
+      },
+      {
+        path: 'form/:id',
+        component: FormUsuarioComponent
       }
-
     ]
-    }
+  }
 ]
 @NgModule ({
      imports: [

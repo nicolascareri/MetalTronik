@@ -25,6 +25,18 @@ const routes: Routes = [
       {
         path: 'formplanta',
         component: FormPlantaComponent
+      },
+      {
+        path: 'form/:id',
+        component: FormMaquinaComponent
+      },
+      {
+        path: 'formsector/:id',
+        component: FormSectorComponent
+      },
+      {
+        path: 'formplanta/:id',
+        component: FormPlantaComponent
       }
 
     ]
