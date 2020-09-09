@@ -94,8 +94,7 @@
             ],
             "styles": [
               "node_modules/ngx-toastr/toastr.css",
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.scss",
+              "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
               "node_modules/@fortawesome/fontawesome-free/scss/solid.scss",
               "node_modules/@fortawesome/fontawesome-free/scss/regular.scss",

@@ -7,6 +7,7 @@ import { UserService } from '../../../usuarios/services/user.service';
 import { PrioridadesService } from '../../../prioridad/services/prioridades.service';
 import { TipoService } from '../../../tipo/services/tipo.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MessageService } from "../../../core/service/message.service";
 
 @Component({
   selector: 'app-form',
@@ -25,6 +26,9 @@ export class FormComponent implements OnInit, AfterViewInit {
   public dataSourcePrioridades: any;
   public ordenId: any;
   public mode = 'add';
+  public messageTitleSuccess: any = "DONE";
+  public messageTitleError: any = "ERROR";
+  public messageBody: any = "La orden se ha creado correctamente";
 
   constructor(private OrdenestrabajoService: OrdenestrabajoService,
     private UserService: UserService,
@@ -32,7 +36,8 @@ export class FormComponent implements OnInit, AfterViewInit {
     private PrioridadesService: PrioridadesService,
     private TipoService: TipoService,
     private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private MessageService: MessageService) {
     this.ordenForm = this.createFormGroup();
   }
 
@@ -51,6 +56,20 @@ export class FormComponent implements OnInit, AfterViewInit {
     if (this.ordenId) {
       this.getOrden(this.ordenId);
     }
+  }
+
+  showSuccess(){
+    this.MessageService.showSuccess({
+      title: this.messageTitleSuccess,
+      body: this.messageBody
+    });
+  }
+
+  showError(message){
+    this.MessageService.showError({
+      title: this.messageTitleError,
+      body: message.errors ? message.errors[0].defaultMessage + ". campo: " + message.errors[0].field + ", Valor rechazado: " + message.errors[0].rejectedValue : message.error
+    })
   }
 
   getOrden(id) {
@@ -168,7 +187,10 @@ export class FormComponent implements OnInit, AfterViewInit {
   saveForm() {
     if (this.mode === 'add') {
       this.OrdenestrabajoService.postOrder(this.ordenForm).subscribe(
-        order => alert("Se ha creado la orden nro: " + order.ordentrabajo_cod)
+        order =>  {
+          this.showSuccess();
+        },
+        error => this.showError(error.error)
       );
     } else {
       this.OrdenestrabajoService.updateOrder(this.ordenId, this.ordenForm).subscribe(
@@ -176,7 +198,7 @@ export class FormComponent implements OnInit, AfterViewInit {
           console.log(order);
         });
     }
-    this.router.navigate(['main/ordenes'])
+    
   }
   
   createFormGroup() {

@@ -17,7 +17,7 @@ import {UsuariosModule} from './usuarios/usuarios.module';
 import {ConfiguracionModule} from "./configuracion/configuracion.module";
 import {RepuestoMaquinaModule} from "./repuesto-maquina/repuesto-maquina.module";
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { ToastrModule } from "ngx-toastr";
+
 
 
 @NgModule({
@@ -40,7 +40,6 @@ import { ToastrModule } from "ngx-toastr";
     ConfiguracionModule,
     RepuestoMaquinaModule,
     MDBBootstrapModule.forRoot(),
-    ToastrModule.forRoot()
   ],
   providers: [UserService,
     OrdenestrabajoService, ],
