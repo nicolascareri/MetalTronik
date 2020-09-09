@@ -27,7 +27,7 @@ export class MaquinaService {
   }
 
   updateMaquina(id, maquina){
-    return this.http.put<any>('http://localhost:8080/api/maquina/' + id, maquina);
+    return this.http.put<any>('http://localhost:8080/api/maquina/' + id, maquina.value);
   }
 
   

@@ -52,7 +52,6 @@ export class TablaComponent implements OnInit {
   }  
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
     if ( changes.ds ) {
       this.ds = this.ds ? this.ds : [];
       this.displayData = this.ds;

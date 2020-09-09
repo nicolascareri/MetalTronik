@@ -82,7 +82,6 @@ export class FormComponent implements OnInit, AfterViewInit {
 
   loadOrden(orden) {
     this.mode = "edit";
-    console.log(orden);
     this.ordenForm.controls.encargo_cod.setValue(orden.encargo.id);
     this.ordenForm.controls.estado.setValue(orden.estado);
     this.ordenForm.controls.fechaEntrega.setValue(orden.fechaEntrega.replace(' ', 'T'))
@@ -195,8 +194,11 @@ export class FormComponent implements OnInit, AfterViewInit {
     } else {
       this.OrdenestrabajoService.updateOrder(this.ordenId, this.ordenForm).subscribe(
         order => {
-          console.log(order);
-        });
+          this.messageBody = "La orden se ha editado correctamente"
+          this.showSuccess();
+        },
+        error => this.showError(error.error)
+        );
     }
     
   }

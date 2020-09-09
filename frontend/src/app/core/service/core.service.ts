@@ -69,7 +69,7 @@ export class CoreService {
               }
               break;
             case 'tipo':
-                if(result.tipo){
+                if(result.tipo.nombre){
                   result.tipo = result.tipo.nombre;
                 }
                 break;

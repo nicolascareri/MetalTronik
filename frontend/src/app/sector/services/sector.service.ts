@@ -22,7 +22,7 @@ export class SectorService {
   }
 
   updateSector(id, sector){
-    return this.http.put<any>('http://localhost:8080/api/sector/' + id, sector);
+    return this.http.put<any>('http://localhost:8080/api/sector/' + id, sector.value);
   }
 
 }

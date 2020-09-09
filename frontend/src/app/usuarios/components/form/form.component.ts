@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { UserService } from '../../../usuarios/services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { MessageService } from "../../../core/service/message.service";
 
 @Component({
   selector: 'app-form-usuario',
@@ -14,10 +15,14 @@ export class FormUsuarioComponent implements OnInit {
   public userForm: FormGroup;
   public userId: any;
   public mode = 'add';
+  public messageTitleSuccess: any = "DONE";
+  public messageTitleError: any = "ERROR";
+  public messageBody: any = "El usuario se ha creado correctamente";
 
   constructor(private UserService: UserService,
     private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private MessageService: MessageService) {
     this.userForm = this.createFormGroup();
   }
 
@@ -29,6 +34,20 @@ export class FormUsuarioComponent implements OnInit {
     if (this.userId) {
       this.getUser(this.userId);
     }
+  }
+
+  showSuccess() {
+    this.MessageService.showSuccess({
+      title: this.messageTitleSuccess,
+      body: this.messageBody
+    });
+  }
+
+  showError(message) {
+    this.MessageService.showError({
+      title: this.messageTitleError,
+      body: message.errors ? message.errors[0].defaultMessage + ". campo: " + message.errors[0].field + ", Valor rechazado: " + message.errors[0].rejectedValue : message.error
+    })
   }
 
   getUser(id) {
@@ -52,7 +71,7 @@ export class FormUsuarioComponent implements OnInit {
     this.userForm.controls.contrasenia.setValue(user.contrasenia);
     this.userForm.controls.ciudad.setValue(user.ciudad);
     this.userForm.controls.pais.setValue(user.pais);
-    this.userForm.controls.tarea.setValue(user.provincia);
+    this.userForm.controls.provincia.setValue(user.provincia);
     this.userForm.controls.codigo_postal.setValue(user.codigo_postal);
     this.userForm.controls.direccion.setValue(user.direccion);
     this.userForm.controls.correo_electronico.setValue(user.correo_electronico);
@@ -67,15 +86,20 @@ export class FormUsuarioComponent implements OnInit {
   saveForm() {
     if (this.mode === 'add') {
       this.UserService.postUser(this.userForm).subscribe(
-        user => alert("Se ha creado el usuario numero: " + user.id)
+        user => {
+          this.showSuccess();
+        },
+        error => this.showError(error.error)
       );
     } else {
       this.UserService.updateUser(this.userId, this.userForm).subscribe(
         user => {
-          console.log(user);
-        });
+          this.messageBody = "El usuario se ha editado correctamente"
+          this.showSuccess();
+        },
+        error => this.showError(error.error)
+      );
     }
-    this.router.navigate(['main/usuarios']);
   }
 
   createFormGroup() {

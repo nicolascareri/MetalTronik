@@ -70,6 +70,7 @@ public class MaquinaServiceImpl implements MaquinaService {
 
     @Override
     public Maquina update(MaquinaRequest maquinaRequest, Integer id) throws ValidateFieldException {
+
         Optional<Maquina> op = maquinaRepository.findById(id);
         if (!op.isPresent()) {
             throw new ValidateFieldException("El usuario que desea acceder no existe", "id", String.valueOf(id));
@@ -80,6 +81,13 @@ public class MaquinaServiceImpl implements MaquinaService {
         }
         maquina.setPlanta(plantaRepository.findById(maquinaRequest.getPlanta_cod()).get());
         maquina.setSector(sectorRepository.findById(maquinaRequest.getSector_cod()).get());
+        maquina.setMaquina_cod(maquinaRequest.getMaquina_cod());
+        maquina.setEstado(maquinaRequest.getEstado());
+        maquina.setEquipo(maquinaRequest.getEquipo());
+        maquina.setNro_serie(maquinaRequest.getNro_serie());
+        maquina.setModelo(maquinaRequest.getModelo());
+        maquina.setDescripcion(maquinaRequest.getDescripcion());
+        maquina.setDatos_tecnicos(maquinaRequest.getDatos_tecnicos());
         maquina.setId(id);
         return maquinaRepository.save(maquina);
     }

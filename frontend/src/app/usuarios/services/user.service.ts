@@ -15,7 +15,7 @@ export class UserService {
   }
 
   getUser(id){
-    return this.http.get('http://localhost:8080/api/usuario' + id);
+    return this.http.get('http://localhost:8080/api/usuario/' + id);
   }
 
   postUser(userForm){
@@ -23,7 +23,7 @@ export class UserService {
   }
 
   updateUser(id, user){
-    return this.http.put<any>('http://localhost:8080/api/usuario' + id, user);
+    return this.http.put<any>('http://localhost:8080/api/usuario/' + id, user.value);
   }
 
 

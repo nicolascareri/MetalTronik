@@ -22,7 +22,7 @@ export class PlantaService {
   }
 
   updatePlanta(id, planta){
-    return this.http.put<any>('http://localhost:8080/api/planta/' + id, planta);
+    return this.http.put<any>('http://localhost:8080/api/planta/' + id, planta.value);
   }
 
 }

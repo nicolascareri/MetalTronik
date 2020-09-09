@@ -17,7 +17,7 @@ export class TablaPlantaComponent implements OnInit {
       name: 'Nombre de la planta',
       sort: 'up',
       filterValue: '',
-      width: '15%'
+      width: '80%'
     }
   ];
 
