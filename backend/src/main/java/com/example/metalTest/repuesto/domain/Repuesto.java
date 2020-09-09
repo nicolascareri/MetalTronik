@@ -1,10 +1,15 @@
 package com.example.metalTest.repuesto.domain;
 
 import com.example.metalTest.maquina.domain.Maquina;
+import com.example.metalTest.repuestoMaquina.domain.RepuestoMaquina;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -20,12 +25,8 @@ public class Repuesto {
     @Column
     private String modelo;
 
-    @Column
-    private int cantidadInstalada;
-
-    @JoinColumn
-    @OneToOne
-    private Maquina maquina;
+    @OneToMany(mappedBy = "repuestoMaquinaPk.repuesto",fetch = FetchType.LAZY , cascade = { CascadeType.MERGE })
+    private List<RepuestoMaquina> repuestoMaquinaList = new ArrayList<>();
 
     @Column //Codigo de barras
     private String codigoProducto;

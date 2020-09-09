@@ -14,8 +14,11 @@ const routes: Routes = [
       {
         path: 'formcorrectivo',
         component: FormMantenimientoCorrectivoComponent
+      },
+      {
+        path: 'formcorrectivo/:id',
+        component: FormMantenimientoCorrectivoComponent
       }
-
     ]
   }
 ]
