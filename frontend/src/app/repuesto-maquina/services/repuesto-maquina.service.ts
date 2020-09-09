@@ -14,7 +14,7 @@ export class RepuestoMaquinaService {
   }
 
   getRepuestos(){
-    return this.http.get('http://localhost:8080/api/repuesto');
+    return this.http.get('http://localhost:8080/api/repuesto-maquina');
   }
 
   asociarRepuestos(id, repuestos:[]){

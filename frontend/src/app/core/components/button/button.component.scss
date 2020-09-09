@@ -1,8 +1,21 @@
-.button-primary{
-    background-color: teal;
-    color: white;
-    position: relative;
-    // left: 785px;
-    // top: 25px;
-    margin-bottom: 25%;
+@import '../../../../assets/themes';
+button{
+    background-color: $extreme-teal;
+    color: $white;
+    height: 50px;
+    width: 100%;
+    max-width: 200px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    border:none;
+    text-align: center;
+    font-weight: bold;
+    font-size: $font-size-m;
+    padding: 0 15px;
+    text-transform: uppercase;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+    transition: 0.5s ease;
+    &:hover{
+        background-color: $primary-teal;
+    }
 }

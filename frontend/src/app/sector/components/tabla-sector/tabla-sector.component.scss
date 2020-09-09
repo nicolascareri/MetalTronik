@@ -1,0 +1,16 @@
+@import '../../../../assets/themes';
+
+.section {
+    @include  min-section-hg();
+    @include abm-section();
+    &__header {
+        padding-top: 35px ;
+    }
+    &__footer {
+        width: 90%;
+        margin-right: 12%;
+        &__button{
+            float: right;
+        }
+    }
+}

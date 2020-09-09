@@ -1,0 +1,12 @@
+@import "../../../../assets/themes";
+
+nav{
+    background-color: $primary-teal;
+    color: white;
+}
+nav a {
+    color: white;
+    &:hover{
+        cursor: pointer;
+    }
+}

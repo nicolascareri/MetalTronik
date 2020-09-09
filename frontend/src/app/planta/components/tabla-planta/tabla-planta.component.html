@@ -1,14 +1,8 @@
+<app-tabla class="table" [ds]='dataSourcePlants' [columns]='columnsToDisplay' [width]="'90%'"
+  (clickRow)="clickedRow($event)">
+</app-tabla>
 
-  <app-button [routerLink]="['formplanta']" [name]="['Nueva planta']"></app-button>
+<div class="section__footer">
+  <app-button class="section__footer__button" [routerLink]="['formplanta']" [name]="['Nueva planta']"></app-button>
 
-
-
-    <app-tabla class="table" [ds]='dataSourcePlants' 
-                             [columns]='columnsToDisplay' 
-                             [width]="'90%'"
-                             (clickRow)="clickedRow($event)">
-    </app-tabla>
-
-
-
-
+</div>

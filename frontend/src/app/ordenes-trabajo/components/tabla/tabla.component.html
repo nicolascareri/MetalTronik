@@ -1,9 +1,15 @@
-<app-tabla class="table" [ds]='dataSourceOrdenes' 
-                         [columns]='columnsToDisplay' 
-                         [width]="'90%'"
-                         (clickRow)="clickedRow($event)">
-</app-tabla>
-
-<app-button [routerLink]="['form']" [name]="['Nueva orden']"></app-button>
+<div class="section">
+    <div class="section__header">
+        <h1 class="section__header__title">Ordenes de trabajo</h1>
+    </div>
+    <app-tabla class="table" [ds]='dataSourceOrdenes' 
+    [columns]='columnsToDisplay' 
+    [width]="'90%'"
+    (clickRow)="clickedRow($event)">
+    </app-tabla>
+    <div class="section__footer">
+        <app-button class="section__footer__button" [routerLink]="['form']" [name]="['Nueva orden']"></app-button>
+    </div>
+</div>
 
 

@@ -55,7 +55,8 @@ export class ListaRepuestosComponent implements OnInit {
       (error) => {
       }
     );
-
+    console.log(this.seleccion);
+    
 
   }
 
