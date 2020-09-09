@@ -10,7 +10,6 @@ import { MaquinaService } from '../../../maquina/services/maquina.service';
 import { PrioridadesService } from '../../../prioridad/services/prioridades.service';
 import { TipoService } from '../../../tipo/services/tipo.service';
 import { CoreService } from 'src/app/core/service/core.service';
-import { from } from 'rxjs';
 import { Router } from '@angular/router';
 
 
@@ -173,6 +172,10 @@ export class TablaOrdenesComponent implements OnInit {
     this.router.navigate(['main/ordenes/form/' + row.ordentrabajo_cod]);
   }
 
+  openForm(ordenId){
+    this.router.navigate(['main/ordenes/form/'+ordenId]);
+  }
+
   getOrdenes(){
     this.OrdenestrabajoService.getAllOrdenes()
     .pipe(first())
@@ -260,10 +263,8 @@ export class TablaOrdenesComponent implements OnInit {
       fechaRealizar: new FormControl(''),
       maquina_cod: new FormControl(''),
       pedidoMateriales: new FormControl(''),
-      // planta: new FormControl(''),
       priodidad_cod: new FormControl(''),
       responsable_cod: new FormControl(''),
-      // sector: new FormControl(''),
       tarea: new FormControl(''),
       observaciones: new FormControl(''),
       ordenTerciarizacion: new FormControl(''),
@@ -272,7 +273,7 @@ export class TablaOrdenesComponent implements OnInit {
 
     })
   }
-  openForm(ordenId){
-    this.router.navigate(['main/ordenes/form/'+ordenId]);
-  }
+
+  
+
 }

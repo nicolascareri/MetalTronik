@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MaquinaService} from '../../services/maquina.service';
 import { CoreService } from 'src/app/core/service/core.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -81,25 +82,29 @@ export class TablaMaquinaComponent implements OnInit {
 
 
   constructor(private MaquinaService: MaquinaService,
-              private coreService: CoreService) {
+              private coreService: CoreService,
+              private router: Router) {
    }
 
 
   ngOnInit(): void {
-    
+    this.getMaquinas();
+  }
 
+  clickedRow(row){
+    this.router.navigate(['main/maquinas/form/' + row.id]);
+  }
+
+  getMaquinas(){
     this.MaquinaService.getMaquinas().subscribe(
-
-      (data: any)  => { // Success
+      (data: any)  => {
         this.dataSourceMachines = this.coreService.replaceFormat(data, ['maquina', 'encargo1', 'encargo2', 'encargo3',
         'responsable', 'prioridad', 'tipo', 'fechaEntrega', 'fechaRealizar', 'ordentrabajo_cod', 'estado', 'tipo', 'planta', 'sector']);
       },
       (error) => {
         console.error(error);
       }
-
     );
-
   }
 
 }

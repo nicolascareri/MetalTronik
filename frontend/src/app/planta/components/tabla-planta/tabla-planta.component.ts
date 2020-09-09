@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
 import {PlantaService} from '../../services/planta.service';
-import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-tabla-planta',
@@ -24,12 +24,22 @@ export class TablaPlantaComponent implements OnInit {
 
   public dataSourcePlants;
 
-  constructor(private PlantaService: PlantaService) {
+  constructor(private PlantaService: PlantaService,
+              private router: Router) {
   }
 
 
   ngOnInit(): void {
 
+   this.getPlantas();
+
+  }
+
+  clickedRow(row){
+    this.router.navigate(['main/maquinas/formplanta/' + row.id]);
+  }
+
+  getPlantas(){
     this.PlantaService.getPlantas().subscribe(
 
       (data: any)  => { // Success
@@ -40,7 +50,6 @@ export class TablaPlantaComponent implements OnInit {
       }
 
     );
-
   }
 
 }
