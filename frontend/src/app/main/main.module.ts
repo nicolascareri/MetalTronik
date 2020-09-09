@@ -8,10 +8,11 @@ import { SidenavComponent } from 'src/app/main/components/sidenav/sidenav.compon
 import { HomeComponent } from './components/home/home.component';
 import { MainComponent } from './components/main/main.component';
 import { MainRoutingModule } from './main-routing.module';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
-  declarations: [MainComponent, HomeComponent, SidenavComponent],
+  declarations: [MainComponent, HomeComponent, SidenavComponent, FooterComponent],
   imports: [
     CommonModule,
     MainRoutingModule,

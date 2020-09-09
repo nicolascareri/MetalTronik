@@ -1,12 +1,7 @@
-<div class="data">
+<app-tabla class="table" [ds]='dataSourceMantenimientosCorrectivos' 
+                         [columns]='columnsToDisplay' 
+                         [width]="'90%'"
+                         (clickRow)="clickedRow($event)">
+</app-tabla>
+<app-button [routerLink]="['formcorrectivo']" [name]="['Nuevo mantenimiento correctivo']"></app-button>
 
-  <mat-card>
-    <app-tabla class="table" [ds]='dataSourceMantenimientosCorrectivos' 
-                             [columns]='columnsToDisplay' 
-                             [width]="'90%'"
-                             (clickRow)="clickedRow($event)">
-    </app-tabla>
-    <app-button [routerLink]="['formcorrectivo']" [name]="['Nuevo mantenimiento correctivo']"></app-button>
-  </mat-card>
-
-</div>

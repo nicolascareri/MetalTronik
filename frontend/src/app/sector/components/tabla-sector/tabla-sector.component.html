@@ -1,15 +1,7 @@
-<div>
+<app-button [routerLink]="['formsector']" [name]="['Nuevo sector']"></app-button>
 
-  <app-button [routerLink]="['formsector']" [name]="['Nuevo sector']"></app-button>
-
-
-  <div class="data">
-
-    <app-tabla class="table" [ds]='dataSourceSectors' 
-                             [columns]='columnsToDisplay' 
-                             [width]="'90%'"
-                             (clickRow)="clickedRow($event)">
-    </app-tabla>
-
-
-  </div>
+<app-tabla class="table" [ds]='dataSourceSectors' 
+                         [columns]='columnsToDisplay' 
+                         [width]="'90%'"
+                         (clickRow)="clickedRow($event)">
+</app-tabla>

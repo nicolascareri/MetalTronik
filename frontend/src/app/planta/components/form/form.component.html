@@ -1,18 +1,28 @@
 <div class="form-container">
 
-  <h1>Registrar planta</h1>
+  <div class="card">
 
-  <form [formGroup]="formPlanta" (ngSubmit)="saveForm()">
+    <h5 class="card-header">
+      Nueva planta
+    </h5>
+  
+    <div class="card-body">
 
-    <label for="nombre">Nombre de la planta</label>
-    <app-input [type]="'input'" 
-               [parentForm]="formPlanta"  
-               [control]="formPlanta.controls.nombre"
-               [placeholder]="'Ingrese nombre de la planta'">
-    </app-input>
+      <form [formGroup]="formPlanta" (ngSubmit)="saveForm()">
+
+        <label for="nombre">Nombre de la planta</label>
+        <app-input [type]="'input'" 
+                   [parentForm]="formPlanta"  
+                   [control]="formPlanta.controls.nombre"
+                   [placeholder]="'Ingrese nombre de la planta'">
+        </app-input>
 
 
-    <app-button [name]="['Registrar planta']" type="submit"></app-button>
-  </form>
+        <app-button [name]="['Registrar planta']" type="submit"></app-button>
+      </form>
+
+    </div>
+    
+  </div>
 
 </div>

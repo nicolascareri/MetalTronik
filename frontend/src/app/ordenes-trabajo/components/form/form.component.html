@@ -110,15 +110,14 @@
         <div class="form-row">
     
           <div class="col">
-          <label for="observaciones">Observaciones</label>
-          <app-input [type]="'input'" 
-                     [parentForm]="ordenForm" 
-                     [control]="ordenForm.controls.observaciones"
-                     [placeholder]="'Observaciones'"
+          <label for="fechaEntrega">Fecha de entrega</label>
+          <app-input [type]="'datetime-local'" 
+                     [parentForm]="ordenForm"  
+                     [control]="ordenForm.controls.fechaEntrega"
+                     [placeholder]="'DD-MM-YYYY'"
                      [required]="true">
           </app-input>
           </div>
-    
       
           <div class="col">
           <label for="ordenTerciarizacion">Orden de terciarizacion</label>
@@ -134,12 +133,12 @@
         <div class="form-row">
     
           <div class="col">
-          <label for="fechaEntrega">Fecha de entrega</label>
-          <app-input [type]="'datetime-local'" 
-                     [parentForm]="ordenForm"  
-                     [control]="ordenForm.controls.fechaEntrega"
-                     [placeholder]="'DD-MM-YYYY'"
-                     [required]="true">
+          <label for="observaciones">Observaciones</label>
+          <app-input [type]="'input'" 
+                      [parentForm]="ordenForm" 
+                      [control]="ordenForm.controls.observaciones"
+                      [placeholder]="'Observaciones'"
+                      [required]="true">
           </app-input>
           </div>
         
@@ -148,15 +147,9 @@
         <app-button [name]="['Crear Orden']" type="submit"></app-button>
       </form>
 
-      
-
     </div>
 
   </div>
-
-  
-
-  
   
 </div>
   

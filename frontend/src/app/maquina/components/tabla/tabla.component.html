@@ -6,7 +6,7 @@
 
     <app-button [routerLink]="['form']" [name]="['Nueva maquina']"></app-button>
 
-    <div class="data">
+    
 
       <app-tabla class="table" [ds]='dataSourceMachines' 
                                [columns]='columnsToDisplay' 
@@ -14,7 +14,7 @@
                                (clickRow)="clickedRow($event)">
       </app-tabla>
 
-      </div>
+      
 
     </mat-tab>
 
