@@ -7,7 +7,10 @@ import { CoreService } from 'src/app/core/service/core.service';
   styleUrls: ['./tabla.component.scss']
 })
 export class TablaComponent implements OnInit {
-
+  
+  @Input() routeForButton = "route";
+  @Input() nameForButton= "nameForButton";
+  @Input() title = "title";
   @Input() columns: any;
   @Input() ds: any = [{}];
   @Input() width = '100%';
@@ -15,6 +18,7 @@ export class TablaComponent implements OnInit {
   @Input() paginated = false;
   @Input() pageSize;
   @Output() clickRow  = new EventEmitter();
+
 
   public isLoading = true;
   public displayData = [];

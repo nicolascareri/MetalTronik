@@ -1,36 +1,24 @@
-<div class="section">
+<mat-tab-group>
 
-  <div class="section__header">
-    <h1 class="section__header__title">Maquinas, plantas y sectores</h1>
-  </div>
+  <mat-tab label="Maquina">
 
-  <mat-tab-group>
+    <app-tabla class="table" [ds]='dataSourceMachines' 
+                             [columns]='columnsToDisplay' 
+                             [width]="'90%'"
+                             (clickRow)="clickedRow($event)"
+                             [title]="['Maquinas']"
+                             [nameForButton]="['Nueva maquina']"
+                             [routeForButton]="['form']">
+    </app-tabla>
 
-    <mat-tab label="Maquina">
+  </mat-tab>
 
+  <mat-tab label="Planta">
+    <app-tabla-planta></app-tabla-planta>
+  </mat-tab>
+  
+  <mat-tab label="Sector">
+    <app-tabla-sector></app-tabla-sector>
+  </mat-tab>
 
-
-
-      <app-tabla class="table" [ds]='dataSourceMachines' [columns]='columnsToDisplay' [width]="'90%'"
-        (clickRow)="clickedRow($event)">
-      </app-tabla>
-
-      <div class="section__footer">
-        <app-button class="section__footer__button" [routerLink]="['form']" [name]="['Nueva maquina']"></app-button>
-
-      </div>
-
-
-    </mat-tab>
-
-    <mat-tab label="Planta">
-      <app-tabla-planta></app-tabla-planta>
-    </mat-tab>
-    <mat-tab label="Sector">
-      <app-tabla-sector></app-tabla-sector>
-    </mat-tab>
-
-  </mat-tab-group>
-
-
-</div>
+</mat-tab-group>

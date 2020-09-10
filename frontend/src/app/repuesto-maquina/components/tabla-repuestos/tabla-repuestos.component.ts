@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MaquinaService } from "../../../maquina/services/maquina.service";
 import { RepuestoMaquinaService } from "../../services/repuesto-maquina.service";
 import { CoreService } from 'src/app/core/service/core.service';
+import { MessageService } from "../../../core/service/message.service";
 
 @Component({
   selector: 'app-tabla-repuestos',
@@ -10,14 +11,18 @@ import { CoreService } from 'src/app/core/service/core.service';
 })
 export class TablaRepuestosComponent implements OnInit {
 
-  seleccion: any = 'all';
-
-  dataSourceRepuestos: any;
-  dataSourceAllRepuestos: any;
-  dataSourceMaquinasSinRepuestos: any;
-
-  cantidad: any = 0;
-  cantidadTotal: any = 0;
+  public seleccion: any = 'all';
+  public dataSourceRepuestos: any;
+  public dataSourceAllRepuestos: any;
+  public dataSourceMaquinasSinRepuestos: any;
+  public dataSourceMaquinas: any;
+  public cantidad: any = 0;
+  public cantidadTotal: any = 0;
+  public messageTitleSuccess: any = "DONE";
+  public messageTitleError: any = "ERROR";
+  public messageTitleWarning: any = "Warning!";
+  public messageBody: any = "La orden se ha creado correctamente";
+  public alerta = this.showWarning("La maquina seleccionada no tiene repuestos asociados.");
 
 
   public columnsToDisplay: any[] = [
@@ -71,58 +76,25 @@ export class TablaRepuestosComponent implements OnInit {
     }
   ];
 
-
-
-  dataSourceMaquinas: any;
-
-
-
   constructor(private MaquinaService: MaquinaService,
-    private RepuestoMaquinaService: RepuestoMaquinaService,
-    private coreService: CoreService) { }
+              private RepuestoMaquinaService: RepuestoMaquinaService,
+              private coreService: CoreService,
+              private MessageService: MessageService) { }
 
 
   ngOnInit(): void {
 
-    this.RepuestoMaquinaService.getRepuestos().subscribe(
+    this.getRepuestos();
+    this.getMaquinas();
+    this.getMaquinasSinRepuestos();
 
-      (data: any) => {
-        this.cantidadTotal = 0;
-        data.forEach(element => {
-          if (element.maquina) {
-            this.cantidadTotal += element.cantidadInstalada;
-          }
-        });
+  }
 
-        this.dataSourceAllRepuestos = this.coreService.replaceFormat(data, ['maquina']);
-      },
-      (error) => {
-        console.error(error);
-
-      }
-    );
-
-
-
-
-
-    this.MaquinaService.getMaquinas().subscribe(
-      (data: any) => {
-        this.dataSourceMaquinas = data;
-      },
-      (error) => {
-      }
-    );
-
-    this.MaquinaService.getMaquinasSinRepuestos().subscribe(
-      (data: any) => {
-        this.dataSourceMaquinasSinRepuestos = data;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-
+  showWarning(messageBody){
+    return this.MessageService.showWarning({
+      title: this.messageTitleWarning,
+      body: this.messageBody = messageBody
+    });
   }
 
 
@@ -143,6 +115,47 @@ export class TablaRepuestosComponent implements OnInit {
 
   }
 
+  getMaquinasSinRepuestos(){
+    this.MaquinaService.getMaquinasSinRepuestos().subscribe(
+      (data: any) => {
+        this.dataSourceMaquinasSinRepuestos = data;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  getMaquinas(){
+    this.MaquinaService.getMaquinas().subscribe(
+      (data: any) => {
+        this.dataSourceMaquinas = data;
+      },
+      (error) => {
+      }
+    );
+  }
+
+  getRepuestos(){
+    this.RepuestoMaquinaService.getRepuestos().subscribe(
+
+      (data: any) => {
+        this.cantidadTotal = 0;
+        data.forEach(element => {
+          if (element.maquina) {
+            this.cantidadTotal += element.cantidadInstalada;
+          }
+        });
+
+        this.dataSourceAllRepuestos = this.coreService.replaceFormat(data, ['maquina']);
+      },
+      (error) => {
+        console.error(error);
+
+      }
+    );
+  }
+
   changeDataSource() {
     let dataSource;
     if (this.seleccion == 'all') {
@@ -152,4 +165,7 @@ export class TablaRepuestosComponent implements OnInit {
     }
     return dataSource;
   }
+
+
+
 }

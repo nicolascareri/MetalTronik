@@ -1,1 +1,6 @@
-<button>{{name}}</button>
+<div [ngSwitch]="type">
+    <button *ngSwitchCase="'primary'" [type]="'primary'" class="btn btn-primary forTable">{{name}}</button>
+    <button *ngSwitchCase="'success'" [type]="'success'" class="btn btn-outline-success">{{name}}</button>
+    <button *ngSwitchCase="'cancel'" [type]="'cancel'" class="btn btn-outline-danger">{{name}}</button>
+</div>
+

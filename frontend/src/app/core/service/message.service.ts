@@ -37,13 +37,12 @@ export class MessageService {
     )
   }
 
-  showInfo(message){
-    this.toastr.info(
+  showWarning(message){
+    this.toastr.warning(
       message.body, message.title , {
-        timeOut: this.time,
-        extendedTimeOut: this.extendedTime,
-        progressBar: true,
-        positionClass: this.positionClass
+        positionClass: this.positionClass,
+        
+        
       }
     )
   }

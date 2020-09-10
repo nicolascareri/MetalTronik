@@ -1,6 +1,9 @@
 <div class="form-container">
-
-  <mat-card class="card-header">
+  <div class="card bg-light mb-3">
+    <h2 class="card-header">
+      {{title}}
+    </h2>
+    <app-button [routerLink]="routeForButton" [name]="nameForButton" [type]="'primary'"></app-button>
     <table class="table table-responsive" [ngStyle]="{'width': width}">
       <thead>
         <tr class="table__header" [ngClass]="{'table__header--tall': search,'table__header--short': !search }">
@@ -26,6 +29,5 @@
       <tfoot>
       </tfoot>
     </table>
-  </mat-card>
-
+  </div>
 </div>

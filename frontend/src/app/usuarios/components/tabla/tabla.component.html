@@ -1,13 +1,9 @@
-<div class="section">
-  <div class="section__header">
-    <h1 class="section__header__title">Usuarios</h1>
-  </div>
-  <app-tabla class="table" [ds]='dataSourceUsers' 
-                           [columns]='columnsToDisplay' 
-                           [width]="'90%'"
-                           (clickRow)="clickedRow($event)">
-  </app-tabla>
-  <div class="section__footer">
-    <app-button class="section__footer__button" [routerLink]="['form']" [name]="['Nuevo usuario']"></app-button>
-  </div>
-</div>
+<app-tabla class="table" [ds]='dataSourceUsers' 
+                         [columns]='columnsToDisplay' 
+                         [width]="'90%'"
+                         (clickRow)="clickedRow($event)"
+                         [title]="['Usuarios']"
+                         [nameForButton]="['Nuevo usuario']"
+                         [routeForButton]="['form']">
+</app-tabla>
+
