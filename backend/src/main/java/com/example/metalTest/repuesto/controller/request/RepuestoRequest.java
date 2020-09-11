@@ -22,10 +22,6 @@ public class RepuestoRequest {
     @NotEmpty
     private String modelo;
 
-    private int cantidadInstalada;
-
-    private int maquina_cod;
-
     private String codigoProducto;
 
     @NotEmpty
