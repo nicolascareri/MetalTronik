@@ -41,6 +41,10 @@ const routes: Routes = [
       {
         path: 'repuestos',
         loadChildren: 'src/app/repuesto-maquina/repuesto-maquina.module#RepuestoMaquinaModule',
+      },
+      {
+        path: 'almacen',
+        loadChildren: 'src/app/almacen/almacen.module#AlmacenModule',
       }
 
 
