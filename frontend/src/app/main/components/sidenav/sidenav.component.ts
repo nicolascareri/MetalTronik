@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+
+
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
@@ -9,7 +11,8 @@ import { Component } from '@angular/core';
 
 export class SidenavComponent{
 
-  mobileQuery: MediaQueryList;
+  public mobileQuery: MediaQueryList;
+  public selected: any;
 
   fillerNav = [
     { name: 'Inicio', route: '', icon: 'home' },
@@ -21,4 +24,12 @@ export class SidenavComponent{
     { name: 'Indicadores', route: '', icon: 'assessment' },
     { name: 'Configuracion', route: 'configuracion', icon: 'settings' }
   ]
+
+  
+
+  clicked(object) {
+      this.selected = object;
+  }
+
+
 }

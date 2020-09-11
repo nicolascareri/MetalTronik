@@ -1,9 +1,10 @@
 @import "../../../../assets/themes";
 
 .nav-title{
-    color: #006565;
+    color: #FFFCF6;
     font-size: 150%;
 }
+
 nav{
     background-color: #33A0A0;
     // color: white;
@@ -15,4 +16,20 @@ nav li {
         cursor: pointer;
         color: #002525;
     }
+
+}
+
+nav-link {
+    color: #002525;
+    &:hover{
+        cursor: pointer;
+        color: #002525;
+    }
+
+}
+    
+
+
+.navItem{
+ margin-left: 2%;   
 }
