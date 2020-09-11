@@ -13,4 +13,9 @@ public class RepuestoReducidoResponse {
     private String codigoProducto;
     private String existencia;
     private String precio;
+    private String unidad;
+    private int puntoPedido;
+    private int stockObjetivo;
+    private short tipoRepuesto;
+    private String ubicacion;
 }
