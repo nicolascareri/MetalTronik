@@ -1,0 +1,129 @@
+<div class="form-container">
+
+    <div class="card">
+  
+      <h5 class="card-header">
+        Nuevo repuesto
+      </h5>
+    
+      <div class="card-body">
+        
+        <form [formGroup]="repuestForm" (ngSubmit)="saveForm()">
+      
+          <div class="form-row">
+      
+            <div class="col">
+            <label for="codigoProducto">Codigo producto</label>
+            <app-input [type]="'input'" 
+                       [parentForm]="repuestForm"  
+                       [control]="repuestForm.controls.codigoProducto"
+                       [placeholder]="'Ingrese codigo de producto'">
+            </app-input>
+            </div>
+  
+            <div class="col">
+            <label for="nombre">Nombre</label>
+            <app-input [type]="'input'" 
+                       [parentForm]="repuestForm"  
+                       [control]="repuestForm.controls.nombre"
+                       [placeholder]="'Ingrese nombre de producto'">
+            </app-input>
+            </div>
+  
+          </div>
+  
+          <div class="form-row">
+      
+            <div class="col">
+            <label for="marca">Marca</label>
+            <app-input [type]="'input'" 
+                       [parentForm]="repuestForm"  
+                       [control]="repuestForm.controls.marca"
+                       [placeholder]="'Ingrese la marca de producto'">
+            </app-input>
+            </div>
+      
+            <div class="col">
+            <label for="modelo">Modelo</label>
+            <app-input [type]="'input'" 
+                       [parentForm]="repuestForm"  
+                       [control]="repuestForm.controls.modelo"
+                       [placeholder]="'Ingrese modelo de producto'">
+            </app-input>
+            </div>
+  
+          </div>
+  
+          <div class="form-row">
+  
+            <div class="col">
+            <label for="tipoRepuesto">Tipo de repuesto</label>
+            <app-input [type]="'onlyNumber'" 
+                       [parentForm]="repuestForm"  
+                       [control]="repuestForm.controls.tipoRepuesto"
+                       [placeholder]="'Ingrese el tipo de repuesto'">
+            </app-input>
+            </div>
+  
+            <div class="col">
+            <label for="precio">Precio</label>
+            <app-input [type]="'onlyNumber'" 
+                       [parentForm]="repuestForm"  
+                       [control]="repuestForm.controls.precio"
+                       [placeholder]="'Ingrese precio'">
+            </app-input>
+            </div>
+  
+          </div>
+  
+          <div class="form-row">
+  
+            <div class="col">
+            <label for="unidad">Unidad</label>
+            <app-input [type]="'onlyNumber'"
+                       [parentForm]="repuestForm" 
+                       [control]="repuestForm.controls.unidad" 
+                       [placeholder]="'Ingrese unidad'">
+            </app-input>
+            </div>
+     
+            <div class="col">
+            <label for="ubicacion">Ubicación</label>
+            <app-input [type]="'input'"
+                       [parentForm]="repuestForm" 
+                       [control]="repuestForm.controls.ubicacion" 
+                       [placeholder]="'Ingrese ubicación'">
+            </app-input>
+            </div>
+  
+          </div>
+
+          <div class="form-row">
+  
+            <div class="col">
+            <label for="puntoPedido">Punto pedido</label>
+            <app-input [type]="'onlyNumber'"
+                       [parentForm]="repuestForm" 
+                       [control]="repuestForm.controls.puntoPedido" 
+                       [placeholder]="'Ingrese punto pedido'">
+            </app-input>
+            </div>
+     
+            <div class="col">
+            <label for="stockObjetivo">Stock objetivo</label>
+            <app-input [type]="'onlyNumber'"
+                       [parentForm]="repuestForm" 
+                       [control]="repuestForm.controls.stockObjetivo" 
+                       [placeholder]="'Ingrese stock objetivo'">
+            </app-input>
+            </div>
+  
+          </div>
+  
+          <app-button type="submit" [type]="'success'" [name]="['Registrar repuesto']" ></app-button>
+      
+        </form>
+      </div>
+    </div>
+  
+  </div>

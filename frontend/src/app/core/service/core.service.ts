@@ -89,6 +89,11 @@ export class CoreService {
                     result.sector = result.sector.descripcion;
                   }
                   break;
+            case 'nombreRepuesto':
+                  if(result.repuesto){
+                    result.repuesto = result.repuesto.nombre;
+                  }
+                  break;
             case 'estado':
               if(result.estado){
                 result.estado === 1? result.estado = 'Pendiente': result.estado = 'Ok';

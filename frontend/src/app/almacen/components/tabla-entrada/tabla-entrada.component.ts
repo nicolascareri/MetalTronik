@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { AlmacenService } from "../../services/almacen.service";
+import { EntradaService } from "../../services/entrada.service";
 import { Router } from '@angular/router';
-
+import { CoreService } from 'src/app/core/service/core.service';
 
 @Component({
-  selector: 'app-tabla-existencia',
-  templateUrl: './tabla-existencia.component.html',
-  styleUrls: ['./tabla-existencia.component.scss']
+  selector: 'app-tabla-entrada',
+  templateUrl: './tabla-entrada.component.html',
+  styleUrls: ['./tabla-entrada.component.scss']
 })
-export class TablaExistenciaComponent implements OnInit {
+export class TablaEntradaComponent implements OnInit {
 
-  public dataSourceRepuestos;
-
+  public dataSourceEntrada;
   public columnsToDisplay: any[] = [
     {
       id: 1,
@@ -105,18 +104,18 @@ export class TablaExistenciaComponent implements OnInit {
   ];
 
 
-  constructor(private AlmacenService: AlmacenService,
-              private Router: Router
-              ) { }
+  constructor(private EntradaService: EntradaService,
+              private Router: Router,
+              private coreService: CoreService) { }
 
   ngOnInit(): void {
-    this.getRepuestos();
+    this.getEntradas();
   }
 
-  getRepuestos(){
-    this.AlmacenService.getRepuestos().subscribe(
+  getEntradas(){
+    this.EntradaService.getEntradas().subscribe(
       (data: any)  => {
-        this.dataSourceRepuestos = data;
+        this.dataSourceEntrada = this.coreService.replaceFormat(data, ['nombreRepuesto']);
       },
       (error) => {
         console.error(error);
@@ -125,7 +124,7 @@ export class TablaExistenciaComponent implements OnInit {
   }
 
   clickedRow(row){
-    this.Router.navigate(['main/almacen/formexistencia/' + row.id]);
+    this.Router.navigate(['main/almacen/formentrada/' + row.id]);
   }
 
 }

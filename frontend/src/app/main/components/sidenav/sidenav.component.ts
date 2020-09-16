@@ -15,7 +15,6 @@ export class SidenavComponent{
   public selected: any;
 
   fillerNav = [
-    { name: 'Inicio', route: '', icon: 'home' },
     { name: 'Ordenes', route: 'ordenes', icon: 'calendar_today' },
     { name: 'Mantenimiento Correctivo', route: 'mantenimientosCorrectivos', icon: 'assignment' },
     { name: 'Maquinas', route: 'maquinas', icon: 'build' },

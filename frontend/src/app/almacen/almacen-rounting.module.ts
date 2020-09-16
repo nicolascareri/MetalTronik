@@ -1,10 +1,9 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {TablaExistenciaComponent} from "./components/tabla-existencia/tabla-existencia.component";
-import {FormSectorComponent} from '../sector/components/form/form.component';
-import {FormPlantaComponent} from '../planta/components/form/form.component';
-
-
+import {FormExistenciaComponent} from "../almacen/components/form-existencia/form-existencia.component";
+import { FormEntradaComponent } from "../almacen/components/form-entrada/form-entrada.component";
+import { FormSalidaComponent } from "../almacen/components/form-salida/form-salida.component";
 const routes: Routes = [
   {
     path: '',
@@ -14,25 +13,29 @@ const routes: Routes = [
         component: TablaExistenciaComponent
       },
       {
-        path: 'formsector',
-        component: FormSectorComponent
+        path: 'formexistencia',
+        component: FormExistenciaComponent
       },
       {
-        path: 'formplanta',
-        component: FormPlantaComponent
-      },
-      // {
-      //   path: 'form/:id',
-      //   component: FormMaquinaComponent
-      // },
-      {
-        path: 'formsector/:id',
-        component: FormSectorComponent
+        path: 'formexistencia/:id',
+        component: FormExistenciaComponent
       },
       {
-        path: 'formplanta/:id',
-        component: FormPlantaComponent
-      }
+        path: 'formentrada',
+        component: FormEntradaComponent
+      },
+      {
+        path: 'formentrada/:id',
+        component: FormEntradaComponent
+      },
+      {
+        path: 'formsalida',
+        component: FormSalidaComponent
+      },
+      {
+        path: 'formsalida/:id',
+        component: FormSalidaComponent
+      },
 
     ]
     }

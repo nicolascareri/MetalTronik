@@ -1,0 +1,8 @@
+<app-tabla class="table" [ds]='dataSourceEntrada' 
+                         [columns]='columnsToDisplay' 
+                         [width]="'90%'"
+                         (clickRow)="clickedRow($event)"
+                         [title]="['Entrada']"
+                         [nameForButton]="['Nueva entrada']"
+                         [routeForButton]="['formentrada']">
+</app-tabla>

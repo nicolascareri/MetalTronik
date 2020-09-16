@@ -2,23 +2,23 @@
 
     <mat-tab label="Existencia">
   
-      <app-tabla class="table" [ds]='dataSourceMachines' 
+      <app-tabla class="table" [ds]='dataSourceRepuestos' 
                                [columns]='columnsToDisplay' 
                                [width]="'90%'"
                                (clickRow)="clickedRow($event)"
-                               [title]="['Maquinas']"
-                               [nameForButton]="['Nueva maquina']"
-                               [routeForButton]="['form']">
+                               [title]="['Existencia']"
+                               [nameForButton]="['Nuevo repuesto']"
+                               [routeForButton]="['formexistencia']">
       </app-tabla>
   
     </mat-tab>
   
     <mat-tab label="Entrada">
-      <!-- <app-tabla-planta></app-tabla-planta> -->
+      <app-tabla-entrada></app-tabla-entrada>
     </mat-tab>
     
     <mat-tab label="Salida">
-      <!-- <app-tabla-sector></app-tabla-sector> -->
+      <app-tabla-salida></app-tabla-salida>
     </mat-tab>
   
 </mat-tab-group>
