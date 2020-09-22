@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SalidaService } from "../../services/salida.service";
+import { CoreService } from 'src/app/core/service/core.service';
 
 @Component({
   selector: 'app-tabla-salida',
@@ -15,7 +16,7 @@ export class TablaSalidaComponent implements OnInit {
       id: 1,
       property:'codigoProducto',
       name: 'Codigo de producto',
-      sort: 'up',
+      sort: '',
       filterValue: '',
       width: '15%'
     }, 
@@ -62,7 +63,8 @@ export class TablaSalidaComponent implements OnInit {
   ];
 
   constructor(private SalidaSerive: SalidaService,
-              private Router: Router) { }
+              private Router: Router,
+              private coreService: CoreService) { }
 
   ngOnInit(): void {
     this.getSalidas();
@@ -71,7 +73,7 @@ export class TablaSalidaComponent implements OnInit {
   getSalidas(){
     this.SalidaSerive.getSalidas().subscribe(
       (data: any)  => {
-        this.dataSourceSalida = data;
+        this.dataSourceSalida = this.coreService.replaceFormat(data, ['solicitante', 'sector', 'codigoProducto', 'fecha', 'modelo', 'marca']);
       },
       (error) => {
         console.error(error);

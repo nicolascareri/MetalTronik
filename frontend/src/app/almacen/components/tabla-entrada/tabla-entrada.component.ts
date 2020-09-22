@@ -81,7 +81,7 @@ export class TablaEntradaComponent implements OnInit {
       property: 'puntoPedido',
       name: 'Punto pedido',
       sort: '',
-      filtervalue: '',
+      filtervalue: ' ',
       width: '25%'
     },
     {
@@ -89,7 +89,7 @@ export class TablaEntradaComponent implements OnInit {
       property: 'stockObjetivo',
       name: 'Stock objetivo',
       sort: '',
-      filtervalue: '',
+      filtervalue: ' ',
       width: '25%'
     },
     {
@@ -97,7 +97,7 @@ export class TablaEntradaComponent implements OnInit {
       property: 'existencia',
       name: 'Existencia',
       sort: '',
-      filtervalue: '',
+      filtervalue: ' ',
       width: '25%'
     }
       
@@ -115,7 +115,10 @@ export class TablaEntradaComponent implements OnInit {
   getEntradas(){
     this.EntradaService.getEntradas().subscribe(
       (data: any)  => {
-        this.dataSourceEntrada = this.coreService.replaceFormat(data, ['nombreRepuesto']);
+        this.dataSourceEntrada = this.coreService.replaceFormat(data, ['nombre', 'codigoProducto', 'marca', 'modelo',
+                                                                       'tipoRepuesto', 'ubicacion', 'unidad', 
+                                                                       'puntoPedido', 'stockObjetivo', 'existencia'
+                                                                      ]);
       },
       (error) => {
         console.error(error);

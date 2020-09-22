@@ -9,15 +9,16 @@ export class RepuestoMaquinaService {
   constructor(protected http: HttpClient) { }
 
 
-  getRepuestosById(id){
-    return this.http.get('http://localhost:8080/api/repuesto-maquina/maquina/' + id);
+  getRepuestos(){
+    return this.http.get('http://localhost:8080/api/repuesto');
   }
 
-  getRepuestos(){
+  getRepuestoMaquina(){
     return this.http.get('http://localhost:8080/api/repuesto-maquina');
   }
 
   asociarRepuestos(id, repuestos:[]){
-    return this.http.put('http://localhost:8080/api/repuesto-maquina/maquina/' + id + '/vincular' , repuestos);
-  }                          //http://localhost:8080/api/repuesto-maquina/maquina/42/vincular
+    return this.http.put<any>('http://localhost:8080/api/repuesto-maquina/maquina/' + id + '/vincular' , repuestos);
+  }
+                            
 }

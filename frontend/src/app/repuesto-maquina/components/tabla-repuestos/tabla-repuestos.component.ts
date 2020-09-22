@@ -1,27 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-import { MaquinaService } from "../../../maquina/services/maquina.service";
 import { RepuestoMaquinaService } from "../../services/repuesto-maquina.service";
 import { CoreService } from 'src/app/core/service/core.service';
 import { MessageService } from "../../../core/service/message.service";
+import { MaquinaService } from "../../../maquina/services/maquina.service";
 
 @Component({
   selector: 'app-tabla-repuestos',
   templateUrl: './tabla-repuestos.component.html',
   styleUrls: ['./tabla-repuestos.component.scss']
 })
+
 export class TablaRepuestosComponent implements OnInit {
 
   public seleccion: any = 'all';
+  
   public dataSourceRepuestos: any;
   public dataSourceAllRepuestos: any;
-  public dataSourceMaquinasSinRepuestos: any;
-  public dataSourceMaquinas: any;
+  public Maquinas: any;
   public cantidad: any = 0;
   public cantidadTotal: any = 0;
+
+  public dataSourceMaquinas: any;
+  public maquinasSinRepuestos:  any = [];
+  public maquinasSinRepuestoss:  any = [];
+  public dataSourceRespuestoMaquina;
   public messageTitleSuccess: any = "DONE";
   public messageTitleError: any = "ERROR";
   public messageTitleWarning: any = "Warning!";
-  public messageBody: any = "La orden se ha creado correctamente";
+  public messageBody: any = "Repuesto asociado correctamente";
   public alerta = this.showWarning("La maquina seleccionada no tiene repuestos asociados.");
 
 
@@ -44,7 +50,7 @@ export class TablaRepuestosComponent implements OnInit {
     },
     {
       id: 3,
-      property: 'cantidadInstalada',
+      property: 'cantidad_instalada',
       name: 'Cantidad instalada',
       sort: '',
       filterValue: '',
@@ -76,18 +82,15 @@ export class TablaRepuestosComponent implements OnInit {
     }
   ];
 
-  constructor(private MaquinaService: MaquinaService,
-              private RepuestoMaquinaService: RepuestoMaquinaService,
+  constructor(private RepuestoMaquinaService: RepuestoMaquinaService,
               private coreService: CoreService,
-              private MessageService: MessageService) { }
+              private MessageService: MessageService,
+              private MaquinaService: MaquinaService) { }
 
 
   ngOnInit(): void {
-
-    this.getRepuestos();
+    this.getRepuestosMaquina();
     this.getMaquinas();
-    this.getMaquinasSinRepuestos();
-
   }
 
   showWarning(messageBody){
@@ -97,39 +100,18 @@ export class TablaRepuestosComponent implements OnInit {
     });
   }
 
-
-  getRepuestosByMaquina(id) {
-    this.cantidad = 0;
-    this.RepuestoMaquinaService.getRepuestosById(id).subscribe(
-      (data: any) => {
-        data.forEach(element => {
-          if (element.maquina) {
-            this.cantidad += element.cantidadInstalada;
-          }
-        });
-        this.dataSourceRepuestos = data;
-      },
-      (error) => {
-      }
-    );
-
-  }
-
-  getMaquinasSinRepuestos(){
-    this.MaquinaService.getMaquinasSinRepuestos().subscribe(
-      (data: any) => {
-        this.dataSourceMaquinasSinRepuestos = data;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
-
   getMaquinas(){
     this.MaquinaService.getMaquinas().subscribe(
       (data: any) => {
         this.dataSourceMaquinas = data;
+        data.forEach(element => {
+          
+          this.maquinasSinRepuestos.push(element);  
+          console.log(this.maquinasSinRepuestos);
+          
+            
+          }
+        );
       },
       (error) => {
       }
@@ -144,10 +126,11 @@ export class TablaRepuestosComponent implements OnInit {
         data.forEach(element => {
           if (element.maquina) {
             this.cantidadTotal += element.cantidadInstalada;
+            
           }
         });
 
-        this.dataSourceAllRepuestos = this.coreService.replaceFormat(data, ['maquina']);
+        this.dataSourceAllRepuestos = this.coreService.replaceFormat(data, ['maquina', 'modelo', 'cantidad_instalada']);
       },
       (error) => {
         console.error(error);
@@ -156,16 +139,33 @@ export class TablaRepuestosComponent implements OnInit {
     );
   }
 
-  changeDataSource() {
-    let dataSource;
-    if (this.seleccion == 'all') {
-      dataSource = this.dataSourceAllRepuestos;
-    } else {
-      dataSource = this.dataSourceRepuestos;
-    }
-    return dataSource;
-  }
+  getRepuestosMaquina(){
+    this.RepuestoMaquinaService.getRepuestoMaquina().subscribe(
+      (data: any) => {
+        this.cantidadTotal = 0;
+        data.forEach(element => {
 
+          this.maquinasSinRepuestoss = this.maquinasSinRepuestos.filter(word => this.maquinasSinRepuestos.includes(element.maquina));
+          this.cantidadTotal += element.cantidad_instalada;
+            // if (this.maquinasSinRepuestos.includes(element.maquina)) {
+            //   this.maquinasSinRepuestos.pop(element.maquina)
+            // }
+            
+            
+        });
+
+       
+       
+      console.log(this.maquinasSinRepuestoss);
+        
+      this.dataSourceRespuestoMaquina = this.coreService.replaceFormat(data, ['nombre', 'modelo', 'maquina']);
+      },
+      (error) => {
+        console.error(error);
+
+      }
+    );
+  }
 
 
 }

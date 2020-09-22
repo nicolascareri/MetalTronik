@@ -74,7 +74,7 @@ export class FormEntradaComponent implements OnInit {
           val => {
             return {
               "id": val.id,
-              "descripcion": val.nombre
+              "descripcion": val.codigoProducto
             }
           }
         );
@@ -93,7 +93,7 @@ export class FormEntradaComponent implements OnInit {
     this.entradaForm.controls.numeroOrdenCompra.setValue(entrada.numeroOrdenCompra);
     this.entradaForm.controls.precio.setValue(entrada.precio);
     this.entradaForm.controls.proveedor.setValue(entrada.proveedor);
-    this.entradaForm.controls.repuesto_cod.setValue(entrada.repuesto_cod);
+    this.entradaForm.controls.repuesto_cod.setValue(entrada.repuesto.id);
   }
 
   resetForm() {
