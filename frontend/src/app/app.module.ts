@@ -16,6 +16,9 @@ import {UserService} from './usuarios/services/user.service';
 import {UsuariosModule} from './usuarios/usuarios.module';
 import {ConfiguracionModule} from "./configuracion/configuracion.module";
 import {RepuestoMaquinaModule} from "./repuesto-maquina/repuesto-maquina.module";
+import {MDBBootstrapModule} from 'angular-bootstrap-md';
+import {AlmacenModule} from './almacen/almacen.module'
+
 
 
 @NgModule({
@@ -36,7 +39,9 @@ import {RepuestoMaquinaModule} from "./repuesto-maquina/repuesto-maquina.module"
     MaquinaModule,
     MantenimientoCorrectivoModule,
     ConfiguracionModule,
-    RepuestoMaquinaModule
+    RepuestoMaquinaModule,
+    MDBBootstrapModule.forRoot(),
+    AlmacenModule
   ],
   providers: [UserService,
     OrdenestrabajoService, ],

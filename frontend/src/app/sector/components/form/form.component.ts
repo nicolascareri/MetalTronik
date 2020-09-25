@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { SectorService } from '../../services/sector.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { MessageService } from "../../../core/service/message.service";
 
 @Component({
   selector: 'app-form',
@@ -14,10 +15,14 @@ export class FormSectorComponent implements OnInit {
   public form: FormGroup;
   public sectorId: any;
   public mode = 'add';
+  public messageTitleSuccess: any = "DONE";
+  public messageTitleError: any = "ERROR";
+  public messageBody: any = "Sector creado correctamente";
 
   constructor(private SectorService: SectorService,
     private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private MessageService: MessageService) {
     this.form = this.createFormGroup();
   }
 
@@ -29,6 +34,20 @@ export class FormSectorComponent implements OnInit {
     if (this.sectorId) {
       this.getSector(this.sectorId);
     }
+  }
+
+  showSuccess() {
+    this.MessageService.showSuccess({
+      title: this.messageTitleSuccess,
+      body: this.messageBody
+    });
+  }
+
+  showError(message) {
+    this.MessageService.showError({
+      title: this.messageTitleError,
+      body: message.errors ? message.errors[0].defaultMessage + ". campo: " + message.errors[0].field + ", Valor rechazado: " + message.errors[0].rejectedValue : message.error
+    })
   }
 
   getSector(id) {
@@ -59,15 +78,20 @@ export class FormSectorComponent implements OnInit {
   saveForm() {
     if (this.mode === 'add') {
       this.SectorService.postSector(this.form).subscribe(
-        sector => alert("Se ha creado el sector numero: " + sector.id)
+        sector => {
+          this.showSuccess();
+        },
+        error => this.showError(error.error)
       );
     } else {
       this.SectorService.updateSector(this.sectorId, this.form).subscribe(
         sector => {
-          console.log(sector);
-        });
+          this.messageBody = "El sector se edito correctamente"
+          this.showSuccess();
+        },
+        error => this.showError(error.error)
+      );
     }
-    this.router.navigate(['main/maquinas'])
   }
 
 }

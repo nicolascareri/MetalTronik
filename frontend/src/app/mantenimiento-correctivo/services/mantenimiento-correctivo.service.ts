@@ -20,4 +20,8 @@ export class MantenimientoCorrectivoService {
   postMantenimientoCorrectivo(mantenimientoCorrectivoForm){
     return this.http.post<any>('http://localhost:8080/api/mantenimiento-correctivo', mantenimientoCorrectivoForm.value);
   }
+
+  update(id, mantenimiento){
+    return this.http.put<any>('http://localhost:8080/api/mantenimiento-correctivo/' + id, mantenimiento.value);
+  }
 }

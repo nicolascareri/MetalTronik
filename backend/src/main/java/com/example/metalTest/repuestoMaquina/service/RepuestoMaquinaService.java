@@ -9,4 +9,6 @@ import java.util.List;
 
 public interface RepuestoMaquinaService {
     List<RepuestoMaquinaResponse> vincular(List<RepuestoMaquinaRequest> repuestoMaquinaRequestList, Integer id) throws ValidateFieldException;
+
+    List<RepuestoMaquinaResponse> getAll();
 }

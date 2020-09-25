@@ -28,7 +28,7 @@ export class OrdenestrabajoService {
   }
 
   updateOrder(id, order){
-    return this.http.put<any>('http://localhost:8080/' + this.url.ORDENES_TRABAJO.PUT + id, order);
+    return this.http.put<any>('http://localhost:8080/' + this.url.ORDENES_TRABAJO.PUT + id, order.value);
   }
 
 }

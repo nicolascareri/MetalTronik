@@ -5,6 +5,7 @@ import { PlantaService } from '../../../planta/services/planta.service';
 import { SectorService } from '../../../sector/services/sector.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { MessageService } from "../../../core/service/message.service";
 
 @Component({
   selector: 'app-form-maquina',
@@ -18,6 +19,9 @@ export class FormMaquinaComponent implements OnInit {
   public dataSourceSectors: any;
   public maquinaId: any;
   public mode = 'add';
+  public messageTitleSuccess: any = "DONE";
+  public messageTitleError: any = "ERROR";
+  public messageBody: any = "La maquina se ha creado correctamente";
   public machinesForm: FormGroup = new FormGroup({
     maquina_cod: new FormControl(''),
     nro_serie: new FormControl(''),
@@ -34,7 +38,8 @@ export class FormMaquinaComponent implements OnInit {
     private PlantaService: PlantaService,
     private SectorService: SectorService,
     private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private MessageService: MessageService) {
 
   }
 
@@ -48,6 +53,20 @@ export class FormMaquinaComponent implements OnInit {
     if (this.maquinaId) {
       this.getMaquina(this.maquinaId);
     }
+  }
+
+  showSuccess(){
+    this.MessageService.showSuccess({
+      title: this.messageTitleSuccess,
+      body: this.messageBody
+    });
+  }
+
+  showError(message){
+    this.MessageService.showError({
+      title: this.messageTitleError,
+      body: message.errors ? message.errors[0].defaultMessage + ". campo: " + message.errors[0].field + ", Valor rechazado: " + message.errors[0].rejectedValue : message.error
+    })
   }
 
   getMaquina(id) {
@@ -67,8 +86,8 @@ export class FormMaquinaComponent implements OnInit {
     this.machinesForm.controls.equipo.setValue(maquina.equipo);
     this.machinesForm.controls.datos_tecnicos.setValue(maquina.datos_tecnicos);
     this.machinesForm.controls.descripcion.setValue(maquina.descripcion);
-    this.machinesForm.controls.planta_cod.setValue(maquina.planta_cod.id);
-    this.machinesForm.controls.sector_cod.setValue(maquina.sector_cod.id);
+    this.machinesForm.controls.planta_cod.setValue(maquina.planta.id);
+    this.machinesForm.controls.sector_cod.setValue(maquina.sector.id);
   }
 
   getPlantas() {
@@ -116,13 +135,20 @@ export class FormMaquinaComponent implements OnInit {
   saveForm() {
     if (this.mode === 'add') {
       this.MaquinaService.postMaquina(this.machinesForm).subscribe(
-        maquina => alert("Se ha creado la maquina numero: " + maquina.id)
+        maquina => {
+          this.showSuccess();
+        },
+        error => this.showError(error.error)
       );
     } else {
+      console.log(this.machinesForm);
       this.MaquinaService.updateMaquina(this.maquinaId, this.machinesForm).subscribe(
         maquina => {
-          console.log(maquina);
-        });
+          this.messageBody = "La maquina se ha editado correctamente"
+          this.showSuccess();
+        },
+        error => this.showError(error.error)
+        );
     }
   }
 

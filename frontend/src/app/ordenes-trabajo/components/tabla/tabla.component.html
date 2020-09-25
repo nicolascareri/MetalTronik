@@ -1,11 +1,11 @@
-<div class="table-responsive">
+<app-tabla class="table" [ds]='dataSourceOrdenes' 
+                         [columns]='columnsToDisplay' 
+                         [width]="'90%'"
+                         (clickRow)="clickedRow($event)"
+                         [title]="['Ordenes de trabajo']"
+                         [nameForButton]="['Nueva orden']"
+                         [routeForButton]="['form']">
+</app-tabla>
 
-  <app-tabla class="table" [ds]='dataSourceOrdenes' 
-                           [columns]='columnsToDisplay' 
-                           [width]="'90%'"
-                           (clickRow)="clickedRow($event)">
-  </app-tabla>
 
-  <app-button [routerLink]="['form']" [name]="['Nueva orden']"></app-button>
 
-</div>

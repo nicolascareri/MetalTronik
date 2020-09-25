@@ -1,18 +1,29 @@
 <div class="form-container">
 
-  <h1>Registrar Sector</h1>
+  <div class="card">
 
-  <form [formGroup]="form" (ngSubmit)="saveForm()">
+    <h5 class="card-header">
+      Nuevo sector
+    </h5>
+  
+    <div class="card-body">
 
-    <label for="descripcion">Nombre del sector</label>
-    <app-input [type]="'input'" 
-               [parentForm]="form"  
-               [control]="form.controls.descripcion"
-               [placeholder]="'Ingrese nombre del sector'">
-    </app-input>
+      <form [formGroup]="form" (ngSubmit)="saveForm()">
+
+        <label for="descripcion">Nombre del sector</label>
+        <app-input [type]="'input'" 
+                   [parentForm]="form"  
+                   [control]="form.controls.descripcion"
+                  [placeholder]="'Ingrese nombre del sector'">
+        </app-input>
 
 
-    <app-button [name]="['Registrar sector']" type="submit"></app-button>
-  </form>
+        <app-button [name]="['Registrar sector']" type="submit"></app-button>
+
+      </form>
+
+    </div>
+    
+  </div>
 
 </div>

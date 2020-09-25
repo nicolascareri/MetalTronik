@@ -135,7 +135,7 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
     this.MantenimientoCorrectivoService.getMantenimientosCorrectivos().pipe(first()).subscribe(
       (data: any) => {
         this.dataSourceMantenimientosCorrectivos = this.coreService.replaceFormat(data, ['encargo1', 'encargo2', 'encargo3',
-          'ordentrabajo', 'maquina', 'tipo']);
+          'ordentrabajo', 'maquina']);
       },
       (error) => {
         console.error(error);

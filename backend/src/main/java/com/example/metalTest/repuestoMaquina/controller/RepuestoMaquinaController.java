@@ -24,4 +24,9 @@ public class RepuestoMaquinaController {
         return new ResponseEntity<>(repuestoMaquinaService.vincular(repuestoMaquinaRequestList, id), HttpStatus.OK);
     }
 
+    @GetMapping
+    public ResponseEntity<List<RepuestoMaquinaResponse>> getAll(){
+        return new ResponseEntity<>(repuestoMaquinaService.getAll(), HttpStatus.OK);
+    }
+
 }

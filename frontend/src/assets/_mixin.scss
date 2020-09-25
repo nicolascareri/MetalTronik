@@ -54,13 +54,12 @@
     @include width-section();
 
     background-color: $background-section;
-    margin-bottom: 150px; 
     &__header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         width: 90%;
-        padding: 20px 0 20px 45px;
+        padding: 20px 0 20px 65px;
 
         &__title {
             font-weight: normal;

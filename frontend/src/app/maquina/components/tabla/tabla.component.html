@@ -1,26 +1,24 @@
-<div class="container-fluid">
+<mat-tab-group>
 
-  <mat-tab-group>
+  <mat-tab label="Maquina">
 
-    <mat-tab label="Maquina">
+    <app-tabla class="table" [ds]='dataSourceMachines' 
+                             [columns]='columnsToDisplay' 
+                             [width]="'90%'"
+                             (clickRow)="clickedRow($event)"
+                             [title]="['Maquinas']"
+                             [nameForButton]="['Nueva maquina']"
+                             [routeForButton]="['form']">
+    </app-tabla>
 
-    <app-button [routerLink]="['form']" [name]="['Nueva maquina']"></app-button>
+  </mat-tab>
 
-    <div class="data">
+  <mat-tab label="Planta">
+    <app-tabla-planta></app-tabla-planta>
+  </mat-tab>
+  
+  <mat-tab label="Sector">
+    <app-tabla-sector></app-tabla-sector>
+  </mat-tab>
 
-      <app-tabla class="table" [ds]='dataSourceMachines' 
-                               [columns]='columnsToDisplay' 
-                               [width]="'90%'"
-                               (clickRow)="clickedRow($event)">
-      </app-tabla>
-
-      </div>
-
-    </mat-tab>
-
-    <mat-tab label="Planta"> <app-tabla-planta></app-tabla-planta> </mat-tab>
-    <mat-tab label="Sector"> <app-tabla-sector></app-tabla-sector> </mat-tab>
-
-  </mat-tab-group>
-
-</div>
+</mat-tab-group>

@@ -31,9 +31,21 @@ export class CoreService {
                 result.fechaRealizar = '';
               }
               break;
+            case 'fecha':
+              if (val.fecha && moment(val.fecha, this.dateServerFormat).isValid()) {
+                result.fecha = this.getFormatDate(val.fecha);
+              } else {
+                result.fecha = '';
+              }
+              break;
             case 'encargo': 
                 if(result.encargo){
                   result.encargo = result.encargo.nombre + " " + result.encargo.apellido;
+                }
+                break;
+            case 'solicitante': 
+                if(result.solicitante){
+                  result.solicitante = result.solicitante.nombre + " " + result.solicitante.apellido;
                 }
                 break;
             case 'encargo1': 
@@ -69,7 +81,7 @@ export class CoreService {
               }
               break;
             case 'tipo':
-                if(result.tipo){
+                if(result.tipo.nombre){
                   result.tipo = result.tipo.nombre;
                 }
                 break;
@@ -87,6 +99,61 @@ export class CoreService {
             case 'sector':
                   if(result.sector){
                     result.sector = result.sector.descripcion;
+                  }
+                  break;
+            case 'codigoProducto':
+                  if(result.repuesto){
+                    result.codigoProducto = result.repuesto.codigoProducto;
+                  }
+                  break;
+            case 'modelo':
+                  if(result.repuesto){
+                    result.modelo = result.repuesto.modelo;
+                  }
+                  break;
+            case 'marca':
+                  if(result.repuesto){
+                    result.marca = result.repuesto.marca;
+                  }
+                  break;
+            case 'nombre':
+                  if(result.repuesto){
+                    result.nombre = result.repuesto.nombre;
+                  }
+                  break;
+            case 'tipoRepuesto':
+                  if(result.repuesto){
+                    result.tipoRepuesto = result.repuesto.tipoRepuesto;
+                  }
+                  break;
+            case 'ubicacion':
+                  if(result.repuesto){
+                    result.ubicacion = result.repuesto.ubicacion;
+                  }
+                  break;
+            case 'unidad':
+                  if(result.repuesto){
+                    result.unidad = result.repuesto.unidad;
+                  }
+                  break;
+            case 'puntoPedido':
+                  if(result.repuesto){
+                    result.puntoPedido = result.repuesto.puntoPedido;
+                  }
+                  break;
+            case 'stockObjetivo':
+                  if(result.repuesto){
+                    result.stockObjetivo = result.repuesto.stockObjetivo;
+                  }
+                  break;
+            case 'existencia':
+                  if(result.repuesto){
+                    result.existencia = result.repuesto.existencia;
+                  }
+                  break;
+            case 'cantidad_instalada':
+                  if(result){
+                    result.cantidad_instalada = result.cantidad_instalada;
                   }
                   break;
             case 'estado':

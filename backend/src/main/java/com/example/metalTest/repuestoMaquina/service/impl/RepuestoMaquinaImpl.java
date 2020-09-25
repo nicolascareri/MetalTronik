@@ -11,6 +11,7 @@ import com.example.metalTest.repuestoMaquina.controller.response.RepuestoMaquina
 import com.example.metalTest.repuestoMaquina.domain.RepuestoMaquina;
 import com.example.metalTest.repuestoMaquina.domain.RepuestoMaquinaPk;
 import com.example.metalTest.repuestoMaquina.mapper.RepuestoMaquinaMapper;
+import com.example.metalTest.repuestoMaquina.repository.RepuestoMaquinaRepository;
 import com.example.metalTest.repuestoMaquina.service.RepuestoMaquinaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,9 @@ public class RepuestoMaquinaImpl implements RepuestoMaquinaService {
 
     @Autowired
     RepuestoMaquinaMapper repuestoMaquinaMapper;
+
+    @Autowired
+    RepuestoMaquinaRepository repuestoMaquinaRepository;
 
     @Override
     public List<RepuestoMaquinaResponse> vincular(List<RepuestoMaquinaRequest> repuestoMaquinaRequestList, Integer id) throws ValidateFieldException {
@@ -60,5 +64,10 @@ public class RepuestoMaquinaImpl implements RepuestoMaquinaService {
         maquina.setRepuestoMaquinaList(repuestoMaquinaList);
         maquinaRepository.save(maquina);
         return repuestoMaquinaMapper.repuestoMaquinaListToRepuestoMaquinaResponseList(repuestoMaquinaList);
+    }
+
+    @Override
+    public List<RepuestoMaquinaResponse> getAll() {
+        return repuestoMaquinaMapper.repuestoMaquinaListToRepuestoMaquinaResponseList(repuestoMaquinaRepository.findAll());
     }
 }

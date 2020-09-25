@@ -282,14 +282,14 @@
     font: 95% Arial, Helvetica, sans-serif; 
     background-color: white;
     color: black;
-    //display: block; 
-    //font-size: 25px;
-    border: 1px solid white;
+    display: block; 
+    font-size: 15px;
+    border: 1px solid grey;
     border-radius: 5px;
-    //transition: all 0, 30% ease-in-out;
-    //outline: none;
-    //box-sizing: border-box;
-    // width: 19%;
+    transition: all 0, 30% ease-in-out;
+    outline: none;
+    box-sizing: border-box;
+    width: 100%;
     margin-bottom: 4%;
-    // padding: 6px;
+    padding: 6px;
 }

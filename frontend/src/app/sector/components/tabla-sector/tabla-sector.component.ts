@@ -16,7 +16,7 @@ export class TablaSectorComponent implements OnInit {
       name: 'Nombre del sector',
       sort: 'up',
       filterValue: '',
-      width: '15%'
+      width: '100%'
     }
   ];
 

@@ -137,7 +137,7 @@ export class TablaUsuarioComponent implements OnInit {
   }
 
   clickedRow(row){
-    this.router.navigate(['main/usuarios/form/' + row.id]);
+    this.router.navigate(['main/usuarios/form/' +  row.id]);
   }
 
   getUsuarios(){

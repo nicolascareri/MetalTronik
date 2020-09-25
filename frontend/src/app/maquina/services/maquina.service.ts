@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
+
 export class MaquinaService {
 
   constructor(protected http: HttpClient) {
@@ -22,12 +23,9 @@ export class MaquinaService {
     return this.http.post<any>('http://localhost:8080/api/maquina', machinesForm.value);
   }
 
-  getMaquinasSinRepuestos(){
-    return this.http.get('http://localhost:8080/api/maquina/sinrepuesto');
-  }
 
   updateMaquina(id, maquina){
-    return this.http.put<any>('http://localhost:8080/api/maquina/' + id, maquina);
+    return this.http.put<any>('http://localhost:8080/api/maquina/' + id, maquina.value);
   }
 
   

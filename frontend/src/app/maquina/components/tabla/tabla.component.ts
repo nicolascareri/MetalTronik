@@ -98,8 +98,7 @@ export class TablaMaquinaComponent implements OnInit {
   getMaquinas(){
     this.MaquinaService.getMaquinas().subscribe(
       (data: any)  => {
-        this.dataSourceMachines = this.coreService.replaceFormat(data, ['maquina', 'encargo1', 'encargo2', 'encargo3',
-        'responsable', 'prioridad', 'tipo', 'fechaEntrega', 'fechaRealizar', 'ordentrabajo_cod', 'estado', 'tipo', 'planta', 'sector']);
+        this.dataSourceMachines = this.coreService.replaceFormat(data, ['maquina', 'planta', 'sector']);
       },
       (error) => {
         console.error(error);

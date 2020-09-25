@@ -7,6 +7,15 @@
     align-items: center;
 }
 
+.form-container{
+    // background-color: lightgray;
+    font: 95% Arial, Helvetica, sans-serift;
+    border-radius: 5px;
+    max-width: 100%;
+    padding: 16px;
+    margin: 0 50px;
+}
+
 $bg-striped-ligth: $white;
 .hide {
     //do not remove this important

@@ -4,13 +4,15 @@
 
     <form [formGroup]="form">
 
-
+          
+      <br>
       <mat-label>Selecciona un repuesto</mat-label>
       <br>
 
       <mat-form-field appearance="fill">
+        
         <mat-select formControlName="repuesto" (selectionChange)="seleccionRepuesto">
-          <mat-option value="all">Todos</mat-option>
+          
           <mat-option *ngFor="let repuesto of changeDataSource()" [value]="repuesto">
             {{repuesto.nombre}}
           </mat-option>
@@ -18,24 +20,25 @@
       </mat-form-field>
 
       <br>
-      <mat-label>Selecciona un modelo para filtrar repuestos</mat-label>
+      <mat-label>Filtrar por modelo</mat-label>
       <br>
 
       <mat-form-field appearance="fill">
         <mat-select [(value)]="modeloValue" (selectionChange)="filtrarPorModelo(modeloValue)">
+          <mat-option value="all">Todos</mat-option>
           <mat-option *ngFor="let m of modelos" [value]="m">
             {{m}}
           </mat-option>
         </mat-select>
       </mat-form-field>
-
+      
       <br>
       Cantidad:
       <br>
-      <input type="number" (ngValue)='cntInstalada' formControlName="cantidadInstalada">
+      <input type="number" (ngValue)='cntInstalada' formControlName="cantidad_instalada">
 
 
-      <app-button [name]="['Agregar']" type="submit" [click]="agruopData()"></app-button>
+      <app-button [name]="['Agregar']" [type]="'primary'" (click)="agruopData()"></app-button>
 
       <hr class="my-7">
       <div>
@@ -48,7 +51,7 @@
             <br>
             Cantidad a instalar elegida:
             <b>
-              {{r.cantidadInstalada}}
+              {{r.cantidad_instalada}}
             </b>
             <br>
           </li>

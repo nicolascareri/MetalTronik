@@ -7,6 +7,8 @@ import {RouterModule} from '@angular/router';
 import { TablaComponent } from './components/tabla/tabla/tabla.component';
 import { InputComponent } from './components/input/input.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {MatCardModule} from '@angular/material/card';
+import { ToastrModule } from "ngx-toastr";
 
 
 @NgModule({
@@ -16,13 +18,16 @@ import {ReactiveFormsModule} from '@angular/forms';
     MatButtonModule,
     RouterModule,
     MatTableModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule,
+    ToastrModule.forRoot()
   ],
   exports: [
     ButtonComponent,
     MatTableModule,
     TablaComponent,
-    InputComponent
+    InputComponent,
+    ToastrModule
     
   ]
 })
