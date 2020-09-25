@@ -145,7 +145,8 @@ export class TablaRepuestosComponent implements OnInit {
         this.cantidadTotal = 0;
         data.forEach(element => {
 
-          this.maquinasSinRepuestoss = this.maquinasSinRepuestos.filter(word => this.maquinasSinRepuestos.includes(element.maquina));
+          this.maquinasSinRepuestos.filter(word => this.maquinasSinRepuestos.includes(element.maquina));
+          this.maquinasSinRepuestoss = this.maquinasSinRepuestos;
           this.cantidadTotal += element.cantidad_instalada;
             // if (this.maquinasSinRepuestos.includes(element.maquina)) {
             //   this.maquinasSinRepuestos.pop(element.maquina)

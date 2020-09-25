@@ -4,19 +4,7 @@
 
     <form [formGroup]="form">
 
-      <br>
-      <mat-label>Selecciona un modelo para filtrar repuestos</mat-label>
-      <br>
-
-      <mat-form-field appearance="fill">
-        <mat-select [(value)]="modeloValue" (selectionChange)="filtrarPorModelo(modeloValue)">
-          <mat-option value="all">Todos</mat-option>
-          <mat-option *ngFor="let m of modelos" [value]="m">
-            {{m}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    
+          
       <br>
       <mat-label>Selecciona un repuesto</mat-label>
       <br>
@@ -31,6 +19,18 @@
         </mat-select>
       </mat-form-field>
 
+      <br>
+      <mat-label>Filtrar por modelo</mat-label>
+      <br>
+
+      <mat-form-field appearance="fill">
+        <mat-select [(value)]="modeloValue" (selectionChange)="filtrarPorModelo(modeloValue)">
+          <mat-option value="all">Todos</mat-option>
+          <mat-option *ngFor="let m of modelos" [value]="m">
+            {{m}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
       
       <br>
       Cantidad:
