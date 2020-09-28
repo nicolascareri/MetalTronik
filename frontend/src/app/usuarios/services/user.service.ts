@@ -1,29 +1,33 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { ENDPOINTS } from "../../core/constants/constants";
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
+  private path = ENDPOINTS;
+
 
   constructor(protected http: HttpClient) {
   }
 
   getUsers() {
-    return this.http.get('http://localhost:8080/api/usuario');
+    return this.http.get(this.path.SERVER.serve + this.path.USUARIOS.GET);
   }
 
   getUser(id){
-    return this.http.get('http://localhost:8080/api/usuario/' + id);
+    return this.http.get(this.path.SERVER.serve + this.path.USUARIOS.GETID + id);
   }
 
   postUser(userForm){
-    return this.http.post<any>('http://localhost:8080/api/usuario', userForm.value);
+    return this.http.post<any>(this.path.SERVER.serve + this.path.USUARIOS.POST, userForm.value);
   }
 
   updateUser(id, user){
-    return this.http.put<any>('http://localhost:8080/api/usuario/' + id, user.value);
+    return this.http.put<any>(this.path.SERVER.serve + this.path.USUARIOS.PUT + id, user.value);
   }
 
 
