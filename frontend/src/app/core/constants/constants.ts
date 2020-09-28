@@ -13,18 +13,88 @@ export const ESTADOS = [
 
 export const ENDPOINTS = {
 
+    SERVER: {
+        serve: 'https://metaltronik.herokuapp.com/'
+    },
+
     USUARIOS: {
         GET: 'api/usuario',
-        POST: 'api/usuario'
+        GETID: 'api/usuario/',
+        POST: 'api/usuario',
+        PUT: 'api/usuario/'
     },
+
     ORDENES_TRABAJO: {
-        GET: 'api/ordenes-trabajo/',
+        GET: 'api/ordenes-trabajo',
+        GETID: 'api/ordenes-trabajo/',
         POST: 'api/ordenes-trabajo',
         PUT: 'api/ordenes-trabajo/'
     },
+
+    MAQUINAS: {
+        GET: 'api/maquina',
+        GETID: 'api/maquina/',
+        POST: 'api/maquina',
+        PUT: 'api/maquina/'
+    },
+
     SECTORES: {
         GET: 'api/sector',
-        POST: 'api/sector'
+        GETID: 'api/sector/',
+        POST: 'api/sector',
+        PUT: 'api/sector/'
+    },
+
+    PLANTAS: {
+        GET: 'api/planta',
+        GETID: 'api/planta/',
+        POST: 'api/planta',
+        PUT: 'api/planta/'
+    },
+
+    MANTENIMIENTOCORRECTIVO: {
+        GET: 'api/mantenimiento-correctivo',
+        GETID: 'api/mantenimiento-correctivo/',
+        POST: 'api/mantenimiento-correctivo',
+        PUT: 'api/mantenimiento-correctivo/'
+    },
+
+    TIPOS: {
+        GET: 'api/tipo',
+        GETID: 'api/tipo/',
+        POST: 'api/tipo',
+        PUT: 'api/tipo/'
+    },
+
+    PRIORIDADES: {
+        GET: 'api/prioridades',
+        GETID: 'api/prioridades/',
+        POST: 'api/prioridades',
+        PUT: 'api/priodidades/'
+    },
+
+    REPUESTOS: {
+        GET: 'api/repuesto',
+        GETID: 'api/repuesto/',
+        GETBYMAQUINA: 'api/repuesto/maquina/',
+        POST: 'api/repuesto',
+        PUT: 'api/repuesto/'
+    },
+
+    REPUESTOMAQUINA: {
+        GET: 'api/repuesto-maquina',
+        PUT: 'api/repuesto-maquina/maquina/id/vincular'
+    },
+
+    ENTRADA: {
+        GET: 'api/entrada',
+        GETID: 'api/entrada/',
+        POST: 'api/entrada'
+    },
+
+    SALIDA: {
+        GET: 'api/salida',
+        POST: 'api/salida'
     }
 }
 
