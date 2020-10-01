@@ -14,6 +14,8 @@ export class FormExistenciaComponent implements OnInit {
 
   public repuestoId: any;
   public mode = 'add';
+  public section = 'Nuevo repuesto';
+  public buttonName = 'Crear repuesto';
   public messageTitleSuccess: any = "DONE";
   public messageTitleError: any = "ERROR";
   public messageBody: any = "El repuesto se ha creado correctamente";
@@ -69,6 +71,8 @@ export class FormExistenciaComponent implements OnInit {
 
   loadRepuesto(repuesto) {
     this.mode = "edit";
+    this.section = 'Editar repuesto';
+    this.buttonName = 'Confirmar cambios';
     console.log(repuesto);
     this.repuestForm.controls.codigoProducto.setValue(repuesto.codigoProducto);
     this.repuestForm.controls.nombre.setValue(repuesto.nombre);

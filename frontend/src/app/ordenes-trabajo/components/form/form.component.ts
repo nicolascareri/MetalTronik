@@ -26,6 +26,8 @@ export class FormComponent implements OnInit, AfterViewInit {
   public dataSourcePrioridades: any;
   public ordenId: any;
   public mode = 'add';
+  public section = 'Nueva orden';
+  public buttonName = 'Crear orden';
   public messageTitleSuccess: any = "DONE";
   public messageTitleError: any = "ERROR";
   public messageBody: any = "La orden se ha creado correctamente";
@@ -82,6 +84,8 @@ export class FormComponent implements OnInit, AfterViewInit {
 
   loadOrden(orden) {
     this.mode = "edit";
+    this.section = 'Editar Orden';
+    this.buttonName = 'Confirmar cambios';
     this.ordenForm.controls.encargo_cod.setValue(orden.encargo.id);
     this.ordenForm.controls.estado.setValue(orden.estado);
     this.ordenForm.controls.fechaEntrega.setValue(orden.fechaEntrega.replace(' ', 'T'))

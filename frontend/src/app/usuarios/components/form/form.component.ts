@@ -15,6 +15,8 @@ export class FormUsuarioComponent implements OnInit {
   public userForm: FormGroup;
   public userId: any;
   public mode = 'add';
+  public section = 'Nuevo usuario';
+  public buttonName = 'Crear usuario';
   public messageTitleSuccess: any = "DONE";
   public messageTitleError: any = "ERROR";
   public messageBody: any = "El usuario se ha creado correctamente";
@@ -60,6 +62,8 @@ export class FormUsuarioComponent implements OnInit {
 
   loadUser(user) {
     this.mode = "edit";
+    this.section = 'Editar usuario';
+    this.buttonName = 'Confirmar cambios';
     console.log(user);
     this.userForm.controls.nombre.setValue(user.nombre);
     this.userForm.controls.apellido.setValue(user.apellido);

@@ -3,7 +3,7 @@
   <div class="card">
 
     <h5 class="card-header">
-      Nuevo sector
+      {{section}}
     </h5>
   
     <div class="card-body">
@@ -18,7 +18,7 @@
         </app-input>
 
 
-        <app-button [name]="['Registrar sector']" type="submit"></app-button>
+        <app-button type="submit" [type]="'success'" [name]="buttonName" ></app-button>
 
       </form>
 

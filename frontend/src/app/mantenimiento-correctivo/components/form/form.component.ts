@@ -22,6 +22,8 @@ export class FormMantenimientoCorrectivoComponent implements OnInit {
   public dataSourceUsers: any;
   public mantenimientoId: any;
   public mode = 'add';
+  public section = 'Nuevo mantenimiento correctivo';
+  public buttonName = 'Crear mantenimiento correctivo'
   public messageTitleSuccess: any = "DONE";
   public messageTitleError: any = "ERROR";
   public messageBody: any = "Mantenimiento creado correctamente";
@@ -76,6 +78,8 @@ export class FormMantenimientoCorrectivoComponent implements OnInit {
 
   loadMantenimiento(mantenimiento) {
     this.mode = "edit";
+    this.section = 'Editar mantenimiento correctivo';
+    this.buttonName = 'Confirmar cambios';
     this.mantenimientoCorrectivoForm.controls.nrocorrectivo.setValue(mantenimiento.nrocorrectivo);
     this.mantenimientoCorrectivoForm.controls.tipofalla.setValue(mantenimiento.tipofalla);
     this.mantenimientoCorrectivoForm.controls.encargo1_cod.setValue(mantenimiento.encargo1.id);

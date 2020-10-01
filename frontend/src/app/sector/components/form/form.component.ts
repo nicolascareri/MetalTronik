@@ -15,6 +15,8 @@ export class FormSectorComponent implements OnInit {
   public form: FormGroup;
   public sectorId: any;
   public mode = 'add';
+  public section = 'Nuevo sector';
+  public buttonName = 'Crear sector';
   public messageTitleSuccess: any = "DONE";
   public messageTitleError: any = "ERROR";
   public messageBody: any = "Sector creado correctamente";
@@ -60,6 +62,8 @@ export class FormSectorComponent implements OnInit {
 
   loadSector(sector) {
     this.mode = "edit";
+    this.section = 'Editar sector';
+    this.buttonName = 'Confirmar cambios';
     console.log(sector);
     this.form.controls.descripcion.setValue(sector.descripcion);
   }

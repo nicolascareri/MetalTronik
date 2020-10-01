@@ -15,6 +15,8 @@ export class FormPlantaComponent implements OnInit {
   public formPlanta: FormGroup;
   public plantaId: any;
   public mode = 'add';
+  public section = 'Nueva planta';
+  public buttonName = 'Crear planta';
   public messageTitleSuccess: any = "DONE";
   public messageTitleError: any = "ERROR";
   public messageBody: any = "Planta creada correctamente";
@@ -60,6 +62,8 @@ export class FormPlantaComponent implements OnInit {
 
   loadPlanta(planta) {
     this.mode = "edit";
+    this.section = 'Editar planta';
+    this.buttonName = 'Confirmar cambios';
     console.log(planta);
     this.formPlanta.controls.nombre.setValue(planta.nombre);
   }
