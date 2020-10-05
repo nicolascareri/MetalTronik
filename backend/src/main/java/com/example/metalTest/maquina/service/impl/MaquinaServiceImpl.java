@@ -51,7 +51,7 @@ public class MaquinaServiceImpl implements MaquinaService {
     }
 
     @Override
-    public Maquina save(MaquinaRequest maquinaRequest) throws ValidateFieldException {
+    public MaquinaResponse save(MaquinaRequest maquinaRequest) throws ValidateFieldException {
         Maquina maquina = maquinaMapper.maquinaRequestToMaquina(maquinaRequest);
         List<RepuestoMaquina> repuestoMaquinaList = new ArrayList<>();
         maquina.setRepuestoMaquinaList(repuestoMaquinaList);
@@ -65,11 +65,11 @@ public class MaquinaServiceImpl implements MaquinaService {
         }
         maquina.setPlanta(plantaRepository.findById(maquinaRequest.getPlanta_cod()).get());
         maquina.setSector(sectorRepository.findById(maquinaRequest.getSector_cod()).get());
-        return maquinaRepository.save(maquina);
+        return maquinaMapper.toMaquinaResponse(maquinaRepository.save(maquina));
     }
 
     @Override
-    public Maquina update(MaquinaRequest maquinaRequest, Integer id) throws ValidateFieldException {
+    public MaquinaResponse update(MaquinaRequest maquinaRequest, Integer id) throws ValidateFieldException {
 
         Optional<Maquina> op = maquinaRepository.findById(id);
         if (!op.isPresent()) {
@@ -89,7 +89,7 @@ public class MaquinaServiceImpl implements MaquinaService {
         maquina.setDescripcion(maquinaRequest.getDescripcion());
         maquina.setDatos_tecnicos(maquinaRequest.getDatos_tecnicos());
         maquina.setId(id);
-        return maquinaRepository.save(maquina);
+        return maquinaMapper.toMaquinaResponse(maquinaRepository.save(maquina));
     }
 
 }

@@ -3,7 +3,7 @@
   <div class="card">
 
     <h5 class="card-header">
-      Nueva planta
+      {{section}}
     </h5>
   
     <div class="card-body">
@@ -16,9 +16,9 @@
                    [control]="formPlanta.controls.nombre"
                    [placeholder]="'Ingrese nombre de la planta'">
         </app-input>
+        
+        <app-button type="submit" [type]="'success'" [name]="buttonName" ></app-button>
 
-
-        <app-button [name]="['Registrar planta']" type="submit"></app-button>
       </form>
 
     </div>

@@ -2,6 +2,7 @@ package com.example.metalTest.ordenestrabajo.controller;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.ordenestrabajo.controller.request.OrdenesTrabajoRequest;
+import com.example.metalTest.ordenestrabajo.controller.response.OrdenesTrabajoResponse;
 import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
 import com.example.metalTest.ordenestrabajo.service.OrdenesTrabajoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,22 +22,22 @@ public class OrdenesTrabajoController {
     OrdenesTrabajoService ordenesTrabajoService;
 
     @GetMapping
-    public ResponseEntity<List<OrdenesTrabajo>> getAll() {
+    public ResponseEntity<List<OrdenesTrabajoResponse>> getAll() {
         return new ResponseEntity<>(ordenesTrabajoService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrdenesTrabajo> getById(@PathVariable Integer id) throws ValidateFieldException {
+    public ResponseEntity<OrdenesTrabajoResponse> getById(@PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<>(ordenesTrabajoService.getById(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<OrdenesTrabajo> create(@Valid @RequestBody OrdenesTrabajoRequest ordenesTrabajoRequest) throws ValidateFieldException {
+    public ResponseEntity<OrdenesTrabajoResponse> create(@Valid @RequestBody OrdenesTrabajoRequest ordenesTrabajoRequest) throws ValidateFieldException {
         return new ResponseEntity<>(ordenesTrabajoService.create(ordenesTrabajoRequest), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<OrdenesTrabajo> update(@Valid @RequestBody OrdenesTrabajoRequest ordenesTrabajoRequest,
+    public ResponseEntity<OrdenesTrabajoResponse> update(@Valid @RequestBody OrdenesTrabajoRequest ordenesTrabajoRequest,
                                                  @PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<>(ordenesTrabajoService.update(ordenesTrabajoRequest, id), HttpStatus.OK);
     }

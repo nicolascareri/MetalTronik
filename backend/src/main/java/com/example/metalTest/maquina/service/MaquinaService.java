@@ -13,8 +13,8 @@ public interface MaquinaService {
 
     MaquinaResponse getById(Integer id) throws ValidateFieldException;
 
-    Maquina save(MaquinaRequest maquina) throws ValidateFieldException;
+    MaquinaResponse save(MaquinaRequest maquina) throws ValidateFieldException;
 
-    Maquina update(MaquinaRequest maquinaRequestToMaquina, Integer id) throws ValidateFieldException;
+    MaquinaResponse update(MaquinaRequest maquinaRequestToMaquina, Integer id) throws ValidateFieldException;
 
 }

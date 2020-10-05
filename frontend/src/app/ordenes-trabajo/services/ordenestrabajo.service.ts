@@ -9,26 +9,26 @@ import {ENDPOINTS} from 'src/app/core/constants/constants';
 
 export class OrdenestrabajoService {
 
-  private url = ENDPOINTS;
+  private path = ENDPOINTS;
   orders: any = this.getAllOrdenes();
 
 
   constructor(protected http: HttpClient) { }
 
   getAllOrdenes(){
-    return this.http.get('http://localhost:8080/' + this.url.ORDENES_TRABAJO.GET);
+    return this.http.get(this.path.SERVER.serve + this.path.ORDENES_TRABAJO.GET);
   }
 
   getOrder(id){
-    return this.http.get('http://localhost:8080/' + this.url.ORDENES_TRABAJO.GET + id);
+    return this.http.get(this.path.SERVER.serve + this.path.ORDENES_TRABAJO.GETID + id);
   }
 
   postOrder(orderForm){
-    return this.http.post<any>('http://localhost:8080/' + this.url.ORDENES_TRABAJO.POST, orderForm.value);
+    return this.http.post<any>(this.path.SERVER.serve + this.path.ORDENES_TRABAJO.POST, orderForm.value);
   }
 
   updateOrder(id, order){
-    return this.http.put<any>('http://localhost:8080/' + this.url.ORDENES_TRABAJO.PUT + id, order.value);
+    return this.http.put<any>(this.path.SERVER.serve + this.path.ORDENES_TRABAJO.PUT + id, order.value);
   }
 
 }

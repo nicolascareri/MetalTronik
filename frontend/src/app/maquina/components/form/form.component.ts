@@ -19,6 +19,8 @@ export class FormMaquinaComponent implements OnInit {
   public dataSourceSectors: any;
   public maquinaId: any;
   public mode = 'add';
+  public section = 'Nueva maquina';
+  public buttonName = 'Crear maquina';
   public messageTitleSuccess: any = "DONE";
   public messageTitleError: any = "ERROR";
   public messageBody: any = "La maquina se ha creado correctamente";
@@ -79,7 +81,8 @@ export class FormMaquinaComponent implements OnInit {
 
   loadMaquina(maquina) {
     this.mode = "edit";
-    console.log(maquina);
+    this.section = 'Editar maquina';
+    this.buttonName = 'Confirmar cambios';
     this.machinesForm.controls.maquina_cod.setValue(maquina.maquina_cod);
     this.machinesForm.controls.nro_serie.setValue(maquina.nro_serie);
     this.machinesForm.controls.modelo.setValue(maquina.modelo);

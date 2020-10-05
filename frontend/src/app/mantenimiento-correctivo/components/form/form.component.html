@@ -3,7 +3,7 @@
   <div class="card">
 
     <h5 class="card-header">
-      Nuevo mantenimiento correctivo
+      {{section}}
     </h5>
 
     <div class="card-body">
@@ -129,7 +129,7 @@
         </div>
        
         
-        <app-button [name]="['Crear mantenimiento correctivo']" type="submit"></app-button>
+        <app-button [name]="buttonName" [type]="'success'" type="submit"></app-button>
 
       </form>
 
