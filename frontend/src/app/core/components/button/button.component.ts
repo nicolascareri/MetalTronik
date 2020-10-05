@@ -14,6 +14,7 @@ export class ButtonComponent implements OnInit {
   @Input() type = 'text';
 
 
+
   constructor() { }
 
 
