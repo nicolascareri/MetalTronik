@@ -2,17 +2,18 @@ package com.example.metalTest.ordenestrabajo.service;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.ordenestrabajo.controller.request.OrdenesTrabajoRequest;
+import com.example.metalTest.ordenestrabajo.controller.response.OrdenesTrabajoResponse;
 import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
 
 import java.util.List;
 
 public interface OrdenesTrabajoService {
 
-    List<OrdenesTrabajo> getAll();
+    List<OrdenesTrabajoResponse> getAll();
 
-    OrdenesTrabajo getById(Integer id) throws ValidateFieldException;
+    OrdenesTrabajoResponse getById(Integer id) throws ValidateFieldException;
 
-    OrdenesTrabajo create(OrdenesTrabajoRequest ordenesTrabajoRequest) throws ValidateFieldException;
+    OrdenesTrabajoResponse create(OrdenesTrabajoRequest ordenesTrabajoRequest) throws ValidateFieldException;
 
-    OrdenesTrabajo update(OrdenesTrabajoRequest ordenesTrabajoRequest, Integer id) throws ValidateFieldException;
+    OrdenesTrabajoResponse update(OrdenesTrabajoRequest ordenesTrabajoRequest, Integer id) throws ValidateFieldException;
 }

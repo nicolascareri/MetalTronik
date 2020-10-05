@@ -4,6 +4,7 @@ import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.common.ordenes.EstadoOrden;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
 import com.example.metalTest.ordenestrabajo.controller.request.OrdenesTrabajoRequest;
+import com.example.metalTest.ordenestrabajo.controller.response.OrdenesTrabajoResponse;
 import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
 import com.example.metalTest.ordenestrabajo.mapper.OrdenesTrabajoMapper;
 import com.example.metalTest.ordenestrabajo.repository.OrdenesTrabajoRepository;
@@ -40,15 +41,15 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
     TipoRepository tipoRepository;
 
     @Override
-    public List<OrdenesTrabajo> getAll() {
-        return ordenesTrabajoRepository.findAll();
+    public List<OrdenesTrabajoResponse> getAll() {
+        return ordenesTrabajoMapper.toOrdenesTrabajoResponseList(ordenesTrabajoRepository.findAll());
     }
 
     @Override
-    public OrdenesTrabajo getById(Integer id) throws ValidateFieldException {
+    public OrdenesTrabajoResponse getById(Integer id) throws ValidateFieldException {
         Optional<OrdenesTrabajo> opt = ordenesTrabajoRepository.findById(id);
         if (opt.isPresent()) {
-            return opt.get();
+            return ordenesTrabajoMapper.toOrdenesTrabajoResponse(opt.get());
         } else {
             throw new ValidateFieldException("La orden de trabajo que desea acceder no existe", "id", String.valueOf(id));
         }
@@ -56,7 +57,7 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
 
     @Transactional
     @Override
-    public OrdenesTrabajo create(OrdenesTrabajoRequest ordenesTrabajoRequest) throws ValidateFieldException {
+    public OrdenesTrabajoResponse create(OrdenesTrabajoRequest ordenesTrabajoRequest) throws ValidateFieldException {
         OrdenesTrabajo ordenesTrabajo = ordenesTrabajoMapper.ordenesTrabajoRequestToOrdenesTrabajo(ordenesTrabajoRequest);
         ordenesTrabajo.setMaquina(maquinaRepository.findById(ordenesTrabajoRequest.getMaquina_cod()).get());
         ordenesTrabajo.setEncargo(usuarioRepository.findById(ordenesTrabajoRequest.getEncargo_cod()).get());
@@ -67,11 +68,11 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         if (ordenesTrabajoRequest.getFechaEntrega().after(ordenesTrabajoRequest.getFechaRealizar())) {
             throw new ValidateFieldException("La fecha de entrega no puede ser menor que la fecha de realizar", "Fecha de entrega", String.valueOf(ordenesTrabajoRequest.getFechaRealizar()));
         }
-        return ordenesTrabajoRepository.save(ordenesTrabajo);
+        return ordenesTrabajoMapper.toOrdenesTrabajoResponse(ordenesTrabajoRepository.save(ordenesTrabajo));
     }
 
     @Override
-    public OrdenesTrabajo update(OrdenesTrabajoRequest ordenesTrabajoRequest, Integer id) throws ValidateFieldException {
+    public OrdenesTrabajoResponse update(OrdenesTrabajoRequest ordenesTrabajoRequest, Integer id) throws ValidateFieldException {
         Optional<OrdenesTrabajo> opt = ordenesTrabajoRepository.findById(id);
         if (!opt.isPresent()) {
             throw new ValidateFieldException("La orden de trabajo a la que intenta acceder no existe", "id", String.valueOf(id));
@@ -91,6 +92,6 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         if (ordenesTrabajoRequest.getFechaEntrega().after(ordenesTrabajoRequest.getFechaRealizar())) {
             throw new ValidateFieldException("La fecha de entrega no puede ser menor que la fecha de realizar", "Fecha de entrega", String.valueOf(ordenesTrabajoRequest.getFechaRealizar()));
         }
-        return ordenesTrabajoRepository.save(ordenesTrabajo);
+        return ordenesTrabajoMapper.toOrdenesTrabajoResponse(ordenesTrabajoRepository.save(ordenesTrabajo));
     }
 }
