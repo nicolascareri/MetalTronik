@@ -63,7 +63,7 @@ export class FormPlantaComponent implements OnInit {
   loadPlanta(planta) {
     this.mode = "edit";
     this.section = 'Editar planta';
-    this.buttonName = 'Confirmar cambios';
+    this.buttonName = 'Confirmar cambios';  
     console.log(planta);
     this.formPlanta.controls.nombre.setValue(planta.nombre);
   }
