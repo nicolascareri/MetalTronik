@@ -15,14 +15,14 @@ export class SidenavComponent{
   public selected: any;
 
   fillerNav = [
-    { name: 'Ordenes', route: 'ordenes', icon: 'calendar_today' },
-    { name: 'Mantenimiento Correctivo', route: 'mantenimientosCorrectivos', icon: 'assignment' },
-    { name: 'Máquinas', route: 'maquinas', icon: 'build' },
-    { name: 'Almacén', route: 'almacen', icon: 'settings' },
-    { name: 'Asociación de repuestos', route: 'repuestos', icon: 'build_circle' },
-    { name: 'Usuarios', route: 'usuarios', icon: 'recent_actors' },
-    { name: 'Indicadores', route: '', icon: 'assessment' },
-    { name: 'Configuración', route: 'configuracion', icon: 'settings' }
+    { name: 'Ordenes', route: 'ordenes', icon: '' },
+    { name: 'Mantenimiento Correctivo', route: 'mantenimientosCorrectivos', icon: '' },
+    { name: 'Máquinas', route: 'maquinas', icon: '' },
+    { name: 'Almacén', route: 'almacen', icon: '' },
+    { name: 'Asociación de repuestos', route: 'repuestos', icon: '' },
+    { name: 'Usuarios', route: 'usuarios', icon: '' },
+    { name: 'Indicadores', route: '', icon: '' },
+    { name: '', route: 'configuracion', icon: 'settings' }
   ]
 
   
