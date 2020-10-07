@@ -22,7 +22,7 @@ export class SidenavComponent{
     { name: 'Asociación de repuestos', route: 'repuestos', icon: '' },
     { name: 'Usuarios', route: 'usuarios', icon: '' },
     { name: 'Indicadores', route: '', icon: '' },
-    { name: '', route: 'configuracion', icon: 'settings' }
+    { name: '', route: 'configuracion', icon: 'settings'}
   ]
 
   
