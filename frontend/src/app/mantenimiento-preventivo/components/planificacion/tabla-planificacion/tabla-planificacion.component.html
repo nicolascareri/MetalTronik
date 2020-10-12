@@ -1,0 +1,20 @@
+<mat-tab-group>
+
+    <mat-tab label="Planificación">
+  
+      <app-tabla class="table" [ds]='dataSourceTareas' 
+                               [columns]='columnsToDisplay' 
+                               [width]="'90%'"
+                               (clickRow)="clickedRow($event)"
+                               [title]="['Tareas']"
+                               [nameForButton]="['Programar tarea']"
+                               [routeForButton]="['formTarea']">
+      </app-tabla>
+  
+    </mat-tab>
+  
+    <mat-tab label="Registro">
+      Registro
+    </mat-tab>
+  
+  </mat-tab-group>

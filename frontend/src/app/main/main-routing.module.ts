@@ -45,6 +45,10 @@ const routes: Routes = [
       {
         path: 'almacen',
         loadChildren: 'src/app/almacen/almacen.module#AlmacenModule',
+      },
+      {
+        path: 'mantenimientosPreventivos',
+        loadChildren: 'src/app/mantenimiento-preventivo/mantenimiento-preventivo.module#MantenimientoPreventivoModule'
       }
 
 

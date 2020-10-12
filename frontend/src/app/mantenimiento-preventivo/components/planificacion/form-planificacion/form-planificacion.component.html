@@ -1,0 +1,67 @@
+<div class="form-container">
+
+    <div class="card">
+  
+      <h2 class="card-header">
+        {{section}}
+      </h2>
+    
+      <div class="card-body">
+        
+        <form [formGroup]="tareaForm" (ngSubmit)="saveForm()">
+      
+          <div class="form-row">
+      
+            <div class="col">
+            <label for="inicio">Inicio</label>
+            <app-input [type]="'datetime-local'" 
+                       [parentForm]="tareaForm"  
+                       [control]="tareaForm.controls.inicio"
+                       [placeholder]="'Ingrese fecha de inicio'">
+            </app-input>
+            </div>
+  
+            <div class="col">
+            <label for="frecuencia">Frecuencia de la tarea</label>
+            <app-input [type]="'onlyNumber'" 
+                       [parentForm]="tareaForm"  
+                       [control]="tareaForm.controls.frecuencia"
+                       [placeholder]="'Ingrese la frecuencia de la tarea'">
+            </app-input>
+            </div>
+  
+          </div>
+  
+          <div class="form-row">
+      
+            <div class="col">
+            <label for="maquina_cod">Maquina</label>
+            <app-input [type]="'select-pair'" 
+                       [parentForm]="tareaForm"  
+                       [control]="tareaForm.controls.maquina_cod"
+                       [options]="dataSourceMaquinas">
+            </app-input>
+            </div>
+      
+            <div class="col">
+            <label for="tarea">Descripción de la tarea</label>
+            <app-input [type]="'input'" 
+                       [parentForm]="tareaForm"  
+                       [control]="tareaForm.controls.tarea"
+                       [placeholder]="'Ingrese la descripción de la tarea a realizar'">
+            </app-input>
+            </div>
+  
+          </div>
+  
+  
+          <div style="margin-top: 3%" class="btn-group btn-group-toggle" data-toggle="buttons">
+            <app-button [name]="buttonName" type="submit" [type]="'success'"></app-button>
+            <app-button [name]="'Cancelar'" [type]="'cancel'"></app-button>
+          </div>
+      
+        </form>
+      </div>
+    </div>
+  
+  </div>
