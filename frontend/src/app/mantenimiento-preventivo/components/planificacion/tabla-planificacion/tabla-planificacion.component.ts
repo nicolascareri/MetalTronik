@@ -23,7 +23,7 @@ export class TablaPlanificacionComponent implements OnInit {
     },
     {
       id: 2,
-      property: 'maquina_cod',
+      property: 'maquina',
       name: 'Codigo de maquina',
       sort: '',
       filterValue: '',
@@ -66,7 +66,7 @@ export class TablaPlanificacionComponent implements OnInit {
   getTareas(){
     this.TareaService.getTareas().subscribe(
       (data: any) => {
-        this.dataSourceTareas = this.CoreService.replaceFormat(data, ['maquina']);
+        this.dataSourceTareas = this.CoreService.replaceFormat(data, ['maquina', 'inicio']);
       },
       (error) => {
         console.error(error);
