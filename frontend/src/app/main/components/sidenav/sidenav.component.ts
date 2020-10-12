@@ -16,7 +16,8 @@ export class SidenavComponent{
 
   fillerNav = [
     { name: 'Ordenes', route: 'ordenes', icon: '' },
-    { name: 'Mantenimiento Correctivo', route: 'mantenimientosCorrectivos', icon: '' },
+    { name: 'Mantenimiento correctivo', route: 'mantenimientosCorrectivos', icon: '' },
+    { name: 'Mantenimiento preventivo', route: 'mantenimientosPreventivos', icon: '' },
     { name: 'Máquinas', route: 'maquinas', icon: '' },
     { name: 'Almacén', route: 'almacen', icon: '' },
     { name: 'Asociación de repuestos', route: 'repuestos', icon: '' },

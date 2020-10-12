@@ -95,6 +95,13 @@ export const ENDPOINTS = {
     SALIDA: {
         GET: 'api/salida',
         POST: 'api/salida'
+    },
+
+    TAREA: {
+        GET: 'api/tarea',
+        GETID: 'api/tarea/',
+        POST: 'api/tarea',
+        PUT: 'api/tarea/'
     }
 }
 
