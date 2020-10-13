@@ -18,6 +18,7 @@ import {ConfiguracionModule} from "./configuracion/configuracion.module";
 import {RepuestoMaquinaModule} from "./repuesto-maquina/repuesto-maquina.module";
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {AlmacenModule} from './almacen/almacen.module'
+import {MantenimientoPreventivoModule} from "./mantenimiento-preventivo/mantenimiento-preventivo.module";
 
 
 
@@ -41,7 +42,8 @@ import {AlmacenModule} from './almacen/almacen.module'
     ConfiguracionModule,
     RepuestoMaquinaModule,
     MDBBootstrapModule.forRoot(),
-    AlmacenModule
+    AlmacenModule,
+    MantenimientoPreventivoModule
   ],
   providers: [UserService,
     OrdenestrabajoService, ],
