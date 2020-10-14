@@ -2,9 +2,9 @@
 
     <div class="card">
   
-      <h5 class="card-header">
+      <h2 class="card-header">
         Nueva salida
-      </h5>
+      </h2>
     
       <div class="card-body">
         
@@ -69,7 +69,10 @@
   
           </div>
   
-          <app-button type="submit" [type]="'success'" [name]="['Crear salida']" ></app-button>
+          <div style="margin-top: 3%" class="btn-group btn-group-toggle" data-toggle="buttons">
+            <app-button [name]="'Crear salida'" type="submit" [type]="'success'"></app-button>
+            <app-button [name]="'Cancelar'" [type]="'cancel'"></app-button>
+          </div>
       
         </form>
       </div>

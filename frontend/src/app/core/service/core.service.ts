@@ -38,6 +38,13 @@ export class CoreService {
                 result.fecha = '';
               }
               break;
+            case 'inicio':
+              if (val.inicio && moment(val.inicio, this.dateServerFormat).isValid()) {
+                result.inicio = this.getFormatDate(val.inicio);
+              } else {
+                result.inicio = '';
+              }
+              break;  
             case 'encargo': 
                 if(result.encargo){
                   result.encargo = result.encargo.nombre + " " + result.encargo.apellido;

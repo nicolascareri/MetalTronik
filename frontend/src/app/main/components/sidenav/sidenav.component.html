@@ -6,7 +6,12 @@
   <div class="collapse navbar-collapse navItem" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-link" [routerLink]="nav.route" *ngFor="let nav of fillerNav" (click)="clicked(nav)"  [ngClass]="{ 'nav': selected != null }">
-          {{nav.name}} 
+          {{nav.name}}
+      </li>
+      <li style="position: relative; left: 45%; margin: auto;" *ngFor="let nav of fillerNav" [routerLink]="nav.route">
+        <div *ngIf="nav.icon != ''">
+          <mat-icon>{{nav.icon}}</mat-icon>
+        </div>
       </li>
     </ul>
   </div>
