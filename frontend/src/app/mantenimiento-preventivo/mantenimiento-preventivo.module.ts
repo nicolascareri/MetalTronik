@@ -6,9 +6,10 @@ import { MantenimientoPreventivoRoutingModule } from "../mantenimiento-preventiv
 import { MatTabsModule } from '@angular/material/tabs';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormPlanificacionComponent } from './components/planificacion/form-planificacion/form-planificacion.component';
+import { TablaRegistroComponent } from './components/registro/tabla-registro/tabla-registro.component';
 
 @NgModule({
-  declarations: [TablaPlanificacionComponent, FormPlanificacionComponent],
+  declarations: [TablaPlanificacionComponent, FormPlanificacionComponent, TablaRegistroComponent],
   imports: [
     CommonModule,
     MantenimientoPreventivoRoutingModule,

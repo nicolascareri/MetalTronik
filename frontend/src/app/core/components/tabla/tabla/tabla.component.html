@@ -3,7 +3,9 @@
     <h2 class="card-header">
       {{title}}
     </h2>
-    <app-button [routerLink]="routeForButton" [name]="nameForButton" [type]="'primary'"></app-button>
+    <div *ngIf="includeButton == true">
+      <app-button [routerLink]="routeForButton" [name]="nameForButton" [type]="'primary'" [click]="actionForButton"></app-button>
+    </div>
     <table class="table table-responsive" [ngStyle]="{'width': width}">
       <thead>
         <tr class="table__header" [ngClass]="{'table__header--tall': search,'table__header--short': !search }">

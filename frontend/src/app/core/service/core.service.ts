@@ -38,6 +38,13 @@ export class CoreService {
                 result.fecha = '';
               }
               break;
+            case 'fechaPlanificada':
+              if (val.fechaPlanificada && moment(val.fechaPlanificada, this.dateServerFormat).isValid()) {
+                result.fechaPlanificada = this.getFormatDate(val.fechaPlanificada);
+              } else {
+                result.fechaPlanificada = '';
+              }
+              break;
             case 'inicio':
               if (val.inicio && moment(val.inicio, this.dateServerFormat).isValid()) {
                 result.inicio = this.getFormatDate(val.inicio);
@@ -81,6 +88,16 @@ export class CoreService {
                 result.sector = result.maquina.sector.descripcion;
                 result.maquina = result.maquina.maquina_cod;
               }  
+              break;
+            case 'tarea':
+               if(result.tarea){
+                 console.log(result);
+                 
+                 result.sector = result.tarea.maquina.sector.descripcion;
+                 result.maquina = result.tarea.maquina.maquina_cod;
+                 result.tareaNombre = result.tarea.tarea;
+                 
+                }  
               break;
             case 'prioridad':
               if(result.prioridad){

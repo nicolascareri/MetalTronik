@@ -7,6 +7,7 @@
                                [width]="'90%'"
                                (clickRow)="clickedRow($event)"
                                [title]="['Tareas']"
+                               [includeButton]="true"
                                [nameForButton]="['Programar tarea']"
                                [routeForButton]="['formTarea']">
       </app-tabla>
@@ -14,7 +15,7 @@
     </mat-tab>
   
     <mat-tab label="Registro">
-      Registro
+      <app-tabla-registro></app-tabla-registro>
     </mat-tab>
   
   </mat-tab-group>
