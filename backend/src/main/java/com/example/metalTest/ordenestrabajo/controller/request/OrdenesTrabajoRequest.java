@@ -1,14 +1,12 @@
 package com.example.metalTest.ordenestrabajo.controller.request;
 
 import com.example.metalTest.common.validator.ValidEntity;
-import com.example.metalTest.maquina.repository.MaquinaRepository;
 import com.example.metalTest.prioridades.repository.PrioridadesRepository;
 import com.example.metalTest.tipo.repository.TipoRepository;
 import com.example.metalTest.usuario.repository.UsuarioRepository;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -16,9 +14,7 @@ import java.util.Date;
 @Setter
 public class OrdenesTrabajoRequest {
 
-    @NotNull
-    @ValidEntity(repository = MaquinaRepository.class)
-    private int maquina_cod;
+    private int parteOrMaquina;
     @NotNull
     private String pedidoMateriales;
     @NotNull
@@ -42,7 +38,5 @@ public class OrdenesTrabajoRequest {
 
     private String observaciones;
 
-    @NotNull
-    @Min(message = "No puede ser nulo", value = 1)
     private int ordenTerciarizacion;
 }

@@ -1,11 +1,9 @@
 package com.example.metalTest.maquina.domain;
 
+import com.example.metalTest.parte.domain.Parte;
 import com.example.metalTest.planta.domain.Planta;
-import com.example.metalTest.repuesto.domain.Repuesto;
 import com.example.metalTest.repuestoMaquina.domain.RepuestoMaquina;
 import com.example.metalTest.sector.domain.Sector;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -40,17 +38,11 @@ public class Maquina {
     private String equipo;
 
     @Column
-    private int nro_serie;
-
-    @Column
-    private String modelo;
-
-    @Column
     private String descripcion;
-
-    @Column
-    private String datos_tecnicos;
 
     @OneToMany(mappedBy = "repuestoMaquinaPk.maquina", fetch = FetchType.LAZY ,cascade = { CascadeType.ALL })
     private List<RepuestoMaquina> repuestoMaquinaList = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Parte> parteList = new ArrayList<>();
 }

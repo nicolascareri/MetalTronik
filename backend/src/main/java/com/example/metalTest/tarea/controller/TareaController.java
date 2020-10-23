@@ -3,7 +3,6 @@ package com.example.metalTest.tarea.controller;
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.tarea.controller.Response.TareaResponse;
 import com.example.metalTest.tarea.controller.request.TareaRequest;
-import com.example.metalTest.tarea.domain.Tarea;
 import com.example.metalTest.tarea.service.TareaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

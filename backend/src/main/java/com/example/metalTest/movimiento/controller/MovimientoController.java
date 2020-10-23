@@ -24,19 +24,9 @@ public class MovimientoController {
         return new ResponseEntity<>(movimientoService.getAll(), HttpStatus.OK);
     }
 
-//    @GetMapping("/tipo/{tipo}")
-//    public ResponseEntity<List<Movimiento>> getByTipo(@PathVariable Short tipo) throws ValidateFieldException {
-//        return new ResponseEntity<>(movimientoService.getByTipo(tipo), HttpStatus.OK);
-//    }
-
     @PostMapping
     public ResponseEntity<Movimiento> create(@Valid @RequestBody MovimientoRequest movimientoRequest) throws ValidateFieldException {
         return new ResponseEntity<>(movimientoService.create(movimientoRequest), HttpStatus.CREATED);
     }
-
-    /*@PutMapping("/{id}")
-    public ResponseEntity<Movimiento> update(@Valid @RequestBody MovimientoRequest movimientoRequest, @PathVariable Integer id){
-        return new ResponseEntity<>(movimientoService.update(movimientoRequest, id), HttpStatus.OK);
-    }*/
 
 }

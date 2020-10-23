@@ -4,7 +4,6 @@ import com.example.metalTest.tarea.controller.Response.TareaResponse;
 import com.example.metalTest.tarea.controller.request.TareaRequest;
 import com.example.metalTest.tarea.domain.Tarea;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 import java.util.List;
 

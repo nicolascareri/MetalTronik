@@ -1,20 +1,18 @@
 package com.example.metalTest.registro.controller;
 
+import com.example.metalTest.apiError.exception.ValidateFieldException;
+import com.example.metalTest.registro.controller.request.RegistroRequest;
 import com.example.metalTest.registro.controller.response.RegistroResponse;
+import com.example.metalTest.registro.controller.response.RegistroResponseParaListado;
+import com.example.metalTest.registro.mapper.RegistroMapper;
 import com.example.metalTest.registro.service.RegistroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -24,9 +22,27 @@ public class RegistroController {
     @Autowired
     RegistroService registroService;
 
-    @GetMapping("/{date}")
-    public ResponseEntity<List<RegistroResponse>> getForMonth(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date date){
-        return new ResponseEntity<>(registroService.getForMonth(date), HttpStatus.OK);
-    }
+    @Autowired
+    RegistroMapper registroMapper;
 
+    @GetMapping("/planificar/{date}")
+    public ResponseEntity<List<RegistroResponse>> getForMonth(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date date){
+        return new ResponseEntity<>(registroMapper.toRegistroResponseList(registroService.getForMonth(date)), HttpStatus.OK);
+    }
+    @PostMapping
+    public ResponseEntity<List<RegistroResponseParaListado>> savePlanificacionActual() throws ValidateFieldException {
+        return new ResponseEntity<>(registroMapper.toRegistroResponseParaListadoList(registroService.savePlanificacionActual()),HttpStatus.CREATED);
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<RegistroResponseParaListado> getById(@PathVariable Integer id) throws ValidateFieldException{
+        return new ResponseEntity<>(registroMapper.toRegistroResponseParaListado(registroService.getById(id)),HttpStatus.OK);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<RegistroResponseParaListado> update(@RequestBody @Valid RegistroRequest registroRequest, @PathVariable Integer id) throws ValidateFieldException {
+        return new ResponseEntity<>(registroMapper.toRegistroResponseParaListado(registroService.update(registroRequest, id)), HttpStatus.OK);
+    }
+    @GetMapping("/actual/{date}")
+    public ResponseEntity<List<RegistroResponseParaListado>> getActualOrPast(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date date){
+        return new ResponseEntity<>(registroMapper.toRegistroResponseParaListadoList(registroService.getActualOrPast(date)), HttpStatus.OK);
+    }
 }

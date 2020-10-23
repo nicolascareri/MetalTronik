@@ -1,7 +1,5 @@
 package com.example.metalTest.repuestoMaquina.domain;
 
-import com.example.metalTest.maquina.domain.Maquina;
-import com.example.metalTest.repuesto.domain.Repuesto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,4 +16,5 @@ public class RepuestoMaquina {
 
     @Column
     private Integer cantidad_instalada;
+
 }
