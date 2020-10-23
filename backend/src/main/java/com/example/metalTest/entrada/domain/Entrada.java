@@ -1,7 +1,6 @@
 package com.example.metalTest.entrada.domain;
 
 import com.example.metalTest.movimiento.domain.Movimiento;
-import com.example.metalTest.repuesto.domain.Repuesto;
 import lombok.Getter;
 import lombok.Setter;
 

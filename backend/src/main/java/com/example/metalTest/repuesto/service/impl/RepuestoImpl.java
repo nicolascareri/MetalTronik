@@ -43,7 +43,7 @@ public class RepuestoImpl implements RepuestoService {
 
 
     @Override
-    public Repuesto create(RepuestoRequest repuestoRequest) throws ValidateFieldException {
+    public Repuesto create(RepuestoRequest repuestoRequest) {
         Repuesto repuesto = repuestoMapper.repuestoRequestToRepuesto(repuestoRequest);
         return repuestoRepository.save(repuesto);
     }
@@ -60,7 +60,7 @@ public class RepuestoImpl implements RepuestoService {
     }
 
     @Override
-    public List<Repuesto> getByMaquina(Integer id) throws ValidateFieldException {
+    public List<Repuesto> getByMaquina(Integer id){
         return repuestoRepository.findByMaquina(id);
     }
 

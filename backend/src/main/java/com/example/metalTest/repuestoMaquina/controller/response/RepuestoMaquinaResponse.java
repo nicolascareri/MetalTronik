@@ -1,7 +1,6 @@
 package com.example.metalTest.repuestoMaquina.controller.response;
 
 import com.example.metalTest.maquina.controller.response.MaquinaReducidoResponse;
-import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.repuesto.controller.response.RepuestoReducidoResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

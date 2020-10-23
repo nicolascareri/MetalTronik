@@ -9,6 +9,8 @@ import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.maquina.mapper.MaquinaMapper;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
 import com.example.metalTest.maquina.service.MaquinaService;
+import com.example.metalTest.parte.mapper.ParteMapper;
+import com.example.metalTest.parte.repository.ParteRepository;
 import com.example.metalTest.planta.repository.PlantaRepository;
 import com.example.metalTest.repuestoMaquina.domain.RepuestoMaquina;
 import com.example.metalTest.sector.repository.SectorRepository;
@@ -20,7 +22,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class MaquinaServiceImpl implements MaquinaService {
+public class   MaquinaServiceImpl implements MaquinaService {
 
     @Autowired
     MaquinaRepository maquinaRepository;
@@ -33,6 +35,12 @@ public class MaquinaServiceImpl implements MaquinaService {
 
     @Autowired
     SectorRepository sectorRepository;
+
+    @Autowired
+    ParteMapper parteMapper;
+
+    @Autowired
+    ParteRepository parteRepository;
 
     @Override
     public List<MaquinaReducidoResponse> getAll() {
@@ -84,10 +92,7 @@ public class MaquinaServiceImpl implements MaquinaService {
         maquina.setMaquina_cod(maquinaRequest.getMaquina_cod());
         maquina.setEstado(maquinaRequest.getEstado());
         maquina.setEquipo(maquinaRequest.getEquipo());
-        maquina.setNro_serie(maquinaRequest.getNro_serie());
-        maquina.setModelo(maquinaRequest.getModelo());
         maquina.setDescripcion(maquinaRequest.getDescripcion());
-        maquina.setDatos_tecnicos(maquinaRequest.getDatos_tecnicos());
         maquina.setId(id);
         return maquinaMapper.toMaquinaResponse(maquinaRepository.save(maquina));
     }

@@ -3,6 +3,7 @@ package com.example.metalTest.salida.service.impl;
 import com.example.metalTest.repuesto.domain.Repuesto;
 import com.example.metalTest.repuesto.repository.RepuestoRepository;
 import com.example.metalTest.salida.controller.request.SalidaRequest;
+import com.example.metalTest.salida.controller.response.SalidaResponse;
 import com.example.metalTest.salida.domain.Salida;
 import com.example.metalTest.salida.mapper.SalidaMapper;
 import com.example.metalTest.salida.repository.SalidaRepository;
@@ -29,18 +30,18 @@ public class SalidaServiceImpl implements SalidaService {
 
 
     @Override
-    public List<Salida> getAll() {
-        return salidaRepository.findAll();
+    public List<SalidaResponse> getAll() {
+        return salidaMapper.toSalidaResponseList(salidaRepository.findAll());
     }
 
     @Override
-    public Salida create(SalidaRequest salidaRequest) {
+    public SalidaResponse create(SalidaRequest salidaRequest) {
         Salida salida = salidaMapper.salidaRequestToSalida(salidaRequest);
         Repuesto repuesto = repuestoRepository.findById(salidaRequest.getRepuesto_cod()).get();
         repuesto.setExistencia(repuesto.getExistencia() - salidaRequest.getCantidad());
         salida.setRepuesto(repuesto);
         salida.setSector(sectorRepository.findById(salidaRequest.getSector_cod()).get());
         salida.setSolicitante(usuarioRepository.findById(salidaRequest.getSolicitante_cod()).get());
-        return salidaRepository.save(salida);
+        return salidaMapper.toSalidaResponse(salidaRepository.save(salida));
     }
 }

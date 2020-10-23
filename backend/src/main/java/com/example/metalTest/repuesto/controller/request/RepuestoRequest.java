@@ -1,12 +1,8 @@
 package com.example.metalTest.repuesto.controller.request;
 
-import com.example.metalTest.common.validator.ValidEntity;
-import com.example.metalTest.maquina.repository.MaquinaRepository;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.lang.Nullable;
 
-import javax.persistence.Column;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
