@@ -1,6 +1,7 @@
 package com.example.metalTest.ordenestrabajo.domain;
 
 import com.example.metalTest.maquina.domain.Maquina;
+import com.example.metalTest.parte.domain.Parte;
 import com.example.metalTest.prioridades.domain.Prioridades;
 import com.example.metalTest.tipo.domain.Tipo;
 import com.example.metalTest.usuario.domain.Usuario;
@@ -19,6 +20,10 @@ public class OrdenesTrabajo {
     @GeneratedValue
     @Column
     private int ordentrabajo_cod;
+
+    @OneToOne
+    @JoinColumn
+    private Parte parte;
 
     @OneToOne
     @JoinColumn

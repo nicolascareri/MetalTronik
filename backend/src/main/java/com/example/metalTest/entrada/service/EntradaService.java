@@ -2,14 +2,14 @@ package com.example.metalTest.entrada.service;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.entrada.controller.request.EntradaRequest;
-import com.example.metalTest.entrada.domain.Entrada;
+import com.example.metalTest.entrada.controller.response.EntradaResponse;
 
 import java.util.List;
 
 public interface EntradaService {
-    List<Entrada> getAll();
+    List<EntradaResponse> getAll();
 
-    Entrada create(EntradaRequest entradaRequest);
+    EntradaResponse create(EntradaRequest entradaRequest);
 
-    Entrada getById(Integer id) throws ValidateFieldException;
+    EntradaResponse getById(Integer id) throws ValidateFieldException;
 }

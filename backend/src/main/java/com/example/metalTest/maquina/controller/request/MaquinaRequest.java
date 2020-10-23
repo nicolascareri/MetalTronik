@@ -31,15 +31,6 @@ public class MaquinaRequest {
     private String equipo;
 
     @NotBlank
-    private String modelo;
-
-    @NotNull
-    private int nro_serie;
-
-    @NotBlank
     private String descripcion;
-
-    @NotBlank
-    private String datos_tecnicos;
 
 }

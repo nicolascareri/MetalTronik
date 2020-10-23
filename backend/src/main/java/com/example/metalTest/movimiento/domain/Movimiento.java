@@ -1,8 +1,7 @@
 package com.example.metalTest.movimiento.domain;
 
 import com.example.metalTest.repuesto.domain.Repuesto;
-import com.example.metalTest.sector.domain.Sector;
-import com.example.metalTest.usuario.domain.Usuario;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,6 +21,7 @@ public class Movimiento {
     private Repuesto repuesto;
 
     @Column
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
     private Date fecha;
 
     @Column

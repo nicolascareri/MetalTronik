@@ -1,7 +1,6 @@
 package com.example.metalTest.movimiento.service.impl;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
-import com.example.metalTest.common.repuesto.TipoMovimiento;
 import com.example.metalTest.movimiento.controller.request.MovimientoRequest;
 import com.example.metalTest.movimiento.domain.Movimiento;
 import com.example.metalTest.movimiento.mapper.MovimientoMapper;
@@ -40,7 +39,7 @@ public class MovimientoServiceImpl implements MovimientoService {
     }
 
     @Override
-    public Movimiento create(MovimientoRequest movimientoRequest) throws ValidateFieldException {
+    public Movimiento create(MovimientoRequest movimientoRequest) {
         Movimiento movimiento = movimientoMapper.movimientoRequestToMovimiento(movimientoRequest);
         Repuesto repuesto = repuestoRepository.findById(movimientoRequest.getRepuesto_cod()).get();
         movimiento.setRepuesto(repuesto);
@@ -68,12 +67,5 @@ public class MovimientoServiceImpl implements MovimientoService {
         return movimientoRepository.save(movimiento);
     }
 
-    @Override
-    public List<Movimiento> getByTipo(Short tipo) throws ValidateFieldException {
-//        if (!tipo.equals(TipoMovimiento.ENTRADA.getValue()) && !tipo.equals(TipoMovimiento.SALIDA.getValue())){
-//            throw new ValidateFieldException("El tipo de movimiento no existe", "tipoMovimiento",String.valueOf(tipo));
-//        }
-//        return movimientoRepository.findByTipo(tipo);
-        return null;
-    }
+
 }

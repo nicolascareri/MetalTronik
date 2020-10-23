@@ -13,10 +13,10 @@ public interface RepuestoService {
 
     RepuestoResponse getById(Integer id) throws ValidateFieldException;
 
-    Repuesto create(RepuestoRequest repuestoRequest) throws ValidateFieldException;
+    Repuesto create(RepuestoRequest repuestoRequest);
 
     Repuesto update(RepuestoRequest repuestoRequest, Integer id) throws ValidateFieldException;
 
-    List<Repuesto> getByMaquina(Integer id) throws ValidateFieldException;
+    List<Repuesto> getByMaquina(Integer id);
 
 }

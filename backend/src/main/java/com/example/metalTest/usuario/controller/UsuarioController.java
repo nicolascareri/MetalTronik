@@ -25,12 +25,12 @@ public class UsuarioController {
 
     @GetMapping
     public ResponseEntity<List<Usuario>> getAll() {
-        return new ResponseEntity(usuarioService.getAll(), HttpStatus.OK);
+        return new ResponseEntity<>(usuarioService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Usuario> getById(@PathVariable Integer id) throws ValidateFieldException {
-        return new ResponseEntity(usuarioService.getById(id), HttpStatus.OK);
+        return new ResponseEntity<>(usuarioService.getById(id), HttpStatus.OK);
 
     }
 

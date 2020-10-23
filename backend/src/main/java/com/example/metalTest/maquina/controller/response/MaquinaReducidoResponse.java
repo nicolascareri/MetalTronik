@@ -18,8 +18,5 @@ public class MaquinaReducidoResponse {
     private Planta planta;
     private Sector sector;
     private String equipo;
-    private int nro_serie;
-    private String modelo;
     private String descripcion;
-    private String datos_tecnicos;
 }

@@ -1,6 +1,7 @@
 package com.example.metalTest.tarea.domain;
 
 import com.example.metalTest.maquina.domain.Maquina;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,6 +27,7 @@ public class Tarea {
     private int frecuencia;
 
     @Column
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
     private Date inicio;
 
     @Column

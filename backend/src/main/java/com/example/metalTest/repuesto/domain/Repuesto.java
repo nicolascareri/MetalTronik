@@ -1,9 +1,6 @@
 package com.example.metalTest.repuesto.domain;
 
-import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.repuestoMaquina.domain.RepuestoMaquina;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 

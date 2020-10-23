@@ -9,6 +9,7 @@ import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
 import com.example.metalTest.ordenestrabajo.mapper.OrdenesTrabajoMapper;
 import com.example.metalTest.ordenestrabajo.repository.OrdenesTrabajoRepository;
 import com.example.metalTest.ordenestrabajo.service.OrdenesTrabajoService;
+import com.example.metalTest.parte.repository.ParteRepository;
 import com.example.metalTest.prioridades.repository.PrioridadesRepository;
 import com.example.metalTest.tipo.repository.TipoRepository;
 import com.example.metalTest.usuario.repository.UsuarioRepository;
@@ -40,6 +41,9 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
     @Autowired
     TipoRepository tipoRepository;
 
+    @Autowired
+    ParteRepository parteRepository;
+
     @Override
     public List<OrdenesTrabajoResponse> getAll() {
         return ordenesTrabajoMapper.toOrdenesTrabajoResponseList(ordenesTrabajoRepository.findAll());
@@ -59,7 +63,7 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
     @Override
     public OrdenesTrabajoResponse create(OrdenesTrabajoRequest ordenesTrabajoRequest) throws ValidateFieldException {
         OrdenesTrabajo ordenesTrabajo = ordenesTrabajoMapper.ordenesTrabajoRequestToOrdenesTrabajo(ordenesTrabajoRequest);
-        ordenesTrabajo.setMaquina(maquinaRepository.findById(ordenesTrabajoRequest.getMaquina_cod()).get());
+        setMaquinaOrParte(ordenesTrabajoRequest, ordenesTrabajo);
         ordenesTrabajo.setEncargo(usuarioRepository.findById(ordenesTrabajoRequest.getEncargo_cod()).get());
         ordenesTrabajo.setResponsable(usuarioRepository.findById(ordenesTrabajoRequest.getResponsable_cod()).get());
         ordenesTrabajo.setTipo(tipoRepository.findById(ordenesTrabajoRequest.getTipo_cod()).get());
@@ -78,7 +82,7 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
             throw new ValidateFieldException("La orden de trabajo a la que intenta acceder no existe", "id", String.valueOf(id));
         }
         OrdenesTrabajo ordenesTrabajo = opt.get();
-        ordenesTrabajo.setMaquina(maquinaRepository.findById(ordenesTrabajoRequest.getMaquina_cod()).get());
+        setMaquinaOrParte(ordenesTrabajoRequest, ordenesTrabajo);
         ordenesTrabajo.setPedidoMateriales(ordenesTrabajoRequest.getPedidoMateriales());
         ordenesTrabajo.setTarea(ordenesTrabajoRequest.getTarea());
         ordenesTrabajo.setPrioridad(prioridadesRepository.findById(ordenesTrabajoRequest.getPrioridad_cod()).get());
@@ -93,5 +97,15 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
             throw new ValidateFieldException("La fecha de entrega no puede ser menor que la fecha de realizar", "Fecha de entrega", String.valueOf(ordenesTrabajoRequest.getFechaRealizar()));
         }
         return ordenesTrabajoMapper.toOrdenesTrabajoResponse(ordenesTrabajoRepository.save(ordenesTrabajo));
+    }
+
+    private void setMaquinaOrParte(OrdenesTrabajoRequest ordenesTrabajoRequest, OrdenesTrabajo ordenesTrabajo) throws ValidateFieldException {
+        if (parteRepository.existsById(ordenesTrabajoRequest.getParteOrMaquina())) {
+            ordenesTrabajo.setParte(parteRepository.getOne(ordenesTrabajoRequest.getParteOrMaquina()));
+        } else if (maquinaRepository.existsById(ordenesTrabajoRequest.getParteOrMaquina())){
+            ordenesTrabajo.setMaquina(maquinaRepository.getOne(ordenesTrabajoRequest.getParteOrMaquina()));
+        } else {
+            throw new ValidateFieldException("La parte o maquina que desea acceder no existe","id",String.valueOf(ordenesTrabajoRequest.getParteOrMaquina()));
+        }
     }
 }
