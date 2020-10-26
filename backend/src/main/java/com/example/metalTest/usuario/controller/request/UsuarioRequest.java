@@ -31,7 +31,7 @@ public class UsuarioRequest {
     @NotNull
     private Date fnacimiento;
 
-    @NotNull
+    @ValidEntity(repository =  CargoRepository.class)
     private Integer cargo_id;
 
     @NotBlank

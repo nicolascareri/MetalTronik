@@ -51,6 +51,9 @@ public class UsuarioServiceImpl implements UsuarioService {
         if (usuario.getEstado() != Estado.ACTIVO.getValue() && usuario.getEstado() != Estado.ELIMINADO.getValue()) {
             throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(usuario.getEstado()));
         }
+        if (!optionalCargo.isPresent()){
+            throw new ValidateFieldException("Cargo no encontrado", "", "");
+        }
         Cargo cargo = optionalCargo.get();
         usrActual.setCargo(cargo);
         return usuarioRepository.save(usrActual);
@@ -66,6 +69,9 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
         if (usuario.getEstado() != Estado.ACTIVO.getValue() && usuario.getEstado() != Estado.ELIMINADO.getValue()) {
             throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(usuario.getEstado()));
+        }
+        if (!optionalCargo.isPresent()){
+            throw new ValidateFieldException("Cargo no encontrado", "", "");
         }
         Cargo cargo = optionalCargo.get();
         Usuario usrActual = usuarioMapper.usuarioRequestToUsuario(usuario);
