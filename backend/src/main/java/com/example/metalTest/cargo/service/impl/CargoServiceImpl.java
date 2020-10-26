@@ -39,8 +39,9 @@ public class CargoServiceImpl implements CargoService {
         if (!optionalCargo.isPresent()){
             throw new ValidateFieldException("Cargo no encontrado", "", "");
         }
-        cargo.setId(id);
-        return cargoRepository.save(cargoMapper.cargoRequestToCargo(cargo));
+        Cargo cargoActual = cargoMapper.cargoRequestToCargo(cargo);
+        cargoActual.setId(id);
+        return cargoRepository.save(cargoActual);
     }
 
     @Override

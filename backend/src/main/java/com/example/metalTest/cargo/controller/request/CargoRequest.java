@@ -6,5 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CargoRequest {
+    private int id;
     private String nombre_cargo;
 }

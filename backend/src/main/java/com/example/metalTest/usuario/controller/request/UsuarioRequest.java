@@ -32,7 +32,7 @@ public class UsuarioRequest {
     private Date fnacimiento;
 
     @NotNull
-    private int cargo_id;
+    private Integer cargo_id;
 
     @NotBlank
     private String correo_electronico;

@@ -2,6 +2,7 @@ package com.example.metalTest.usuario.service.impl;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.cargo.domain.Cargo;
+import com.example.metalTest.cargo.mapper.CargoMapper;
 import com.example.metalTest.cargo.repository.CargoRepository;
 import com.example.metalTest.common.ordenes.Estado;
 import com.example.metalTest.usuario.controller.request.UsuarioRequest;
@@ -45,29 +46,32 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Transactional
     @Override
     public Usuario create(UsuarioRequest usuario) throws ValidateFieldException {
-        Usuario UsrActual = usuarioMapper.usuarioRequestToUsuario(usuario);
+        Usuario usrActual = usuarioMapper.usuarioRequestToUsuario(usuario);
+        Optional<Cargo> optionalCargo = cargoRepository.findById(usuario.getCargo_id());
         if (usuario.getEstado() != Estado.ACTIVO.getValue() && usuario.getEstado() != Estado.ELIMINADO.getValue()) {
             throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(usuario.getEstado()));
         }
-
-        return usuarioRepository.save(UsrActual);
+        Cargo cargo = optionalCargo.get();
+        usrActual.setCargo(cargo);
+        return usuarioRepository.save(usrActual);
     }
 
     @Transactional
     @Override
     public Usuario update(Integer id, UsuarioRequest usuario) throws ValidateFieldException {
         Optional<Usuario> op = usuarioRepository.findById(id);
+        Optional<Cargo> optionalCargo = cargoRepository.findById(usuario.getCargo_id());
         if (!op.isPresent()) {
             throw new ValidateFieldException("El usuario que desea acceder no existe", "id", String.valueOf(id));
         }
         if (usuario.getEstado() != Estado.ACTIVO.getValue() && usuario.getEstado() != Estado.ELIMINADO.getValue()) {
             throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(usuario.getEstado()));
         }
-        Usuario UsrActual = usuarioMapper.usuarioRequestToUsuario(usuario);
-        Cargo cargoDeUsuarioActual = cargoRepository.findById(UsrActual.getCargo_id());
-        UsrActual.setCargo(cargoDeUsuarioActual);
-        UsrActual.setId(id);
-        return usuarioRepository.save(UsrActual);
+        Cargo cargo = optionalCargo.get();
+        Usuario usrActual = usuarioMapper.usuarioRequestToUsuario(usuario);
+        usrActual.setCargo(cargo);
+        usrActual.setId(id);
+        return usuarioRepository.save(usrActual);
     }
 
 }
