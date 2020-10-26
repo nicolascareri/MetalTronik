@@ -1,5 +1,7 @@
 package com.example.metalTest.usuario.controller.request;
 
+import com.example.metalTest.cargo.repository.CargoRepository;
+import com.example.metalTest.common.validator.ValidEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,8 +31,8 @@ public class UsuarioRequest {
     @NotNull
     private Date fnacimiento;
 
-    @NotBlank
-    private String cargo;
+    @NotNull
+    private int cargo_id;
 
     @NotBlank
     private String correo_electronico;
