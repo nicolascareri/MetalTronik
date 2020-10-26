@@ -105,7 +105,7 @@ export const ENDPOINTS = {
     },
 
     REGISTRO: {
-        GET: 'api/registro/'
+        GET: 'api/registro/planificar/'
     }
 }
 
