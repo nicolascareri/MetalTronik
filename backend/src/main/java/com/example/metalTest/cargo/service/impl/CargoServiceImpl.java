@@ -1,7 +1,9 @@
 package com.example.metalTest.cargo.service.impl;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
+import com.example.metalTest.cargo.controller.request.CargoRequest;
 import com.example.metalTest.cargo.domain.Cargo;
+import com.example.metalTest.cargo.mapper.CargoMapper;
 import com.example.metalTest.cargo.repository.CargoRepository;
 import com.example.metalTest.cargo.service.CargoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ public class CargoServiceImpl implements CargoService {
 
     @Autowired
     CargoRepository cargoRepository;
+    @Autowired
+    CargoMapper cargoMapper;
 
     @Override
     public List<Cargo> getAll() {
@@ -25,18 +29,18 @@ public class CargoServiceImpl implements CargoService {
     public Cargo getById(Integer id) throws ValidateFieldException {return cargoRepository.findById(id).get(); }
 
     @Override
-    public Cargo create(Cargo cargo) throws ValidateFieldException {
-        return cargoRepository.save(cargo);
+    public Cargo create(CargoRequest cargo) throws ValidateFieldException {
+        return cargoRepository.save(cargoMapper.cargoRequestToCargo(cargo));
     }
 
     @Override
-    public Cargo update(Cargo cargo, Integer id) throws ValidateFieldException {
+    public Cargo update(CargoRequest cargo, Integer id) throws ValidateFieldException {
         Optional<Cargo> optionalCargo = cargoRepository.findById(id);
         if (!optionalCargo.isPresent()){
             throw new ValidateFieldException("Cargo no encontrado", "", "");
         }
         cargo.setId(id);
-        return cargoRepository.save(cargo);
+        return cargoRepository.save(cargoMapper.cargoRequestToCargo(cargo));
     }
 
     @Override

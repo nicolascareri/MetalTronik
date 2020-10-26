@@ -18,8 +18,6 @@ public class CargoController {
 
     @Autowired
     CargoService cargoService;
-    @Autowired
-    CargoMapper cargoMapper;
     @GetMapping
     public ResponseEntity<List<Cargo>> getAll() {
         return new ResponseEntity<>(cargoService.getAll(), HttpStatus.OK);
@@ -32,12 +30,12 @@ public class CargoController {
 
     @PostMapping
     public ResponseEntity<Cargo> create(@RequestBody CargoRequest cargoRequest) throws ValidateFieldException {
-        return new ResponseEntity<>(cargoService.create(cargoMapper.cargoRequestToCargo(cargoRequest)), HttpStatus.CREATED);
+        return new ResponseEntity<>(cargoService.create(cargoRequest), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Cargo> update(@RequestBody CargoRequest cargoRequest, @PathVariable Integer id) throws ValidateFieldException {
-        return new ResponseEntity<>(cargoService.update(cargoMapper.cargoRequestToCargo(cargoRequest), id), HttpStatus.OK);
+        return new ResponseEntity<>(cargoService.update(cargoRequest, id), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
