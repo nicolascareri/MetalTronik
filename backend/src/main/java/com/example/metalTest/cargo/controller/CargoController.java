@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -29,12 +30,12 @@ public class CargoController {
     }
 
     @PostMapping
-    public ResponseEntity<Cargo> create(@RequestBody CargoRequest cargoRequest) throws ValidateFieldException {
+    public ResponseEntity<Cargo> create(@Valid @RequestBody CargoRequest cargoRequest) throws ValidateFieldException {
         return new ResponseEntity<>(cargoService.create(cargoRequest), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Cargo> update(@RequestBody CargoRequest cargoRequest, @PathVariable Integer id) throws ValidateFieldException {
+    public ResponseEntity<Cargo> update(@Valid @RequestBody CargoRequest cargoRequest, @PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<>(cargoService.update(cargoRequest, id), HttpStatus.OK);
     }
 

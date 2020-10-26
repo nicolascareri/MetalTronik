@@ -1,5 +1,6 @@
 package com.example.metalTest.usuario.domain;
 
+import com.example.metalTest.cargo.domain.Cargo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,8 +37,9 @@ public class Usuario {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT-3")
     private Date fnacimiento;
 
-    @Column
-    private String cargo;
+    @OneToOne
+    @JoinColumn
+    private Cargo cargo;
 
     @Column
     private String correo_electronico;
@@ -62,5 +64,6 @@ public class Usuario {
 
     @Column
     private short estado;
+
 
 }
