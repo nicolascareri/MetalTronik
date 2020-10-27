@@ -3,6 +3,7 @@ package com.example.metalTest.mantenimientoCorrectivo.service.impl;
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.common.ordenes.EstadoOrden;
 import com.example.metalTest.mantenimientoCorrectivo.controller.request.MantenimientoCorrectivoRequest;
+import com.example.metalTest.mantenimientoCorrectivo.controller.response.MantenimientoCorrectivoResponse;
 import com.example.metalTest.mantenimientoCorrectivo.domain.MantenimientoCorrectivo;
 import com.example.metalTest.mantenimientoCorrectivo.mapper.MantenimientoCorrectivoMapper;
 import com.example.metalTest.mantenimientoCorrectivo.repository.MantenimientoCorrectivoRepository;
@@ -42,12 +43,12 @@ public class MantenimientoCorrectivoServiceImpl implements MantenimientoCorrecti
     OrdenesTrabajoRepository ordenesTrabajoRepository;
 
     @Override
-    public List<MantenimientoCorrectivo> getAll() {
-        return mantenimientoCorrectivoRepository.findAll();
+    public List<MantenimientoCorrectivoResponse> getAll() {
+        return mantenimientoCorrectivoMapper.toMantenimientoCorrectivoResponseList(mantenimientoCorrectivoRepository.findAll());
     }
 
     @Override
-    public MantenimientoCorrectivo create(MantenimientoCorrectivoRequest mantenimientoCorrectivoRequest) throws ValidateFieldException {
+    public MantenimientoCorrectivoResponse create(MantenimientoCorrectivoRequest mantenimientoCorrectivoRequest) throws ValidateFieldException {
         MantenimientoCorrectivo mantenimientoCorrectivo = mantenimientoCorrectivoMapper.mantenimientoCorrectivoRequestToMantenimientoCorrectivo(mantenimientoCorrectivoRequest);
         mantenimientoCorrectivo.setMaquina(maquinaRepository.findById(mantenimientoCorrectivoRequest.getMaquina_cod()).get());
         mantenimientoCorrectivo.setEncargo1(usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo1_cod()).get());
@@ -73,11 +74,11 @@ public class MantenimientoCorrectivoServiceImpl implements MantenimientoCorrecti
         long diffInMillies = Math.abs(mantenimientoCorrectivoRequest.getFechaFin().getTime() - mantenimientoCorrectivoRequest.getFechainicio().getTime());
         long diff = TimeUnit.HOURS.convert(diffInMillies, TimeUnit.MILLISECONDS);
         mantenimientoCorrectivo.setTiempoReparacion(diff);
-        return mantenimientoCorrectivoRepository.save(mantenimientoCorrectivo);
+        return mantenimientoCorrectivoMapper.toMantenimientoCorrectivoResponse(mantenimientoCorrectivoRepository.save(mantenimientoCorrectivo));
     }
 
     @Override
-    public MantenimientoCorrectivo update(MantenimientoCorrectivoRequest mantenimientoCorrectivoRequest, Integer id) throws ValidateFieldException {
+    public MantenimientoCorrectivoResponse update(MantenimientoCorrectivoRequest mantenimientoCorrectivoRequest, Integer id) throws ValidateFieldException {
 
         Optional<MantenimientoCorrectivo> opt = mantenimientoCorrectivoRepository.findById(id);
 
@@ -121,15 +122,15 @@ public class MantenimientoCorrectivoServiceImpl implements MantenimientoCorrecti
         long diff = TimeUnit.HOURS.convert(diffInMillies, TimeUnit.MILLISECONDS);
         mantenimientoCorrectivo.setTiempoReparacion(diff);
         mantenimientoCorrectivo.setId(id);
-        return mantenimientoCorrectivoRepository.save(mantenimientoCorrectivo);
+        return mantenimientoCorrectivoMapper.toMantenimientoCorrectivoResponse(mantenimientoCorrectivoRepository.save(mantenimientoCorrectivo));
     }
 
     @Override
-    public MantenimientoCorrectivo getById(Integer id) throws ValidateFieldException {
+    public MantenimientoCorrectivoResponse getById(Integer id) throws ValidateFieldException {
         Optional<MantenimientoCorrectivo> opt = mantenimientoCorrectivoRepository.findById(id);
         if (!opt.isPresent()) {
             throw new ValidateFieldException("El mantenimiento correctivo que desea acceder no existe", "id", String.valueOf(id));
         }
-        return opt.get();
+        return mantenimientoCorrectivoMapper.toMantenimientoCorrectivoResponse(opt.get());
     }
 }

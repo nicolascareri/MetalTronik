@@ -2,16 +2,17 @@ package com.example.metalTest.mantenimientoCorrectivo.service;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.mantenimientoCorrectivo.controller.request.MantenimientoCorrectivoRequest;
+import com.example.metalTest.mantenimientoCorrectivo.controller.response.MantenimientoCorrectivoResponse;
 import com.example.metalTest.mantenimientoCorrectivo.domain.MantenimientoCorrectivo;
 
 import java.util.List;
 
 public interface MantenimientoCorrectivoService {
-    List<MantenimientoCorrectivo> getAll();
+    List<MantenimientoCorrectivoResponse> getAll();
 
-    MantenimientoCorrectivo create(MantenimientoCorrectivoRequest mantenimientoCorrectivoRequest) throws ValidateFieldException;
+    MantenimientoCorrectivoResponse create(MantenimientoCorrectivoRequest mantenimientoCorrectivoRequest) throws ValidateFieldException;
 
-    MantenimientoCorrectivo update(MantenimientoCorrectivoRequest mantenimientoCorrectivoRequest, Integer id) throws ValidateFieldException;
+    MantenimientoCorrectivoResponse update(MantenimientoCorrectivoRequest mantenimientoCorrectivoRequest, Integer id) throws ValidateFieldException;
 
-    MantenimientoCorrectivo getById(Integer id) throws ValidateFieldException;
+    MantenimientoCorrectivoResponse getById(Integer id) throws ValidateFieldException;
 }

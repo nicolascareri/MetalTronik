@@ -2,6 +2,7 @@ package com.example.metalTest.mantenimientoCorrectivo.controller;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.mantenimientoCorrectivo.controller.request.MantenimientoCorrectivoRequest;
+import com.example.metalTest.mantenimientoCorrectivo.controller.response.MantenimientoCorrectivoResponse;
 import com.example.metalTest.mantenimientoCorrectivo.domain.MantenimientoCorrectivo;
 import com.example.metalTest.mantenimientoCorrectivo.service.MantenimientoCorrectivoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,22 +22,22 @@ public class MantenimientoCorrectivoController {
     MantenimientoCorrectivoService mantenimientoCorrectivoService;
 
     @GetMapping
-    public ResponseEntity<List<MantenimientoCorrectivo>> getAll() {
+    public ResponseEntity<List<MantenimientoCorrectivoResponse>> getAll() {
         return new ResponseEntity<>(mantenimientoCorrectivoService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MantenimientoCorrectivo> getById(@PathVariable Integer id) throws ValidateFieldException {
+    public ResponseEntity<MantenimientoCorrectivoResponse> getById(@PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<>(mantenimientoCorrectivoService.getById(id), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MantenimientoCorrectivo> update(@Valid @RequestBody MantenimientoCorrectivoRequest mantenimientoCorrectivoRequest, @PathVariable Integer id) throws ValidateFieldException {
+    public ResponseEntity<MantenimientoCorrectivoResponse> update(@Valid @RequestBody MantenimientoCorrectivoRequest mantenimientoCorrectivoRequest, @PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<>(mantenimientoCorrectivoService.update(mantenimientoCorrectivoRequest, id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<MantenimientoCorrectivo> create(@Valid @RequestBody MantenimientoCorrectivoRequest mantenimientoCorrectivoRequest) throws ValidateFieldException {
+    public ResponseEntity<MantenimientoCorrectivoResponse> create(@Valid @RequestBody MantenimientoCorrectivoRequest mantenimientoCorrectivoRequest) throws ValidateFieldException {
         return new ResponseEntity<>(mantenimientoCorrectivoService.create(mantenimientoCorrectivoRequest), HttpStatus.CREATED);
     }
 
