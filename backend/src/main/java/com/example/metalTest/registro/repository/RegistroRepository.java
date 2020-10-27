@@ -20,7 +20,7 @@ public interface RegistroRepository extends JpaRepository<Registro, Integer> {
 
     @Query(nativeQuery = true, value =
             "SELECT * FROM Registro r " +
-            "WHERE EXTRACT(MONTH from r.fecha_planificada) = EXTRACT(month from :date) " +
-                    "&& EXTRACT(YEAR from r.fecha_planificada) = EXTRACT(YEAR from :date)")
-    List<Registro> getByDate(@Param("date") Date date);
+            "WHERE EXTRACT(MONTH from r.fecha_planificada) = :month " +
+                    "&& EXTRACT(YEAR from r.fecha_planificada) = :year")
+    List<Registro> getByDate(@Param("month") Integer month, @Param("year") Integer year);
 }
