@@ -9,7 +9,7 @@ export class CoreService {
   constructor() { }
 
 
-  public dateServerFormat = 'DD-MM-YYYY HH:mm:ss';
+  public dateServerFormat = 'YYYY-MM-DD HH:mm:ss';
 
   replaceFormat(data: Array<any>, formats: Array<string>) {
     return data.map((val: any) => {
@@ -18,36 +18,38 @@ export class CoreService {
         format => {
           switch (format) {
             case 'fechaEntrega':
-              if (val.fechaEntrega && moment(val.fechaEntrega, this.dateServerFormat).isValid()) {
-                result.fechaEntrega = this.getFormatDate(val.fechaEntrega);
+              if (result.fechaEntrega && moment(result.fechaEntrega, this.dateServerFormat).isValid()) {
+                result.fechaEntrega = this.getFormatDate(result.fechaEntrega);
               } else {
                 result.fechaEntrega = '';
               }
               break;
             case 'fechaRealizar':
-              if (val.fechaRealizar && moment(val.fechaRealizar, this.dateServerFormat).isValid()) {
-                result.fechaRealizar = this.getFormatDate(val.fechaRealizar);
+              if (result.fechaRealizar && moment(result.fechaRealizar, this.dateServerFormat).isValid()) {
+                result.fechaRealizar = this.getFormatDate(result.fechaRealizar);
               } else {
                 result.fechaRealizar = '';
               }
               break;
             case 'fecha':
-              if (val.fecha && moment(val.fecha, this.dateServerFormat).isValid()) {
-                result.fecha = this.getFormatDate(val.fecha);
+              if (result.fecha && moment(result.fecha, this.dateServerFormat).isValid()) {
+                result.fecha = this.getFormatDate(result.fecha);
               } else {
                 result.fecha = '';
               }
               break;
             case 'fechaPlanificada':
-              if (val.fechaPlanificada && moment(val.fechaPlanificada, this.dateServerFormat).isValid()) {
-                result.fechaPlanificada = this.getFormatDate(val.fechaPlanificada);
+              if (result.fechaPlanificada && moment(result.fechaPlanificada, this.dateServerFormat).isValid()) {
+                result.fechaPlanificada = this.getFormatDate(result.fechaPlanificada);
               } else {
                 result.fechaPlanificada = '';
               }
               break;
             case 'inicio':
-              if (val.inicio && moment(val.inicio, this.dateServerFormat).isValid()) {
-                result.inicio = this.getFormatDate(val.inicio);
+              if (result.inicio && moment(result.inicio, this.dateServerFormat).isValid()) {
+                console.log(result);
+                
+                result.inicio = this.getFormatDate(result.inicio);
               } else {
                 result.inicio = '';
               }
@@ -197,6 +199,9 @@ export class CoreService {
     const month = dateMoment.format('MMMM');
     const day = dateMoment.format('DD');
     const year = dateMoment.format('YYYY');
+    
+    
+    
     return day + ' de ' + month[0].toUpperCase() + month.substr(1) + ' de ' + year;
   }
 
