@@ -20,5 +20,7 @@ public class RegistroResponseParaListado {
     private Date fechaPlanificada;
     private Boolean realizo;
     private String observaciones;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT-3")
+    private String fechaRealizada;
 
 }
