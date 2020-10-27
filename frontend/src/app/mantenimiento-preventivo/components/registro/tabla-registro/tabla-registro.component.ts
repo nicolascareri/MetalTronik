@@ -12,7 +12,11 @@ import * as moment from 'moment';
 export class TablaRegistroComponent implements OnInit {
 
   public dataSourceTareas;
-  public seachForm: FormGroup = new FormGroup({
+  public dataSourceSaves;
+  public formForTask: FormGroup = new FormGroup({
+    fecha: new FormControl('')
+  });
+  public formForSaves :FormGroup = new FormGroup({
     fecha: new FormControl('')
   });
 
@@ -50,7 +54,59 @@ export class TablaRegistroComponent implements OnInit {
       width: '35%'
     },
 
-  ]
+  ];
+
+  public columnsToDisplayForSaves: any[] = [
+    {
+      id: 1,
+      property:'fechaPlanificada',
+      name: 'Fecha planificada',
+      sort: 'up',
+      filterValue: '',
+      width: '35%'
+    },
+    {
+      id: 2,
+      property: 'tareaNombre',
+      name: 'Tarea',
+      sort: '',
+      filterValue: '',
+      width: '65%'
+    },
+    {
+      id: 3,
+      property: 'maquina',
+      name: 'Maquina',
+      sort: '',
+      filterValue: '',
+      width: '35%'
+    },
+    {
+      id: 4,
+      property: 'sector',
+      name: 'Sector',
+      sort: '',
+      filterValue: '',
+      width: '35%'
+    },
+    {
+      id: 5,
+      property: 'realizo',
+      name: 'Realizó',
+      sort: '',
+      filterValue: '',
+      width: '35%'
+    },
+    {
+      id: 6,
+      property: 'observaciones',
+      name: 'Observaciones',
+      sort: '',
+      filterValue: '',
+      width: '35%'
+    },
+
+  ];
   
 
   constructor(private RegistroService: RegistroService,
@@ -73,24 +129,45 @@ export class TablaRegistroComponent implements OnInit {
 
   getTareas(){
 
-    let date = this.seachForm.value;
+    let date = this.formForTask.value;
     date = this.getFormatDate(date.fecha);
-    console.log(date);
-    
     this.RegistroService.getRegistro(date).subscribe(
       (data: any)  => {
-        
-        console.log(data);
-        
+
         this.dataSourceTareas = this.CoreService.replaceFormat(data, ['fechaPlanificada', 'tarea']);
 
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+    
+  }
+
+  saveCurrent(){
+
+    this.RegistroService.saveCurrent("").subscribe(
+      (data: any) => {
+        
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  getSaves(){
+    let date = this.formForSaves.value;
+    date = this.getFormatDate(date.fecha);
+    this.RegistroService.getSaves(date).subscribe(
+      (data: any) => {
+        this.dataSourceSaves = data;
       },
       (error) => {
         console.log(error);
         
       }
     );
-    
   }
 
 }
