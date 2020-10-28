@@ -26,13 +26,13 @@ public class TareaTipoServiceImpl implements TareaTipoService {
     public TareaTipo getById(Integer id) throws ValidateFieldException {
         Optional<TareaTipo> optionalTareaTipo = tareaTipoRepository.findById(id);
         if (!optionalTareaTipo.isPresent()){
-            throw new ValidateFieldException("Tarea tipo no encontrada", "", "");
+            throw new ValidateFieldException("Tarea tipo no encontrada", "id", String.valueOf(id));
         }
         return optionalTareaTipo.get();
     }
 
     @Override
-    public TareaTipo create(TareaTipoRequest tareaTipoRequest) throws ValidateFieldException {
+    public TareaTipo create(TareaTipoRequest tareaTipoRequest){
         TareaTipo tareaTipo = tareaTipoMapper.tareaTipoRequestToTareaTipo(tareaTipoRequest);
         return tareaTipoRepository.save(tareaTipo);
     }
@@ -41,7 +41,7 @@ public class TareaTipoServiceImpl implements TareaTipoService {
     public TareaTipo update(TareaTipoRequest tareaTipoRequest, Integer id) throws ValidateFieldException {
         Optional<TareaTipo> optionalTareaTipo = tareaTipoRepository.findById(id);
         if (!optionalTareaTipo.isPresent()){
-            throw new ValidateFieldException("TareaTipo no encontrada", "", "") ;
+            throw new ValidateFieldException("TareaTipo no encontrada", "id", String.valueOf(id)) ;
         }
         TareaTipo tareaTipo = tareaTipoMapper.tareaTipoRequestToTareaTipo(tareaTipoRequest);
         tareaTipo.setId(id);

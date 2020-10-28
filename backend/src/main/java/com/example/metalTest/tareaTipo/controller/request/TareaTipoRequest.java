@@ -10,8 +10,6 @@ import javax.validation.constraints.NotNull;
 @Setter
 public class TareaTipoRequest {
     @NotNull
-    private int id;
-    @NotNull
     private String nombre;
 
 }
