@@ -26,10 +26,17 @@ public class CargoServiceImpl implements CargoService {
     }
 
     @Override
-    public Cargo getById(Integer id) throws ValidateFieldException {return cargoRepository.findById(id).get(); }
+    public Cargo getById(Integer id) throws ValidateFieldException {
+        Optional<Cargo> optionalCargo = cargoRepository.findById(id);
+        if (!optionalCargo.isPresent()){
+            throw new ValidateFieldException("Cargo no encontrado", "id", String.valueOf(id));
+        }
+
+        return optionalCargo.get();
+    }
 
     @Override
-    public Cargo create(CargoRequest cargo) throws ValidateFieldException {
+    public Cargo create(CargoRequest cargo){
         return cargoRepository.save(cargoMapper.cargoRequestToCargo(cargo));
     }
 
@@ -37,7 +44,7 @@ public class CargoServiceImpl implements CargoService {
     public Cargo update(CargoRequest cargo, Integer id) throws ValidateFieldException {
         Optional<Cargo> optionalCargo = cargoRepository.findById(id);
         if (!optionalCargo.isPresent()){
-            throw new ValidateFieldException("Cargo no encontrado", "", "");
+            throw new ValidateFieldException("Cargo no encontrado", "id", String.valueOf(id));
         }
         Cargo cargoActual = cargoMapper.cargoRequestToCargo(cargo);
         cargoActual.setId(id);

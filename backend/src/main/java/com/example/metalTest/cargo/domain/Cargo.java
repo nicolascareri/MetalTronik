@@ -11,7 +11,8 @@ import javax.persistence.*;
 public class Cargo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
+    @Column
     private int id;
 
     @Column
