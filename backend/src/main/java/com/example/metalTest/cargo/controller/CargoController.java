@@ -3,7 +3,6 @@ package com.example.metalTest.cargo.controller;
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.cargo.controller.request.CargoRequest;
 import com.example.metalTest.cargo.domain.Cargo;
-import com.example.metalTest.cargo.mapper.CargoMapper;
 import com.example.metalTest.cargo.service.CargoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

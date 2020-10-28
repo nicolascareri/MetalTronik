@@ -26,7 +26,14 @@ public class CargoServiceImpl implements CargoService {
     }
 
     @Override
-    public Cargo getById(Integer id) throws ValidateFieldException {return cargoRepository.findById(id).get(); }
+    public Cargo getById(Integer id) throws ValidateFieldException {
+        Optional<Cargo> optionalCargo = cargoRepository.findById(id);
+        if (!optionalCargo.isPresent()){
+            throw new ValidateFieldException("Cargo no encontrado", "", "");
+        }
+
+        return optionalCargo.get();
+    }
 
     @Override
     public Cargo create(CargoRequest cargo) throws ValidateFieldException {
