@@ -1,7 +1,6 @@
 package com.example.metalTest.tarea.controller.request;
 
 import com.example.metalTest.common.validator.ValidEntity;
-import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
 import lombok.Getter;
 import lombok.Setter;

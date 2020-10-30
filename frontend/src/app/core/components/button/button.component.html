@@ -1,4 +1,5 @@
 <div [ngSwitch]="type">
+    <button *ngSwitchCase="'submit'" class="btn btn-primary forTable">{{name}}</button>
     <button *ngSwitchCase="'primary'" [type]="'primary'" class="btn btn-primary forTable">{{name}}</button>
     <button *ngSwitchCase="'success'" [type]="'success'" class="btn btn-success">{{name}}</button>
     <a routerLink="..">

@@ -4,7 +4,6 @@ import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.maquina.controller.request.MaquinaRequest;
 import com.example.metalTest.maquina.controller.response.MaquinaReducidoResponse;
 import com.example.metalTest.maquina.controller.response.MaquinaResponse;
-import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.maquina.mapper.MaquinaMapper;
 import com.example.metalTest.maquina.service.MaquinaService;
 import org.springframework.beans.factory.annotation.Autowired;

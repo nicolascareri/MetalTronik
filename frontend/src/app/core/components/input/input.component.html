@@ -2,6 +2,8 @@
 
     <input *ngSwitchCase="'datetime-local'" class="date"  [type]="'datetime-local'" [formControl]="control"  [placeholder]="placeholder">
 
+    <input *ngSwitchCase="'datetime-month'" [type]="'month'" class="date" [formControl]="control" [placeholder]="placeholder">
+
     <input *ngSwitchCase="'input'" class="input__text" [maxlength]="maxlength" [placeholder]="placeholder"
         [type]="'input'" [id]="name" [formControl]="control">
 

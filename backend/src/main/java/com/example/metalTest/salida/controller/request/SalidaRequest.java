@@ -1,7 +1,6 @@
 package com.example.metalTest.salida.controller.request;
 
 import com.example.metalTest.common.validator.ValidEntity;
-import com.example.metalTest.repuesto.domain.Repuesto;
 import com.example.metalTest.repuesto.repository.RepuestoRepository;
 import com.example.metalTest.sector.repository.SectorRepository;
 import com.example.metalTest.usuario.repository.UsuarioRepository;

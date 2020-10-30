@@ -104,7 +104,6 @@ export class FormMaquinaComponent implements OnInit {
             }
           }
         );
-        console.log(this.dataSourcePlants);
       },
       (error) => {
         console.error(error);

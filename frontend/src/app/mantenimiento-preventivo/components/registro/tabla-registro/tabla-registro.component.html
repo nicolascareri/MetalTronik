@@ -1,0 +1,40 @@
+<div style="position: relative; right: 4%;  padding: 15px;">
+    <form [formGroup]="seachForm" (ngSubmit)="getTareas()">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+
+                    <label for=""> 
+                        <h2>Buscador de tareas</h2>
+                        Ingrese mes y año para buscar.
+                    </label>
+                    <app-input [type]="'datetime-month'" 
+                    [parentForm]="seachForm"  
+                    [control]="seachForm.controls.fecha">
+                    </app-input>
+                
+                </div>
+                <div class="col" style="position: relative; right: 4%;">
+                    <app-button [name]="'Buscar'" type="submit" [type]="'primary'"></app-button>
+                    
+                </div>
+
+            </div>
+        </div>    
+                
+    </form>
+            
+</div>
+
+        
+<app-tabla class="table" [ds]='dataSourceTareas' 
+                               [columns]='columnsToDisplay' 
+                               [width]="'65%'"
+                               [title]="[' ']"
+                               [includeButton]="false">
+</app-tabla>
+
+
+
+
+

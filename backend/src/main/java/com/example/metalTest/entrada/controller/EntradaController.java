@@ -2,7 +2,7 @@ package com.example.metalTest.entrada.controller;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.entrada.controller.request.EntradaRequest;
-import com.example.metalTest.entrada.domain.Entrada;
+import com.example.metalTest.entrada.controller.response.EntradaResponse;
 import com.example.metalTest.entrada.service.EntradaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,16 +20,16 @@ public class EntradaController {
     EntradaService entradaService;
 
     @GetMapping
-    public ResponseEntity<List<Entrada>> getAll(){
+    public ResponseEntity<List<EntradaResponse>> getAll(){
         return new ResponseEntity<>(entradaService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Entrada> getById(@PathVariable Integer id) throws ValidateFieldException {
+    public ResponseEntity<EntradaResponse> getById(@PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<>(entradaService.getById(id), HttpStatus.OK);
     }
     @PostMapping
-    public ResponseEntity<Entrada> create(@Valid @RequestBody EntradaRequest entradaRequest){
+    public ResponseEntity<EntradaResponse> create(@Valid @RequestBody EntradaRequest entradaRequest){
         return new ResponseEntity<>(entradaService.create(entradaRequest),HttpStatus.CREATED);
     }
 }

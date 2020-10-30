@@ -3,7 +3,6 @@ package com.example.metalTest.repuestoMaquina.controller;
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.repuestoMaquina.controller.request.RepuestoMaquinaRequest;
 import com.example.metalTest.repuestoMaquina.controller.response.RepuestoMaquinaResponse;
-import com.example.metalTest.repuestoMaquina.domain.RepuestoMaquina;
 import com.example.metalTest.repuestoMaquina.service.RepuestoMaquinaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -8,6 +8,8 @@ import { CoreService } from 'src/app/core/service/core.service';
 })
 export class TablaComponent implements OnInit {
   
+  @Input() actionForButton : any;
+  @Input() includeButton = true;
   @Input() routeForButton = "route";
   @Input() nameForButton= "nameForButton";
   @Input() title = "title";

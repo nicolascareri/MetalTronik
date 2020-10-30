@@ -17,32 +17,28 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/usuario")
 public class UsuarioController {
-    @Autowired
-    UsuarioMapper usuarioMapper;
 
     @Autowired
     UsuarioService usuarioService;
 
     @GetMapping
     public ResponseEntity<List<Usuario>> getAll() {
-        return new ResponseEntity(usuarioService.getAll(), HttpStatus.OK);
+        return new ResponseEntity<>(usuarioService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Usuario> getById(@PathVariable Integer id) throws ValidateFieldException {
-        return new ResponseEntity(usuarioService.getById(id), HttpStatus.OK);
+        return new ResponseEntity<>(usuarioService.getById(id), HttpStatus.OK);
 
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Usuario> updateUsuario(@Valid @RequestBody UsuarioRequest usuarioRequest, @PathVariable Integer id) throws ValidateFieldException {
-        Usuario usuario = usuarioMapper.usuarioRequestToUsuario(usuarioRequest);
-        return new ResponseEntity<>(usuarioService.update(id, usuario), HttpStatus.OK);
+        return new ResponseEntity<>(usuarioService.update(id, usuarioRequest), HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<Usuario> createUsuario(@Valid @RequestBody UsuarioRequest usuarioRequest) throws ValidateFieldException {
-        Usuario usuario = usuarioMapper.usuarioRequestToUsuario(usuarioRequest);
-        return new ResponseEntity<>(usuarioService.create(usuario), HttpStatus.CREATED);
+        return new ResponseEntity<>(usuarioService.create(usuarioRequest), HttpStatus.CREATED);
     }
 }

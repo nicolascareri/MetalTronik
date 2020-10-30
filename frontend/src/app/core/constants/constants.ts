@@ -102,6 +102,10 @@ export const ENDPOINTS = {
         GETID: 'api/tarea/',
         POST: 'api/tarea',
         PUT: 'api/tarea/'
+    },
+
+    REGISTRO: {
+        GET: 'api/registro/planificar/'
     }
 }
 
