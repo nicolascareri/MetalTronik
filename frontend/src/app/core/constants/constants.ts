@@ -14,7 +14,9 @@ export const ESTADOS = [
 export const ENDPOINTS = {
 
     SERVER: {
-        serve: 'https://metaltronik.herokuapp.com/'
+        serve: 'https://metaltronik.herokuapp.com/',
+        // local: 'https://localhost:8080/'
+        // heroku: 'https://metaltronik.herokuapp.com/'
     },
 
     USUARIOS: {
@@ -105,7 +107,11 @@ export const ENDPOINTS = {
     },
 
     REGISTRO: {
-        GET: 'api/registro/planificar/'
+        POST: 'api/registro',
+        GET: 'api/registro/planificar/',
+        GETSAVES: 'api/registro/actual/',
+        GETID: 'api/registro/',
+        PUT: 'api/registro/'
     }
 }
 

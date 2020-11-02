@@ -73,7 +73,9 @@ public class RegistroServiceImpl implements RegistroService {
 
     @Override
     public List<Registro> getActualOrPast(Date date) {
-        return registroRepository.getByDate(date);
+        Calendar fecha = Calendar.getInstance();
+        fecha.setTime(date);
+        return registroRepository.getByDate(fecha.get(Calendar.MONTH) + 1, fecha.get(Calendar.YEAR));
     }
 
     @Override
