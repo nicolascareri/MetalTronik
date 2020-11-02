@@ -4,6 +4,7 @@ import {FormMaquinaComponent} from 'src/app/maquina/components/form/form.compone
 import {TablaMaquinaComponent} from 'src/app/maquina/components/tabla/tabla.component';
 import {FormSectorComponent} from '../sector/components/form/form.component';
 import {FormPlantaComponent} from '../planta/components/form/form.component';
+import { FormPartesComponent } from "../maquina/components/form/form-partes/form-partes.component";
 
 
 const routes: Routes = [
@@ -37,8 +38,11 @@ const routes: Routes = [
       {
         path: 'formplanta/:id',
         component: FormPlantaComponent
+      },
+      {
+        path: 'form-partes',
+        component: FormPartesComponent
       }
-
     ]
     }
 ];

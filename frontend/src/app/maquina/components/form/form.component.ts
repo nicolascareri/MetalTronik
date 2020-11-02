@@ -20,7 +20,8 @@ export class FormMaquinaComponent implements OnInit {
   public maquinaId: any;
   public mode = 'add';
   public section = 'Nueva maquina';
-  public buttonName = 'Crear maquina';
+  public buttonName = 'Siguiente';
+  public path = 'form-partes'
   public messageTitleSuccess: any = "DONE";
   public messageTitleError: any = "ERROR";
   public messageBody: any = "La maquina se ha creado correctamente";

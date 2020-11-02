@@ -11,10 +11,11 @@ import {TablaMaquinaComponent} from './components/tabla/tabla.component';
 import {PlantaModule} from '../planta/planta.module';
 import {SectorModule} from '../sector/sector.module';
 import {MaquinaRoutingModule} from './maquina-routing.module';
+import { FormPartesComponent } from './components/form/form-partes/form-partes.component';
 
 
 @NgModule({
-  declarations: [TablaMaquinaComponent, FormMaquinaComponent],
+  declarations: [TablaMaquinaComponent, FormMaquinaComponent, FormPartesComponent],
   imports: [
     CommonModule,
     RouterModule,
