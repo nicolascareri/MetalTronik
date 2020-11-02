@@ -109,7 +109,9 @@ export const ENDPOINTS = {
     REGISTRO: {
         POST: 'api/registro',
         GET: 'api/registro/planificar/',
-        GETSAVES: 'api/registro/actual/'
+        GETSAVES: 'api/registro/actual/',
+        GETID: 'api/registro/',
+        PUT: 'api/registro/'
     }
 }
 

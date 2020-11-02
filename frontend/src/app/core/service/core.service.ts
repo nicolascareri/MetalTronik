@@ -31,6 +31,15 @@ export class CoreService {
                 result.fechaRealizar = '';
               }
               break;
+            case 'fechaRealizada':
+              console.log(result);
+              
+              if (result.fechaRealizada && moment(result.fechaRealizada, this.dateServerFormat).isValid()) {
+                  result.fechaRealizada = this.getFormatDate(result.fechaRealizada);
+              } else {
+                  result.fechaRealizada = '';
+              }
+              break;
             case 'fecha':
               if (result.fecha && moment(result.fecha, this.dateServerFormat).isValid()) {
                 result.fecha = this.getFormatDate(result.fecha);
@@ -92,13 +101,15 @@ export class CoreService {
               }  
               break;
             case 'tarea':
-               if(result.tarea){
-                 console.log(result);
-                 
-                 result.sector = result.tarea.maquina.sector.descripcion;
-                 result.maquina = result.tarea.maquina.maquina_cod;
-                 result.tareaNombre = result.tarea.tarea;
-                 
+              if(result.tarea){
+                result.sector = result.tarea.maquina.sector.descripcion;
+                result.maquina = result.tarea.maquina.maquina_cod;
+                result.tareaNombre = result.tarea.tarea;
+                if(result.realizo == true){
+                  result.realizo = result.realizo = "Si"
+                }else{
+                  result.realizo = result.realizo = "No"
+                } 
                 }  
               break;
             case 'prioridad':
