@@ -31,7 +31,24 @@
             </div>
   
           </div>
+          <div style="margin-top: 3%" class="btn-group btn-group-toggle" data-toggle="buttons">
+            <app-button [name]="'Agregar'" [type]="'primary-1'" type="submit"></app-button>
+          </div>
           
+          <div class="card" style="width: 18rem;">
+            <div class="card-header">
+              Seleccion actual
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" *ngFor="let parts of partsCreated">
+                
+                {{parts.codigo}} {{parts.nombre}}  
+              </li>
+              <!-- <li class="list-group-item">Dapibus ac facilisis in</li>
+              <li class="list-group-item">Vestibulum at eros</li> -->
+            </ul>
+          </div>
+
         </form>
         <div style="margin-top: 3%" class="btn-group btn-group-toggle" data-toggle="buttons">
           <app-button [name]="buttonName" [routeForButton]="'form-partes'" [type]="'success-path'"></app-button>

@@ -19,6 +19,7 @@ export class FormPartesComponent implements OnInit {
     codigo: new FormControl(''),
     nombre: new FormControl(''),
   });
+  public partsCreated = [];
 
   constructor(private ParteService: ParteService,
               private MessageService: MessageService) { }
@@ -30,6 +31,9 @@ export class FormPartesComponent implements OnInit {
     this.ParteService.postParte(this.partsForm).subscribe(
       parte => {
         this.showSuccess();
+        this.partsCreated.push(parte);
+        console.log(this.partsCreated);
+        
       },
       error => this.showError(error.error)
     );
