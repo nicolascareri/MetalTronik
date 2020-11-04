@@ -15,4 +15,8 @@ export class ParteService {
   postParte(partsForm){
     return this.http.post<any>(this.path.SERVER.serve + this.path.PARTE.POST, partsForm.value);
   }
+
+  deleteParte(id){
+    return this.http.delete(this.path.SERVER.serve + this.path.PARTE.DELETE + id);
+  }
 }

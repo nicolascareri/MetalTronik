@@ -12,7 +12,7 @@ export class FormPartesComponent implements OnInit {
 
   public messageTitleSuccess: any = "DONE";
   public messageTitleError: any = "ERROR";
-  public messageBody: any = "La maquina se ha creado correctamente";
+  public messageBody: any = "Añadido a selección";
   public section = 'Crear parte/s';
   public buttonName = 'Siguiente';
   public partsForm: FormGroup = new FormGroup({
@@ -27,7 +27,7 @@ export class FormPartesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  saveForm(){
+  add(){
     this.ParteService.postParte(this.partsForm).subscribe(
       parte => {
         this.showSuccess();
@@ -37,6 +37,19 @@ export class FormPartesComponent implements OnInit {
       },
       error => this.showError(error.error)
     );
+  }
+
+  delete(parts){
+    console.log(parts.id);
+    
+    this.ParteService.deleteParte(parts.id).subscribe(
+      parte => {
+        this.messageBody = "Parte eliminada de la selección"
+        this.showSuccess();
+      },
+      error => this.showError(error.error)
+    );
+    
   }
 
   showSuccess(){

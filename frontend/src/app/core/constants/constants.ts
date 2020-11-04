@@ -115,7 +115,8 @@ export const ENDPOINTS = {
     },
 
     PARTE: {
-        POST: 'api/parte'
+        POST: 'api/parte',
+        DELETE: 'api/parte/'
     }
 }
 
