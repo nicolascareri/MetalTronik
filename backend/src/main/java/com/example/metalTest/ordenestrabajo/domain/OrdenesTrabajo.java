@@ -14,7 +14,8 @@ import java.util.Date;
 
 @Getter
 @Setter
-@Entity(name = "ordenes_trabajo")
+@Entity()
+@Table(name = "ordenes_trabajo")
 public class OrdenesTrabajo {
     @Id
     @GeneratedValue

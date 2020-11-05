@@ -2,7 +2,9 @@ package com.example.metalTest.ordenestrabajo.controller;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.ordenestrabajo.controller.request.OrdenesTrabajoRequest;
+import com.example.metalTest.ordenestrabajo.controller.response.IndicatorResponse;
 import com.example.metalTest.ordenestrabajo.controller.response.OrdenesTrabajoResponse;
+import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
 import com.example.metalTest.ordenestrabajo.service.OrdenesTrabajoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +22,10 @@ public class OrdenesTrabajoController {
     @Autowired
     OrdenesTrabajoService ordenesTrabajoService;
 
+    @GetMapping("/indicators")
+    public ResponseEntity<List<IndicatorResponse>> getIndicators() {
+        return new ResponseEntity<>(ordenesTrabajoService.getIndicators(), HttpStatus.OK);
+    }
     @GetMapping
     public ResponseEntity<List<OrdenesTrabajoResponse>> getAll() {
         return new ResponseEntity<>(ordenesTrabajoService.getAll(), HttpStatus.OK);
