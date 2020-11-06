@@ -13,7 +13,11 @@ import java.util.List;
 public interface OrdenesTrabajoRepository extends JpaRepository<OrdenesTrabajo, Integer> {
 
     @Query(value = "SELECT o.responsable.nombre, SUM(CASE WHEN o.estado = :ok THEN 1 ELSE 0 END) as quantity, SUM(CASE WHEN o.estado = :pendiente THEN 1 ELSE 0 END)  FROM OrdenesTrabajo o GROUP BY o.responsable.nombre ORDER BY quantity  DESC")
-    List<String> getOrdenesTrabajoByEstado(@Param("ok") short ok, @Param("pendiente") short pendiente);
+    List<String> getOrdenesTrabajoByUsuarios(@Param("ok") short ok, @Param("pendiente") short pendiente);
+
+
+    @Query(value = "SELECT o.maquina.sector.id as sector, SUM(CASE WHEN o.estado = :ok THEN 1 ELSE 0 END) as quantity, SUM(CASE WHEN o.estado = :pendiente THEN 1 ELSE 0 END)  FROM OrdenesTrabajo o GROUP BY sector ORDER BY quantity  DESC")
+    List<String> getOrdenesTrabajoBySectores(@Param("ok") short ok, @Param("pendiente") short pendiente);
 
 
 }

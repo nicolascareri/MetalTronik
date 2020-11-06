@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,6 +44,8 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
 
     @Autowired
     ParteRepository parteRepository;
+
+    protected ToIndicadoresConverter toIndicadoresConverter = new ToIndicadoresConverter();
 
     @Override
     public List<OrdenesTrabajoResponse> getAll() {
@@ -111,55 +112,21 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
             throw new ValidateFieldException("La parte o maquina que desea acceder no existe","id",String.valueOf(ordenesTrabajoRequest.getParteOrMaquina()));
         }
     }
+
     @Override
-    public List<IndicatorResponse> getIndicators() {
-        List<String> toParse = this.ordenesTrabajoRepository.getOrdenesTrabajoByEstado(EstadoOrden.OK.getValue(), EstadoOrden.PENDIENTE.getValue());
-        return getIndicadores(toParse);
-    }
-    private List<IndicatorResponse> getIndicadores(List<String> ordenes){
-        List<IndicatorResponse> indicatorResponses = new ArrayList<>();
-        for (String[] usuario: getOrdenesList(ordenes)
-        ) {
-            IndicatorResponse indicador = new IndicatorResponse();
-            indicador.setLabel(usuario[0]);
-            Integer ok =Integer.parseInt(usuario[1]);
-            Integer pendiente = Integer.parseInt(usuario[2]);
-            //pregunto si pendiente es 0 porque tal vez no lo tenga
-            //no se puede dividir por 0
-            if(pendiente == 0){
-                pendiente++;
-            }
-            Integer resultadoFormula = (ok /pendiente ) * 100;
-            System.out.println("1: "+Integer.parseInt(usuario[1]) + "2: "+Integer.parseInt(usuario[2]));
-            List<Integer> data = new ArrayList<>();
-            data.add(resultadoFormula);
-            indicador.setData(data);
-            indicatorResponses.add(indicador);
-
-        }
-        return indicatorResponses;
+    public List<IndicatorResponse> getIndicatorsUsuario() {
+        List<String> toParse = this.ordenesTrabajoRepository.getOrdenesTrabajoByUsuarios(EstadoOrden.OK.getValue(), EstadoOrden.PENDIENTE.getValue());
+        return toIndicadoresConverter.getIndicadores(toParse);
     }
 
-    /**
-     * Parsea un string, devuelve un array de string
-     * @param toParse String a parsear
-     * @return array de strings parseados
-     */
-    private String[] parser(String toParse){
-        return toParse.split(",");
+    @Override
+    public List<IndicatorResponse> getIndicatorsSector() {
+        List<String> toParse = this.ordenesTrabajoRepository.getOrdenesTrabajoBySectores(EstadoOrden.OK.getValue(), EstadoOrden.PENDIENTE.getValue());
+        System.out.println(toParse);
+
+        //toIndicadoresConverter.getIndicadores(toParse)
+        return null;
     }
 
-    /**
-     * Parsea segun la cantidad que posea la posicion del arreglo de ordenes
-     * @param ordenes lista de ordenes traida de la db
-     * @return retorna en cada posicion de la lista hay un arreglo de strings
-     */
-    private List<String[]> getOrdenesList(List<String> ordenes){
-        List<String[]> parseados = new ArrayList<>();
-        for(String toParse: ordenes){
-            parseados.add(this.parser(toParse));
-        }
-        return parseados;
-    }
 
 }

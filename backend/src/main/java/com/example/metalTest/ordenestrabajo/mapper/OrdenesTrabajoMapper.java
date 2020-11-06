@@ -13,5 +13,4 @@ public interface OrdenesTrabajoMapper {
     OrdenesTrabajo ordenesTrabajoRequestToOrdenesTrabajo(OrdenesTrabajoRequest ordenesTrabajoRequest);
     OrdenesTrabajoResponse toOrdenesTrabajoResponse(OrdenesTrabajo ordenesTrabajo);
     List<OrdenesTrabajoResponse> toOrdenesTrabajoResponseList(List<OrdenesTrabajo> ordenesTrabajosList);
-    //List<IndicatorResponse> toIndicatorResponseList(List<Object[]> a);
 }

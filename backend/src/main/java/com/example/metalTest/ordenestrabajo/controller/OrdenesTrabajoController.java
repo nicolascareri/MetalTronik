@@ -22,10 +22,15 @@ public class OrdenesTrabajoController {
     @Autowired
     OrdenesTrabajoService ordenesTrabajoService;
 
-    @GetMapping("/indicators")
-    public ResponseEntity<List<IndicatorResponse>> getIndicators() {
-        return new ResponseEntity<>(ordenesTrabajoService.getIndicators(), HttpStatus.OK);
+    @GetMapping("/indicators-usuario")
+    public ResponseEntity<List<IndicatorResponse>> getIndicatorsUsuario() {
+        return new ResponseEntity<>(ordenesTrabajoService.getIndicatorsUsuario(), HttpStatus.OK);
     }
+    @GetMapping("/indicators-sector")
+    public ResponseEntity<List<IndicatorResponse>> getIndicatorsSector() {
+        return new ResponseEntity<>(ordenesTrabajoService.getIndicatorsSector(), HttpStatus.OK);
+    }
+
     @GetMapping
     public ResponseEntity<List<OrdenesTrabajoResponse>> getAll() {
         return new ResponseEntity<>(ordenesTrabajoService.getAll(), HttpStatus.OK);

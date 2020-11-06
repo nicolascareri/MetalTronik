@@ -18,5 +18,7 @@ public interface OrdenesTrabajoService {
 
     OrdenesTrabajoResponse update(OrdenesTrabajoRequest ordenesTrabajoRequest, Integer id) throws ValidateFieldException;
 
-    List<IndicatorResponse> getIndicators();
+    List<IndicatorResponse> getIndicatorsUsuario();
+
+    List<IndicatorResponse> getIndicatorsSector();
 }
