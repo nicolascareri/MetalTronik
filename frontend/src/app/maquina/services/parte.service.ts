@@ -19,4 +19,17 @@ export class ParteService {
   deleteParte(id){
     return this.http.delete(this.path.SERVER.serve + this.path.PARTE.DELETE + id);
   }
+
+  getParts(){
+    return this.http.get(this.path.SERVER.serve + this.path.PARTE.GET);
+  }
+
+  getByMaquina(id){
+    return this.http.get(this.path.SERVER.serve + this.path.PARTE.GETBYMAQUINA, id);
+  }
+
+  linkPart(id, parts){
+    return this.http.put<any>(this.path.SERVER.serve + this.path.PARTE.PUT + id, parts);
+  }
+
 }

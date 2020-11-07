@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Output} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { ENDPOINTS } from "../../core/constants/constants";
 
@@ -9,8 +9,17 @@ import { ENDPOINTS } from "../../core/constants/constants";
 export class MaquinaService {
 
   private path = ENDPOINTS;
+  @Output() lastId : any;
 
   constructor(protected http: HttpClient) {
+  }
+
+  setLastId(id){
+    this.lastId = id;
+  }
+
+  getLastId(){
+    return this.lastId;
   }
 
   getMaquina(id){
@@ -30,6 +39,7 @@ export class MaquinaService {
   updateMaquina(id, maquina){
     return this.http.put<any>(this.path.SERVER.serve + this.path.MAQUINAS.PUT + id, maquina.value);
   }
+
 
   
 

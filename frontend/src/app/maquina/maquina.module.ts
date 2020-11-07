@@ -30,4 +30,5 @@ import { FormPartesComponent } from './components/form/form-partes/form-partes.c
 
   ]
 })
-export class MaquinaModule { }
+
+export class MaquinaModule {}

@@ -37,6 +37,7 @@ export class FormMaquinaComponent implements OnInit {
     estado: new FormControl(30)
   });
 
+
   constructor(private MaquinaService: MaquinaService,
     private PlantaService: PlantaService,
     private SectorService: SectorService,
@@ -139,12 +140,16 @@ export class FormMaquinaComponent implements OnInit {
     if (this.mode === 'add') {
       this.MaquinaService.postMaquina(this.machinesForm).subscribe(
         maquina => {
+          console.log(maquina);
+          this.MaquinaService.setLastId(maquina.id);
+          console.log(this.MaquinaService.lastId);
+          
           this.showSuccess();
+          this.router.navigate(['main/maquinas/form-partes']);
         },
         error => this.showError(error.error)
       );
     } else {
-      console.log(this.machinesForm);
       this.MaquinaService.updateMaquina(this.maquinaId, this.machinesForm).subscribe(
         maquina => {
           this.messageBody = "La maquina se ha editado correctamente"

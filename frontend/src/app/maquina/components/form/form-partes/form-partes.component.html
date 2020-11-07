@@ -42,8 +42,8 @@
             Seleccion actual
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item" *ngFor="let parts of partsCreated">
-              {{parts.codigo}} {{parts.nombre}}  <button (click)="delete(parts)">Eliminar</button>
+            <li class="list-group-item" *ngFor="let part of parts">
+              {{part.nombre}} {{part.codigo}}  <button (click)="delete(part)">Eliminar</button>
             </li>
             <!-- <li class="list-group-item">Dapibus ac facilisis in</li>
             <li class="list-group-item">Vestibulum at eros</li> -->

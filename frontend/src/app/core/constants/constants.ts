@@ -116,7 +116,10 @@ export const ENDPOINTS = {
 
     PARTE: {
         POST: 'api/parte',
-        DELETE: 'api/parte/'
+        DELETE: 'api/parte/',
+        GET: 'api/parte',
+        GETBYMAQUINA: 'api/parte/maquina/',
+        PUT: 'api/parte/maquina/'
     }
 }
 
