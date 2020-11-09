@@ -121,11 +121,8 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
 
     @Override
     public List<IndicatorResponse> getIndicatorsSector() {
-        List<String> toParse = this.ordenesTrabajoRepository.getOrdenesTrabajoBySectores(EstadoOrden.OK.getValue(), EstadoOrden.PENDIENTE.getValue());
-        System.out.println(toParse);
-
-        //toIndicadoresConverter.getIndicadores(toParse)
-        return null;
+        List<String> toParse = this.ordenesTrabajoRepository.getOrdenesTrabajoBySectores(EstadoOrden.OK.getValue(),EstadoOrden.PENDIENTE.getValue());
+        return toIndicadoresConverter.getIndicadores(toParse);
     }
 
 
