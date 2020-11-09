@@ -1,7 +1,9 @@
 <div [ngSwitch]="type">
     <button *ngSwitchCase="'submit'" class="btn btn-primary forTable">{{name}}</button>
     <button *ngSwitchCase="'primary'" [type]="'primary'" class="btn btn-primary forTable">{{name}}</button>
+    <button *ngSwitchCase="'primary-1'" [type]="'primary'" class="btn btn-primary">{{name}}</button>
     <button *ngSwitchCase="'success'" [type]="'success'" class="btn btn-success">{{name}}</button>
+    <button *ngSwitchCase="'success-path'" [type]="'success'" [routerLink]="routeForButton" class="btn btn-success">{{name}}</button>
     <a routerLink="..">
     <button *ngSwitchCase="'cancel'" [type]="'cancel'" class="btn btn-danger forForm">{{name}}</button>
     </a>
