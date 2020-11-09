@@ -48,11 +48,11 @@ public class ParteServiceImpl implements ParteService {
     }
 
     @Override
-    public List<ParteResponse> vincular(Integer maquinacod, List<Integer> idPartes) throws ValidateFieldException {
+    public List<ParteResponse> vincular(Integer id_maquina, List<Integer> idPartes) throws ValidateFieldException {
         List<Parte> parteList = parteRepository.findAllById(idPartes);
-        Optional<Maquina> optionalMaquina = maquinaRepository.findById(maquinacod);
+        Optional<Maquina> optionalMaquina = maquinaRepository.findById(id_maquina);
         if (!optionalMaquina.isPresent()){
-            throw new ValidateFieldException("La maquina que desea acceder no existe", "id", String.valueOf(maquinacod));
+            throw new ValidateFieldException("La maquina que desea acceder no existe", "id", String.valueOf(id_maquina));
         }
         Maquina maquina = optionalMaquina.get();
         parteList.forEach(parte -> {
