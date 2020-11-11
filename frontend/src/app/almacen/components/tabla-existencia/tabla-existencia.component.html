@@ -1,5 +1,13 @@
 <mat-tab-group>
 
+    <mat-tab label="Entrada">
+      <app-tabla-entrada></app-tabla-entrada>
+    </mat-tab>
+  
+    <mat-tab label="Salida">
+      <app-tabla-salida></app-tabla-salida>
+    </mat-tab>
+
     <mat-tab label="Existencia">
   
       <app-tabla class="table" [ds]='dataSourceRepuestos' 
@@ -13,13 +21,7 @@
       </app-tabla>
   
     </mat-tab>
-  
-    <mat-tab label="Entrada">
-      <app-tabla-entrada></app-tabla-entrada>
-    </mat-tab>
+
     
-    <mat-tab label="Salida">
-      <app-tabla-salida></app-tabla-salida>
-    </mat-tab>
   
 </mat-tab-group>

@@ -9,17 +9,17 @@ import { ENDPOINTS } from "../../core/constants/constants";
 export class MaquinaService {
 
   private path = ENDPOINTS;
-  @Output() lastId : any;
+  @Output() lasInsert : any;
 
   constructor(protected http: HttpClient) {
   }
 
-  setLastId(id){
-    this.lastId = id;
+  setLastInsert(machine){
+    this.lasInsert = machine;
   }
 
-  getLastId(){
-    return this.lastId;
+  getLastInsert(){
+    return this.lasInsert;
   }
 
   getMaquina(id){

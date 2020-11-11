@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ParteService } from "../../../services/parte.service";
 import { MessageService } from "../../../../core/service/message.service";
 import { MaquinaService } from "../../../services/maquina.service";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class FormPartesComponent implements OnInit {
   public messageTitleSuccess: any = "DONE";
   public messageTitleError: any = "ERROR";
   public messageBody: any = "Añadido a selección";
-  public section = 'Crear parte/s';
+  public section = 'Crear parte/s - 2/3';
   public buttonName = 'Siguiente';
   public partsForm: FormGroup = new FormGroup({
     codigo: new FormControl(''),
@@ -25,7 +26,8 @@ export class FormPartesComponent implements OnInit {
 
   constructor(private ParteService: ParteService,
               private MessageService: MessageService,
-              private MaquinaService: MaquinaService) { }
+              private MaquinaService: MaquinaService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -33,12 +35,10 @@ export class FormPartesComponent implements OnInit {
   add(){
     this.ParteService.postParte(this.partsForm).subscribe(
       parte => {
+        this.parts.push(parte);
+        this.ParteService.setLastInsert(parte);
         this.messageBody = "Añadido a selección";
         this.showSuccess();
-        // console.log(this.MaquinaService.getLastId());
-        this.parts.push(parte);
-        // this.linkPart(this.MaquinaService.getLastId(), this.parts);
-        
       },
       error => this.showError(error.error)
     );
@@ -62,6 +62,7 @@ export class FormPartesComponent implements OnInit {
     if (index > -1) {
       this.parts.splice(index, 1);
       this.deletePart(part);
+      this.ParteService.deleteLastInsert(part);
     }
 
     console.log("salida", this.parts);
@@ -108,6 +109,10 @@ export class FormPartesComponent implements OnInit {
       title: this.messageTitleError,
       body: message.errors ? message.errors[0].defaultMessage + ". campo: " + message.errors[0].field + ", Valor rechazado: " + message.errors[0].rejectedValue : message.error
     })
+  }
+
+  next(){
+    this.router.navigate(['main/maquinas/form-partes-asoc']);
   }
 
 }

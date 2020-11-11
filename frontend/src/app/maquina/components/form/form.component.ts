@@ -19,7 +19,7 @@ export class FormMaquinaComponent implements OnInit {
   public dataSourceSectors: any;
   public maquinaId: any;
   public mode = 'add';
-  public section = 'Nueva maquina';
+  public section = 'Nueva maquina - 1/3';
   public buttonName = 'Siguiente';
   public path = 'form-partes'
   public messageTitleSuccess: any = "DONE";
@@ -140,10 +140,7 @@ export class FormMaquinaComponent implements OnInit {
     if (this.mode === 'add') {
       this.MaquinaService.postMaquina(this.machinesForm).subscribe(
         maquina => {
-          console.log(maquina);
-          this.MaquinaService.setLastId(maquina.id);
-          console.log(this.MaquinaService.lastId);
-          
+          this.MaquinaService.setLastInsert(maquina);
           this.showSuccess();
           this.router.navigate(['main/maquinas/form-partes']);
         },

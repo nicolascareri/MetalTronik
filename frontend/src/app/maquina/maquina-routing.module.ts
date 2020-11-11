@@ -5,6 +5,7 @@ import {TablaMaquinaComponent} from 'src/app/maquina/components/tabla/tabla.comp
 import {FormSectorComponent} from '../sector/components/form/form.component';
 import {FormPlantaComponent} from '../planta/components/form/form.component';
 import { FormPartesComponent } from "../maquina/components/form/form-partes/form-partes.component";
+import { FormPartesIIComponent } from "../maquina/components/form/form-partes/form-partes-ii/form-partes-ii.component";
 
 
 const routes: Routes = [
@@ -42,6 +43,10 @@ const routes: Routes = [
       {
         path: 'form-partes',
         component: FormPartesComponent
+      },
+      {
+        path: 'form-partes-asoc',
+        component: FormPartesIIComponent
       }
     ]
     }

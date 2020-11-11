@@ -43,7 +43,7 @@
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item" *ngFor="let part of parts">
-              {{part.nombre}} {{part.codigo}}  <button (click)="delete(part)">Eliminar</button>
+              {{part.nombre}} {{part.codigo}}   <button class="btn btn-danger btn-sm" (click)="delete(part)">Eliminar</button>
             </li>
             <!-- <li class="list-group-item">Dapibus ac facilisis in</li>
             <li class="list-group-item">Vestibulum at eros</li> -->
@@ -51,7 +51,7 @@
         </div>
 
         <div style="margin-top: 3%" class="btn-group btn-group-toggle" data-toggle="buttons">
-          <app-button [name]="buttonName" [routeForButton]="'form-partes'" [type]="'success-path'"></app-button>
+          <app-button [name]="buttonName" [type]="'success'" (click)="next()"></app-button>
           <app-button [name]="'Cancelar'" [type]="'cancel'"></app-button>
         </div>
       </div>

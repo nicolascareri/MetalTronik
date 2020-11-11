@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { ENDPOINTS } from "../../core/constants/constants";
 
@@ -8,8 +8,25 @@ import { ENDPOINTS } from "../../core/constants/constants";
 export class ParteService {
 
   private path = ENDPOINTS;
+  @Output() lasInsert : any = [];
 
   constructor(protected http: HttpClient) {
+  }
+
+  setLastInsert(part){
+    this.lasInsert.push(part);
+  }
+
+  getLastInsert(){
+    let parts : [] = this.lasInsert;
+    return parts;
+  }
+
+  deleteLastInsert(part){
+    var index = this.lasInsert.indexOf(part);
+    if (index > -1) {
+      this.lasInsert.splice(index, 1);  
+    }
   }
 
   postParte(partsForm){
