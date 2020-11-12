@@ -1,4 +1,4 @@
-package com.example.metalTest.ordenestrabajo.controller.response;
+package com.example.metalTest.indicadores.controller.response;
 
 import lombok.Getter;
 import lombok.Setter;

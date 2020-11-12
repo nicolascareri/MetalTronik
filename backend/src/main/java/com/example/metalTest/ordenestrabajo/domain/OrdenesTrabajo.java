@@ -12,9 +12,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Date;
 
+@Entity()
 @Getter
 @Setter
-@Entity()
 @Table(name = "ordenes_trabajo")
 public class OrdenesTrabajo {
     @Id

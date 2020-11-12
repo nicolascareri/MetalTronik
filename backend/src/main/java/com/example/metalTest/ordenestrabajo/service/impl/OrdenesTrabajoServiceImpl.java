@@ -2,13 +2,13 @@ package com.example.metalTest.ordenestrabajo.service.impl;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.common.ordenes.EstadoOrden;
+import com.example.metalTest.mantenimientoCorrectivo.repository.MantenimientoCorrectivoRepository;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
 import com.example.metalTest.ordenestrabajo.controller.request.OrdenesTrabajoRequest;
-import com.example.metalTest.ordenestrabajo.controller.response.IndicatorResponse;
 import com.example.metalTest.ordenestrabajo.controller.response.OrdenesTrabajoResponse;
 import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
 import com.example.metalTest.ordenestrabajo.mapper.OrdenesTrabajoMapper;
-import com.example.metalTest.ordenestrabajo.mapper.ToIndicadoresMapper;
+import com.example.metalTest.indicadores.mapper.ToIndicadoresMapper;
 import com.example.metalTest.ordenestrabajo.repository.OrdenesTrabajoRepository;
 import com.example.metalTest.ordenestrabajo.service.OrdenesTrabajoService;
 import com.example.metalTest.parte.repository.ParteRepository;
@@ -45,6 +45,9 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
 
     @Autowired
     ParteRepository parteRepository;
+
+    @Autowired
+    MantenimientoCorrectivoRepository mantenimientoCorrectivoRepository;
 
     ToIndicadoresMapper toIndicadoresMapper = new ToIndicadoresMapper();
 
@@ -114,17 +117,9 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         }
     }
 
-    @Override
-    public List<IndicatorResponse> getIndicatorsUsuario() {
-        List<String> toParse = this.ordenesTrabajoRepository.getOrdenesTrabajoByUsuarios(EstadoOrden.OK.getValue(), EstadoOrden.PENDIENTE.getValue());
-        return toIndicadoresMapper.getIndicadores(toParse);
-    }
 
-    @Override
-    public List<IndicatorResponse> getIndicatorsSector() {
-        List<String> toParse = this.ordenesTrabajoRepository.getOrdenesTrabajoBySectores(EstadoOrden.OK.getValue(),EstadoOrden.PENDIENTE.getValue());
-        return toIndicadoresMapper.getIndicadores(toParse);
-    }
+
+
 
 
 }

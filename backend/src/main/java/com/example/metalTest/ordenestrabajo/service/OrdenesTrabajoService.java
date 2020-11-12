@@ -2,9 +2,7 @@ package com.example.metalTest.ordenestrabajo.service;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.ordenestrabajo.controller.request.OrdenesTrabajoRequest;
-import com.example.metalTest.ordenestrabajo.controller.response.IndicatorResponse;
 import com.example.metalTest.ordenestrabajo.controller.response.OrdenesTrabajoResponse;
-import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
 
 import java.util.List;
 
@@ -17,8 +15,4 @@ public interface OrdenesTrabajoService {
     OrdenesTrabajoResponse create(OrdenesTrabajoRequest ordenesTrabajoRequest) throws ValidateFieldException;
 
     OrdenesTrabajoResponse update(OrdenesTrabajoRequest ordenesTrabajoRequest, Integer id) throws ValidateFieldException;
-
-    List<IndicatorResponse> getIndicatorsUsuario();
-
-    List<IndicatorResponse> getIndicatorsSector();
 }
