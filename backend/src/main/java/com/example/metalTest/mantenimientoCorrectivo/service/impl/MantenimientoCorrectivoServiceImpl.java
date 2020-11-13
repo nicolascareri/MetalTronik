@@ -9,6 +9,7 @@ import com.example.metalTest.mantenimientoCorrectivo.mapper.MantenimientoCorrect
 import com.example.metalTest.mantenimientoCorrectivo.repository.MantenimientoCorrectivoRepository;
 import com.example.metalTest.mantenimientoCorrectivo.service.MantenimientoCorrectivoService;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
+import com.example.metalTest.indicadores.controller.response.IndicatorResponse;
 import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
 import com.example.metalTest.ordenestrabajo.repository.OrdenesTrabajoRepository;
 import com.example.metalTest.sector.repository.SectorRepository;
@@ -133,4 +134,11 @@ public class MantenimientoCorrectivoServiceImpl implements MantenimientoCorrecti
         }
         return mantenimientoCorrectivoMapper.toMantenimientoCorrectivoResponse(opt.get());
     }
+
+    @Override
+    public List<IndicatorResponse> getIndicatorsManCorUsuario() {
+        return null;
+    }
+
+
 }

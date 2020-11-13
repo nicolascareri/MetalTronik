@@ -1,6 +1,5 @@
 package com.example.metalTest.ordenestrabajo.repository;
 
-import com.example.metalTest.ordenestrabajo.controller.response.IndicatorResponse;
 import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

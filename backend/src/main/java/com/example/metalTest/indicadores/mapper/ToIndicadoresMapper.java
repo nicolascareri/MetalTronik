@@ -1,6 +1,6 @@
-package com.example.metalTest.ordenestrabajo.service.impl;
+package com.example.metalTest.indicadores.mapper;
 
-import com.example.metalTest.ordenestrabajo.controller.response.IndicatorResponse;
+import com.example.metalTest.indicadores.controller.response.IndicatorResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +9,9 @@ import java.util.List;
  * Clase encargada de convertir los datos traidos de la base a
  * datos trabajables
  */
-class ToIndicadoresConverter {
-    private IndicatorResponse indicatorResponse;
-    public ToIndicadoresConverter() {
+public class ToIndicadoresMapper{
+
+    public ToIndicadoresMapper() {
     }
 
     /**
