@@ -116,6 +116,11 @@ export const ENDPOINTS = {
 
     PARTE: {
         POST: 'api/parte'
+    },
+
+    INDICADORES: {
+        USUARIOS: '/api/ordenes-trabajo/indicators-usuario',
+        SECTORES : '/api/ordenes-trabajo/indicators-sector'
     }
 }
 

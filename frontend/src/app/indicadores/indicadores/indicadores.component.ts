@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { Label } from 'ng2-charts';
+import { IndicadoresService } from "../services/indicadores.service";
 
 @Component({
   selector: 'app-indicadores',
@@ -29,34 +30,29 @@ export class IndicadoresComponent implements OnInit {
 
   public barChartData: ChartDataSets[] = [
 
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Usuario 1' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Usuario 2' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Usuario 3' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Usuario 2' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Usuario 3' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Usuario 2' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Usuario 3' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Usuario 2' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Usuario 3' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Usuario 2' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Usuario 3' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Usuario 2' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Usuario 3' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Usuario 2' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Usuario 3' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Usuario 2' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Usuario 3' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Usuario 2' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Usuario 3' },
+    { data: [65, 59, 80, 81, 56, 55, 40], 
+      label: 'Usuario 1' 
+    }
+];
 
-
-    
-    
-  ];
-
-  constructor() { }
+  constructor(private IndicadoresService: IndicadoresService) { }
 
   ngOnInit(): void {
+    this.getResults();
+  }
+
+  public getResults(){
+    this.IndicadoresService.getUsuarios().subscribe(
+      results => {
+        
+        this.barChartData.push(results);
+
+      },
+      error => {
+        console.log(error.error);
+        
+      }
+    );
   }
 
   // events
