@@ -42,10 +42,11 @@ export class ParteService {
   }
 
   getByMaquina(id){
-    return this.http.get(this.path.SERVER.serve + this.path.PARTE.GETBYMAQUINA, id);
+    return this.http.get(this.path.SERVER.serve + this.path.PARTE.GETBYMAQUINA + id);
   }
 
   linkPart(id, parts){
+    this.lasInsert = [];
     return this.http.put<any>(this.path.SERVER.serve + this.path.PARTE.PUT + id, parts);
   }
 

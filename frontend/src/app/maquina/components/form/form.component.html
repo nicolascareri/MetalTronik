@@ -22,58 +22,27 @@
           </div>
 
           <div class="col">
-          <label for="nro_serie">Nro Serie</label>
-          <app-input [type]="'onlyNumber'" 
-                     [parentForm]="machinesForm"  
-                     [control]="machinesForm.controls.nro_serie"
-                     [placeholder]="'Ingrese numero de serie'">
-          </app-input>
-          </div>
+            <label for="equipo">Equipo</label>
+            <app-input [type]="'input'" 
+                       [parentForm]="machinesForm"  
+                       [control]="machinesForm.controls.equipo"
+                       [placeholder]="'Ingrese equipo'">
+            </app-input>
+            </div>
 
         </div>
 
         <div class="form-row">
     
-          <div class="col">
-          <label for="modelo">Modelo</label>
-          <app-input [type]="'input'" 
-                     [parentForm]="machinesForm"  
-                     [control]="machinesForm.controls.modelo"
-                     [placeholder]="'Ingrese modelo de maquina'">
-          </app-input>
-          </div>
-    
-          <div class="col">
-          <label for="equipo">Equipo</label>
-          <app-input [type]="'input'" 
-                     [parentForm]="machinesForm"  
-                     [control]="machinesForm.controls.equipo"
-                     [placeholder]="'Ingrese equipo'">
-          </app-input>
-          </div>
-
-        </div>
-
-        <div class="form-row">
-
-          <div class="col">
-          <label for="datos_tecnicos">Datos tecnicos</label>
-          <app-input [type]="'input'" 
-                     [parentForm]="machinesForm"  
-                     [control]="machinesForm.controls.datos_tecnicos"
-                     [placeholder]="'Ingrese datos tecnicos'">
-          </app-input>
-          </div>
-
-          <div class="col">
-          <label for="descripcion">Descripcion</label>
-          <app-input [type]="'input'" 
-                     [parentForm]="machinesForm"  
-                     [control]="machinesForm.controls.descripcion"
-                     [placeholder]="'Ingrese descripcion'">
-          </app-input>
-          </div>
-
+            <div class="col">
+              <label for="descripcion">Descripcion</label>
+              <app-input [type]="'input'" 
+                         [parentForm]="machinesForm"  
+                         [control]="machinesForm.controls.descripcion"
+                         [placeholder]="'Ingrese descripcion'">
+              </app-input>
+              </div>
+  
         </div>
 
         <div class="form-row">
