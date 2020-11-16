@@ -1,0 +1,48 @@
+<div class="form-container">
+
+    <div class="card">
+  
+      <h2 class="card-header">
+        {{section}}
+      </h2>
+    
+      <div class="card-body">
+        
+        <!-- <form (ngSubmit)="finalize()"> -->
+
+            <div class="card" style="width: 18rem;">
+                <div class="card-header">
+                  Partes a asociar
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item" *ngFor="let part of parts">
+                    {{part.nombre}} {{part.codigo}}
+                  </li>
+                  <!-- <li class="list-group-item">Dapibus ac facilisis in</li>
+                  <li class="list-group-item">Vestibulum at eros</li>  -->
+                </ul>
+              </div>
+              
+            <div class="card" style="width: 18rem;">
+                <div class="card-header">
+                  Maquina
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    {{maquina.maquina_cod}}
+                  </li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 3%" class="btn-group btn-group-toggle" data-toggle="buttons">
+                <app-button [name]="buttonName" [type]="'success'" (click)="finalize()"></app-button>
+                <app-button [name]="'Cancelar'" [type]="'cancel'"></app-button>
+            </div>
+         
+        <!-- </form> -->
+
+      </div>
+
+    </div>
+  
+</div>
