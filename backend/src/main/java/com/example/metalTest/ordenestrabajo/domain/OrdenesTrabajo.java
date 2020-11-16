@@ -46,6 +46,8 @@ public class OrdenesTrabajo {
 
     @Column
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT-3")
+    @Getter
+    @Setter
     private Date fechaEntrega;
 
     @Column
@@ -58,6 +60,9 @@ public class OrdenesTrabajo {
 
     @OneToOne
     @JoinColumn
+    @Getter
+    @Setter
+
     private Usuario responsable;
 
     @Column
@@ -68,5 +73,9 @@ public class OrdenesTrabajo {
 
     @Column
     private int ordenTerciarizacion;
+
+    public Usuario getResponsable(){
+        return responsable;
+    }
 
 }

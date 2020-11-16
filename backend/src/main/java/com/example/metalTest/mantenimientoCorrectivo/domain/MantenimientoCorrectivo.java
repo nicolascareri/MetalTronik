@@ -8,7 +8,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 @Entity()
 @Getter
@@ -64,5 +67,31 @@ public class MantenimientoCorrectivo{
     @JoinColumn
     @OneToOne
     private Usuario encargo3;
+
+    @Override
+    public String toString() {
+        return "MantenimientoCorrectivo{" +
+                "id=" + id +
+                ", maquina=" + maquina +
+                ", fechainicio=" + fechainicio +
+                ", fechaFin=" + fechaFin +
+                ", tipofalla=" + tipofalla +
+                ", horasProduccionAfectadas=" + horasProduccionAfectadas +
+                ", observaciones='" + observaciones + '\'' +
+                ", repuestosColocados='" + repuestosColocados + '\'' +
+                ", ordenTrabajo=" + ordenTrabajo +
+                ", nrocorrectivo=" + nrocorrectivo +
+                ", tiempoReparacion=" + tiempoReparacion +
+                ", encargo1=" + encargo1 +
+                ", encargo2=" + encargo2 +
+                ", encargo3=" + encargo3 +
+                '}';
+    }
+
+    public String nose(){
+        System.out.println(this.ordenTrabajo.getFechaEntrega());
+
+        return ",";
+    }
 
 }
