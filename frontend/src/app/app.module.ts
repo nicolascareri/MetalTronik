@@ -20,11 +20,8 @@ import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {AlmacenModule} from './almacen/almacen.module'
 import {MantenimientoPreventivoModule} from "./mantenimiento-preventivo/mantenimiento-preventivo.module";
 import { ChartsModule } from 'ng2-charts';
-
 import { IndicadoresModule } from './indicadores/indicadores.module';
-
-
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -49,8 +46,8 @@ import { IndicadoresModule } from './indicadores/indicadores.module';
     AlmacenModule,
     MantenimientoPreventivoModule,
     ChartsModule,
-    IndicadoresModule
-
+    IndicadoresModule,
+    NgbModule
   ],
   providers: [UserService,
     OrdenestrabajoService, ],
