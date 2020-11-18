@@ -2,6 +2,7 @@ package com.example.metalTest.indicadores.mapper.formulas;
 
 import com.example.metalTest.indicadores.controller.response.IndicatorResponse;
 import com.example.metalTest.indicadores.mapper.ToIndicadoresMapper;
+import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -9,77 +10,96 @@ import java.util.List;
 
 @Component
 public class Formula1 extends ToIndicadoresMapper implements Formula {
-
+    private int ok;
     public Formula1() {
+        ok = 2;
     }
 
     @Override
-    public List<IndicatorResponse> getResultado(List<String> consult) {
+    public List<IndicatorResponse> getResultadoUsuario(List<OrdenesTrabajo> consult) {
         return this.getIndicadoresFormula1(consult);
     }
 
 
+    private List<IndicatorResponse> getIndicadoresFormula1(List<OrdenesTrabajo> ordenes){
+        List<OrdenesTrabajo> auxOrdenes= new ArrayList<>();
+        List<IndicatorResponse> indicadores = new ArrayList<>();
+        for (int i = 0; i < ordenes.size() ; i++) {
+            auxOrdenes.add(ordenes.get(i));
+            if (i+1<ordenes.size() && ordenes.get(i).getResponsable().getId() != ordenes.get(i+1).getResponsable().getId() ){
+                indicadores.add(getUsuario(auxOrdenes));
+                auxOrdenes.clear();
+            }else{
+                if (i+1== ordenes.size()){
+                    indicadores.add(getUsuario(auxOrdenes));
+                }
+            }
+        }
+        return indicadores;
+    }
+
     /**
-     * Devuelve una lista con todos los indicadores
+     * Devuelve un indicador de usuario
+     * @param ordenes
+     * @return indicadorResponse ya editado
+     */
+   private IndicatorResponse getUsuario(List<OrdenesTrabajo> ordenes){
+        int ordenesTotales = getOrdenesTotalesUsuario(ordenes);
+        int ordenesEnOk = getOrdenesEnOk(ordenes);
+        int resultado = getResultadoFormula(ordenesEnOk, ordenesTotales);
+        String nombreCompleto = ordenes.get(0).getResponsable().getApellido()+" "+ordenes.get(0).getResponsable().getNombre();
+        return setIndicador(new ArrayList<>(), nombreCompleto, resultado);
+   }
+
+    /**
+     * Setea y devuelve un IndicadorResponse
+     * @param data
+     * @param nombreCompleto
+     * @param resultado
+     * @return
+     */
+   private IndicatorResponse setIndicador(List<Integer> data, String nombreCompleto, int resultado){
+       IndicatorResponse indicador = new IndicatorResponse();
+       indicador.setLabel(nombreCompleto);
+       data.add(resultado);
+       indicador.setData(data);
+       return indicador;
+   }
+
+    /**
+     * Formula 1, devuelve las ordenes en ok dividido las ordenes totales porcentaje
+     * @param ok cantidad de ordenes en ok
+     * @param totales cantidad de ordenes
+     * @return
+     */
+   private int getResultadoFormula(int ok, int totales){
+        return (ok *100)/totales;
+   }
+
+    /**
+     * devuelve la cantidad de elementos(ordenes) de un array
      * @param ordenes
      * @return
      */
-    private List<IndicatorResponse> getIndicadoresFormula1(List<String> ordenes){
-        List<IndicatorResponse> indicatorResponses = new ArrayList<>();
-        for (String[] usuario: getOrdenesList(ordenes)) {
-            IndicatorResponse indicador = this.getFormula1(usuario, new IndicatorResponse());
-            indicatorResponses.add(indicador);
-        }
-        return indicatorResponses;
-    }
-    /**
-     * Devuelve un indicador seteado segun los datos del parametro
-     * parseando los datos del usuario Parametro
-     * @param usuario
-     * @return
-     */
-    private IndicatorResponse getFormula1(String[] usuario, IndicatorResponse indicador){
-        indicador.setLabel(usuario[0]);
-        Integer ok = toInt(usuario[1]);
-        Integer pendiente = toInt(usuario[2]);
-        //pregunto si pendiente es 0 porque tal vez no lo tenga
-        //no se puede dividir por 0
-        if(pendiente == 0){
-            pendiente++;
-        }
-        Integer resultadoFormula = (ok /pendiente ) * 100;
-        List<Integer> data = new ArrayList<>();
-        data.add(resultadoFormula);
-        indicador.setData(data);
-        return indicador;
-    }
-
-    private  Integer toInt(String a){
-        return Integer.parseInt(a);
-    }
+   private int getOrdenesTotalesUsuario(List<OrdenesTrabajo> ordenes){
+       return ordenes.size();
+   }
 
     /**
-     * Parsea un string, devuelve un array de string
-     * @param toParse String a parsear
-     * @return array de strings parseados
+     * Devuelve la cantidad de ordenes en ok de un array
+     * @param ordenes de trabajo de un usuario
+     * @return cantidad en ok
      */
-    private String[] parser(String toParse){
-        return toParse.split(",");
-    }
-
-    /**
-     * Parsea segun la cantidad que posea la posicion del arreglo de ordenes
-     * @param ordenes lista de ordenes traida de la db
-     * @return retorna en cada posicion de la lista hay un arreglo de strings
-     */
-    private List<String[]> getOrdenesList(List<String> ordenes){
-        List<String[]> parseados = new ArrayList<>();
-        for(String toParse: ordenes){
-            parseados.add(this.parser(toParse));
-        }
-        return parseados;
-    }
-
+   private int getOrdenesEnOk(List<OrdenesTrabajo> ordenes){
+        int suma = 0;
+       for (OrdenesTrabajo o : ordenes
+            ) {
+           if(o.getEstado() == this.ok){
+               suma = suma +1;
+           }
+       }
+        return suma;
+   }
 
 
 }

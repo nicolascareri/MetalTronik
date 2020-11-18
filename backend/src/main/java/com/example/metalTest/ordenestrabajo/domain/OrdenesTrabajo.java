@@ -16,7 +16,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Table(name = "ordenes_trabajo")
-public class OrdenesTrabajo {
+public class OrdenesTrabajo implements Comparable<OrdenesTrabajo>{
     @Id
     @GeneratedValue
     @Column
@@ -76,6 +76,13 @@ public class OrdenesTrabajo {
 
     public Usuario getResponsable(){
         return responsable;
+    }
+
+
+
+    @Override
+    public int compareTo(OrdenesTrabajo o) {
+        return this.responsable.getNombre().compareTo(o.getResponsable().getNombre());
     }
 
 }

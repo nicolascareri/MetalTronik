@@ -5,6 +5,7 @@ import com.example.metalTest.indicadores.mapper.formulas.Formula;
 import com.example.metalTest.indicadores.mapper.formulas.Formula1;
 import com.example.metalTest.indicadores.mapper.formulas.Formula2;
 import com.example.metalTest.mantenimientoCorrectivo.domain.MantenimientoCorrectivo;
+import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -21,15 +22,15 @@ public class ToIndicadoresMapper  implements IndicadoresMapper {
     }
 
     @Override
-    public List<IndicatorResponse> toIndicadoresResponseFormula1(List<String> consult) {
+    public List<IndicatorResponse> toIndicadoresResponseFormula1Usuario(List<OrdenesTrabajo> consult) {
         formula = new Formula1();
-        return formula.getResultado(consult);
+        return formula.getResultadoUsuario(consult);
     }
 
     @Override
-    public List<IndicatorResponse> toIndicadoresResponseFormula2(List<String> consult) {
+    public List<IndicatorResponse> toIndicadoresResponseFormula2(List<OrdenesTrabajo> consult) {
         formula = new Formula2();
-        formula.getResultado(consult);
+        //formula.getResultado(consult);
         return null;
     }
 }
