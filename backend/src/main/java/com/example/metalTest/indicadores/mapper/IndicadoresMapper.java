@@ -12,6 +12,8 @@ public interface IndicadoresMapper{
 
     List<IndicatorResponse> toIndicadoresResponseFormula1Usuario(List<OrdenesTrabajo> consult);
 
+    List<IndicatorResponse> toIndicadoresResponseFormula1Sector(List<OrdenesTrabajo> consult);
+
     List<IndicatorResponse> toIndicadoresResponseFormula2(List<OrdenesTrabajo> consult);
 
 }

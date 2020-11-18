@@ -34,9 +34,8 @@ public class IndicadoresServiceImpl implements IndicadoresService {
 
     @Override
     public List<IndicatorResponse> getIndicatorsForm1Sector() {
-        List<OrdenesTrabajo> ordenesList = this.ordenesTrabajoRepository.findAll();
-        Collections.sort(ordenesList);
-        return toIndicadoresMapper.toIndicadoresResponseFormula1Usuario(ordenesList);
+        List<OrdenesTrabajo> ordenesList = this.ordenesTrabajoRepository.getBySectorOrdenado();
+        return toIndicadoresMapper.toIndicadoresResponseFormula1Sector(ordenesList);
     }
 
     //FORMULA 2

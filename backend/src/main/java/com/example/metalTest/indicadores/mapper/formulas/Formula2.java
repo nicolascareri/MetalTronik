@@ -26,6 +26,11 @@ public class Formula2  extends ToIndicadoresMapper implements Formula {
         return getIndicadoresFormula2(consulta);
     }
 
+    @Override
+    public List<IndicatorResponse> getResultadoSector(List<OrdenesTrabajo> consult) {
+        return null;
+    }
+
     private List<IndicatorResponse> getIndicadoresFormula2(List<OrdenesTrabajo> consulta) {
         List<IndicatorResponse> a = new ArrayList<>();
         try {

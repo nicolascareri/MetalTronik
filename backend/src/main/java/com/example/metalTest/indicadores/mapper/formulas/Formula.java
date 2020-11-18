@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface Formula {
     List<IndicatorResponse> getResultadoUsuario(List<OrdenesTrabajo> consult);
+
+    List<IndicatorResponse> getResultadoSector(List<OrdenesTrabajo> consult);
 }
