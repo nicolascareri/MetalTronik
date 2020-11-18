@@ -9,21 +9,19 @@ import { HomeComponent } from './components/home/home.component';
 import { MainComponent } from './components/main/main.component';
 import { MainRoutingModule } from './main-routing.module';
 import { FooterComponent } from './components/footer/footer.component';
-import { ChartsModule } from 'ng2-charts';
 
-import { IndicadoresComponent } from "../indicadores/indicadores/indicadores.component";
+
 
 
 @NgModule({
-  declarations: [MainComponent, HomeComponent, SidenavComponent, FooterComponent, IndicadoresComponent],
+  declarations: [MainComponent, HomeComponent, SidenavComponent, FooterComponent],
   imports: [
     CommonModule,
     MainRoutingModule,
     MatListModule,
     MatSidenavModule,
     MatIconModule,
-    MatToolbarModule,
-    ChartsModule
+    MatToolbarModule
     
   ]
 })

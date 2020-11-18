@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { Label } from 'ng2-charts';
-import { IndicadoresService } from "../services/indicadores.service";
+import { IndicadoresService } from "../../services/indicadores.service";
 
 @Component({
   selector: 'app-indicadores',
@@ -27,6 +27,8 @@ export class IndicadoresComponent implements OnInit {
   @Input() barChartLegend = true;
   @Input() barChartPlugins = [pluginDataLabels];
 
+  public dataSourceFormula;
+
 
   public barChartData: ChartDataSets[] = [
 
@@ -43,9 +45,25 @@ export class IndicadoresComponent implements OnInit {
 
   public getResults(){
     this.IndicadoresService.getUsuarios().subscribe(
-      results => {
+      (data: any) => {
+
+        console.log(data);
+
+        this.barChartData = data;
         
-        this.barChartData.push(results);
+
+        // this.dataSourceFormula = data.map(
+        //   val => {
+        //     return {
+        //       "data": val.data,
+        //       "label": val.label
+        //     }
+        //   }
+        // );
+
+        // console.log(this.dataSourceFormula);
+        
+        
 
       },
       error => {

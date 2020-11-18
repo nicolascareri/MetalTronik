@@ -115,12 +115,17 @@ export const ENDPOINTS = {
     },
 
     PARTE: {
-        POST: 'api/parte'
+        POST: 'api/parte',
+        DELETE: 'api/parte/',
+        GET: 'api/parte',
+        GETBYMAQUINA: 'api/maquina/partesByIdMaquina/',
+        PUT: 'api/maquina/vincular/'
     },
 
     INDICADORES: {
-        USUARIOS: '/api/ordenes-trabajo/indicators-usuario',
-        SECTORES : '/api/ordenes-trabajo/indicators-sector'
+        USUARIOS: '/api/indicadores/formula/1/usuario',
+        SECTORES : '/api/indicadores/formula/1/sector'
+
     }
 }
 

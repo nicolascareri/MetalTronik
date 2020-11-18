@@ -19,7 +19,7 @@ export class FormMaquinaComponent implements OnInit {
   public dataSourceSectors: any;
   public maquinaId: any;
   public mode = 'add';
-  public section = 'Nueva maquina';
+  public section = 'Nueva maquina - 1/3';
   public buttonName = 'Siguiente';
   public path = 'form-partes'
   public messageTitleSuccess: any = "DONE";
@@ -27,15 +27,13 @@ export class FormMaquinaComponent implements OnInit {
   public messageBody: any = "La maquina se ha creado correctamente";
   public machinesForm: FormGroup = new FormGroup({
     maquina_cod: new FormControl(''),
-    nro_serie: new FormControl(''),
-    modelo: new FormControl(''),
     equipo: new FormControl(''),
-    datos_tecnicos: new FormControl(''),
     descripcion: new FormControl(''),
     planta_cod: new FormControl(''),
     sector_cod: new FormControl(''),
     estado: new FormControl(30)
   });
+
 
   constructor(private MaquinaService: MaquinaService,
     private PlantaService: PlantaService,
@@ -85,10 +83,7 @@ export class FormMaquinaComponent implements OnInit {
     this.section = 'Editar maquina';
     this.buttonName = 'Confirmar cambios';
     this.machinesForm.controls.maquina_cod.setValue(maquina.maquina_cod);
-    this.machinesForm.controls.nro_serie.setValue(maquina.nro_serie);
-    this.machinesForm.controls.modelo.setValue(maquina.modelo);
     this.machinesForm.controls.equipo.setValue(maquina.equipo);
-    this.machinesForm.controls.datos_tecnicos.setValue(maquina.datos_tecnicos);
     this.machinesForm.controls.descripcion.setValue(maquina.descripcion);
     this.machinesForm.controls.planta_cod.setValue(maquina.planta.id);
     this.machinesForm.controls.sector_cod.setValue(maquina.sector.id);
@@ -139,12 +134,12 @@ export class FormMaquinaComponent implements OnInit {
     if (this.mode === 'add') {
       this.MaquinaService.postMaquina(this.machinesForm).subscribe(
         maquina => {
-          this.showSuccess();
+          this.MaquinaService.setLastInsert(maquina);
+          this.router.navigate(['main/maquinas/form-partes']);
         },
         error => this.showError(error.error)
       );
     } else {
-      console.log(this.machinesForm);
       this.MaquinaService.updateMaquina(this.maquinaId, this.machinesForm).subscribe(
         maquina => {
           this.messageBody = "La maquina se ha editado correctamente"

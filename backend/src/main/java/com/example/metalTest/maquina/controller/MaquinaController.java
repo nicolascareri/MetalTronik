@@ -52,7 +52,7 @@ public class MaquinaController {
     public ResponseEntity<List<ParteResponse>> vincular(@PathVariable Integer id, @RequestBody List<Integer> parteList) throws ValidateFieldException {
         return new ResponseEntity<>(parteService.vincular(id, parteList), HttpStatus.OK);
     }
-    @GetMapping("/allById/{id}")
+    @GetMapping("/partesByIdMaquina/{id}")
     public ResponseEntity<List<ParteResponse>> getAllByMaquina(@PathVariable Integer id){
         return new ResponseEntity<>(parteService.findAllByMaquina(id),HttpStatus.OK);
     }
