@@ -14,4 +14,5 @@ public interface TareaMapper {
     TareaResponse toTareaResponse(Tarea tarea);
 
     List<TareaResponse> toTareaResponseList(List<Tarea> tareaList);
+
 }
