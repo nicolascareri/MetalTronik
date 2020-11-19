@@ -15,5 +15,4 @@ public class RegistroRequest {
     private Date fechaPlanificada;
     private Boolean realizo;
     private String observaciones;
-    private Date fechaRealizada;
 }

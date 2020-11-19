@@ -9,8 +9,6 @@ import com.example.metalTest.tarea.domain.Tarea;
 import com.example.metalTest.tarea.mapper.TareaMapper;
 import com.example.metalTest.tarea.repository.TareaRepository;
 import com.example.metalTest.tarea.service.TareaService;
-import com.example.metalTest.tareaTipo.mapper.TareaTipoMapper;
-import com.example.metalTest.tareaTipo.repository.TareaTipoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,9 +22,6 @@ public class TareaServiceImpl implements TareaService {
 
     @Autowired
     TareaMapper tareaMapper;
-
-    @Autowired
-    TareaTipoRepository tareaTipoRepository;
 
     @Autowired
     MaquinaRepository maquinaRepository;
@@ -59,7 +54,7 @@ public class TareaServiceImpl implements TareaService {
         tarea.setFrecuencia(tareaRequest.getFrecuencia());
         tarea.setInicio(tareaRequest.getInicio());
         tarea.setMaquina(maquinaRepository.findById(tareaRequest.getMaquina_cod()).get());
-        tarea.setTarea(tareaTipoRepository.findById(tareaRequest.getTareaTipoId()).get());
+        tarea.setTarea(tareaRequest.getTarea());
         return tareaMapper.toTareaResponse(tareaRepository.save(tarea));
     }
 
@@ -70,7 +65,6 @@ public class TareaServiceImpl implements TareaService {
         }
         Tarea tarea = tareaMapper.tareaRequestToTarea(tareaRequest);
         tarea.setMaquina(maquinaRepository.findById(tareaRequest.getMaquina_cod()).get());
-        tarea.setTarea(tareaTipoRepository.findById(tareaRequest.getTareaTipoId()).get());
         return tareaMapper.toTareaResponse(tareaRepository.save(tarea));
     }
 }

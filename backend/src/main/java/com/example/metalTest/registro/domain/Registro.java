@@ -25,7 +25,4 @@ public class Registro {
     private Boolean realizo;
     @Column
     private String observaciones;
-    @Column
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
-    private Date fechaRealizada;
 }

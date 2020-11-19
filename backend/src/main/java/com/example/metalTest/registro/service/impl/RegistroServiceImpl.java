@@ -73,9 +73,7 @@ public class RegistroServiceImpl implements RegistroService {
 
     @Override
     public List<Registro> getActualOrPast(Date date) {
-        Calendar fecha = Calendar.getInstance();
-        fecha.setTime(date);
-        return registroRepository.getByDate(fecha.get(Calendar.MONTH) + 1, fecha.get(Calendar.YEAR));
+        return registroRepository.getByDate(date.getMonth(), date.getYear());
     }
 
     @Override
@@ -106,3 +104,4 @@ public class RegistroServiceImpl implements RegistroService {
                 ( fechaPlanificada.get(Calendar.MONTH) == fechaInicio.get(Calendar.MONTH) );
     }
 }
+
