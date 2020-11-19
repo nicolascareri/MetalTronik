@@ -88,10 +88,5 @@ public class MantenimientoCorrectivo{
                 '}';
     }
 
-    public String nose(){
-        System.out.println(this.ordenTrabajo.getFechaEntrega());
-
-        return ",";
-    }
 
 }

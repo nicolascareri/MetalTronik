@@ -34,8 +34,7 @@ public class ToIndicadoresMapper  implements IndicadoresMapper {
     @Override
     public List<IndicatorResponse> toIndicadoresResponseFormula2(List<OrdenesTrabajo> consult) {
         formula = new Formula2();
-        //formula.getResultado(consult);
-        return null;
+        return formula.getResultadoUsuario(consult);
     }
 }
 

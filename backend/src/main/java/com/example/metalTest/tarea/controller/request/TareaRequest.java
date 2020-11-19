@@ -11,9 +11,7 @@ import java.util.Date;
 @Getter
 @Setter
 public class TareaRequest {
-
-    @ValidEntity(repository = TareaTipoRepository.class)
-    private int tareaTipoId;
+    private String tarea;
     @ValidEntity(repository = MaquinaRepository.class)
     private Integer maquina_cod;
     private int frecuencia;
