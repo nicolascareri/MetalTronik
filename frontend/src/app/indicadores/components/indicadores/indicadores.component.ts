@@ -48,22 +48,7 @@ export class IndicadoresComponent implements OnInit {
       (data: any) => {
 
         console.log(data);
-
         this.barChartData = data;
-        
-
-        // this.dataSourceFormula = data.map(
-        //   val => {
-        //     return {
-        //       "data": val.data,
-        //       "label": val.label
-        //     }
-        //   }
-        // );
-
-        // console.log(this.dataSourceFormula);
-        
-        
 
       },
       error => {
@@ -82,16 +67,6 @@ export class IndicadoresComponent implements OnInit {
     console.log(event, active);
   }
 
-  public randomize(): void {
-    // Only Change 3 values
-    this.barChartData[0].data = [
-      Math.round(Math.random() * 100),
-      59,
-      80,
-      (Math.random() * 100),
-      56,
-      (Math.random() * 100),
-      40 ];
-  }
+
 
 }
