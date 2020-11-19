@@ -37,7 +37,7 @@ public class IndicadoresController {
         return new ResponseEntity<>(indicadoresService.getIndicatorsForm1Sector(), HttpStatus.OK);
     }
     @GetMapping("2/usuario")
-    public ResponseEntity<List<IndicatorResponse>> getIndForm2Usuario() {
+    public ResponseEntity<List<IndicatorResponse>> getIndForm2Usuario(){
         return new ResponseEntity<>(indicadoresService.getIndicatorForm2Usuario(), HttpStatus.OK);
     }
     @GetMapping("2/sector")

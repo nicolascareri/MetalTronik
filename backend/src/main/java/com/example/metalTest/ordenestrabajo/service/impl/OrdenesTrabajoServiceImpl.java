@@ -49,7 +49,6 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
     @Autowired
     MantenimientoCorrectivoRepository mantenimientoCorrectivoRepository;
 
-    ToIndicadoresMapper toIndicadoresMapper = new ToIndicadoresMapper();
 
     @Override
     public List<OrdenesTrabajoResponse> getAll() {
@@ -100,6 +99,7 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         ordenesTrabajo.setResponsable(usuarioRepository.findById(ordenesTrabajoRequest.getResponsable_cod()).get());
         ordenesTrabajo.setObservaciones(ordenesTrabajoRequest.getObservaciones());
         ordenesTrabajo.setOrdenTerciarizacion(ordenesTrabajoRequest.getOrdenTerciarizacion());
+        ordenesTrabajo.setEstado(ordenesTrabajoRequest.getEstado());
         if (ordenesTrabajoRequest.getFechaEntrega().after(ordenesTrabajoRequest.getFechaRealizar())) {
             throw new ValidateFieldException("La fecha de entrega no puede ser menor que la fecha de realizar", "Fecha de entrega", String.valueOf(ordenesTrabajoRequest.getFechaRealizar()));
         }

@@ -17,9 +17,6 @@ public class Tarea {
     @GeneratedValue
     private int id;
 
-    @Column
-    private String tarea;
-
     @JoinColumn
     @OneToOne
     private Maquina maquina;
@@ -33,8 +30,9 @@ public class Tarea {
 
     @JoinColumn
     @OneToOne
-    private TareaTipo tareaTipo;
+    private TareaTipo tarea;
 
     @Column
     private Short estado;
+
 }

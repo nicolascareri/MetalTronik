@@ -39,4 +39,6 @@ public class OrdenesTrabajoRequest {
     private String observaciones;
 
     private int ordenTerciarizacion;
+
+    private short estado;
 }
