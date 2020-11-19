@@ -13,8 +13,12 @@ export class IndicadoresService {
   }
 
 
-  getUsuarios(){
+  getFormForUsers(){
     return this.http.get(this.path.SERVER.serve + this.path.INDICADORES.USUARIOS);
+  }
+
+  getFormForSectors(){
+    return this.http.get(this.path.SERVER.serve + this.path.INDICADORES.SECTORES);
   }
 
 
