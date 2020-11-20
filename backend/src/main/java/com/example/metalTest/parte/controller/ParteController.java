@@ -32,7 +32,7 @@ public class ParteController {
         return new ResponseEntity<>(parteService.getById(id), HttpStatus.OK);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id) throws ValidateFieldException {
         parteService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);

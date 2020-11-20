@@ -175,7 +175,7 @@ export class FormMaquinaComponent implements OnInit {
     if (index > -1) {
       this.parts.splice(index, 1);
       // this.deletePart(part);
-      this.ParteService.deleteLastInsert(part);
+      // this.ParteService.deleteLastInsert(part);
       this.messageBody = "Eliminado de la selección"
       this.showSuccess();
     }

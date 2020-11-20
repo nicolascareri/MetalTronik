@@ -22,7 +22,8 @@ export class IndicadoresComponent implements OnInit {
       }
     }
   };
-  @Input() barChartLabels: Label[] = ['Usuarios'];
+  @Input() barChartLabelUsers: Label[] = ['Usuarios'];
+  @Input() barChartLabelSectors: Label[] = ['Sectores'];
   @Input() barChartType: ChartType = 'bar';
   @Input() barChartLegend = true;
   @Input() barChartPlugins = [pluginDataLabels];
