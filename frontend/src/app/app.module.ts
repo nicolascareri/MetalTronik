@@ -19,6 +19,8 @@ import {RepuestoMaquinaModule} from "./repuesto-maquina/repuesto-maquina.module"
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {AlmacenModule} from './almacen/almacen.module'
 import {MantenimientoPreventivoModule} from "./mantenimiento-preventivo/mantenimiento-preventivo.module";
+import { ChartsModule } from 'ng2-charts';
+import { IndicadoresModule } from './indicadores/indicadores.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -43,6 +45,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     MDBBootstrapModule.forRoot(),
     AlmacenModule,
     MantenimientoPreventivoModule,
+    ChartsModule,
+    IndicadoresModule,
     NgbModule
   ],
   providers: [UserService,

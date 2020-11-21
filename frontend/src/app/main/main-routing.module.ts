@@ -49,6 +49,10 @@ const routes: Routes = [
       {
         path: 'mantenimientosPreventivos',
         loadChildren: 'src/app/mantenimiento-preventivo/mantenimiento-preventivo.module#MantenimientoPreventivoModule'
+      },
+      {
+        path: 'indicadores',
+        loadChildren: 'src/app/indicadores/indicadores.module#IndicadoresModule'
       }
 
 

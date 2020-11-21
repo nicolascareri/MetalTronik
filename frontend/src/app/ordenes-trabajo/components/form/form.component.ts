@@ -212,7 +212,7 @@ export class FormComponent implements OnInit, AfterViewInit {
       encargo_cod: new FormControl(''),
       estado: new FormControl(''),
       fechaRealizar: new FormControl(''),
-      maquina_cod: new FormControl(''),
+      parteOrMaquina: new FormControl(''),
       pedidoMateriales: new FormControl(''),
       prioridad_cod: new FormControl(''),
       responsable_cod: new FormControl(''),
