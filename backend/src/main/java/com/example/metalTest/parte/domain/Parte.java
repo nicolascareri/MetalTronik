@@ -20,7 +20,6 @@ public class Parte {
     @Column
     private String codigo;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn
-    private Maquina maquina;
+    @Column
+    private Integer maquinaId;
 }

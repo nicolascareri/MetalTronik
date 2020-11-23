@@ -25,6 +25,7 @@ public class ParteController {
 
     @PostMapping
     public ResponseEntity<ParteResponse> create(@RequestBody @Valid ParteRequest parteRequest) throws ValidateFieldException {
+        System.out.println(parteRequest.getNombre());
         return new ResponseEntity<>(parteService.create(parteRequest), HttpStatus.CREATED);
     }
     @GetMapping("/{id}")
@@ -32,7 +33,7 @@ public class ParteController {
         return new ResponseEntity<>(parteService.getById(id), HttpStatus.OK);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id) throws ValidateFieldException {
         parteService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
