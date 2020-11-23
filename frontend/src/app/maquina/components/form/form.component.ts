@@ -41,6 +41,7 @@ export class FormMaquinaComponent implements OnInit {
     nombre: new FormControl(''),
   });
   public parts: any = [];
+  partForDelete: any = [];
 
 
   constructor(private MaquinaService: MaquinaService,
@@ -148,6 +149,10 @@ export class FormMaquinaComponent implements OnInit {
     } else {
       this.MaquinaService.updateMaquina(this.maquinaId, this.machinesForm).subscribe(
         maquina => {
+          this.partForDelete.forEach(parte => {
+            this.deletePart(parte);
+            
+          });
           this.linkParts();
           this.messageBody = "La maquina se ha editado correctamente"
           this.showSuccess();
@@ -173,8 +178,8 @@ export class FormMaquinaComponent implements OnInit {
   delete(part){
     var index = this.parts.indexOf(part);
     if (index > -1) {
+      this.partForDelete.push(part);
       this.parts.splice(index, 1);
-      // this.deletePart(part);
       // this.ParteService.deleteLastInsert(part);
       this.messageBody = "Eliminado de la selección"
       this.showSuccess();
@@ -182,15 +187,15 @@ export class FormMaquinaComponent implements OnInit {
     // this.deletePart(part);
   }
 
-  // deletePart(part){
-  //   this.ParteService.deleteParte(part.id).subscribe(
-  //     parte => {
-  //       this.messageBody = "Eliminado de la base de datos"
-  //       this.showSuccess();
-  //     },
-  //     error => this.showError(error.error)
-  //   );
-  // }
+  deletePart(part){
+    this.ParteService.deleteParte(part.id).subscribe(
+      parte => {
+        this.messageBody = "Eliminado de la base de datos"
+        this.showSuccess();
+      },
+      error => this.showError(error.error)
+    );
+  }
 
   
   getParts(id){
@@ -213,6 +218,7 @@ export class FormMaquinaComponent implements OnInit {
   }
 
   linkParts(){
+    
     this.parts = this.parts.map(
       val => {
         return val.id;
