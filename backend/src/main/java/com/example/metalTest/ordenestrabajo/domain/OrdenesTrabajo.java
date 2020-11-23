@@ -12,10 +12,11 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Date;
 
+@Entity()
 @Getter
 @Setter
-@Entity(name = "ordenes_trabajo")
-public class OrdenesTrabajo {
+@Table(name = "ordenes_trabajo")
+public class OrdenesTrabajo implements Comparable<OrdenesTrabajo>{
     @Id
     @GeneratedValue
     @Column
@@ -45,6 +46,8 @@ public class OrdenesTrabajo {
 
     @Column
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT-3")
+    @Getter
+    @Setter
     private Date fechaEntrega;
 
     @Column
@@ -57,6 +60,9 @@ public class OrdenesTrabajo {
 
     @OneToOne
     @JoinColumn
+    @Getter
+    @Setter
+
     private Usuario responsable;
 
     @Column
@@ -67,5 +73,16 @@ public class OrdenesTrabajo {
 
     @Column
     private int ordenTerciarizacion;
+
+    public Usuario getResponsable(){
+        return responsable;
+    }
+
+
+
+    @Override
+    public int compareTo(OrdenesTrabajo o) {
+        return this.responsable.getNombre().compareTo(o.getResponsable().getNombre());
+    }
 
 }

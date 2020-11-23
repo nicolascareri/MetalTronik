@@ -1,7 +1,6 @@
 package com.example.metalTest.tarea.domain;
 
 import com.example.metalTest.maquina.domain.Maquina;
-import com.example.metalTest.tareaTipo.domain.TareaTipo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,10 +29,6 @@ public class Tarea {
     @Column
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
     private Date inicio;
-
-    @JoinColumn
-    @OneToOne
-    private TareaTipo tareaTipo;
 
     @Column
     private Short estado;

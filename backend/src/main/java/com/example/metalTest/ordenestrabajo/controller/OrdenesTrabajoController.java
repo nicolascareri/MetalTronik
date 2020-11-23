@@ -20,6 +20,7 @@ public class OrdenesTrabajoController {
     @Autowired
     OrdenesTrabajoService ordenesTrabajoService;
 
+
     @GetMapping
     public ResponseEntity<List<OrdenesTrabajoResponse>> getAll() {
         return new ResponseEntity<>(ordenesTrabajoService.getAll(), HttpStatus.OK);

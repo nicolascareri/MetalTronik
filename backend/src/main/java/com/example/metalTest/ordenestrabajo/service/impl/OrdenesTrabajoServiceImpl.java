@@ -2,11 +2,13 @@ package com.example.metalTest.ordenestrabajo.service.impl;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.common.ordenes.EstadoOrden;
+import com.example.metalTest.mantenimientoCorrectivo.repository.MantenimientoCorrectivoRepository;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
 import com.example.metalTest.ordenestrabajo.controller.request.OrdenesTrabajoRequest;
 import com.example.metalTest.ordenestrabajo.controller.response.OrdenesTrabajoResponse;
 import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
 import com.example.metalTest.ordenestrabajo.mapper.OrdenesTrabajoMapper;
+import com.example.metalTest.indicadores.mapper.ToIndicadoresMapper;
 import com.example.metalTest.ordenestrabajo.repository.OrdenesTrabajoRepository;
 import com.example.metalTest.ordenestrabajo.service.OrdenesTrabajoService;
 import com.example.metalTest.parte.repository.ParteRepository;
@@ -43,6 +45,10 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
 
     @Autowired
     ParteRepository parteRepository;
+
+    @Autowired
+    MantenimientoCorrectivoRepository mantenimientoCorrectivoRepository;
+
 
     @Override
     public List<OrdenesTrabajoResponse> getAll() {
@@ -93,11 +99,13 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         ordenesTrabajo.setResponsable(usuarioRepository.findById(ordenesTrabajoRequest.getResponsable_cod()).get());
         ordenesTrabajo.setObservaciones(ordenesTrabajoRequest.getObservaciones());
         ordenesTrabajo.setOrdenTerciarizacion(ordenesTrabajoRequest.getOrdenTerciarizacion());
+        ordenesTrabajo.setEstado(ordenesTrabajoRequest.getEstado());
         if (ordenesTrabajoRequest.getFechaEntrega().after(ordenesTrabajoRequest.getFechaRealizar())) {
             throw new ValidateFieldException("La fecha de entrega no puede ser menor que la fecha de realizar", "Fecha de entrega", String.valueOf(ordenesTrabajoRequest.getFechaRealizar()));
         }
         return ordenesTrabajoMapper.toOrdenesTrabajoResponse(ordenesTrabajoRepository.save(ordenesTrabajo));
     }
+
 
     private void setMaquinaOrParte(OrdenesTrabajoRequest ordenesTrabajoRequest, OrdenesTrabajo ordenesTrabajo) throws ValidateFieldException {
         if (parteRepository.existsById(ordenesTrabajoRequest.getParteOrMaquina())) {
@@ -108,4 +116,10 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
             throw new ValidateFieldException("La parte o maquina que desea acceder no existe","id",String.valueOf(ordenesTrabajoRequest.getParteOrMaquina()));
         }
     }
+
+
+
+
+
+
 }

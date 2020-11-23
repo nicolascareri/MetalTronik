@@ -11,6 +11,8 @@ import com.example.metalTest.parte.repository.ParteRepository;
 import com.example.metalTest.parte.service.ParteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,9 +35,13 @@ public class ParteServiceImpl implements ParteService {
     @Override
     public ParteResponse create(ParteRequest parteRequest) throws ValidateFieldException {
         if (parteRepository.existsByCodigo(parteRequest.getCodigo())){
-            throw new ValidateFieldException("Ya existe una Parte con ese codigo","codigo",parteRequest.getCodigo());
+            throw new ValidateFieldException("Ya existe una parte con ese codigo", "codigo", parteRequest.getCodigo());
         }
-        return parteMapper.toParteResponse(parteRepository.save(parteMapper.parteRequestToParte(parteRequest)));
+        Parte parte = parteMapper.parteRequestToParte(parteRequest);
+        ParteResponse a = parteMapper.toParteResponse(parte);
+        Parte b = parteRepository.save(parte);
+        a.setId(b.getId());
+        return a;
     }
 
     @Override
@@ -48,15 +54,16 @@ public class ParteServiceImpl implements ParteService {
     }
 
     @Override
-    public List<ParteResponse> vincular(Integer maquinacod, List<Integer> idPartes) throws ValidateFieldException {
+    public List<ParteResponse> vincular(Integer id_maquina, List<Integer> idPartes) throws ValidateFieldException {
         List<Parte> parteList = parteRepository.findAllById(idPartes);
-        Optional<Maquina> optionalMaquina = maquinaRepository.findById(maquinacod);
+        Optional<Maquina> optionalMaquina = maquinaRepository.findById(id_maquina);
         if (!optionalMaquina.isPresent()){
-            throw new ValidateFieldException("La maquina que desea acceder no existe", "id", String.valueOf(maquinacod));
+            throw new ValidateFieldException("La maquina que desea acceder no existe", "id", String.valueOf(id_maquina));
         }
         Maquina maquina = optionalMaquina.get();
+        maquina.setParteList(new ArrayList<>());
         parteList.forEach(parte -> {
-            parte.setMaquina(maquina);
+            parte.setMaquinaId(maquina.getId());
             parteRepository.save(parte);
         });
         maquina.setParteList(parteList);

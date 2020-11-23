@@ -1,3 +1,4 @@
+
 package com.example.metalTest.registro.service.impl;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
@@ -28,13 +29,18 @@ public class RegistroServiceImpl implements RegistroService {
     @Override
     public List<Registro> getForMonth(Date date) {
         List<Registro> registroList = new ArrayList<>();
+        //busca todas las tareas
         List<Tarea> tareaList = tareaRepository.findAll();
         Calendar fechaPlanificada = Calendar.getInstance();
+        //setea la fecha planificada con el parametro
         fechaPlanificada.setTime(date);
+        //recorre cada tarea
         tareaList.forEach(tarea -> {
             if (tareaValida(tarea, fechaPlanificada)){
                 Calendar fechaInicio = Calendar.getInstance();
+                //setea la fecha de inicio de la tarea actual
                 fechaInicio.setTime(tarea.getInicio());
+                //Agrega dias al calendario segun la frecuencia hasta llegar a la fecha actual
                 fechaInicio = calcularFechaInicio(fechaPlanificada, fechaInicio, tarea.getFrecuencia());
                 while (fechaInicio.get(Calendar.MONTH) == fechaPlanificada.get(Calendar.MONTH) ){
                     Registro registro = new Registro();
@@ -73,9 +79,7 @@ public class RegistroServiceImpl implements RegistroService {
 
     @Override
     public List<Registro> getActualOrPast(Date date) {
-        Calendar fecha = Calendar.getInstance();
-        fecha.setTime(date);
-        return registroRepository.getByDate(fecha.get(Calendar.MONTH) + 1, fecha.get(Calendar.YEAR));
+        return registroRepository.getByDate(date);
     }
 
     @Override

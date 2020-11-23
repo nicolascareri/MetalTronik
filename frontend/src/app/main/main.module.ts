@@ -11,6 +11,8 @@ import { MainRoutingModule } from './main-routing.module';
 import { FooterComponent } from './components/footer/footer.component';
 
 
+
+
 @NgModule({
   declarations: [MainComponent, HomeComponent, SidenavComponent, FooterComponent],
   imports: [
@@ -20,6 +22,7 @@ import { FooterComponent } from './components/footer/footer.component';
     MatSidenavModule,
     MatIconModule,
     MatToolbarModule
+    
   ]
 })
 export class MainModule { }
