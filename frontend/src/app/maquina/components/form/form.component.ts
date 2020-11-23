@@ -6,6 +6,7 @@ import { SectorService } from '../../../sector/services/sector.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { MessageService } from "../../../core/service/message.service";
+import { ParteService } from "../../services/parte.service";
 
 @Component({
   selector: 'app-form-maquina',
@@ -34,13 +35,21 @@ export class FormMaquinaComponent implements OnInit {
     estado: new FormControl(30)
   });
 
+  //Edit parts variables
+  public partsForm: FormGroup = new FormGroup({
+    codigo: new FormControl(''),
+    nombre: new FormControl(''),
+  });
+  public parts: any = [];
+
 
   constructor(private MaquinaService: MaquinaService,
     private PlantaService: PlantaService,
     private SectorService: SectorService,
     private router: Router,
     private route: ActivatedRoute,
-    private MessageService: MessageService) {
+    private MessageService: MessageService,
+    private ParteService: ParteService) {
 
   }
 
@@ -53,6 +62,7 @@ export class FormMaquinaComponent implements OnInit {
   ngAfterViewInit(): void {
     if (this.maquinaId) {
       this.getMaquina(this.maquinaId);
+      this.getParts(this.maquinaId);
     }
   }
 
@@ -126,10 +136,6 @@ export class FormMaquinaComponent implements OnInit {
     );
   }
 
-  resetForm() {
-    this.machinesForm.reset();
-  }
-
   saveForm() {
     if (this.mode === 'add') {
       this.MaquinaService.postMaquina(this.machinesForm).subscribe(
@@ -142,12 +148,82 @@ export class FormMaquinaComponent implements OnInit {
     } else {
       this.MaquinaService.updateMaquina(this.maquinaId, this.machinesForm).subscribe(
         maquina => {
+          this.linkParts();
           this.messageBody = "La maquina se ha editado correctamente"
           this.showSuccess();
+          this.router.navigate(['main/maquinas']);
         },
         error => this.showError(error.error)
         );
     }
   }
+
+  addParte(){
+    this.ParteService.postParte(this.partsForm).subscribe(
+      parte => {
+        this.parts.push(parte);
+        // this.ParteService.setLastInsert(parte);
+        this.messageBody = "Añadido a selección";
+        this.showSuccess();
+      },
+      error => this.showError(error.error)
+    );
+  }
+
+  delete(part){
+    var index = this.parts.indexOf(part);
+    if (index > -1) {
+      this.parts.splice(index, 1);
+      // this.deletePart(part);
+      // this.ParteService.deleteLastInsert(part);
+      this.messageBody = "Eliminado de la selección"
+      this.showSuccess();
+    }
+    // this.deletePart(part);
+  }
+
+  // deletePart(part){
+  //   this.ParteService.deleteParte(part.id).subscribe(
+  //     parte => {
+  //       this.messageBody = "Eliminado de la base de datos"
+  //       this.showSuccess();
+  //     },
+  //     error => this.showError(error.error)
+  //   );
+  // }
+
+  
+  getParts(id){
+    this.ParteService.getByMaquina(id).subscribe(
+      (data: any) => {
+        this.parts = data.map(
+          val => {
+            return {
+              "id": val.id,
+              "nombre": val.nombre,
+              "codigo": val.codigo
+            }
+          }
+        );
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  linkParts(){
+    this.parts = this.parts.map(
+      val => {
+        return val.id;
+      }
+    );
+    this.ParteService.linkPart(this.maquinaId, this.parts).subscribe(
+      parte => {
+      },
+      error => this.showError(error.error)
+    );
+  }
+
 
 }

@@ -67,6 +67,60 @@
 
         </div>
 
+        <div class="form-container" *ngIf="mode == 'edit'">
+
+          <div class="card">
+        
+            <h2 class="card-header">
+              Partes asociadas
+            </h2>
+          
+            <div class="card-body">
+              
+              <form [formGroup]="partsForm" (ngSubmit)="addParte()">
+              
+                <div class="form-row">
+            
+                  <div class="col">
+                  <label for="codigo">Codigo de la parte</label>
+                  <app-input [type]="'input'" 
+                             [parentForm]="partsForm"  
+                             [control]="partsForm.controls.codigo"
+                             [placeholder]="'Ingrese codigo de parte'">
+                  </app-input>
+                  </div>
+        
+                  <div class="col">
+                  <label for="nombre">Nombre</label>
+                  <app-input [type]="'input'" 
+                             [parentForm]="partsForm"  
+                             [control]="partsForm.controls.nombre"
+                             [placeholder]="'Ingrese nombre de la parte'">
+                  </app-input>
+                  </div>
+        
+                </div>
+                <div style="margin-top: 3%" class="btn-group btn-group-toggle" data-toggle="buttons">
+                  <app-button [name]="'Agregar'" [type]="'primary-1'" type="submit"></app-button>
+                </div>
+        
+              </form>
+        
+              <div class="card" style="width: 18rem;">
+                <div class="card-header">
+                  Seleccion actual
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item" *ngFor="let part of parts">
+                    {{part.nombre}} {{part.codigo}}   <button class="btn btn-danger btn-sm" (click)="delete(part)">Eliminar</button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        
+        </div>
+
         <div style="margin-top: 3%" class="btn-group btn-group-toggle" data-toggle="buttons">
           <app-button [name]="buttonName" [type]="'success'"></app-button>
           <app-button [name]="'Cancelar'" [type]="'cancel'"></app-button>
@@ -77,3 +131,4 @@
   </div>
 
 </div>
+

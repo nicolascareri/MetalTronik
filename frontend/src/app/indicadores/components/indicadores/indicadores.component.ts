@@ -22,7 +22,8 @@ export class IndicadoresComponent implements OnInit {
       }
     }
   };
-  @Input() barChartLabels: Label[] = ['Sector'];
+  @Input() barChartLabelUsers: Label[] = ['Usuarios'];
+  @Input() barChartLabelSectors: Label[] = ['Sectores'];
   @Input() barChartType: ChartType = 'bar';
   @Input() barChartLegend = true;
   @Input() barChartPlugins = [pluginDataLabels];
@@ -30,45 +31,36 @@ export class IndicadoresComponent implements OnInit {
   public dataSourceFormula;
 
 
-  public barChartData: ChartDataSets[] = [
-
-    { data: [65, 59, 80, 81, 56, 55, 40], 
-      label: 'Usuario 1' 
-    }
-];
+  public barChartDataUsers: ChartDataSets[] = [];
+  public barChartDataSectors: ChartDataSets[] = [];
 
   constructor(private IndicadoresService: IndicadoresService) { }
 
   ngOnInit(): void {
-    this.getResults();
+    this.getFormIUsers();
+    this.getFormISectors();
   }
 
-  public getResults(){
-    this.IndicadoresService.getUsuarios().subscribe(
+  public getFormIUsers(){
+    this.IndicadoresService.getFormForUsers().subscribe(
       (data: any) => {
-
-        console.log(data);
-
-        this.barChartData = data;
-        
-
-        // this.dataSourceFormula = data.map(
-        //   val => {
-        //     return {
-        //       "data": val.data,
-        //       "label": val.label
-        //     }
-        //   }
-        // );
-
-        // console.log(this.dataSourceFormula);
-        
-        
-
+        this.barChartDataUsers = data;
       },
       error => {
         console.log(error.error);
+      }
+    );
+  }
+
+  public getFormISectors(){
+    this.IndicadoresService.getFormForSectors().subscribe(
+      (data: any) => {
+        console.log(data);
         
+        this.barChartDataSectors = data;
+      },
+      error => {
+        console.log(error.error);
       }
     );
   }
@@ -82,16 +74,6 @@ export class IndicadoresComponent implements OnInit {
     console.log(event, active);
   }
 
-  public randomize(): void {
-    // Only Change 3 values
-    this.barChartData[0].data = [
-      Math.round(Math.random() * 100),
-      59,
-      80,
-      (Math.random() * 100),
-      56,
-      (Math.random() * 100),
-      40 ];
-  }
+
 
 }

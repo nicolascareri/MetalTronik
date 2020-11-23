@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ParteService } from "../../../services/parte.service";
 import { MessageService } from "../../../../core/service/message.service";
-import { MaquinaService } from "../../../services/maquina.service";
 import { Router } from '@angular/router';
 
 
@@ -26,7 +25,6 @@ export class FormPartesComponent implements OnInit {
 
   constructor(private ParteService: ParteService,
               private MessageService: MessageService,
-              private MaquinaService: MaquinaService,
               private router: Router) { }
 
   ngOnInit(): void {
@@ -44,28 +42,13 @@ export class FormPartesComponent implements OnInit {
     );
   }
 
-  // linkPart(id, parts){
-  //   this.ParteService.linkPart(id, parts).subscribe(
-  //     parte => {
-  //       this.messageBody = "linked";
-  //       this.showSuccess();
-  //       // this.getParts();
-  //     },
-  //     error => this.showError(error.error)
-  //   );
-  // }
-
   delete(part){
     var index = this.parts.indexOf(part);
-    console.log("entrada", this.parts);
-    
     if (index > -1) {
       this.parts.splice(index, 1);
       this.deletePart(part);
       this.ParteService.deleteLastInsert(part);
     }
-
-    console.log("salida", this.parts);
   }
 
   deletePart(part){
@@ -77,25 +60,6 @@ export class FormPartesComponent implements OnInit {
       error => this.showError(error.error)
     );
   }
-
-  // getParts(){
-  //   this.ParteService.getByMaquina(this.MaquinaService.lastId).subscribe(
-  //     (data: any) => {
-  //       this.partss = data.map(
-  //         val => {
-  //           return {
-  //             "id": val.id,
-  //             "nombre": val.nombre,
-  //             "codigo": val.codigo
-  //           }
-  //         }
-  //       );
-  //     },
-  //     (error) => {
-  //       console.error(error);
-  //     }
-  //   );
-  // }
 
   showSuccess(){
     this.MessageService.showSuccess({
