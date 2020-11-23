@@ -14,5 +14,4 @@ public class ParteParaOrdenResponse {
     private Integer id;
     private String nombre;
     private String codigo;
-    private MaquinaReducidoResponse maquina;
 }

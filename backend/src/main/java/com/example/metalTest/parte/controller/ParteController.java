@@ -25,6 +25,7 @@ public class ParteController {
 
     @PostMapping
     public ResponseEntity<ParteResponse> create(@RequestBody @Valid ParteRequest parteRequest) throws ValidateFieldException {
+        System.out.println(parteRequest.getNombre());
         return new ResponseEntity<>(parteService.create(parteRequest), HttpStatus.CREATED);
     }
     @GetMapping("/{id}")
