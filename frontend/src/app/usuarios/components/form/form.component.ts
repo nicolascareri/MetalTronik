@@ -20,6 +20,7 @@ export class FormUsuarioComponent implements OnInit {
   public messageTitleSuccess: any = "DONE";
   public messageTitleError: any = "ERROR";
   public messageBody: any = "El usuario se ha creado correctamente";
+  public dataSourceCargos: any;
 
   constructor(private UserService: UserService,
     private router: Router,
@@ -30,6 +31,7 @@ export class FormUsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.params.id;
+    this.getCargos();
   }
 
   ngAfterViewInit(): void {
@@ -60,23 +62,39 @@ export class FormUsuarioComponent implements OnInit {
     )
   }
 
+  getCargos() {
+    this.UserService.getCargos().subscribe(
+      (data: any) => {
+        this.dataSourceCargos = data.map(
+          val => {
+            return {
+              "id": val.id,
+              "descripcion": val.nombre_cargo
+            }
+          }
+        );
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
   loadUser(user) {
     this.mode = "edit";
     this.section = 'Editar usuario';
     this.buttonName = 'Confirmar cambios';
-    console.log(user);
     this.userForm.controls.nombre.setValue(user.nombre);
     this.userForm.controls.apellido.setValue(user.apellido);
     this.userForm.controls.dni.setValue(user.dni);
     this.userForm.controls.fnacimiento.setValue(user.fnacimiento.replace(' ', 'T'));
-    this.userForm.controls.cargo.setValue(user.cargo);
+    this.userForm.controls.cargo_id.setValue(user.cargo_id);
     this.userForm.controls.legajo.setValue(user.legajo);
     this.userForm.controls.nombre_usuario.setValue(user.nombre_usuario);
     this.userForm.controls.contrasenia.setValue(user.contrasenia);
     this.userForm.controls.ciudad.setValue(user.ciudad);
     this.userForm.controls.pais.setValue(user.pais);
     this.userForm.controls.provincia.setValue(user.provincia);
-    this.userForm.controls.codigo_postal.setValue(user.codigo_postal);
     this.userForm.controls.direccion.setValue(user.direccion);
     this.userForm.controls.correo_electronico.setValue(user.correo_electronico);
   }
@@ -112,14 +130,13 @@ export class FormUsuarioComponent implements OnInit {
       apellido: new FormControl(''),
       dni: new FormControl(''),
       fnacimiento: new FormControl(''),
-      cargo: new FormControl(''),
+      cargo_id: new FormControl(''),
       legajo: new FormControl(''),
       nombre_usuario: new FormControl(''),
       contrasenia: new FormControl(''),
       ciudad: new FormControl(''),
       pais: new FormControl(''),
       provincia: new FormControl(''),
-      codigo_postal: new FormControl(''),
       direccion: new FormControl(''),
       correo_electronico: new FormControl(''),
       estado: new FormControl(30)

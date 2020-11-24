@@ -49,6 +49,4 @@ public class UsuarioRequest {
     @NotBlank
     private String direccion;
 
-    @NotNull
-    private int codigo_postal;
 }

@@ -31,7 +31,6 @@ export class FormPartesIIComponent implements OnInit {
   getSelecction(){
     this.parts = this.ParteService.getLastInsert();
     this.maquina = this.MaquinaService.getLastInsert();
-    console.log(this.maquina);
   }
 
   finalize(){

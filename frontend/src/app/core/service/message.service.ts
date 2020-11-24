@@ -13,7 +13,6 @@ export class MessageService {
   constructor(private toastr: ToastrService) { }
 
   showError(message){
-    console.log(message);
     this.toastr.error(
       message.body , message.title , {
         timeOut: this.time,
@@ -25,8 +24,6 @@ export class MessageService {
   }
 
   showSuccess(message){
-    console.log(message);
-    
     this.toastr.success(
       message.body, message.title , {
         timeOut: this.time,

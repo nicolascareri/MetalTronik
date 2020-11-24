@@ -193,6 +193,11 @@ export class CoreService {
                     result.cantidad_instalada = result.cantidad_instalada;
                   }
                   break;
+            case 'cargo':
+                  if(result.cargo){
+                    result.cargo = result.cargo.nombre_cargo;
+                  }
+                  break;
             case 'estado':
               if(result.estado){
                 result.estado === 1? result.estado = 'Pendiente': result.estado = 'Ok';
