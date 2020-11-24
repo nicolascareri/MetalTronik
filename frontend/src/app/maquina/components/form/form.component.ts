@@ -150,7 +150,6 @@ export class FormMaquinaComponent implements OnInit {
         maquina => {
           this.partForDelete.forEach(parte => {
             this.deletePart(parte);
-            
           });
           this.linkParts();
           this.messageBody = "La maquina se ha editado correctamente"
@@ -166,7 +165,6 @@ export class FormMaquinaComponent implements OnInit {
     this.ParteService.postParte(this.partsForm).subscribe(
       parte => {
         this.parts.push(parte);
-        // this.ParteService.setLastInsert(parte);
         this.messageBody = "Añadido a selección";
         this.showSuccess();
       },
@@ -179,19 +177,14 @@ export class FormMaquinaComponent implements OnInit {
     if (index > -1) {
       this.partForDelete.push(part);
       this.parts.splice(index, 1);
-      // this.ParteService.deleteLastInsert(part);
       this.messageBody = "Eliminado de la selección"
       this.showSuccess();
     }
-    // this.deletePart(part);
   }
 
   deletePart(part){
     this.ParteService.deleteParte(part.id).subscribe(
-      parte => {
-        this.messageBody = "Eliminado de la base de datos"
-        this.showSuccess();
-      },
+      parte => {},
       error => this.showError(error.error)
     );
   }
@@ -217,7 +210,6 @@ export class FormMaquinaComponent implements OnInit {
   }
 
   linkParts(){
-    
     this.parts = this.parts.map(
       val => {
         return val.id;

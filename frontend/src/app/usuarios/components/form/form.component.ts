@@ -69,7 +69,7 @@ export class FormUsuarioComponent implements OnInit {
           val => {
             return {
               "id": val.id,
-              "nombre": val.nombre_cargo
+              "descripcion": val.nombre_cargo
             }
           }
         );
@@ -95,7 +95,6 @@ export class FormUsuarioComponent implements OnInit {
     this.userForm.controls.ciudad.setValue(user.ciudad);
     this.userForm.controls.pais.setValue(user.pais);
     this.userForm.controls.provincia.setValue(user.provincia);
-    this.userForm.controls.codigo_postal.setValue(user.codigo_postal);
     this.userForm.controls.direccion.setValue(user.direccion);
     this.userForm.controls.correo_electronico.setValue(user.correo_electronico);
   }
@@ -138,7 +137,6 @@ export class FormUsuarioComponent implements OnInit {
       ciudad: new FormControl(''),
       pais: new FormControl(''),
       provincia: new FormControl(''),
-      codigo_postal: new FormControl(''),
       direccion: new FormControl(''),
       correo_electronico: new FormControl(''),
       estado: new FormControl(30)

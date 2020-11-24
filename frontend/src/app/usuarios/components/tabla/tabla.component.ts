@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../../usuarios/services/user.service';
 import { Router } from '@angular/router';
+import { CoreService } from 'src/app/core/service/core.service';
 
 @Component({
   selector: 'app-tabla-usuario',
@@ -120,7 +121,8 @@ export class TablaUsuarioComponent implements OnInit {
   public dataSourceUsers;
 
   constructor(private UserService: UserService,
-              private router: Router) {
+              private router: Router,
+              private CoreService: CoreService) {
    }
 
 
@@ -135,7 +137,7 @@ export class TablaUsuarioComponent implements OnInit {
   getUsuarios(){
     this.UserService.getUsers().subscribe(
       (data: any)  => { 
-        this.dataSourceUsers = data;
+        this.dataSourceUsers = this.CoreService.replaceFormat(data, ['cargo']);
       },
       (error) => {
         console.error(error);

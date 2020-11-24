@@ -130,31 +130,21 @@
                      [placeholder]="'provincia'">
           </app-input>
           </div>
-          
 
           <div class="col">
-          <label for="codigo_postal">Codigo postal</label>
-          <app-input [type]="'onlyNumber'"
-                     [parentForm]="userForm" 
-                     [control]="userForm.controls.codigo_postal"
-                     [placeholder]="'Codigo postal'">
-          </app-input>
+            <label for="direccion">Direccion</label>
+            <app-input [type]="'input'"
+                       [parentForm]="userForm" 
+                       [control]="userForm.controls.direccion"
+                       [placeholder]="'Direccion de residencia'">
+            </app-input>
           </div>
+
 
         </div>
         
 
         <div class="form-row">
-    
-          <div class="col">
-          <label for="direccion">Direccion</label>
-          <app-input [type]="'input'"
-                     [parentForm]="userForm" 
-                     [control]="userForm.controls.direccion"
-                     [placeholder]="'Direccion de residencia'">
-          </app-input>
-          </div>
-          
 
           <div class="col">
           <label for="correo_electronico">Correo electronico</label>
