@@ -141,8 +141,6 @@ export class TablaMaquinaComponent implements OnInit {
   }
 
   editMaquina(id){
-    console.log("in");
-    
     this.router.navigate(['main/maquinas/form/' + id]);
     this.modalService.dismissAll();
 

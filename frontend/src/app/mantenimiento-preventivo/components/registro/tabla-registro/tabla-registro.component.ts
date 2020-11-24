@@ -16,6 +16,8 @@ export class TablaRegistroComponent implements OnInit {
   public messageTitleSuccess: any = "DONE";
   public messageTitleError: any = "ERROR";
   public messageBody: any = "Resultados encontrados";
+  public mesaggeTitleWarning: any = "WARNING";
+  public messageBodyWarning: any;
   public dataSourceTareas;
   public dataSourceSaves;
   public formForTask: FormGroup = new FormGroup({
@@ -120,6 +122,8 @@ export class TablaRegistroComponent implements OnInit {
     },
 
   ];
+
+ 
   
 
   constructor(private RegistroService: RegistroService,
@@ -149,14 +153,15 @@ export class TablaRegistroComponent implements OnInit {
     this.RegistroService.getRegistro(date).subscribe(
       (data: any)  => {
         
+        console.log(data);
         
-        if(data != ' '){
+        if(data.length != 0){
           this.showSuccess();
           this.dataSourceTareas = this.CoreService.replaceFormat(data, ['fechaPlanificada', 'tarea']);
 
         }else{
-          this.messageBody = "Tareas no encontradas en la fecha indicada"
-          this.showSuccess();
+          this.mesaggeTitleWarning = "Tareas no encontradas en la fecha indicada"
+          this.showWarning();
         }
 
       },
@@ -207,6 +212,13 @@ export class TablaRegistroComponent implements OnInit {
     this.MessageService.showError({
       title: this.messageTitleError,
       body: message.errors ? message.errors[0].defaultMessage + ". campo: " + message.errors[0].field + ", Valor rechazado: " + message.errors[0].rejectedValue : message.error
+    })
+  }
+
+  showWarning(){
+    this.MessageService.showWarning({
+      title: this.mesaggeTitleWarning,
+      body: this.messageBodyWarning
     })
   }
 

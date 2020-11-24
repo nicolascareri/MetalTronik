@@ -12,15 +12,10 @@ import java.util.List;
 @Repository
 public interface RegistroRepository extends JpaRepository<Registro, Integer> {
     @Query(nativeQuery = true, value =
-            "SELECT CASE WHEN COUNT(*) > 0 THEN 'true' ELSE 'false' END " +
-                    "FROM Registro r " +
-                    "WHERE EXTRACT(MONTH from r.fecha_planificada) = EXTRACT(month from current_date) " +
-                    "&& EXTRACT(YEAR from r.fecha_planificada) = EXTRACT(YEAR from current_date)")
+            "SELECT CASE WHEN COUNT(*) > 0 THEN 'true' ELSE 'false' END FROM Registro r WHERE EXTRACT(MONTH from r.fecha_planificada) = EXTRACT(month from current_date) and EXTRACT(YEAR from r.fecha_planificada) = EXTRACT(YEAR from current_date)")
     Boolean existsPlanificacionActual();
 
     @Query(nativeQuery = true, value =
-            "SELECT * FROM Registro r " +
-                    "WHERE EXTRACT(MONTH from r.fecha_planificada) = EXTRACT(month from :date) " +
-                    "&& EXTRACT(YEAR from r.fecha_planificada) = EXTRACT(YEAR from :date)")
-    List<Registro> getByDate(@Param("date") Date date);
+            "SELECT * FROM Registro r WHERE EXTRACT(MONTH from r.fecha_planificada) = :month and EXTRACT(YEAR from r.fecha_planificada) = :year")
+    List<Registro> getByDate(@Param("year") int year,@Param("month") int month);
 }

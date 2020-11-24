@@ -60,7 +60,9 @@ public class RegistroServiceImpl implements RegistroService {
         if(registroRepository.existsPlanificacionActual()){
             throw new ValidateFieldException("Ya existe una planificacion para este mes","mes",String.valueOf(Calendar.getInstance().get(Calendar.MONTH) + 1));
         }
-        return registroRepository.saveAll(getForMonth(fechaActual));
+        List<Registro> a = new ArrayList<>();
+        a.addAll(getForMonth(fechaActual));
+        return registroRepository.saveAll(a);
     }
 
     @Override
@@ -79,7 +81,11 @@ public class RegistroServiceImpl implements RegistroService {
 
     @Override
     public List<Registro> getActualOrPast(Date date) {
-        return registroRepository.getByDate(date);
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(date);
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        return registroRepository.getByDate(year ,month);
     }
 
     @Override

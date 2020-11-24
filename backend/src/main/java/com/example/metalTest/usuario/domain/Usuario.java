@@ -57,9 +57,6 @@ public class Usuario {
     private String direccion;
 
     @Column
-    private int codigo_postal;
-
-    @Column
     private int dni;
 
     @Column
