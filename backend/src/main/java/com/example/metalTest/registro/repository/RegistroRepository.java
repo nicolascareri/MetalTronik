@@ -16,6 +16,6 @@ public interface RegistroRepository extends JpaRepository<Registro, Integer> {
     Boolean existsPlanificacionActual();
 
     @Query(nativeQuery = true, value =
-            "SELECT * FROM Registro r WHERE EXTRACT(MONTH from r.fecha_planificada) = :year and EXTRACT(YEAR from r.fecha_planificada) = :month")
+            "SELECT * FROM Registro r WHERE EXTRACT(MONTH from r.fecha_planificada) = :month and EXTRACT(YEAR from r.fecha_planificada) = :year")
     List<Registro> getByDate(@Param("year") int year,@Param("month") int month);
 }
