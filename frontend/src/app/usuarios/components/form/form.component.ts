@@ -20,6 +20,7 @@ export class FormUsuarioComponent implements OnInit {
   public messageTitleSuccess: any = "DONE";
   public messageTitleError: any = "ERROR";
   public messageBody: any = "El usuario se ha creado correctamente";
+  public dataSourceCargos: any;
 
   constructor(private UserService: UserService,
     private router: Router,
@@ -30,6 +31,7 @@ export class FormUsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.params.id;
+    this.getCargos();
   }
 
   ngAfterViewInit(): void {
@@ -60,16 +62,33 @@ export class FormUsuarioComponent implements OnInit {
     )
   }
 
+  getCargos() {
+    this.UserService.getCargos().subscribe(
+      (data: any) => {
+        this.dataSourceCargos = data.map(
+          val => {
+            return {
+              "id": val.id,
+              "nombre": val.nombre_cargo
+            }
+          }
+        );
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
   loadUser(user) {
     this.mode = "edit";
     this.section = 'Editar usuario';
     this.buttonName = 'Confirmar cambios';
-    console.log(user);
     this.userForm.controls.nombre.setValue(user.nombre);
     this.userForm.controls.apellido.setValue(user.apellido);
     this.userForm.controls.dni.setValue(user.dni);
     this.userForm.controls.fnacimiento.setValue(user.fnacimiento.replace(' ', 'T'));
-    this.userForm.controls.cargo.setValue(user.cargo);
+    this.userForm.controls.cargo_id.setValue(user.cargo_id);
     this.userForm.controls.legajo.setValue(user.legajo);
     this.userForm.controls.nombre_usuario.setValue(user.nombre_usuario);
     this.userForm.controls.contrasenia.setValue(user.contrasenia);
@@ -112,7 +131,7 @@ export class FormUsuarioComponent implements OnInit {
       apellido: new FormControl(''),
       dni: new FormControl(''),
       fnacimiento: new FormControl(''),
-      cargo: new FormControl(''),
+      cargo_id: new FormControl(''),
       legajo: new FormControl(''),
       nombre_usuario: new FormControl(''),
       contrasenia: new FormControl(''),

@@ -30,6 +30,10 @@ export class UserService {
     return this.http.put<any>(this.path.SERVER.serve + this.path.USUARIOS.PUT + id, user.value);
   }
 
+  getCargos(){
+    return this.http.get(this.path.SERVER.serve + this.path.CARGO.GET);
+  }
+
 
 }
 

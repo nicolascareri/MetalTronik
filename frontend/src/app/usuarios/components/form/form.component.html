@@ -57,11 +57,11 @@
         <div class="form-row">
     
           <div class="col">
-          <label for="cargo">Cargo</label>
-          <app-input [type]="'input'"
+          <label for="cargo_id">Cargo</label>
+          <app-input [type]="'select-pair'"
                      [parentForm]="userForm" 
-                     [control]="userForm.controls.cargo"
-                     [placeholder]="'Cargo del empleado'">
+                     [control]="userForm.controls.cargo_id"
+                     [options]="dataSourceCargos">
           </app-input>
           </div>
     

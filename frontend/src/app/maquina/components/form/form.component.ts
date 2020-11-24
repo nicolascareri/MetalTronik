@@ -129,7 +129,6 @@ export class FormMaquinaComponent implements OnInit {
             }
           }
         );
-        console.log(this.dataSourceSectors);
       },
       (error) => {
         console.error(error);

@@ -100,14 +100,6 @@ export class TablaUsuarioComponent implements OnInit {
       }, 
       {
         id: 12,
-        property:'codigo_postal',
-        name: 'Codigo postal',
-        sort: '',
-        filterValue: '',
-        width: '20%'
-      },  
-      {
-        id: 13,
         property:'direccion',
         name: 'Direccion',
         sort: '',
