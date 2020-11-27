@@ -62,7 +62,6 @@ public class OrdenesTrabajo implements Comparable<OrdenesTrabajo>{
     @JoinColumn
     @Getter
     @Setter
-
     private Usuario responsable;
 
     @Column
@@ -74,9 +73,6 @@ public class OrdenesTrabajo implements Comparable<OrdenesTrabajo>{
     @Column
     private int ordenTerciarizacion;
 
-    public Usuario getResponsable(){
-        return responsable;
-    }
 
 
 

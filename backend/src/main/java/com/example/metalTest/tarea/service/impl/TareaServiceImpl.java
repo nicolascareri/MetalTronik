@@ -49,6 +49,7 @@ public class TareaServiceImpl implements TareaService {
         if (tareaRequest.getEstado() != Estado.ACTIVO.getValue() && tareaRequest.getEstado() != Estado.ELIMINADO.getValue()) {
             throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(tareaRequest.getEstado()));
         }
+        //guardar la guardo en otra entidad/tabla(tarea-historial)
         Tarea tarea = optionalTarea.get();
         tarea.setEstado(tareaRequest.getEstado());
         tarea.setFrecuencia(tareaRequest.getFrecuencia());
