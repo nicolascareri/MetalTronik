@@ -83,10 +83,10 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
      * @param ordenesTrabajoRequest json enviado del frontend
      * @return orden de trabajo seteada
      */
-    private OrdenesTrabajo setOrdenesTrabajo(OrdenesTrabajoRequest ordenesTrabajoRequest) throws ValidateFieldException {
+    private OrdenesTrabajo setOrdenesTrabajo(OrdenesTrabajoRequest ordenesTrabajoRequest){
         OrdenesTrabajo ordenesTrabajo = new OrdenesTrabajo();
         ordenesTrabajo.setMaquina(maquinaRepository.findById(ordenesTrabajoRequest.getMaquina_id()).get());
-        ordenesTrabajo.setParte(this.setParte(ordenesTrabajoRequest.getParte_id()));
+        ordenesTrabajo.setParte(this.setParte(ordenesTrabajoRequest.getParte_id(),ordenesTrabajoRequest.getMaquina_id()));
         ordenesTrabajo.setEncargo(usuarioRepository.findById(ordenesTrabajoRequest.getEncargo_cod()).get());
         ordenesTrabajo.setResponsable(usuarioRepository.findById(ordenesTrabajoRequest.getResponsable_cod()).get());
         ordenesTrabajo.setTipo(tipoRepository.findById(ordenesTrabajoRequest.getTipo_cod()).get());
@@ -100,11 +100,14 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
      * @param parteId
      * @return null(si parteId es null o si no lo encuentra en la base) o Parte
      */
-    private Parte setParte(Integer parteId){
+    private Parte setParte(Integer parteId, Integer maquinaId){
         if(parteId != null){
-            Optional<Parte> optionalParte = parteRepository.findById(parteId);
-            if (optionalParte.isPresent()){
-               return optionalParte.get();
+            List<Parte> parteList = parteRepository.getAllByMaquina(maquinaId);
+            if (!parteList.isEmpty()){
+                for (Parte a: parteList
+                     ) {
+                    if(a.getId() == parteId) return a;
+                }
             }
         }
         return null;

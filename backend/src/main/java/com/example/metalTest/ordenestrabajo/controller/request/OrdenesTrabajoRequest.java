@@ -19,7 +19,6 @@ public class OrdenesTrabajoRequest {
     @NotNull
     @ValidEntity(repository = MaquinaRepository.class)
     private int maquina_id;
-    @ValidEntity(repository = ParteRepository.class)
     private Integer parte_id;
     @NotNull
     private String pedidoMateriales;
