@@ -102,13 +102,7 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
      */
     private Parte setParte(Integer parteId, Integer maquinaId){
         if(parteId != null){
-            List<Parte> parteList = parteRepository.getAllByMaquina(maquinaId);
-            if (!parteList.isEmpty()){
-                for (Parte a: parteList
-                     ) {
-                    if(a.getId() == parteId) return a;
-                }
-            }
+            return findParte(maquinaId, parteId);
         }
         return null;
     }
@@ -131,18 +125,32 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         ordenesTrabajo.setObservaciones(ordenesTrabajoRequest.getObservaciones());
         ordenesTrabajo.setOrdenTerciarizacion(ordenesTrabajoRequest.getOrdenTerciarizacion());
         ordenesTrabajo.setEstado(ordenesTrabajoRequest.getEstado());
+        ordenesTrabajo.setMaquina(maquinaRepository.findById(ordenesTrabajoRequest.getMaquina_id()).get());
+        ordenesTrabajo.setParte(updateParte(ordenesTrabajo, ordenesTrabajoRequest.getParte_id()));
         if (ordenesTrabajoRequest.getFechaEntrega().after(ordenesTrabajoRequest.getFechaRealizar())) {
             throw new ValidateFieldException("La fecha de entrega no puede ser menor que la fecha de realizar", "Fecha de entrega", String.valueOf(ordenesTrabajoRequest.getFechaRealizar()));
         }
         return ordenesTrabajoMapper.toOrdenesTrabajoResponse(ordenesTrabajoRepository.save(ordenesTrabajo));
     }
 
+    private Parte updateParte(OrdenesTrabajo ordenesTrabajo, Integer parteId) {
+        if(parteId == null)
+            return null;
+        else{
+            return findParte(ordenesTrabajo.getMaquina().getId(), parteId);
+        }
 
-
-
-
-
-
+    }
+    private Parte findParte(Integer maquinaId, Integer parteId){
+        List<Parte> parteList = parteRepository.getAllByMaquina(maquinaId);
+        if (!parteList.isEmpty()){
+            for (Parte a: parteList
+            ) {
+                if(a.getId() == parteId) return a;
+            }
+        }
+        return null;
+    }
 
 
 }
