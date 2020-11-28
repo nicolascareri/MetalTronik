@@ -1,5 +1,6 @@
 package com.example.metalTest.maquina.controller.response;
 
+import com.example.metalTest.parte.domain.Parte;
 import com.example.metalTest.planta.domain.Planta;
 import com.example.metalTest.sector.domain.Sector;
 import lombok.AllArgsConstructor;
@@ -19,4 +20,5 @@ public class MaquinaReducidoResponse {
     private Sector sector;
     private String equipo;
     private String descripcion;
+    private Parte parte;
 }

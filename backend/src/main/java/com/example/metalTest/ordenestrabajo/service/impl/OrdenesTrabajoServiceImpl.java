@@ -14,6 +14,7 @@ import com.example.metalTest.ordenestrabajo.repository.OrdenesTrabajoRepository;
 import com.example.metalTest.ordenestrabajo.service.OrdenesTrabajoService;
 import com.example.metalTest.parte.domain.Parte;
 import com.example.metalTest.parte.repository.ParteRepository;
+import com.example.metalTest.parte.service.impl.ParteBuscador;
 import com.example.metalTest.prioridades.repository.PrioridadesRepository;
 import com.example.metalTest.tipo.repository.TipoRepository;
 import com.example.metalTest.usuario.repository.UsuarioRepository;
@@ -50,6 +51,7 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
 
     @Autowired
     MantenimientoCorrectivoRepository mantenimientoCorrectivoRepository;
+    ParteBuscador parteBuscador = new ParteBuscador();
 
 
     @Override
@@ -85,8 +87,9 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
      */
     private OrdenesTrabajo setOrdenesTrabajo(OrdenesTrabajoRequest ordenesTrabajoRequest){
         OrdenesTrabajo ordenesTrabajo = new OrdenesTrabajo();
-        ordenesTrabajo.setMaquina(maquinaRepository.findById(ordenesTrabajoRequest.getMaquina_id()).get());
-        ordenesTrabajo.setParte(this.setParte(ordenesTrabajoRequest.getParte_id(),ordenesTrabajoRequest.getMaquina_id()));
+        Integer maquinaCod = ordenesTrabajoRequest.getMaquina_id();
+        ordenesTrabajo.setMaquina(maquinaRepository.findById(maquinaCod).get());
+        ordenesTrabajo.setParte(parteBuscador.getParte(ordenesTrabajoRequest.getMaquina_id(), ordenesTrabajoRequest.getParte_id(), parteRepository.getAllByMaquina(maquinaCod)));
         ordenesTrabajo.setEncargo(usuarioRepository.findById(ordenesTrabajoRequest.getEncargo_cod()).get());
         ordenesTrabajo.setResponsable(usuarioRepository.findById(ordenesTrabajoRequest.getResponsable_cod()).get());
         ordenesTrabajo.setTipo(tipoRepository.findById(ordenesTrabajoRequest.getTipo_cod()).get());
@@ -95,17 +98,7 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         return ordenesTrabajo;
     }
 
-    /**
-     * Verifica que el campo "parteId" exista, si asi es lo busca en la base de datos
-     * @param parteId
-     * @return null(si parteId es null o si no lo encuentra en la base) o Parte
-     */
-    private Parte setParte(Integer parteId, Integer maquinaId){
-        if(parteId != null){
-            return findParte(maquinaId, parteId);
-        }
-        return null;
-    }
+
 
     @Override
     public OrdenesTrabajoResponse update(OrdenesTrabajoRequest ordenesTrabajoRequest, Integer id) throws ValidateFieldException {
@@ -114,6 +107,7 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
             throw new ValidateFieldException("La orden de trabajo a la que intenta acceder no existe", "id", String.valueOf(id));
         }
         OrdenesTrabajo ordenesTrabajo = opt.get();
+        Integer maquinaCod=ordenesTrabajo.getMaquina().getId();
         ordenesTrabajo.setPedidoMateriales(ordenesTrabajoRequest.getPedidoMateriales());
         ordenesTrabajo.setTarea(ordenesTrabajoRequest.getTarea());
         ordenesTrabajo.setPrioridad(prioridadesRepository.findById(ordenesTrabajoRequest.getPrioridad_cod()).get());
@@ -126,31 +120,15 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         ordenesTrabajo.setOrdenTerciarizacion(ordenesTrabajoRequest.getOrdenTerciarizacion());
         ordenesTrabajo.setEstado(ordenesTrabajoRequest.getEstado());
         ordenesTrabajo.setMaquina(maquinaRepository.findById(ordenesTrabajoRequest.getMaquina_id()).get());
-        ordenesTrabajo.setParte(updateParte(ordenesTrabajo, ordenesTrabajoRequest.getParte_id()));
+        ordenesTrabajo.setParte(parteBuscador.getParte(maquinaCod, ordenesTrabajoRequest.getParte_id(),parteRepository.getAllByMaquina(maquinaCod) ));
         if (ordenesTrabajoRequest.getFechaEntrega().after(ordenesTrabajoRequest.getFechaRealizar())) {
             throw new ValidateFieldException("La fecha de entrega no puede ser menor que la fecha de realizar", "Fecha de entrega", String.valueOf(ordenesTrabajoRequest.getFechaRealizar()));
         }
         return ordenesTrabajoMapper.toOrdenesTrabajoResponse(ordenesTrabajoRepository.save(ordenesTrabajo));
     }
 
-    private Parte updateParte(OrdenesTrabajo ordenesTrabajo, Integer parteId) {
-        if(parteId == null)
-            return null;
-        else{
-            return findParte(ordenesTrabajo.getMaquina().getId(), parteId);
-        }
 
-    }
-    private Parte findParte(Integer maquinaId, Integer parteId){
-        List<Parte> parteList = parteRepository.getAllByMaquina(maquinaId);
-        if (!parteList.isEmpty()){
-            for (Parte a: parteList
-            ) {
-                if(a.getId() == parteId) return a;
-            }
-        }
-        return null;
-    }
+
 
 
 }

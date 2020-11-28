@@ -12,6 +12,7 @@ public class TareaRequest {
     private String tarea;
     @ValidEntity(repository = MaquinaRepository.class)
     private Integer maquina_cod;
+    private Integer parte_cod;
     private int frecuencia;
     private Date inicio;
     private Short estado;

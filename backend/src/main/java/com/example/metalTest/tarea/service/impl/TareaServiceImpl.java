@@ -3,6 +3,8 @@ package com.example.metalTest.tarea.service.impl;
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.common.ordenes.Estado;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
+import com.example.metalTest.parte.repository.ParteRepository;
+import com.example.metalTest.parte.service.impl.ParteBuscador;
 import com.example.metalTest.tarea.controller.Response.TareaResponse;
 import com.example.metalTest.tarea.controller.request.TareaRequest;
 import com.example.metalTest.tarea.domain.Tarea;
@@ -25,6 +27,10 @@ public class TareaServiceImpl implements TareaService {
 
     @Autowired
     MaquinaRepository maquinaRepository;
+    @Autowired
+    ParteRepository parteRepository;
+
+    ParteBuscador parteBuscador = new ParteBuscador();
 
     @Override
     public List<TareaResponse> getAll() {
@@ -50,11 +56,13 @@ public class TareaServiceImpl implements TareaService {
             throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(tareaRequest.getEstado()));
         }
         //guardar la guardo en otra entidad/tabla(tarea-historial)
+        Integer maquinaCod = tareaRequest.getMaquina_cod();
         Tarea tarea = optionalTarea.get();
         tarea.setEstado(tareaRequest.getEstado());
         tarea.setFrecuencia(tareaRequest.getFrecuencia());
         tarea.setInicio(tareaRequest.getInicio());
-        tarea.setMaquina(maquinaRepository.findById(tareaRequest.getMaquina_cod()).get());
+        tarea.setMaquina(maquinaRepository.findById(maquinaCod).get());
+        tarea.setParte(parteBuscador.getParte(maquinaCod, tareaRequest.getParte_cod(),parteRepository.getAllByMaquina(maquinaCod)));
         tarea.setTarea(tareaRequest.getTarea());
         return tareaMapper.toTareaResponse(tareaRepository.save(tarea));
     }
@@ -65,7 +73,9 @@ public class TareaServiceImpl implements TareaService {
             throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(tareaRequest.getEstado()));
         }
         Tarea tarea = tareaMapper.tareaRequestToTarea(tareaRequest);
-        tarea.setMaquina(maquinaRepository.findById(tareaRequest.getMaquina_cod()).get());
+        Integer maquinaCod = tareaRequest.getMaquina_cod();
+        tarea.setMaquina(maquinaRepository.findById(maquinaCod).get());
+        tarea.setParte(parteBuscador.getParte(maquinaCod, tareaRequest.getParte_cod(), parteRepository.getAllByMaquina(maquinaCod)));
         return tareaMapper.toTareaResponse(tareaRepository.save(tarea));
     }
 }

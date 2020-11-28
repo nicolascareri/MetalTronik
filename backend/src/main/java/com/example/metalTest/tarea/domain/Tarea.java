@@ -1,6 +1,7 @@
 package com.example.metalTest.tarea.domain;
 
 import com.example.metalTest.maquina.domain.Maquina;
+import com.example.metalTest.parte.domain.Parte;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,6 +23,10 @@ public class Tarea {
     @JoinColumn
     @OneToOne
     private Maquina maquina;
+
+    @JoinColumn
+    @OneToOne
+    private Parte parte;
 
     @Column
     private int frecuencia;
