@@ -53,14 +53,6 @@ export class TablaEntradaComponent implements OnInit {
       width: '15%'
     }, 
     {
-      id: 6,
-      property:'tipoRepuesto',
-      name: 'Tipo de repuesto',
-      sort: '',
-      filterValue: '',
-      width: '15%'
-    }, 
-    {
       id: 7,
       property:'ubicacion',
       name: 'Ubicacion',
@@ -76,31 +68,8 @@ export class TablaEntradaComponent implements OnInit {
       filterValue: '',
       width: '350px'
     },
-    {
-      id: 9,
-      property: 'puntoPedido',
-      name: 'Punto pedido',
-      sort: '',
-      filtervalue: ' ',
-      width: '25%'
-    },
-    {
-      id: 10,
-      property: 'stockObjetivo',
-      name: 'Stock objetivo',
-      sort: '',
-      filtervalue: ' ',
-      width: '25%'
-    },
-    {
-      id: 11,
-      property: 'existencia',
-      name: 'Existencia',
-      sort: '',
-      filtervalue: ' ',
-      width: '25%'
-    }
-      
+    
+    //Fecha de entrada de la entrada
   ];
 
 

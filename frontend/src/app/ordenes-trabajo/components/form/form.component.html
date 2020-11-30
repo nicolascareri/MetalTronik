@@ -10,17 +10,17 @@
       <form [formGroup]="ordenForm" (ngSubmit)="saveForm()">
 
         <div class="form-row">
-    
+
           <div class="col">
-          <label for="encargo_cod">Responsable de encargo</label>
-          <app-input [type]="'select-pair'"
-                     [parentForm]="ordenForm" 
-                     [control]="ordenForm.controls.encargo_cod" 
-                     [options]="dataSourceUsers"
-                     [required]="true">
-                     
-          </app-input>
+            <label for="fechaEntrega">Fecha de entrega</label>
+            <app-input [type]="'datetime-local'" 
+                       [parentForm]="ordenForm"  
+                       [control]="ordenForm.controls.fechaEntrega"
+                       [placeholder]="'DD-MM-YYYY'"
+                       [required]="true">
+            </app-input>
           </div>
+    
     
           <div class="col">
           <label for="fechaRealizar">Fecha a realizar</label>
@@ -37,21 +37,23 @@
         <div class="form-row">
     
           <div class="col">
-          <label for="maquina_cod">Maquina</label>
+          <label for="maquina_id">Maquina</label>
           <app-input [type]="'select-pair'"
                      [parentForm]="ordenForm" 
-                     [control]="ordenForm.controls.parteOrMaquina" 
+                     [control]="ordenForm.controls.maquina_id" 
                      [options]="dataSourceMachines"
-                     [required]="true">
+                     [required]="true"
+                     [(value)]="maquinaId"
+                     (change)="getInAddMode($event.target.value)">
           </app-input>
           </div>
     
           <div class="col">
-          <label for="pedidoMateriales">Materiales</label>
-          <app-input [type]="'input'"
+          <label for="parte_id">Parte de maquina</label>
+          <app-input [type]="'select-pair'"
+                     [options]="dataSourcePartes"
                      [parentForm]="ordenForm" 
-                     [control]="ordenForm.controls.pedidoMateriales"
-                     [placeholder]="'Ingrese materiales'"
+                     [control]="ordenForm.controls.parte_id"
                      [required]="true">
           </app-input>
           </div>
@@ -60,9 +62,19 @@
     
         
         <div class="form-row">
+
+          <div class="col">
+            <label for="pedidoMateriales">Materiales</label>
+            <app-input [type]="'input'"
+                       [parentForm]="ordenForm" 
+                       [control]="ordenForm.controls.pedidoMateriales"
+                       [placeholder]="'Ingrese materiales'"
+                       [required]="true">
+            </app-input>
+          </div>
     
           <div class="col">
-          <label for="prioridad_cod">Prioridades</label>
+          <label for="prioridad_cod">Prioridad</label>
           <app-input [type]="'select-pair'" 
                      [parentForm]="ordenForm" 
                      [control]="ordenForm.controls.prioridad_cod"
@@ -72,15 +84,7 @@
           </div>
     
         
-          <div class="col">
-          <label for="responsable_cod">Responsable</label>
-          <app-input [type]="'select-pair'"
-                     [parentForm]="ordenForm" 
-                     [control]="ordenForm.controls.responsable_cod" 
-                     [options]="dataSourceUsers"
-                     [required]="true">
-          </app-input>
-          </div>
+
         </div>
           
     
@@ -108,29 +112,47 @@
         </div>
     
         <div class="form-row">
+
+          <div class="col">
+            <label for="responsable_cod">Responsable</label>
+            <app-input [type]="'select-pair'"
+                       [parentForm]="ordenForm" 
+                       [control]="ordenForm.controls.responsable_cod" 
+                       [options]="dataSourceUsers"
+                       [required]="true">
+            </app-input>
+          </div>
+
+          <div class="col">
+            <label for="encargo_cod">Responsable de encargo</label>
+            <app-input [type]="'select-pair'"
+                       [parentForm]="ordenForm" 
+                       [control]="ordenForm.controls.encargo_cod" 
+                       [options]="dataSourceUsers"
+                       [required]="true">
+                       
+            </app-input>
+          </div>
+
+        
     
-          <div class="col">
-          <label for="fechaEntrega">Fecha de entrega</label>
-          <app-input [type]="'datetime-local'" 
-                     [parentForm]="ordenForm"  
-                     [control]="ordenForm.controls.fechaEntrega"
-                     [placeholder]="'DD-MM-YYYY'"
-                     [required]="true">
-          </app-input>
-          </div>
-      
-          <div class="col">
-          <label for="ordenTerciarizacion">Orden de terciarizacion</label>
-          <app-input [type]="'onlyNumber'" 
-                     [parentForm]="ordenForm"  
-                     [control]="ordenForm.controls.ordenTerciarizacion"
-                     [placeholder]="'Ingrese numero orden de terciarizacion'"
-                     [required]="true">
-          </app-input>
-          </div>
+
         </div>
     
         <div class="form-row">
+
+
+
+          <div class="col">
+            <label for="ordenTerciarizacion">Orden de terciarizacion</label>
+            <app-input [type]="'onlyNumber'" 
+                       [parentForm]="ordenForm"  
+                       [control]="ordenForm.controls.ordenTerciarizacion"
+                       [placeholder]="'Ingrese numero orden de terciarizacion'"
+                       [required]="true">
+            </app-input>
+          </div>
+          
     
           <div class="col">
           <label for="observaciones">Observaciones</label>
