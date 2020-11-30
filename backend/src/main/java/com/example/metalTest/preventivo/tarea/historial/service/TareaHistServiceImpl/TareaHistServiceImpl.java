@@ -1,5 +1,6 @@
 package com.example.metalTest.preventivo.tarea.historial.service.TareaHistServiceImpl;
 
+import com.example.metalTest.parte.domain.Parte;
 import com.example.metalTest.preventivo.tarea.historial.controller.response.TareaHistorialResponse;
 import com.example.metalTest.preventivo.tarea.historial.domain.TareaHistorial;
 import com.example.metalTest.preventivo.tarea.historial.repository.TareaHistorialRepository;
@@ -28,7 +29,10 @@ public class TareaHistServiceImpl implements TareaHistorialService {
         newTareaHistorial.setInicio(tareas.getInicio());
         newTareaHistorial.setFrecuencia(tareas.getFrecuencia());
         newTareaHistorial.setMaquina(tareas.getMaquina().getDescripcion());
-        newTareaHistorial.setParte(tareas.getParte().getNombre());
+        Parte a = tareas.getParte();
+        if(a != null){
+            newTareaHistorial.setParte(tareas.getParte().getNombre());
+        }
         newTareaHistorial.setTarea_id(tareas.getId());
         newTareaHistorial.setTarea(tareas.getTarea());
         return tareaHistorialRepository.save(newTareaHistorial);

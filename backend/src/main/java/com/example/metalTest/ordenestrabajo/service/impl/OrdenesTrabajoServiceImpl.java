@@ -86,7 +86,7 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         OrdenesTrabajo ordenesTrabajo = new OrdenesTrabajo();
         Integer maquinaCod = ordenesTrabajoRequest.getMaquina_id();
         ordenesTrabajo.setMaquina(maquinaRepository.findById(maquinaCod).get());
-        ordenesTrabajo.setParte(parteBuscador.getParte(ordenesTrabajoRequest.getMaquina_id(), ordenesTrabajoRequest.getParte_id(), parteRepository.getAllByMaquina(maquinaCod)));
+        ordenesTrabajo.setParte(parteBuscador.getParte(ordenesTrabajoRequest.getParte_id(), parteRepository.getAllByMaquina(maquinaCod)));
         ordenesTrabajo.setEncargo(usuarioRepository.findById(ordenesTrabajoRequest.getEncargo_cod()).get());
         ordenesTrabajo.setResponsable(usuarioRepository.findById(ordenesTrabajoRequest.getResponsable_cod()).get());
         ordenesTrabajo.setTipo(tipoRepository.findById(ordenesTrabajoRequest.getTipo_cod()).get());
@@ -117,7 +117,7 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         ordenesTrabajo.setOrdenTerciarizacion(ordenesTrabajoRequest.getOrdenTerciarizacion());
         ordenesTrabajo.setEstado(ordenesTrabajoRequest.getEstado());
         ordenesTrabajo.setMaquina(maquinaRepository.findById(ordenesTrabajoRequest.getMaquina_id()).get());
-        ordenesTrabajo.setParte(parteBuscador.getParte(maquinaCod, ordenesTrabajoRequest.getParte_id(),parteRepository.getAllByMaquina(maquinaCod) ));
+        ordenesTrabajo.setParte(parteBuscador.getParte(ordenesTrabajoRequest.getParte_id(),parteRepository.getAllByMaquina(maquinaCod) ));
         if (ordenesTrabajoRequest.getFechaEntrega().after(ordenesTrabajoRequest.getFechaRealizar())) {
             throw new ValidateFieldException("La fecha de entrega no puede ser menor que la fecha de realizar", "Fecha de entrega", String.valueOf(ordenesTrabajoRequest.getFechaRealizar()));
         }

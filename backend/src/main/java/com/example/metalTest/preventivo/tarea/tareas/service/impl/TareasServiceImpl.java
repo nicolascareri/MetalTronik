@@ -66,7 +66,7 @@ public class TareasServiceImpl implements TareasService {
         tarea.setFrecuencia(tareasRequest.getFrecuencia());
         tarea.setInicio(tareasRequest.getInicio());
         tarea.setMaquina(maquinaRepository.findById(maquinaCod).get());
-        tarea.setParte(parteBuscador.getParte(maquinaCod, tareasRequest.getParte_cod(),parteRepository.getAllByMaquina(maquinaCod)));
+        tarea.setParte(parteBuscador.getParte(tareasRequest.getParte_cod(),parteRepository.getAllByMaquina(maquinaCod)));
         tarea.setTarea(tareasRequest.getTarea());
         return tareasMapper.toTareaResponse(tareasRepository.save(tarea));
     }
@@ -79,7 +79,7 @@ public class TareasServiceImpl implements TareasService {
         Tareas tarea = tareasMapper.tareaRequestToTarea(tareasRequest);
         Integer maquinaCod = tareasRequest.getMaquina_cod();
         tarea.setMaquina(maquinaRepository.findById(maquinaCod).get());
-        tarea.setParte(parteBuscador.getParte(maquinaCod, tareasRequest.getParte_cod(), parteRepository.getAllByMaquina(maquinaCod)));
+        tarea.setParte(parteBuscador.getParte(tareasRequest.getParte_cod(), parteRepository.getAllByMaquina(maquinaCod)));
         return tareasMapper.toTareaResponse(tareasRepository.save(tarea));
     }
 }

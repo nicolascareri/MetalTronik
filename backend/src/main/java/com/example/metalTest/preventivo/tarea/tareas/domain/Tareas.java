@@ -16,7 +16,7 @@ import java.util.List;
 @Setter
 public class Tareas {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column
