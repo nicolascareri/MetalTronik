@@ -27,6 +27,10 @@ public class TareaHistorial {
     @Column
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
     private Date inicio;
+    @Column
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
+    private Date fecha_cambio;
+
 
 
 

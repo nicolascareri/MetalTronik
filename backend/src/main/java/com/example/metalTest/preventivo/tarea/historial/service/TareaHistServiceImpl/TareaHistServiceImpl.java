@@ -8,6 +8,8 @@ import com.example.metalTest.preventivo.tarea.tareas.domain.Tareas;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -34,6 +36,10 @@ public class TareaHistServiceImpl implements TareaHistorialService {
         }
         newTareaHistorial.setTarea_id(tareas.getId());
         newTareaHistorial.setTarea(tareas.getTarea());
+
+        Date date = new Date();
+        System.out.println("date: "+ date);
+        newTareaHistorial.setFecha_cambio(date);
         return tareaHistorialRepository.save(newTareaHistorial);
     }
 }
