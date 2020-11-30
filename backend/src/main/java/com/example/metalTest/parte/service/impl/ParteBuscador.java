@@ -1,14 +1,12 @@
 package com.example.metalTest.parte.service.impl;
 
 import com.example.metalTest.parte.domain.Parte;
-import com.example.metalTest.parte.repository.ParteRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 public class ParteBuscador {
 
 
 
-    private Parte findParte(Integer maquinaId, Integer parteId, List<Parte> parteList ){
+    private Parte findParte(Integer parteId, List<Parte> parteList ){
         if (!parteList.isEmpty()){
             for (Parte a: parteList
             ) {
@@ -23,9 +21,9 @@ public class ParteBuscador {
      * @param parteId
      * @return null(si parteId es null o si no lo encuentra en la base) o Parte
      */
-    public Parte getParte(Integer maquinaId, Integer parteId, List<Parte> parteList){
+    public Parte getParte(Integer parteId, List<Parte> parteList){
         if(parteId != null){
-            return findParte(maquinaId, parteId, parteList);
+            return findParte(parteId, parteList);
         }
         return null;
     }

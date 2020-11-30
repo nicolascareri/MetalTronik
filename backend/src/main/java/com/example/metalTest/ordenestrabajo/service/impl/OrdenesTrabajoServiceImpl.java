@@ -2,21 +2,18 @@ package com.example.metalTest.ordenestrabajo.service.impl;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.common.ordenes.EstadoOrden;
-import com.example.metalTest.mantenimientoCorrectivo.repository.MantenimientoCorrectivoRepository;
-import com.example.metalTest.maquina.domain.Maquina;
+import com.example.metalTest.correctivo.repository.MantenimientoCorrectivoRepository;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
 import com.example.metalTest.ordenestrabajo.controller.request.OrdenesTrabajoRequest;
 import com.example.metalTest.ordenestrabajo.controller.response.OrdenesTrabajoResponse;
 import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
 import com.example.metalTest.ordenestrabajo.mapper.OrdenesTrabajoMapper;
-import com.example.metalTest.indicadores.mapper.ToIndicadoresMapper;
 import com.example.metalTest.ordenestrabajo.repository.OrdenesTrabajoRepository;
 import com.example.metalTest.ordenestrabajo.service.OrdenesTrabajoService;
-import com.example.metalTest.parte.domain.Parte;
 import com.example.metalTest.parte.repository.ParteRepository;
 import com.example.metalTest.parte.service.impl.ParteBuscador;
 import com.example.metalTest.prioridades.repository.PrioridadesRepository;
-import com.example.metalTest.tipo.repository.TipoRepository;
+import com.example.metalTest.tipos.tipo.repository.TipoRepository;
 import com.example.metalTest.usuario.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -89,7 +86,7 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         OrdenesTrabajo ordenesTrabajo = new OrdenesTrabajo();
         Integer maquinaCod = ordenesTrabajoRequest.getMaquina_id();
         ordenesTrabajo.setMaquina(maquinaRepository.findById(maquinaCod).get());
-        ordenesTrabajo.setParte(parteBuscador.getParte(ordenesTrabajoRequest.getMaquina_id(), ordenesTrabajoRequest.getParte_id(), parteRepository.getAllByMaquina(maquinaCod)));
+        ordenesTrabajo.setParte(parteBuscador.getParte(ordenesTrabajoRequest.getParte_id(), parteRepository.getAllByMaquina(maquinaCod)));
         ordenesTrabajo.setEncargo(usuarioRepository.findById(ordenesTrabajoRequest.getEncargo_cod()).get());
         ordenesTrabajo.setResponsable(usuarioRepository.findById(ordenesTrabajoRequest.getResponsable_cod()).get());
         ordenesTrabajo.setTipo(tipoRepository.findById(ordenesTrabajoRequest.getTipo_cod()).get());
@@ -125,7 +122,7 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         ordenesTrabajo.setOrdenTerciarizacion(ordenesTrabajoRequest.getOrdenTerciarizacion());
         ordenesTrabajo.setEstado(ordenesTrabajoRequest.getEstado());
         ordenesTrabajo.setMaquina(maquinaRepository.findById(ordenesTrabajoRequest.getMaquina_id()).get());
-        ordenesTrabajo.setParte(parteBuscador.getParte(maquinaCod, ordenesTrabajoRequest.getParte_id(),parteRepository.getAllByMaquina(maquinaCod) ));
+        ordenesTrabajo.setParte(parteBuscador.getParte(ordenesTrabajoRequest.getParte_id(),parteRepository.getAllByMaquina(maquinaCod) ));
         if (ordenesTrabajoRequest.getFechaEntrega().after(ordenesTrabajoRequest.getFechaRealizar())) {
             throw new ValidateFieldException("La fecha de entrega no puede ser menor que la fecha de realizar", "Fecha de entrega", String.valueOf(ordenesTrabajoRequest.getFechaRealizar()));
         }
