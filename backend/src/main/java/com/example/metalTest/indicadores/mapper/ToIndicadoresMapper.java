@@ -4,7 +4,6 @@ import com.example.metalTest.indicadores.controller.response.IndicatorResponse;
 import com.example.metalTest.indicadores.mapper.formulas.Formula;
 import com.example.metalTest.indicadores.mapper.formulas.Formula1;
 import com.example.metalTest.indicadores.mapper.formulas.Formula2;
-import com.example.metalTest.mantenimientoCorrectivo.domain.MantenimientoCorrectivo;
 import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
 
 import java.util.List;

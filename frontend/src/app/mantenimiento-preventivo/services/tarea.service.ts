@@ -11,12 +11,17 @@ export class TareaService {
 
   constructor(private http: HttpClient) { }
 
+  
   getTareas(){
     return this.http.get(this.path.SERVER.serve + this.path.TAREA.GET);
   }
-
+  
   getTarea(id){
     return this.http.get(this.path.SERVER.serve + this.path.TAREA.GETID + id);
+  }
+  
+  getHistorial(id){
+    return this.http.get(this.path.SERVER.serve + this.path.TAREA.GETPUTHISTORIAL + id);
   }
 
   postTarea(tareaForm){

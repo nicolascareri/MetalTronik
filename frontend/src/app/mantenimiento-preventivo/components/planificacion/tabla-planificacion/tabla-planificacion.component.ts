@@ -31,6 +31,14 @@ export class TablaPlanificacionComponent implements OnInit {
     },
     {
       id: 3,
+      property: 'parte',
+      name: 'Codigo de parte',
+      sort: '',
+      filterValue: '',
+      width: '15%'
+    },
+    {
+      id: 4,
       property: 'tarea',
       name: 'Tarea',
       sort: '',
@@ -38,7 +46,7 @@ export class TablaPlanificacionComponent implements OnInit {
       width: '15%'
     },
     {
-      id: 4,
+      id: 5,
       property: 'frecuencia',
       name: 'Frecuencia',
       sort: '',
@@ -46,7 +54,7 @@ export class TablaPlanificacionComponent implements OnInit {
       width: '15%'
     },
     {
-      id: 5,
+      id: 6,
       property: 'inicio',
       name: 'Fecha de inicio',
       sort: '',
@@ -66,7 +74,7 @@ export class TablaPlanificacionComponent implements OnInit {
   getTareas(){
     this.TareaService.getTareas().subscribe(
       (data: any) => {
-        this.dataSourceTareas = this.CoreService.replaceFormat(data, ['maquina', 'inicio']);
+        this.dataSourceTareas = this.CoreService.replaceFormat(data, ['maquina', 'inicio', 'parte']);
       },
       (error) => {
         console.error(error);

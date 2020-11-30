@@ -1,7 +1,7 @@
 package com.example.metalTest.indicadores.controller;
 
 import com.example.metalTest.indicadores.service.IndicadoresService;
-import com.example.metalTest.mantenimientoCorrectivo.service.MantenimientoCorrectivoService;
+import com.example.metalTest.correctivo.service.MantenimientoCorrectivoService;
 import com.example.metalTest.indicadores.controller.response.IndicatorResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

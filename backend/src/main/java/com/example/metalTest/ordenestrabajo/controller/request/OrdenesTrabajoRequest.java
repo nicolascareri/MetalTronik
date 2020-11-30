@@ -1,8 +1,9 @@
 package com.example.metalTest.ordenestrabajo.controller.request;
 
 import com.example.metalTest.common.validator.ValidEntity;
+import com.example.metalTest.maquina.repository.MaquinaRepository;
 import com.example.metalTest.prioridades.repository.PrioridadesRepository;
-import com.example.metalTest.tipo.repository.TipoRepository;
+import com.example.metalTest.tipos.tipo.repository.TipoRepository;
 import com.example.metalTest.usuario.repository.UsuarioRepository;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +15,10 @@ import java.util.Date;
 @Setter
 public class OrdenesTrabajoRequest {
 
-    private int parteOrMaquina;
+    @NotNull
+    @ValidEntity(repository = MaquinaRepository.class)
+    private int maquina_id;
+    private Integer parte_id;
     @NotNull
     private String pedidoMateriales;
     @NotNull

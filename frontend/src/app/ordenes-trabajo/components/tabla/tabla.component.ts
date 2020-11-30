@@ -41,7 +41,15 @@ export class TablaOrdenesComponent implements OnInit {
       width: '14%'
     },
     {
-      id: 3,
+      id:3,
+      property:'parte',
+      name:'Codigo de parte',
+      sort:'',
+      filtervalue: '',
+      width:'15%'
+    },
+    {
+      id: 4,
       property:'planta',
       name: 'Planta',
       sort: '',
@@ -49,7 +57,7 @@ export class TablaOrdenesComponent implements OnInit {
       width: '15%'
     }, 
     {
-      id: 4,
+      id: 5,
       property:'sector',
       name: 'Sector',
       sort: '',
@@ -57,7 +65,7 @@ export class TablaOrdenesComponent implements OnInit {
       width: '15%'
     },
     {
-      id: 5,
+      id: 6,
       property:'tarea',
       name: 'Tarea',
       sort: '',
@@ -65,7 +73,7 @@ export class TablaOrdenesComponent implements OnInit {
       width: '15%'
     }, 
     {
-      id: 6,
+      id: 7,
       property:'tipo',
       name: 'Tipo',
       sort: '',
@@ -73,7 +81,7 @@ export class TablaOrdenesComponent implements OnInit {
       width: '15%'
     }, 
     {
-      id: 7,
+      id: 8,
       property:'prioridad',
       name: 'Prioridad',
       sort: '',
@@ -81,7 +89,7 @@ export class TablaOrdenesComponent implements OnInit {
       width: '15%'
     }, 
     {
-      id: 8,
+      id: 9,
       property:'fechaEntrega',
       name: 'Fecha Entrega',
       sort: '',
@@ -89,7 +97,7 @@ export class TablaOrdenesComponent implements OnInit {
       width: '350px'
     }, 
     {
-      id: 9,
+      id: 10,
       property:'fechaRealizar',
       name: 'Fecha Realizar',
       sort: '',
@@ -97,7 +105,7 @@ export class TablaOrdenesComponent implements OnInit {
       width: '350px'
     },
     {
-      id: 10,
+      id: 11,
       property:'encargo',
       name: 'Encargó',
       sort: '',
@@ -105,7 +113,7 @@ export class TablaOrdenesComponent implements OnInit {
       width: '20%'
     }, 
     {
-      id: 11,
+      id: 12,
       property:'responsable',
       name: 'Responsable',
       sort: '',
@@ -113,7 +121,7 @@ export class TablaOrdenesComponent implements OnInit {
       width: '20%'
     }, 
     {
-      id: 12,
+      id: 13,
       property:'estado',
       name: 'Estado',
       sort: '',
@@ -121,7 +129,7 @@ export class TablaOrdenesComponent implements OnInit {
       width: '20%'
     },  
     {
-      id: 13,
+      id: 14,
       property:'ordenTerciarizacion',
       name: 'Nro. Orden de Terciarizacion',
       sort: '',
@@ -181,7 +189,7 @@ export class TablaOrdenesComponent implements OnInit {
     .pipe(first())
     .subscribe(
       (data: any) => {
-        this.dataSourceOrdenes = this.coreService.replaceFormat(data, ['maquina', 'encargo', 'responsable', 'prioridad', 'tipo', 'fechaEntrega', 'fechaRealizar', 'ordentrabajo', 'estado']);
+        this.dataSourceOrdenes = this.coreService.replaceFormat(data, ['maquina', 'parte', 'encargo', 'responsable', 'prioridad', 'tipo', 'fechaEntrega', 'fechaRealizar', 'ordentrabajo', 'estado']);
       },
       (error) => {
         console.error(error);

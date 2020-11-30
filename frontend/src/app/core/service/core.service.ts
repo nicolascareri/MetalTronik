@@ -100,6 +100,11 @@ export class CoreService {
                 result.maquina = result.maquina.maquina_cod;
               }  
               break;
+            case 'parte':
+              if(result.parte){
+                result.parte = result.parte.codigo;
+              }  
+              break;
             case 'tarea':
               if(result.tarea){
                 result.sector = result.tarea.maquina.sector.descripcion;
