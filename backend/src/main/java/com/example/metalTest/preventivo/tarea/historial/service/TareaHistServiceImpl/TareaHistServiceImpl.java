@@ -1,7 +1,6 @@
 package com.example.metalTest.preventivo.tarea.historial.service.TareaHistServiceImpl;
 
 import com.example.metalTest.parte.domain.Parte;
-import com.example.metalTest.preventivo.tarea.historial.controller.response.TareaHistorialResponse;
 import com.example.metalTest.preventivo.tarea.historial.domain.TareaHistorial;
 import com.example.metalTest.preventivo.tarea.historial.repository.TareaHistorialRepository;
 import com.example.metalTest.preventivo.tarea.historial.service.TareaHistorialService;

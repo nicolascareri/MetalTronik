@@ -20,5 +20,4 @@ public class MaquinaReducidoResponse {
     private Sector sector;
     private String equipo;
     private String descripcion;
-    private Parte parte;
 }
