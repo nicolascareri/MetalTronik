@@ -95,6 +95,11 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         ordenesTrabajo.setTipo(tipoRepository.findById(ordenesTrabajoRequest.getTipo_cod()).get());
         ordenesTrabajo.setPrioridad(prioridadesRepository.findById(ordenesTrabajoRequest.getPrioridad_cod()).get());
         ordenesTrabajo.setEstado(EstadoOrden.PENDIENTE.getValue());
+        ordenesTrabajo.setFechaEntrega(ordenesTrabajoRequest.getFechaEntrega());
+        ordenesTrabajo.setFechaRealizar(ordenesTrabajoRequest.getFechaRealizar());
+        ordenesTrabajo.setObservaciones(ordenesTrabajoRequest.getObservaciones());
+        ordenesTrabajo.setPedidoMateriales(ordenesTrabajoRequest.getPedidoMateriales());
+        ordenesTrabajo.setTarea(ordenesTrabajoRequest.getTarea());
         return ordenesTrabajo;
     }
 
