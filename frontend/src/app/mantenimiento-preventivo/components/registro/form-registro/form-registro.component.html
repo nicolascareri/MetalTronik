@@ -17,11 +17,11 @@
           <div class="form-row">
       
             <div class="col">
-            <label for="observaciones">Observaciones</label>
-            <app-input [type]="'input'" 
+            <label for="encargado">Encargado</label>
+            <app-input [type]="'select-pair'" 
                        [parentForm]="tareaForm"  
-                       [control]="tareaForm.controls.observaciones"
-                       [placeholder]="'Observaciones'">
+                       [control]="tareaForm.controls.encargado"
+                       [options]="users">
             </app-input>
             </div>
 
@@ -41,6 +41,8 @@
                        [control]="tareaForm.controls.fechaRealizada">
             </app-input>
             </div>
+
+ 
   
 
 
@@ -48,6 +50,15 @@
 
   
           </div>
+
+          <div class="col">
+            <label for="observaciones">Observaciones</label>
+            <app-input [type]="'input'" 
+                       [parentForm]="tareaForm"  
+                       [control]="tareaForm.controls.observaciones"
+                       [placeholder]="'Observaciones'">
+            </app-input>
+            </div>
   
   
           <div style="margin-top: 3%" class="btn-group btn-group-toggle" data-toggle="buttons">

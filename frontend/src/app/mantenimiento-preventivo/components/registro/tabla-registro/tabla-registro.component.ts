@@ -105,7 +105,15 @@ export class TablaRegistroComponent implements OnInit {
       width: '35%'
     },
     {
-      id: 6,
+      id:6,
+      property: 'encargado',
+      name: 'Encargado',
+      sort: '',
+      filtervalue: '',
+      width: '55%'
+    },
+    {
+      id: 7,
       property: 'fechaRealizada',
       name: 'Fecha de realización',
       sort: '',
@@ -113,7 +121,7 @@ export class TablaRegistroComponent implements OnInit {
       width: '35%'
     },
     {
-      id: 7,
+      id: 8,
       property: 'observaciones',
       name: 'Observaciones',
       sort: '',
@@ -189,7 +197,7 @@ export class TablaRegistroComponent implements OnInit {
       (data: any) => {
         this.messageBody = "Registros encontrados"
         this.showSuccess();
-        this.dataSourceSaves = this.CoreService.replaceFormat(data, ['fechaPlanificada', 'tarea', 'fechaRealizada', 'realizo']);
+        this.dataSourceSaves = this.CoreService.replaceFormat(data, ['fechaPlanificada', 'tarea', 'fechaRealizada', 'realizo', 'encargado']);
 
 
       },
