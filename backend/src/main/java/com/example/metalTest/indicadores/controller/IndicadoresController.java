@@ -1,5 +1,6 @@
 package com.example.metalTest.indicadores.controller;
 
+import com.example.metalTest.indicadores.controller.response.Torta;
 import com.example.metalTest.indicadores.service.IndicadoresService;
 import com.example.metalTest.correctivo.service.MantenimientoCorrectivoService;
 import com.example.metalTest.indicadores.controller.response.IndicatorResponse;
@@ -43,6 +44,10 @@ public class IndicadoresController {
     @GetMapping("2/sector")
     public ResponseEntity<List<IndicatorResponse>> getIndForm2Sector() {
         return new ResponseEntity<>(indicadoresService.getIndicatorForm2Sector(), HttpStatus.OK);
+    }
+    @GetMapping("Torta")
+    public ResponseEntity<Torta> getGrafTorta() {
+        return new ResponseEntity<>(indicadoresService.getGrafTorta(), HttpStatus.OK);
     }
 
 

@@ -1,8 +1,8 @@
 package com.example.metalTest.indicadores.service;
 
 import com.example.metalTest.indicadores.controller.response.IndicatorResponse;
+import com.example.metalTest.indicadores.controller.response.Torta;
 
-import java.text.ParseException;
 import java.util.List;
 
 public interface IndicadoresService {
@@ -13,4 +13,5 @@ public interface IndicadoresService {
     List<IndicatorResponse> getIndicatorForm2Usuario();
 
     List<IndicatorResponse> getIndicatorForm2Sector();
+    Torta getGrafTorta();
 }

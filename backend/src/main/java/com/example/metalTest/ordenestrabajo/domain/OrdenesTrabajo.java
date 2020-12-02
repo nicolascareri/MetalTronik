@@ -40,7 +40,7 @@ public class OrdenesTrabajo implements Comparable<OrdenesTrabajo>{
     @JoinColumn
     private Prioridades prioridad;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn
     private Tipo tipo;
 

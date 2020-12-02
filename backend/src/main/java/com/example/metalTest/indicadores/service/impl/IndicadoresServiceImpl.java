@@ -1,5 +1,6 @@
 package com.example.metalTest.indicadores.service.impl;
 
+import com.example.metalTest.indicadores.controller.response.Torta;
 import com.example.metalTest.indicadores.mapper.IndicadoresMapper;
 import com.example.metalTest.indicadores.mapper.ToIndicadoresMapper;
 import com.example.metalTest.indicadores.service.IndicadoresService;
@@ -10,8 +11,7 @@ import com.example.metalTest.ordenestrabajo.repository.OrdenesTrabajoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class IndicadoresServiceImpl implements IndicadoresService {
@@ -50,5 +50,20 @@ public class IndicadoresServiceImpl implements IndicadoresService {
         return null;
     }
 
+    public Torta getGrafTorta(){
+        List<String[]>  a =  ordenesTrabajoRepository.getOrdenesTrabajoByTipo();
+        Torta torta = new Torta();
+        List<String> labels = new ArrayList<>();
+        List<Integer> numbers = new ArrayList<>();
+        for (Object[] ob : a){
+            String b = String.valueOf(ob[0]);
+            Integer c = Integer.valueOf((String)ob[1]);
+            labels.add(b);
+            numbers.add(c);
+        }
+        torta.setLabels(labels);
+        torta.setNumber(numbers);
+        return torta;
+    }
 
 }
