@@ -26,15 +26,14 @@ public class IndicadoresServiceImpl implements IndicadoresService {
     //FORMULA 1
     @Override
     public List<IndicatorResponse> getIndicatorsForm1Usuario() {
-        List<OrdenesTrabajo> ordenesList = this.ordenesTrabajoRepository.findAll();
-        Collections.sort(ordenesList);
-        return toIndicadoresMapper.toIndicadoresResponseFormula1Usuario(ordenesList);
+        List<String[]> ordenesList = ordenesTrabajoRepository.getOrdenesFormula1Usuario();
+        return toIndicadoresMapper.toIndicadoresResponseFormula1(ordenesList);
     }
 
     @Override
     public List<IndicatorResponse> getIndicatorsForm1Sector() {
-        List<OrdenesTrabajo> ordenesList = this.ordenesTrabajoRepository.getBySectorOrdenado();
-        return toIndicadoresMapper.toIndicadoresResponseFormula1Sector(ordenesList);
+        List<String[]> ordenesList = this.ordenesTrabajoRepository.getOrdenesFormula1Sector();
+        return toIndicadoresMapper.toIndicadoresResponseFormula1(ordenesList);
     }
 
     //FORMULA 2
@@ -42,7 +41,7 @@ public class IndicadoresServiceImpl implements IndicadoresService {
     public List<IndicatorResponse> getIndicatorForm2Usuario(){
         List<OrdenesTrabajo> ordenesList = this.ordenesTrabajoRepository.findAll();
         Collections.sort(ordenesList);
-        return toIndicadoresMapper.toIndicadoresResponseFormula1Usuario(ordenesList);
+        return null;
     }
 
     @Override
@@ -50,20 +49,15 @@ public class IndicadoresServiceImpl implements IndicadoresService {
         return null;
     }
 
-    public Torta getGrafTorta(){
+    @Override
+    public Torta getGrafTortaTipo(){
         List<String[]>  a =  ordenesTrabajoRepository.getOrdenesTrabajoByTipo();
-        Torta torta = new Torta();
-        List<String> labels = new ArrayList<>();
-        List<Integer> numbers = new ArrayList<>();
-        for (Object[] ob : a){
-            String b = String.valueOf(ob[0]);
-            Integer c = Integer.valueOf((String)ob[1]);
-            labels.add(b);
-            numbers.add(c);
-        }
-        torta.setLabels(labels);
-        torta.setNumber(numbers);
-        return torta;
+        return toIndicadoresMapper.toTorta(a);
+    }
+    @Override
+    public Torta getGrafTortaPrioridad(){
+        List<String[]>  a =  ordenesTrabajoRepository.getOrdenesTrabajoByPrioridad();
+        return toIndicadoresMapper.toTorta(a);
     }
 
 }

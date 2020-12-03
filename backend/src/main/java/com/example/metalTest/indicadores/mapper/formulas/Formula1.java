@@ -12,56 +12,34 @@ public class Formula1 extends Formula {
     }
 
     @Override
-    public List<IndicatorResponse> getResultadoUsuario(List<OrdenesTrabajo> consult) {
-        return getIndicadoresUsuario(consult);
+    public List<IndicatorResponse> getResultado(List<String[]> consult) {
+
+        return getResultados(consult);
     }
 
-    @Override
-    public List<IndicatorResponse> getResultadoSector(List<OrdenesTrabajo> consult) {
-        return getIndicadoresSector(consult);
+    private List<IndicatorResponse> getResultados(List<String[]> consult){
+        List<IndicatorResponse> indicadores = new ArrayList<>();
+        for(Object[] ob : consult){
+            String nombre = String.valueOf(ob[0]);
+            Integer totales= Integer.valueOf((String)ob[1]);
+            Integer ordenesOk= Integer.valueOf((String)ob[2]);
+            indicadores.add(getIndicador(getFormula(totales, ordenesOk), nombre));
+        }
+        return indicadores;
+    }
+    private int getFormula(int totales, int ordenesOk){
+        return (ordenesOk*100/totales);
     }
 
-    /**
-     * Devuelve un indicador de sector
-     * @param ordenes
-     * @return indicadorResponse ya editado
-     */
-    IndicatorResponse getSector(List<OrdenesTrabajo> ordenes) {
-        int ordenesTotales = getOrdenesTotalesUsuario(ordenes);
-        int ordenesEnOk = getOrdenesEnOk(ordenes);
-        int resultado = getFormula(ordenesEnOk, ordenesTotales);
-        String nombre = "Sector: "+ordenes.get(0).getMaquina().getSector().getDescripcion();
-        return setIndicador(new ArrayList<>(), nombre, resultado);
+    private IndicatorResponse getIndicador(Integer data, String label){
+        IndicatorResponse indicador = new IndicatorResponse();
+        List<Integer> a = new ArrayList<>();
+        a.add(data);
+        indicador.setData(a);
+        indicador.setLabel(label);
+        return indicador;
     }
 
-    
-
-    /**
-     * Devuelve un indicador de usuario
-     * @param ordenes
-     * @return indicadorResponse ya editado
-     */
-   IndicatorResponse getUsuario(List<OrdenesTrabajo> ordenes){
-        int ordenesTotales = getOrdenesTotalesUsuario(ordenes);
-        int ordenesEnOk = getOrdenesEnOk(ordenes);
-        int resultado = getFormula(ordenesEnOk, ordenesTotales);
-        String nombreCompleto = ordenes.get(0).getResponsable().getApellido()+" "+ordenes.get(0).getResponsable().getNombre();
-        return setIndicador(new ArrayList<>(), nombreCompleto, resultado);
-   }
-
-   
-
-    /**
-     * Formula 1, devuelve las ordenes en ok dividido las ordenes totales porcentaje
-     * @param numerador cantidad de ordenes en ok
-     * @param denominador cantidad de ordenes
-     * @return
-     */
-   int getFormula(int numerador, int denominador){
-        return (numerador*100)/denominador;
-   }
-
-    
 
     
 

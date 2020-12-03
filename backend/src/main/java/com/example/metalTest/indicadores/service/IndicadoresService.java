@@ -13,5 +13,8 @@ public interface IndicadoresService {
     List<IndicatorResponse> getIndicatorForm2Usuario();
 
     List<IndicatorResponse> getIndicatorForm2Sector();
-    Torta getGrafTorta();
+
+    Torta getGrafTortaTipo();
+
+    Torta getGrafTortaPrioridad();
 }
