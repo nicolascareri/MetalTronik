@@ -45,9 +45,13 @@ public class IndicadoresController {
     public ResponseEntity<List<IndicatorResponse>> getIndForm2Sector() {
         return new ResponseEntity<>(indicadoresService.getIndicatorForm2Sector(), HttpStatus.OK);
     }
-    @GetMapping("Torta")
-    public ResponseEntity<Torta> getGrafTorta() {
-        return new ResponseEntity<>(indicadoresService.getGrafTorta(), HttpStatus.OK);
+    @GetMapping("Torta/tipo")
+    public ResponseEntity<Torta> getGrafTortaTipo() {
+        return new ResponseEntity<>(indicadoresService.getGrafTortaTipo(), HttpStatus.OK);
+    }
+    @GetMapping("Torta/prioridad")
+    public ResponseEntity<Torta> getGrafTortaPrioridad() {
+        return new ResponseEntity<>(indicadoresService.getGrafTortaPrioridad(), HttpStatus.OK);
     }
 
 
