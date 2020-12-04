@@ -80,10 +80,10 @@
   
             <div class="col">
             <label for="unidad">Unidad</label>
-            <app-input [type]="'input'"
+            <app-input [type]="'select-pair'"
                        [parentForm]="repuestForm" 
                        [control]="repuestForm.controls.unidad" 
-                       [placeholder]="'Ingrese unidad'">
+                       [options]="unidades">
             </app-input>
             </div>
      
@@ -101,7 +101,7 @@
           <div class="form-row">
   
             <div class="col">
-            <label for="puntoPedido">Punto pedido</label>
+            <label for="puntoPedido">Stock mínimo</label>
             <app-input [type]="'onlyNumber'"
                        [parentForm]="repuestForm" 
                        [control]="repuestForm.controls.puntoPedido" 

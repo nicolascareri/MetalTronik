@@ -25,6 +25,10 @@ export class IndicadoresService {
     return this.http.get(this.path.SERVER.serve + this.path.INDICADORES.PIE_TIPOS);
   }
 
+  getPieForPrioridades(){
+    return this.http.get(this.path.SERVER.serve + this.path.INDICADORES.PIE_PRIORIDADES);
+  }
+
 
 
 

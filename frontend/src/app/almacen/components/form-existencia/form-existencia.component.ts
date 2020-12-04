@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { MessageService } from "../../../core/service/message.service";
 import { AlmacenService } from "../../services/almacen.service";
+import { UNIDADES } from "../../../core/constants/constants";
 
 @Component({
   selector: 'app-form-existencia',
@@ -19,6 +20,7 @@ export class FormExistenciaComponent implements OnInit {
   public messageTitleSuccess: any = "DONE";
   public messageTitleError: any = "ERROR";
   public messageBody: any = "El repuesto se ha creado correctamente";
+  public unidades: any;
   public repuestForm: FormGroup = new FormGroup({
     codigoProducto: new FormControl(''),
     nombre: new FormControl(''),
@@ -39,6 +41,7 @@ export class FormExistenciaComponent implements OnInit {
 
   ngOnInit(): void {
     this.repuestoId = this.route.snapshot.params.id;
+    this.unidades = UNIDADES;
   }
 
   ngAfterViewInit(): void {

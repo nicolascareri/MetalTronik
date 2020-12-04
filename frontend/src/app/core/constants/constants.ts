@@ -126,7 +126,8 @@ export const ENDPOINTS = {
     INDICADORES: {
         USUARIOS: '/api/indicadores/formula/1/usuario',
         SECTORES : '/api/indicadores/formula/1/sector',
-        PIE_TIPOS: '/api/indicadores/formula/Torta'
+        PIE_TIPOS: '/api/indicadores/formula/Torta/tipo',
+        PIE_PRIORIDADES: '/api/indicadores/formula/Torta/prioridad'
     },
     
     CARGO: {
@@ -138,11 +139,24 @@ export const ENDPOINTS = {
     }
 }
 
-export const MENUS = {
-
-    
-
-}
+export const UNIDADES = [
+    {
+        id: "Kilos",
+        descripcion: "Kilos"
+    },
+    {
+        id: "Metros",
+        descripcion: "Metros"
+    },
+    {
+        id: "Litros",
+        descripcion: "Litros"
+    },
+    {
+        id: "Piezas",
+        descripcion: "Piezas"
+    },
+]
 
 export const PRIORIDADES = [
 

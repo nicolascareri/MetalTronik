@@ -26,7 +26,9 @@ export class PieChartComponent implements OnInit {
     }
   };
   public pieChartLabels: Label[] = [];
+  public pieChartLabelsPrioridades: Label[] = [];
   public pieChartData: number[] = [];
+  public pieChartDataPrioridades: number[] = [];
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartPlugins = [pluginDataLabels];
@@ -42,16 +44,25 @@ export class PieChartComponent implements OnInit {
   constructor(private IndicadoresService: IndicadoresService) { }
 
   ngOnInit(): void {
-    this.getLabels();
+    this.getForTipo();
+    this.getForPrioridad();
   }
 
-  getLabels(){
+  getForTipo(){
     this.IndicadoresService.getPieForTipos().subscribe(
       (data: any) => {
-        console.log(data);
         this.pieChartLabels = data.labels;
         this.pieChartData = data.number;
         });
+  }
+
+  getForPrioridad(){
+    this.IndicadoresService.getPieForPrioridades().subscribe(
+      (data: any) => {
+        this.pieChartLabelsPrioridades = data.labels;
+        this.pieChartDataPrioridades = data.number;
+      }
+    );
   }
 
   public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {

@@ -14,22 +14,54 @@ export class TablaEntradaComponent implements OnInit {
   public columnsToDisplay: any[] = [
     {
       id: 1,
-      property:'nombre',
-      name: 'Nombre',
+      property:'cantidad',
+      name: 'Cantidad',
       sort: 'up',
       filterValue: '',
       width: '15%'
-    }, 
+    },
     {
       id: 2,
-      property:'codigoProducto',
-      name: 'Codigo de producto',
+      property: 'fecha',
+      name: 'Fecha de entrada',
+      sort: '',
+      filterValue: '',
+      width: '25&'
+    }, 
+    {
+      id: 3,
+      property:'numeroOrdenCompra',
+      name: 'Nro orden de compra',
       sort: '',
       filterValue: '',
       width: '20%'
     },
     {
-      id: 3,
+      id: 4,
+      property:'proveedor',
+      name: 'Proveedor',
+      sort: '',
+      filterValue: '',
+      width: '15%'
+    }, 
+    {
+      id: 5,
+      property:'codigoProducto',
+      name: 'Cod producto',
+      sort: '',
+      filterValue: '',
+      width: '15%'
+    },
+    {
+      id: 6,
+      property:'modelo',
+      name: 'Modelo',
+      sort: '',
+      filterValue: '',
+      width: '15%'
+    }, 
+    {
+      id: 7,
       property:'marca',
       name: 'Marca',
       sort: '',
@@ -37,33 +69,9 @@ export class TablaEntradaComponent implements OnInit {
       width: '15%'
     }, 
     {
-      id: 4,
-      property:'modelo',
-      name: 'Modelo',
-      sort: '',
-      filterValue: '',
-      width: '15%'
-    },
-    {
-      id: 5,
-      property:'precio',
-      name: 'Precio',
-      sort: '',
-      filterValue: '',
-      width: '15%'
-    }, 
-    {
-      id: 7,
+      id: 8,
       property:'ubicacion',
       name: 'Ubicacion',
-      sort: '',
-      filterValue: '',
-      width: '15%'
-    }, 
-    {
-      id: 8,
-      property:'unidad',
-      name: 'Unidad',
       sort: '',
       filterValue: '',
       width: '350px'
