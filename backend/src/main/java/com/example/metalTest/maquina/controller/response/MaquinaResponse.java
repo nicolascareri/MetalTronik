@@ -1,8 +1,7 @@
 package com.example.metalTest.maquina.controller.response;
 
-import com.example.metalTest.parte.controller.response.ParteResponse;
 import com.example.metalTest.planta.domain.Planta;
-import com.example.metalTest.repuestoMaquina.controller.response.RepuestoMaquinaResponse;
+import com.example.metalTest.almacen.repuestoMaquina.controller.response.RepuestoMaquinaResponse;
 import com.example.metalTest.sector.domain.Sector;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

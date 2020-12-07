@@ -2,7 +2,7 @@ package com.example.metalTest.maquina.domain;
 
 import com.example.metalTest.parte.domain.Parte;
 import com.example.metalTest.planta.domain.Planta;
-import com.example.metalTest.repuestoMaquina.domain.RepuestoMaquina;
+import com.example.metalTest.almacen.repuestoMaquina.domain.RepuestoMaquina;
 import com.example.metalTest.sector.domain.Sector;
 import lombok.Getter;
 import lombok.Setter;
