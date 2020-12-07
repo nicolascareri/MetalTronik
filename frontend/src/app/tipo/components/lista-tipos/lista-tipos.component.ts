@@ -16,9 +16,11 @@ export class ListaTiposComponent implements OnInit {
   createFormGroup() {
     return new FormGroup({
       nombre: new FormControl(''),
-      estado: new FormControl(30)
+      tipo: new FormControl('Ordenes')
     })
   }
+  public panelOpenState1 = false;
+  public panelOpenState2 = false;
 
   constructor(private TipoService: TipoService) 
   {
@@ -32,6 +34,8 @@ export class ListaTiposComponent implements OnInit {
         this.dataSourceTipos = data;
       },
       (error) => {
+        console.log(error.error);
+        
       }
     );
 

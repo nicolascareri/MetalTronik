@@ -2,12 +2,12 @@
     
     <mat-tab-group>
 
-        <mat-tab label="Personalizar">
+        <mat-tab label="Tipos">
 
             <mat-expansion-panel (opened)="panelOpenState1 = true" (closed)="panelOpenState1 = false">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        Prioridades
+                        Prioridades de ordenes de trabajo
                     </mat-panel-title>
                     <mat-panel-description>
                         Presiona para {{panelOpenState1 ? 'ocultar' : 'ver'}} la lista de prioridades
@@ -20,28 +20,16 @@
 
             </mat-expansion-panel>
 
-            <mat-expansion-panel (opened)="panelOpenState2 = true" (closed)="panelOpenState2 = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Tipos
-                    </mat-panel-title>
-                    <mat-panel-description>
-                        Presiona para {{panelOpenState2 ? 'ocultar' : 'ver'}} la lista de tipos
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
 
-                <p>
-                    <app-lista-tipos></app-lista-tipos>
-                </p>
 
-            </mat-expansion-panel>
+                                <app-lista-tipos></app-lista-tipos>
+        
+
+            
 
         </mat-tab>
 
-        <mat-tab label="Second"> Content 2 </mat-tab>
-        <mat-tab label="Third"> Content 3 </mat-tab>
-        <mat-tab label="Four"> Content 4 </mat-tab>
-        <mat-tab label="Five"> Content 5 </mat-tab>
+        <mat-tab label="Cargos de usuarios"> Content 2 </mat-tab>
 
     </mat-tab-group>
 
