@@ -1,6 +1,7 @@
 package com.example.metalTest.preventivo.registro.domain;
 
 import com.example.metalTest.preventivo.tarea.tareas.domain.Tareas;
+import com.example.metalTest.usuario.domain.Usuario;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,5 +25,11 @@ public class Registro {
     @Column
     private Boolean realizo;
     @Column
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
+    private Date fechaRealizada;
+    @Column
     private String observaciones;
+    @OneToOne
+    @JoinColumn
+    private Usuario encargado;
 }

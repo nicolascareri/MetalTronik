@@ -3,7 +3,7 @@ package com.example.metalTest.ordenestrabajo.domain;
 import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.parte.domain.Parte;
 import com.example.metalTest.prioridades.domain.Prioridades;
-import com.example.metalTest.tipos.tipo.domain.Tipo;
+import com.example.metalTest.tipo.domain.Tipo;
 import com.example.metalTest.usuario.domain.Usuario;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
@@ -40,7 +40,7 @@ public class OrdenesTrabajo implements Comparable<OrdenesTrabajo>{
     @JoinColumn
     private Prioridades prioridad;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn
     private Tipo tipo;
 

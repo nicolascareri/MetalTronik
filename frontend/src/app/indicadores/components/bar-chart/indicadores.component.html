@@ -1,0 +1,79 @@
+<mat-tab-group>
+    
+  <mat-tab label="% de cumplimiento">
+
+    <div class="form-container">
+
+      <div class="card">
+
+        <h2 class="card-header">Por Usuarios</h2>
+
+          <div class="card-body">
+            
+            <div>
+              <div>
+                <div style="display: block">
+                  <canvas baseChart
+                    [datasets]="barChartDataUsers"
+                    [labels]="barChartLabelUsers"
+                    [options]="barChartOptions"
+                    [plugins]="barChartPlugins"
+                    [legend]="barChartLegend"
+                    [chartType]="barChartType">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        
+      </div>
+
+    </div>
+
+    <div class="form-container">
+
+      <div class="card">
+
+        <h2 class="card-header">Por Sectores</h2>
+
+          <div class="card-body">
+            
+            <div>
+              <div>
+                <div style="display: block">
+                  <canvas baseChart
+                    [datasets]="barChartDataSectors"
+                    [labels]="barChartLabelSectors"
+                    [options]="barChartOptions"
+                    [plugins]="barChartPlugins"
+                    [legend]="barChartLegend"
+                    [chartType]="barChartType">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        
+      </div>
+
+    </div>
+
+
+
+  
+  </mat-tab>
+
+  <mat-tab label="% de tipos y prioridades">
+      
+      <app-pie-chart></app-pie-chart>
+ 
+
+  </mat-tab>
+
+  <mat-tab label="% de pendientes con atraso">
+
+  </mat-tab>
+
+</mat-tab-group>

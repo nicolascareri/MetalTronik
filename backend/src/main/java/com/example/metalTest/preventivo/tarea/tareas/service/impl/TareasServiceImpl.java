@@ -22,10 +22,8 @@ import java.util.Optional;
 public class TareasServiceImpl implements TareasService {
     @Autowired
     TareasRepository tareasRepository;
-
     @Autowired
     TareasMapper tareasMapper;
-
     @Autowired
     MaquinaRepository maquinaRepository;
     @Autowired

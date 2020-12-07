@@ -38,7 +38,7 @@ public class RegistroController {
         return new ResponseEntity<>(registroMapper.toRegistroResponseParaListado(registroService.getById(id)),HttpStatus.OK);
     }
     @PutMapping("/{id}")
-    public ResponseEntity<RegistroResponseParaListado> update(@RequestBody @Valid RegistroRequest registroRequest, @PathVariable Integer id) throws ValidateFieldException {
+    public ResponseEntity<RegistroResponseParaListado>update(@RequestBody @Valid RegistroRequest registroRequest, @PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<>(registroMapper.toRegistroResponseParaListado(registroService.update(registroRequest, id)), HttpStatus.OK);
     }
     @GetMapping("/actual/{date}")

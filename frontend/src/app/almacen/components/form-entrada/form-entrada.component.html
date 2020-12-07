@@ -11,6 +11,16 @@
         <form [formGroup]="entradaForm" (ngSubmit)="saveForm()">
       
           <div class="form-row">
+
+            <div class="col">
+              <label for="repuesto_cod">Repuesto</label>
+              <app-input [type]="'select-pair'" 
+                         [parentForm]="entradaForm"  
+                         [control]="entradaForm.controls.repuesto_cod"
+                         [options]="dataSourceRepuestos">
+              </app-input>
+              </div>
+    
       
             <div class="col">
             <label for="cantidad">Cantidad</label>
@@ -20,31 +30,25 @@
                        [placeholder]="'Ingrese cantidad'">
             </app-input>
             </div>
-  
-            <div class="col">
-            <label for="fecha">Fecha</label>
-            <app-input [type]="'datetime-local'" 
-                       [parentForm]="entradaForm"  
-                       [control]="entradaForm.controls.fecha"
-                       [placeholder]="'DD-MM-YYYY'">
-            </app-input>
-            </div>
+
   
           </div>
   
           <div class="form-row">
+
+              
+            <div class="col">
+              <label for="fecha">Fecha</label>
+              <app-input [type]="'datetime-local'" 
+                         [parentForm]="entradaForm"  
+                         [control]="entradaForm.controls.fecha"
+                         [placeholder]="'DD-MM-YYYY'">
+              </app-input>
+              </div>
+      
       
             <div class="col">
-            <label for="numeroOrdenCompra">Nro de orden de compra</label>
-            <app-input [type]="'onlyNumber'" 
-                       [parentForm]="entradaForm"  
-                       [control]="entradaForm.controls.numeroOrdenCompra"
-                       [placeholder]="'Ingrese numero de compra'">
-            </app-input>
-            </div>
-      
-            <div class="col">
-            <label for="precio">Precio</label>
+            <label for="precio">Precio unitario</label>
             <app-input [type]="'onlyNumber'" 
                        [parentForm]="entradaForm"  
                        [control]="entradaForm.controls.precio"
@@ -64,16 +68,17 @@
                        [placeholder]="'Ingrese proovedor'">
             </app-input>
             </div>
-  
+
             <div class="col">
-            <label for="repuesto_cod">Repuesto</label>
-            <app-input [type]="'select-pair'" 
-                       [parentForm]="entradaForm"  
-                       [control]="entradaForm.controls.repuesto_cod"
-                       [options]="dataSourceRepuestos">
-            </app-input>
-            </div>
+              <label for="numeroOrdenCompra">Nro de orden de compra</label>
+              <app-input [type]="'onlyNumber'" 
+                         [parentForm]="entradaForm"  
+                         [control]="entradaForm.controls.numeroOrdenCompra"
+                         [placeholder]="'Ingrese numero de compra'">
+              </app-input>
+              </div>
   
+
           </div>
   
           <div style="margin-top: 3%" class="btn-group btn-group-toggle" data-toggle="buttons">

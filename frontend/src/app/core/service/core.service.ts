@@ -68,6 +68,11 @@ export class CoreService {
                   result.encargo = result.encargo.nombre + " " + result.encargo.apellido;
                 }
                 break;
+            case 'encargado': 
+                if(result.encargado){
+                  result.encargado = result.encargado.nombre + " " + result.encargado.apellido;
+                }
+                break;
             case 'solicitante': 
                 if(result.solicitante){
                   result.solicitante = result.solicitante.nombre + " " + result.solicitante.apellido;

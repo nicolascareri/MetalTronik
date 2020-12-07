@@ -80,7 +80,7 @@ export class TablaExistenciaComponent implements OnInit {
     {
       id: 9,
       property: 'puntoPedido',
-      name: 'Punto pedido',
+      name: 'Stock mínimo',
       sort: '',
       filtervalue: '',
       width: '25%'
@@ -96,7 +96,7 @@ export class TablaExistenciaComponent implements OnInit {
     {
       id: 11,
       property: 'existencia',
-      name: 'Existencia',
+      name: 'Stock actual',
       sort: '',
       filtervalue: '',
       width: '25%'
