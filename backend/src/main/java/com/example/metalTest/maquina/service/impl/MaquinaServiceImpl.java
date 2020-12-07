@@ -12,7 +12,7 @@ import com.example.metalTest.maquina.service.MaquinaService;
 import com.example.metalTest.parte.mapper.ParteMapper;
 import com.example.metalTest.parte.repository.ParteRepository;
 import com.example.metalTest.planta.repository.PlantaRepository;
-import com.example.metalTest.repuestoMaquina.domain.RepuestoMaquina;
+import com.example.metalTest.almacen.repuestoMaquina.domain.RepuestoMaquina;
 import com.example.metalTest.sector.repository.SectorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

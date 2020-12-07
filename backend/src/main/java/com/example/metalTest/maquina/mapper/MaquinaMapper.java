@@ -4,7 +4,7 @@ import com.example.metalTest.maquina.controller.request.MaquinaRequest;
 import com.example.metalTest.maquina.controller.response.MaquinaReducidoResponse;
 import com.example.metalTest.maquina.controller.response.MaquinaResponse;
 import com.example.metalTest.maquina.domain.Maquina;
-import com.example.metalTest.repuestoMaquina.mapper.RepuestoMaquinaMapper;
+import com.example.metalTest.almacen.repuestoMaquina.mapper.RepuestoMaquinaMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
