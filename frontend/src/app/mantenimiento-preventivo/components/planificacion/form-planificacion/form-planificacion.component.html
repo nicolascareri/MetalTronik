@@ -39,19 +39,37 @@
             <app-input [type]="'select-pair'" 
                        [parentForm]="tareaForm"  
                        [control]="tareaForm.controls.maquina_cod"
-                       [options]="dataSourceMaquinas">
+                       [options]="dataSourceMaquinas"
+                       (change)="getInAddMode($event.target.value)">
             </app-input>
             </div>
-      
+
             <div class="col">
-            <label for="tarea">Descripción de la tarea</label>
-            <app-input [type]="'input'" 
-                       [parentForm]="tareaForm"  
-                       [control]="tareaForm.controls.tarea"
-                       [placeholder]="'Ingrese la descripción de la tarea a realizar'">
-            </app-input>
-            </div>
+              <label for="parte_cod">Parte de maquina</label>
+              <app-input [type]="'select-pair'"
+                         [options]="dataSourcePartes"
+                         [parentForm]="tareaForm" 
+                         [control]="tareaForm.controls.parte_cod"
+                         [required]="true">
+              </app-input>
+              </div>
+      
+
   
+          </div>
+
+          <div class="form-row">
+
+            <div class="col">
+              <label for="tarea">Descripción de la tarea</label>
+              <app-input [type]="'input'" 
+                         [parentForm]="tareaForm"  
+                         [control]="tareaForm.controls.tarea"
+                         [placeholder]="'Ingrese la descripción de la tarea a realizar'">
+              </app-input>
+              </div>
+
+
           </div>
   
   
@@ -65,3 +83,36 @@
     </div>
   
   </div>
+
+<div class="form-container" *ngIf="mode == 'edit'">
+
+    <div class="card">
+  
+      <h2 class="card-header">
+        Historial de cambios
+      </h2>
+    
+      <div class="card-body">
+
+        <ul class="list-group list-group-flush" *ngFor="let tarea of dataSourceHistorial">
+
+          <li class="list-group-item disabled"><b>Fecha de edición:</b> {{tarea.fecha_cambio}}</li>
+          <li class="list-group-item">
+            <b>Inicio</b> {{tarea.inicio}}
+            <br>
+            <b>Frecuencia</b> {{tarea.frecuencia}}
+            <br>
+            <b>Maquina</b> {{tarea.maquina}}
+            <br>
+            <b>Parte</b> {{tarea.parte}}
+            <br>
+            <b>Descripción</b> {{tarea.tarea}}
+          </li>
+
+        </ul>
+        
+      </div>
+
+    </div>
+
+</div>

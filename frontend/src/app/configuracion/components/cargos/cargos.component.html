@@ -1,0 +1,25 @@
+<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Cargos de usuarios
+        </mat-panel-title>
+        <mat-panel-description>
+            Presiona para {{panelOpenState ? 'ocultar' : 'ver'}} la lista de tipos
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+  
+  <mat-list role="list">
+  
+      <form [formGroup]="form" (ngSubmit)="addCargo()">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" formControlName="nombre_cargo" placeholder="Agregar tipo">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Agregar</button>
+          </div>
+        </div>
+      </form>
+  
+      <mat-list-item role="listitem" *ngFor="let cargo of dataSourceCargos">
+          {{cargo.nombre_cargo}}
+      </mat-list-item>
+  </mat-list>

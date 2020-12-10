@@ -4,9 +4,10 @@ import {MantenimientoCorrectivoService} from '../../services/mantenimiento-corre
 import {OrdenestrabajoService} from '../../../ordenes-trabajo/services/ordenestrabajo.service';
 import {MaquinaService} from '../../../maquina/services/maquina.service';
 import {UserService} from '../../../usuarios/services/user.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { MessageService } from "../../../core/service/message.service";
+import { TipoService } from "../../../tipo/services/tipo.service";
 
 @Component({
   selector: 'app-form-mantenimiento-correctivo',
@@ -16,10 +17,23 @@ import { MessageService } from "../../../core/service/message.service";
 
 export class FormMantenimientoCorrectivoComponent implements OnInit {
 
-  public mantenimientoCorrectivoForm: FormGroup;
+  public mantenimientoCorrectivoForm: FormGroup = new FormGroup({
+    encargo1_cod: new FormControl(''),
+    encargo2_cod: new FormControl(''),
+    encargo3_cod: new FormControl(''),
+    fechaFin: new FormControl(''),
+    fechainicio: new FormControl(''),
+    horasProduccionAfectadas: new FormControl(''),
+    maquina_cod: new FormControl(''),
+    nrocorrectivo: new FormControl(''),
+    observaciones: new FormControl(''),
+    ordenTrabajo_cod: new FormControl(''),
+    tipofalla: new FormControl('')
+  })
   public dataSourceOrders: any;
   public dataSourceMachines: any;
   public dataSourceUsers: any;
+  public dataSourceTipos: any;
   public mantenimientoId: any;
   public mode = 'add';
   public section = 'Nuevo mantenimiento correctivo';
@@ -33,12 +47,10 @@ export class FormMantenimientoCorrectivoComponent implements OnInit {
               private MaquinaService: MaquinaService,
               private UserService: UserService,
               private route: ActivatedRoute,
-              private router: Router,
-              private MessageService: MessageService
+              private MessageService: MessageService,
+              private TipoService: TipoService
   )
-  {
-    this.mantenimientoCorrectivoForm = this.createFormGroup();
-  }
+  {}
 
 
   ngOnInit(): void {
@@ -46,6 +58,7 @@ export class FormMantenimientoCorrectivoComponent implements OnInit {
     this.getOrdenes();
     this.getMaquinas();
     this.getUsuarios();
+    this.getTipos('Correctivos');
   }
 
   ngAfterViewInit(): void {
@@ -147,24 +160,22 @@ export class FormMantenimientoCorrectivoComponent implements OnInit {
     );
   }
 
-  createFormGroup() {
-    return new FormGroup({
-      encargo1_cod: new FormControl(''),
-      encargo2_cod: new FormControl(''),
-      encargo3_cod: new FormControl(''),
-      fechaFin: new FormControl(''),
-      fechainicio: new FormControl(''),
-      horasProduccionAfectadas: new FormControl(''),
-      maquina_cod: new FormControl(''),
-      nrocorrectivo: new FormControl(''),
-      observaciones: new FormControl(''),
-      ordenTrabajo_cod: new FormControl(''),
-      tipofalla: new FormControl('')
-    })
-  }
-
-  resetForm() {
-    this.mantenimientoCorrectivoForm.reset();
+  getTipos(tipo){
+    this.TipoService.getTipos(tipo).subscribe(
+      (data: any) => {
+        this.dataSourceTipos = data.map(
+          val => {
+            return {
+              "id": val.id,
+              "descripcion": val.nombre
+            }
+          }
+        );
+      },
+      (error) => {
+        console.log(error.error);
+      }
+    );
   }
 
   saveForm() {

@@ -68,6 +68,11 @@ export class CoreService {
                   result.encargo = result.encargo.nombre + " " + result.encargo.apellido;
                 }
                 break;
+            case 'encargado': 
+                if(result.encargado){
+                  result.encargado = result.encargado.nombre + " " + result.encargado.apellido;
+                }
+                break;
             case 'solicitante': 
                 if(result.solicitante){
                   result.solicitante = result.solicitante.nombre + " " + result.solicitante.apellido;
@@ -98,6 +103,11 @@ export class CoreService {
                 result.planta = result.maquina.planta.nombre;
                 result.sector = result.maquina.sector.descripcion;
                 result.maquina = result.maquina.maquina_cod;
+              }  
+              break;
+            case 'parte':
+              if(result.parte){
+                result.parte = result.parte.codigo;
               }  
               break;
             case 'tarea':

@@ -14,6 +14,14 @@ export class TablaSalidaComponent implements OnInit {
   public columnsToDisplay: any[] = [
     {
       id: 1,
+      property:'cantidad',
+      name: 'Cantidad',
+      sort: '',
+      filterValue: '',
+      width: '15%'
+    }, 
+    {
+      id: 2,
       property:'codigoProducto',
       name: 'Codigo de producto',
       sort: '',
@@ -21,7 +29,7 @@ export class TablaSalidaComponent implements OnInit {
       width: '15%'
     }, 
     {
-      id: 2,
+      id: 3,
       property:'modelo',
       name: 'Modelo',
       sort: '',
@@ -29,7 +37,7 @@ export class TablaSalidaComponent implements OnInit {
       width: '20%'
     },
     {
-      id: 3,
+      id: 4,
       property:'marca',
       name: 'Marca',
       sort: '',
@@ -37,7 +45,7 @@ export class TablaSalidaComponent implements OnInit {
       width: '15%'
     }, 
     {
-      id: 4,
+      id: 5,
       property:'fecha',
       name: 'Fecha de salida',
       sort: '',
@@ -45,7 +53,7 @@ export class TablaSalidaComponent implements OnInit {
       width: '15%'
     },
     {
-      id: 5,
+      id: 6,
       property:'solicitante',
       name: 'Solicitante',
       sort: '',
@@ -53,13 +61,13 @@ export class TablaSalidaComponent implements OnInit {
       width: '15%'
     }, 
     {
-      id: 6,
+      id: 7,
       property:'sector',
       name: 'Sector',
       sort: '',
       filterValue: '',
       width: '15%'
-    }, 
+    }
   ];
 
   constructor(private SalidaSerive: SalidaService,

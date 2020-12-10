@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { RegistroService } from "../../../services/registro.service";
 import { MessageService } from "../../../../core/service/message.service";
+import { UserService } from "../../../../usuarios/services/user.service";
 
 @Component({
   selector: 'app-form-registro',
@@ -22,7 +23,7 @@ export class FormRegistroComponent implements OnInit {
       "descripcion": "No"
     }
   ]
-
+  public users: any;
   public tarea : any;
   public tareaId : any;
   public tareaForm: FormGroup = new FormGroup({
@@ -30,7 +31,8 @@ export class FormRegistroComponent implements OnInit {
     fechaRealizada: new FormControl(''),
     observaciones: new FormControl(''),
     realizo: new FormControl(''),
-    tarea_cod: new FormControl('')
+    tarea_cod: new FormControl(''),
+    encargado: new FormControl('')
   });
   public messageTitleSuccess: any = "DONE";
   public messageTitleError: any = "ERROR";
@@ -39,10 +41,12 @@ export class FormRegistroComponent implements OnInit {
 
   constructor( private route: ActivatedRoute,
                private RegistroService: RegistroService,
-               private MessageService: MessageService) { }
+               private MessageService: MessageService,
+               private UserService: UserService) { }
 
   ngOnInit(): void {
     this.tareaId = this.route.snapshot.params.id;
+    this.getUsers();
   }
 
   ngAfterViewInit(): void {
@@ -61,9 +65,26 @@ export class FormRegistroComponent implements OnInit {
     )
   }
 
+  getUsers(){
+    this.UserService.getUsers().subscribe(
+      (data: any) => {
+        this.users = data.map(
+          val => {
+            return {
+              "id": val.id,
+              "descripcion": val.nombre + " " + val.apellido
+            }
+          }
+        );
+      },
+      error => {
+        console.log(error.error);
+        
+      }
+    );
+  }
+
   loadTarea(tarea) {
-    
-    
     this.tareaForm.controls.fechaPlanificada.setValue(tarea.fechaPlanificada.replace(' ', 'T'));
     if(this.tareaForm.controls.fechaRealizada == null){
       this.tareaForm.controls.fechaRealizada.setValue(tarea.fechaRealizada.replace(' ','T'));
@@ -71,6 +92,7 @@ export class FormRegistroComponent implements OnInit {
     this.tareaForm.controls.observaciones.setValue(tarea.observaciones);
     this.tareaForm.controls.realizo.setValue(tarea.realizo);
     this.tareaForm.controls.tarea_cod.setValue(tarea.tarea.id);
+    this.tareaForm.controls.encargado.setValue(tarea.encargado.id);
   }
 
   

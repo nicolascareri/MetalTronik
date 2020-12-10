@@ -14,7 +14,7 @@ export const ESTADOS = [
 export const ENDPOINTS = {
 
     SERVER: {
-        serve: 'https://metaltronik.herokuapp.com/',
+        serve: 'http://localhost:8080/',
         // local: 'http://localhost:8080/'
         // heroku: 'https://metaltronik.herokuapp.com/'
     },
@@ -62,7 +62,8 @@ export const ENDPOINTS = {
     },
 
     TIPOS: {
-        GET: 'api/tipo',
+        GET: 'api/tipo/nombre/',
+        GETALL: 'api/tipo/tipos',
         GETID: 'api/tipo/',
         POST: 'api/tipo',
         PUT: 'api/tipo/'
@@ -103,7 +104,8 @@ export const ENDPOINTS = {
         GET: 'api/tarea',
         GETID: 'api/tarea/',
         POST: 'api/tarea',
-        PUT: 'api/tarea/'
+        PUT: 'api/tarea/',
+        GETPUTHISTORIAL: 'api/preventivo/tarea-historial/'
     },
 
     REGISTRO: {
@@ -124,8 +126,9 @@ export const ENDPOINTS = {
 
     INDICADORES: {
         USUARIOS: '/api/indicadores/formula/1/usuario',
-        SECTORES : '/api/indicadores/formula/1/sector'
-
+        SECTORES : '/api/indicadores/formula/1/sector',
+        PIE_TIPOS: '/api/indicadores/formula/Torta/tipo',
+        PIE_PRIORIDADES: '/api/indicadores/formula/Torta/prioridad'
     },
     
     CARGO: {
@@ -137,11 +140,24 @@ export const ENDPOINTS = {
     }
 }
 
-export const MENUS = {
-
-    
-
-}
+export const UNIDADES = [
+    {
+        id: "Kilos",
+        descripcion: "Kilos"
+    },
+    {
+        id: "Metros",
+        descripcion: "Metros"
+    },
+    {
+        id: "Litros",
+        descripcion: "Litros"
+    },
+    {
+        id: "Piezas",
+        descripcion: "Piezas"
+    },
+]
 
 export const PRIORIDADES = [
 

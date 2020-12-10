@@ -1,16 +1,25 @@
+<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+  <mat-expansion-panel-header>
+      <mat-panel-title>
+          {{title}}
+      </mat-panel-title>
+      <mat-panel-description>
+          Presiona para {{panelOpenState ? 'ocultar' : 'ver'}} la lista de tipos
+      </mat-panel-description>
+  </mat-expansion-panel-header>
+
 <mat-list role="list">
 
     <form [formGroup]="form" (ngSubmit)="addTipo()">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" formControlName="nombre" placeholder="Agregar tipo" aria-label="Recipient's username" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-              <app-button [name]="'Agregar'" type="submit"></app-button>
-            </div>
-          </div>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" formControlName="nombre" placeholder="Agregar tipo">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="submit">Agregar</button>
+        </div>
+      </div>
     </form>
 
     <mat-list-item role="listitem" *ngFor="let tipo of dataSourceTipos">
         {{tipo.nombre}}
-        
     </mat-list-item>
 </mat-list>
