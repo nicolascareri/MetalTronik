@@ -214,7 +214,7 @@ export class FormComponent implements OnInit, AfterViewInit {
   }
 
   getTipos() {
-    this.TipoService.getTipos().subscribe(
+    this.TipoService.getTipos('Ordenes').subscribe(
       (data: any) => {
         this.dataSourceTipos = data.map(
           val => {

@@ -1,10 +1,10 @@
-<mat-expansion-panel (opened)="panelOpenState2 = true" (closed)="panelOpenState2 = false">
+<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
   <mat-expansion-panel-header>
       <mat-panel-title>
-          Tipos
+          {{title}}
       </mat-panel-title>
       <mat-panel-description>
-          Presiona para {{panelOpenState2 ? 'ocultar' : 'ver'}} la lista de tipos
+          Presiona para {{panelOpenState ? 'ocultar' : 'ver'}} la lista de tipos
       </mat-panel-description>
   </mat-expansion-panel-header>
 

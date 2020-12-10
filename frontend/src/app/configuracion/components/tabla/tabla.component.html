@@ -4,32 +4,22 @@
 
         <mat-tab label="Tipos">
 
-            <mat-expansion-panel (opened)="panelOpenState1 = true" (closed)="panelOpenState1 = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Prioridades de ordenes de trabajo
-                    </mat-panel-title>
-                    <mat-panel-description>
-                        Presiona para {{panelOpenState1 ? 'ocultar' : 'ver'}} la lista de prioridades
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
-
-                <p>
-                    <app-lista-prioridades></app-lista-prioridades>
-                </p>
-
-            </mat-expansion-panel>
-
-
-
-                                <app-lista-tipos></app-lista-tipos>
-        
-
-            
+            <app-lista-tipos [title]="'Tipo de ordenes'" [tipo]="'Ordenes'"></app-lista-tipos>
+            <app-lista-tipos [title]="'Tipo de correctivos'" [tipo]="'Correctivos'"></app-lista-tipos>
 
         </mat-tab>
 
-        <mat-tab label="Cargos de usuarios"> Content 2 </mat-tab>
+        <mat-tab label="Prioridades">
+
+            <app-lista-prioridades></app-lista-prioridades>
+
+        </mat-tab>
+
+        <mat-tab label="Cargos">
+
+            <app-cargos></app-cargos>
+            
+        </mat-tab>
 
     </mat-tab-group>
 

@@ -22,10 +22,10 @@
 
           <div class="col">
           <label for="tipofalla">Tipo de falla</label>
-          <app-input [type]="'onlyNumber'" 
+          <app-input [type]="'select-pair'" 
                      [parentForm]="mantenimientoCorrectivoForm" 
                      [control]="mantenimientoCorrectivoForm.controls.tipofalla"
-                     [placeholder]="'Ingrese nro de tipo de falla'">
+                     [options]="dataSourceTipos">
           </app-input>
           </div>
         </div>

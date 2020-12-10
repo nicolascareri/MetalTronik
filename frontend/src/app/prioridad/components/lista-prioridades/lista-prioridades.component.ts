@@ -12,7 +12,7 @@ export class ListaPrioridadesComponent implements OnInit {
   dataSourcePrioridades: any;
 
   form: FormGroup;
-
+  public panelOpenState = false;
   createFormGroup() {
     return new FormGroup({
       nombre: new FormControl(''),

@@ -13,8 +13,8 @@ export class TipoService {
   }
 
 
-  getTipos() {
-    return this.http.get(this.path.SERVER.serve + this.path.TIPOS.GET);
+  getTipos(tipo) {
+    return this.http.get(this.path.SERVER.serve + this.path.TIPOS.GET + tipo);
   }
 
   postTipo(form){

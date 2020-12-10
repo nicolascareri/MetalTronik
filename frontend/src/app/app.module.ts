@@ -23,6 +23,7 @@ import { ChartsModule } from 'ng2-charts';
 import { IndicadoresModule } from './indicadores/indicadores.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
+
 @NgModule({
   declarations: [
     AppComponent,

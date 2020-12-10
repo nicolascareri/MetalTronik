@@ -34,6 +34,10 @@ export class UserService {
     return this.http.get(this.path.SERVER.serve + this.path.CARGO.GET);
   }
 
+  postCargo(form){
+    return this.http.post<any>(this.path.SERVER.serve + this.path.CARGO.POST, form.value);
+  }
+
 
 }
 

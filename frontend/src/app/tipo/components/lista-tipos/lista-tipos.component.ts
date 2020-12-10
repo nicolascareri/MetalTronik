@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TipoService } from "../../services/tipo.service";
 import {FormControl, FormGroup} from '@angular/forms';
 
@@ -9,43 +9,38 @@ import {FormControl, FormGroup} from '@angular/forms';
 })
 export class ListaTiposComponent implements OnInit {
 
-  dataSourceTipos: any;
-
-  form: FormGroup;
-
-  createFormGroup() {
-    return new FormGroup({
-      nombre: new FormControl(''),
-      tipo: new FormControl('Ordenes')
-    })
-  }
-  public panelOpenState1 = false;
-  public panelOpenState2 = false;
-
+  @Input() tipo: String = '';
+  @Input() title: String= '';
+  public form: FormGroup;
+  public panelOpenState = false;
+  public dataSourceTipos: any;
+  
   constructor(private TipoService: TipoService) 
-  {
-    this.form = this.createFormGroup();
-   }
+  {}
 
   ngOnInit(): void {
+    this.getTipos(this.tipo);
+    this.form = new FormGroup({
+      nombre: new FormControl(''),
+      tipo: new FormControl(this.tipo)
+    });
+  }
 
-    this.TipoService.getTipos().subscribe(
+  getTipos(tipo: any){
+    this.TipoService.getTipos(tipo).subscribe(
       (data: any) => {
         this.dataSourceTipos = data;
       },
       (error) => {
         console.log(error.error);
-        
       }
     );
-
-
   }
 
-  addTipo() {
+  addTipo() {  
     this.TipoService.postTipo(this.form).subscribe(
-      prioridad =>  location.reload()
-      
+      prioridad =>  
+      location.reload()  
     );
   }
 
