@@ -26,7 +26,11 @@ public class ToIndicadoresMapper  implements IndicadoresMapper {
         formula = new Formula1();
         return formula.getResultado(consult);
     }
-
+    @Override
+    public List<IndicatorResponse> toIndicadoresResponseFormula2(List<String[]> consult) {
+        formula = new Formula2();
+        return formula.getResultado(consult);
+    }
     @Override
     public Torta toTorta(List<String[]> consult) {
         Torta torta = new Torta();

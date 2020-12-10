@@ -16,6 +16,6 @@ public class Formula2  extends Formula {
 
     @Override
     public List<IndicatorResponse> getResultado(List<String[]> consult) {
-        return null;
+        return getResultados(consult);
     }
 }
