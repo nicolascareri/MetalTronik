@@ -43,6 +43,7 @@ public class TipoController {
     public ResponseEntity<List<Tipo>> getByTipo(@PathVariable String tipo){
         return new ResponseEntity<>(tipoService.getByTipo(tipo), HttpStatus.OK);
     }
+
     @GetMapping("/tipos")
     public ResponseEntity<List<String>> getTipos(){
         return new ResponseEntity<>(tipoService.getTipos(), HttpStatus.OK);
