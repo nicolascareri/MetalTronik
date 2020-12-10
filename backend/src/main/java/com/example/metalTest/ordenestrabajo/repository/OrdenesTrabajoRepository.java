@@ -26,4 +26,6 @@ public interface OrdenesTrabajoRepository extends JpaRepository<OrdenesTrabajo, 
 
     @Query(value ="SELECT u.nombre, count(*) as totales, count(case when EXTRACT(MONTH FROM o.fecha_realizar) < EXTRACT(MONTH FROM CURRENT_TIMESTAMP) or EXTRACT(DAY FROM o.fecha_realizar) < EXTRACT(DAY FROM CURRENT_TIMESTAMP)   then 1 end) FROM ordenes_trabajo o inner join usuario u on u.id = o.responsable_id where o.ordentrabajo_cod in (SELECT n.ordentrabajo_cod from ordenes_trabajo n where n.estado = 1) group by u.nombre ", nativeQuery = true)
     List<String[]> getOrdenesFormula2Usuario();
+    @Query(value ="SELECT s.descripcion, count(*) as totales, count(case when EXTRACT(MONTH FROM o.fecha_realizar) < EXTRACT(MONTH FROM CURRENT_TIMESTAMP) or EXTRACT(DAY FROM o.fecha_realizar) < EXTRACT(DAY FROM CURRENT_TIMESTAMP)   then 1 end) FROM ordenes_trabajo o inner join maquina m on m.id = o.maquina_id inner join sector s on s.id = m.sector_id  where o.ordentrabajo_cod in (SELECT n.ordentrabajo_cod from ordenes_trabajo n where n.estado = 1) group by s.descripcion ", nativeQuery = true)
+    List<String[]> getOrdenesFormula2Sector();
 }
