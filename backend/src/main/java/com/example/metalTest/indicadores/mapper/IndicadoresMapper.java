@@ -10,6 +10,8 @@ public interface IndicadoresMapper{
 
     List<IndicatorResponse> toIndicadoresResponseFormula1(List<String[]> consult);
 
+    List<IndicatorResponse> toIndicadoresResponseFormula2(List<String[]> consult);
+
     Torta toTorta(List<String[]> consult);
 
 }

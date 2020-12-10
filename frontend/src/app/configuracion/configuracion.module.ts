@@ -11,10 +11,11 @@ import { ListaTiposComponent } from "../tipo/components/lista-tipos/lista-tipos.
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CargosComponent } from './components/cargos/cargos.component';
 
 
 @NgModule({
-  declarations: [TablaConfiguracionComponent, ListaPrioridadesComponent, ListaTiposComponent],
+  declarations: [TablaConfiguracionComponent, ListaPrioridadesComponent, ListaTiposComponent, CargosComponent],
   imports: [
     CommonModule,
     MatTabsModule,

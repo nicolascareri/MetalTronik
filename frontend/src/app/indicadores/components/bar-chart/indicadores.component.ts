@@ -32,6 +32,7 @@ export class IndicadoresComponent implements OnInit {
 
 
   public barChartDataUsers: ChartDataSets[] = [];
+  public barChartDataUsers2: ChartDataSets[] = [];
   public barChartDataSectors: ChartDataSets[] = [];
 
   constructor(private IndicadoresService: IndicadoresService) { }
@@ -39,6 +40,7 @@ export class IndicadoresComponent implements OnInit {
   ngOnInit(): void {
     this.getFormIUsers();
     this.getFormISectors();
+    this.getFormIIUsers();
   }
 
   public getFormIUsers(){
@@ -52,11 +54,23 @@ export class IndicadoresComponent implements OnInit {
     );
   }
 
-  public getFormISectors(){
-    this.IndicadoresService.getFormForSectors().subscribe(
+  public getFormIIUsers(){
+    this.IndicadoresService.getForm2ForUsers().subscribe(
       (data: any) => {
         console.log(data);
         
+        this.barChartDataUsers2 = data;
+      },
+      error => {
+        console.log(error.error);
+        
+      }
+    );
+  }
+
+  public getFormISectors(){
+    this.IndicadoresService.getFormForSectors().subscribe(
+      (data: any) => {
         this.barChartDataSectors = data;
       },
       error => {

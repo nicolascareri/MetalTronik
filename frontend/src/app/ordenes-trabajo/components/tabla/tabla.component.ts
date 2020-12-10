@@ -209,7 +209,7 @@ export class TablaOrdenesComponent implements OnInit {
   }
 
   getTipos(){
-    this.tiposService.getTipos().subscribe(
+    this.tiposService.getTipos('Ordenes').subscribe(
       (data: any) => {
         this.dataSourceTipos = data;
       },

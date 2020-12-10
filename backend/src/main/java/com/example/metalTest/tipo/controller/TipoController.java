@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/tipo/")
+@RequestMapping("/api/tipo")
 public class TipoController {
 
     @Autowired
@@ -24,7 +24,7 @@ public class TipoController {
         return new ResponseEntity<>(tipoService.getAll(), HttpStatus.OK);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Tipo> getById(@PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<>(tipoService.getById(id), HttpStatus.OK);
     }
@@ -34,16 +34,16 @@ public class TipoController {
         return new ResponseEntity<>(tipoService.create(tipoRequest), HttpStatus.CREATED);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Tipo> update(@RequestBody TipoRequest tipoRequest, @PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<>(tipoService.update(tipoRequest, id), HttpStatus.OK);
     }
 
-    @GetMapping("nombre/{tipo}")
+    @GetMapping("/nombre/{tipo}")
     public ResponseEntity<List<Tipo>> getByTipo(@PathVariable String tipo){
         return new ResponseEntity<>(tipoService.getByTipo(tipo), HttpStatus.OK);
     }
-    @GetMapping("tipos")
+    @GetMapping("/tipos")
     public ResponseEntity<List<String>> getTipos(){
         return new ResponseEntity<>(tipoService.getTipos(), HttpStatus.OK);
     }
