@@ -13,6 +13,7 @@ import com.example.metalTest.indicadores.controller.response.IndicatorResponse;
 import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
 import com.example.metalTest.ordenestrabajo.repository.OrdenesTrabajoRepository;
 import com.example.metalTest.sector.repository.SectorRepository;
+import com.example.metalTest.tipo.repository.TipoRepository;
 import com.example.metalTest.usuario.domain.Usuario;
 import com.example.metalTest.usuario.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,8 @@ public class MantenimientoCorrectivoServiceImpl implements MantenimientoCorrecti
 
     @Autowired
     OrdenesTrabajoRepository ordenesTrabajoRepository;
+    @Autowired
+    TipoRepository tipoRepository;
 
     @Override
     public List<MantenimientoCorrectivoResponse> getAll() {
@@ -51,6 +54,7 @@ public class MantenimientoCorrectivoServiceImpl implements MantenimientoCorrecti
     @Override
     public MantenimientoCorrectivoResponse create(MantenimientoCorrectivoRequest mantenimientoCorrectivoRequest) throws ValidateFieldException {
         MantenimientoCorrectivo mantenimientoCorrectivo = mantenimientoCorrectivoMapper.mantenimientoCorrectivoRequestToMantenimientoCorrectivo(mantenimientoCorrectivoRequest);
+        mantenimientoCorrectivo.setTipo(tipoRepository.findById(mantenimientoCorrectivoRequest.getTipo_id()).get());
         mantenimientoCorrectivo.setMaquina(maquinaRepository.findById(mantenimientoCorrectivoRequest.getMaquina_cod()).get());
         mantenimientoCorrectivo.setEncargo1(usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo1_cod()).get());
         Optional<Usuario> optionalUsuario2 = usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo2_cod());
