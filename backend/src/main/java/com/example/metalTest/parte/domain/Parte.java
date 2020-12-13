@@ -1,6 +1,5 @@
 package com.example.metalTest.parte.domain;
 
-import com.example.metalTest.maquina.domain.Maquina;
 import lombok.Getter;
 import lombok.Setter;
 
