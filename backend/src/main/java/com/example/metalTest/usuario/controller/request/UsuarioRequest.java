@@ -18,8 +18,6 @@ public class UsuarioRequest {
     @NotBlank
     private String apellido;
     @NotNull
-    private int dni;
-    @NotNull
     private short estado;
     @NotBlank
     private String nombre_usuario;

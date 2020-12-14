@@ -11,11 +11,11 @@ import java.util.List;
 @Repository
 public interface SectorRepository extends JpaRepository<Sector, Integer> {
 
-    @Query("Select s FROM Sector s ORDER BY s.descripcion")
+    @Query("Select s FROM Sector s ORDER BY s.nombre")
     List<Sector> getAllSector();
 
 
-    @Query("SELECT COUNT(s) FROM Sector s WHERE lower(s.descripcion) LIKE lower(:descripcion)" +
+    @Query("SELECT COUNT(s) FROM Sector s WHERE lower(s.nombre) LIKE lower(:descripcion)" +
             "AND (:id is NULL or s.id <>:id)")
     Long checkDescripcionExistance(@Param("descripcion") String descripcion, @Param("id") Integer id);
 

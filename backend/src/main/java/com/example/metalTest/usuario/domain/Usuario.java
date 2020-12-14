@@ -57,9 +57,6 @@ public class Usuario {
     private String direccion;
 
     @Column
-    private int dni;
-
-    @Column
     private short estado;
 
 

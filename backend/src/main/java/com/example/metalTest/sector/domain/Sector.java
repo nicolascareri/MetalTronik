@@ -17,7 +17,7 @@ public class Sector {
     private int id;
 
     @Column
-    private String descripcion;
+    private String nombre;
 
     @Column
     private short estado;

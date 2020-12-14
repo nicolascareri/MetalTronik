@@ -19,14 +19,15 @@ public class Repuesto {
     @Column
     private String nombre;
 
-    @Column
-    private String modelo;
+
+    @Column //Codigo de barras
+    private String codigoProducto;
 
     @OneToMany(mappedBy = "repuestoMaquinaPk.repuesto",fetch = FetchType.LAZY , cascade = { CascadeType.MERGE })
     private List<RepuestoMaquina> repuestoMaquinaList = new ArrayList<>();
 
-    @Column //Codigo de barras
-    private String codigoProducto;
+    @Column
+    private String modelo;
 
     @Column
     private String marca;
