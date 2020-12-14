@@ -2,6 +2,7 @@ package com.example.metalTest.correctivo.domain;
 
 import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
+import com.example.metalTest.parte.domain.Parte;
 import com.example.metalTest.tipo.domain.Tipo;
 import com.example.metalTest.usuario.domain.Usuario;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -24,6 +25,10 @@ public class MantenimientoCorrectivo{
     @OneToOne
     private Maquina maquina;
 
+    @JoinColumn
+    @OneToOne
+    private Parte parte;
+
     @Column
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT-3")
     private Date fechainicio;
@@ -33,7 +38,7 @@ public class MantenimientoCorrectivo{
     private Date fechaFin;
 
     @JoinColumn
-    @ManyToOne
+    @OneToOne
     private Tipo tipo;
 
     @Column
