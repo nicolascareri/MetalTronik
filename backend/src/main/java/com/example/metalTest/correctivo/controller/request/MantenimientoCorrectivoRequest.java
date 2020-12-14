@@ -18,6 +18,8 @@ public class MantenimientoCorrectivoRequest {
     @ValidEntity(repository = MaquinaRepository.class)
     private int maquina_cod;
 
+    private Integer parte_cod;
+
     @NotNull
     private Date fechainicio;
 
@@ -35,7 +37,6 @@ public class MantenimientoCorrectivoRequest {
 
     private String repuestosColocados;
 
-    @ValidEntity(repository = OrdenesTrabajoRepository.class)
     private int ordenTrabajo_cod;
 
     @NotNull

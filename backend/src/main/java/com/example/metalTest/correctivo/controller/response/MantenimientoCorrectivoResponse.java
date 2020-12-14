@@ -2,6 +2,7 @@ package com.example.metalTest.correctivo.controller.response;
 
 import com.example.metalTest.maquina.controller.response.MaquinaReducidoResponse;
 import com.example.metalTest.ordenestrabajo.controller.response.OrdenesTrabajoResponse;
+import com.example.metalTest.tipo.domain.Tipo;
 import com.example.metalTest.usuario.domain.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,7 +20,7 @@ public class MantenimientoCorrectivoResponse {
     private MaquinaReducidoResponse maquina;
     private Date fechainicio;
     private Date fechaFin;
-    private short tipofalla;
+    private Tipo tipo;
     private int horasProduccionAfectadas;
     private String observaciones;
     private String repuestosColocados;

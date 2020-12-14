@@ -39,9 +39,9 @@ public class SectorServiceImpl implements SectorService {
             throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(sector.getEstado()));
         }
 
-        if (sectorRepository.checkDescripcionExistance(sector.getDescripcion(), sector.getId()) != 0) {
+        if (sectorRepository.checkDescripcionExistance(sector.getNombre(), sector.getId()) != 0) {
             throw new ValidateFieldException("Valor en campo invalido", "descripcion",
-                    String.valueOf(sector.getDescripcion()));
+                    String.valueOf(sector.getNombre()));
         }
 
         Date date = new Date(System.currentTimeMillis());
@@ -63,9 +63,9 @@ public class SectorServiceImpl implements SectorService {
         sector.setId(id);
         Date date = new Date(System.currentTimeMillis());
         sector.setFechaAlta(date);
-        if (sectorRepository.checkDescripcionExistance(sector.getDescripcion(), sector.getId()) != 0) {
+        if (sectorRepository.checkDescripcionExistance(sector.getNombre(), sector.getId()) != 0) {
             throw new ValidateFieldException("Valor en campo invalido", "descripcion",
-                    String.valueOf(sector.getDescripcion()));
+                    String.valueOf(sector.getNombre()));
         }
         return sectorRepository.save(sector);
     }
