@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { first } from "rxjs/operators"
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { OrdenestrabajoService } from '../../services/ordenestrabajo.service';
 import { MaquinaService } from '../../../maquina/services/maquina.service';
 import { UserService } from '../../../usuarios/services/user.service';
@@ -92,8 +92,6 @@ export class FormComponent implements OnInit, AfterViewInit {
       body: message.errors ? message.errors[0].defaultMessage + ". campo: " + message.errors[0].field + ", Valor rechazado: " + message.errors[0].rejectedValue : message.error
     })
   }
-
-
 
   getOrden(id) {
     this.OrdenestrabajoService.getOrder(id).pipe(first()).subscribe(
@@ -202,7 +200,7 @@ export class FormComponent implements OnInit, AfterViewInit {
           val => {
             return {
               "id": val.id,
-              "descripcion": val.maquina_cod
+              "descripcion": val.maquina_cod + " - " + val.equipo
             }
           }
         );

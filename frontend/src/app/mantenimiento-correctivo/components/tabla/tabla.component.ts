@@ -30,6 +30,22 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
     },
     {
       id: 3,
+      property: 'maquina',
+      name: 'Codigo de maquina',
+      sort: '',
+      filterValue: '',
+      width: '25%'
+    },
+    {
+      id: 4,
+      property: 'parte',
+      name: 'Codigo de parte',
+      sort: '',
+      filterValue: '',
+      width: '25%'
+    },
+    {
+      id: 5,
       property: 'tipo',
       name: 'Tipo de orden de trabajo',
       sort: '',
@@ -37,7 +53,7 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
       width: '20%'
     },
     {
-      id: 4,
+      id: 6,
       property: 'sector',
       name: 'Sector',
       sort: '',
@@ -45,15 +61,15 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
       width: '15%'
     },
     {
-      id: 5,
-      property: 'tipofalla',
+      id: 7,
+      property: 'tipo',
       name: 'Tipo de falla',
       sort: '',
       filterValue: '',
       width: '15%'
     },
     {
-      id: 6,
+      id: 8,
       property: 'fechainicio',
       name: 'Fecha de inicio',
       sort: '',
@@ -61,7 +77,7 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
       width: '15%'
     },
     {
-      id: 7,
+      id: 9,
       property: 'fechaFin',
       name: 'Fecha de fin',
       sort: '',
@@ -69,7 +85,7 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
       width: '15%'
     },
     {
-      id: 8,
+      id: 10,
       property: 'tiempoReparacion',
       name: 'Tiempo de reparacion',
       sort: '',
@@ -77,7 +93,7 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
       width: '350px'
     },
     {
-      id: 9,
+      id: 11,
       property: 'horasProduccionAfectadas',
       name: 'Horas de produccion afectadas',
       sort: '',
@@ -85,7 +101,7 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
       width: '350px'
     },
     {
-      id: 10,
+      id: 12,
       property: 'observaciones',
       name: 'Observaciones',
       sort: '',
@@ -93,7 +109,7 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
       width: '20%'
     },
     {
-      id: 11,
+      id: 13,
       property: 'encargo1',
       name: 'Encargado 1',
       sort: '',
@@ -101,7 +117,7 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
       width: '20%'
     },
     {
-      id: 12,
+      id: 14,
       property: 'encargo2',
       name: 'Encargado 2',
       sort: '',
@@ -109,7 +125,7 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
       width: '20%'
     },
     {
-      id: 13,
+      id: 15,
       property: 'encargo3',
       name: 'Encargado 3',
       sort: '',
@@ -135,7 +151,7 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
     this.MantenimientoCorrectivoService.getMantenimientosCorrectivos().pipe(first()).subscribe(
       (data: any) => {
         this.dataSourceMantenimientosCorrectivos = this.coreService.replaceFormat(data, ['encargo1', 'encargo2', 'encargo3',
-          'ordentrabajo', 'maquina']);
+          'ordentrabajo', 'maquina', 'parteOrden', 'fechainicio', 'fechaFin', 'tipo']);
       },
       (error) => {
         console.error(error);

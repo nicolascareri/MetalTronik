@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { UserService } from '../../../usuarios/services/user.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { MessageService } from "../../../core/service/message.service";
 
@@ -23,7 +23,6 @@ export class FormUsuarioComponent implements OnInit {
   public dataSourceCargos: any;
 
   constructor(private UserService: UserService,
-    private router: Router,
     private route: ActivatedRoute,
     private MessageService: MessageService) {
     this.userForm = this.createFormGroup();
@@ -86,7 +85,6 @@ export class FormUsuarioComponent implements OnInit {
     this.buttonName = 'Confirmar cambios';
     this.userForm.controls.nombre.setValue(user.nombre);
     this.userForm.controls.apellido.setValue(user.apellido);
-    this.userForm.controls.dni.setValue(user.dni);
     this.userForm.controls.fnacimiento.setValue(user.fnacimiento.replace(' ', 'T'));
     this.userForm.controls.cargo_id.setValue(user.cargo_id);
     this.userForm.controls.legajo.setValue(user.legajo);
@@ -99,11 +97,6 @@ export class FormUsuarioComponent implements OnInit {
     this.userForm.controls.correo_electronico.setValue(user.correo_electronico);
   }
 
-
-
-  resetForm() {
-    this.userForm.reset();
-  }
 
   saveForm() {
     if (this.mode === 'add') {
@@ -128,7 +121,6 @@ export class FormUsuarioComponent implements OnInit {
     return new FormGroup({
       nombre: new FormControl(''),
       apellido: new FormControl(''),
-      dni: new FormControl(''),
       fnacimiento: new FormControl(''),
       cargo_id: new FormControl(''),
       legajo: new FormControl(''),

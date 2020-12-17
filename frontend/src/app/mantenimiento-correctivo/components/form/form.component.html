@@ -21,10 +21,10 @@
           </div>
 
           <div class="col">
-          <label for="tipofalla">Tipo de falla</label>
+          <label for="tipo_id">Tipo de falla</label>
           <app-input [type]="'select-pair'" 
                      [parentForm]="mantenimientoCorrectivoForm" 
-                     [control]="mantenimientoCorrectivoForm.controls.tipofalla"
+                     [control]="mantenimientoCorrectivoForm.controls.tipo_id"
                      [options]="dataSourceTipos">
           </app-input>
           </div>
@@ -101,22 +101,34 @@
           <app-input [type]="'select-pair'"
                      [parentForm]="mantenimientoCorrectivoForm" 
                      [control]="mantenimientoCorrectivoForm.controls.maquina_cod" 
-                     [options]="dataSourceMachines">
+                     [options]="dataSourceMachines"
+                     (change)="getInAddMode($event.target.value)">
           </app-input>
+          </div>
+
+          <div class="col">
+            <label for="parte_cod">Parte de maquina</label>
+            <app-input [type]="'select-pair'"
+                       [options]="dataSourcePartes"
+                       [parentForm]="mantenimientoCorrectivoForm" 
+                       [control]="mantenimientoCorrectivoForm.controls.parte_cod"
+                       [required]="true">
+            </app-input>
           </div>
       
-          <div class="col">
-          <label for="ordenTrabajo_cod">Orden de trabajo</label>
-          <app-input [type]="'select-pair'"
-                     [parentForm]="mantenimientoCorrectivoForm" 
-                     [control]="mantenimientoCorrectivoForm.controls.ordenTrabajo_cod" 
-                     [options]="dataSourceOrders">
-          </app-input>
-          </div>
 
         </div>
 
         <div class="form-row">
+
+          <div class="col">
+            <label for="ordenTrabajo_cod">Orden de trabajo</label>
+            <app-input [type]="'select-pair'"
+                       [parentForm]="mantenimientoCorrectivoForm" 
+                       [control]="mantenimientoCorrectivoForm.controls.ordenTrabajo_cod" 
+                       [options]="dataSourceOrders">
+            </app-input>
+          </div>
 
           <div class="col">
           <label for="observaciones">Observaciones</label>

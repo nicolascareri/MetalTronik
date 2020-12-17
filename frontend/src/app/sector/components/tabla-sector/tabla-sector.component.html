@@ -1,9 +1,26 @@
-<app-tabla class="table" [ds]='dataSourceSectors' 
-                         [columns]='columnsToDisplay' 
-                         [width]="'90%'"
-                         (clickRow)="clickedRow($event)"
-                         [title]="['Sectores']"
-                         [includeButton]="true"
-                         [nameForButton]="['Nuevo sector']"
-                         [routeForButton]="['formsector']">
-</app-tabla>
+<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Sectores
+        </mat-panel-title>
+        <mat-panel-description>
+            Presiona para {{panelOpenState ? 'ocultar' : 'ver'}} la lista de sectores
+        </mat-panel-description>
+</mat-expansion-panel-header>
+  
+  <mat-list role="list">
+  
+      <form [formGroup]="form" (ngSubmit)="saveForm()">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" formControlName="descripcion" placeholder="Agregar sector">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Agregar</button>
+          </div>
+        </div>
+      </form>
+  
+      <mat-list-item role="listitem" *ngFor="let sector of dataSourceSectors">
+          {{sector.descripcion}}
+      </mat-list-item>
+  </mat-list>
+

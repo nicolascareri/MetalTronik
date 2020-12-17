@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { MessageService } from "../../../core/service/message.service";
 import { TipoService } from "../../../tipo/services/tipo.service";
+import { ParteService } from "../../../maquina/services/parte.service";
 
 @Component({
   selector: 'app-form-mantenimiento-correctivo',
@@ -25,16 +26,19 @@ export class FormMantenimientoCorrectivoComponent implements OnInit {
     fechainicio: new FormControl(''),
     horasProduccionAfectadas: new FormControl(''),
     maquina_cod: new FormControl(''),
+    parte_cod: new FormControl(''),
     nrocorrectivo: new FormControl(''),
     observaciones: new FormControl(''),
     ordenTrabajo_cod: new FormControl(''),
-    tipofalla: new FormControl('')
+    tipo_id: new FormControl('')
   })
   public dataSourceOrders: any;
   public dataSourceMachines: any;
+  public dataSourcePartes: any;
   public dataSourceUsers: any;
   public dataSourceTipos: any;
   public mantenimientoId: any;
+  public maquinaId: any;
   public mode = 'add';
   public section = 'Nuevo mantenimiento correctivo';
   public buttonName = 'Crear mantenimiento correctivo'
@@ -48,7 +52,8 @@ export class FormMantenimientoCorrectivoComponent implements OnInit {
               private UserService: UserService,
               private route: ActivatedRoute,
               private MessageService: MessageService,
-              private TipoService: TipoService
+              private TipoService: TipoService,
+              private ParteService: ParteService
   )
   {}
 
@@ -90,17 +95,19 @@ export class FormMantenimientoCorrectivoComponent implements OnInit {
   }
 
   loadMantenimiento(mantenimiento) {
+    this.getPartes(mantenimiento.maquina.id);
     this.mode = "edit";
     this.section = 'Editar mantenimiento correctivo';
     this.buttonName = 'Confirmar cambios';
     this.mantenimientoCorrectivoForm.controls.nrocorrectivo.setValue(mantenimiento.nrocorrectivo);
-    this.mantenimientoCorrectivoForm.controls.tipofalla.setValue(mantenimiento.tipofalla);
+    this.mantenimientoCorrectivoForm.controls.tipo_id.setValue(mantenimiento.tipo_id);
     this.mantenimientoCorrectivoForm.controls.encargo1_cod.setValue(mantenimiento.encargo1.id);
     this.mantenimientoCorrectivoForm.controls.encargo2_cod.setValue(mantenimiento.encargo2 ? mantenimiento.encargo2.id: null);
     this.mantenimientoCorrectivoForm.controls.encargo3_cod.setValue(mantenimiento.encargo3 ? mantenimiento.encargo3.id: null);
     this.mantenimientoCorrectivoForm.controls.fechainicio.setValue(mantenimiento.fechainicio.replace(' ', 'T'));
     this.mantenimientoCorrectivoForm.controls.fechaFin.setValue(mantenimiento.fechaFin.replace(' ', 'T'));
     this.mantenimientoCorrectivoForm.controls.maquina_cod.setValue(mantenimiento.maquina.id);
+    this.mantenimientoCorrectivoForm.controls.parte_cod.setValue(mantenimiento.parte.id);
     this.mantenimientoCorrectivoForm.controls.ordenTrabajo_cod.setValue(mantenimiento.ordenTrabajo.ordentrabajo_cod);
     this.mantenimientoCorrectivoForm.controls.observaciones.setValue(mantenimiento.observaciones);
     this.mantenimientoCorrectivoForm.controls.horasProduccionAfectadas.setValue(mantenimiento.horasProduccionAfectadas);
@@ -140,6 +147,30 @@ export class FormMantenimientoCorrectivoComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+
+  getPartes(id){
+    this.ParteService.getByMaquina(id).subscribe(
+      (data: any) => {
+        this.dataSourcePartes = data.map(
+          val => {
+            return {
+              "id": val.id,
+              "descripcion": val.nombre + " " + val.codigo
+            }
+          }
+        );
+      },
+      (error) => {
+        console.log(error.error);
+      }
+    );
+  }
+  
+  getInAddMode(id){
+    this.maquinaId =  id.split(" ");
+    id =  this.maquinaId[1];
+    this.getPartes(id);
   }
 
   getUsuarios(){
@@ -187,6 +218,7 @@ export class FormMantenimientoCorrectivoComponent implements OnInit {
         error => this.showError(error.error)
       );
     } else {
+      this.getPartes(this.maquinaId);
       this.MantenimientoCorrectivoService.update(this.mantenimientoId, this.mantenimientoCorrectivoForm).subscribe(
         mantenimiento => {
           this.messageBody = "El mantenimiento se edito correctamente"

@@ -17,6 +17,20 @@ export class CoreService {
       formats.forEach(
         format => {
           switch (format) {
+            case 'fechainicio':
+              if (result.fechainicio && moment(result.fechainicio, this.dateServerFormat).isValid()) {
+                result.fechainicio = this.getFormatDate(result.fechainicio);
+              } else {
+                result.fechainicio = '';
+              }
+              break;
+              case 'fechaFin':
+                if (result.fechaFin && moment(result.fechaFin, this.dateServerFormat).isValid()) {
+                  result.fechaFin = this.getFormatDate(result.fechaFin);
+                } else {
+                  result.fechaFin = '';
+                }
+                break;
             case 'fechaEntrega':
               if (result.fechaEntrega && moment(result.fechaEntrega, this.dateServerFormat).isValid()) {
                 result.fechaEntrega = this.getFormatDate(result.fechaEntrega);
@@ -108,8 +122,14 @@ export class CoreService {
             case 'parte':
               if(result.parte){
                 result.parte = result.parte.codigo;
+                
               }  
               break;
+            case 'parteOrden':
+              if(result.ordenTrabajo.parte){
+                result.parte = result.ordenTrabajo.parte.codigo;
+              }  
+                break;
             case 'tarea':
               if(result.tarea){
                 result.sector = result.tarea.maquina.sector.descripcion;
