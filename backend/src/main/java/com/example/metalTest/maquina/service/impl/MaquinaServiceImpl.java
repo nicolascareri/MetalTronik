@@ -12,7 +12,6 @@ import com.example.metalTest.maquina.service.MaquinaService;
 import com.example.metalTest.parte.mapper.ParteMapper;
 import com.example.metalTest.parte.repository.ParteRepository;
 import com.example.metalTest.planta.repository.PlantaRepository;
-import com.example.metalTest.almacen.repuestoMaquina.domain.RepuestoMaquina;
 import com.example.metalTest.sector.repository.SectorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,8 +60,6 @@ public class   MaquinaServiceImpl implements MaquinaService {
     @Override
     public MaquinaResponse save(MaquinaRequest maquinaRequest) throws ValidateFieldException {
         Maquina maquina = maquinaMapper.maquinaRequestToMaquina(maquinaRequest);
-        List<RepuestoMaquina> repuestoMaquinaList = new ArrayList<>();
-        maquina.setRepuestoMaquinaList(repuestoMaquinaList);
         if (maquinaRepository.checkCodigoExistance(maquina.getMaquina_cod()) != 0) {
             throw new ValidateFieldException("El codigo ya tiene una maquina asociada", "maquina_cod", maquina.getMaquina_cod());
         }

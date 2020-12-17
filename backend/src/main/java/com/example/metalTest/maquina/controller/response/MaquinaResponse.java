@@ -1,7 +1,6 @@
 package com.example.metalTest.maquina.controller.response;
 
 import com.example.metalTest.planta.domain.Planta;
-import com.example.metalTest.almacen.repuestoMaquina.controller.response.RepuestoMaquinaResponse;
 import com.example.metalTest.sector.domain.Sector;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,5 +23,4 @@ public class MaquinaResponse {
     private String equipo;
     private String modelo;
     private String descripcion;
-    private List<RepuestoMaquinaResponse> repuestoMaquinaList = new ArrayList<>();
 }

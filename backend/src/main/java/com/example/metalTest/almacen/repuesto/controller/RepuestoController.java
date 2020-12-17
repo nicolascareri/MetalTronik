@@ -1,5 +1,8 @@
 package com.example.metalTest.almacen.repuesto.controller;
 
+import com.example.metalTest.almacen.repuesto.controller.request.AsociarList;
+import com.example.metalTest.almacen.repuesto.controller.request.RepuestoAsociarRequest;
+import com.example.metalTest.almacen.repuesto.controller.response.RepuestoVinculadoResponse;
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.almacen.repuesto.controller.request.RepuestoRequest;
 import com.example.metalTest.almacen.repuesto.controller.response.RepuestoReducidoResponse;
@@ -23,7 +26,7 @@ public class RepuestoController {
     RepuestoService repuestoService;
 
     @GetMapping
-    public ResponseEntity<List<RepuestoReducidoResponse>> getAll() {
+    public ResponseEntity<List<Repuesto>> getAll() {
         return new ResponseEntity<>(repuestoService.getAll(), HttpStatus.OK);
     }
 
@@ -33,7 +36,7 @@ public class RepuestoController {
     }
 
     @GetMapping("/maquina/{id}")
-    public ResponseEntity<List<Repuesto>> getByMaquina(@PathVariable Integer id) throws ValidateFieldException {
+    public ResponseEntity<List<Repuesto>> getByMaquina(@PathVariable Integer id){
         return new ResponseEntity<>(repuestoService.getByMaquina(id), HttpStatus.OK);
     }
 
@@ -45,6 +48,16 @@ public class RepuestoController {
     @PutMapping("/{id}")
     public ResponseEntity<Repuesto> update(@Valid @RequestBody RepuestoRequest repuestoRequest, @PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<>(repuestoService.update(repuestoRequest, id), HttpStatus.OK);
+    }
+    @GetMapping("/vinculados")
+    public ResponseEntity<List<RepuestoVinculadoResponse>> getVinculados(){
+        return new ResponseEntity<>(repuestoService.getVinculados(), HttpStatus.OK);
+    }
+
+    @PutMapping("/vincular/maquina-parte")
+    public Repuesto asociar(@Valid @RequestBody AsociarList asociarList){
+        repuestoService.asociar(asociarList);
+        return null;
     }
 
 }
