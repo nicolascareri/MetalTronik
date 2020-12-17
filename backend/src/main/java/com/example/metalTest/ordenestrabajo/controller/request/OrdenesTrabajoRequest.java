@@ -2,7 +2,6 @@ package com.example.metalTest.ordenestrabajo.controller.request;
 
 import com.example.metalTest.common.validator.ValidEntity;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
-import com.example.metalTest.prioridades.repository.PrioridadesRepository;
 import com.example.metalTest.tipo.repository.TipoRepository;
 import com.example.metalTest.usuario.repository.UsuarioRepository;
 import lombok.Getter;
@@ -18,27 +17,28 @@ public class OrdenesTrabajoRequest {
     @NotNull
     @ValidEntity(repository = MaquinaRepository.class)
     private int maquina_id;
+
     private Integer parte_id;
     @NotNull
     private String pedidoMateriales;
     @NotNull
     private String tarea;
     @NotNull
-    @ValidEntity(repository = PrioridadesRepository.class)
-    private int prioridad_cod;
+    @ValidEntity(repository = TipoRepository.class)
+    private Integer prioridad_id;
     @NotNull
     @ValidEntity(repository = TipoRepository.class)
-    private int tipo_cod;
+    private Integer tipo_id;
     @NotNull
     private Date fechaRealizar;
     @NotNull
     private Date fechaEntrega;
     @NotNull
     @ValidEntity(repository = UsuarioRepository.class)
-    private int encargo_cod;
+    private int encargo_id;
     @NotNull
     @ValidEntity(repository = UsuarioRepository.class)
-    private int responsable_cod;
+    private int responsable_id;
 
     private String observaciones;
 

@@ -9,12 +9,10 @@ import com.example.metalTest.correctivo.mapper.MantenimientoCorrectivoMapper;
 import com.example.metalTest.correctivo.repository.MantenimientoCorrectivoRepository;
 import com.example.metalTest.correctivo.service.MantenimientoCorrectivoService;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
-import com.example.metalTest.indicadores.controller.response.IndicatorResponse;
 import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
 import com.example.metalTest.ordenestrabajo.repository.OrdenesTrabajoRepository;
 import com.example.metalTest.parte.repository.ParteRepository;
 import com.example.metalTest.parte.service.impl.ParteBuscador;
-import com.example.metalTest.sector.repository.SectorRepository;
 import com.example.metalTest.tipo.repository.TipoRepository;
 import com.example.metalTest.usuario.domain.Usuario;
 import com.example.metalTest.usuario.repository.UsuarioRepository;
@@ -36,9 +34,6 @@ public class MantenimientoCorrectivoServiceImpl implements MantenimientoCorrecti
 
     @Autowired
     MaquinaRepository maquinaRepository;
-
-    @Autowired
-    SectorRepository sectorRepository;
 
     @Autowired
     UsuarioRepository usuarioRepository;

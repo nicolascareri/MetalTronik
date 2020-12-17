@@ -1,8 +1,7 @@
 package com.example.metalTest.maquina.domain;
 
 import com.example.metalTest.parte.domain.Parte;
-import com.example.metalTest.planta.domain.Planta;
-import com.example.metalTest.sector.domain.Sector;
+import com.example.metalTest.tipo.domain.Tipo;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,13 +24,13 @@ public class Maquina {
     @Column
     private short estado;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn
-    private Planta planta;
+    private Tipo planta;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn
-    private Sector sector;
+    private Tipo sector;
 
     @Column
     private String equipo;
