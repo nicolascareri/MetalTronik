@@ -20,7 +20,6 @@ public interface RepuestoService {
     Repuesto update(RepuestoRequest repuestoRequest, Integer id) throws ValidateFieldException;
     void asociar(AsociarList asociarList);
 
-    List<Repuesto> getByMaquina(Integer id);
     List<Asociacion> getVinculados();
 
 }

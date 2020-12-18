@@ -34,11 +34,6 @@ public class RepuestoController {
         return new ResponseEntity<>(repuestoService.getById(id), HttpStatus.OK);
     }
 
-    @GetMapping("/maquina/{id}")
-    public ResponseEntity<List<Repuesto>> getByMaquina(@PathVariable Integer id){
-        return new ResponseEntity<>(repuestoService.getByMaquina(id), HttpStatus.OK);
-    }
-
     @PostMapping()
     public ResponseEntity<Repuesto> create(@Valid @RequestBody RepuestoRequest repuestoRequest) throws ValidateFieldException {
         return new ResponseEntity<>(repuestoService.create(repuestoRequest), HttpStatus.CREATED);

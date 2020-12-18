@@ -48,6 +48,9 @@ public class Repuesto {
     @Column
     private String ubicacion;
 
+    @Column
+    private int cantidad_instalada;
+
 
 
 }
