@@ -1,13 +1,9 @@
 package com.example.metalTest.almacen.repuesto.domain;
 
-import com.example.metalTest.maquina.domain.Maquina;
-import com.example.metalTest.parte.domain.Parte;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -52,16 +48,6 @@ public class Repuesto {
     @Column
     private String ubicacion;
 
-    @ManyToOne
-    @JoinColumn(name = "maquina")
-    private Maquina maquina;
 
-    @ManyToOne
-    @JoinColumn(name = "parte")
-    private Parte parte;
-
-    @OneToOne(cascade = {CascadeType.ALL})
-    @JoinColumn
-    CantidadInstalada cantidadInstalada;
 
 }

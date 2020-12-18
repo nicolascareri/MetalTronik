@@ -1,11 +1,10 @@
 package com.example.metalTest.almacen.repuesto.controller;
 
 import com.example.metalTest.almacen.repuesto.controller.request.AsociarList;
-import com.example.metalTest.almacen.repuesto.controller.request.RepuestoAsociarRequest;
-import com.example.metalTest.almacen.repuesto.controller.response.RepuestoVinculadoResponse;
+import com.example.metalTest.almacen.repuesto.controller.response.AsociacionResponse;
+import com.example.metalTest.almacen.repuesto.domain.Asociacion;
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.almacen.repuesto.controller.request.RepuestoRequest;
-import com.example.metalTest.almacen.repuesto.controller.response.RepuestoReducidoResponse;
 import com.example.metalTest.almacen.repuesto.controller.response.RepuestoResponse;
 import com.example.metalTest.almacen.repuesto.domain.Repuesto;
 import com.example.metalTest.almacen.repuesto.service.RepuestoService;
@@ -50,7 +49,7 @@ public class RepuestoController {
         return new ResponseEntity<>(repuestoService.update(repuestoRequest, id), HttpStatus.OK);
     }
     @GetMapping("/vinculados")
-    public ResponseEntity<List<RepuestoVinculadoResponse>> getVinculados(){
+    public ResponseEntity<List<Asociacion>> getVinculados(){
         return new ResponseEntity<>(repuestoService.getVinculados(), HttpStatus.OK);
     }
 
