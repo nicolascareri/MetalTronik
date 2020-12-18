@@ -1,7 +1,7 @@
 package com.example.metalTest.almacen.movimiento.salida.domain;
 
 import com.example.metalTest.almacen.movimiento.Movimiento;
-import com.example.metalTest.sector.domain.Sector;
+import com.example.metalTest.tipo.domain.Tipo;
 import com.example.metalTest.usuario.domain.Usuario;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +16,7 @@ import javax.persistence.OneToOne;
 public class Salida extends Movimiento {
     @JoinColumn
     @OneToOne
-    private Sector sector;
+    private Tipo sector;
 
     @JoinColumn
     @OneToOne

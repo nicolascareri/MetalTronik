@@ -38,7 +38,6 @@ public class TareaHistServiceImpl implements TareaHistorialService {
         newTareaHistorial.setTarea(tareas.getTarea());
 
         Date date = new Date();
-        System.out.println("date: "+ date);
         newTareaHistorial.setFecha_cambio(date);
         return tareaHistorialRepository.save(newTareaHistorial);
     }

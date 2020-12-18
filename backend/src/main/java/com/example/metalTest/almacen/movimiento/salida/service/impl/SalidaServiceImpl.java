@@ -8,7 +8,7 @@ import com.example.metalTest.almacen.movimiento.salida.domain.Salida;
 import com.example.metalTest.almacen.movimiento.salida.mapper.SalidaMapper;
 import com.example.metalTest.almacen.movimiento.salida.repository.SalidaRepository;
 import com.example.metalTest.almacen.movimiento.salida.service.SalidaService;
-import com.example.metalTest.sector.repository.SectorRepository;
+import com.example.metalTest.tipo.repository.TipoRepository;
 import com.example.metalTest.usuario.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,11 +22,11 @@ public class SalidaServiceImpl implements SalidaService {
     @Autowired
     SalidaMapper salidaMapper;
     @Autowired
-    SectorRepository sectorRepository;
-    @Autowired
     UsuarioRepository usuarioRepository;
     @Autowired
     RepuestoRepository repuestoRepository;
+    @Autowired
+    TipoRepository tipoRepository;
 
 
     @Override
@@ -40,8 +40,8 @@ public class SalidaServiceImpl implements SalidaService {
         Repuesto repuesto = repuestoRepository.findById(salidaRequest.getRepuesto_cod()).get();
         repuesto.setExistencia(repuesto.getExistencia() - salidaRequest.getCantidad());
         salida.setRepuesto(repuesto);
-        salida.setSector(sectorRepository.findById(salidaRequest.getSector_cod()).get());
-        salida.setSolicitante(usuarioRepository.findById(salidaRequest.getSolicitante_cod()).get());
+        salida.setSector(tipoRepository.findById(salidaRequest.getSector_id()).get());
+        salida.setSolicitante(usuarioRepository.findById(salidaRequest.getSolicitante_id()).get());
         return salidaMapper.toSalidaResponse(salidaRepository.save(salida));
     }
 }

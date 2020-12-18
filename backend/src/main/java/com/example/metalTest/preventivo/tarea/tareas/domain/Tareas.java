@@ -40,6 +40,4 @@ public class Tareas {
     @Column
     private Short estado;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<TareaHistorial> historialList;
 }

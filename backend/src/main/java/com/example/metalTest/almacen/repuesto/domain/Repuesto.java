@@ -1,6 +1,7 @@
 package com.example.metalTest.almacen.repuesto.domain;
 
-import com.example.metalTest.almacen.repuestoMaquina.domain.RepuestoMaquina;
+import com.example.metalTest.maquina.domain.Maquina;
+import com.example.metalTest.parte.domain.Parte;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,8 +24,6 @@ public class Repuesto {
     @Column //Codigo de barras
     private String codigoProducto;
 
-    @OneToMany(mappedBy = "repuestoMaquinaPk.repuesto",fetch = FetchType.LAZY , cascade = { CascadeType.MERGE })
-    private List<RepuestoMaquina> repuestoMaquinaList = new ArrayList<>();
 
     @Column
     private String modelo;
@@ -52,5 +51,17 @@ public class Repuesto {
 
     @Column
     private String ubicacion;
+
+    @ManyToOne
+    @JoinColumn(name = "maquina")
+    private Maquina maquina;
+
+    @ManyToOne
+    @JoinColumn(name = "parte")
+    private Parte parte;
+
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn
+    CantidadInstalada cantidadInstalada;
 
 }
