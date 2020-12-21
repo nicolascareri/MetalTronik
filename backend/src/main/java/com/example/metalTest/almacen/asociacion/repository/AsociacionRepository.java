@@ -1,6 +1,6 @@
-package com.example.metalTest.almacen.repuesto.repository;
+package com.example.metalTest.almacen.asociacion.repository;
 
-import com.example.metalTest.almacen.repuesto.domain.Asociacion;
+import com.example.metalTest.almacen.asociacion.domain.Asociacion;
 import com.example.metalTest.maquina.domain.Maquina;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
