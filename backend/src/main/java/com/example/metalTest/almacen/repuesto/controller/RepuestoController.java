@@ -1,8 +1,7 @@
 package com.example.metalTest.almacen.repuesto.controller;
 
-import com.example.metalTest.almacen.repuesto.controller.request.AsociarList;
-import com.example.metalTest.almacen.repuesto.controller.response.AsociacionResponse;
-import com.example.metalTest.almacen.repuesto.domain.Asociacion;
+import com.example.metalTest.almacen.asociacion.controller.request.AsociarList;
+import com.example.metalTest.almacen.asociacion.domain.Asociacion;
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.almacen.repuesto.controller.request.RepuestoRequest;
 import com.example.metalTest.almacen.repuesto.controller.response.RepuestoResponse;
@@ -44,19 +43,6 @@ public class RepuestoController {
     public ResponseEntity<Repuesto> update(@Valid @RequestBody RepuestoRequest repuestoRequest, @PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<>(repuestoService.update(repuestoRequest, id), HttpStatus.OK);
     }
-    @GetMapping("/vinculados")
-    public ResponseEntity<List<Asociacion>> getVinculados(){
-        return new ResponseEntity<>(repuestoService.getVinculados(), HttpStatus.OK);
-    }
 
-    @PutMapping("/vincular/maquina-parte")
-    public Repuesto asociar(@Valid @RequestBody AsociarList asociarList){
-        repuestoService.asociar(asociarList);
-        return null;
-    }
-    @GetMapping("/sin-vincular")
-    public ResponseEntity<List<Maquina>> getSinVincular(){
-        return new ResponseEntity<>(repuestoService.getSinVincular(), HttpStatus.OK);
-    }
 
 }

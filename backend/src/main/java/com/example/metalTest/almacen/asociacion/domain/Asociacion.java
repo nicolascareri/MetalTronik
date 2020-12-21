@@ -1,4 +1,4 @@
-package com.example.metalTest.almacen.repuesto.domain;
+package com.example.metalTest.almacen.asociacion.domain;
 
 import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.parte.domain.Parte;

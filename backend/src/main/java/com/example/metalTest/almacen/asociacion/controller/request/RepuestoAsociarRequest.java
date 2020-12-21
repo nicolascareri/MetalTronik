@@ -1,4 +1,4 @@
-package com.example.metalTest.almacen.repuesto.controller.request;
+package com.example.metalTest.almacen.asociacion.controller.request;
 
 import lombok.Getter;
 import lombok.Setter;
