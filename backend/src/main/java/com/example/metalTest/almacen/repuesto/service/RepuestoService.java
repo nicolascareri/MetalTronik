@@ -7,6 +7,7 @@ import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.almacen.repuesto.controller.request.RepuestoRequest;
 import com.example.metalTest.almacen.repuesto.controller.response.RepuestoResponse;
 import com.example.metalTest.almacen.repuesto.domain.Repuesto;
+import com.example.metalTest.maquina.domain.Maquina;
 
 import java.util.List;
 
@@ -22,4 +23,5 @@ public interface RepuestoService {
 
     List<Asociacion> getVinculados();
 
+    List<Maquina> getSinVincular();
 }

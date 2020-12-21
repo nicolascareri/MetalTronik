@@ -8,6 +8,7 @@ import com.example.metalTest.almacen.repuesto.controller.request.RepuestoRequest
 import com.example.metalTest.almacen.repuesto.controller.response.RepuestoResponse;
 import com.example.metalTest.almacen.repuesto.domain.Repuesto;
 import com.example.metalTest.almacen.repuesto.service.RepuestoService;
+import com.example.metalTest.maquina.domain.Maquina;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,6 +53,10 @@ public class RepuestoController {
     public Repuesto asociar(@Valid @RequestBody AsociarList asociarList){
         repuestoService.asociar(asociarList);
         return null;
+    }
+    @GetMapping("/sin-vincular")
+    public ResponseEntity<List<Maquina>> getSinVincular(){
+        return new ResponseEntity<>(repuestoService.getSinVincular(), HttpStatus.OK);
     }
 
 }

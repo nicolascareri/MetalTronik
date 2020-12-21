@@ -76,12 +76,12 @@ public class RepuestoImpl implements RepuestoService {
 
     @Override
     public void asociar(AsociarList asociarList){
+        Maquina maquina = maquinaRepository.findById(asociarList.getMaquina_id()).get();
+        Parte parte = parteBuscador.getParte(asociarList.getParte_id(), parteRepository.getAllByMaquina(asociarList.getMaquina_id()));
         for (RepuestoAsociarRequest ra: asociarList.getRequestList()) {
             Integer cantidad_instalada = ra.getCantidad_instalada();
             Integer repuesto_id = ra.getRepuesto_id();
             Repuesto repuesto = repuestoRepository.findById(repuesto_id).get();
-            Maquina maquina = maquinaRepository.findById(asociarList.getMaquina_id()).get();
-            Parte parte = parteBuscador.getParte(asociarList.getParte_id(), parteRepository.getAllByMaquina(asociarList.getMaquina_id()));
             updateRepuesto(repuesto, cantidad_instalada, repuesto_id);
             Asociacion asociacion = setCampos(maquina, parte, repuesto, cantidad_instalada);
             asociacionRepository.save(asociacion);
@@ -103,6 +103,11 @@ public class RepuestoImpl implements RepuestoService {
     @Override
     public List<Asociacion> getVinculados() {
         return asociacionRepository.findAll();
+    }
+
+    @Override
+    public List<Maquina> getSinVincular() {
+        return asociacionRepository.getSinAsociar();
     }
 
 }
