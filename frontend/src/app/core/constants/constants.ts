@@ -86,6 +86,7 @@ export const ENDPOINTS = {
     },
 
     REPUESTOMAQUINA: {
+        POST: 'api/repuesto/vincular/maquina-parte',
         GET: 'api/repuesto-maquina',
         PUT: 'api/repuesto-maquina/maquina/id/vincular'
     },

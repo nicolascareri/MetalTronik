@@ -134,7 +134,7 @@ export class FormComponent implements OnInit, AfterViewInit {
   }
 
   getInAddMode(id){
-    this.maquinaId =  id.split(" ");
+    this.maquinaId = id.split(" ");
     id =  this.maquinaId[1];
     this.getPartes(id);
   }

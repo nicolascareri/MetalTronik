@@ -1,4 +1,115 @@
-<div class="container-fluid">
+<div class="form-container">
+
+  <div class="card">
+
+    <h2 class="card-header">
+      Asociar repuestos
+    </h2>
+
+    <div class="card-body">
+
+      <div class="form-row">
+
+        <div class="col">
+        <label for="repuesto_id">Repuesto</label>
+        <app-input [type]="'select-pair'"
+                   [parentForm]="form" 
+                   [control]="form.controls.repuesto_id" 
+                   [options]="dataSourceRepuestos">
+        </app-input>
+        </div>
+ 
+        <div class="col">
+        <label for="cantidad_instalada">Cantidad a asociar</label>
+        <app-input [type]="'onlyNumber'"
+                   [parentForm]="form" 
+                   [control]="form.controls.cantidad_instalada">
+        </app-input>
+        </div>
+
+
+      </div>
+
+      <app-button style="margin: 5%;" [name]="['Agregar']" [type]="'success'" (click)="agruopData()"></app-button>
+      
+    </div>
+
+    <div class="form-row" >
+
+      <div class="col">
+        
+        <div class="card" style="margin: 5%;">
+          <div class="card-header">
+            Seleccion actual
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngFor="let r of seleccion">
+              Codigo de repuesto: <b>{{r.repuesto_id}}</b> / Cantidad a instalar: <b>{{r.cantidad_instalada}}</b> -  <button class="btn btn-danger btn-sm" (click)="deleteSelection()">Eliminar</button>
+            </li>
+          </ul>
+        </div>
+    
+      </div>
+    
+    </div>
+
+    <div class="form-row" style="margin: 5%;"> 
+
+      <div class="col">
+        <label for="maquina_id">Maquina</label>
+        <app-input [type]="'select-pair'"
+                   [parentForm]="maquina" 
+                   [control]="maquina.controls.maquina_id" 
+                   [options]="dataSourceMaquinas"
+                   (change)="getMachineId($event.target.value)">
+        </app-input>
+        </div>
+    
+        <div class="col">
+        <label for="cantidad_instalada">Parte de maquina</label>
+        <app-input [type]="'select-pair'"
+                   [parentForm]="maquina" 
+                   [control]="form.controls.cantidad_instalada"
+                   [options]="dataSourcePartes"
+                   (change)="getPartId($event.target.value)">
+        </app-input>
+        </div>
+
+        
+      </div>
+
+
+      
+      
+  </div>
+
+              
+  <div style="margin-top: 3%" class="btn-group btn-group-toggle" data-toggle="buttons">
+    <app-button [name]="['Asociar repuestos']" [type]="'success'" (click)="asociar()"></app-button>
+    <app-button [name]="'Cancelar'" [type]="'cancel'"></app-button>
+  </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container-fluid">
 
   <mat-card>
 
@@ -87,4 +198,4 @@
 
   </mat-card>
 
-</div>
+</div> -->

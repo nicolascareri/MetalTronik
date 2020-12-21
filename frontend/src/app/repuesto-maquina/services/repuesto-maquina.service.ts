@@ -20,8 +20,8 @@ export class RepuestoMaquinaService {
     return this.http.get(this.path.SERVER.serve + this.path.REPUESTOMAQUINA.GET);
   }
 
-  asociarRepuestos(id, repuestos:[]){
-    return this.http.put<any>(this.path.SERVER.serve + 'api/repuesto-maquina/maquina/' + id + '/vincular' , repuestos);
+  asociarRepuestos(request){
+    return this.http.put<any>(this.path.SERVER.serve + this.path.REPUESTOMAQUINA.POST, request);
   }
                             
 }
