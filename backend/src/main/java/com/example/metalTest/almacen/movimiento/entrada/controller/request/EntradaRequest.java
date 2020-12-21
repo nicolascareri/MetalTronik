@@ -13,13 +13,15 @@ import java.util.Date;
 @Setter
 public class EntradaRequest {
     @NotNull
-    private Integer precio;
+    private Integer precio_unitario;
+    @NotNull
+    private Integer precio_total;
     @NotEmpty
     private String numeroOrdenCompra;
     @NotEmpty
     private String proveedor;
     @ValidEntity(repository = RepuestoRepository.class)
-    private Integer repuesto_cod;
+    private Integer repuesto_id;
     @NotNull
     private Integer cantiad;
     @NotNull

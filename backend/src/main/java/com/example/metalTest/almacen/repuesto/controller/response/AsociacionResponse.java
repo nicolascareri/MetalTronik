@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RepuestoVinculadoResponse {
+public class AsociacionResponse {
     private int id;
     private String nombre;
     private String modelo;

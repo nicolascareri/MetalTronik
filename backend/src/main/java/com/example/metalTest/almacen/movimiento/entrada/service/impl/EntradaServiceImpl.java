@@ -34,7 +34,7 @@ public class EntradaServiceImpl implements EntradaService {
     @Override
     public EntradaResponse create(EntradaRequest entradaRequest) {
         Entrada entrada = entradaMapper.entradaRequestToEntrada(entradaRequest);
-        Repuesto repuesto = repuestoRepository.findById(entradaRequest.getRepuesto_cod()).get();
+        Repuesto repuesto = repuestoRepository.findById(entradaRequest.getRepuesto_id()).get();
         repuesto.setExistencia(repuesto.getExistencia() + entradaRequest.getCantiad());
         entrada.setRepuesto(repuesto);
         entradaRepository.save(entrada);

@@ -13,7 +13,8 @@ public class EntradaResponse {
     private RepuestoReducidoResponse repuesto;
     private Date fecha;
     private int cantidad;
-    private int precio;
+    private int precio_unitario;
+    private int precio_total;
     private String numeroOrdenCompra;
     private String proveedor;
 }
