@@ -35,5 +35,7 @@ public class Asociacion {
     private Integer cantidad_instalada;
     @Column
     private String parte_nombre;
+    @Column
+    private String observaciones;
 
 }

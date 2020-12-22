@@ -15,4 +15,6 @@ public class AsociarList {
     @NotNull
     private Integer maquina_id;
     private Integer parte_id;
+    @NotNull
+    private String observaciones;
 }
