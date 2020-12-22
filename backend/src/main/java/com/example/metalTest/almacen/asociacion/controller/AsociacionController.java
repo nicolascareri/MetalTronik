@@ -17,7 +17,9 @@ import java.util.List;
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT})
 @RequestMapping("/api/repuesto")
 public class AsociacionController {
-   AsosiacionService asosiacionService;
+    @Autowired
+    AsosiacionService asosiacionService;
+
     @GetMapping("/vinculados")
     public ResponseEntity<List<Asociacion>> getVinculados(){
         return new ResponseEntity<>(asosiacionService.getVinculados(), HttpStatus.OK);
