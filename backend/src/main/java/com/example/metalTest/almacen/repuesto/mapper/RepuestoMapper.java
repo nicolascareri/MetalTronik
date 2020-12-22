@@ -1,7 +1,6 @@
 package com.example.metalTest.almacen.repuesto.mapper;
 
 import com.example.metalTest.almacen.repuesto.controller.request.RepuestoRequest;
-import com.example.metalTest.almacen.repuesto.controller.response.AsociacionResponse;
 import com.example.metalTest.almacen.repuesto.controller.response.RepuestoReducidoResponse;
 import com.example.metalTest.almacen.repuesto.controller.response.RepuestoResponse;
 import com.example.metalTest.almacen.repuesto.domain.Repuesto;
@@ -22,5 +21,4 @@ public interface RepuestoMapper {
 
     RepuestoResponse toRepuestoResponse(Repuesto repuesto);
 
-    AsociacionResponse repuestoToRepuestoVinculadoResponse(Repuesto repuesto);
 }

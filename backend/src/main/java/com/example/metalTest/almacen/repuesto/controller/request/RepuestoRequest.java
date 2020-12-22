@@ -23,6 +23,7 @@ public class RepuestoRequest {
     @NotEmpty
     private String marca;
 
+    @NotNull
     private int precio;
 
     @NotNull

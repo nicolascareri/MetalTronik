@@ -28,7 +28,9 @@ public class Repuesto {
     private String marca;
 
     @Column
-    private int precio;
+    private int precio_unitario;
+    @Column
+    private int precio_total;
 
     @Column
     private int existencia;
