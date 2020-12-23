@@ -11,13 +11,6 @@ import java.util.Date;
 public class CorrHistResponse {
     private Repuesto repuesto;
 
-    private String nombre;
-
-    //Codigo de barras
-    private String codigoProducto;
-
-    private String modelo;
-
     private Integer stock;
 
     private Date fecha_correccion;
