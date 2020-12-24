@@ -19,8 +19,6 @@ public class Asociacion {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-
-
     @Column
     private String  maquina_codigo;
     @Column

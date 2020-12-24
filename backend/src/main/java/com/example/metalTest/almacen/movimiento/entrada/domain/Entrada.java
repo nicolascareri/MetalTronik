@@ -11,10 +11,6 @@ import javax.persistence.*;
 @Setter
 public class Entrada extends Movimiento {
 
-    @Column
-    private int precio_unitario;
-    @Column
-    private int precio_total;
 
     @Column
     private String numeroOrdenCompra;

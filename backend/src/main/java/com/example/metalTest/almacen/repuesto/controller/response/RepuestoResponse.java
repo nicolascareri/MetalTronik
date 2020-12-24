@@ -17,5 +17,6 @@ public class RepuestoResponse {
     private String marca;
     private String codigoProducto;
     private String existencia;
-    private String precio;
+    private Integer precio_unitario;
+    private Integer precio_total;
 }

@@ -46,6 +46,8 @@ public class RepuestoImpl implements RepuestoService {
     public Repuesto create(RepuestoRequest repuestoRequest) {
         Repuesto repuesto = repuestoMapper.repuestoRequestToRepuesto(repuestoRequest);
         repuesto.setCantidad_instalada(0);
+        repuesto.setPrecio_unitario(repuestoRequest.getPrecio());
+        repuesto.setPrecio_total(0);
         return repuestoRepository.save(repuesto);
     }
 
