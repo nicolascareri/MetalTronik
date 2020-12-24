@@ -13,6 +13,7 @@ import { UserService } from "../../../../usuarios/services/user.service";
 })
 export class FormRegistroComponent implements OnInit {
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   public options = [{
     "id" : true,
@@ -38,6 +39,7 @@ export class FormRegistroComponent implements OnInit {
   public messageTitleError: any = "ERROR";
   public messageBody: any = "La tarea se ha programado correctamente";
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   constructor( private route: ActivatedRoute,
                private RegistroService: RegistroService,
@@ -55,6 +57,49 @@ export class FormRegistroComponent implements OnInit {
     }
   }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  showSuccess(){
+    this.MessageService.showSuccess({
+      title: this.messageTitleSuccess,
+      body: this.messageBody
+    });
+  }
+
+  showError(message){
+    this.MessageService.showError({
+      title: this.messageTitleError,
+      body: message.errors ? message.errors[0].defaultMessage + ". campo: " + message.errors[0].field + ", Valor rechazado: " + message.errors[0].rejectedValue : message.error
+    })
+  }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  loadTarea(tarea) {
+    this.tareaForm.controls.fechaPlanificada.setValue(tarea.fechaPlanificada.replace(' ', 'T'));
+    if(this.tareaForm.controls.fechaRealizada == null){
+      this.tareaForm.controls.fechaRealizada.setValue(tarea.fechaRealizada.replace(' ','T'));
+    }
+    this.tareaForm.controls.observaciones.setValue(tarea.observaciones);
+    this.tareaForm.controls.realizo.setValue(tarea.realizo);
+    this.tareaForm.controls.tarea_cod.setValue(tarea.tarea.id);
+    this.tareaForm.controls.encargado.setValue(tarea.encargado.id);
+  }
+
+
+  saveForm() {
+    this.RegistroService.updateRegistro(this.tareaId, this.tareaForm).subscribe(
+      tarea => {
+        this.messageBody = "El registro se ha editado correctamente"
+        this.showSuccess();
+      },
+      error => this.showError(error.error)
+      );
+  }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
   getTarea(id) {
     this.RegistroService.getRegistroById(id).pipe(first()).subscribe(
       tarea => {
@@ -84,43 +129,8 @@ export class FormRegistroComponent implements OnInit {
     );
   }
 
-  loadTarea(tarea) {
-    this.tareaForm.controls.fechaPlanificada.setValue(tarea.fechaPlanificada.replace(' ', 'T'));
-    if(this.tareaForm.controls.fechaRealizada == null){
-      this.tareaForm.controls.fechaRealizada.setValue(tarea.fechaRealizada.replace(' ','T'));
-    }
-    this.tareaForm.controls.observaciones.setValue(tarea.observaciones);
-    this.tareaForm.controls.realizo.setValue(tarea.realizo);
-    this.tareaForm.controls.tarea_cod.setValue(tarea.tarea.id);
-    this.tareaForm.controls.encargado.setValue(tarea.encargado.id);
-  }
 
-  
-  saveForm() {
-      this.RegistroService.updateRegistro(this.tareaId, this.tareaForm).subscribe(
-        tarea => {
-          this.messageBody = "El registro se ha editado correctamente"
-          this.showSuccess();
-        },
-        error => this.showError(error.error)
-        );
-    }
-  
-    
-  showSuccess(){
-    this.MessageService.showSuccess({
-      title: this.messageTitleSuccess,
-      body: this.messageBody
-    });
-  }
-
-  showError(message){
-    this.MessageService.showError({
-      title: this.messageTitleError,
-      body: message.errors ? message.errors[0].defaultMessage + ". campo: " + message.errors[0].field + ", Valor rechazado: " + message.errors[0].rejectedValue : message.error
-    })
-  }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
 
 }

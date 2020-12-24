@@ -102,7 +102,7 @@ export class FormComponent implements OnInit, AfterViewInit {
     this.mode = "edit";
     this.section = 'Editar Orden';
     this.buttonName = 'Confirmar cambios';
-    this.ordenForm.controls.encargo_cod.setValue(orden.encargo.id);
+    this.ordenForm.controls.encargo_id.setValue(orden.encargo.id);
     this.ordenForm.controls.estado.setValue(orden.estado);
     this.ordenForm.controls.fechaEntrega.setValue(orden.fechaEntrega.replace(' ', 'T'))
     this.ordenForm.controls.fechaRealizar.setValue(orden.fechaRealizar.replace(' ', 'T'))
@@ -111,10 +111,10 @@ export class FormComponent implements OnInit, AfterViewInit {
     this.ordenForm.controls.observaciones.setValue(orden.observaciones)
     this.ordenForm.controls.ordenTerciarizacion.setValue(orden.ordenTerciarizacion)
     this.ordenForm.controls.pedidoMateriales.setValue(orden.pedidoMateriales)
-    this.ordenForm.controls.prioridad_cod.setValue(orden.prioridad.id)
-    this.ordenForm.controls.responsable_cod.setValue(orden.responsable.id)
+    this.ordenForm.controls.prioridad_id.setValue(orden.prioridad.id)
+    this.ordenForm.controls.responsable_id.setValue(orden.responsable.id)
     this.ordenForm.controls.tarea.setValue(orden.tarea)
-    this.ordenForm.controls.tipo_cod.setValue(orden.tipo.id)
+    this.ordenForm.controls.tipo_id.setValue(orden.tipo.id)
   }
 
   saveForm() {

@@ -165,7 +165,7 @@ export class TablaRegistroComponent implements OnInit {
         
         if(data.length != 0){
           this.showSuccess();
-          this.dataSourceTareas = this.CoreService.replaceFormat(data, ['fechaPlanificada', 'tarea']);
+          this.dataSourceTareas = this.CoreService.replaceFormat(data, ['fechaPlanificada', 'tarea', 'sector']);
 
         }else{
           this.mesaggeTitleWarning = "Tareas no encontradas en la fecha indicada"

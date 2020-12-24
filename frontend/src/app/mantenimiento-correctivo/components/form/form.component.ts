@@ -46,6 +46,8 @@ export class FormMantenimientoCorrectivoComponent implements OnInit {
   public messageTitleError: any = "ERROR";
   public messageBody: any = "Mantenimiento creado correctamente";
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   constructor(private MantenimientoCorrectivoService: MantenimientoCorrectivoService,
               private OrdenestrabajoService: OrdenestrabajoService,
               private MaquinaService: MaquinaService,
@@ -72,6 +74,8 @@ export class FormMantenimientoCorrectivoComponent implements OnInit {
     }
   }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   showSuccess(){
     this.MessageService.showSuccess({
       title: this.messageTitleSuccess,
@@ -86,13 +90,28 @@ export class FormMantenimientoCorrectivoComponent implements OnInit {
     })
   }
 
-  getMantenimiento(id){
-    this.MantenimientoCorrectivoService.getMantenimiento(id).pipe(first()).subscribe(
-      mantenimiento => {
-        this.loadMantenimiento(mantenimiento);
-      }
-    )
-  }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  saveForm() {
+    if (this.mode === 'add') {
+      this.MantenimientoCorrectivoService.postMantenimientoCorrectivo(this.mantenimientoCorrectivoForm).subscribe(
+        mantenimiento => {
+          this.showSuccess();
+        },
+        error => this.showError(error.error)
+      );
+    } else {
+      this.getPartes(this.maquinaId);
+      this.MantenimientoCorrectivoService.update(this.mantenimientoId, this.mantenimientoCorrectivoForm).subscribe(
+        mantenimiento => {
+          this.messageBody = "El mantenimiento se edito correctamente"
+          this.showSuccess();
+        },
+        error => this.showError(error.error)
+      );
+    }
+}
+
 
   loadMantenimiento(mantenimiento) {
     this.getPartes(mantenimiento.maquina.id);
@@ -111,6 +130,16 @@ export class FormMantenimientoCorrectivoComponent implements OnInit {
     this.mantenimientoCorrectivoForm.controls.ordenTrabajo_cod.setValue(mantenimiento.ordenTrabajo.ordentrabajo_cod);
     this.mantenimientoCorrectivoForm.controls.observaciones.setValue(mantenimiento.observaciones);
     this.mantenimientoCorrectivoForm.controls.horasProduccionAfectadas.setValue(mantenimiento.horasProduccionAfectadas);
+  }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  getMantenimiento(id){
+    this.MantenimientoCorrectivoService.getMantenimiento(id).pipe(first()).subscribe(
+      mantenimiento => {
+        this.loadMantenimiento(mantenimiento);
+      }
+    )
   }
 
   getOrdenes(){
@@ -209,24 +238,7 @@ export class FormMantenimientoCorrectivoComponent implements OnInit {
     );
   }
 
-  saveForm() {
-    if (this.mode === 'add') {
-      this.MantenimientoCorrectivoService.postMantenimientoCorrectivo(this.mantenimientoCorrectivoForm).subscribe(
-        mantenimiento => {
-          this.showSuccess();
-        },
-        error => this.showError(error.error)
-      );
-    } else {
-      this.getPartes(this.maquinaId);
-      this.MantenimientoCorrectivoService.update(this.mantenimientoId, this.mantenimientoCorrectivoForm).subscribe(
-        mantenimiento => {
-          this.messageBody = "El mantenimiento se edito correctamente"
-          this.showSuccess();
-        },
-        error => this.showError(error.error)
-      );
-    }
-  }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }
