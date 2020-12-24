@@ -74,10 +74,10 @@
           </div>
     
           <div class="col">
-          <label for="prioridad_cod">Prioridad</label>
+          <label for="prioridad_id">Prioridad</label>
           <app-input [type]="'select-pair'" 
                      [parentForm]="ordenForm" 
-                     [control]="ordenForm.controls.prioridad_cod"
+                     [control]="ordenForm.controls.prioridad_id"
                      [options]="dataSourcePrioridades"
                      [required]="true">
           </app-input>
@@ -101,10 +101,10 @@
           </div>
     
           <div class="col">
-          <label for="tipo_cod">Tipo</label>
+          <label for="tipo_id">Tipo</label>
           <app-input [type]="'select-pair'"
                      [parentForm]="ordenForm" 
-                     [control]="ordenForm.controls.tipo_cod" 
+                     [control]="ordenForm.controls.tipo_id" 
                      [options]="dataSourceTipos"
                      [required]="true">
           </app-input>
@@ -114,20 +114,20 @@
         <div class="form-row">
 
           <div class="col">
-            <label for="responsable_cod">Responsable</label>
+            <label for="responsable_id">Responsable</label>
             <app-input [type]="'select-pair'"
                        [parentForm]="ordenForm" 
-                       [control]="ordenForm.controls.responsable_cod" 
+                       [control]="ordenForm.controls.responsable_id" 
                        [options]="dataSourceUsers"
                        [required]="true">
             </app-input>
           </div>
 
           <div class="col">
-            <label for="encargo_cod">Responsable de encargo</label>
+            <label for="encargo_id">Responsable de encargo</label>
             <app-input [type]="'select-pair'"
                        [parentForm]="ordenForm" 
-                       [control]="ordenForm.controls.encargo_cod" 
+                       [control]="ordenForm.controls.encargo_id" 
                        [options]="dataSourceUsers"
                        [required]="true">
                        

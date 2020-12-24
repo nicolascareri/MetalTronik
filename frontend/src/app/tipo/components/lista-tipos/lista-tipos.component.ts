@@ -9,12 +9,15 @@ import {FormControl, FormGroup} from '@angular/forms';
 })
 export class ListaTiposComponent implements OnInit {
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+
   @Input() tipo: String = '';
   @Input() title: String= '';
   public form: FormGroup;
   public panelOpenState = false;
   public dataSourceTipos: any;
   
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   constructor(private TipoService: TipoService) 
   {}
 
@@ -26,6 +29,17 @@ export class ListaTiposComponent implements OnInit {
     });
   }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  addTipo() {  
+    this.TipoService.postTipo(this.form).subscribe(
+      prioridad =>  
+      location.reload()  
+    );
+  }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   getTipos(tipo: any){
     this.TipoService.getTipos(tipo).subscribe(
       (data: any) => {
@@ -34,13 +48,6 @@ export class ListaTiposComponent implements OnInit {
       (error) => {
         console.log(error.error);
       }
-    );
-  }
-
-  addTipo() {  
-    this.TipoService.postTipo(this.form).subscribe(
-      prioridad =>  
-      location.reload()  
     );
   }
 

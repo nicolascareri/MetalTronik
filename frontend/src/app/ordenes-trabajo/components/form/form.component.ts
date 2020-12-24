@@ -4,7 +4,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { OrdenestrabajoService } from '../../services/ordenestrabajo.service';
 import { MaquinaService } from '../../../maquina/services/maquina.service';
 import { UserService } from '../../../usuarios/services/user.service';
-import { PrioridadesService } from '../../../prioridad/services/prioridades.service';
 import { TipoService } from '../../../tipo/services/tipo.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MessageService } from "../../../core/service/message.service";
@@ -17,20 +16,22 @@ import { ParteService } from "../../../maquina/services/parte.service";
 })
 export class FormComponent implements OnInit, AfterViewInit {
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   public ordenForm = new FormGroup({
-    encargo_cod: new FormControl(''),
+    encargo_id: new FormControl(''),
     estado: new FormControl(''),
     fechaEntrega: new FormControl(''),
     fechaRealizar: new FormControl(''),
     maquina_id: new FormControl(''),
     parte_id: new FormControl(''),
     pedidoMateriales: new FormControl(''),
-    prioridad_cod: new FormControl(''),
-    responsable_cod: new FormControl(''),
+    prioridad_id: new FormControl(''),
+    responsable_id: new FormControl(''),
     tarea: new FormControl(''),
     observaciones: new FormControl(''),
     ordenTerciarizacion: new FormControl(''),
-    tipo_cod: new FormControl('')
+    tipo_id: new FormControl('')
   })
   public dataSourceUsers: any;
   public dataSourceOrdenes: any;
@@ -49,10 +50,11 @@ export class FormComponent implements OnInit, AfterViewInit {
   public messageBody: any = "La orden se ha creado correctamente";
   public maquinaId: any;
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   constructor(private OrdenestrabajoService: OrdenestrabajoService,
     private UserService: UserService,
     private MaquinaService: MaquinaService,
-    private PrioridadesService: PrioridadesService,
     private TipoService: TipoService,
     private ParteService: ParteService,
     private route: ActivatedRoute,
@@ -68,17 +70,17 @@ export class FormComponent implements OnInit, AfterViewInit {
     this.getTipos();
     this.getUsuarios();
     this.getOrdenes();
-    
-    
 
   }
-
+  
   ngAfterViewInit(): void {
     if (this.ordenId) {
       this.getOrden(this.ordenId);
     }
   }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
   showSuccess(){
     this.MessageService.showSuccess({
       title: this.messageTitleSuccess,
@@ -93,13 +95,7 @@ export class FormComponent implements OnInit, AfterViewInit {
     })
   }
 
-  getOrden(id) {
-    this.OrdenestrabajoService.getOrder(id).pipe(first()).subscribe(
-      orden => {
-        this.loadOrden(orden);
-      }
-    )
-  }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   loadOrden(orden) {
     this.getPartes(orden.maquina.id);
@@ -120,115 +116,6 @@ export class FormComponent implements OnInit, AfterViewInit {
     this.ordenForm.controls.tarea.setValue(orden.tarea)
     this.ordenForm.controls.tipo_cod.setValue(orden.tipo.id)
   }
-
-
-  getOrdenes() {
-    this.OrdenestrabajoService.getAllOrdenes().subscribe(
-      (data: any) => {
-        this.dataSourceOrdenes = data;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
-
-  getInAddMode(id){
-    this.maquinaId = id.split(" ");
-    id =  this.maquinaId[1];
-    this.getPartes(id);
-  }
-
-  getPartes(id){
-    this.ParteService.getByMaquina(id).subscribe(
-      (data: any) => {
-        this.dataSourcePartes = data.map(
-          val => {
-            return {
-              "id": val.id,
-              "descripcion": val.nombre + " " + val.codigo
-            }
-          }
-        );
-      },
-      (error) => {
-        console.log(error.error);
-      }
-    );
-  }  
-
-  getUsuarios() {
-    this.UserService.getUsers().subscribe(
-      (data: any) => {
-        this.dataSourceUsers = data.map(
-          val => {
-            return {
-              "id": val.id,
-              "descripcion": val.nombre + " " + val.apellido
-            }
-          }
-        );
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
-
-  getPrioridades() {
-    this.PrioridadesService.getPrioridades().subscribe(
-      (data: any) => {
-        this.dataSourcePrioridades = data.map(
-          val => {
-            return {
-              "id": val.id,
-              "descripcion": val.nombre
-            }
-          }
-        );
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
-
-  getMaquinas() {
-    this.MaquinaService.getMaquinas().subscribe(
-      (data: any) => {
-        this.dataSourceMachines = data.map(
-          val => {
-            return {
-              "id": val.id,
-              "descripcion": val.maquina_cod + " - " + val.equipo
-            }
-          }
-        );
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
-
-  getTipos() {
-    this.TipoService.getTipos('Ordenes').subscribe(
-      (data: any) => {
-        this.dataSourceTipos = data.map(
-          val => {
-            return {
-              "id": val.id,
-              "descripcion": val.nombre
-            }
-          }
-        );
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
-
 
   saveForm() {
     if (this.mode === 'add') {
@@ -252,6 +139,127 @@ export class FormComponent implements OnInit, AfterViewInit {
     }
     
   }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+getOrden(id) {
+  this.OrdenestrabajoService.getOrder(id).pipe(first()).subscribe(
+    orden => {
+      this.loadOrden(orden);
+    }
+  )
+}
+
+getOrdenes() {
+  this.OrdenestrabajoService.getAllOrdenes().subscribe(
+    (data: any) => {
+      this.dataSourceOrdenes = data;
+    },
+    (error) => {
+      console.error(error);
+    }
+  );
+}
+
+getInAddMode(id){
+  this.maquinaId = id.split(" ");
+  id =  this.maquinaId[1];
+  this.getPartes(id);
+}
+
+getPartes(id){
+  this.ParteService.getByMaquina(id).subscribe(
+    (data: any) => {
+      this.dataSourcePartes = data.map(
+        val => {
+          return {
+            "id": val.id,
+            "descripcion": val.nombre + " " + val.codigo
+          }
+        }
+      );
+    },
+    (error) => {
+      console.log(error.error);
+    }
+  );
+}  
+
+getUsuarios() {
+  this.UserService.getUsers().subscribe(
+    (data: any) => {
+      this.dataSourceUsers = data.map(
+        val => {
+          return {
+            "id": val.id,
+            "descripcion": val.nombre + " " + val.apellido
+          }
+        }
+      );
+    },
+    (error) => {
+      console.error(error);
+    }
+  );
+}
+
+getPrioridades() {
+  this.TipoService.getTipos('Prioridades').subscribe(
+    (data: any) => {
+      this.dataSourcePrioridades = data.map(
+        val => {
+          return {
+            "id": val.id,
+            "descripcion": val.nombre
+          }
+        }
+      );
+    },
+    (error) => {
+      console.error(error);
+    }
+  );
+}
+
+getMaquinas() {
+  this.MaquinaService.getMaquinas().subscribe(
+    (data: any) => {
+      this.dataSourceMachines = data.map(
+        val => {
+          return {
+            "id": val.id,
+            "descripcion": val.maquina_cod + " - " + val.equipo
+          }
+        }
+      );
+    },
+    (error) => {
+      console.error(error);
+    }
+  );
+}
+
+getTipos() {
+  this.TipoService.getTipos('Ordenes').subscribe(
+    (data: any) => {
+      this.dataSourceTipos = data.map(
+        val => {
+          return {
+            "id": val.id,
+            "descripcion": val.nombre
+          }
+        }
+      );
+    },
+    (error) => {
+      console.error(error);
+    }
+  );
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
   
  

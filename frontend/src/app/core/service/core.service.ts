@@ -115,7 +115,7 @@ export class CoreService {
             case 'maquina':
               if(result.maquina){
                 result.planta = result.maquina.planta.nombre;
-                result.sector = result.maquina.sector.descripcion;
+                result.sector = result.maquina.sector.nombre;
                 result.maquina = result.maquina.maquina_cod;
               }  
               break;
@@ -154,7 +154,7 @@ export class CoreService {
                 break;
             case 'ordentrabajo':
               if(result.ordenTrabajo){
-                result.ordentrabajo_cod = result.ordenTrabajo.ordentrabajo_cod;
+                result.ordentrabajo_id = result.ordenTrabajo.ordentrabajo_id;
                 result.tipo = result.ordenTrabajo.tipo.nombre;
               }
               break;
@@ -165,7 +165,7 @@ export class CoreService {
                 break;
             case 'sector':
                   if(result.sector){
-                    result.sector = result.sector.descripcion;
+                    result.sector = result.sector.nombre;
                   }
                   break;
             case 'codigoProducto':
@@ -225,7 +225,7 @@ export class CoreService {
                   break;
             case 'cargo':
                   if(result.cargo){
-                    result.cargo = result.cargo.nombre_cargo;
+                    result.cargo = result.cargo.nombre;
                   }
                   break;
             case 'estado':

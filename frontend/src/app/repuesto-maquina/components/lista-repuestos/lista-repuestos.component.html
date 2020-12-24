@@ -44,6 +44,8 @@
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item" *ngFor="let r of seleccion">
+
+  
               Codigo de repuesto: <b>{{r.repuesto_id}}</b> / Cantidad a instalar: <b>{{r.cantidad_instalada}}</b> -  <button class="btn btn-danger btn-sm" (click)="deleteSelection()">Eliminar</button>
             </li>
           </ul>
@@ -76,6 +78,15 @@
         </div>
 
         
+      </div>
+
+      <div style="margin: 5%;">
+        <label for="cantidad_instalada">Observaciones</label>
+        <app-input [type]="'textarea'"
+        [parentForm]="maquina" 
+        [control]="form.controls.observaciones"
+        (change)="getObservaciones($event.target.value)">
+      </app-input>
       </div>
 
 

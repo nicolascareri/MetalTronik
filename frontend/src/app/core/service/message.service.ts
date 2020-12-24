@@ -38,7 +38,8 @@ export class MessageService {
     this.toastr.warning(
       message.body, message.title , {
         positionClass: this.positionClass,
-        
+        timeOut: 500000,
+        closeButton: true,
         
       }
     )

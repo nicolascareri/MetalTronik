@@ -51,7 +51,7 @@
           <label for="planta_cod">Planta</label>
           <app-input [type]="'select-pair'"
                      [parentForm]="machinesForm" 
-                     [control]="machinesForm.controls.planta_cod" 
+                     [control]="machinesForm.controls.planta_id" 
                      [options]="dataSourcePlants">
           </app-input>
           </div>
@@ -60,7 +60,7 @@
           <label for="sector_cod">Sector</label>
           <app-input [type]="'select-pair'"
                      [parentForm]="machinesForm" 
-                     [control]="machinesForm.controls.sector_cod" 
+                     [control]="machinesForm.controls.sector_id" 
                      [options]="dataSourceSectors">
           </app-input>
           </div>

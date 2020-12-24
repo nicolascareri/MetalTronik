@@ -3,6 +3,8 @@ import { RepuestoMaquinaService } from "../../services/repuesto-maquina.service"
 import { MaquinaService } from "../../../maquina/services/maquina.service";
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { ParteService } from "../../../maquina/services/parte.service";
+import { MessageService } from "../../../core/service/message.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-repuestos',
@@ -20,6 +22,7 @@ export class ListaRepuestosComponent implements OnInit {
   public repuestos: any = [];
   public modelos: any = [];
   public modeloValue: any;
+  public observaciones: '';
   public seleccion: any = [];
   public maquinaId: any;
   public maquinaPart: any;
@@ -41,7 +44,9 @@ export class ListaRepuestosComponent implements OnInit {
   constructor(private RepuestoMaquinaService: RepuestoMaquinaService,
               private MaquinaService: MaquinaService,
               private formBuilder: FormBuilder,
-              private ParteService: ParteService) 
+              private ParteService: ParteService,
+              private MessageService: MessageService,
+              private router: Router,) 
   {}
 
   ngOnInit(): void {
@@ -51,30 +56,52 @@ export class ListaRepuestosComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       repuesto_id: [''],
-      cantidad_instalada: ['']
+      cantidad_instalada: [''],
+      observaciones: ''
     });
 
   }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
+  public messageTitleSuccess: any = "DONE";
+  public messageTitleError: any = "ERROR";
+  public messageBody: any = "Asociación creada correctamente";
+
+  showSuccess(){
+    this.MessageService.showSuccess({
+      title: this.messageTitleSuccess,
+      body: this.messageBody
+    });
+  }
+
+  showError(message){
+    this.MessageService.showError({
+      title: this.messageTitleError,
+      body: message.errors ? message.errors[0].defaultMessage + ". campo: " + message.errors[0].field + ", Valor rechazado: " + message.errors[0].rejectedValue : message.error
+    })
+  }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   asociar() {
     let request = {
       'maquina_id': this.maquinaPart,
       'parte_id' : this.partId,
+      'observaciones': this.observaciones,
       'requestList': this.seleccion
     }
 
-    console.log(request);
-    
     this.RepuestoMaquinaService.asociarRepuestos(request).subscribe(
       repuestos => {
-        
-        
-        alert("Exitos:")
+
+        this.messageBody = "Asociación creada correctamente";
+        this.showSuccess();
+        this.router.navigate(['main/repuestos']);
     },
     (error) => {
-     
-      console.log(request);
-      console.log(error.error);
+      this.messageBody = "ERROR"
+      this.showError(this.messageBody);
     }
 
       );
@@ -83,8 +110,6 @@ export class ListaRepuestosComponent implements OnInit {
 
   agruopData() {
     const ctrl = this.form.controls;
-    
-    
     const repuesto = {
       "cantidad_instalada": ctrl.cantidad_instalada.value,
       "repuesto_id": ctrl.repuesto_id.value
@@ -96,38 +121,14 @@ export class ListaRepuestosComponent implements OnInit {
       "cantidad_instalada": ctrl.cantidad_instalada.value,
       "repuesto_id": ctrl.repuesto_id.value,
     }
-
-
     this.seleccion.push(seleccion);
     this.requestList.push(this.repuestos);
-
-    console.log(this.requestList);
-
-    console.log(this.seleccion);
-    
-    
-
   }
 
 
   deleteSelection() {
     this.seleccion.pop();
   }
-
-  getMachineId(id){
-    this.maquinaPart = id.split(" ");
-    id = this.maquinaPart[1];
-    this.getParts(id);
-    this.maquinaPart = id;
-  }
-
-  getPartId(id){
-    this.partId = id.split(" ");
-    id = this.partId[1];
-    this.partId = id;
-  }
-
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -192,6 +193,25 @@ export class ListaRepuestosComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+
+  getMachineId(id){
+    this.maquinaPart = id.split(" ");
+    id = this.maquinaPart[1];
+    this.getParts(id);
+    this.maquinaPart = id;
+  }
+
+  getPartId(id){
+    this.partId = id.split(" ");
+    id = this.partId[1];
+    this.partId = id;
+  }
+
+  getObservaciones(ob){
+    this.observaciones = ob;
+    console.log(this.observaciones);
+    
   }
 
 

@@ -12,14 +12,16 @@ import { MessageService } from "../../../core/service/message.service";
 })
 export class FormSectorComponent implements OnInit {
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   public form: FormGroup;
   public sectorId: any;
   public mode = 'add';
   public section = 'Nuevo sector';
   public buttonName = 'Crear sector';
-  public messageTitleSuccess: any = "DONE";
-  public messageTitleError: any = "ERROR";
-  public messageBody: any = "Sector creado correctamente";
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   constructor(private SectorService: SectorService,
     private router: Router,
@@ -32,11 +34,18 @@ export class FormSectorComponent implements OnInit {
     this.sectorId = this.route.snapshot.params.id;
   }
 
+  
   ngAfterViewInit(): void {
     if (this.sectorId) {
       this.getSector(this.sectorId);
     }
   }
+  
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
+  public messageTitleSuccess: any = "DONE";
+  public messageTitleError: any = "ERROR";
+  public messageBody: any = "Sector creado correctamente";
 
   showSuccess() {
     this.MessageService.showSuccess({
@@ -52,13 +61,7 @@ export class FormSectorComponent implements OnInit {
     })
   }
 
-  getSector(id) {
-    this.SectorService.getSector(id).pipe(first()).subscribe(
-      sector => {
-        this.loadSector(sector);
-      }
-    )
-  }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   loadSector(sector) {
     this.mode = "edit";
@@ -96,6 +99,16 @@ export class FormSectorComponent implements OnInit {
         error => this.showError(error.error)
       );
     }
+  }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  getSector(id) {
+    this.SectorService.getSector(id).pipe(first()).subscribe(
+      sector => {
+        this.loadSector(sector);
+      }
+    )
   }
 
 }
