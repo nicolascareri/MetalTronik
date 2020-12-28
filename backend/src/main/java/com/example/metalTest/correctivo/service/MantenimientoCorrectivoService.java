@@ -16,5 +16,4 @@ public interface MantenimientoCorrectivoService {
 
     MantenimientoCorrectivoResponse getById(Integer id) throws ValidateFieldException;
 
-    List<IndicatorResponse> getIndicatorsManCorUsuario();
 }

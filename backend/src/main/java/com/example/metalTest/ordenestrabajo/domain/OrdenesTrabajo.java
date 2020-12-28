@@ -2,7 +2,6 @@ package com.example.metalTest.ordenestrabajo.domain;
 
 import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.parte.domain.Parte;
-import com.example.metalTest.prioridades.domain.Prioridades;
 import com.example.metalTest.tipo.domain.Tipo;
 import com.example.metalTest.usuario.domain.Usuario;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -20,13 +19,13 @@ public class OrdenesTrabajo implements Comparable<OrdenesTrabajo>{
     @Id
     @GeneratedValue
     @Column
-    private int ordentrabajo_cod;
+    private int ordentrabajo_id;
 
     @OneToOne
     @JoinColumn
     private Parte parte;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn
     private Maquina maquina;
 
@@ -36,9 +35,9 @@ public class OrdenesTrabajo implements Comparable<OrdenesTrabajo>{
     @Column
     private String tarea;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn
-    private Prioridades prioridad;
+    private Tipo prioridad;
 
     @ManyToOne
     @JoinColumn

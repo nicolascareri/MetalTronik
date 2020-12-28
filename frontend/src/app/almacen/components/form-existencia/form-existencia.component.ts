@@ -11,7 +11,10 @@ import { UNIDADES } from "../../../core/constants/constants";
   templateUrl: './form-existencia.component.html',
   styleUrls: ['./form-existencia.component.scss']
 })
+
 export class FormExistenciaComponent implements OnInit {
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   public repuestoId: any;
   public mode = 'add';
@@ -34,6 +37,8 @@ export class FormExistenciaComponent implements OnInit {
     stockObjetivo: new FormControl('')
   });
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   constructor( private router: Router,
                private route: ActivatedRoute,
                private MessageService: MessageService,
@@ -50,6 +55,8 @@ export class FormExistenciaComponent implements OnInit {
     }
   }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   showSuccess(){
     this.MessageService.showSuccess({
       title: this.messageTitleSuccess,
@@ -64,19 +71,12 @@ export class FormExistenciaComponent implements OnInit {
     })
   }
 
-  getRepuesto(id) {
-    this.AlmacenService.getRepuesto(id).pipe(first()).subscribe(
-      repuesto => {
-        this.loadRepuesto(repuesto);
-      }
-    )
-  }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   loadRepuesto(repuesto) {
     this.mode = "edit";
     this.section = 'Editar repuesto';
     this.buttonName = 'Confirmar cambios';
-    console.log(repuesto);
     this.repuestForm.controls.codigoProducto.setValue(repuesto.codigoProducto);
     this.repuestForm.controls.nombre.setValue(repuesto.nombre);
     this.repuestForm.controls.marca.setValue(repuesto.marca);
@@ -89,10 +89,6 @@ export class FormExistenciaComponent implements OnInit {
     this.repuestForm.controls.stockObjetivo.setValue(repuesto.stockObjetivo);
   }
 
-  resetForm() {
-    this.repuestForm.reset();
-  }
-
   saveForm() {
     if (this.mode === 'add') {
       this.AlmacenService.postRepuesto(this.repuestForm).subscribe(
@@ -102,7 +98,6 @@ export class FormExistenciaComponent implements OnInit {
         error => this.showError(error.error)
       );
     } else {
-      console.log(this.repuestForm);
       this.AlmacenService.updateRepuesto(this.repuestoId, this.repuestForm).subscribe(
         repuesto => {
           this.messageBody = "El repuesto se ha editado correctamente"
@@ -113,6 +108,17 @@ export class FormExistenciaComponent implements OnInit {
     }
   }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
+  getRepuesto(id) {
+    this.AlmacenService.getRepuesto(id).pipe(first()).subscribe(
+      repuesto => {
+        this.loadRepuesto(repuesto);
+      }
+    )
+  }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
 
 }

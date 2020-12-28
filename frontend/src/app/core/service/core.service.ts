@@ -17,6 +17,20 @@ export class CoreService {
       formats.forEach(
         format => {
           switch (format) {
+            case 'fechainicio':
+              if (result.fechainicio && moment(result.fechainicio, this.dateServerFormat).isValid()) {
+                result.fechainicio = this.getFormatDate(result.fechainicio);
+              } else {
+                result.fechainicio = '';
+              }
+              break;
+              case 'fechaFin':
+                if (result.fechaFin && moment(result.fechaFin, this.dateServerFormat).isValid()) {
+                  result.fechaFin = this.getFormatDate(result.fechaFin);
+                } else {
+                  result.fechaFin = '';
+                }
+                break;
             case 'fechaEntrega':
               if (result.fechaEntrega && moment(result.fechaEntrega, this.dateServerFormat).isValid()) {
                 result.fechaEntrega = this.getFormatDate(result.fechaEntrega);
@@ -101,15 +115,21 @@ export class CoreService {
             case 'maquina':
               if(result.maquina){
                 result.planta = result.maquina.planta.nombre;
-                result.sector = result.maquina.sector.descripcion;
+                result.sector = result.maquina.sector.nombre;
                 result.maquina = result.maquina.maquina_cod;
               }  
               break;
             case 'parte':
               if(result.parte){
                 result.parte = result.parte.codigo;
+                
               }  
               break;
+            case 'parteOrden':
+              if(result.ordenTrabajo){
+                result.parte = result.ordenTrabajo.parte.codigo;
+              }  
+                break;
             case 'tarea':
               if(result.tarea){
                 result.sector = result.tarea.maquina.sector.descripcion;
@@ -134,7 +154,7 @@ export class CoreService {
                 break;
             case 'ordentrabajo':
               if(result.ordenTrabajo){
-                result.ordentrabajo_cod = result.ordenTrabajo.ordentrabajo_cod;
+                result.ordentrabajo_id = result.ordenTrabajo.ordentrabajo_id;
                 result.tipo = result.ordenTrabajo.tipo.nombre;
               }
               break;
@@ -145,7 +165,7 @@ export class CoreService {
                 break;
             case 'sector':
                   if(result.sector){
-                    result.sector = result.sector.descripcion;
+                    result.sector = result.sector.nombre;
                   }
                   break;
             case 'codigoProducto':
@@ -205,7 +225,7 @@ export class CoreService {
                   break;
             case 'cargo':
                   if(result.cargo){
-                    result.cargo = result.cargo.nombre_cargo;
+                    result.cargo = result.cargo.nombre;
                   }
                   break;
             case 'estado':

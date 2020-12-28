@@ -3,12 +3,10 @@ package com.example.metalTest.correctivo.controller.request;
 import com.example.metalTest.common.validator.ValidEntity;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
 import com.example.metalTest.ordenestrabajo.repository.OrdenesTrabajoRepository;
+import com.example.metalTest.tipo.repository.TipoRepository;
 import com.example.metalTest.usuario.repository.UsuarioRepository;
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -18,7 +16,9 @@ public class MantenimientoCorrectivoRequest {
 
     @NotNull
     @ValidEntity(repository = MaquinaRepository.class)
-    private int maquina_cod;
+    private int maquina_id;
+
+    private Integer parte_id;
 
     @NotNull
     private Date fechainicio;
@@ -27,9 +27,8 @@ public class MantenimientoCorrectivoRequest {
     private Date fechaFin;
 
     @NotNull
-    @Min(1)
-    @Max(2)
-    private short tipofalla;
+    @ValidEntity(repository = TipoRepository.class)
+    private int tipo_id;
 
     @NotNull
     private int horasProduccionAfectadas;
@@ -38,17 +37,16 @@ public class MantenimientoCorrectivoRequest {
 
     private String repuestosColocados;
 
-    @ValidEntity(repository = OrdenesTrabajoRepository.class)
-    private int ordenTrabajo_cod;
+    private int ordenTrabajo_id;
 
     @NotNull
     private int nrocorrectivo;
 
     @NotNull
     @ValidEntity(repository = UsuarioRepository.class)
-    private int encargo1_cod;
+    private int encargo1_id;
 
-    private int encargo2_cod;
+    private int encargo2_id;
 
-    private int encargo3_cod;
+    private int encargo3_id;
 }

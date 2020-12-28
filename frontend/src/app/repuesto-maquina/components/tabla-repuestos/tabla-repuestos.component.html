@@ -1,38 +1,5 @@
 <div class="container-fluid">
 
-  <!-- <mat-form-field appearance="fill">
-    <mat-label>Selecciona una maquina</mat-label>
-    <mat-select [(value)]="seleccion">
-      <mat-option value="all">Todos</mat-option>
-      <mat-option *ngFor="let r of dataSourceRespuestoMaquina" value="{{r.maquina.id}}">
-        {{r.maquina}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field> -->
-
-      <!-- <mat-card>
-        <div>
-          Cantidad total de repuestos asociados: {{cantidadTotal}}
-          <div *ngIf="seleccion == 'all'">
-           
-            <div *ngIf="dataSourceMaquinasSinRepuestos != null">
-              <dl class="list-group list-group-flush">
-                <dt>Las siguientes maquinas no tienen repuestos asociados</dt>
-                <dd style="color: #D58E00;" class="list-group-item" *ngFor="let m of dataSourceMaquinasSinRepuestos">
-                  {{m.maquina_cod}}
-                </dd>
-              </dl>
-            </div>
-          </div>
-          <div *ngIf="seleccion != 'all'">
-            Cantidad de repuestos asociados a la maquina: {{cantidad}}
-            <div *ngIf="cantidad == 0">
-              {{alerta}}
-            </div>
-          </div>
-        </div>
-      </mat-card> -->
-
   <app-tabla class="table" [ds]='dataSourceRespuestoMaquina' 
                            [columns]='columnsToDisplay' 
                            [width]="'90%'"

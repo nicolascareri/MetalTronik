@@ -13,14 +13,6 @@ export class TablaUsuarioComponent implements OnInit {
     public columnsToDisplay: any[] = [
       {
         id: 1,
-        property:'dni',
-        name: 'DNI',
-        sort: 'up',
-        filterValue: '',
-        width: '15%'
-      }, 
-      {
-        id: 2,
         property:'nombre',
         name: 'Nombre',
         sort: '',
@@ -28,7 +20,7 @@ export class TablaUsuarioComponent implements OnInit {
         width: '14%'
       },
       {
-        id: 3,
+        id: 2,
         property:'apellido',
         name: 'Apellido',
         sort: '',
@@ -36,7 +28,7 @@ export class TablaUsuarioComponent implements OnInit {
         width: '15%'
       }, 
       {
-        id: 4,
+        id: 3,
         property:'fnacimiento',
         name: 'Fecha de nacimiento',
         sort: '',
@@ -44,7 +36,7 @@ export class TablaUsuarioComponent implements OnInit {
         width: '15%'
       },
       {
-        id: 5,
+        id: 4,
         property:'cargo',
         name: 'Cargo',
         sort: '',
@@ -52,7 +44,7 @@ export class TablaUsuarioComponent implements OnInit {
         width: '15%'
       }, 
       {
-        id: 6,
+        id: 5,
         property:'legajo',
         name: 'Legajo',
         sort: '',
@@ -60,7 +52,7 @@ export class TablaUsuarioComponent implements OnInit {
         width: '15%'
       }, 
       {
-        id: 7,
+        id: 6,
         property:'nombre_usuario',
         name: 'Nombre de usuario del sistema',
         sort: '',
@@ -68,7 +60,7 @@ export class TablaUsuarioComponent implements OnInit {
         width: '15%'
       }, 
       {
-        id: 8,
+        id: 7,
         property:'contrasenia',
         name: 'Contraseñia asociada',
         sort: '',
@@ -76,7 +68,7 @@ export class TablaUsuarioComponent implements OnInit {
         width: '350px'
       }, 
       {
-        id: 9,
+        id: 8,
         property:'ciudad',
         name: 'Ciudad',
         sort: '',
@@ -84,7 +76,7 @@ export class TablaUsuarioComponent implements OnInit {
         width: '350px'
       },
       {
-        id: 10,
+        id: 9,
         property:'pais',
         name: 'Pais',
         sort: '',
@@ -92,7 +84,7 @@ export class TablaUsuarioComponent implements OnInit {
         width: '20%'
       }, 
       {
-        id: 11,
+        id: 10,
         property:'provincia',
         name: 'Provincia',
         sort: '',
@@ -100,7 +92,7 @@ export class TablaUsuarioComponent implements OnInit {
         width: '20%'
       }, 
       {
-        id: 12,
+        id: 11,
         property:'direccion',
         name: 'Direccion',
         sort: '',
@@ -108,7 +100,7 @@ export class TablaUsuarioComponent implements OnInit {
         width: '20%'
       },
       {
-        id: 13,
+        id: 12,
         property:'correo_electronico',
         name: 'Correo electronico',
         sort: '',

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { RepuestoMaquinaService } from "../../services/repuesto-maquina.service";
 import { MaquinaService } from "../../../maquina/services/maquina.service";
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { ParteService } from "../../../maquina/services/parte.service";
+import { MessageService } from "../../../core/service/message.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-repuestos',
@@ -11,23 +14,39 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 
 export class ListaRepuestosComponent implements OnInit {
 
-  public form: FormGroup;
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
   public dataSourceRepuestos: any = [];
   public dataSourceMaquinas: any;
+  public dataSourcePartes: any;
   public repuestos: any = [];
   public modelos: any = [];
   public modeloValue: any;
+  public observaciones: '';
   public seleccion: any = [];
-  public seleccionRepuesto: String = 'all';
   public maquinaId: any;
+  public maquinaPart: any;
+  public partId: any;
   public cntInstalada: any;
   public idSeleccion = 0;
   public repuestosFilter: any;
+  public maquina: FormGroup = new FormGroup({
+    maquina_id: new FormControl(''),
+    parte_id: new FormControl(''),
+  });
+  public form: FormGroup;
+  public requestList: any = [];
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
   constructor(private RepuestoMaquinaService: RepuestoMaquinaService,
               private MaquinaService: MaquinaService,
-              private formBuilder: FormBuilder) 
+              private formBuilder: FormBuilder,
+              private ParteService: ParteService,
+              private MessageService: MessageService,
+              private router: Router,) 
   {}
 
   ngOnInit(): void {
@@ -36,98 +55,168 @@ export class ListaRepuestosComponent implements OnInit {
     this.getMaquinas();
 
     this.form = this.formBuilder.group({
-      repuesto: [''],
-      cantidad_instalada: ['']
+      repuesto_id: [''],
+      cantidad_instalada: [''],
+      observaciones: ''
     });
 
   }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
+  public messageTitleSuccess: any = "DONE";
+  public messageTitleError: any = "ERROR";
+  public messageBody: any = "Asociación creada correctamente";
+
+  showSuccess(){
+    this.MessageService.showSuccess({
+      title: this.messageTitleSuccess,
+      body: this.messageBody
+    });
+  }
+
+  showError(message){
+    this.MessageService.showError({
+      title: this.messageTitleError,
+      body: message.errors ? message.errors[0].defaultMessage + ". campo: " + message.errors[0].field + ", Valor rechazado: " + message.errors[0].rejectedValue : message.error
+    })
+  }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   asociar() {
-    this.RepuestoMaquinaService.asociarRepuestos(this.maquinaId, this.repuestos).subscribe(repuestos => alert("Exitos:" + repuestos));
+    let request = {
+      'maquina_id': this.maquinaPart,
+      'parte_id' : this.partId,
+      'observaciones': this.observaciones,
+      'requestList': this.seleccion
+    }
+
+    this.RepuestoMaquinaService.asociarRepuestos(request).subscribe(
+      repuestos => {
+
+        this.messageBody = "Asociación creada correctamente";
+        this.showSuccess();
+        this.router.navigate(['main/repuestos']);
+    },
+    (error) => {
+      this.messageBody = "ERROR"
+      this.showError(this.messageBody);
+    }
+
+      );
   }
   
-  
+
   agruopData() {
     const ctrl = this.form.controls;
     const repuesto = {
       "cantidad_instalada": ctrl.cantidad_instalada.value,
-      "repuesto_cod": ctrl.repuesto.value.id
+      "repuesto_id": ctrl.repuesto_id.value
     };
   
     this.repuestos.push(repuesto);
 
     const seleccion = {
-      "id": this.idSeleccion,
       "cantidad_instalada": ctrl.cantidad_instalada.value,
-      "nombre": ctrl.repuesto.value.nombre
+      "repuesto_id": ctrl.repuesto_id.value,
     }
-
-    this.idSeleccion++;
     this.seleccion.push(seleccion);
-
+    this.requestList.push(this.repuestos);
   }
 
-
-  getMaquinaForSelect(event) {
-    this.maquinaId = event.id;
-  }
 
   deleteSelection() {
     this.seleccion.pop();
   }
 
-  filtrarPorModelo(m){
-   this.seleccionRepuesto = ' ';
-   this.repuestosFilter = this.dataSourceRepuestos.filter(r => r.modelo == m);
-  //  this.seleccionRepuesto = 'all';
-  //  console.log(this.repuestosFilter);
-   
-  }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   getRepuestos(){
     this.RepuestoMaquinaService.getRepuestos().subscribe(
       (data: any) => {
-        this.dataSourceRepuestos = data 
+        this.dataSourceRepuestos = data.map(
+          val => {
+            return {
+              "id": val.id,
+              "descripcion": val.codigoProducto + " - " + val.nombre
+            }
+          }
+        );
         data.forEach(repuesto => {
           if (!this.modelos.includes(repuesto.modelo)) {
             this.modelos.push(repuesto.modelo)
           }
-          
         });
       },
-
       (error) => {
         console.error(error);
-
       }
-      
     );
   }
+
 
   getMaquinas(){
     this.MaquinaService.getMaquinas().subscribe(
       (data: any) => {
-        this.dataSourceMaquinas = data;
+        this.dataSourceMaquinas = data.map(
+          val => {
+            return {
+              "id": val.id,
+              "descripcion": val.maquina_cod + " - " + val.equipo
+            }
+          }
+        );
       },
       (error) => {
+        console.log(error.error);
+        
       }
     );
-    console.log(this.seleccion);
+    console.log(this.requestList);
   }
 
-  changeDataSource(){
-    let dataSource;   
-    if(this.seleccionRepuesto == 'all'){
-      dataSource = this.dataSourceRepuestos
-    }else{
-      dataSource = this.repuestosFilter;
-    }
-    return dataSource;
+
+  getParts(id){
+    this.ParteService.getByMaquina(id).subscribe(
+      (data: any) => {
+        this.dataSourcePartes = data.map(
+          val => {
+            return {
+              "id": val.id,
+              "descripcion": val.nombre + " - " + val.codigo
+            }
+          }
+        );
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
+
+  getMachineId(id){
+    this.maquinaPart = id.split(" ");
+    id = this.maquinaPart[1];
+    this.getParts(id);
+    this.maquinaPart = id;
+  }
+
+  getPartId(id){
+    this.partId = id.split(" ");
+    id = this.partId[1];
+    this.partId = id;
+  }
+
+  getObservaciones(ob){
+    this.observaciones = ob;
+    console.log(this.observaciones);
     
-    
-    
-    
+  }
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   
     
     
   }

@@ -12,6 +12,8 @@ import { MaquinaService } from "../../../maquina/services/maquina.service";
 
 export class TablaRepuestosComponent implements OnInit {
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+
   public seleccion: any = 'all';
   
   public dataSourceRepuestos: any;
@@ -27,22 +29,22 @@ export class TablaRepuestosComponent implements OnInit {
   public messageTitleSuccess: any = "DONE";
   public messageTitleError: any = "ERROR";
   public messageTitleWarning: any = "Warning!";
-  public messageBody: any = "Repuesto asociado correctamente";
-  public alerta = this.showWarning("La maquina seleccionada no tiene repuestos asociados.");
+  public messageBody: any = "Las siguientes maquinas no tienen repuestos asociados";
+
 
 
   public columnsToDisplay: any[] = [
     {
       id: 1,
-      property: 'nombre',
-      name: 'Nombre',
+      property: 'repuesto_nombre',
+      name: 'Código repuesto',
       sort: 'up',
       filterValue: '',
       width: '15%'
     },
     {
       id: 2,
-      property: 'modelo',
+      property: 'repuesto_modelo',
       name: 'Modelo',
       sort: '',
       filterValue: '',
@@ -58,29 +60,47 @@ export class TablaRepuestosComponent implements OnInit {
     },
     {
       id: 4,
-      property: 'maquina',
-      name: 'Codigo maquina',
+      property: 'maquina_codigo',
+      name: 'Código maquina',
       sort: '',
       filterValue: '',
       width: '15%'
     },
     {
       id: 5,
-      property: 'planta',
-      name: 'Planta',
+      property: 'parte_nombre',
+      name: 'Código parte',
       sort: '',
       filterValue: '',
       width: '15%'
     },
     {
       id: 6,
-      property: 'sector',
+      property: 'maquina_planta',
+      name: 'Planta',
+      sort: '',
+      filterValue: '',
+      width: '15%'
+    },
+    {
+      id: 7,
+      property: 'maquina_sector',
       name: 'Sector',
       sort: '',
       filterValue: '',
       width: '15%'
+    },
+    {
+      id: 8,
+      property: 'observaciones',
+      name: 'Observaciones',
+      sort: '',
+      filterValue: '',
+      width: '40%'
     }
   ];
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   constructor(private RepuestoMaquinaService: RepuestoMaquinaService,
               private coreService: CoreService,
@@ -91,7 +111,10 @@ export class TablaRepuestosComponent implements OnInit {
   ngOnInit(): void {
     this.getRepuestosMaquina();
     this.getMaquinas();
+    this.getMaquinasSinAsoc();
   }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   showWarning(messageBody){
     return this.MessageService.showWarning({
@@ -100,20 +123,24 @@ export class TablaRepuestosComponent implements OnInit {
     });
   }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
   getMaquinas(){
     this.MaquinaService.getMaquinas().subscribe(
       (data: any) => {
         this.dataSourceMaquinas = data;
-        data.forEach(element => {
+        // data.forEach(element => {
           
-          this.maquinasSinRepuestos.push(element);  
-          console.log(this.maquinasSinRepuestos);
+        //   this.maquinasSinRepuestos.push(element);  
+        //   console.log(this.maquinasSinRepuestos);
           
             
-          }
-        );
+        //   }
+        // );
       },
       (error) => {
+        console.log(error.error);
+        
       }
     );
   }
@@ -142,23 +169,16 @@ export class TablaRepuestosComponent implements OnInit {
   getRepuestosMaquina(){
     this.RepuestoMaquinaService.getRepuestoMaquina().subscribe(
       (data: any) => {
-        this.cantidadTotal = 0;
-        data.forEach(element => {
+        // this.cantidadTotal = 0;
+        // data.forEach(element => {
 
-          this.maquinasSinRepuestos.filter(word => this.maquinasSinRepuestos.includes(element.maquina));
-          this.maquinasSinRepuestoss = this.maquinasSinRepuestos;
-          this.cantidadTotal += element.cantidad_instalada;
-            // if (this.maquinasSinRepuestos.includes(element.maquina)) {
-            //   this.maquinasSinRepuestos.pop(element.maquina)
-            // }
-            
-            
-        });
-
-       
-       
-      console.log(this.maquinasSinRepuestoss);
-        
+        //   this.maquinasSinRepuestos.filter(word => this.maquinasSinRepuestos.includes(element.maquina));
+        //   this.maquinasSinRepuestoss = this.maquinasSinRepuestos;
+        //   this.cantidadTotal += element.cantidad_instalada;
+        //     // if (this.maquinasSinRepuestos.includes(element.maquina)) {
+        //     //   this.maquinasSinRepuestos.pop(element.maquina)
+        //     // }            
+        // });
       this.dataSourceRespuestoMaquina = this.coreService.replaceFormat(data, ['nombre', 'modelo', 'maquina']);
       },
       (error) => {
@@ -167,6 +187,22 @@ export class TablaRepuestosComponent implements OnInit {
       }
     );
   }
+
+  getMaquinasSinAsoc(){
+    let maquinas: any = [];
+    this.RepuestoMaquinaService.getMaquinasSinAsoc().subscribe(
+      (data: any) => {
+          data.forEach(element => {
+            maquinas.push(element.maquina_cod);
+          });
+          this.showWarning(this.messageBody + ": " + maquinas);
+      },
+      (error) => {
+        console.log(error.error);
+      }
+    );
+  }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 }

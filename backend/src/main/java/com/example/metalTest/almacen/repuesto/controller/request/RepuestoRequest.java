@@ -23,6 +23,7 @@ public class RepuestoRequest {
     @NotEmpty
     private String marca;
 
+    @NotNull
     private int precio;
 
     @NotNull
@@ -38,10 +39,10 @@ public class RepuestoRequest {
     private int stockObjetivo;
 
     @Min(1)
-    @Max(3)
+    @Max(3) //deberia ser un id_tipo
     private short tipoRepuesto;
 
-    @NotEmpty
+    @NotEmpty //en que estanteria
     private String ubicacion;
 
 }

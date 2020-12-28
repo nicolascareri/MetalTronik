@@ -1,11 +1,13 @@
 package com.example.metalTest.almacen.repuesto.controller;
 
+import com.example.metalTest.almacen.asociacion.controller.request.AsociarList;
+import com.example.metalTest.almacen.asociacion.domain.Asociacion;
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.almacen.repuesto.controller.request.RepuestoRequest;
-import com.example.metalTest.almacen.repuesto.controller.response.RepuestoReducidoResponse;
 import com.example.metalTest.almacen.repuesto.controller.response.RepuestoResponse;
 import com.example.metalTest.almacen.repuesto.domain.Repuesto;
 import com.example.metalTest.almacen.repuesto.service.RepuestoService;
+import com.example.metalTest.maquina.domain.Maquina;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,18 +25,13 @@ public class RepuestoController {
     RepuestoService repuestoService;
 
     @GetMapping
-    public ResponseEntity<List<RepuestoReducidoResponse>> getAll() {
+    public ResponseEntity<List<Repuesto>> getAll() {
         return new ResponseEntity<>(repuestoService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<RepuestoResponse> getById(@PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<>(repuestoService.getById(id), HttpStatus.OK);
-    }
-
-    @GetMapping("/maquina/{id}")
-    public ResponseEntity<List<Repuesto>> getByMaquina(@PathVariable Integer id) throws ValidateFieldException {
-        return new ResponseEntity<>(repuestoService.getByMaquina(id), HttpStatus.OK);
     }
 
     @PostMapping()
@@ -46,5 +43,6 @@ public class RepuestoController {
     public ResponseEntity<Repuesto> update(@Valid @RequestBody RepuestoRequest repuestoRequest, @PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<>(repuestoService.update(repuestoRequest, id), HttpStatus.OK);
     }
+
 
 }

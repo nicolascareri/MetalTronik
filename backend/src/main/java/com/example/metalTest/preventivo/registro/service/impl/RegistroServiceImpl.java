@@ -79,7 +79,7 @@ public class RegistroServiceImpl implements RegistroService {
         registro.setFechaPlanificada(registroRequest.getFechaPlanificada());
         registro.setObservaciones(registroRequest.getObservaciones());
         registro.setRealizo(registroRequest.getRealizo());
-        registro.setTarea(tareasRepository.getOne(registroRequest.getTarea_cod()));
+        registro.setTarea(tareasRepository.getOne(registroRequest.getTarea_id()));
         registro.setEncargado(usuarioRepository.findById(registroRequest.getEncargado()).get());
         registro.setFechaRealizada(registroRequest.getFechaRealizada());
         return registroRepository.save(registro);

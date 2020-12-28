@@ -15,6 +15,7 @@ export const ENDPOINTS = {
 
     SERVER: {
         serve: 'https://metaltronik.herokuapp.com/',
+        
         // local: 'http://localhost:8080/'
         // heroku: 'https://metaltronik.herokuapp.com/'
     },
@@ -85,7 +86,9 @@ export const ENDPOINTS = {
     },
 
     REPUESTOMAQUINA: {
-        GET: 'api/repuesto-maquina',
+        POST: 'api/repuesto/vincular/maquina-parte',
+        GET: 'api/repuesto/vinculados',
+        GETSINASOC: 'api/repuesto/sin-vincular',
         PUT: 'api/repuesto-maquina/maquina/id/vincular'
     },
 
@@ -98,6 +101,11 @@ export const ENDPOINTS = {
     SALIDA: {
         GET: 'api/salida',
         POST: 'api/salida'
+    },
+
+    AJUSTE_STOCK: {
+        GET: 'api/ajustes',
+        POST: 'api/ajustes/'
     },
 
     TAREA: {

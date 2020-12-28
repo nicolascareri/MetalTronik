@@ -10,7 +10,7 @@ public class ParteBuscador {
         if (!parteList.isEmpty()){
             for (Parte a: parteList
             ) {
-                if(a.getId() == parteId) return a;
+                if((int)a.getId() == (int)parteId) return a;
             }
         }
         return null;

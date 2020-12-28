@@ -2,6 +2,8 @@ package com.example.metalTest.correctivo.domain;
 
 import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
+import com.example.metalTest.parte.domain.Parte;
+import com.example.metalTest.tipo.domain.Tipo;
 import com.example.metalTest.usuario.domain.Usuario;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
@@ -23,6 +25,10 @@ public class MantenimientoCorrectivo{
     @OneToOne
     private Maquina maquina;
 
+    @JoinColumn
+    @OneToOne
+    private Parte parte;
+
     @Column
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT-3")
     private Date fechainicio;
@@ -31,8 +37,9 @@ public class MantenimientoCorrectivo{
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT-3")
     private Date fechaFin;
 
-    @Column
-    private short tipofalla;
+    @JoinColumn
+    @OneToOne
+    private Tipo tipo;
 
     @Column
     private int horasProduccionAfectadas;
@@ -65,25 +72,6 @@ public class MantenimientoCorrectivo{
     @OneToOne
     private Usuario encargo3;
 
-    @Override
-    public String toString() {
-        return "MantenimientoCorrectivo{" +
-                "id=" + id +
-                ", maquina=" + maquina +
-                ", fechainicio=" + fechainicio +
-                ", fechaFin=" + fechaFin +
-                ", tipofalla=" + tipofalla +
-                ", horasProduccionAfectadas=" + horasProduccionAfectadas +
-                ", observaciones='" + observaciones + '\'' +
-                ", repuestosColocados='" + repuestosColocados + '\'' +
-                ", ordenTrabajo=" + ordenTrabajo +
-                ", nrocorrectivo=" + nrocorrectivo +
-                ", tiempoReparacion=" + tiempoReparacion +
-                ", encargo1=" + encargo1 +
-                ", encargo2=" + encargo2 +
-                ", encargo3=" + encargo3 +
-                '}';
-    }
 
 
 }

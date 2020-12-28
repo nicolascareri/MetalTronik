@@ -13,6 +13,8 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 export class TablaMaquinaComponent implements OnInit {
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   public columnsToDisplay: any[] = [
     {
       id: 1,
@@ -62,8 +64,8 @@ export class TablaMaquinaComponent implements OnInit {
   public machineModal;
   title = 'appBootstrap';
   closeResult: string;
-  
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   constructor(private MaquinaService: MaquinaService,
               private coreService: CoreService,
@@ -71,6 +73,12 @@ export class TablaMaquinaComponent implements OnInit {
               private modalService: NgbModal,
               private ParteService: ParteService) {
    }
+
+   ngOnInit(): void {
+    this.getMaquinas();
+  }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    open(content, row) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -91,12 +99,6 @@ export class TablaMaquinaComponent implements OnInit {
     }
   }
 
-
-  ngOnInit(): void {
-    this.getMaquinas();
-  }
-
-
   clickedRow(row){
     let maquina = {
       "id": row.id,
@@ -109,6 +111,13 @@ export class TablaMaquinaComponent implements OnInit {
     this.machineModal = maquina;
     this.getPartesAsoc(this.machineModal.id);
   }
+
+  editMaquina(id){
+    this.router.navigate(['main/maquinas/form/' + id]);
+    this.modalService.dismissAll();
+  }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   getMaquinas(){
     this.MaquinaService.getMaquinas().subscribe(
@@ -140,10 +149,8 @@ export class TablaMaquinaComponent implements OnInit {
     );
   }
 
-  editMaquina(id){
-    this.router.navigate(['main/maquinas/form/' + id]);
-    this.modalService.dismissAll();
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  }
+
 
 }

@@ -11,13 +11,10 @@ import com.example.metalTest.maquina.repository.MaquinaRepository;
 import com.example.metalTest.maquina.service.MaquinaService;
 import com.example.metalTest.parte.mapper.ParteMapper;
 import com.example.metalTest.parte.repository.ParteRepository;
-import com.example.metalTest.planta.repository.PlantaRepository;
-import com.example.metalTest.almacen.repuestoMaquina.domain.RepuestoMaquina;
-import com.example.metalTest.sector.repository.SectorRepository;
+import com.example.metalTest.tipo.repository.TipoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,16 +28,12 @@ public class   MaquinaServiceImpl implements MaquinaService {
     MaquinaMapper maquinaMapper;
 
     @Autowired
-    PlantaRepository plantaRepository;
-
-    @Autowired
-    SectorRepository sectorRepository;
-
-    @Autowired
     ParteMapper parteMapper;
 
     @Autowired
     ParteRepository parteRepository;
+    @Autowired
+    TipoRepository tipoRepository;
 
     @Override
     public List<MaquinaReducidoResponse> getAll() {
@@ -61,8 +54,6 @@ public class   MaquinaServiceImpl implements MaquinaService {
     @Override
     public MaquinaResponse save(MaquinaRequest maquinaRequest) throws ValidateFieldException {
         Maquina maquina = maquinaMapper.maquinaRequestToMaquina(maquinaRequest);
-        List<RepuestoMaquina> repuestoMaquinaList = new ArrayList<>();
-        maquina.setRepuestoMaquinaList(repuestoMaquinaList);
         if (maquinaRepository.checkCodigoExistance(maquina.getMaquina_cod()) != 0) {
             throw new ValidateFieldException("El codigo ya tiene una maquina asociada", "maquina_cod", maquina.getMaquina_cod());
         }
@@ -71,8 +62,8 @@ public class   MaquinaServiceImpl implements MaquinaService {
             throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(maquina.getEstado()));
 
         }
-        maquina.setPlanta(plantaRepository.findById(maquinaRequest.getPlanta_cod()).get());
-        maquina.setSector(sectorRepository.findById(maquinaRequest.getSector_cod()).get());
+        maquina.setPlanta(tipoRepository.findById(maquinaRequest.getPlanta_id()).get());
+        maquina.setSector(tipoRepository.findById(maquinaRequest.getSector_id()).get());
         return maquinaMapper.toMaquinaResponse(maquinaRepository.save(maquina));
     }
 
@@ -87,8 +78,8 @@ public class   MaquinaServiceImpl implements MaquinaService {
         if (maquina.getEstado() != Estado.ACTIVO.getValue() && maquina.getEstado() != Estado.ELIMINADO.getValue()) {
             throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(maquina.getEstado()));
         }
-        maquina.setPlanta(plantaRepository.findById(maquinaRequest.getPlanta_cod()).get());
-        maquina.setSector(sectorRepository.findById(maquinaRequest.getSector_cod()).get());
+        maquina.setPlanta(tipoRepository.findById(maquinaRequest.getPlanta_id()).get());
+        maquina.setSector(tipoRepository.findById(maquinaRequest.getSector_id()).get());
         maquina.setMaquina_cod(maquinaRequest.getMaquina_cod());
         maquina.setEstado(maquinaRequest.getEstado());
         maquina.setEquipo(maquinaRequest.getEquipo());

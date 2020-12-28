@@ -6,9 +6,10 @@ import {CoreModule} from '../core/core.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
 import {RouterModule} from '@angular/router';
-import {TablaSectorComponent} from '../sector/components/tabla-sector/tabla-sector.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from '@angular/material/input';
-
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [TablaPlantaComponent, FormPlantaComponent],
@@ -18,7 +19,10 @@ import { MatInputModule } from '@angular/material/input';
     ReactiveFormsModule,
     MatTableModule,
     MatInputModule,
-    RouterModule
+    RouterModule,
+    MatExpansionModule,
+    MatListModule,
+    MatIconModule
   ],
   exports: [
     TablaPlantaComponent, FormPlantaComponent

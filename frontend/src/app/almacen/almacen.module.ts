@@ -10,10 +10,12 @@ import { TablaEntradaComponent } from './components/tabla-entrada/tabla-entrada.
 import { TablaSalidaComponent } from '../almacen/components/tabla-salida/tabla-salida.component';
 import { FormEntradaComponent } from './components/form-entrada/form-entrada.component';
 import { FormSalidaComponent } from "./components/form-salida/form-salida.component";
+import { TablaAjusteComponent } from "./components/tabla-ajuste/tabla-ajuste.component";
+import { FormAjusteComponent } from './components/form-ajuste/form-ajuste.component';
 
 
 @NgModule({
-  declarations: [TablaExistenciaComponent, FormExistenciaComponent, TablaEntradaComponent, TablaSalidaComponent, FormEntradaComponent, FormSalidaComponent],
+  declarations: [TablaExistenciaComponent, FormExistenciaComponent, TablaEntradaComponent, TablaSalidaComponent, FormEntradaComponent, FormSalidaComponent,TablaAjusteComponent, FormAjusteComponent],
   imports: [
     CommonModule,
     AlmacenRoutingModule,
