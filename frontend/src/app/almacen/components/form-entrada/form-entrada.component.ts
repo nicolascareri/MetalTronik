@@ -13,6 +13,8 @@ import { AlmacenService } from "../../services/almacen.service";
 })
 export class FormEntradaComponent implements OnInit {
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   public dataSourceRepuestos;
   public entradaId: any;
   public mode = 'add';
@@ -27,6 +29,8 @@ export class FormEntradaComponent implements OnInit {
     proveedor: new FormControl(''),
     repuesto_cod: new FormControl('')
   });
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   constructor(private EntradaService: EntradaService,
               private route: ActivatedRoute,
@@ -45,6 +49,8 @@ export class FormEntradaComponent implements OnInit {
     }
   }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   showSuccess(){
     this.MessageService.showSuccess({
       title: this.messageTitleSuccess,
@@ -59,6 +65,39 @@ export class FormEntradaComponent implements OnInit {
     })
   }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  loadEntrada(entrada) {
+    this.mode = "edit";  
+    this.entradaForm.controls.cantidad.setValue(entrada.cantidad);
+    this.entradaForm.controls.fecha.setValue(entrada.fecha);
+    this.entradaForm.controls.numeroOrdenCompra.setValue(entrada.numeroOrdenCompra);
+    this.entradaForm.controls.precio.setValue(entrada.precio);
+    this.entradaForm.controls.proveedor.setValue(entrada.proveedor);
+    this.entradaForm.controls.repuesto_cod.setValue(entrada.repuesto.id);
+  }
+
+  saveForm() {
+    if (this.mode === 'add') {
+      this.EntradaService.postEntrada(this.entradaForm).subscribe(
+        entrada => {
+          this.showSuccess();
+        },
+        error => this.showError(error.error)
+      );
+    } else {
+      this.EntradaService.updateEntrada(this.entradaId, this.entradaForm).subscribe(
+        entrada => {
+          this.messageBody = "La entrada se ha editado correctamente"
+          this.showSuccess();
+        },
+        error => this.showError(error.error)
+        );
+    }
+  }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
   getEntrada(id) {
     this.EntradaService.getEntrada(id).pipe(first()).subscribe(
       entrada => {
@@ -85,40 +124,6 @@ export class FormEntradaComponent implements OnInit {
     );
   }
 
-  loadEntrada(entrada) {
-    this.mode = "edit";
-    console.log(entrada);
-    this.entradaForm.controls.cantidad.setValue(entrada.cantidad);
-    this.entradaForm.controls.fecha.setValue(entrada.fecha);
-    this.entradaForm.controls.numeroOrdenCompra.setValue(entrada.numeroOrdenCompra);
-    this.entradaForm.controls.precio.setValue(entrada.precio);
-    this.entradaForm.controls.proveedor.setValue(entrada.proveedor);
-    this.entradaForm.controls.repuesto_cod.setValue(entrada.repuesto.id);
-  }
-
-  resetForm() {
-    this.entradaForm.reset();
-  }
-
-  saveForm() {
-    if (this.mode === 'add') {
-      this.EntradaService.postEntrada(this.entradaForm).subscribe(
-        entrada => {
-          this.showSuccess();
-        },
-        error => this.showError(error.error)
-      );
-    } else {
-      console.log(this.entradaForm);
-      this.EntradaService.updateEntrada(this.entradaId, this.entradaForm).subscribe(
-        entrada => {
-          this.messageBody = "La entrada se ha editado correctamente"
-          this.showSuccess();
-        },
-        error => this.showError(error.error)
-        );
-    }
-  }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }

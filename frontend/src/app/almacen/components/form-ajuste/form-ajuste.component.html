@@ -1,0 +1,83 @@
+<div class="form-container">
+
+    <div class="card">
+  
+      <h2 class="card-header">
+        Nuevo ajuste
+      </h2>
+    
+      <div class="card-body">
+        
+        <form [formGroup]="form" (ngSubmit)="saveForm()">
+      
+          <div class="form-row">
+
+            <div class="col">
+              <label for="codigoProducto">Código repuesto</label>
+              <app-input [type]="'select-pair'" 
+                         [parentForm]="form"  
+                         [control]="form.controls.codigoProducto"
+                         [options]="dataSourceRepuestos">
+              </app-input>
+              </div>
+    
+      
+            <div class="col">
+            <label for="modelo">Modelo</label>
+            <app-input [type]="'input'" 
+                       [parentForm]="form"  
+                       [control]="form.controls.modelo"
+                       [placeholder]="'Sera un select'">
+            </app-input>
+            </div>
+
+  
+          </div>
+  
+          <div class="form-row">
+
+              
+            <div class="col">
+              <label for="nombre">Nombre de producto</label>
+              <app-input [type]="'input'" 
+                         [parentForm]="form"  
+                         [control]="form.controls.nombre"
+                         [placeholder]="'Select sera'">
+              </app-input>
+              </div>
+      
+      
+            <div class="col">
+            <label for="stock">Stock a ajustar</label>
+            <app-input [type]="'onlyNumber'" 
+                       [parentForm]="form"  
+                       [control]="form.controls.stock"
+                       [placeholder]="'Ingrese stock a ajustar'">
+            </app-input>
+            </div>
+  
+          </div>
+  
+          <div class="form-row">
+  
+            <div class="col">
+            <label for="fecha_correccion">Fecha de corrección</label>
+            <app-input [type]="'datetime-local'" 
+                       [parentForm]="form"  
+                       [control]="form.controls.fecha_correccion"
+                       [placeholder]="'Ingrese fecha de corrección'">
+            </app-input>
+            </div>
+  
+          </div>
+  
+          <div style="margin-top: 3%" class="btn-group btn-group-toggle" data-toggle="buttons">
+            <app-button [name]="'Confirmar'" type="submit" [type]="'success'"></app-button>
+            <app-button [name]="'Cancelar'" [type]="'cancel'"></app-button>
+          </div>
+      
+        </form>
+      </div>
+    </div>
+  
+</div>

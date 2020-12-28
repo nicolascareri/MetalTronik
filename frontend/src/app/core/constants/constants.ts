@@ -103,6 +103,11 @@ export const ENDPOINTS = {
         POST: 'api/salida'
     },
 
+    AJUSTE_STOCK: {
+        GET: 'api/ajustes',
+        POST: 'api/ajustes/'
+    },
+
     TAREA: {
         GET: 'api/tarea',
         GETID: 'api/tarea/',

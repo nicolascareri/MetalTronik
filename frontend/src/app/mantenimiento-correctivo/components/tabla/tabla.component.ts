@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 })
 export class TablaMantenimientoCorrectivoComponent implements OnInit {
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   public columnsToDisplay: any[] = [
     {
       id: 1,
@@ -22,7 +24,7 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
     },
     {
       id: 2,
-      property: 'ordentrabajo_cod',
+      property: 'ordentrabajo_id',
       name: 'Codigo de orden de trabajo',
       sort: '',
       filterValue: '',
@@ -74,7 +76,7 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
       name: 'Fecha de inicio',
       sort: '',
       filterValue: '',
-      width: '15%'
+      width: '25%'
     },
     {
       id: 9,
@@ -82,7 +84,7 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
       name: 'Fecha de fin',
       sort: '',
       filterValue: '',
-      width: '15%'
+      width: '25%'
     },
     {
       id: 10,
@@ -114,7 +116,7 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
       name: 'Encargado 1',
       sort: '',
       filterValue: '',
-      width: '20%'
+      width: '25%'
     },
     {
       id: 14,
@@ -122,7 +124,7 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
       name: 'Encargado 2',
       sort: '',
       filterValue: '',
-      width: '20%'
+      width: '25%'
     },
     {
       id: 15,
@@ -130,12 +132,13 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
       name: 'Encargado 3',
       sort: '',
       filterValue: '',
-      width: '20%'
+      width: '25%'
     }
   ];
 
   public dataSourceMantenimientosCorrectivos;
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   constructor(private MantenimientoCorrectivoService: MantenimientoCorrectivoService,
               private coreService: CoreService,
@@ -147,6 +150,14 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
     this.getMantenimientos();
   }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  clickedRow(row){
+    this.router.navigate(['main/mantenimientosCorrectivos/formcorrectivo/' + row.id]);
+  }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
   getMantenimientos(){
     this.MantenimientoCorrectivoService.getMantenimientosCorrectivos().pipe(first()).subscribe(
       (data: any) => {
@@ -160,8 +171,6 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
     );
   }
 
-  clickedRow(row){
-    this.router.navigate(['main/mantenimientosCorrectivos/formcorrectivo/' + row.id]);
-  }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }

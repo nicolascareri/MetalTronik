@@ -4,6 +4,9 @@ import {TablaExistenciaComponent} from "./components/tabla-existencia/tabla-exis
 import {FormExistenciaComponent} from "../almacen/components/form-existencia/form-existencia.component";
 import { FormEntradaComponent } from "../almacen/components/form-entrada/form-entrada.component";
 import { FormSalidaComponent } from "../almacen/components/form-salida/form-salida.component";
+import { FormAjusteComponent } from "../almacen/components/form-ajuste/form-ajuste.component";
+
+
 const routes: Routes = [
   {
     path: '',
@@ -36,6 +39,14 @@ const routes: Routes = [
         path: 'formsalida/:id',
         component: FormSalidaComponent
       },
+      {
+        path: 'formajuste',
+        component: FormAjusteComponent
+      },
+      {
+        path: 'formajuste/:id',
+        component: FormAjusteComponent
+      }
 
     ]
     }

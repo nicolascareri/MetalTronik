@@ -126,7 +126,7 @@ export class CoreService {
               }  
               break;
             case 'parteOrden':
-              if(result.ordenTrabajo.parte){
+              if(result.ordenTrabajo){
                 result.parte = result.ordenTrabajo.parte.codigo;
               }  
                 break;

@@ -32,19 +32,19 @@
 
         <div class="form-row">
           <div class="col">
-          <label for="encargo1_cod">Realizo 1</label>
+          <label for="encargo1_id">Realizo 1</label>
           <app-input [type]="'select-pair'"
                      [parentForm]="mantenimientoCorrectivoForm" 
-                     [control]="mantenimientoCorrectivoForm.controls.encargo1_cod" 
+                     [control]="mantenimientoCorrectivoForm.controls.encargo1_id" 
                      [options]="dataSourceUsers">
           </app-input>
           </div>
           
           <div class="col">
-          <label for="encargo2_cod">Realizo 2</label>
+          <label for="encargo2_id">Realizo 2</label>
           <app-input [type]="'select-pair'"
                      [parentForm]="mantenimientoCorrectivoForm" 
-                     [control]="mantenimientoCorrectivoForm.controls.encargo2_cod" 
+                     [control]="mantenimientoCorrectivoForm.controls.encargo2_id" 
                      [options]="dataSourceUsers">
           </app-input>
           </div>
@@ -53,10 +53,10 @@
         <div class="form-row">
 
           <div class="col">
-          <label for="encargo3_cod">Realizo 3</label>
+          <label for="encargo3_id">Realizo 3</label>
           <app-input [type]="'select-pair'"
                      [parentForm]="mantenimientoCorrectivoForm" 
-                     [control]="mantenimientoCorrectivoForm.controls.encargo3_cod" 
+                     [control]="mantenimientoCorrectivoForm.controls.encargo3_id" 
                      [options]="dataSourceUsers">
           </app-input>
           </div>
@@ -97,21 +97,21 @@
         <div class="form-row">
 
           <div class="col">
-          <label for="maquina_cod">Maquina</label>
+          <label for="maquina_id">Maquina</label>
           <app-input [type]="'select-pair'"
                      [parentForm]="mantenimientoCorrectivoForm" 
-                     [control]="mantenimientoCorrectivoForm.controls.maquina_cod" 
+                     [control]="mantenimientoCorrectivoForm.controls.maquina_id" 
                      [options]="dataSourceMachines"
                      (change)="getInAddMode($event.target.value)">
           </app-input>
           </div>
 
           <div class="col">
-            <label for="parte_cod">Parte de maquina</label>
+            <label for="parte_id">Parte de maquina</label>
             <app-input [type]="'select-pair'"
                        [options]="dataSourcePartes"
                        [parentForm]="mantenimientoCorrectivoForm" 
-                       [control]="mantenimientoCorrectivoForm.controls.parte_cod"
+                       [control]="mantenimientoCorrectivoForm.controls.parte_id"
                        [required]="true">
             </app-input>
           </div>
@@ -122,10 +122,10 @@
         <div class="form-row">
 
           <div class="col">
-            <label for="ordenTrabajo_cod">Orden de trabajo</label>
+            <label for="ordenTrabajo_id">Orden de trabajo</label>
             <app-input [type]="'select-pair'"
                        [parentForm]="mantenimientoCorrectivoForm" 
-                       [control]="mantenimientoCorrectivoForm.controls.ordenTrabajo_cod" 
+                       [control]="mantenimientoCorrectivoForm.controls.ordenTrabajo_id" 
                        [options]="dataSourceOrders">
             </app-input>
           </div>

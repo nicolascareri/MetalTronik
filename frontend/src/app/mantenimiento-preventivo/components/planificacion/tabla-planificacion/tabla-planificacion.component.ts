@@ -43,7 +43,7 @@ export class TablaPlanificacionComponent implements OnInit {
       name: 'Tarea',
       sort: '',
       filterValue: '',
-      width: '15%'
+      width: '35%'
     },
     {
       id: 5,
