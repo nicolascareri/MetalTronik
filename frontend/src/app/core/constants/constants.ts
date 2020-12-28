@@ -14,7 +14,7 @@ export const ESTADOS = [
 export const ENDPOINTS = {
 
     SERVER: {
-        serve: 'http://localhost:8080/',
+        serve: 'https://metaltronik.herokuapp.com/',
         
         // local: 'http://localhost:8080/'
         // heroku: 'https://metaltronik.herokuapp.com/'
