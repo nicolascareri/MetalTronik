@@ -54,23 +54,23 @@ public class MantenimientoCorrectivoServiceImpl implements MantenimientoCorrecti
 
     @Override
     public MantenimientoCorrectivoResponse create(MantenimientoCorrectivoRequest mantenimientoCorrectivoRequest) throws ValidateFieldException {
-        Integer maquinaCod = mantenimientoCorrectivoRequest.getMaquina_cod();
+        Integer maquinaCod = mantenimientoCorrectivoRequest.getMaquina_id();
         MantenimientoCorrectivo mantenimientoCorrectivo = mantenimientoCorrectivoMapper.mantenimientoCorrectivoRequestToMantenimientoCorrectivo(mantenimientoCorrectivoRequest);
         mantenimientoCorrectivo.setTipo(tipoRepository.findById(mantenimientoCorrectivoRequest.getTipo_id()).get());
         mantenimientoCorrectivo.setMaquina(maquinaRepository.findById(maquinaCod).get());
-        mantenimientoCorrectivo.setEncargo1(usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo1_cod()).get());
-        mantenimientoCorrectivo.setParte(parteBuscador.getParte(mantenimientoCorrectivoRequest.getParte_cod(), parteRepository.getAllByMaquina(maquinaCod)));
-        Optional<Usuario> optionalUsuario2 = usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo2_cod());
+        mantenimientoCorrectivo.setEncargo1(usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo1_id()).get());
+        mantenimientoCorrectivo.setParte(parteBuscador.getParte(mantenimientoCorrectivoRequest.getParte_id(), parteRepository.getAllByMaquina(maquinaCod)));
+        Optional<Usuario> optionalUsuario2 = usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo2_id());
         if (optionalUsuario2.isPresent()) {
             Usuario encargo2 = optionalUsuario2.get();
             mantenimientoCorrectivo.setEncargo2(encargo2);
         }
-        Optional<Usuario> optionalUsuario3 = usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo3_cod());
+        Optional<Usuario> optionalUsuario3 = usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo3_id());
         if (optionalUsuario3.isPresent()) {
             Usuario encargo3 = optionalUsuario2.get();
             mantenimientoCorrectivo.setEncargo3(encargo3);
         }
-        Optional<OrdenesTrabajo> optionalOrdenesTrabajo = ordenesTrabajoRepository.findById(mantenimientoCorrectivoRequest.getOrdenTrabajo_cod());
+        Optional<OrdenesTrabajo> optionalOrdenesTrabajo = ordenesTrabajoRepository.findById(mantenimientoCorrectivoRequest.getOrdenTrabajo_id());
         if (optionalOrdenesTrabajo.isPresent()) {
             OrdenesTrabajo ordenesTrabajo = optionalOrdenesTrabajo.get();
             ordenesTrabajo.setEstado(EstadoOrden.OK.getValue());
@@ -88,7 +88,7 @@ public class MantenimientoCorrectivoServiceImpl implements MantenimientoCorrecti
     @Override
     public MantenimientoCorrectivoResponse update(MantenimientoCorrectivoRequest mantenimientoCorrectivoRequest, Integer id) throws ValidateFieldException {
 
-        Integer maquinaCod = mantenimientoCorrectivoRequest.getMaquina_cod();
+        Integer maquinaCod = mantenimientoCorrectivoRequest.getMaquina_id();
         Optional<MantenimientoCorrectivo> opt = mantenimientoCorrectivoRepository.findById(id);
 
         if (!opt.isPresent()) {
@@ -100,23 +100,23 @@ public class MantenimientoCorrectivoServiceImpl implements MantenimientoCorrecti
         MantenimientoCorrectivo mantenimientoCorrectivo = mantenimientoCorrectivoMapper.mantenimientoCorrectivoRequestToMantenimientoCorrectivo(mantenimientoCorrectivoRequest);
 
         mantenimientoCorrectivo.setMaquina(maquinaRepository.findById(maquinaCod).get());
-        mantenimientoCorrectivo.setParte(parteBuscador.getParte(mantenimientoCorrectivoRequest.getParte_cod(), parteRepository.getAllByMaquina(maquinaCod)));
+        mantenimientoCorrectivo.setParte(parteBuscador.getParte(mantenimientoCorrectivoRequest.getParte_id(), parteRepository.getAllByMaquina(maquinaCod)));
 
-        mantenimientoCorrectivo.setOrdenTrabajo(ordenesTrabajoRepository.findById(mantenimientoCorrectivoRequest.getOrdenTrabajo_cod()).get());
-        mantenimientoCorrectivo.setEncargo1(usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo1_cod()).get());
-        Optional<Usuario> optionalUsuario2 = usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo2_cod());
+        mantenimientoCorrectivo.setOrdenTrabajo(ordenesTrabajoRepository.findById(mantenimientoCorrectivoRequest.getOrdenTrabajo_id()).get());
+        mantenimientoCorrectivo.setEncargo1(usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo1_id()).get());
+        Optional<Usuario> optionalUsuario2 = usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo2_id());
         if (optionalUsuario2.isPresent()) {
             Usuario encargo2 = optionalUsuario2.get();
             mantenimientoCorrectivo.setEncargo2(encargo2);
         }
 
-        Optional<Usuario> optionalUsuario3 = usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo3_cod());
+        Optional<Usuario> optionalUsuario3 = usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo3_id());
         if (optionalUsuario3.isPresent()) {
             Usuario encargo3 = optionalUsuario2.get();
             mantenimientoCorrectivo.setEncargo3(encargo3);
         }
 
-        Optional<OrdenesTrabajo> optionalOrdenesTrabajo = ordenesTrabajoRepository.findById(mantenimientoCorrectivoRequest.getOrdenTrabajo_cod());
+        Optional<OrdenesTrabajo> optionalOrdenesTrabajo = ordenesTrabajoRepository.findById(mantenimientoCorrectivoRequest.getOrdenTrabajo_id());
         if (optionalOrdenesTrabajo.isPresent()) {
             OrdenesTrabajo ordenesTrabajo = optionalOrdenesTrabajo.get();
             ordenesTrabajo.setEstado(EstadoOrden.OK.getValue());
