@@ -16,9 +16,9 @@ public class MantenimientoCorrectivoRequest {
 
     @NotNull
     @ValidEntity(repository = MaquinaRepository.class)
-    private int maquina_cod;
+    private int maquina_id;
 
-    private Integer parte_cod;
+    private Integer parte_id;
 
     @NotNull
     private Date fechainicio;
@@ -37,16 +37,16 @@ public class MantenimientoCorrectivoRequest {
 
     private String repuestosColocados;
 
-    private int ordenTrabajo_cod;
+    private int ordenTrabajo_id;
 
     @NotNull
     private int nrocorrectivo;
 
     @NotNull
     @ValidEntity(repository = UsuarioRepository.class)
-    private int encargo1_cod;
+    private int encargo1_id;
 
-    private int encargo2_cod;
+    private int encargo2_id;
 
-    private int encargo3_cod;
+    private int encargo3_id;
 }

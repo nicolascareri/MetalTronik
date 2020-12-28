@@ -12,7 +12,7 @@ import java.util.Date;
 public class RegistroRequest {
 
     @ValidEntity(repository = TareasRepository.class)
-    private Integer tarea_cod;
+    private Integer tarea_id;
     private Date fechaPlanificada;
     private Boolean realizo;
     private String observaciones;
