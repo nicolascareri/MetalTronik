@@ -18,7 +18,7 @@ export class TablaEntradaComponent implements OnInit {
       id: 1,
       property:'cantidad',
       name: 'Cantidad',
-      sort: 'up',
+      sort: '',
       filterValue: '',
       width: '15%'
     },
@@ -28,7 +28,7 @@ export class TablaEntradaComponent implements OnInit {
       name: 'Fecha de entrada',
       sort: '',
       filterValue: '',
-      width: '25&'
+      width: '25%'
     }, 
     {
       id: 3,
@@ -44,7 +44,7 @@ export class TablaEntradaComponent implements OnInit {
       name: 'Proveedor',
       sort: '',
       filterValue: '',
-      width: '15%'
+      width: '25%'
     }, 
     {
       id: 5,
@@ -52,7 +52,7 @@ export class TablaEntradaComponent implements OnInit {
       name: 'Cod producto',
       sort: '',
       filterValue: '',
-      width: '15%'
+      width: '25%'
     },
     {
       id: 6,
@@ -105,7 +105,7 @@ export class TablaEntradaComponent implements OnInit {
       (data: any)  => {
         this.dataSourceEntrada = this.coreService.replaceFormat(data, ['nombre', 'codigoProducto', 'marca', 'modelo',
                                                                        'tipoRepuesto', 'ubicacion', 'unidad', 
-                                                                       'puntoPedido', 'stockObjetivo', 'existencia'
+                                                                       'puntoPedido', 'stockObjetivo', 'existencia', 'fecha'
                                                                       ]);
       },
       (error) => {

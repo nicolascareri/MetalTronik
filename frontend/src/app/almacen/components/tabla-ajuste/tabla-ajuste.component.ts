@@ -18,7 +18,7 @@ export class TablaAjusteComponent implements OnInit {
       name: 'Código de producto',
       sort: 'up',
       filterValue: '',
-      width: '15%'
+      width: '25%'
     },
     {
       id: 2,
@@ -26,7 +26,7 @@ export class TablaAjusteComponent implements OnInit {
       name: 'Modelo',
       sort: 'up',
       filterValue: '',
-      width: '15%'
+      width: '25%'
     },
     {
       id: 3,
@@ -34,7 +34,7 @@ export class TablaAjusteComponent implements OnInit {
       name: 'Modelo',
       sort: 'up',
       filterValue: '',
-      width: '15%'
+      width: '25%'
     },
     {
       id: 4,

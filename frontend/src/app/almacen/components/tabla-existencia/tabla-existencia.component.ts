@@ -17,16 +17,16 @@ export class TablaExistenciaComponent implements OnInit {
   public columnsToDisplay: any[] = [
     {
       id: 1,
-      property:'nombre',
-      name: 'Nombre',
-      sort: 'up',
+      property:'codigoProducto',
+      name: 'Codigo de producto',
+      sort: '',
       filterValue: '',
-      width: '15%'
+      width: '25%'
     }, 
     {
       id: 2,
-      property:'codigoProducto',
-      name: 'Codigo de producto',
+      property:'nombre',
+      name: 'Nombre',
       sort: '',
       filterValue: '',
       width: '20%'
@@ -49,14 +49,22 @@ export class TablaExistenciaComponent implements OnInit {
     },
     {
       id: 5,
-      property:'precio',
-      name: 'Precio',
+      property:'precio_unitario',
+      name: 'Precio unitario',
       sort: '',
       filterValue: '',
-      width: '15%'
-    }, 
+      width: '35%'
+    },
     {
       id: 6,
+      property:'precio_total',
+      name: 'Precio total',
+      sort: '',
+      filterValue: '',
+      width: '25%'
+    },  
+    {
+      id: 7,
       property:'tipoRepuesto',
       name: 'Tipo de repuesto',
       sort: '',
@@ -64,15 +72,15 @@ export class TablaExistenciaComponent implements OnInit {
       width: '15%'
     }, 
     {
-      id: 7,
+      id: 8,
       property:'ubicacion',
       name: 'Ubicacion',
       sort: '',
       filterValue: '',
-      width: '15%'
+      width: '25%'
     }, 
     {
-      id: 8,
+      id: 9,
       property:'unidad',
       name: 'Unidad',
       sort: '',
@@ -80,7 +88,7 @@ export class TablaExistenciaComponent implements OnInit {
       width: '350px'
     },
     {
-      id: 9,
+      id: 10,
       property: 'puntoPedido',
       name: 'Stock mínimo',
       sort: '',
@@ -88,7 +96,7 @@ export class TablaExistenciaComponent implements OnInit {
       width: '25%'
     },
     {
-      id: 10,
+      id: 11,
       property: 'stockObjetivo',
       name: 'Stock objetivo',
       sort: '',
@@ -96,7 +104,7 @@ export class TablaExistenciaComponent implements OnInit {
       width: '25%'
     },
     {
-      id: 11,
+      id: 12,
       property: 'existencia',
       name: 'Stock actual',
       sort: '',
