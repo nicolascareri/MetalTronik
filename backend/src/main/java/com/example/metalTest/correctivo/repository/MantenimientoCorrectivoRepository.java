@@ -15,6 +15,6 @@ public interface MantenimientoCorrectivoRepository extends JpaRepository<Manteni
     List<String> getManCor();
 
     @Query(value = "SELECT mac.maquina_cod, count(*) totales,  sum(m.fecha_fin::date -  m.fechainicio::date)  as dias, EXTRACT(MONTH FROM m.fecha_fin::date) FROM mantenimiento_correctivo m inner join maquina mac on mac.id = m.maquina_id group by mac.maquina_cod, EXTRACT(MONTH FROM m.fecha_fin::date)", nativeQuery = true)
-    List<String> getPromHorasMantenimientoMaquina();
+    List<String[]> getPromHorasMantenimientoMaquina();
 
 }

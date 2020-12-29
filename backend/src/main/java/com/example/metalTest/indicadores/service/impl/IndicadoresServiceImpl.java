@@ -1,5 +1,6 @@
 package com.example.metalTest.indicadores.service.impl;
 
+import com.example.metalTest.indicadores.controller.response.LineChart;
 import com.example.metalTest.indicadores.controller.response.Torta;
 import com.example.metalTest.indicadores.mapper.IndicadoresMapper;
 import com.example.metalTest.indicadores.mapper.ToIndicadoresMapper;
@@ -59,6 +60,13 @@ public class IndicadoresServiceImpl implements IndicadoresService {
     public Torta getGrafTortaPrioridad(){
         List<String[]>  a =  ordenesTrabajoRepository.getOrdenesTrabajoByPrioridad();
         return toIndicadoresMapper.toTorta(a);
+    }
+
+    @Override
+    public List<LineChart> getLineChartMaquina() {
+        List<String[]>  a =  mantenimientoCorrectivoRepository.getPromHorasMantenimientoMaquina();
+
+        return null;
     }
 
 }

@@ -1,16 +1,12 @@
 package com.example.metalTest.almacen.repuesto.service.impl;
 
-import com.example.metalTest.almacen.asociacion.repository.AsociacionRepository;
 import com.example.metalTest.apiError.exception.ValidateFieldException;
-import com.example.metalTest.maquina.repository.MaquinaRepository;
 import com.example.metalTest.almacen.repuesto.controller.request.RepuestoRequest;
 import com.example.metalTest.almacen.repuesto.controller.response.RepuestoResponse;
 import com.example.metalTest.almacen.repuesto.domain.Repuesto;
 import com.example.metalTest.almacen.repuesto.mapper.RepuestoMapper;
 import com.example.metalTest.almacen.repuesto.repository.RepuestoRepository;
 import com.example.metalTest.almacen.repuesto.service.RepuestoService;
-import com.example.metalTest.parte.repository.ParteRepository;
-import com.example.metalTest.parte.service.impl.ParteBuscador;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,7 +42,7 @@ public class RepuestoImpl implements RepuestoService {
     public Repuesto create(RepuestoRequest repuestoRequest) {
         Repuesto repuesto = repuestoMapper.repuestoRequestToRepuesto(repuestoRequest);
         repuesto.setCantidad_instalada(0);
-        repuesto.setPrecio_unitario(repuestoRequest.getPrecio());
+        repuesto.setPrecio_unitario(0);
         repuesto.setPrecio_total(0);
         return repuestoRepository.save(repuesto);
     }
