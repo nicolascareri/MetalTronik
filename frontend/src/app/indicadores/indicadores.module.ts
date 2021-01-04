@@ -6,11 +6,12 @@ import { ChartsModule } from 'ng2-charts';
 import { MainComponent } from './components/main/main/main.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import { IndicadoresCorrectivosComponent } from './components/indicadores-correctivos/indicadores-correctivos.component';
 
 
 
 @NgModule({
-  declarations: [IndicadoresComponent, MainComponent, PieChartComponent],
+  declarations: [IndicadoresComponent, MainComponent, PieChartComponent, IndicadoresCorrectivosComponent],
   imports: [
     CommonModule,
     IndicadoresRoutingModule,

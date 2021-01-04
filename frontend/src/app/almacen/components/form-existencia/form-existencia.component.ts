@@ -30,7 +30,6 @@ export class FormExistenciaComponent implements OnInit {
     marca: new FormControl(''),
     modelo: new FormControl(''),
     tipoRepuesto: new FormControl(''),
-    precio: new FormControl(''),
     unidad: new FormControl(''),
     ubicacion: new FormControl(''),
     puntoPedido: new FormControl(''),
@@ -82,7 +81,6 @@ export class FormExistenciaComponent implements OnInit {
     this.repuestForm.controls.marca.setValue(repuesto.marca);
     this.repuestForm.controls.modelo.setValue(repuesto.modelo);
     this.repuestForm.controls.tipoRepuesto.setValue(repuesto.tipoRepuesto);
-    this.repuestForm.controls.precio.setValue(repuesto.precio);
     this.repuestForm.controls.unidad.setValue(repuesto.unidad);
     this.repuestForm.controls.ubicacion.setValue(repuesto.ubicacion);
     this.repuestForm.controls.puntoPedido.setValue(repuesto.puntoPedido);

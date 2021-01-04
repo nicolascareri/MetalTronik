@@ -39,7 +39,7 @@ export class AlmacenService {
   }
 
   addAjuste(id, repuesto){
-    return this.http.put<any>(this.path.SERVER.serve + this.path.AJUSTE_STOCK.POST + id, repuesto);
+    return this.http.put<any>(this.path.SERVER.serve + this.path.AJUSTE_STOCK.POST + id, repuesto.value);
   }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

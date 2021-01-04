@@ -17,7 +17,8 @@
               <app-input [type]="'select-pair'" 
                          [parentForm]="form"  
                          [control]="form.controls.codigoProducto"
-                         [options]="dataSourceRepuestos">
+                         [options]="dataSourceRepuestos"
+                         (change)="getRepuestoId($event.target.value)">
               </app-input>
               </div>
     

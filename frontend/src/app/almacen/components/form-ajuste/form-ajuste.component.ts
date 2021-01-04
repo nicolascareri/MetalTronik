@@ -12,6 +12,7 @@ export class FormAjusteComponent implements OnInit {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+  public repuestoId;
   public dataSourceRepuestos;
   public mode = 'add';
   public messageTitleSuccess: any = "DONE";
@@ -63,22 +64,13 @@ export class FormAjusteComponent implements OnInit {
   // }
 
   saveForm() {
-    if (this.mode === 'add') {
-      // this.AlmacenService.addAjuste(id, this.form).subscribe(
-      //   data => {
-      //     this.showSuccess();
-      //   },
-      //   error => this.showError(error.error)
-      // );
-    } else {
-      // this.EntradaService.updateEntrada(this.entradaId, this.entradaForm).subscribe(
-      //   entrada => {
-      //     this.messageBody = "La entrada se ha editado correctamente"
-      //     this.showSuccess();
-      //   },
-      //   error => this.showError(error.error)
-      //   );
-    }
+    this.repuestoId;
+    this.AlmacenService.addAjuste(this.repuestoId ,this.form).subscribe(
+      data => {
+        this.showSuccess();
+      },
+      error => this.showError(error.error)
+    );
   }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -99,6 +91,12 @@ export class FormAjusteComponent implements OnInit {
         console.log(error.error);
       }
     );
+  }
+
+  getRepuestoId(id){
+    this.repuestoId = id.split(" ");
+    id = this.repuestoId[1];
+    this.repuestoId = id;
   }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlmacenService } from "../../services/almacen.service";
+import { CoreService } from 'src/app/core/service/core.service';
 
 @Component({
   selector: 'app-tabla-ajuste',
@@ -31,7 +32,7 @@ export class TablaAjusteComponent implements OnInit {
     {
       id: 3,
       property:'nombre',
-      name: 'Modelo',
+      name: 'Nombre',
       sort: 'up',
       filterValue: '',
       width: '25%'
@@ -48,7 +49,8 @@ export class TablaAjusteComponent implements OnInit {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  constructor(private AlmacenService: AlmacenService) { }
+  constructor(private AlmacenService: AlmacenService,
+              private coreService: CoreService) { }
 
   ngOnInit(): void {
     this.getAjustes();
@@ -59,7 +61,7 @@ export class TablaAjusteComponent implements OnInit {
   getAjustes(){
     this.AlmacenService.getAjustes().subscribe(
       (data: any) => {
-        this.dataSourceAjuste = data;
+        this.dataSourceAjuste =  this.coreService.replaceFormat(data, ['nombre', 'codigoProducto', 'marca', 'modelo']);
       },
       (error) => {
         console.log(error.error);
