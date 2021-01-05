@@ -8,8 +8,6 @@ import {RouterModule} from '@angular/router';
 import {CoreModule} from '../core/core.module';
 import {FormMaquinaComponent} from './components/form/form.component';
 import {TablaMaquinaComponent} from './components/tabla/tabla.component';
-import {PlantaModule} from '../planta/planta.module';
-import {SectorModule} from '../sector/sector.module';
 import {MaquinaRoutingModule} from './maquina-routing.module';
 import { FormPartesComponent } from './components/form/form-partes/form-partes.component';
 import { FormPartesIIComponent } from './components/form/form-partes/form-partes-ii/form-partes-ii.component';
@@ -25,8 +23,6 @@ import { FormPartesIIComponent } from './components/form/form-partes/form-partes
     MatInputModule,
     CoreModule,
     MatTabsModule,
-    PlantaModule,
-    SectorModule,
     MaquinaRoutingModule,
 
   ]

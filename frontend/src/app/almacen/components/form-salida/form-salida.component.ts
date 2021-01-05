@@ -5,21 +5,23 @@ import { first } from 'rxjs/operators';
 import { MessageService } from "../../../core/service/message.service";
 import { SalidaService } from "../../services/salida.service";
 import { AlmacenService } from "../../services/almacen.service";
-import { SectorService } from "../../../sector/services/sector.service";
 import { UserService } from "../../../usuarios/services/user.service";
+import { TipoService } from '../../../tipo/services/tipo.service';
 
 @Component({
   selector: 'app-form-salida',
   templateUrl: './form-salida.component.html',
   styleUrls: ['./form-salida.component.scss']
 })
+
 export class FormSalidaComponent implements OnInit {
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
+  public dataSourceSectors: any;
   public dataSourceSalida;
   public dataSourceRepuestos;
   public dataSourceUsuarios;
-  public dataSourceSectores;
   public salidaId: any;
   public mode = 'add';
   public messageTitleSuccess: any = "DONE";
@@ -33,11 +35,13 @@ export class FormSalidaComponent implements OnInit {
     solicitante_cod: new FormControl(''),
   });
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   constructor(private SalidaService: SalidaService,
               private route: ActivatedRoute,
               private MessageService: MessageService,
               private AlmacenService: AlmacenService,
-              private SectorService: SectorService,
+              private TipoService: TipoService,
               private UserService: UserService) { }
 
   ngOnInit(): void {
@@ -53,6 +57,8 @@ export class FormSalidaComponent implements OnInit {
     }
   }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   showSuccess(){
     this.MessageService.showSuccess({
       title: this.messageTitleSuccess,
@@ -67,30 +73,44 @@ export class FormSalidaComponent implements OnInit {
     })
   }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  loadSalida(salida) {
+    this.mode = "edit";
+    this.salidaForm.controls.cantidad.setValue(salida.cantidad);
+    this.salidaForm.controls.fecha.setValue(salida.fecha);
+    this.salidaForm.controls.repuesto_cod.setValue(salida.repuesto_cod);
+    this.salidaForm.controls.sector_cod.setValue(salida.sector_cod);
+    this.salidaForm.controls.solicitante_cod.setValue(salida.solicitante_cod);
+  }
+
+  saveForm() {
+    if (this.mode === 'add') {
+      this.SalidaService.postSalida(this.salidaForm).subscribe(
+        salida => {
+          this.showSuccess();
+        },
+        error => this.showError(error.error)
+      );
+    } else {
+      this.SalidaService.updateSalida(this.salidaId, this.salidaForm).subscribe(
+        salida => {
+          this.messageBody = "La salida se ha editado correctamente"
+          this.showSuccess();
+        },
+        error => this.showError(error.error)
+        );
+    }
+  }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
   getSalida(id) {
     this.SalidaService.getSalida(id).pipe(first()).subscribe(
       salida => {
         this.loadSalida(salida);
       }
     )
-  }
-
-  getSectores(){
-    this.SectorService.getSectores().subscribe(
-      (data: any)  => {
-        this.dataSourceSectores = data.map(
-          val => {
-            return {
-              "id": val.id,
-              "descripcion": val.descripcion
-            }
-          }
-        );
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
   }
 
   getUsuarios(){
@@ -129,38 +149,24 @@ export class FormSalidaComponent implements OnInit {
     );
   }
 
-  loadSalida(salida) {
-    this.mode = "edit";
-    console.log(salida);
-    this.salidaForm.controls.cantidad.setValue(salida.cantidad);
-    this.salidaForm.controls.fecha.setValue(salida.fecha);
-    this.salidaForm.controls.repuesto_cod.setValue(salida.repuesto_cod);
-    this.salidaForm.controls.sector_cod.setValue(salida.sector_cod);
-    this.salidaForm.controls.solicitante_cod.setValue(salida.solicitante_cod);
-  }
-
-  resetForm() {
-    this.salidaForm.reset();
-  }
-
-  saveForm() {
-    if (this.mode === 'add') {
-      this.SalidaService.postSalida(this.salidaForm).subscribe(
-        salida => {
-          this.showSuccess();
-        },
-        error => this.showError(error.error)
-      );
-    } else {
-      console.log(this.salidaForm);
-      this.SalidaService.updateSalida(this.salidaId, this.salidaForm).subscribe(
-        salida => {
-          this.messageBody = "La salida se ha editado correctamente"
-          this.showSuccess();
-        },
-        error => this.showError(error.error)
+  getSectores() {
+    this.TipoService.getTipos('Sectores').subscribe(
+      (data: any) => {
+        this.dataSourceSectors = data.map(
+          val => {
+            return {
+              "id": val.id,
+              "descripcion": val.nombre
+            }
+          }
         );
-    }
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }

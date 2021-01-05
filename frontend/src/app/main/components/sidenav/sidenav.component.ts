@@ -25,6 +25,7 @@ export class SidenavComponent{
     { name: 'Indicadores', route: 'indicadores', icon: '' },
     { name: '', route: 'configuracion', icon: 'settings'}
   ]
+  
 
   
 

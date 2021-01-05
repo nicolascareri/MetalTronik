@@ -34,8 +34,6 @@ export class FormMaquinaComponent implements OnInit {
     sector_id: new FormControl(''),
     estado: new FormControl(30)
   });
-
-  //Edit parts variables
   public partsForm: FormGroup = new FormGroup({
     codigo: new FormControl(''),
     nombre: new FormControl(''),
@@ -85,82 +83,82 @@ export class FormMaquinaComponent implements OnInit {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-loadMaquina(maquina) {
-  this.mode = "edit";
-  this.section = 'Editar maquina';
-  this.buttonName = 'Confirmar cambios';
-  this.machinesForm.controls.maquina_cod.setValue(maquina.maquina_cod);
-  this.machinesForm.controls.equipo.setValue(maquina.equipo);
-  this.machinesForm.controls.descripcion.setValue(maquina.descripcion);
-  this.machinesForm.controls.planta_cod.setValue(maquina.planta.id);
-  this.machinesForm.controls.sector_cod.setValue(maquina.sector.id);
-}
+  loadMaquina(maquina) {
+    this.mode = "edit";
+    this.section = 'Editar maquina';
+    this.buttonName = 'Confirmar cambios';
+    this.machinesForm.controls.maquina_cod.setValue(maquina.maquina_cod);
+    this.machinesForm.controls.equipo.setValue(maquina.equipo);
+    this.machinesForm.controls.descripcion.setValue(maquina.descripcion);
+    this.machinesForm.controls.planta_cod.setValue(maquina.planta.id);
+    this.machinesForm.controls.sector_cod.setValue(maquina.sector.id);
+  }
 
-linkParts(){
-  this.parts = this.parts.map(
-    val => {
-      return val.id;
-    }
-  );
-  this.ParteService.linkPart(this.maquinaId, this.parts).subscribe(
-    parte => {
-    },
-    error => this.showError(error.error)
-  );
-}
-
-saveForm() {
-  if (this.mode === 'add') {
-    this.MaquinaService.postMaquina(this.machinesForm).subscribe(
-      maquina => {
-        this.MaquinaService.setLastInsert(maquina);
-        this.router.navigate(['main/maquinas/form-partes']);
+  linkParts(){
+    this.parts = this.parts.map(
+      val => {
+        return val.id;
+      }
+    );
+    this.ParteService.linkPart(this.maquinaId, this.parts).subscribe(
+      parte => {
       },
       error => this.showError(error.error)
     );
-  } else {
-    this.MaquinaService.updateMaquina(this.maquinaId, this.machinesForm).subscribe(
-      maquina => {
-        this.partForDelete.forEach(parte => {
-          this.deletePart(parte);
-        });
-        this.linkParts();
-        this.messageBody = "La maquina se ha editado correctamente"
+  }
+
+  saveForm() {
+    if (this.mode === 'add') {
+      this.MaquinaService.postMaquina(this.machinesForm).subscribe(
+        maquina => {
+          this.MaquinaService.setLastInsert(maquina);
+          this.router.navigate(['main/maquinas/form-partes']);
+        },
+        error => this.showError(error.error)
+      );
+    } else {
+      this.MaquinaService.updateMaquina(this.maquinaId, this.machinesForm).subscribe(
+        maquina => {
+          this.partForDelete.forEach(parte => {
+            this.deletePart(parte);
+          });
+          this.linkParts();
+          this.messageBody = "La maquina se ha editado correctamente"
+          this.showSuccess();
+          this.router.navigate(['main/maquinas']);
+        },
+        error => this.showError(error.error)
+        );
+    }
+  }
+
+  addParte(){
+    this.ParteService.postParte(this.partsForm).subscribe(
+      parte => {
+        this.parts.push(parte);
+        this.messageBody = "Añadido a selección";
         this.showSuccess();
-        this.router.navigate(['main/maquinas']);
       },
       error => this.showError(error.error)
-      );
+    );
   }
-}
 
-addParte(){
-  this.ParteService.postParte(this.partsForm).subscribe(
-    parte => {
-      this.parts.push(parte);
-      this.messageBody = "Añadido a selección";
+  delete(part){
+    var index = this.parts.indexOf(part);
+    if (index > -1) {
+      this.partForDelete.push(part);
+      this.parts.splice(index, 1);
+      this.messageBody = "Eliminado de la selección"
       this.showSuccess();
-    },
-    error => this.showError(error.error)
-  );
-}
-
-delete(part){
-  var index = this.parts.indexOf(part);
-  if (index > -1) {
-    this.partForDelete.push(part);
-    this.parts.splice(index, 1);
-    this.messageBody = "Eliminado de la selección"
-    this.showSuccess();
+    }
   }
-}
 
-deletePart(part){
-  this.ParteService.deleteParte(part.id).subscribe(
-    parte => {},
-    error => this.showError(error.error)
-  );
-}
+  deletePart(part){
+    this.ParteService.deleteParte(part.id).subscribe(
+      parte => {},
+      error => this.showError(error.error)
+    );
+  }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
