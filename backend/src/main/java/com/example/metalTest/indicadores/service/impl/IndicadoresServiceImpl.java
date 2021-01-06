@@ -63,10 +63,9 @@ public class IndicadoresServiceImpl implements IndicadoresService {
     }
 
     @Override
-    public List<LineChart> getLineChartMaquina() {
+    public List<LineChart> getLineChartMaquina(){
         List<String[]>  a =  mantenimientoCorrectivoRepository.getPromHorasMantenimientoMaquina();
-
-        return null;
+        return toIndicadoresMapper.getLineChartMaquina(a);
     }
 
 }
