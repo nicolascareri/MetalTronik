@@ -24,7 +24,6 @@ public class LineChartMaquina{
             Integer totales= Integer.valueOf((String)ob[1]);
             String fecha_fin= String.valueOf(ob[2]);
             String fecha_inicio= String.valueOf(ob[3]);
-            System.out.println(getDiasEntreFechas(fecha_fin, fecha_inicio));
             indicadores.add(getIndicador(getFormula(totales, getDiasEntreFechas(fecha_fin, fecha_inicio)), maquina_cod, fecha_fin));
         }
         return indicadores;
