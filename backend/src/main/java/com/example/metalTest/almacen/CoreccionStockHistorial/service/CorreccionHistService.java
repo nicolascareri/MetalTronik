@@ -7,7 +7,7 @@ import com.example.metalTest.almacen.CoreccionStockHistorial.domain.CorreccionHi
 import java.util.List;
 
 public interface CorreccionHistService {
-    List<CorreccionHistorial> getAll();
+    List<CorrHistResponse> getAll();
 
     CorrHistResponse create(CorrHistRequest correccionHistorial, Integer repuesto_id);
 }

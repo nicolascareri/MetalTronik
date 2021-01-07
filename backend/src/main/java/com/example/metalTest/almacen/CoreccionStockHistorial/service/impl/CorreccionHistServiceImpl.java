@@ -11,6 +11,7 @@ import com.example.metalTest.almacen.repuesto.repository.RepuestoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -23,8 +24,18 @@ public class CorreccionHistServiceImpl implements CorreccionHistService {
     @Autowired
     RepuestoRepository repuestoRepository;
     @Override
-    public List<CorreccionHistorial> getAll() {
-        return correccionHistorialRepository.findAll();
+    public List<CorrHistResponse> getAll() {
+        List<CorreccionHistorial> correcciones = correccionHistorialRepository.findAll();
+        List<CorrHistResponse> response = new ArrayList<>();
+        for (CorreccionHistorial correccion: correcciones) {
+            CorrHistResponse a = new CorrHistResponse();
+            a.setFecha_correccion(correccion.getFecha_correccion());
+            a.setRepuesto(correccion.getRepuesto_id());
+            a.setStock(correccion.getStock());
+            response.add(a);
+        }
+
+        return response;
     }
 
     @Override

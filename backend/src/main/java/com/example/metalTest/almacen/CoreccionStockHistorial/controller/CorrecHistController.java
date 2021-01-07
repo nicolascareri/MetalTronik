@@ -19,7 +19,7 @@ public class CorrecHistController {
     @Autowired
     CorreccionHistService correccionHistService;
     @GetMapping
-    public ResponseEntity<List<CorreccionHistorial>> getAll() {
+    public ResponseEntity<List<CorrHistResponse>> getAll() {
         return new ResponseEntity<>(correccionHistService.getAll(), HttpStatus.OK);
     }
 
