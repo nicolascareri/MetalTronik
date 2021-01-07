@@ -17,4 +17,5 @@ public class Entrada extends Movimiento {
 
     @Column //futura entidad
     private String proveedor;
+
 }

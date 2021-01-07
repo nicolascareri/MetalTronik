@@ -35,9 +35,14 @@ public class EntradaServiceImpl implements EntradaService {
     public EntradaResponse create(EntradaRequest entradaRequest) {
         Entrada entrada = entradaMapper.entradaRequestToEntrada(entradaRequest);
         Repuesto repuesto = repuestoRepository.findById(entradaRequest.getRepuesto_id()).get();
-        repuesto.setExistencia(repuesto.getExistencia() + entradaRequest.getCantiad());
+        repuesto.setExistencia(repuesto.getExistencia() + entradaRequest.getCantidad());
         repuesto.setPrecio_total(entradaRequest.getPrecio_total());
         repuesto.setPrecio_unitario(entradaRequest.getPrecio_unitario());
+
+        entrada.setCantidad(entradaRequest.getCantidad());
+        entrada.setNumeroOrdenCompra(entradaRequest.getNumeroOrdenCompra());
+        entrada.setProveedor(entradaRequest.getProveedor());
+        entrada.setFecha(entradaRequest.getFecha());
         entrada.setRepuesto(repuesto);
         entradaRepository.save(entrada);
         return entradaMapper.toEntradaResponse(entrada);
