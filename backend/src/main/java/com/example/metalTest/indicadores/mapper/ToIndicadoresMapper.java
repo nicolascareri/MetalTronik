@@ -1,13 +1,11 @@
 package com.example.metalTest.indicadores.mapper;
 
 import com.example.metalTest.indicadores.controller.response.IndicatorResponse;
-import com.example.metalTest.indicadores.controller.response.LineChart;
 import com.example.metalTest.indicadores.controller.response.Torta;
 import com.example.metalTest.indicadores.mapper.formulas.Formula;
 import com.example.metalTest.indicadores.mapper.formulas.Formula1;
 import com.example.metalTest.indicadores.mapper.formulas.Formula2;
 import com.example.metalTest.indicadores.mapper.formulas.LineChartMaquina;
-import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +48,7 @@ public class ToIndicadoresMapper  implements IndicadoresMapper {
     }
 
     @Override
-    public List<LineChart> getLineChartMaquina(List<String[]> consult){
+    public List<IndicatorResponse> getLineChartMaquina(List<String[]> consult){
         LineChartMaquina a = new LineChartMaquina();
         return a.getResultados(consult);
     }

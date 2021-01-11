@@ -1,9 +1,7 @@
 package com.example.metalTest.indicadores.mapper;
 
 import com.example.metalTest.indicadores.controller.response.IndicatorResponse;
-import com.example.metalTest.indicadores.controller.response.LineChart;
 import com.example.metalTest.indicadores.controller.response.Torta;
-import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
 
 import java.util.List;
 
@@ -15,5 +13,5 @@ public interface IndicadoresMapper{
 
     Torta toTorta(List<String[]> consult);
 
-    List<LineChart> getLineChartMaquina(List<String[]> consult);
+    List<IndicatorResponse> getLineChartMaquina(List<String[]> consult);
 }

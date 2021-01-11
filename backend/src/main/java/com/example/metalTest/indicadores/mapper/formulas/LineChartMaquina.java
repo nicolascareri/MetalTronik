@@ -1,63 +1,54 @@
 package com.example.metalTest.indicadores.mapper.formulas;
 
-import com.example.metalTest.indicadores.controller.response.LineChart;
+import com.example.metalTest.indicadores.controller.response.IndicatorResponse;
 import lombok.NoArgsConstructor;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import static java.time.temporal.ChronoUnit.DAYS;
 
 @NoArgsConstructor
 public class LineChartMaquina{
 
-    public List<LineChart> getResultados(List<String[]> consult){
-        List<LineChart> indicadores = new ArrayList<>();
-        for(Object[] ob : consult){
-            String maquina_cod = String.valueOf(ob[0]);
-            Integer totales= Integer.valueOf((String)ob[1]);
-            String fecha_fin= String.valueOf(ob[2]);
-            String fecha_inicio= String.valueOf(ob[3]);
-            indicadores.add(getIndicador(getFormula(totales, getDiasEntreFechas(fecha_fin, fecha_inicio)), maquina_cod, fecha_fin));
+    public List<IndicatorResponse> getResultados(List<String[]> consult){
+        List<IndicatorResponse> indicadores = new ArrayList<>();
+        String cod = consult.get(0)[0];
+        IndicatorResponse actual = getNewIndicador(cod);
+        indicadores.add(actual);
+        for (String[] a: consult) {
+            cod = a[0];
+            if(cod.compareTo(indicadores.get(indicadores.size()-1).getLabel()) == 0  ){
+                double aux = Double.valueOf(a[3]);
+                int aux1 =(int) aux;
+                indicadores.get(indicadores.size()-1).getData().set(aux1-1,getFormula(Integer.valueOf(a[1]),Integer.valueOf(a[2])));
+            }else{
+                double aux = Double.valueOf(a[3]);
+                int aux1 =(int) aux;
+                indicadores.add(getNewIndicador(a[0]));
+                indicadores.get(indicadores.size()-1).getData().set(aux1-1,getFormula(Integer.valueOf(a[1]),Integer.valueOf(a[2])));
+            }
         }
         return indicadores;
     }
 
-    private Integer getDiasEntreFechas(String fin, String inicio){
-        Integer resultado = null;
-        try {
-            Date fFin=new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(fin);
-            Date fInicio=new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(inicio);
-            resultado = (int)Duration.between(fInicio.toInstant(),fFin.toInstant()).toDays();
-        }catch (Exception e){
-            e.printStackTrace();
+
+    private List<Integer> initData(){
+        List<Integer> data = new ArrayList<>();
+        for (int i = 0; i <12; i++){
+            data.add(0);
         }
-        return resultado;
+        return data;
     }
 
-
-    int getFormula(int totales, int ordenesOk){
-        if(ordenesOk == 0) ordenesOk = 1;
-        return (ordenesOk*24/totales);
+    private IndicatorResponse getNewIndicador(String label){
+        IndicatorResponse indicador_actual = new IndicatorResponse();
+        indicador_actual.setLabel(label);
+        indicador_actual.setData(initData());
+        return indicador_actual;
     }
 
-    LineChart getIndicador(Integer data, String label, String mes){
-        LineChart indicador = new LineChart();
-        List<Integer> a = new ArrayList<>();
-        a.add(data);
-        indicador.setData(a);
-        indicador.setLabel(label);
-        Integer nroMes= null;
-        try{
-           nroMes = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(mes).getMonth();
-        }catch (ParseException e) {e.printStackTrace();}
-        indicador.setMes(nroMes+1);
-        return indicador;
+    int getFormula(int totales, int dias){
+        if(dias == 0) dias = 1;
+        return (dias*24/totales);
     }
+
 }

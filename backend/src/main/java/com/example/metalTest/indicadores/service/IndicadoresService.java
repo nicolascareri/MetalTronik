@@ -1,7 +1,6 @@
 package com.example.metalTest.indicadores.service;
 
 import com.example.metalTest.indicadores.controller.response.IndicatorResponse;
-import com.example.metalTest.indicadores.controller.response.LineChart;
 import com.example.metalTest.indicadores.controller.response.Torta;
 
 import java.util.List;
@@ -19,5 +18,5 @@ public interface IndicadoresService {
 
     Torta getGrafTortaPrioridad();
 
-    List<LineChart> getLineChartMaquina();
+    List<IndicatorResponse> getLineChartMaquina();
 }

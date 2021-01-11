@@ -1,5 +1,5 @@
 package com.example.metalTest.almacen.repuesto.controller.response;
-
+import com.example.metalTest.tipo.domain.Tipo;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +17,6 @@ public class RepuestoReducidoResponse {
     private String unidad;
     private int puntoPedido;
     private int stockObjetivo;
-    private short tipoRepuesto;
+    private Tipo tipo_repuesto;
     private String ubicacion;
 }

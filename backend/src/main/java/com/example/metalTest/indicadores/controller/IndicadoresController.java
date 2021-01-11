@@ -1,6 +1,5 @@
 package com.example.metalTest.indicadores.controller;
 
-import com.example.metalTest.indicadores.controller.response.LineChart;
 import com.example.metalTest.indicadores.controller.response.Torta;
 import com.example.metalTest.indicadores.service.IndicadoresService;
 import com.example.metalTest.correctivo.service.MantenimientoCorrectivoService;
@@ -55,7 +54,7 @@ public class IndicadoresController {
         return new ResponseEntity<>(indicadoresService.getGrafTortaPrioridad(), HttpStatus.OK);
     }
     @GetMapping("Line-chart/maquina")
-    public ResponseEntity<List<LineChart>> getCorrectivoMaquina() throws Exception{
+    public ResponseEntity<List<IndicatorResponse>> getCorrectivoMaquina() throws Exception{
         return new ResponseEntity<>(indicadoresService.getLineChartMaquina(), HttpStatus.OK);
     }
 

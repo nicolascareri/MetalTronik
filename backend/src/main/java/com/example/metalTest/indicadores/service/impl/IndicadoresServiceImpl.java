@@ -1,13 +1,11 @@
 package com.example.metalTest.indicadores.service.impl;
 
-import com.example.metalTest.indicadores.controller.response.LineChart;
 import com.example.metalTest.indicadores.controller.response.Torta;
 import com.example.metalTest.indicadores.mapper.IndicadoresMapper;
 import com.example.metalTest.indicadores.mapper.ToIndicadoresMapper;
 import com.example.metalTest.indicadores.service.IndicadoresService;
 import com.example.metalTest.correctivo.repository.MantenimientoCorrectivoRepository;
 import com.example.metalTest.indicadores.controller.response.IndicatorResponse;
-import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
 import com.example.metalTest.ordenestrabajo.repository.OrdenesTrabajoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -63,7 +61,7 @@ public class IndicadoresServiceImpl implements IndicadoresService {
     }
 
     @Override
-    public List<LineChart> getLineChartMaquina(){
+    public List<IndicatorResponse> getLineChartMaquina(){
         List<String[]>  a =  mantenimientoCorrectivoRepository.getPromHorasMantenimientoMaquina();
         return toIndicadoresMapper.getLineChartMaquina(a);
     }
