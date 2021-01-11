@@ -133,11 +133,15 @@ export const ENDPOINTS = {
     },
 
     INDICADORES: {
+        ///Graficos Ordenes///
         USUARIOS: '/api/indicadores/formula/1/usuario',
         SECTORES : '/api/indicadores/formula/1/sector',
         PIE_TIPOS: '/api/indicadores/formula/Torta/tipo',
         PIE_PRIORIDADES: '/api/indicadores/formula/Torta/prioridad',
-        USUARIOS2: '/api/indicadores/formula/2/usuario'
+        USUARIOS2: '/api/indicadores/formula/2/usuario',
+
+        ///Graficos Correctivos///
+        LINE_CHART: 'api/indicadores/formula/Line-chart/maquina'
     },
     
     CARGO: {

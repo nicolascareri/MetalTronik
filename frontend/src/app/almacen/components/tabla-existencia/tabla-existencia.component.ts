@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlmacenService } from "../../services/almacen.service";
 import { Router } from '@angular/router';
+import { CoreService } from 'src/app/core/service/core.service';
 
 
 @Component({
@@ -117,7 +118,8 @@ export class TablaExistenciaComponent implements OnInit {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   constructor(private AlmacenService: AlmacenService,
-              private Router: Router
+              private Router: Router,
+              private coreService: CoreService
               ) { }
 
   ngOnInit(): void {
@@ -135,7 +137,7 @@ export class TablaExistenciaComponent implements OnInit {
   getRepuestos(){
     this.AlmacenService.getRepuestos().subscribe(
       (data: any)  => {
-        this.dataSourceRepuestos = data;
+        this.dataSourceRepuestos = this.coreService.replaceFormat(data, ['tipo']);
       },
       (error) => {
         console.error(error);

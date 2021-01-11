@@ -11,7 +11,10 @@ import { MessageService } from "../../../../core/service/message.service";
   templateUrl: './tabla-registro.component.html',
   styleUrls: ['./tabla-registro.component.scss']
 })
+
 export class TablaRegistroComponent implements OnInit {
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   public messageTitleSuccess: any = "DONE";
   public messageTitleError: any = "ERROR";
@@ -26,7 +29,6 @@ export class TablaRegistroComponent implements OnInit {
   public formForSaves :FormGroup = new FormGroup({
     fecha: new FormControl('')
   });
-
   public columnsToDisplay: any[] = [
     {
       id: 1,
@@ -62,7 +64,6 @@ export class TablaRegistroComponent implements OnInit {
     },
 
   ];
-
   public columnsToDisplayForSaves: any[] = [
     {
       id: 1,
@@ -131,8 +132,7 @@ export class TablaRegistroComponent implements OnInit {
 
   ];
 
- 
-  
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   constructor(private RegistroService: RegistroService,
               private CoreService : CoreService,
@@ -140,74 +140,9 @@ export class TablaRegistroComponent implements OnInit {
               private MessageService: MessageService) { }
 
   ngOnInit(): void {  
-  
   }
 
- 
-  getFormatDate(date: string): string {
-    var dateServerFormat = 'YYYY-MM-DD';
-    moment.locale('es');
-    const dateMoment = moment(date, dateServerFormat);
-    const year = dateMoment.format('YYYY');
-    const month = dateMoment.format('MM');
-    const day = dateMoment.format('DD');
-    return year + "-" + month[0].toUpperCase() + month.substr(1) + "-" + day;
-  }
-
-  getTareas(){
-
-    let date = this.formForTask.value;
-    date = this.getFormatDate(date.fecha);
-    this.RegistroService.getRegistro(date).subscribe(
-      (data: any)  => {
-        
-        console.log(data);
-        
-        if(data.length != 0){
-          this.showSuccess();
-          this.dataSourceTareas = this.CoreService.replaceFormat(data, ['fechaPlanificada', 'tarea', 'sector']);
-
-        }else{
-          this.mesaggeTitleWarning = "Tareas no encontradas en la fecha indicada"
-          this.showWarning();
-        }
-
-      },
-      error => this.showError(error.error)
-    );
-    
-  }
-
-  saveCurrent(){
-
-    this.RegistroService.saveCurrent("").subscribe(
-      (data: any) => {
-        this.messageBody = "Planificacion actual guardada correctamente"
-          this.showSuccess();
-        
-      },
-      error => this.showError(error.error)
-    );
-  }
-
-  getSaves(){
-    let date = this.formForSaves.value;
-    date = this.getFormatDate(date.fecha);
-    this.RegistroService.getSaves(date).subscribe(
-      (data: any) => {
-        this.messageBody = "Registros encontrados"
-        this.showSuccess();
-        this.dataSourceSaves = this.CoreService.replaceFormat(data, ['fechaPlanificada', 'tarea', 'fechaRealizada', 'realizo', 'encargado']);
-
-
-      },
-      error => this.showError(error.error)
-    );
-  }
-
-  clickedRow(row){
-    this.Router.navigate(['main/mantenimientosPreventivos/formRegistro/' + row.id]);
-  }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   showSuccess(){
     this.MessageService.showSuccess({
@@ -229,5 +164,70 @@ export class TablaRegistroComponent implements OnInit {
       body: this.messageBodyWarning
     })
   }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  saveCurrent(){
+    this.RegistroService.saveCurrent("").subscribe(
+      (data: any) => {
+        this.messageBody = "Planificacion actual guardada correctamente"
+          this.showSuccess();
+      },
+      error => this.showError(error.error)
+    );
+  }
+
+  clickedRow(row){
+    this.Router.navigate(['main/mantenimientosPreventivos/formRegistro/' + row.id]);
+  }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
+  getFormatDate(date: string): string {
+    var dateServerFormat = 'YYYY-MM-DD';
+    moment.locale('es');
+    const dateMoment = moment(date, dateServerFormat);
+    const year = dateMoment.format('YYYY');
+    const month = dateMoment.format('MM');
+    const day = dateMoment.format('DD');
+    return year + "-" + month[0].toUpperCase() + month.substr(1) + "-" + day;
+  }
+
+  getTareas(){
+    let date = this.formForTask.value;
+    date = this.getFormatDate(date.fecha);
+    this.RegistroService.getRegistro(date).subscribe(
+      (data: any)  => {
+      
+        if(data.length != 0){
+          this.showSuccess();
+          this.dataSourceTareas = this.CoreService.replaceFormat(data, ['fechaPlanificada', 'tarea', 'sector']);
+
+        }else{
+          this.mesaggeTitleWarning = "Tareas no encontradas en la fecha indicada"
+          this.showWarning();
+        }
+
+      },
+      error => this.showError(error.error)
+    );
+  }
+
+  getSaves(){
+    let date = this.formForSaves.value;
+    date = this.getFormatDate(date.fecha);
+    this.RegistroService.getSaves(date).subscribe(
+      (data: any) => {
+        this.messageBody = "Registros encontrados"
+        this.showSuccess();
+        this.dataSourceSaves = this.CoreService.replaceFormat(data, ['fechaPlanificada', 'tarea', 'fechaRealizada', 'realizo', 'encargado']);
+
+
+      },
+      error => this.showError(error.error)
+    );
+  }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }
