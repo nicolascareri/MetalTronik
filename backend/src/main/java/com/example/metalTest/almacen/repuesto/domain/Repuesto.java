@@ -1,5 +1,5 @@
 package com.example.metalTest.almacen.repuesto.domain;
-
+import com.example.metalTest.tipo.domain.Tipo;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -44,8 +44,9 @@ public class Repuesto {
     @Column
     private int stockObjetivo;
 
-    @Column
-    private short tipoRepuesto;
+    @JoinColumn
+    @OneToOne
+    private Tipo tipo_repuesto;
 
     @Column
     private String ubicacion;

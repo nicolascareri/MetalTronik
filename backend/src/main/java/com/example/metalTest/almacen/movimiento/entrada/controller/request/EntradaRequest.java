@@ -23,7 +23,7 @@ public class EntradaRequest {
     @ValidEntity(repository = RepuestoRepository.class)
     private Integer repuesto_id;
     @NotNull
-    private Integer cantiad;
+    private Integer cantidad;
     @NotNull
     private Date fecha;
 }

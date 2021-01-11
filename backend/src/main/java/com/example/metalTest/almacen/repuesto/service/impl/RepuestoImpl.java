@@ -7,6 +7,7 @@ import com.example.metalTest.almacen.repuesto.domain.Repuesto;
 import com.example.metalTest.almacen.repuesto.mapper.RepuestoMapper;
 import com.example.metalTest.almacen.repuesto.repository.RepuestoRepository;
 import com.example.metalTest.almacen.repuesto.service.RepuestoService;
+import com.example.metalTest.tipo.repository.TipoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,8 @@ public class RepuestoImpl implements RepuestoService {
 
     @Autowired
     RepuestoMapper repuestoMapper;
+    @Autowired
+    TipoRepository tipoRepository;
 
     @Override
     public List<Repuesto> getAll() {
@@ -41,6 +44,7 @@ public class RepuestoImpl implements RepuestoService {
     @Override
     public Repuesto create(RepuestoRequest repuestoRequest) {
         Repuesto repuesto = repuestoMapper.repuestoRequestToRepuesto(repuestoRequest);
+        repuesto.setTipo_repuesto(tipoRepository.findById(repuestoRequest.getTipoRepuesto_id()).get());
         repuesto.setCantidad_instalada(0);
         repuesto.setPrecio_unitario(0);
         repuesto.setPrecio_total(0);
