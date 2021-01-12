@@ -1,4 +1,4 @@
-package com.example.metalTest.almacen.CoreccionStockHistorial.domain;
+package com.example.metalTest.almacen.ajusteStock.domain;
 
 import com.example.metalTest.almacen.repuesto.domain.Repuesto;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -11,7 +11,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-public class CorreccionHistorial {
+public class AjusteStock {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -22,7 +22,7 @@ public class CorreccionHistorial {
     private String nombre;
     @Column
     //Codigo de barras
-    private String codigoProducto;
+    private String codigo_producto;
     @Column
     private String modelo;
     @Column
