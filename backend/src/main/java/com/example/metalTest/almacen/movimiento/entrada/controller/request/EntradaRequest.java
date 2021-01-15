@@ -14,8 +14,6 @@ import java.util.Date;
 public class EntradaRequest {
     @NotNull
     private Integer precio_unitario;
-    @NotNull
-    private Integer precio_total;
     @NotEmpty
     private String numeroOrdenCompra;
     @NotEmpty

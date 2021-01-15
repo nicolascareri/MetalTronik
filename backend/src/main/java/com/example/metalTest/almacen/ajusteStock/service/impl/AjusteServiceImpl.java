@@ -43,6 +43,7 @@ public class AjusteServiceImpl implements AjusteService {
         AjusteStock ajuste = ajusteMapper.ajusteRequestToAjusteStock(ajusteRequest);
         Repuesto repuesto = repuestoRepository.findById(repuesto_id).get();
         repuesto.setExistencia(ajusteRequest.getStock());
+        repuesto.setPrecio_total(repuesto.getPrecio_unitario() * ajusteRequest.getStock());
         repuesto.setMarca(ajusteRequest.getMarca());
         repuesto.setId(repuesto_id);
         repuestoRepository.save(repuesto);

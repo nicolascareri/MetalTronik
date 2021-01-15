@@ -39,6 +39,7 @@ public class SalidaServiceImpl implements SalidaService {
         Salida salida = salidaMapper.salidaRequestToSalida(salidaRequest);
         Repuesto repuesto = repuestoRepository.findById(salidaRequest.getRepuesto_cod()).get();
         repuesto.setExistencia(repuesto.getExistencia() - salidaRequest.getCantidad());
+        repuesto.setPrecio_total(repuesto.getPrecio_unitario() * repuesto.getExistencia());
         salida.setRepuesto(repuesto);
         salida.setSector(tipoRepository.findById(salidaRequest.getSector_id()).get());
         salida.setSolicitante(usuarioRepository.findById(salidaRequest.getSolicitante_id()).get());

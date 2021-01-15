@@ -28,6 +28,8 @@ public class AjusteStock {
     @Column
     private Integer stock;
     @Column
+    private Integer stock_ajustado;
+    @Column
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT-3")
     private Date fecha_correccion;
 }
