@@ -19,8 +19,8 @@ export class EntradaService {
     return this.http.get(this.path.SERVER.serve + this.path.ENTRADA.GETID + id);
   }
 
-  postEntrada(entradaForm){
-    return this.http.post<any>(this.path.SERVER.serve + this.path.ENTRADA.POST, entradaForm.value);
+  postEntrada(request){
+    return this.http.post<any>(this.path.SERVER.serve + this.path.ENTRADA.POST, request);
   }
 
   updateEntrada(id, entrada){

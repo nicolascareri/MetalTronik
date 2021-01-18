@@ -17,4 +17,6 @@ public interface IndicadoresService {
     Torta getGrafTortaTipo();
 
     Torta getGrafTortaPrioridad();
+
+    List<IndicatorResponse> getLineChartMaquina();
 }

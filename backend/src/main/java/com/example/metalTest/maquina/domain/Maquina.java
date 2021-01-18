@@ -24,11 +24,11 @@ public class Maquina {
     @Column
     private short estado;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private Tipo planta;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private Tipo sector;
 

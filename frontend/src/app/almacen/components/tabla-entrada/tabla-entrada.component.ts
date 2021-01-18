@@ -18,17 +18,17 @@ export class TablaEntradaComponent implements OnInit {
       id: 1,
       property:'cantidad',
       name: 'Cantidad',
-      sort: 'up',
+      sort: '',
       filterValue: '',
-      width: '15%'
+      width: '35%'
     },
     {
       id: 2,
       property: 'fecha',
-      name: 'Fecha de entrada',
+      name: 'Fecha entrada',
       sort: '',
       filterValue: '',
-      width: '25&'
+      width: '35%'
     }, 
     {
       id: 3,
@@ -36,7 +36,7 @@ export class TablaEntradaComponent implements OnInit {
       name: 'Nro orden de compra',
       sort: '',
       filterValue: '',
-      width: '20%'
+      width: '35%'
     },
     {
       id: 4,
@@ -44,7 +44,7 @@ export class TablaEntradaComponent implements OnInit {
       name: 'Proveedor',
       sort: '',
       filterValue: '',
-      width: '15%'
+      width: '25%'
     }, 
     {
       id: 5,
@@ -52,31 +52,39 @@ export class TablaEntradaComponent implements OnInit {
       name: 'Cod producto',
       sort: '',
       filterValue: '',
-      width: '15%'
+      width: '25%'
     },
     {
-      id: 6,
+      id:6,
+      property: 'nombre',
+      name: 'Nombre',
+      sort: '',
+      filterValue: '',
+      width: '35%'
+    },
+    {
+      id: 7,
       property:'modelo',
       name: 'Modelo',
       sort: '',
       filterValue: '',
-      width: '15%'
+      width: '35%'
     }, 
     {
-      id: 7,
+      id: 8,
       property:'marca',
       name: 'Marca',
       sort: '',
       filterValue: '',
-      width: '15%'
+      width: '35%'
     }, 
     {
-      id: 8,
+      id: 9,
       property:'ubicacion',
       name: 'Ubicacion',
       sort: '',
       filterValue: '',
-      width: '350px'
+      width: '35%'
     },
     
     //Fecha de entrada de la entrada
@@ -103,9 +111,9 @@ export class TablaEntradaComponent implements OnInit {
   getEntradas(){
     this.EntradaService.getEntradas().subscribe(
       (data: any)  => {
-        this.dataSourceEntrada = this.coreService.replaceFormat(data, ['nombre', 'codigoProducto', 'marca', 'modelo',
+        this.dataSourceEntrada = this.coreService.replaceFormat(data, ['codigoProducto','nombre', 'marca', 'modelo',
                                                                        'tipoRepuesto', 'ubicacion', 'unidad', 
-                                                                       'puntoPedido', 'stockObjetivo', 'existencia'
+                                                                       'puntoPedido', 'stockObjetivo', 'existencia', 'fecha'
                                                                       ]);
       },
       (error) => {

@@ -5,6 +5,7 @@ import { first } from 'rxjs/operators';
 import { MessageService } from "../../../core/service/message.service";
 import { AlmacenService } from "../../services/almacen.service";
 import { UNIDADES } from "../../../core/constants/constants";
+import { TipoService } from '../../../tipo/services/tipo.service';
 
 @Component({
   selector: 'app-form-existencia',
@@ -16,6 +17,7 @@ export class FormExistenciaComponent implements OnInit {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+  public dataSourceTipos;
   public repuestoId: any;
   public mode = 'add';
   public section = 'Nuevo repuesto';
@@ -29,8 +31,7 @@ export class FormExistenciaComponent implements OnInit {
     nombre: new FormControl(''),
     marca: new FormControl(''),
     modelo: new FormControl(''),
-    tipoRepuesto: new FormControl(''),
-    precio: new FormControl(''),
+    tipoRepuesto_id: new FormControl(''),
     unidad: new FormControl(''),
     ubicacion: new FormControl(''),
     puntoPedido: new FormControl(''),
@@ -42,9 +43,11 @@ export class FormExistenciaComponent implements OnInit {
   constructor( private router: Router,
                private route: ActivatedRoute,
                private MessageService: MessageService,
-               private AlmacenService: AlmacenService) { }
+               private AlmacenService: AlmacenService,
+               private TipoService: TipoService) { }
 
   ngOnInit(): void {
+    this.getTipos();
     this.repuestoId = this.route.snapshot.params.id;
     this.unidades = UNIDADES;
   }
@@ -81,8 +84,7 @@ export class FormExistenciaComponent implements OnInit {
     this.repuestForm.controls.nombre.setValue(repuesto.nombre);
     this.repuestForm.controls.marca.setValue(repuesto.marca);
     this.repuestForm.controls.modelo.setValue(repuesto.modelo);
-    this.repuestForm.controls.tipoRepuesto.setValue(repuesto.tipoRepuesto);
-    this.repuestForm.controls.precio.setValue(repuesto.precio);
+    this.repuestForm.controls.tipoRepuesto_id.setValue(repuesto.tipo_repuesto.id);
     this.repuestForm.controls.unidad.setValue(repuesto.unidad);
     this.repuestForm.controls.ubicacion.setValue(repuesto.ubicacion);
     this.repuestForm.controls.puntoPedido.setValue(repuesto.puntoPedido);
@@ -94,6 +96,7 @@ export class FormExistenciaComponent implements OnInit {
       this.AlmacenService.postRepuesto(this.repuestForm).subscribe(
         repuesto => {
           this.showSuccess();
+          this.router.navigate(['main/almacen']);
         },
         error => this.showError(error.error)
       );
@@ -116,6 +119,24 @@ export class FormExistenciaComponent implements OnInit {
         this.loadRepuesto(repuesto);
       }
     )
+  }
+
+  getTipos() {
+    this.TipoService.getTipos('Repuestos').subscribe(
+      (data: any) => {
+        this.dataSourceTipos = data.map(
+          val => {
+            return {
+              "id": val.id,
+              "descripcion": val.nombre
+            }
+          }
+        );
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

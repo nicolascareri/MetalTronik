@@ -3,7 +3,7 @@ package com.example.metalTest.almacen.movimiento.salida.controller.request;
 import com.example.metalTest.common.validator.ValidEntity;
 import com.example.metalTest.almacen.repuesto.repository.RepuestoRepository;
 import com.example.metalTest.tipo.repository.TipoRepository;
-import com.example.metalTest.usuario.repository.UsuarioRepository;
+import com.example.metalTest.usuarios.usuario.repository.UsuarioRepository;
 import lombok.Getter;
 import lombok.Setter;
 

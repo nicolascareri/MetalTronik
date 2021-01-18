@@ -53,6 +53,10 @@ public class IndicadoresController {
     public ResponseEntity<Torta> getGrafTortaPrioridad() {
         return new ResponseEntity<>(indicadoresService.getGrafTortaPrioridad(), HttpStatus.OK);
     }
+    @GetMapping("Line-chart/maquina")
+    public ResponseEntity<List<IndicatorResponse>> getCorrectivoMaquina() throws Exception{
+        return new ResponseEntity<>(indicadoresService.getLineChartMaquina(), HttpStatus.OK);
+    }
 
 
 

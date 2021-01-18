@@ -18,8 +18,8 @@ export class FormUsuarioComponent implements OnInit {
   public userForm: FormGroup;
   public userId: any;
   public mode = 'add';
-  public section = 'Nuevo usuario';
-  public buttonName = 'Crear usuario';
+  public section = 'Nuevo personal';
+  public buttonName = 'Confirmar';
   public messageTitleSuccess: any = "DONE";
   public messageTitleError: any = "ERROR";
   public messageBody: any = "El usuario se ha creado correctamente";
@@ -80,7 +80,6 @@ loadUser(user) {
   this.userForm.controls.direccion.setValue(user.direccion);
   this.userForm.controls.correo_electronico.setValue(user.correo_electronico);
 }
-
 
 saveForm() {
   if (this.mode === 'add') {
@@ -149,5 +148,4 @@ getCargos() {
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 }

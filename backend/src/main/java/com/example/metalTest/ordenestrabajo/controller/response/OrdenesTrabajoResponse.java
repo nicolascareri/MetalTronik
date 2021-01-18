@@ -3,7 +3,7 @@ package com.example.metalTest.ordenestrabajo.controller.response;
 import com.example.metalTest.maquina.controller.response.MaquinaReducidoResponse;
 import com.example.metalTest.parte.controller.response.ParteParaOrdenResponse;
 import com.example.metalTest.tipo.domain.Tipo;
-import com.example.metalTest.usuario.domain.Usuario;
+import com.example.metalTest.usuarios.usuario.domain.Usuario;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;

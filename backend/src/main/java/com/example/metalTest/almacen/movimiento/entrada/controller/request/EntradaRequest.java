@@ -14,8 +14,6 @@ import java.util.Date;
 public class EntradaRequest {
     @NotNull
     private Integer precio_unitario;
-    @NotNull
-    private Integer precio_total;
     @NotEmpty
     private String numeroOrdenCompra;
     @NotEmpty
@@ -23,7 +21,7 @@ public class EntradaRequest {
     @ValidEntity(repository = RepuestoRepository.class)
     private Integer repuesto_id;
     @NotNull
-    private Integer cantiad;
+    private Integer cantidad;
     @NotNull
     private Date fecha;
 }

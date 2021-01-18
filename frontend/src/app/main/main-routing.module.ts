@@ -23,7 +23,7 @@ const routes: Routes = [
         loadChildren: 'src/app/ordenes-trabajo/ordenes-trabajo.module#OrdenesTrabajoModule',
       },
       {
-        path: 'usuarios',
+        path: 'personal',
         loadChildren: 'src/app/usuarios/usuarios.module#UsuariosModule',
       },
       {

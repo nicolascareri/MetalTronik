@@ -6,10 +6,15 @@ import * as moment from 'moment';
 })
 export class CoreService {
 
-  constructor() { }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   public dateServerFormat = 'YYYY-MM-DD HH:mm:ss';
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  constructor() { }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   replaceFormat(data: Array<any>, formats: Array<string>) {
     return data.map((val: any) => {
@@ -66,6 +71,13 @@ export class CoreService {
                 result.fechaPlanificada = this.getFormatDate(result.fechaPlanificada);
               } else {
                 result.fechaPlanificada = '';
+              }
+              break;
+            case 'fecha_correccion':
+              if (result.fecha_correccion && moment(result.fecha_correccion, this.dateServerFormat).isValid()) {
+                result.fecha_correccion = this.getFormatDate(result.fecha_correccion);
+              } else {
+                result.fecha_correccion = '';
               }
               break;
             case 'inicio':
@@ -189,8 +201,13 @@ export class CoreService {
                   }
                   break;
             case 'tipoRepuesto':
-                  if(result.repuesto){
-                    result.tipoRepuesto = result.repuesto.tipoRepuesto;
+                  if(result.tipo_repuesto){
+                    result.nombre = result.tipo_repuesto.nombre;
+                  }
+                  break;
+            case 'tipoExistencia':
+                  if(result.tipo_repuesto){
+                    result.tipo_repuesto = result.tipo_repuesto.nombre;
                   }
                   break;
             case 'ubicacion':
@@ -239,15 +256,14 @@ export class CoreService {
     });
   }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   getFormatDate(date: string): string {
     moment.locale('es');
     const dateMoment = moment(date, this.dateServerFormat);
     const month = dateMoment.format('MMMM');
     const day = dateMoment.format('DD');
-    const year = dateMoment.format('YYYY');
-    
-    
-    
+    const year = dateMoment.format('YYYY');    
     return day + ' de ' + month[0].toUpperCase() + month.substr(1) + ' de ' + year;
   }
 
@@ -281,4 +297,6 @@ export class CoreService {
         }
     }
   }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

@@ -13,10 +13,10 @@
           <div class="form-row">
 
             <div class="col">
-              <label for="repuesto_cod">Repuesto</label>
+              <label for="repuesto_id">Repuesto</label>
               <app-input [type]="'select-pair'" 
                          [parentForm]="entradaForm"  
-                         [control]="entradaForm.controls.repuesto_cod"
+                         [control]="entradaForm.controls.repuesto_id"
                          [options]="dataSourceRepuestos">
               </app-input>
               </div>
@@ -48,11 +48,11 @@
       
       
             <div class="col">
-            <label for="precio">Precio unitario</label>
+            <label for="precio_unitario">Precio unitario</label>
             <app-input [type]="'onlyNumber'" 
                        [parentForm]="entradaForm"  
-                       [control]="entradaForm.controls.precio"
-                       [placeholder]="'Ingrese precio'">
+                       [control]="entradaForm.controls.precio_unitario"
+                       [placeholder]="'Ingrese precio unitario'">
             </app-input>
             </div>
   

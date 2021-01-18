@@ -134,8 +134,6 @@ export class TablaOrdenesComponent implements OnInit {
       width: '20%'
     }
   ];
-  // public ordenForm: FormGroup;
-  // public form: FormGroup;
   public dataSourceOrdenes;
   public dataSourceUsers: any;
   public dataSourceSectors: any;
@@ -190,17 +188,6 @@ export class TablaOrdenesComponent implements OnInit {
     );
   }
 
-  // getPrioridades(){
-  //   this.prioridadesService.getPrioridades().subscribe(
-  //     (data: any) => {
-  //       this.dataSourcePrioridades = data;
-  //     },
-  //     (error) => {
-  //       console.error(error);
-  //     }
-  //   );
-  // }
-
   getTipos(){
     this.tiposService.getTipos('Ordenes').subscribe(
       (data: any) => {
@@ -211,17 +198,6 @@ export class TablaOrdenesComponent implements OnInit {
       }
     );
   }
-
-  // getPlantas(){
-  //   this.plantaService.getPlantas().subscribe(
-  //     (data: any) => { // Success
-  //       this.dataSourcePlants = data;
-  //     },
-  //     (error) => {
-  //       console.error(error);
-  //     }
-  //   );
-  // }
 
   getMaquinas(){
     this.maquinaService.getMaquinas().subscribe(
@@ -234,17 +210,6 @@ export class TablaOrdenesComponent implements OnInit {
     );
   }
 
-  // getSectores(){
-  //   this.sectorService.getSectores().subscribe(
-  //     (data: any) => { // Success
-  //       this.dataSourceSectors = data;
-  //     },
-  //     (error) => {
-  //       console.error(error);
-  //     }
-  //   );
-  // }
-
   getUsuarios(){
     this.userService.getUsers().subscribe(
       (data: any) => { // Success
@@ -256,24 +221,6 @@ export class TablaOrdenesComponent implements OnInit {
       }
     );
   }
-
-  // createFormGroup() {
-  //   return new FormGroup({
-  //     encargo_cod: new FormControl(''),
-  //     estado: new FormControl(''),
-  //     fechaRealizar: new FormControl(''),
-  //     maquina_cod: new FormControl(''),
-  //     pedidoMateriales: new FormControl(''),
-  //     priodidad_cod: new FormControl(''),
-  //     responsable_cod: new FormControl(''),
-  //     tarea: new FormControl(''),
-  //     observaciones: new FormControl(''),
-  //     ordenTerciarizacion: new FormControl(''),
-  //     fechaEntrega: new FormControl(''),
-  //     tipo_cod: new FormControl(''),
-
-  //   })
-  // }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

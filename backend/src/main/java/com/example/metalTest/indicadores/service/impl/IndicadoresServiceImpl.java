@@ -6,7 +6,6 @@ import com.example.metalTest.indicadores.mapper.ToIndicadoresMapper;
 import com.example.metalTest.indicadores.service.IndicadoresService;
 import com.example.metalTest.correctivo.repository.MantenimientoCorrectivoRepository;
 import com.example.metalTest.indicadores.controller.response.IndicatorResponse;
-import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
 import com.example.metalTest.ordenestrabajo.repository.OrdenesTrabajoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,6 +58,12 @@ public class IndicadoresServiceImpl implements IndicadoresService {
     public Torta getGrafTortaPrioridad(){
         List<String[]>  a =  ordenesTrabajoRepository.getOrdenesTrabajoByPrioridad();
         return toIndicadoresMapper.toTorta(a);
+    }
+
+    @Override
+    public List<IndicatorResponse> getLineChartMaquina(){
+        List<String[]>  a =  mantenimientoCorrectivoRepository.getPromHorasMantenimientoMaquina();
+        return toIndicadoresMapper.getLineChartMaquina(a);
     }
 
 }

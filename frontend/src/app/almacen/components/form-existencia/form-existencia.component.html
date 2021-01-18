@@ -57,20 +57,11 @@
           <div class="form-row">
   
             <div class="col">
-            <label for="tipoRepuesto">Tipo de repuesto</label>
-            <app-input [type]="'onlyNumber'" 
+            <label for="tipoRepuesto_id">Tipo de repuesto</label>
+            <app-input [type]="'select-pair'" 
                        [parentForm]="repuestForm"  
-                       [control]="repuestForm.controls.tipoRepuesto"
-                       [placeholder]="'Ingrese el tipo de repuesto'">
-            </app-input>
-            </div>
-  
-            <div class="col">
-            <label for="precio">Precio</label>
-            <app-input [type]="'onlyNumber'" 
-                       [parentForm]="repuestForm"  
-                       [control]="repuestForm.controls.precio"
-                       [placeholder]="'Ingrese precio'">
+                       [control]="repuestForm.controls.tipoRepuesto_id"
+                       [options]="dataSourceTipos">
             </app-input>
             </div>
   

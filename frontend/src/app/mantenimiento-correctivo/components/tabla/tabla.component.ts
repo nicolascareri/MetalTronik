@@ -28,7 +28,7 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
       name: 'Codigo de orden de trabajo',
       sort: '',
       filterValue: '',
-      width: '25%'
+      width: '35%'
     },
     {
       id: 3,
@@ -52,7 +52,7 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
       name: 'Tipo de orden de trabajo',
       sort: '',
       filterValue: '',
-      width: '20%'
+      width: '25%'
     },
     {
       id: 6,
@@ -92,15 +92,15 @@ export class TablaMantenimientoCorrectivoComponent implements OnInit {
       name: 'Tiempo de reparacion',
       sort: '',
       filterValue: '',
-      width: '350px'
+      width: '400px'
     },
     {
       id: 11,
       property: 'horasProduccionAfectadas',
-      name: 'Horas de produccion afectadas',
+      name: 'Horas afectadas',
       sort: '',
       filterValue: '',
-      width: '350px'
+      width: '500px'
     },
     {
       id: 12,

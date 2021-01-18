@@ -25,9 +25,10 @@ export class FormEntradaComponent implements OnInit {
     cantidad: new FormControl(''),
     fecha: new FormControl(''),
     numeroOrdenCompra: new FormControl(''),
-    precio: new FormControl(''),
+    precio_unitario: new FormControl(''),
+    precio_total: new FormControl(''),
     proveedor: new FormControl(''),
-    repuesto_cod: new FormControl('')
+    repuesto_id: new FormControl('')
   });
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -35,7 +36,8 @@ export class FormEntradaComponent implements OnInit {
   constructor(private EntradaService: EntradaService,
               private route: ActivatedRoute,
               private MessageService: MessageService,
-              private AlmacenService: AlmacenService) 
+              private AlmacenService: AlmacenService,
+              private router: Router) 
               { }
 
   ngOnInit(): void {
@@ -72,16 +74,28 @@ export class FormEntradaComponent implements OnInit {
     this.entradaForm.controls.cantidad.setValue(entrada.cantidad);
     this.entradaForm.controls.fecha.setValue(entrada.fecha);
     this.entradaForm.controls.numeroOrdenCompra.setValue(entrada.numeroOrdenCompra);
-    this.entradaForm.controls.precio.setValue(entrada.precio);
+    this.entradaForm.controls.precio_unitario.setValue(entrada.precio_unitario);
     this.entradaForm.controls.proveedor.setValue(entrada.proveedor);
-    this.entradaForm.controls.repuesto_cod.setValue(entrada.repuesto.id);
+    this.entradaForm.controls.repuesto_id.setValue(entrada.repuesto.id);
   }
 
   saveForm() {
+    let request: any = {
+      'repuesto_id': this.entradaForm.controls.repuesto_id.value,
+      'proveedor': this.entradaForm.controls.proveedor.value,
+      'fecha': this.entradaForm.controls.fecha.value,
+      'numeroOrdenCompra': this.entradaForm.controls.numeroOrdenCompra.value,
+      'cantidad': this.entradaForm.controls.cantidad.value,
+      'precio_unitario': this.entradaForm.controls.precio_unitario.value,
+      'precio_total': this.entradaForm.controls.cantidad.value * this.entradaForm.controls.precio_unitario.value
+    }
+    
+  
     if (this.mode === 'add') {
-      this.EntradaService.postEntrada(this.entradaForm).subscribe(
+      this.EntradaService.postEntrada(request).subscribe(
         entrada => {
           this.showSuccess();
+          this.router.navigate(['main/almacen']);
         },
         error => this.showError(error.error)
       );

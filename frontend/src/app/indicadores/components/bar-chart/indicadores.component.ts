@@ -9,7 +9,10 @@ import { IndicadoresService } from "../../services/indicadores.service";
   templateUrl: './indicadores.component.html',
   styleUrls: ['./indicadores.component.scss']
 })
+
 export class IndicadoresComponent implements OnInit {
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -22,6 +25,7 @@ export class IndicadoresComponent implements OnInit {
       }
     }
   };
+
   @Input() barChartLabelUsers: Label[] = ['Usuarios'];
   @Input() barChartLabelSectors: Label[] = ['Sectores'];
   @Input() barChartType: ChartType = 'bar';
@@ -29,11 +33,11 @@ export class IndicadoresComponent implements OnInit {
   @Input() barChartPlugins = [pluginDataLabels];
 
   public dataSourceFormula;
-
-
   public barChartDataUsers: ChartDataSets[] = [];
   public barChartDataUsers2: ChartDataSets[] = [];
   public barChartDataSectors: ChartDataSets[] = [];
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   constructor(private IndicadoresService: IndicadoresService) { }
 
@@ -42,6 +46,19 @@ export class IndicadoresComponent implements OnInit {
     this.getFormISectors();
     this.getFormIIUsers();
   }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  // events
+  public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
+    console.log(event, active);
+  }
+
+  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
+    console.log(event, active);
+  }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   public getFormIUsers(){
     this.IndicadoresService.getFormForUsers().subscribe(
@@ -79,15 +96,5 @@ export class IndicadoresComponent implements OnInit {
     );
   }
 
-  // events
-  public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
-
-  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
-
-
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

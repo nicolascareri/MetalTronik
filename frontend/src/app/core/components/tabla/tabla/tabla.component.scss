@@ -1,7 +1,7 @@
 @import "../../../../../assets/themes";
 
 @mixin header {
-    background-color: $primary-teal;
+    background-color: #284D4D;
     color :$white;
     display: flex;
     align-items: center;
@@ -26,7 +26,7 @@ $bg-striped-ligth: $white;
     &__header {
         @include header();
         color: $white;
-        border-radius: 10px 10px 0 0;
+        border-radius: 5px 5px 0 0;
         padding: 5px;
         &--tall {
             height: 90px;
@@ -114,7 +114,7 @@ $bg-striped-ligth: $white;
         &__clickeable {
             cursor: pointer;
             &:hover {
-                background: #008B8B;
+                background: #0D3A3A;
                 color: $white;
                 & td.clickeable-column {
                     color: $white;

@@ -1,0 +1,56 @@
+<mat-tab-group>
+    
+  <mat-tab label="MTTR">
+
+    <div class="form-container">
+
+      <div class="card">
+
+        <h2 class="card-header">Por Usuarios</h2>
+
+          <div class="card-body">
+
+            <div class="flex">
+                <div class="flex-item">
+                  <div style="display: block;">
+                  <canvas baseChart width="400" height="150"
+                              [datasets]="lineChartData"
+                              [labels]="lineChartLabels"
+                              [options]="lineChartOptions"
+                              [colors]="lineChartColors"
+                              [legend]="lineChartLegend"
+                              [chartType]="lineChartType"
+                              [plugins]="lineChartPlugins"
+                              (chartHover)="chartHovered($event)"
+                              (chartClick)="chartClicked($event)"></canvas>
+                  </div>
+                </div>
+
+                <div class="flex-item" style="margin: 60px 60px 60px 60px;">
+                  <table class="table table-responsive table-condensed">
+                    <tr>
+                      <th *ngFor="let label of lineChartLabels">{{label}}</th>
+                    </tr>
+                    <tr *ngFor="let d of lineChartData; let i=index" [class]="'line-'+i">
+                      <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
+                    </tr>
+                  </table>
+                  <!-- <button mat-button mat-raised-button color="primary" (click)="randomize()">Randomize</button>
+                  <button mat-button mat-raised-button color="primary" (click)="pushOne()">Push</button>
+                  <button mat-button mat-raised-button color="primary" (click)="changeColor()">Recolor</button>
+                  <button mat-button mat-raised-button color="primary" (click)="hideOne()">Toggle Series B</button>
+                  <button mat-button mat-raised-button color="primary" (click)="changeLabel()">Change Label</button> -->
+                </div>
+            </div>
+            
+
+          </div>
+
+      </div>
+
+    </div>
+
+  </mat-tab>  
+
+  
+</mat-tab-group>

@@ -1,10 +1,10 @@
 package com.example.metalTest.almacen.repuesto.controller.request;
 
+import com.example.metalTest.common.validator.ValidEntity;
+import com.example.metalTest.tipo.repository.TipoRepository;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -24,9 +24,6 @@ public class RepuestoRequest {
     private String marca;
 
     @NotNull
-    private int precio;
-
-    @NotNull
     private int existencia;
 
     @NotNull
@@ -38,9 +35,9 @@ public class RepuestoRequest {
     @NotNull
     private int stockObjetivo;
 
-    @Min(1)
-    @Max(3) //deberia ser un id_tipo
-    private short tipoRepuesto;
+    @NotNull
+    @ValidEntity(repository = TipoRepository.class)
+    private Integer tipoRepuesto_id;
 
     @NotEmpty //en que estanteria
     private String ubicacion;

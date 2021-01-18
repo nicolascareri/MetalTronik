@@ -21,10 +21,11 @@ export class SidenavComponent{
     { name: 'Máquinas', route: 'maquinas', icon: '' },
     { name: 'Almacén', route: 'almacen', icon: '' },
     { name: 'Asociación de repuestos', route: 'repuestos', icon: '' },
-    { name: 'Usuarios', route: 'usuarios', icon: '' },
+    { name: 'Personal', route: 'personal', icon: '' },
     { name: 'Indicadores', route: 'indicadores', icon: '' },
     { name: '', route: 'configuracion', icon: 'settings'}
   ]
+  
 
   
 
