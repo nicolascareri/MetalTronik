@@ -15,7 +15,7 @@ public class AjusteStock {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private Repuesto repuesto_id;
     @Column

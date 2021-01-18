@@ -21,11 +21,11 @@ public class OrdenesTrabajo implements Comparable<OrdenesTrabajo>{
     @Column
     private int ordentrabajo_id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private Parte parte;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private Maquina maquina;
 
@@ -35,11 +35,11 @@ public class OrdenesTrabajo implements Comparable<OrdenesTrabajo>{
     @Column
     private String tarea;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private Tipo prioridad;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private Tipo tipo;
 
@@ -53,11 +53,11 @@ public class OrdenesTrabajo implements Comparable<OrdenesTrabajo>{
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT-3")
     private Date fechaRealizar;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private Usuario encargo;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
     @Getter
     @Setter

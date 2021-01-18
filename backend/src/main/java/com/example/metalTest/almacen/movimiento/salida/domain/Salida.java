@@ -6,6 +6,7 @@ import com.example.metalTest.usuarios.usuario.domain.Usuario;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -19,6 +20,6 @@ public class Salida extends Movimiento {
     private Tipo sector;
 
     @JoinColumn
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Usuario solicitante;
 }

@@ -45,7 +45,7 @@ public class Repuesto {
     private int stockObjetivo;
 
     @JoinColumn
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Tipo tipo_repuesto;
 
     @Column

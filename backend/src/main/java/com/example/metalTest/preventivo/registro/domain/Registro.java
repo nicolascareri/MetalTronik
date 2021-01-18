@@ -16,7 +16,7 @@ public class Registro {
     @Id
     @GeneratedValue
     private Integer id;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private Tareas tarea;
     @Column
@@ -29,7 +29,7 @@ public class Registro {
     private Date fechaRealizada;
     @Column
     private String observaciones;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private Usuario encargado;
 }
