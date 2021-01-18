@@ -96,6 +96,7 @@ export class FormExistenciaComponent implements OnInit {
       this.AlmacenService.postRepuesto(this.repuestForm).subscribe(
         repuesto => {
           this.showSuccess();
+          this.router.navigate(['main/almacen']);
         },
         error => this.showError(error.error)
       );

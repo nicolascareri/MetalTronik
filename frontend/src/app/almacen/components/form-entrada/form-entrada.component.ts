@@ -22,7 +22,7 @@ export class FormEntradaComponent implements OnInit {
   public messageTitleError: any = "ERROR";
   public messageBody: any = "La entrada se ha creado correctamente";
   public entradaForm: FormGroup = new FormGroup({
-    cantiad: new FormControl(''),
+    cantidad: new FormControl(''),
     fecha: new FormControl(''),
     numeroOrdenCompra: new FormControl(''),
     precio_unitario: new FormControl(''),
@@ -36,7 +36,8 @@ export class FormEntradaComponent implements OnInit {
   constructor(private EntradaService: EntradaService,
               private route: ActivatedRoute,
               private MessageService: MessageService,
-              private AlmacenService: AlmacenService) 
+              private AlmacenService: AlmacenService,
+              private router: Router) 
               { }
 
   ngOnInit(): void {
@@ -70,7 +71,7 @@ export class FormEntradaComponent implements OnInit {
 
   loadEntrada(entrada) {
     this.mode = "edit";  
-    this.entradaForm.controls.cantiad.setValue(entrada.cantiad);
+    this.entradaForm.controls.cantidad.setValue(entrada.cantidad);
     this.entradaForm.controls.fecha.setValue(entrada.fecha);
     this.entradaForm.controls.numeroOrdenCompra.setValue(entrada.numeroOrdenCompra);
     this.entradaForm.controls.precio_unitario.setValue(entrada.precio_unitario);
@@ -84,17 +85,17 @@ export class FormEntradaComponent implements OnInit {
       'proveedor': this.entradaForm.controls.proveedor.value,
       'fecha': this.entradaForm.controls.fecha.value,
       'numeroOrdenCompra': this.entradaForm.controls.numeroOrdenCompra.value,
-      'cantiad': this.entradaForm.controls.cantiad.value,
+      'cantidad': this.entradaForm.controls.cantidad.value,
       'precio_unitario': this.entradaForm.controls.precio_unitario.value,
-      'precio_total': this.entradaForm.controls.cantiad.value * this.entradaForm.controls.precio_unitario.value
+      'precio_total': this.entradaForm.controls.cantidad.value * this.entradaForm.controls.precio_unitario.value
     }
     
-    console.log(request);
-    
+  
     if (this.mode === 'add') {
       this.EntradaService.postEntrada(request).subscribe(
         entrada => {
           this.showSuccess();
+          this.router.navigate(['main/almacen']);
         },
         error => this.showError(error.error)
       );

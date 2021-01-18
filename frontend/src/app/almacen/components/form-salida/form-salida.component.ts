@@ -42,7 +42,8 @@ export class FormSalidaComponent implements OnInit {
               private MessageService: MessageService,
               private AlmacenService: AlmacenService,
               private TipoService: TipoService,
-              private UserService: UserService) { }
+              private UserService: UserService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.salidaId = this.route.snapshot.params.id;
@@ -89,6 +90,7 @@ export class FormSalidaComponent implements OnInit {
       this.SalidaService.postSalida(this.salidaForm).subscribe(
         salida => {
           this.showSuccess();
+          this.router.navigate(['main/almacen']);
         },
         error => this.showError(error.error)
       );

@@ -11,46 +11,48 @@
         <form [formGroup]="salidaForm" (ngSubmit)="saveForm()">
       
           <div class="form-row">
+
+            <div class="col">
+              <label for="repuesto_cod">Repuesto</label>
+              <app-input [type]="'select-pair'" 
+                         [parentForm]="salidaForm"  
+                         [control]="salidaForm.controls.repuesto_cod"
+                         [options]="dataSourceRepuestos">
+              </app-input>
+              </div>
+        
+              <div class="col">
+              <label for="sector_cod">Sector</label>
+              <app-input [type]="'select-pair'" 
+                         [parentForm]="salidaForm"  
+                         [control]="salidaForm.controls.sector_cod"
+                         [options]="dataSourceSectors">
+              </app-input>
+              </div>
       
-            <div class="col">
-            <label for="cantidad">Cantidad</label>
-            <app-input [type]="'onlyNumber'" 
-                       [parentForm]="salidaForm"  
-                       [control]="salidaForm.controls.cantidad"
-                       [placeholder]="'Ingrese cantidad'">
-            </app-input>
-            </div>
-  
-            <div class="col">
-            <label for="fecha">Fecha</label>
-            <app-input [type]="'datetime-local'" 
-                       [parentForm]="salidaForm"  
-                       [control]="salidaForm.controls.fecha"
-                       [placeholder]="'DD-MM-YYYY'">
-            </app-input>
-            </div>
+            
   
           </div>
   
           <div class="form-row">
       
             <div class="col">
-            <label for="repuesto_cod">Repuesto</label>
-            <app-input [type]="'select-pair'" 
-                       [parentForm]="salidaForm"  
-                       [control]="salidaForm.controls.repuesto_cod"
-                       [options]="dataSourceRepuestos">
-            </app-input>
-            </div>
-      
-            <div class="col">
-            <label for="sector_cod">Sector</label>
-            <app-input [type]="'select-pair'" 
-                       [parentForm]="salidaForm"  
-                       [control]="salidaForm.controls.sector_cod"
-                       [options]="dataSourceSectors">
-            </app-input>
-            </div>
+              <label for="cantidad">Cantidad</label>
+              <app-input [type]="'onlyNumber'" 
+                         [parentForm]="salidaForm"  
+                         [control]="salidaForm.controls.cantidad"
+                         [placeholder]="'Ingrese cantidad'">
+              </app-input>
+              </div>
+    
+              <div class="col">
+              <label for="fecha">Fecha</label>
+              <app-input [type]="'datetime-local'" 
+                         [parentForm]="salidaForm"  
+                         [control]="salidaForm.controls.fecha"
+                         [placeholder]="'DD-MM-YYYY'">
+              </app-input>
+              </div>
   
           </div>
   

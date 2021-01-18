@@ -14,7 +14,7 @@ export class TablaExistenciaComponent implements OnInit {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  public dataSourceRepuestos;
+  public dataSourceRepuestos: any;
   public columnsToDisplay: any[] = [
     {
       id: 1,
@@ -22,7 +22,7 @@ export class TablaExistenciaComponent implements OnInit {
       name: 'Codigo de producto',
       sort: '',
       filterValue: '',
-      width: '25%'
+      width: '35%'
     }, 
     {
       id: 2,
@@ -30,7 +30,7 @@ export class TablaExistenciaComponent implements OnInit {
       name: 'Nombre',
       sort: '',
       filterValue: '',
-      width: '20%'
+      width: '35%'
     },
     {
       id: 3,
@@ -38,7 +38,7 @@ export class TablaExistenciaComponent implements OnInit {
       name: 'Marca',
       sort: '',
       filterValue: '',
-      width: '15%'
+      width: '35%'
     }, 
     {
       id: 4,
@@ -46,7 +46,7 @@ export class TablaExistenciaComponent implements OnInit {
       name: 'Modelo',
       sort: '',
       filterValue: '',
-      width: '15%'
+      width: '35%'
     },
     {
       id: 5,
@@ -54,7 +54,7 @@ export class TablaExistenciaComponent implements OnInit {
       name: 'Precio unitario',
       sort: '',
       filterValue: '',
-      width: '35%'
+      width: '15%'
     },
     {
       id: 6,
@@ -62,15 +62,15 @@ export class TablaExistenciaComponent implements OnInit {
       name: 'Precio total',
       sort: '',
       filterValue: '',
-      width: '25%'
+      width: '35%'
     },  
     {
       id: 7,
-      property:'tipoRepuesto',
+      property:'tipo_repuesto',
       name: 'Tipo de repuesto',
       sort: '',
       filterValue: '',
-      width: '15%'
+      width: '35%'
     }, 
     {
       id: 8,
@@ -78,7 +78,7 @@ export class TablaExistenciaComponent implements OnInit {
       name: 'Ubicacion',
       sort: '',
       filterValue: '',
-      width: '25%'
+      width: '35%'
     }, 
     {
       id: 9,
@@ -111,6 +111,14 @@ export class TablaExistenciaComponent implements OnInit {
       sort: '',
       filtervalue: '',
       width: '25%'
+    },
+    {
+      id: 13,
+      property: 'cantidad_instalada',
+      name: 'Cantidad instalada',
+      sort: '',
+      filtervalue: '',
+      width: '25%'
     }
       
   ];
@@ -136,10 +144,11 @@ export class TablaExistenciaComponent implements OnInit {
   
   getRepuestos(){
     this.AlmacenService.getRepuestos().subscribe(
-      (data: any)  => {
-        this.dataSourceRepuestos = this.coreService.replaceFormat(data, ['tipo']);
+      (data: any)  => {        
+        this.dataSourceRepuestos = this.coreService.replaceFormat(data, ['tipoExistencia']);
       },
       (error) => {
+
         console.error(error);
       }
     );

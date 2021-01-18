@@ -73,6 +73,13 @@ export class CoreService {
                 result.fechaPlanificada = '';
               }
               break;
+            case 'fecha_correccion':
+              if (result.fecha_correccion && moment(result.fecha_correccion, this.dateServerFormat).isValid()) {
+                result.fecha_correccion = this.getFormatDate(result.fecha_correccion);
+              } else {
+                result.fecha_correccion = '';
+              }
+              break;
             case 'inicio':
               if (result.inicio && moment(result.inicio, this.dateServerFormat).isValid()) {
                 console.log(result);
@@ -194,8 +201,13 @@ export class CoreService {
                   }
                   break;
             case 'tipoRepuesto':
-                  if(result.repuesto){
-                    result.tipoRepuesto = result.repuesto.tipoRepuesto;
+                  if(result.tipo_repuesto){
+                    result.nombre = result.tipo_repuesto.nombre;
+                  }
+                  break;
+            case 'tipoExistencia':
+                  if(result.tipo_repuesto){
+                    result.tipo_repuesto = result.tipo_repuesto.nombre;
                   }
                   break;
             case 'ubicacion':

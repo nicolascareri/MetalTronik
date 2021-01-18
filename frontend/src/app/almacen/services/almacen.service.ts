@@ -38,8 +38,8 @@ export class AlmacenService {
     return this.http.get(this.path.SERVER.serve + this.path.AJUSTE_STOCK.GET);
   }
 
-  addAjuste(id, repuesto){
-    return this.http.put<any>(this.path.SERVER.serve + this.path.AJUSTE_STOCK.POST + id, repuesto.value);
+  addAjuste(id, request){
+    return this.http.put<any>(this.path.SERVER.serve + this.path.AJUSTE_STOCK.POST + id, request);
   }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

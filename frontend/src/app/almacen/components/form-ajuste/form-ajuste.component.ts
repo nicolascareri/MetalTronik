@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MessageService } from "../../../core/service/message.service";
 import { AlmacenService } from "../../services/almacen.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-ajuste',
@@ -14,22 +15,26 @@ export class FormAjusteComponent implements OnInit {
 
   public repuestoId;
   public dataSourceRepuestos;
+  public diferenciaStock: any;
   public mode = 'add';
   public messageTitleSuccess: any = "DONE";
   public messageTitleError: any = "ERROR";
   public messageBody: any = "Ajuste creado correctamente";
   public form: FormGroup = new FormGroup({
-    codigoProducto: new FormControl(''),
+    codigo_producto: new FormControl(''),
     modelo: new FormControl(''),
     nombre: new FormControl(''),
+    marca: new FormControl(''),
     stock: new FormControl(''),
+    stock_ajustado: new FormControl(''),
     fecha_correccion: new FormControl(''),
   });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
   constructor(private MessageService: MessageService,
-              private AlmacenService: AlmacenService) { }
+              private AlmacenService: AlmacenService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.getRepuestos();
@@ -53,21 +58,21 @@ export class FormAjusteComponent implements OnInit {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  // loadEntrada(entrada) {
-  //   this.mode = "edit";  
-  //   this.form.controls.cantidad.setValue(entrada.cantidad);
-  //   this.form.controls.fecha.setValue(entrada.fecha);
-  //   this.form.controls.numeroOrdenCompra.setValue(entrada.numeroOrdenCompra);
-  //   this.form.controls.precio.setValue(entrada.precio);
-  //   this.form.controls.proveedor.setValue(entrada.proveedor);
-  //   this.form.controls.repuesto_cod.setValue(entrada.repuesto.id);
-  // }
-
   saveForm() {
+    let request: any = {
+      'codigo_producto': this.form.controls.codigo_producto.value,
+      'fecha_correccion': this.form.controls.fecha_correccion.value,
+      'marca': this.form.controls.marca.value,
+      'modelo': this.form.controls.modelo.value,
+      'nombre': this.form.controls.nombre.value,
+      'stock': this.form.controls.stock.value,
+      'stock_ajustado': this.form.controls.stock.value - this.diferenciaStock,
+      }
     this.repuestoId;
-    this.AlmacenService.addAjuste(this.repuestoId ,this.form).subscribe(
+    this.AlmacenService.addAjuste(this.repuestoId, request).subscribe(
       data => {
         this.showSuccess();
+        this.router.navigate(['main/almacen']);
       },
       error => this.showError(error.error)
     );
@@ -97,7 +102,20 @@ export class FormAjusteComponent implements OnInit {
     this.repuestoId = id.split(" ");
     id = this.repuestoId[1];
     this.repuestoId = id;
+    this.getRepuesto(this.repuestoId);
   }
+
+  getRepuesto(id){
+    this.AlmacenService.getRepuesto(id).subscribe(
+      (data: any) => {
+        this.diferenciaStock = data.existencia;
+      },
+      (error) => {
+        console.log(error.error);
+      }
+    );
+  }
+  
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

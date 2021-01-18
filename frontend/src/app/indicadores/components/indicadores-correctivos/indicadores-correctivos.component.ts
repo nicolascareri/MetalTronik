@@ -14,14 +14,14 @@ export class IndicadoresCorrectivosComponent implements OnInit {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  // public lineChartData: ChartDataSets[] = [];
-  public lineChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40, 65, 59, 80, 81, 56], label: 'Series A' },
-    { data: [65, 59, 80, 81, 56, 55, 40, 12, 56, 22, 49, 90], label: 'Series A' },
-    { data: [65, 59, 80, 81, 56, 55, 40, 42, 21, 77, 47, 30], label: 'Series A' },
-    { data: [28, 48, 40, 19, 86, 27, 90, 26, 44, 11, 34, 300], label: 'Series B' },
-    { data: [0, 0, 0, 90, 1000, 270, 400, 20, 310, 90], label: 'Series C', yAxisID: 'y-axis-1' }
-  ];
+  public lineChartData: ChartDataSets[] = [];
+  // public lineChartData: ChartDataSets[] = [
+  //   { data: [65, 59, 80, 81, 56, 55, 40, 65, 59, 80, 81, 56], label: 'Series A' },
+  //   { data: [65, 59, 80, 81, 56, 55, 40, 12, 56, 22, 49, 90], label: 'Series A' },
+  //   { data: [65, 59, 80, 81, 56, 55, 40, 42, 21, 77, 47, 30], label: 'Series A' },
+  //   { data: [28, 48, 40, 19, 86, 27, 90, 26, 44, 11, 34, 300], label: 'Series B' },
+  //   { data: [0, 0, 0, 90, 1000, 270, 400, 20, 310, 90], label: 'Series C', yAxisID: 'y-axis-1' }
+  // ];
   public lineChartLabels: Label[] = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre','Octubre','Noviembre','Diciembre'];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
