@@ -2,7 +2,6 @@ package com.example.metalTest.almacen.repuesto.controller;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.almacen.repuesto.controller.request.RepuestoRequest;
-import com.example.metalTest.almacen.repuesto.controller.response.RepuestoResponse;
 import com.example.metalTest.almacen.repuesto.domain.Repuesto;
 import com.example.metalTest.almacen.repuesto.service.RepuestoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +26,7 @@ public class RepuestoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<RepuestoResponse> getById(@PathVariable Integer id) throws ValidateFieldException {
+    public ResponseEntity<Repuesto> getById(@PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<>(repuestoService.getById(id), HttpStatus.OK);
     }
 

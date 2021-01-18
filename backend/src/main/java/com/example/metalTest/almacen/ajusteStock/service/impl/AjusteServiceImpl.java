@@ -32,6 +32,7 @@ public class AjusteServiceImpl implements AjusteService {
             a.setFecha_correccion(correccion.getFecha_correccion());
             a.setRepuesto(correccion.getRepuesto_id());
             a.setStock(correccion.getStock());
+            a.setStock_ajustado(correccion.getStock_ajustado());
             response.add(a);
         }
 
@@ -48,6 +49,7 @@ public class AjusteServiceImpl implements AjusteService {
         repuesto.setId(repuesto_id);
         repuestoRepository.save(repuesto);
         ajuste.setRepuesto_id(repuesto);
+        ajuste.setStock_ajustado(ajusteRequest.getStock_ajustado());
         ajusteRepository.save(ajuste);
         return ajusteMapper.ajusteStockToAjusteResponse(ajuste);
     }

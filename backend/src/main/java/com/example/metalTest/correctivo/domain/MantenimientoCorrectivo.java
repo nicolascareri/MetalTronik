@@ -4,7 +4,7 @@ import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
 import com.example.metalTest.parte.domain.Parte;
 import com.example.metalTest.tipo.domain.Tipo;
-import com.example.metalTest.usuario.domain.Usuario;
+import com.example.metalTest.usuarios.usuario.domain.Usuario;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;

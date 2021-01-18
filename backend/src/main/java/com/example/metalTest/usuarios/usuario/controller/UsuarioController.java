@@ -1,10 +1,9 @@
-package com.example.metalTest.usuario.controller;
+package com.example.metalTest.usuarios.usuario.controller;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
-import com.example.metalTest.usuario.controller.request.UsuarioRequest;
-import com.example.metalTest.usuario.domain.Usuario;
-import com.example.metalTest.usuario.mapper.UsuarioMapper;
-import com.example.metalTest.usuario.service.UsuarioService;
+import com.example.metalTest.usuarios.usuario.controller.request.UsuarioRequest;
+import com.example.metalTest.usuarios.usuario.domain.Usuario;
+import com.example.metalTest.usuarios.usuario.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

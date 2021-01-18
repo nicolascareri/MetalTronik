@@ -1,8 +1,8 @@
-package com.example.metalTest.usuario.service;
+package com.example.metalTest.usuarios.usuario.service;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
-import com.example.metalTest.usuario.controller.request.UsuarioRequest;
-import com.example.metalTest.usuario.domain.Usuario;
+import com.example.metalTest.usuarios.usuario.controller.request.UsuarioRequest;
+import com.example.metalTest.usuarios.usuario.domain.Usuario;
 
 import java.util.List;
 

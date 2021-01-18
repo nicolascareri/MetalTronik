@@ -1,4 +1,4 @@
-package com.example.metalTest.usuario.domain;
+package com.example.metalTest.usuarios.usuario.domain;
 
 import com.example.metalTest.tipo.domain.Tipo;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -56,8 +56,6 @@ public class Usuario {
     @Column
     private String direccion;
 
-    @Column
-    private short estado;
 
 
 }

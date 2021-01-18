@@ -1,17 +1,14 @@
-package com.example.metalTest.usuario.service.impl;
+package com.example.metalTest.usuarios.usuario.service.impl;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
-import com.example.metalTest.common.ordenes.Estado;
-import com.example.metalTest.tipo.domain.Tipo;
 import com.example.metalTest.tipo.repository.TipoRepository;
-import com.example.metalTest.usuario.controller.request.UsuarioRequest;
-import com.example.metalTest.usuario.domain.Usuario;
-import com.example.metalTest.usuario.mapper.UsuarioMapper;
-import com.example.metalTest.usuario.repository.UsuarioRepository;
-import com.example.metalTest.usuario.service.UsuarioService;
+import com.example.metalTest.usuarios.usuario.controller.request.UsuarioRequest;
+import com.example.metalTest.usuarios.usuario.domain.Usuario;
+import com.example.metalTest.usuarios.usuario.mapper.UsuarioMapper;
+import com.example.metalTest.usuarios.usuario.repository.UsuarioRepository;
+import com.example.metalTest.usuarios.usuario.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -43,7 +40,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario create(UsuarioRequest usuario) throws ValidateFieldException {
+    public Usuario create(UsuarioRequest usuario){
         Usuario usrActual = usuarioMapper.usuarioRequestToUsuario(usuario);
         usrActual.setCargo(tipoRepository.findById(usuario.getCargo()).get());
         usuarioRepository.save(usrActual);
@@ -51,10 +48,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario update(Integer id, UsuarioRequest usuario) throws ValidateFieldException {
-        if (usuario.getEstado() != Estado.ACTIVO.getValue() && usuario.getEstado() != Estado.ELIMINADO.getValue()) {
-            throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(usuario.getEstado()));
-        }
+    public Usuario update(Integer id, UsuarioRequest usuario){
         Usuario usrActual = usuarioMapper.usuarioRequestToUsuario(usuario);
         usrActual.setCargo(tipoRepository.findById(usuario.getCargo()).get());
         usrActual.setId(id);
