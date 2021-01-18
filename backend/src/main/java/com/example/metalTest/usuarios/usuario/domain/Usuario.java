@@ -1,4 +1,4 @@
-package com.example.metalTest.usuario.domain;
+package com.example.metalTest.usuarios.usuario.domain;
 
 import com.example.metalTest.tipo.domain.Tipo;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -37,7 +37,7 @@ public class Usuario {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT-3")
     private Date fnacimiento;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private Tipo cargo;
 
@@ -56,8 +56,6 @@ public class Usuario {
     @Column
     private String direccion;
 
-    @Column
-    private short estado;
 
 
 }

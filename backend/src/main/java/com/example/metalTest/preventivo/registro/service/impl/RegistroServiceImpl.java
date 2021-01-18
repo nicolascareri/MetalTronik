@@ -10,8 +10,7 @@ import com.example.metalTest.preventivo.registro.service.RegistroService;
 import com.example.metalTest.preventivo.tarea.tareas.domain.Tareas;
 import com.example.metalTest.preventivo.tarea.tareas.mapper.TareasMapper;
 import com.example.metalTest.preventivo.tarea.tareas.repository.TareasRepository;
-import com.example.metalTest.usuario.domain.Usuario;
-import com.example.metalTest.usuario.repository.UsuarioRepository;
+import com.example.metalTest.usuarios.usuario.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

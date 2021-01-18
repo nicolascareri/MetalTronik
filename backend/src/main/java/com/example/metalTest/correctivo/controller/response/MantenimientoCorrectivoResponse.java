@@ -3,7 +3,7 @@ package com.example.metalTest.correctivo.controller.response;
 import com.example.metalTest.maquina.controller.response.MaquinaReducidoResponse;
 import com.example.metalTest.ordenestrabajo.controller.response.OrdenesTrabajoResponse;
 import com.example.metalTest.tipo.domain.Tipo;
-import com.example.metalTest.usuario.domain.Usuario;
+import com.example.metalTest.usuarios.usuario.domain.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -14,8 +14,8 @@ import com.example.metalTest.ordenestrabajo.repository.OrdenesTrabajoRepository;
 import com.example.metalTest.parte.repository.ParteRepository;
 import com.example.metalTest.parte.service.impl.ParteBuscador;
 import com.example.metalTest.tipo.repository.TipoRepository;
-import com.example.metalTest.usuario.domain.Usuario;
-import com.example.metalTest.usuario.repository.UsuarioRepository;
+import com.example.metalTest.usuarios.usuario.domain.Usuario;
+import com.example.metalTest.usuarios.usuario.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

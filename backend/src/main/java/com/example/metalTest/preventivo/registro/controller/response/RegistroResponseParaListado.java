@@ -1,7 +1,7 @@
 package com.example.metalTest.preventivo.registro.controller.response;
 
 import com.example.metalTest.preventivo.tarea.tareas.controller.Response.TareasResponse;
-import com.example.metalTest.usuario.domain.Usuario;
+import com.example.metalTest.usuarios.usuario.domain.Usuario;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

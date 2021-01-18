@@ -17,7 +17,7 @@ public class Movimiento {
     private int id;
 
     @JoinColumn
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Repuesto repuesto;
 
     @Column

@@ -1,4 +1,4 @@
-package com.example.metalTest.usuario.controller.request;
+package com.example.metalTest.usuarios.usuario.controller.request;
 
 import com.example.metalTest.common.validator.ValidEntity;
 import com.example.metalTest.tipo.repository.TipoRepository;
@@ -17,8 +17,6 @@ public class UsuarioRequest {
     private String nombre;
     @NotBlank
     private String apellido;
-    @NotNull
-    private short estado;
     @NotBlank
     private String nombre_usuario;
     @NotBlank
@@ -28,7 +26,6 @@ public class UsuarioRequest {
 
     @NotNull
     private Date fnacimiento;
-
 
     @NotNull
     @ValidEntity(repository = TipoRepository.class)

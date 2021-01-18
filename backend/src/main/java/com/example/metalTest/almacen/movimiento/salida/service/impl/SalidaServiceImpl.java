@@ -9,7 +9,7 @@ import com.example.metalTest.almacen.movimiento.salida.mapper.SalidaMapper;
 import com.example.metalTest.almacen.movimiento.salida.repository.SalidaRepository;
 import com.example.metalTest.almacen.movimiento.salida.service.SalidaService;
 import com.example.metalTest.tipo.repository.TipoRepository;
-import com.example.metalTest.usuario.repository.UsuarioRepository;
+import com.example.metalTest.usuarios.usuario.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
