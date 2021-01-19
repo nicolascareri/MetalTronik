@@ -53,9 +53,9 @@ public class AsociacionServiceImpl implements AsosiacionService {
 
     private Asociacion setCampos(Maquina maquina, Parte parte, Repuesto repuesto, Integer cantidad_instalada, String observaciones) {
         if (parte != null)
-            return new Asociacion(0, maquina.getMaquina_cod(), maquina.getSector().getNombre(), maquina.getPlanta().getNombre(), repuesto.getNombre(), repuesto.getModelo(), cantidad_instalada, parte.getNombre(), observaciones);
+            return new Asociacion(0, maquina.getMaquina_cod(), maquina.getDescripcion(), maquina.getSector().getNombre(), maquina.getPlanta().getNombre(), repuesto.getNombre(), repuesto.getModelo(),repuesto.getCodigoProducto(), cantidad_instalada, parte.getNombre(), observaciones);
         else
-            return new Asociacion(0, maquina.getMaquina_cod(), maquina.getSector().getNombre(), maquina.getPlanta().getNombre(), repuesto.getNombre(), repuesto.getModelo(), cantidad_instalada, "-----", observaciones);
+            return new Asociacion(0, maquina.getMaquina_cod(), maquina.getDescripcion(), maquina.getSector().getNombre(), maquina.getPlanta().getNombre(), repuesto.getNombre(), repuesto.getModelo(),repuesto.getCodigoProducto(), cantidad_instalada, "-----", observaciones);
     }
 
 
