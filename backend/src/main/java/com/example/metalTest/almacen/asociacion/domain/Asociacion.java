@@ -22,6 +22,8 @@ public class Asociacion {
     @Column
     private String  maquina_codigo;
     @Column
+    private String  maquina_nombre;
+    @Column
     private String maquina_sector;
     @Column
     private String maquina_planta;
@@ -29,6 +31,8 @@ public class Asociacion {
     private String repuesto_nombre;
     @Column
     private String repuesto_modelo;
+    @Column
+    private String repuesto_codigo;
     @Column
     private Integer cantidad_instalada;
     @Column
