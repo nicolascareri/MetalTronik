@@ -63,89 +63,88 @@ export class FormUsuarioComponent implements OnInit {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-loadUser(user) {
-  this.mode = "edit";
-  this.section = 'Editar usuario';
-  this.buttonName = 'Confirmar cambios';
-  this.userForm.controls.nombre.setValue(user.nombre);
-  this.userForm.controls.apellido.setValue(user.apellido);
-  this.userForm.controls.fnacimiento.setValue(user.fnacimiento.replace(' ', 'T'));
-  this.userForm.controls.cargo_id.setValue(user.cargo_id);
-  this.userForm.controls.legajo.setValue(user.legajo);
-  this.userForm.controls.nombre_usuario.setValue(user.nombre_usuario);
-  this.userForm.controls.contrasenia.setValue(user.contrasenia);
-  this.userForm.controls.ciudad.setValue(user.ciudad);
-  this.userForm.controls.pais.setValue(user.pais);
-  this.userForm.controls.provincia.setValue(user.provincia);
-  this.userForm.controls.direccion.setValue(user.direccion);
-  this.userForm.controls.correo_electronico.setValue(user.correo_electronico);
-}
-
-saveForm() {
-  if (this.mode === 'add') {
-    this.UserService.postUser(this.userForm).subscribe(
-      user => {
-        this.showSuccess();
-      },
-      error => this.showError(error.error)
-    );
-  } else {
-    this.UserService.updateUser(this.userId, this.userForm).subscribe(
-      user => {
-        this.messageBody = "El usuario se ha editado correctamente"
-        this.showSuccess();
-      },
-      error => this.showError(error.error)
-    );
+  loadUser(user) {
+    this.mode = "edit";
+    this.section = 'Editar usuario';
+    this.buttonName = 'Confirmar cambios';
+    this.userForm.controls.nombre.setValue(user.nombre);
+    this.userForm.controls.apellido.setValue(user.apellido);
+    this.userForm.controls.fnacimiento.setValue(user.fnacimiento.replace(' ', 'T'));
+    this.userForm.controls.cargo_id.setValue(user.cargo_id);
+    this.userForm.controls.legajo.setValue(user.legajo);
+    this.userForm.controls.nombre_usuario.setValue(user.nombre_usuario);
+    this.userForm.controls.contrasenia.setValue(user.contrasenia);
+    this.userForm.controls.ciudad.setValue(user.ciudad);
+    this.userForm.controls.pais.setValue(user.pais);
+    this.userForm.controls.provincia.setValue(user.provincia);
+    this.userForm.controls.direccion.setValue(user.direccion);
+    this.userForm.controls.correo_electronico.setValue(user.correo_electronico);
   }
-}
 
-createFormGroup() {
-  return new FormGroup({
-    nombre: new FormControl(''),
-    apellido: new FormControl(''),
-    fnacimiento: new FormControl(''),
-    cargo: new FormControl(''),
-    legajo: new FormControl(''),
-    nombre_usuario: new FormControl(''),
-    contrasenia: new FormControl(''),
-    ciudad: new FormControl(''),
-    pais: new FormControl(''),
-    provincia: new FormControl(''),
-    direccion: new FormControl(''),
-    correo_electronico: new FormControl(''),
-    estado: new FormControl(30)
-  })
-}
+  saveForm() {
+    if (this.mode === 'add') {
+      this.UserService.postUser(this.userForm).subscribe(
+        user => {
+          this.showSuccess();
+        },
+        error => this.showError(error.error)
+      );
+    } else {
+      this.UserService.updateUser(this.userId, this.userForm).subscribe(
+        user => {
+          this.messageBody = "El usuario se ha editado correctamente"
+          this.showSuccess();
+        },
+        error => this.showError(error.error)
+      );
+    }
+  }
 
+  createFormGroup() {
+    return new FormGroup({
+      nombre: new FormControl(''),
+      apellido: new FormControl(''),
+      fnacimiento: new FormControl(''),
+      cargo: new FormControl(''),
+      legajo: new FormControl(''),
+      nombre_usuario: new FormControl(''),
+      contrasenia: new FormControl(''),
+      ciudad: new FormControl(''),
+      pais: new FormControl(''),
+      provincia: new FormControl(''),
+      direccion: new FormControl(''),
+      correo_electronico: new FormControl(''),
+      estado: new FormControl(30)
+    })
+  }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-getUser(id) {
-  this.UserService.getUser(id).pipe(first()).subscribe(
-    user => {
-      this.loadUser(user);
-    }
-  )
-}
+  getUser(id) {
+    this.UserService.getUser(id).pipe(first()).subscribe(
+      user => {
+        this.loadUser(user);
+      }
+    )
+  }
 
-getCargos() {
-  this.TipoService.getTipos('Cargos').subscribe(
-    (data: any) => {
-      this.dataSourceCargos = data.map(
-        val => {
-          return {
-            "id": val.id,
-            "descripcion": val.nombre
+  getCargos() {
+    this.TipoService.getTipos('Cargos').subscribe(
+      (data: any) => {
+        this.dataSourceCargos = data.map(
+          val => {
+            return {
+              "id": val.id,
+              "descripcion": val.nombre
+            }
           }
-        }
-      );
-    },
-    (error) => {
-      console.error(error);
-    }
-  );
-}
+        );
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

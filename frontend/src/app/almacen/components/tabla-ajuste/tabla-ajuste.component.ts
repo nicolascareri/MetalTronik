@@ -48,7 +48,7 @@ export class TablaAjusteComponent implements OnInit {
     {
       id: 5,
       property:'stock',
-      name: 'Nuevo stock',
+      name: 'Stock real',
       sort: 'up',
       filterValue: '',
       width: '25%'
