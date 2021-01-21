@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { UserService } from '../../../usuarios/services/user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { MessageService } from "../../../core/service/message.service";
 import { TipoService } from '../../../tipo/services/tipo.service';
@@ -30,6 +30,7 @@ export class FormUsuarioComponent implements OnInit {
   constructor(private UserService: UserService,
     private TipoService: TipoService,
     private route: ActivatedRoute,
+    private router: Router,
     private MessageService: MessageService) {
     this.userForm = this.createFormGroup();
   }
@@ -70,10 +71,10 @@ export class FormUsuarioComponent implements OnInit {
     this.userForm.controls.nombre.setValue(user.nombre);
     this.userForm.controls.apellido.setValue(user.apellido);
     this.userForm.controls.fnacimiento.setValue(user.fnacimiento.replace(' ', 'T'));
-    this.userForm.controls.cargo_id.setValue(user.cargo_id);
+    this.userForm.controls.cargo.setValue(user.cargo.id);
     this.userForm.controls.legajo.setValue(user.legajo);
-    this.userForm.controls.nombre_usuario.setValue(user.nombre_usuario);
-    this.userForm.controls.contrasenia.setValue(user.contrasenia);
+    this.userForm.controls.nombre_usuario.setValue(user.crendecial.nombre_usuario);
+    this.userForm.controls.contrasenia.setValue(user.crendecial.contrasenia);
     this.userForm.controls.ciudad.setValue(user.ciudad);
     this.userForm.controls.pais.setValue(user.pais);
     this.userForm.controls.provincia.setValue(user.provincia);
@@ -86,6 +87,7 @@ export class FormUsuarioComponent implements OnInit {
       this.UserService.postUser(this.userForm).subscribe(
         user => {
           this.showSuccess();
+          this.router.navigate(['main/personal']);
         },
         error => this.showError(error.error)
       );
@@ -113,8 +115,7 @@ export class FormUsuarioComponent implements OnInit {
       pais: new FormControl(''),
       provincia: new FormControl(''),
       direccion: new FormControl(''),
-      correo_electronico: new FormControl(''),
-      estado: new FormControl(30)
+      correo_electronico: new FormControl('')
     })
   }
 
