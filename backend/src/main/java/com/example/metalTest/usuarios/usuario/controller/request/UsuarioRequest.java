@@ -2,6 +2,7 @@ package com.example.metalTest.usuarios.usuario.controller.request;
 
 import com.example.metalTest.common.validator.ValidEntity;
 import com.example.metalTest.tipo.repository.TipoRepository;
+import com.example.metalTest.usuarios.rol.repository.RolRepository;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,6 +31,10 @@ public class UsuarioRequest {
     @NotNull
     @ValidEntity(repository = TipoRepository.class)
     private Integer cargo;
+
+    @NotNull
+    @ValidEntity(repository = RolRepository.class)
+    private Integer rol;
 
     @NotBlank
     private String correo_electronico;

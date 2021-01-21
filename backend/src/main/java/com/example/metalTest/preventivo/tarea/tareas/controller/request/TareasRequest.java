@@ -15,5 +15,4 @@ public class TareasRequest {
     private Integer parte_id;
     private int frecuencia;
     private Date inicio;
-    private Short estado;
 }

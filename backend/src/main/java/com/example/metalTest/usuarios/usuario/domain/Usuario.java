@@ -1,6 +1,7 @@
 package com.example.metalTest.usuarios.usuario.domain;
 
 import com.example.metalTest.tipo.domain.Tipo;
+import com.example.metalTest.usuarios.credencial.domain.Credencial;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
