@@ -46,6 +46,12 @@
 			<scope>runtime</scope>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>5.4.2</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -53,10 +59,6 @@
 		<dependency>
 			<groupId>org.springframework.ldap</groupId>
 			<artifactId>spring-ldap-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-ldap</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.unboundid</groupId>
@@ -90,8 +92,15 @@
             <artifactId>commons-beanutils</artifactId>
             <version>1.9.4</version>
         </dependency>
+		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
+		</dependency>
 
-    </dependencies>
+
+	</dependencies>
 
 	<build>
 		<plugins>

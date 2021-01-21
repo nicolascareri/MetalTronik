@@ -56,4 +56,10 @@ public class UsuarioServiceImpl implements UsuarioService {
         return null;
     }
 
+    @Override
+    public Usuario findFyNombreUsuario(String s) {
+        return usuarioRepository.findByNombreUsuario(s);
+    }
+
+
 }

@@ -14,4 +14,6 @@ public interface UsuarioService {
     Usuario create(UsuarioRequest usuario) throws ValidateFieldException;
 
     Usuario update(Integer id, UsuarioRequest usuario) throws ValidateFieldException;
+
+    Usuario findFyNombreUsuario(String s);
 }

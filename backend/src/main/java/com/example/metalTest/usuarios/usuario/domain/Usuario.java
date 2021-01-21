@@ -18,17 +18,14 @@ public class Usuario {
     @Column
     private int id;
 
+    @OneToOne
+    private Credencial credencial;
+
     @Column
     private String nombre;
 
     @Column
     private String apellido;
-
-    @Column
-    private String nombre_usuario;
-
-    @Column
-    private String contrasenia;
 
     @Column
     private int legajo;
