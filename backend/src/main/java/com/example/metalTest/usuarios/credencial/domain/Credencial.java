@@ -1,4 +1,4 @@
-package com.example.metalTest.usuarios.usuario.domain;
+package com.example.metalTest.usuarios.credencial.domain;
 
 import com.example.metalTest.usuarios.rol.domain.Rol;
 import lombok.AllArgsConstructor;

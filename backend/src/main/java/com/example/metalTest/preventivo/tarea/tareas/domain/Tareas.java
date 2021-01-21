@@ -3,6 +3,7 @@ package com.example.metalTest.preventivo.tarea.tareas.domain;
 import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.parte.domain.Parte;
 import com.example.metalTest.preventivo.tarea.historial.domain.TareaHistorial;
+import com.example.metalTest.usuarios.usuario.domain.Usuario;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
@@ -37,7 +38,5 @@ public class Tareas {
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
     private Date inicio;
 
-    @Column
-    private Short estado;
 
 }

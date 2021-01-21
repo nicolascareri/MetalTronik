@@ -1,7 +1,6 @@
 package com.example.metalTest.usuarios.usuarioCredencial.controller;
 
-import com.example.metalTest.usuarios.usuario.domain.Credencial;
-import com.example.metalTest.usuarios.usuario.domain.Usuario;
+import com.example.metalTest.usuarios.credencial.domain.Credencial;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import  org.springframework.security.core.GrantedAuthority;

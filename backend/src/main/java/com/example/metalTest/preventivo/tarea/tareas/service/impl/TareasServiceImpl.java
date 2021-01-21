@@ -12,6 +12,7 @@ import com.example.metalTest.preventivo.tarea.tareas.domain.Tareas;
 import com.example.metalTest.preventivo.tarea.tareas.mapper.TareasMapper;
 import com.example.metalTest.preventivo.tarea.tareas.repository.TareasRepository;
 import com.example.metalTest.preventivo.tarea.tareas.service.TareasService;
+import com.example.metalTest.usuarios.usuario.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,8 @@ public class TareasServiceImpl implements TareasService {
     ParteRepository parteRepository;
     @Autowired
     TareaHistorialService tareaHistorialService;
+    @Autowired
+    UsuarioRepository usuarioRepository;
 
     ParteBuscador parteBuscador = new ParteBuscador();
 
@@ -53,14 +56,10 @@ public class TareasServiceImpl implements TareasService {
         if (!optionalTarea.isPresent()){
             throw new ValidateFieldException("La tareas que intenta acceder no existe", "id", String.valueOf(id));
         }
-        if (tareasRequest.getEstado() != Estado.ACTIVO.getValue() && tareasRequest.getEstado() != Estado.ELIMINADO.getValue()) {
-            throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(tareasRequest.getEstado()));
-        }
 
         Integer maquinaCod = tareasRequest.getMaquina_id();
         Tareas tarea = optionalTarea.get();
         tareaHistorialService.create(tarea);
-        tarea.setEstado(tareasRequest.getEstado());
         tarea.setFrecuencia(tareasRequest.getFrecuencia());
         tarea.setInicio(tareasRequest.getInicio());
         tarea.setMaquina(maquinaRepository.findById(maquinaCod).get());
@@ -71,9 +70,6 @@ public class TareasServiceImpl implements TareasService {
 
     @Override
     public TareasResponse create(TareasRequest tareasRequest) throws ValidateFieldException {
-        if (tareasRequest.getEstado() != Estado.ACTIVO.getValue() && tareasRequest.getEstado() != Estado.ELIMINADO.getValue()) {
-            throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(tareasRequest.getEstado()));
-        }
         Tareas tarea = tareasMapper.tareaRequestToTarea(tareasRequest);
         Integer maquinaCod = tareasRequest.getMaquina_id();
         tarea.setMaquina(maquinaRepository.findById(maquinaCod).get());

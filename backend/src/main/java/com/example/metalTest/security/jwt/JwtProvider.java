@@ -14,17 +14,17 @@ import java.util.Date;
 public class JwtProvider {
 
     private final static Logger logger = LoggerFactory.getLogger(JwtProvider.class);
-    @Value(("$jwt.secret"))
+    @Value("${jwt.secret}")
     private String secret;
-    @Value(("$jwt.expiration"))
-    private String expiracion;
+    @Value("${jwt.expiration}")
+    private int expiration;
 
     public String generateToken(Authentication authentication){
         UsuarioCredencialController usrCredController = (UsuarioCredencialController) authentication.getPrincipal();
 
         return Jwts.builder().setSubject(usrCredController.getNombre_usuario())
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(new Date().getTime() + Integer.valueOf(expiracion)*1000))
+                .setExpiration(new Date(new Date().getTime() + expiration*1000))
                 .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
     }
