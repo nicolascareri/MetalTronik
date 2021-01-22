@@ -9,12 +9,13 @@ import { HomeComponent } from './components/home/home.component';
 import { MainComponent } from './components/main/main.component';
 import { MainRoutingModule } from './main-routing.module';
 import { FooterComponent } from './components/footer/footer.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 
 
 @NgModule({
-  declarations: [MainComponent, HomeComponent, SidenavComponent, FooterComponent],
+  declarations: [MainComponent, HomeComponent, SidenavComponent, FooterComponent, LoginComponent],
   imports: [
     CommonModule,
     MainRoutingModule,
