@@ -106,7 +106,7 @@ public class RegistroServiceImpl implements RegistroService {
     private Boolean tareaValida(Tareas tarea, Calendar fechaPlanificada){
         Calendar fechaInicio = Calendar.getInstance();
         fechaInicio.setTime(tarea.getInicio());
-        return tarea.getEstado().equals(Estado.ACTIVO.getValue()) && fechaInicio.get(Calendar.MONTH) <= fechaPlanificada.get(Calendar.MONTH);
+        return true;
     }
 
     private Calendar calcularFechaInicio(Calendar fechaPlanificada, Calendar fechaInicio, int frecuencia){

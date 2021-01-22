@@ -58,7 +58,7 @@ public class MantenimientoCorrectivo{
     private int nrocorrectivo;
 
     @Column
-    private long tiempoReparacion;
+    private int tiempoReparacion;
 
     @JoinColumn
     @OneToOne(cascade = CascadeType.ALL)

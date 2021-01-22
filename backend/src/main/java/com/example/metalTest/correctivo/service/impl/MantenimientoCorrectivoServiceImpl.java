@@ -81,7 +81,8 @@ public class MantenimientoCorrectivoServiceImpl implements MantenimientoCorrecti
         }
         long diffInMillies = Math.abs(mantenimientoCorrectivoRequest.getFechaFin().getTime() - mantenimientoCorrectivoRequest.getFechainicio().getTime());
         long diff = TimeUnit.HOURS.convert(diffInMillies, TimeUnit.MILLISECONDS);
-        mantenimientoCorrectivo.setTiempoReparacion(diff);
+        System.out.println(diff);
+        mantenimientoCorrectivo.setTiempoReparacion((int)diff);
         return mantenimientoCorrectivoMapper.toMantenimientoCorrectivoResponse(mantenimientoCorrectivoRepository.save(mantenimientoCorrectivo));
     }
 
@@ -127,7 +128,7 @@ public class MantenimientoCorrectivoServiceImpl implements MantenimientoCorrecti
         }
         long diffInMillies = Math.abs(mantenimientoCorrectivoRequest.getFechaFin().getTime() - mantenimientoCorrectivoRequest.getFechainicio().getTime());
         long diff = TimeUnit.HOURS.convert(diffInMillies, TimeUnit.MILLISECONDS);
-        mantenimientoCorrectivo.setTiempoReparacion(diff);
+        mantenimientoCorrectivo.setTiempoReparacion((int)diff);
         mantenimientoCorrectivo.setId(id);
         return mantenimientoCorrectivoMapper.toMantenimientoCorrectivoResponse(mantenimientoCorrectivoRepository.save(mantenimientoCorrectivo));
     }
