@@ -12,7 +12,6 @@ import com.example.metalTest.usuarios.usuario.mapper.UsuarioMapper;
 import com.example.metalTest.usuarios.usuario.repository.UsuarioRepository;
 import com.example.metalTest.usuarios.usuario.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -59,10 +58,9 @@ public class UsuarioServiceImpl implements UsuarioService {
         Set<Rol> roles = new HashSet<>();
         roles.add(rolRepository.findById(usuario.getRol()).get());
         usrActual.setCargo(tipoRepository.findById(usuario.getCargo()).get());
-        Integer id_credencial = credencialRepository.save(new Credencial(usrActual.getId(), usuario.getNombre_usuario(), passwordEncoder.encode(usuario.getContrasenia()), roles)).getId();
-        usrActual.setCredencial(credencialRepository.findById(id_credencial).get());
-        usuarioRepository.save(usrActual);
-        return null;
+        Credencial credencial = new Credencial(usrActual.getId(), usuario.getNombre_usuario(), passwordEncoder.encode(usuario.getContrasenia()), roles);
+        usrActual.setCredencial(credencialRepository.save(credencial));
+        return usuarioRepository.save(usrActual);
     }
 
     @Override
@@ -70,14 +68,12 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario usrActual = usuarioMapper.usuarioRequestToUsuario(usuario);
         usrActual.setCargo(tipoRepository.findById(usuario.getCargo()).get());
         usrActual.setId(id);
-        usuarioRepository.save(usrActual);
-        return null;
+        return  usuarioRepository.save(usrActual);
     }
 
     @Override
     public Usuario findFyNombreUsuario(String s) {
-        return usuarioRepository.findByNombreUsuario(s);
+        return usuarioRepository.findByCredencial_Nombre_usuario(s).get();
     }
-
 
 }

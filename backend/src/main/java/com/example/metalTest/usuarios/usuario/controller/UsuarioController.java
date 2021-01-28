@@ -10,17 +10,19 @@ import com.example.metalTest.usuarios.usuario.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin
 @RestController
 @RequestMapping("/api/usuario")
 public class UsuarioController {
@@ -42,19 +44,21 @@ public class UsuarioController {
         return new ResponseEntity<>(usuarioService.getById(id), HttpStatus.OK);
 
     }
-
     @PutMapping("/{id}")
     public ResponseEntity<Usuario> updateUsuario(@Valid @RequestBody UsuarioRequest usuarioRequest, @PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<>(usuarioService.update(id, usuarioRequest), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Usuario> createUsuario(@Valid @RequestBody UsuarioRequest usuarioRequest) throws ValidateFieldException {
+    public ResponseEntity<?> createUsuario(@Valid @RequestBody UsuarioRequest usuarioRequest, BindingResult bindingResult) throws ValidateFieldException {
+
         return new ResponseEntity<>(usuarioService.create(usuarioRequest), HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginRequest loginRequest){
+    public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginRequest loginRequest, BindingResult bindingResult){
+        if (bindingResult.hasErrors())
+            return new ResponseEntity("Campos mal puestos" +bindingResult.toString(), HttpStatus.BAD_REQUEST);
         Authentication authentication=
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getNombre_usuario(), loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);

@@ -1,4 +1,5 @@
 package com.example.metalTest.usuarios.rol.controller.request;
+import com.example.metalTest.usuarios.permiso.request.PermisoRequest;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +11,7 @@ public class RolRequest {
     @NotNull
     private String nombre;
     @NotNull
-    private List<Integer> permisos_id;
+    private List<PermisoRequest> permisos;
 
 
 }
