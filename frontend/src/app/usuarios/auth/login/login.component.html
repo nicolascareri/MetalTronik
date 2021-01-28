@@ -1,0 +1,54 @@
+<body>
+
+  <div class="form-container">
+
+    <div class="card">
+  
+      <h2 class="card-header">
+        Login
+      </h2>
+  
+      <div class="card-body">
+  
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+  
+          <div class="form-row">
+      
+            <div class="col">
+            <label for="nombre_usuario">Nombre</label>
+            <app-input [type]="'input'"
+                       [parentForm]="loginForm" 
+                       [control]="loginForm.controls.nombre_usuario"
+                       [placeholder]="'Nombre del usuario'">
+            </app-input>
+            </div>
+  
+          </div>
+
+          <div class="form-row">
+
+            <div class="col">
+              <label for="pass">Pass</label>
+              <app-input [type]="'input'"
+                         [parentForm]="loginForm" 
+                         [control]="loginForm.controls.password"
+                         [placeholder]="'Pass'">
+              </app-input>
+            </div>
+
+          </div>
+
+          <div style="margin-top: 3%" class="btn-group btn-group-toggle" data-toggle="buttons">
+            <app-button [name]="'Logearse'" type="submit" [type]="'success'"></app-button>
+            <app-button [name]="'Cancelar'" [type]="'cancel'"></app-button>
+          </div>
+  
+        </form>
+  
+      </div>
+  
+    </div>
+  
+  </div>
+  
+</body>

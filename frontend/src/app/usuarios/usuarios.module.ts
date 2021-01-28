@@ -9,10 +9,11 @@ import {CoreModule} from '../core/core.module';
 import {FormUsuarioComponent} from './components/form/form.component';
 import {TablaUsuarioComponent} from './components/tabla/tabla.component';
 import {UsuariosRoutingModule} from './usuarios-routing.module';
+import { LoginComponent } from './auth/login/login.component';
 
 
 @NgModule({
-  declarations: [TablaUsuarioComponent, FormUsuarioComponent],
+  declarations: [TablaUsuarioComponent, FormUsuarioComponent, LoginComponent],
   imports: [
     CommonModule,
     CoreModule,

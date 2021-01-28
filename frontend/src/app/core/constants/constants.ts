@@ -23,7 +23,8 @@ export const ENDPOINTS = {
         GET: 'api/usuario',
         GETID: 'api/usuario/',
         POST: 'api/usuario',
-        PUT: 'api/usuario/'
+        PUT: 'api/usuario/',
+        LOGIN: 'api/usuario/login'
     },
 
     ORDENES_TRABAJO: {
