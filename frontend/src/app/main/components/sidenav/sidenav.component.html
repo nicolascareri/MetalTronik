@@ -13,6 +13,9 @@
           <mat-icon>{{nav.icon}}</mat-icon>
         </div>
       </li>
+      <li (click)="logout()">
+        Logout
+      </li>
       <!-- <li style="float:right" > <a class="nav-link"  style="float:right" routerLink="login" routerLinkActive="active" *ngIf="!authService.logIn">Login</a> </li>
       <li style="float:right" > <a class ="nav-link" (click)="logout()" href="#" *ngIf="authService.logIn">Logout</a>  </li> -->
     </ul>

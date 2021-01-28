@@ -23,7 +23,7 @@ import { ChartsModule } from 'ng2-charts';
 import { IndicadoresModule } from './indicadores/indicadores.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgxPopper } from 'angular-popper';
-
+import { CanActivateViaAuthGuard } from './core/CanActivateViaAuthGuard'
 
 
 @NgModule({
@@ -54,7 +54,8 @@ import { NgxPopper } from 'angular-popper';
     NgxPopper
   ],
   providers: [UserService,
-    OrdenestrabajoService, ],
+    OrdenestrabajoService,
+    CanActivateViaAuthGuard ],
   bootstrap: [AppComponent]
 })
 

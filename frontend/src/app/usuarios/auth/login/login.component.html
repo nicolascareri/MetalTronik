@@ -5,7 +5,7 @@
     <div class="card">
   
       <h2 class="card-header">
-        Login
+        Iniciar sesión
       </h2>
   
       <div class="card-body">
@@ -15,7 +15,7 @@
           <div class="form-row">
       
             <div class="col">
-            <label for="nombre_usuario">Nombre</label>
+            <label for="nombre_usuario">Nombre de usuario</label>
             <app-input [type]="'input'"
                        [parentForm]="loginForm" 
                        [control]="loginForm.controls.nombre_usuario"
@@ -28,8 +28,8 @@
           <div class="form-row">
 
             <div class="col">
-              <label for="pass">Pass</label>
-              <app-input [type]="'input'"
+              <label for="pass">Contraseña</label>
+              <app-input [type]="'password'"
                          [parentForm]="loginForm" 
                          [control]="loginForm.controls.password"
                          [placeholder]="'Pass'">
@@ -39,8 +39,7 @@
           </div>
 
           <div style="margin-top: 3%" class="btn-group btn-group-toggle" data-toggle="buttons">
-            <app-button [name]="'Logearse'" type="submit" [type]="'success'"></app-button>
-            <app-button [name]="'Cancelar'" [type]="'cancel'"></app-button>
+            <app-button [name]="'Ingresar'" type="submit" [type]="'success'"></app-button>
           </div>
   
         </form>

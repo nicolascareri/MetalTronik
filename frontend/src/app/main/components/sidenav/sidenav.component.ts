@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from "../../../usuarios/services/auth.service";
 
 
 
@@ -10,6 +11,8 @@ import { Component } from '@angular/core';
 
 
 export class SidenavComponent{
+
+  constructor(private AuthService: AuthService) {}
 
   public mobileQuery: MediaQueryList;
   public selected: any;
@@ -26,7 +29,9 @@ export class SidenavComponent{
     { name: '', route: 'configuracion', icon: 'settings'}
   ]
   
-
+  logout(){
+    this.AuthService.logout();
+  }
   
 
   clicked(object) {

@@ -23,12 +23,12 @@ export class AuthService {
       }else{
         this.router.navigate(['login']);
       }
-      console.log(data.token);
     })
   }
 
   logout() {
     localStorage.removeItem('token');
+    this.router.navigate(['login']);
   }
  
   public logIn(): boolean {
