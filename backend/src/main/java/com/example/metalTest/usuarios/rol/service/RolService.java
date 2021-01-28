@@ -6,4 +6,6 @@ import org.springframework.stereotype.Service;
 
 public interface RolService {
     Rol create(RolRequest rolRequest);
+
+    Rol findByRango(String rango);
 }

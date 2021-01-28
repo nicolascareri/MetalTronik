@@ -20,7 +20,7 @@ public class Credencial {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(unique = true)
+    @Column
     private String nombre_usuario;
 
     @Column

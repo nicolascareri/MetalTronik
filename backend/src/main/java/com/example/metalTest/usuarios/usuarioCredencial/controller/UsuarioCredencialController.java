@@ -19,7 +19,7 @@ public class UsuarioCredencialController implements UserDetails {
     private Collection<? extends GrantedAuthority> authorities;
 
     public static UsuarioCredencialController build(Credencial credencial){
-        List<GrantedAuthority> authorities = credencial.getRoles().stream().map(rol -> new SimpleGrantedAuthority(rol.getNombre())).collect(Collectors.toList());
+        List<GrantedAuthority> authorities = credencial.getRoles().stream().map(rol -> new SimpleGrantedAuthority(rol.getRango().name())).collect(Collectors.toList());
         return new UsuarioCredencialController(credencial.getNombre_usuario(), credencial.getContrasenia(), authorities);
     }
 

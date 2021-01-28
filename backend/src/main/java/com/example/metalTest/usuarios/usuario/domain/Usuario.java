@@ -3,6 +3,7 @@ package com.example.metalTest.usuarios.usuario.domain;
 import com.example.metalTest.tipo.domain.Tipo;
 import com.example.metalTest.usuarios.credencial.domain.Credencial;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,7 +20,8 @@ public class Usuario {
     @Column
     private int id;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn
     private Credencial credencial;
 
     @Column
@@ -35,7 +37,8 @@ public class Usuario {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT-3")
     private Date fnacimiento;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn
     private Tipo cargo;
 
