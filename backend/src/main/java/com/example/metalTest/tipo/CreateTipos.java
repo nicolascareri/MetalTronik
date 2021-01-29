@@ -11,11 +11,7 @@ import java.util.ArrayList;
 public class CreateTipos implements CommandLineRunner {
     @Autowired
     TipoRepository tipoRepository;
-    String cierra_parentesis = ")";
-    String abre_parentesis = "(";
 
-    @Override
-    public void run(String... args) throws Exception {
     @Override
     public void run(String... args) throws Exception {
 

@@ -9,7 +9,6 @@ import java.util.ArrayList;
 @Getter
 public class ParseTipos {
     private String path= "tipos.csv" ;
-
     public ArrayList<String[]> getTipos(){
         CSVReader reader = null;
         ArrayList<String[]> tipos = new ArrayList<>();
@@ -29,6 +28,4 @@ public class ParseTipos {
         }
         return tipos;
     }
-
-
 }*/

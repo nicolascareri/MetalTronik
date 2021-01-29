@@ -2,7 +2,6 @@ package com.example.metalTest.preventivo.tarea.tareas.controller.Response;
 
 import com.example.metalTest.maquina.controller.response.MaquinaReducidoResponse;
 import com.example.metalTest.parte.controller.response.ParteParaOrdenResponse;
-import com.example.metalTest.usuarios.usuario.domain.Usuario;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;

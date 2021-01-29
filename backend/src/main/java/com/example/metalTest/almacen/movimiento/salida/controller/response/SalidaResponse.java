@@ -2,7 +2,7 @@ package com.example.metalTest.almacen.movimiento.salida.controller.response;
 
 import com.example.metalTest.almacen.repuesto.domain.Repuesto;
 import com.example.metalTest.tipo.domain.Tipo;
-import com.example.metalTest.usuarios.usuario.domain.Usuario;
+import com.example.metalTest.usuarios.personal.domain.Personal;
 import lombok.Getter;
 import lombok.Setter;
 import java.util.Date;
@@ -15,5 +15,5 @@ public class SalidaResponse {
     private Date fecha;
     private int cantidad;
     private Tipo sector;
-    private Usuario solicitante;
+    private Personal solicitante;
 }

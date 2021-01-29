@@ -3,7 +3,7 @@ package com.example.metalTest.correctivo.controller.request;
 import com.example.metalTest.common.validator.ValidEntity;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
 import com.example.metalTest.tipo.repository.TipoRepository;
-import com.example.metalTest.usuarios.usuario.repository.UsuarioRepository;
+import com.example.metalTest.usuarios.personal.repository.PersonalRepository;
 import lombok.Getter;
 import lombok.Setter;
 import javax.validation.constraints.NotNull;
@@ -42,7 +42,7 @@ public class MantenimientoCorrectivoRequest {
     private int nrocorrectivo;
 
     @NotNull
-    @ValidEntity(repository = UsuarioRepository.class)
+    @ValidEntity(repository = PersonalRepository.class)
     private int encargo1_id;
 
     private int encargo2_id;

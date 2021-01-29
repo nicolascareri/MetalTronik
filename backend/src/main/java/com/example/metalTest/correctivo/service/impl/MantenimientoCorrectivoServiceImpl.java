@@ -14,8 +14,8 @@ import com.example.metalTest.ordenestrabajo.repository.OrdenesTrabajoRepository;
 import com.example.metalTest.parte.repository.ParteRepository;
 import com.example.metalTest.parte.service.impl.ParteBuscador;
 import com.example.metalTest.tipo.repository.TipoRepository;
-import com.example.metalTest.usuarios.usuario.domain.Usuario;
-import com.example.metalTest.usuarios.usuario.repository.UsuarioRepository;
+import com.example.metalTest.usuarios.personal.domain.Personal;
+import com.example.metalTest.usuarios.personal.repository.PersonalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +37,7 @@ public class MantenimientoCorrectivoServiceImpl implements MantenimientoCorrecti
     MaquinaRepository maquinaRepository;
 
     @Autowired
-    UsuarioRepository usuarioRepository;
+    PersonalRepository personalRepository;
 
     @Autowired
     OrdenesTrabajoRepository ordenesTrabajoRepository;
@@ -59,16 +59,16 @@ public class MantenimientoCorrectivoServiceImpl implements MantenimientoCorrecti
         MantenimientoCorrectivo mantenimientoCorrectivo = mantenimientoCorrectivoMapper.mantenimientoCorrectivoRequestToMantenimientoCorrectivo(mantenimientoCorrectivoRequest);
         mantenimientoCorrectivo.setTipo(tipoRepository.findById(mantenimientoCorrectivoRequest.getTipo_id()).get());
         mantenimientoCorrectivo.setMaquina(maquinaRepository.findById(maquinaCod).get());
-        mantenimientoCorrectivo.setEncargo1(usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo1_id()).get());
+        mantenimientoCorrectivo.setEncargo1(personalRepository.findById(mantenimientoCorrectivoRequest.getEncargo1_id()).get());
         mantenimientoCorrectivo.setParte(parteBuscador.getParte(mantenimientoCorrectivoRequest.getParte_id(), parteRepository.getAllByMaquina(maquinaCod)));
-        Optional<Usuario> optionalUsuario2 = usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo2_id());
+        Optional<Personal> optionalUsuario2 = personalRepository.findById(mantenimientoCorrectivoRequest.getEncargo2_id());
         if (optionalUsuario2.isPresent()) {
-            Usuario encargo2 = optionalUsuario2.get();
+            Personal encargo2 = optionalUsuario2.get();
             mantenimientoCorrectivo.setEncargo2(encargo2);
         }
-        Optional<Usuario> optionalUsuario3 = usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo3_id());
+        Optional<Personal> optionalUsuario3 = personalRepository.findById(mantenimientoCorrectivoRequest.getEncargo3_id());
         if (optionalUsuario3.isPresent()) {
-            Usuario encargo3 = optionalUsuario2.get();
+            Personal encargo3 = optionalUsuario2.get();
             mantenimientoCorrectivo.setEncargo3(encargo3);
         }
         Optional<OrdenesTrabajo> optionalOrdenesTrabajo = ordenesTrabajoRepository.findById(mantenimientoCorrectivoRequest.getOrdenTrabajo_id());
@@ -100,16 +100,16 @@ public class MantenimientoCorrectivoServiceImpl implements MantenimientoCorrecti
         mantenimientoCorrectivo.setParte(parteBuscador.getParte(mantenimientoCorrectivoRequest.getParte_id(), parteRepository.getAllByMaquina(maquinaCod)));
 
         mantenimientoCorrectivo.setOrdenTrabajo(ordenesTrabajoRepository.findById(mantenimientoCorrectivoRequest.getOrdenTrabajo_id()).get());
-        mantenimientoCorrectivo.setEncargo1(usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo1_id()).get());
-        Optional<Usuario> optionalUsuario2 = usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo2_id());
+        mantenimientoCorrectivo.setEncargo1(personalRepository.findById(mantenimientoCorrectivoRequest.getEncargo1_id()).get());
+        Optional<Personal> optionalUsuario2 = personalRepository.findById(mantenimientoCorrectivoRequest.getEncargo2_id());
         if (optionalUsuario2.isPresent()) {
-            Usuario encargo2 = optionalUsuario2.get();
+            Personal encargo2 = optionalUsuario2.get();
             mantenimientoCorrectivo.setEncargo2(encargo2);
         }
 
-        Optional<Usuario> optionalUsuario3 = usuarioRepository.findById(mantenimientoCorrectivoRequest.getEncargo3_id());
+        Optional<Personal> optionalUsuario3 = personalRepository.findById(mantenimientoCorrectivoRequest.getEncargo3_id());
         if (optionalUsuario3.isPresent()) {
-            Usuario encargo3 = optionalUsuario2.get();
+            Personal encargo3 = optionalUsuario2.get();
             mantenimientoCorrectivo.setEncargo3(encargo3);
         }
 

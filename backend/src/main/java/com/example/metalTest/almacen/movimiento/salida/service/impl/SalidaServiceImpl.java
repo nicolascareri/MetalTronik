@@ -9,7 +9,7 @@ import com.example.metalTest.almacen.movimiento.salida.mapper.SalidaMapper;
 import com.example.metalTest.almacen.movimiento.salida.repository.SalidaRepository;
 import com.example.metalTest.almacen.movimiento.salida.service.SalidaService;
 import com.example.metalTest.tipo.repository.TipoRepository;
-import com.example.metalTest.usuarios.usuario.repository.UsuarioRepository;
+import com.example.metalTest.usuarios.personal.repository.PersonalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +22,7 @@ public class SalidaServiceImpl implements SalidaService {
     @Autowired
     SalidaMapper salidaMapper;
     @Autowired
-    UsuarioRepository usuarioRepository;
+    PersonalRepository personalRepository;
     @Autowired
     RepuestoRepository repuestoRepository;
     @Autowired
@@ -42,7 +42,7 @@ public class SalidaServiceImpl implements SalidaService {
         repuesto.setPrecio_total(repuesto.getPrecio_unitario() * repuesto.getExistencia());
         salida.setRepuesto(repuesto);
         salida.setSector(tipoRepository.findById(salidaRequest.getSector_id()).get());
-        salida.setSolicitante(usuarioRepository.findById(salidaRequest.getSolicitante_id()).get());
+        salida.setSolicitante(personalRepository.findById(salidaRequest.getSolicitante_id()).get());
         return salidaMapper.toSalidaResponse(salidaRepository.save(salida));
     }
 }
