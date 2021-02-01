@@ -15,14 +15,14 @@
       </li>
 
       <li ngbDropdown class="nav-item">
-        <a href (click)="false" class="nav-link" ngbDropdownToggle style="color: white;">Mantenimientos</a>
+        <a href (click)="false" class="nav-link drop" ngbDropdownToggle>Mantenimientos</a>
         <div ngbDropdownMenu>
           <button ngbDropdownItem [routerLink]="man.route" *ngFor="let man of mantenimientos" (click)="clicked(man)">{{man.name}}</button>
         </div>
       </li>
 
       <li ngbDropdown class="nav-item">
-        <a href (click)="false" class="nav-link" ngbDropdownToggle style="color: white;">Almacén</a>
+        <a href (click)="false" class="nav-link drop" ngbDropdownToggle>Almacén</a>
         <div ngbDropdownMenu>
           <button ngbDropdownItem [routerLink]="al.route" *ngFor="let al of almacen" (click)="clicked(al)">{{al.name}}</button>
         </div>
@@ -34,8 +34,8 @@
         </div>
       </li>
 
-      <li ngbDropdown class="nav-item" display="dynamic" placement="bottom-right" style="position:absolute; right: 35px;">
-        <a href (click)="false" class="nav-link" ngbDropdownToggle style="color: white;"><mat-icon aria-hidden="false" aria-label="Example home icon" style="color: white;">account_box</mat-icon></a>
+      <li ngbDropdown class="nav-item drop" display="dynamic" placement="bottom-right" style="position:absolute; right: 40px;">
+        <a href (click)="false" class="nav-link drop" ngbDropdownToggle style="padding: 5px;"><mat-icon aria-hidden="false" aria-label="Example home icon" style="color: white;">account_box</mat-icon></a>
         <div ngbDropdownMenu aria-labelledby="navbarDropdown3">
           <button ngbDropdownItem>Action</button>
           <button ngbDropdownItem>Another action</button>
