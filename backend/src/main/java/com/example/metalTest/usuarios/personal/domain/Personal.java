@@ -6,8 +6,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.util.Date;
 
 @Entity
@@ -19,10 +21,6 @@ public class Personal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private int id;
-
-    @OneToOne(cascade = {CascadeType.ALL})
-    @JoinColumn
-    private Credencial credencial;
 
     @Column
     private String nombre;
@@ -43,19 +41,14 @@ public class Personal {
     private Tipo cargo;
 
     @Column
+    @Email
     private String correo_electronico;
 
-    @Column
-    private String pais;
+    @OneToOne(cascade = {CascadeType.ALL})
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    @JoinColumn
+    private Direccion direccion;
 
-    @Column
-    private String provincia;
-
-    @Column
-    private String ciudad;
-
-    @Column
-    private String direccion;
 
 
 

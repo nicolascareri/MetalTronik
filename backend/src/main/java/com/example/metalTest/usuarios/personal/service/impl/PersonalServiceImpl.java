@@ -3,11 +3,11 @@ package com.example.metalTest.usuarios.personal.service.impl;
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.tipo.repository.TipoRepository;
 import com.example.metalTest.usuarios.credenciales.credencial.repository.CredencialRepository;
+import com.example.metalTest.usuarios.personal.controller.request.PersonalRequest;
+import com.example.metalTest.usuarios.personal.domain.Direccion;
 import com.example.metalTest.usuarios.personal.mapper.PersonalMapper;
 import com.example.metalTest.usuarios.credenciales.rol.domain.Rol;
 import com.example.metalTest.usuarios.credenciales.rol.repository.RolRepository;
-import com.example.metalTest.usuarios.personal.controller.request.UsuarioRequest;
-import com.example.metalTest.usuarios.credenciales.credencial.domain.Credencial;
 import com.example.metalTest.usuarios.personal.domain.Personal;
 import com.example.metalTest.usuarios.personal.repository.PersonalRepository;
 import com.example.metalTest.usuarios.personal.service.PersonalService;
@@ -53,27 +53,37 @@ public class PersonalServiceImpl implements PersonalService {
     }
 
     @Override
-    public Personal create(UsuarioRequest usuario){
-        Personal usrActual = personalMapper.usuarioRequestToUsuario(usuario);
-        Set<Rol> roles = new HashSet<>();
-        roles.add(rolRepository.findById(usuario.getRol()).get());
+    public Personal create(PersonalRequest usuario){
+        Personal usrActual = personalMapper.personalRequestToPersonal(usuario);
+        //Set<Rol> roles = new HashSet<>();
+        //roles.add(rolRepository.findById(usuario.getRol()).get());
+        Direccion direccion = usuario.getDireccion();
+        usrActual.setDireccion(new Direccion(direccion.getPais(), direccion.getProvincia(), direccion.getCiudad(), direccion.getCalle(), direccion.getNumero()));
         usrActual.setCargo(tipoRepository.findById(usuario.getCargo()).get());
-        Credencial credencial = new Credencial(usrActual.getId(), usuario.getNombre_usuario(), passwordEncoder.encode(usuario.getContrasenia()), roles);
-        usrActual.setCredencial(credencialRepository.save(credencial));
+        //Credencial credencial = new Credencial(usrActual.getId(), usuario.getNombre_usuario(), passwordEncoder.encode(usuario.getContrasenia()), roles);
+        //usrActual.setCredencial(credencialRepository.save(credencial));
         return personalRepository.save(usrActual);
     }
 
     @Override
-    public Personal update(Integer id, UsuarioRequest usuario){
-        Personal usrActual = personalMapper.usuarioRequestToUsuario(usuario);
+    public Personal update(Integer id, PersonalRequest usuario){
+        Personal usrActual = personalMapper.personalRequestToPersonal(usuario);
         usrActual.setCargo(tipoRepository.findById(usuario.getCargo()).get());
+        Direccion direccionReq = usuario.getDireccion();
+        Direccion direccion = usrActual.getDireccion();
+        direccion.setCalle(direccionReq.getCalle());
+        direccion.setCiudad(direccionReq.getCiudad());
+        direccion.setNumero(direccionReq.getNumero());
+        direccion.setPais(direccionReq.getPais());
+        direccion.setProvincia(direccionReq.getProvincia());
+        usrActual.setDireccion(direccion);
         usrActual.setId(id);
         return  personalRepository.save(usrActual);
     }
 
     @Override
     public Personal findFyNombreUsuario(String s) {
-        return personalRepository.findByCredencial_Nombre_usuario(s).get();
+        return null;//personalRepository.findByCredencial_Nombre_usuario(s).get();
     }
 
 }
