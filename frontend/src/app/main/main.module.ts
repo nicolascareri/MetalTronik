@@ -11,6 +11,10 @@ import { MainRoutingModule } from './main-routing.module';
 import { FooterComponent } from './components/footer/footer.component';
 
 
+import { BrowserModule } from '@angular/platform-browser';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+
 
 
 @NgModule({
@@ -21,7 +25,9 @@ import { FooterComponent } from './components/footer/footer.component';
     MatListModule,
     MatSidenavModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    BrowserModule,
+    NgbModule
     
   ]
 })

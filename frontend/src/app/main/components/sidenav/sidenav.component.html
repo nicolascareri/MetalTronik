@@ -1,25 +1,54 @@
 <nav class="navbar navbar-expand-lg">
+
   <a class="nav-title" href="#">Metaltronik</a>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+
   <div class="collapse navbar-collapse navItem" id="navbarNav">
+
     <ul class="navbar-nav">
+
       <li class="nav-link" [routerLink]="nav.route" *ngFor="let nav of fillerNav" (click)="clicked(nav)"  [ngClass]="{ 'nav': selected != null }">
           {{nav.name}}
       </li>
-      <li style="position:absolute; padding: 5px; right: 1px;" *ngFor="let nav of fillerNav" [routerLink]="nav.route">
-        <div *ngIf="nav.icon != ''">
-          <mat-icon>{{nav.icon}}</mat-icon>
+
+      <li ngbDropdown class="nav-item">
+        <a href (click)="false" class="nav-link" ngbDropdownToggle style="color: white;">Mantenimientos</a>
+        <div ngbDropdownMenu>
+          <button ngbDropdownItem [routerLink]="man.route" *ngFor="let man of mantenimientos" (click)="clicked(man)">{{man.name}}</button>
         </div>
       </li>
-      <li (click)="logout()">
-        Logout
+
+      <li ngbDropdown class="nav-item">
+        <a href (click)="false" class="nav-link" ngbDropdownToggle style="color: white;">Almacén</a>
+        <div ngbDropdownMenu>
+          <button ngbDropdownItem [routerLink]="al.route" *ngFor="let al of almacen" (click)="clicked(al)">{{al.name}}</button>
+        </div>
       </li>
-      <!-- <li style="float:right" > <a class="nav-link"  style="float:right" routerLink="login" routerLinkActive="active" *ngIf="!authService.logIn">Login</a> </li>
-      <li style="float:right" > <a class ="nav-link" (click)="logout()" href="#" *ngIf="authService.logIn">Logout</a>  </li> -->
+
+      <li style="position:absolute; padding: 5px; right: 1px;" *ngFor="let i of icons" [routerLink]="i.route">
+        <div *ngIf="i.icon != ''">
+          <mat-icon>{{i.icon}}</mat-icon>
+        </div>
+      </li>
+
+      <li ngbDropdown class="nav-item" display="dynamic" placement="bottom-right" style="position:absolute; right: 35px;">
+        <a href (click)="false" class="nav-link" ngbDropdownToggle style="color: white;"><mat-icon aria-hidden="false" aria-label="Example home icon" style="color: white;">account_box</mat-icon></a>
+        <div ngbDropdownMenu aria-labelledby="navbarDropdown3">
+          <button ngbDropdownItem>Action</button>
+          <button ngbDropdownItem>Another action</button>
+          <button ngbDropdownItem>Something else here</button>
+          <div class="dropdown-divider"></div>
+          <button ngbDropdownItem (click)="logout()">Logout</button>
+        </div>
+      </li>
+
     </ul>
+
   </div>
+
 </nav>
 
 

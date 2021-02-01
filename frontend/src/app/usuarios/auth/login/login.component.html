@@ -1,6 +1,4 @@
-<body>
-
-  <div class="form-container">
+<div class="form-container">
 
     <div class="card">
   
@@ -18,8 +16,7 @@
             <label for="nombre_usuario">Nombre de usuario</label>
             <app-input [type]="'input'"
                        [parentForm]="loginForm" 
-                       [control]="loginForm.controls.nombre_usuario"
-                       [placeholder]="'Nombre del usuario'">
+                       [control]="loginForm.controls.nombre_usuario">
             </app-input>
             </div>
   
@@ -31,8 +28,7 @@
               <label for="pass">Contraseña</label>
               <app-input [type]="'password'"
                          [parentForm]="loginForm" 
-                         [control]="loginForm.controls.password"
-                         [placeholder]="'Pass'">
+                         [control]="loginForm.controls.password">
               </app-input>
             </div>
 
@@ -48,6 +44,4 @@
   
     </div>
   
-  </div>
-  
-</body>
+</div>
