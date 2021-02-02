@@ -1,6 +1,6 @@
 package com.example.metalTest.security.jwt;
 
-import com.example.metalTest.usuarios.usuarioCredencial.controller.UsuarioCredencialController;
+import com.example.metalTest.usuarios.credenciales.usuarioCredencial.controller.UsuarioCredencialController;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

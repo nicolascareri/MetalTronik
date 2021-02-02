@@ -1,7 +1,6 @@
 package com.example.metalTest.preventivo.tarea.tareas.service.impl;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
-import com.example.metalTest.common.ordenes.Estado;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
 import com.example.metalTest.parte.repository.ParteRepository;
 import com.example.metalTest.parte.service.impl.ParteBuscador;
@@ -12,7 +11,7 @@ import com.example.metalTest.preventivo.tarea.tareas.domain.Tareas;
 import com.example.metalTest.preventivo.tarea.tareas.mapper.TareasMapper;
 import com.example.metalTest.preventivo.tarea.tareas.repository.TareasRepository;
 import com.example.metalTest.preventivo.tarea.tareas.service.TareasService;
-import com.example.metalTest.usuarios.usuario.repository.UsuarioRepository;
+import com.example.metalTest.usuarios.personal.repository.PersonalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +31,7 @@ public class TareasServiceImpl implements TareasService {
     @Autowired
     TareaHistorialService tareaHistorialService;
     @Autowired
-    UsuarioRepository usuarioRepository;
+    PersonalRepository personalRepository;
 
     ParteBuscador parteBuscador = new ParteBuscador();
 

@@ -3,7 +3,7 @@ package com.example.metalTest.ordenestrabajo.controller.request;
 import com.example.metalTest.common.validator.ValidEntity;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
 import com.example.metalTest.tipo.repository.TipoRepository;
-import com.example.metalTest.usuarios.usuario.repository.UsuarioRepository;
+import com.example.metalTest.usuarios.personal.repository.PersonalRepository;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,10 +34,10 @@ public class OrdenesTrabajoRequest {
     @NotNull
     private Date fechaEntrega;
     @NotNull
-    @ValidEntity(repository = UsuarioRepository.class)
+    @ValidEntity(repository = PersonalRepository.class)
     private int encargo_id;
     @NotNull
-    @ValidEntity(repository = UsuarioRepository.class)
+    @ValidEntity(repository = PersonalRepository.class)
     private int responsable_id;
 
     private String observaciones;

@@ -72,7 +72,7 @@ public class   MaquinaServiceImpl implements MaquinaService {
 
         Optional<Maquina> op = maquinaRepository.findById(id);
         if (!op.isPresent()) {
-            throw new ValidateFieldException("El usuario que desea acceder no existe", "id", String.valueOf(id));
+            throw new ValidateFieldException("El personal que desea acceder no existe", "id", String.valueOf(id));
         }
         Maquina maquina = op.get();
         if (maquina.getEstado() != Estado.ACTIVO.getValue() && maquina.getEstado() != Estado.ELIMINADO.getValue()) {

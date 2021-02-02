@@ -2,7 +2,7 @@ package com.example.metalTest.almacen.movimiento.salida.domain;
 
 import com.example.metalTest.almacen.movimiento.Movimiento;
 import com.example.metalTest.tipo.domain.Tipo;
-import com.example.metalTest.usuarios.usuario.domain.Usuario;
+import com.example.metalTest.usuarios.personal.domain.Personal;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,5 +21,5 @@ public class Salida extends Movimiento {
 
     @JoinColumn
     @OneToOne(cascade = CascadeType.ALL)
-    private Usuario solicitante;
+    private Personal solicitante;
 }

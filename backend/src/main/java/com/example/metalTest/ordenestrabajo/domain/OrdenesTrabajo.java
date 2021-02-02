@@ -3,7 +3,7 @@ package com.example.metalTest.ordenestrabajo.domain;
 import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.parte.domain.Parte;
 import com.example.metalTest.tipo.domain.Tipo;
-import com.example.metalTest.usuarios.usuario.domain.Usuario;
+import com.example.metalTest.usuarios.personal.domain.Personal;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
@@ -55,13 +55,13 @@ public class OrdenesTrabajo implements Comparable<OrdenesTrabajo>{
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
-    private Usuario encargo;
+    private Personal encargo;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
     @Getter
     @Setter
-    private Usuario responsable;
+    private Personal responsable;
 
     @Column
     private short estado;
