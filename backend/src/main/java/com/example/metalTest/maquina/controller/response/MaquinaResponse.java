@@ -20,6 +20,5 @@ public class MaquinaResponse {
     private Tipo planta;
     private Tipo sector;
     private String equipo;
-    private String modelo;
     private String descripcion;
 }

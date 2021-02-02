@@ -62,7 +62,6 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         }
     }
 
-    @Transactional
     @Override
     public OrdenesTrabajoResponse create(OrdenesTrabajoRequest ordenesTrabajoRequest) throws ValidateFieldException {
         if (ordenesTrabajoRequest.getFechaEntrega().after(ordenesTrabajoRequest.getFechaRealizar())) {

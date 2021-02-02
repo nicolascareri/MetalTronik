@@ -55,7 +55,6 @@ public class TareasServiceImpl implements TareasService {
         if (!optionalTarea.isPresent()){
             throw new ValidateFieldException("La tareas que intenta acceder no existe", "id", String.valueOf(id));
         }
-
         Integer maquinaCod = tareasRequest.getMaquina_id();
         Tareas tarea = optionalTarea.get();
         tareaHistorialService.create(tarea);

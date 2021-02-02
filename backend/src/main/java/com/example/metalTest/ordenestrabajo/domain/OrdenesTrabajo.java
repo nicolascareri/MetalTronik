@@ -46,10 +46,10 @@ public class OrdenesTrabajo implements Comparable<OrdenesTrabajo>{
     @Column
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT-3")
     @Getter
-    @Setter
+    @Setter //fecha cuando se entrego
     private Date fechaEntrega;
 
-    @Column
+    @Column //fecha cuando deberia realizarse
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT-3")
     private Date fechaRealizar;
 
