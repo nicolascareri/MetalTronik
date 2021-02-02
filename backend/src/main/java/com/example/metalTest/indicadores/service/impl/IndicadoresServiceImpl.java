@@ -24,8 +24,8 @@ public class IndicadoresServiceImpl implements IndicadoresService {
 
     //FORMULA 1
     @Override
-    public List<IndicatorResponse> getIndicatorsForm1Usuario() {
-        List<String[]> ordenesList = ordenesTrabajoRepository.getOrdenesFormula1Usuario();
+    public List<IndicatorResponse> getIndicatorsForm1Personal() {
+        List<String[]> ordenesList = ordenesTrabajoRepository.getOrdenesFormula1Personal();
         return toIndicadoresMapper.toIndicadoresResponseFormula1(ordenesList);
     }
 
@@ -37,8 +37,8 @@ public class IndicadoresServiceImpl implements IndicadoresService {
 
     //FORMULA 2
     @Override
-    public List<IndicatorResponse> getIndicatorForm2Usuario(){
-        List<String[]> ordenesList = this.ordenesTrabajoRepository.getOrdenesFormula2Usuario();
+    public List<IndicatorResponse> getIndicatorForm2Personal(){
+        List<String[]> ordenesList = this.ordenesTrabajoRepository.getOrdenesFormula2Personal();
 
         return toIndicadoresMapper.toIndicadoresResponseFormula2(ordenesList);
     }

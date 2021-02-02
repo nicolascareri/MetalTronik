@@ -29,17 +29,17 @@ public class IndicadoresController {
     MantenimientoCorrectivoService mantenimientoCorrectivoService;
 
 
-    @GetMapping("1/usuario")
-    public ResponseEntity<List<IndicatorResponse>> getIndForm1Usuario() {
-        return new ResponseEntity<>(indicadoresService.getIndicatorsForm1Usuario(), HttpStatus.OK);
+    @GetMapping("1/personal")
+    public ResponseEntity<List<IndicatorResponse>> getIndForm1Personal() {
+        return new ResponseEntity<>(indicadoresService.getIndicatorsForm1Personal(), HttpStatus.OK);
     }
     @GetMapping("1/sector")
     public ResponseEntity<List<IndicatorResponse>> getIndForm1Sector() {
         return new ResponseEntity<>(indicadoresService.getIndicatorsForm1Sector(), HttpStatus.OK);
     }
-    @GetMapping("2/usuario")
-    public ResponseEntity<List<IndicatorResponse>> getIndForm2Usuario(){
-        return new ResponseEntity<>(indicadoresService.getIndicatorForm2Usuario(), HttpStatus.OK);
+    @GetMapping("2/personal")
+    public ResponseEntity<List<IndicatorResponse>> getIndForm2Personal(){
+        return new ResponseEntity<>(indicadoresService.getIndicatorForm2Personal(), HttpStatus.OK);
     }
     @GetMapping("2/sector")
     public ResponseEntity<List<IndicatorResponse>> getIndForm2Sector() {

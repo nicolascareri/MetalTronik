@@ -15,7 +15,7 @@ public class ParseTipos {
         try
         {
             //parsing a CSV file into CSVReader class constructor
-            reader = new CSVReader(new FileReader("C:\\Users\\Alan\\Documents\\MetalTronik\\backend\\src\\main\\java\\com\\example\\metalTest\\tipo\\tipos.csv"));
+            reader = new CSVReader(new FileReader("C:\\Users\\Alan\\IdeaProjects\\MetalTronik\\backend\\src\\main\\java\\com\\example\\metalTest\\tipo\\tipos.csv"));
             String [] nextLine;
             //reads one line at a time
             while ((nextLine = reader.readNext()) != null){
