@@ -30,15 +30,13 @@ public class PersonalServiceImpl implements PersonalService {
     @Autowired
     TipoRepository tipoRepository;
     @Autowired
-    PasswordEncoder passwordEncoder;
-    @Autowired
     RolRepository rolRepository;
     @Autowired
     CredencialRepository credencialRepository;
 
     @Override
     public List<Personal> getAll() {
-        return personalRepository.findAll();
+        return personalRepository.findAllByCredencialIsNull();
     }
 
     @Override
@@ -55,13 +53,9 @@ public class PersonalServiceImpl implements PersonalService {
     @Override
     public Personal create(PersonalRequest usuario){
         Personal usrActual = personalMapper.personalRequestToPersonal(usuario);
-        //Set<Rol> roles = new HashSet<>();
-        //roles.add(rolRepository.findById(usuario.getRol()).get());
         Direccion direccion = usuario.getDireccion();
         usrActual.setDireccion(new Direccion(direccion.getPais(), direccion.getProvincia(), direccion.getCiudad(), direccion.getCalle(), direccion.getNumero()));
         usrActual.setCargo(tipoRepository.findById(usuario.getCargo()).get());
-        //Credencial credencial = new Credencial(usrActual.getId(), usuario.getNombre_usuario(), passwordEncoder.encode(usuario.getContrasenia()), roles);
-        //usrActual.setCredencial(credencialRepository.save(credencial));
         return personalRepository.save(usrActual);
     }
 

@@ -3,7 +3,6 @@ package com.example.metalTest.usuarios.credenciales.usuarioCredencial.service;
 import com.example.metalTest.usuarios.personal.domain.Personal;
 import com.example.metalTest.usuarios.personal.service.PersonalService;
 import com.example.metalTest.usuarios.credenciales.usuarioCredencial.controller.UsuarioCredencialController;
-import com.example.metalTest.usuarios.usuario.domain.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

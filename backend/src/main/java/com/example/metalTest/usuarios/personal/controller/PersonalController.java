@@ -15,7 +15,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/usuario")
+@RequestMapping("/api/personal")
 public class PersonalController {
 
     @Autowired
@@ -38,7 +38,6 @@ public class PersonalController {
 
     @PostMapping
     public ResponseEntity<?> createPersonal(@Valid @RequestBody PersonalRequest personalRequest, BindingResult bindingResult) throws ValidateFieldException {
-
         return new ResponseEntity<>(personalService.create(personalRequest), HttpStatus.CREATED);
     }
 
