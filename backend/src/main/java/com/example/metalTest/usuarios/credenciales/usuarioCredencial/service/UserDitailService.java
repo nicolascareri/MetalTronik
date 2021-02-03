@@ -16,7 +16,7 @@ public class UserDitailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String user_name) throws UsernameNotFoundException {
-       // Usuario personal = personalService.findFyNombreUsuario(user_name);
-        return null;//UsuarioCredencialController.build(personal.getCredencial());
+        Personal personal = personalService.findFyNombreUsuario(user_name);
+        return UsuarioCredencialController.build(personal.getCredencial());
     }
 }

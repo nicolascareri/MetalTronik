@@ -77,7 +77,9 @@ public class PersonalServiceImpl implements PersonalService {
 
     @Override
     public Personal findFyNombreUsuario(String s) {
-        return null;//personalRepository.findByCredencial_Nombre_usuario(s).get();
+        Personal personal = personalRepository.getByNombreUsuario(s);
+        System.out.println(personal.getNombre());
+        return personal;
     }
 
 }
