@@ -11,6 +11,7 @@ import java.util.Optional;
 public interface PersonalRepository extends JpaRepository<Personal, Integer> {
 
     List<Personal> findAllByCredencialIsNull();
+    List<Personal> findAllByCredencialIsNotNull();
 
 
 }

@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -42,5 +43,15 @@ public class UsuarioServiceImpl implements UsuarioService {
         personal.setCredencial(credencialRepository.save(credencial));
         personalRepository.save(personal);
         return personal;
+    }
+
+    @Override
+    public List<Personal> getAll() {
+        return personalRepository.findAllByCredencialIsNotNull();
+    }
+
+    @Override
+    public Personal getById(Integer id) {
+        return personalRepository.findById(id).get();
     }
 }

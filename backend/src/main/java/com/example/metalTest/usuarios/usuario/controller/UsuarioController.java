@@ -19,6 +19,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -48,5 +49,15 @@ public class UsuarioController {
     @PostMapping("/create/{id}")
     public ResponseEntity<Personal> create(@Valid @RequestBody UsuarioRequest usuarioRequest, @PathVariable Integer id) throws ValidateFieldException {
         return new ResponseEntity<Personal>(usuarioService.create(usuarioRequest, id), HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Personal>> getAll() {
+        return new ResponseEntity<>(usuarioService.getAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Personal> getById(@PathVariable Integer id) throws ValidateFieldException {
+        return new ResponseEntity<>(usuarioService.getById(id), HttpStatus.OK);
     }
 }
