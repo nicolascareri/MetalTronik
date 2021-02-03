@@ -49,6 +49,10 @@ public class Personal {
     @JoinColumn
     private Direccion direccion;
 
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn
+    private Credencial credencial;
+
 
 
 

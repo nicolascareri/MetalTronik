@@ -1,8 +1,12 @@
 package com.example.metalTest.usuarios.usuario.controller;
 
+import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.security.jwt.JwtDto;
 import com.example.metalTest.security.jwt.JwtProvider;
 import com.example.metalTest.usuarios.personal.controller.request.LoginRequest;
+import com.example.metalTest.usuarios.personal.domain.Personal;
+import com.example.metalTest.usuarios.usuario.controller.request.UsuarioRequest;
+import com.example.metalTest.usuarios.usuario.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +19,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -23,6 +28,9 @@ public class UsuarioController {
 
     @Autowired
     AuthenticationManager authenticationManager;
+
+    @Autowired
+    UsuarioService usuarioService;
     @Autowired
     JwtProvider jwtProvider;
     @PostMapping("/login")
@@ -37,5 +45,19 @@ public class UsuarioController {
         JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
         return new ResponseEntity(jwtDto, HttpStatus.OK);
 
+    }
+    @PostMapping("/create/{id}")
+    public ResponseEntity<Personal> create(@Valid @RequestBody UsuarioRequest usuarioRequest, @PathVariable Integer id) throws ValidateFieldException {
+        return new ResponseEntity<Personal>(usuarioService.create(usuarioRequest, id), HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Personal>> getAll() {
+        return new ResponseEntity<>(usuarioService.getAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Personal> getById(@PathVariable Integer id) throws ValidateFieldException {
+        return new ResponseEntity<>(usuarioService.getById(id), HttpStatus.OK);
     }
 }

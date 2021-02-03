@@ -20,7 +20,7 @@ public class Credencial {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column
+    @Column(unique=true)
     private String nombre_usuario;
 
     @Column
@@ -29,4 +29,10 @@ public class Credencial {
     @ManyToMany
     @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "rol_id"))
     private Set<Rol> roles = new HashSet<>();
+
+    public Credencial(String nombre_usuario, String contrasenia, Set<Rol> roles) {
+        this.nombre_usuario = nombre_usuario;
+        this.contrasenia = contrasenia;
+        this.roles = roles;
+    }
 }
