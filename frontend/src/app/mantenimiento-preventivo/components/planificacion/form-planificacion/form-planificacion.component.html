@@ -35,21 +35,21 @@
           <div class="form-row">
       
             <div class="col">
-            <label for="maquina_cod">Maquina</label>
+            <label for="maquina_id">Maquina</label>
             <app-input [type]="'select-pair'" 
                        [parentForm]="tareaForm"  
-                       [control]="tareaForm.controls.maquina_cod"
+                       [control]="tareaForm.controls.maquina_id"
                        [options]="dataSourceMaquinas"
                        (change)="getInAddMode($event.target.value)">
             </app-input>
             </div>
 
             <div class="col">
-              <label for="parte_cod">Parte de maquina</label>
+              <label for="parte_id">Parte de maquina</label>
               <app-input [type]="'select-pair'"
                          [options]="dataSourcePartes"
                          [parentForm]="tareaForm" 
-                         [control]="tareaForm.controls.parte_cod"
+                         [control]="tareaForm.controls.parte_id"
                          [required]="true">
               </app-input>
               </div>

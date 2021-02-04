@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { MainComponent } from './components/main/main.component';
+import { CanActivateViaAuthGuard } from "../core/CanActivateViaAuthGuard";
 
 
 const routes: Routes = [
   {
     path: 'main',
     component: MainComponent,
+    canActivateChild: [CanActivateViaAuthGuard],
     children: [
       {
         path: '',

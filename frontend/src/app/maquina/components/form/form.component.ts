@@ -90,8 +90,8 @@ export class FormMaquinaComponent implements OnInit {
     this.machinesForm.controls.maquina_cod.setValue(maquina.maquina_cod);
     this.machinesForm.controls.equipo.setValue(maquina.equipo);
     this.machinesForm.controls.descripcion.setValue(maquina.descripcion);
-    this.machinesForm.controls.planta_cod.setValue(maquina.planta.id);
-    this.machinesForm.controls.sector_cod.setValue(maquina.sector.id);
+    this.machinesForm.controls.planta_id.setValue(maquina.planta.id);
+    this.machinesForm.controls.sector_id.setValue(maquina.sector.id);
   }
 
   linkParts(){

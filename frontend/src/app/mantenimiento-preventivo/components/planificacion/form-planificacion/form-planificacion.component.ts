@@ -7,6 +7,7 @@ import { TareaService } from "../../../services/tarea.service";
 import { MaquinaService } from "../../../../maquina/services/maquina.service";
 import { ParteService } from "../../../../maquina/services/parte.service";
 
+
 @Component({
   selector: 'app-form-planificacion',
   templateUrl: './form-planificacion.component.html',
@@ -14,9 +15,12 @@ import { ParteService } from "../../../../maquina/services/parte.service";
 })
 export class FormPlanificacionComponent implements OnInit {
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   public dataSourceMaquinas;
   public dataSourcePartes;
   public dataSourceHistorial;
+  public dataSourceUsers;
   public tareaId: any;
   public maquinaId: any;
   public mode = 'add';
@@ -26,13 +30,14 @@ export class FormPlanificacionComponent implements OnInit {
   public messageTitleError: any = "ERROR";
   public messageBody: any = "La tarea se ha programado correctamente";
   public tareaForm: FormGroup = new FormGroup({
-    estado: new FormControl(30),
     frecuencia: new FormControl(''),
     inicio: new FormControl(''),
-    maquina_cod: new FormControl(''),
-    parte_cod: new FormControl(''),
+    maquina_id: new FormControl(''),
+    parte_id: new FormControl(''),
     tarea: new FormControl('')
   });
+  
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   constructor(private TareaService: TareaService,
               private MaquinaService: MaquinaService,
@@ -53,6 +58,8 @@ export class FormPlanificacionComponent implements OnInit {
     }
   }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   showSuccess(){
     this.MessageService.showSuccess({
       title: this.messageTitleSuccess,
@@ -67,6 +74,44 @@ export class FormPlanificacionComponent implements OnInit {
     })
   }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  loadTarea(tarea) {
+    this.getPartes(tarea.maquina.id);
+    this.getHistorial(tarea.id);
+    this.mode = "edit";
+    this.section = 'Editar tarea';
+    this.buttonName = 'Confirmar cambios';
+    this.tareaForm.controls.inicio.setValue(tarea.inicio.replace(' ', 'T'));
+    this.tareaForm.controls.frecuencia.setValue(tarea.frecuencia);
+    this.tareaForm.controls.maquina_id.setValue(tarea.maquina.id);
+    this.tareaForm.controls.parte_id.setValue(tarea.parte.id);
+    this.tareaForm.controls.tarea.setValue(tarea.tarea);
+  }
+
+  saveForm() {
+    if (this.mode === 'add') {
+      this.TareaService.postTarea(this.tareaForm).subscribe(
+        tarea => {
+          this.showSuccess();
+          this.router.navigate(['main/mantenimientosPreventivos']);
+        },
+        error => this.showError(error.error)
+      );
+      } else {
+        this.TareaService.updateTarea(this.tareaId, this.tareaForm).subscribe(
+        tarea => {
+          this.messageBody = "La tarea se ha editado correctamente"
+          this.showSuccess();
+          this.router.navigate(['main/mantenimientosPreventivos']);
+        },
+        error => this.showError(error.error)
+        );
+      }
+  }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
   getTarea(id) {
     this.TareaService.getTarea(id).pipe(first()).subscribe(
       tarea => {
@@ -127,44 +172,8 @@ export class FormPlanificacionComponent implements OnInit {
         console.log(error.error);
       }
     );
-  }  
-
-
-  loadTarea(tarea) {
-    this.getPartes(tarea.maquina.id);
-    this.getHistorial(tarea.id);
-    this.mode = "edit";
-    this.section = 'Editar tarea';
-    this.buttonName = 'Confirmar cambios';
-    this.tareaForm.controls.inicio.setValue(tarea.inicio.replace(' ', 'T'));
-    this.tareaForm.controls.frecuencia.setValue(tarea.frecuencia);
-    this.tareaForm.controls.maquina_cod.setValue(tarea.maquina.id);
-    this.tareaForm.controls.parte_cod.setValue(tarea.parte.id);
-    this.tareaForm.controls.tarea.setValue(tarea.tarea);
   }
 
-  saveForm() {
-    if (this.mode === 'add') {
-      this.TareaService.postTarea(this.tareaForm).subscribe(
-        tarea => {
-          this.showSuccess();
-          this.router.navigate(['main/mantenimientosPreventivos']);
-        },
-        error => this.showError(error.error)
-      );
-    } else {
-      console.log(this.tareaForm);
-      this.TareaService.updateTarea(this.tareaId, this.tareaForm).subscribe(
-        tarea => {
-          this.messageBody = "La tarea se ha editado correctamente"
-          this.showSuccess();
-          this.router.navigate(['main/mantenimientosPreventivos']);
-        },
-        error => this.showError(error.error)
-        );
-    }
-  }
-
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }

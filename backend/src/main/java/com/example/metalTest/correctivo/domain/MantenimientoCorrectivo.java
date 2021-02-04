@@ -4,7 +4,7 @@ import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
 import com.example.metalTest.parte.domain.Parte;
 import com.example.metalTest.tipo.domain.Tipo;
-import com.example.metalTest.usuarios.usuario.domain.Usuario;
+import com.example.metalTest.usuarios.personal.domain.Personal;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
@@ -58,19 +58,19 @@ public class MantenimientoCorrectivo{
     private int nrocorrectivo;
 
     @Column
-    private long tiempoReparacion;
+    private int tiempoReparacion;
 
     @JoinColumn
     @OneToOne(cascade = CascadeType.ALL)
-    private Usuario encargo1;
+    private Personal encargo1;
 
     @JoinColumn
     @OneToOne(cascade = CascadeType.ALL)
-    private Usuario encargo2;
+    private Personal encargo2;
 
     @JoinColumn
     @OneToOne(cascade = CascadeType.ALL)
-    private Usuario encargo3;
+    private Personal encargo3;
 
 
 

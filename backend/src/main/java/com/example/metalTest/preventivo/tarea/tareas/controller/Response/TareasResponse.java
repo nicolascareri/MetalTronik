@@ -17,5 +17,4 @@ public class TareasResponse {
     private int frecuencia;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT-3")
     private Date inicio;
-    private Short estado;
 }

@@ -36,22 +36,30 @@ export class TablaRepuestosComponent implements OnInit {
   public columnsToDisplay: any[] = [
     {
       id: 1,
-      property: 'repuesto_nombre',
+      property: 'repuesto_codigo',
       name: 'Código repuesto',
       sort: 'up',
-      filterValue: '',
-      width: '15%'
-    },
-    {
-      id: 2,
-      property: 'repuesto_modelo',
-      name: 'Modelo',
-      sort: '',
       filterValue: '',
       width: '20%'
     },
     {
+      id: 2,
+      property: 'repuesto_modelo',
+      name: 'Nombre',
+      sort: 'up',
+      filterValue: '',
+      width: '25%'
+    },
+    {
       id: 3,
+      property: 'repuesto_nombre',
+      name: 'Modelo',
+      sort: '',
+      filterValue: '',
+      width: '25%'
+    },
+    {
+      id: 4,
       property: 'cantidad_instalada',
       name: 'Cantidad instalada',
       sort: '',
@@ -59,39 +67,47 @@ export class TablaRepuestosComponent implements OnInit {
       width: '20%'
     },
     {
-      id: 4,
+      id: 5,
       property: 'maquina_codigo',
       name: 'Código maquina',
       sort: '',
       filterValue: '',
-      width: '15%'
-    },
-    {
-      id: 5,
-      property: 'parte_nombre',
-      name: 'Código parte',
-      sort: '',
-      filterValue: '',
-      width: '15%'
+      width: '25%'
     },
     {
       id: 6,
+      property: 'maquina_nombre',
+      name: 'Nombre',
+      sort: '',
+      filterValue: '',
+      width: '25%'
+    },
+    {
+      id: 7,
+      property: 'parte_nombre',
+      name: 'Nombre parte',
+      sort: '',
+      filterValue: '',
+      width: '25%'
+    },
+    {
+      id: 8,
       property: 'maquina_planta',
       name: 'Planta',
       sort: '',
       filterValue: '',
-      width: '15%'
+      width: '25%'
     },
     {
-      id: 7,
+      id: 9,
       property: 'maquina_sector',
       name: 'Sector',
       sort: '',
       filterValue: '',
-      width: '15%'
+      width: '25%'
     },
     {
-      id: 8,
+      id: 10,
       property: 'observaciones',
       name: 'Observaciones',
       sort: '',

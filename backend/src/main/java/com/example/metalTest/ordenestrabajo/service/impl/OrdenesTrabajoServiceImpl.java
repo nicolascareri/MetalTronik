@@ -13,7 +13,7 @@ import com.example.metalTest.ordenestrabajo.service.OrdenesTrabajoService;
 import com.example.metalTest.parte.repository.ParteRepository;
 import com.example.metalTest.parte.service.impl.ParteBuscador;
 import com.example.metalTest.tipo.repository.TipoRepository;
-import com.example.metalTest.usuarios.usuario.repository.UsuarioRepository;
+import com.example.metalTest.usuarios.personal.repository.PersonalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,7 +34,7 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
     MaquinaRepository maquinaRepository;
 
     @Autowired
-    UsuarioRepository usuarioRepository;
+    PersonalRepository personalRepository;
 
     @Autowired
     TipoRepository tipoRepository;
@@ -62,7 +62,6 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         }
     }
 
-    @Transactional
     @Override
     public OrdenesTrabajoResponse create(OrdenesTrabajoRequest ordenesTrabajoRequest) throws ValidateFieldException {
         if (ordenesTrabajoRequest.getFechaEntrega().after(ordenesTrabajoRequest.getFechaRealizar())) {
@@ -83,8 +82,8 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         Integer maquinaCod = ordenesTrabajoRequest.getMaquina_id();
         ordenesTrabajo.setMaquina(maquinaRepository.findById(maquinaCod).get());
         ordenesTrabajo.setParte(parteBuscador.getParte(ordenesTrabajoRequest.getParte_id(), parteRepository.getAllByMaquina(maquinaCod)));
-        ordenesTrabajo.setEncargo(usuarioRepository.findById(ordenesTrabajoRequest.getEncargo_id()).get());
-        ordenesTrabajo.setResponsable(usuarioRepository.findById(ordenesTrabajoRequest.getResponsable_id()).get());
+        ordenesTrabajo.setEncargo(personalRepository.findById(ordenesTrabajoRequest.getEncargo_id()).get());
+        ordenesTrabajo.setResponsable(personalRepository.findById(ordenesTrabajoRequest.getResponsable_id()).get());
         ordenesTrabajo.setTipo(tipoRepository.findById(ordenesTrabajoRequest.getTipo_id()).get());
         ordenesTrabajo.setPrioridad(tipoRepository.findById(ordenesTrabajoRequest.getPrioridad_id()).get());
         ordenesTrabajo.setEstado(EstadoOrden.PENDIENTE.getValue());
@@ -112,8 +111,8 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         ordenesTrabajo.setTipo(tipoRepository.findById(ordenesTrabajoRequest.getTipo_id()).get());
         ordenesTrabajo.setFechaEntrega(ordenesTrabajoRequest.getFechaEntrega());
         ordenesTrabajo.setFechaRealizar(ordenesTrabajoRequest.getFechaRealizar());
-        ordenesTrabajo.setEncargo(usuarioRepository.findById(ordenesTrabajoRequest.getEncargo_id()).get());
-        ordenesTrabajo.setResponsable(usuarioRepository.findById(ordenesTrabajoRequest.getResponsable_id()).get());
+        ordenesTrabajo.setEncargo(personalRepository.findById(ordenesTrabajoRequest.getEncargo_id()).get());
+        ordenesTrabajo.setResponsable(personalRepository.findById(ordenesTrabajoRequest.getResponsable_id()).get());
         ordenesTrabajo.setObservaciones(ordenesTrabajoRequest.getObservaciones());
         ordenesTrabajo.setOrdenTerciarizacion(ordenesTrabajoRequest.getOrdenTerciarizacion());
         ordenesTrabajo.setEstado(ordenesTrabajoRequest.getEstado());

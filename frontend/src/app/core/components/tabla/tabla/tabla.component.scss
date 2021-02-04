@@ -1,5 +1,21 @@
 @import "../../../../../assets/themes";
 
+.button-container{
+    display:inline-block;
+    margin-left:auto;
+    margin-right: 1%;
+    text-align:right;
+}
+
+.table-container{
+    margin: 1% 1% 1% 1%;
+}
+
+.table-box{
+    box-sizing: content-box;
+    width: 100%;
+}
+
 @mixin header {
     background-color: #284D4D;
     color :$white;
@@ -22,7 +38,7 @@ $bg-striped-ligth: $white;
     display: none !important;
 }
 .table {
-    margin: 0 $margin-left;
+    margin: 1% 1% 1% 1%;
     &__header {
         @include header();
         color: $white;

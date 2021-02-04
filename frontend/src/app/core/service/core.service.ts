@@ -245,6 +245,15 @@ export class CoreService {
                     result.cargo = result.cargo.nombre;
                   }
                   break;
+            case 'direccion':
+                  if(result.direccion){
+                    result.calle = result.direccion.calle;
+                    result.numero = result.direccion.numero;
+                    result.ciudad = result.direccion.ciudad;
+                    result.pais = result.direccion.pais;
+                    result.provincia = result.direccion.provincia;
+                  }
+                  break;
             case 'estado':
               if(result.estado){
                 result.estado === 1? result.estado = 'Pendiente': result.estado = 'Ok';

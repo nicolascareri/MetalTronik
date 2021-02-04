@@ -15,16 +15,22 @@ export const ENDPOINTS = {
 
     SERVER: {
         serve: 'https://metaltronik.herokuapp.com/',
-        
         // local: 'http://localhost:8080/'
         // heroku: 'https://metaltronik.herokuapp.com/'
+    },
+
+    PERSONAL: {
+        GET: 'api/personal',
+        GETID: 'api/personal/',
+        POST: 'api/personal',
+        PUT: 'api/personal/',
     },
 
     USUARIOS: {
         GET: 'api/usuario',
         GETID: 'api/usuario/',
-        POST: 'api/usuario',
-        PUT: 'api/usuario/'
+        POST: 'api/usuario/create/',
+        LOGIN: 'api/usuario/login'
     },
 
     ORDENES_TRABAJO: {
@@ -134,11 +140,11 @@ export const ENDPOINTS = {
 
     INDICADORES: {
         ///Graficos Ordenes///
-        USUARIOS: '/api/indicadores/formula/1/usuario',
-        SECTORES : '/api/indicadores/formula/1/sector',
-        PIE_TIPOS: '/api/indicadores/formula/Torta/tipo',
-        PIE_PRIORIDADES: '/api/indicadores/formula/Torta/prioridad',
-        USUARIOS2: '/api/indicadores/formula/2/usuario',
+        USUARIOS: 'api/indicadores/formula/1/personal',
+        SECTORES : 'api/indicadores/formula/1/sector',
+        PIE_TIPOS: 'api/indicadores/formula/Torta/tipo',
+        PIE_PRIORIDADES: 'api/indicadores/formula/Torta/prioridad',
+        USUARIOS2: 'api/indicadores/formula/2/personal',
 
         ///Graficos Correctivos///
         LINE_CHART: 'api/indicadores/formula/Line-chart/maquina'

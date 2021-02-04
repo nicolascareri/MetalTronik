@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { UserService } from '../../../usuarios/services/user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { MessageService } from "../../../core/service/message.service";
 import { TipoService } from '../../../tipo/services/tipo.service';
@@ -15,7 +15,19 @@ export class FormUsuarioComponent implements OnInit {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  public userForm: FormGroup;
+  public userForm = new FormGroup({
+    nombre: new FormControl(''),
+    apellido: new FormControl(''),
+    fnacimiento: new FormControl(''),
+    cargo: new FormControl(''),
+    legajo: new FormControl(''),
+    correo_electronico: new FormControl(''),
+    ciudad: new FormControl(''),
+    pais: new FormControl(''),
+    provincia: new FormControl(''),
+    calle: new FormControl(''),
+    numero: new FormControl('')
+  });
   public userId: any;
   public mode = 'add';
   public section = 'Nuevo personal';
@@ -30,9 +42,8 @@ export class FormUsuarioComponent implements OnInit {
   constructor(private UserService: UserService,
     private TipoService: TipoService,
     private route: ActivatedRoute,
-    private MessageService: MessageService) {
-    this.userForm = this.createFormGroup();
-  }
+    private router: Router,
+    private MessageService: MessageService) {}
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.params.id;
@@ -63,89 +74,89 @@ export class FormUsuarioComponent implements OnInit {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-loadUser(user) {
-  this.mode = "edit";
-  this.section = 'Editar usuario';
-  this.buttonName = 'Confirmar cambios';
-  this.userForm.controls.nombre.setValue(user.nombre);
-  this.userForm.controls.apellido.setValue(user.apellido);
-  this.userForm.controls.fnacimiento.setValue(user.fnacimiento.replace(' ', 'T'));
-  this.userForm.controls.cargo_id.setValue(user.cargo_id);
-  this.userForm.controls.legajo.setValue(user.legajo);
-  this.userForm.controls.nombre_usuario.setValue(user.nombre_usuario);
-  this.userForm.controls.contrasenia.setValue(user.contrasenia);
-  this.userForm.controls.ciudad.setValue(user.ciudad);
-  this.userForm.controls.pais.setValue(user.pais);
-  this.userForm.controls.provincia.setValue(user.provincia);
-  this.userForm.controls.direccion.setValue(user.direccion);
-  this.userForm.controls.correo_electronico.setValue(user.correo_electronico);
-}
-
-saveForm() {
-  if (this.mode === 'add') {
-    this.UserService.postUser(this.userForm).subscribe(
-      user => {
-        this.showSuccess();
-      },
-      error => this.showError(error.error)
-    );
-  } else {
-    this.UserService.updateUser(this.userId, this.userForm).subscribe(
-      user => {
-        this.messageBody = "El usuario se ha editado correctamente"
-        this.showSuccess();
-      },
-      error => this.showError(error.error)
-    );
+  loadUser(user) {
+    this.mode = "edit";
+    this.section = 'Editar usuario';
+    this.buttonName = 'Confirmar cambios';
+    this.userForm.controls.nombre.setValue(user.nombre);
+    this.userForm.controls.apellido.setValue(user.apellido);
+    this.userForm.controls.fnacimiento.setValue(user.fnacimiento.replace(' ', 'T'));
+    this.userForm.controls.cargo.setValue(user.cargo.id);
+    this.userForm.controls.legajo.setValue(user.legajo);
+    this.userForm.controls.ciudad.setValue(user.direccion.ciudad);
+    this.userForm.controls.pais.setValue(user.direccion.pais);
+    this.userForm.controls.provincia.setValue(user.direccion.provincia);
+    this.userForm.controls.calle.setValue(user.direccion.calle);
+    this.userForm.controls.numero.setValue(user.direccion.numero);
+    this.userForm.controls.correo_electronico.setValue(user.correo_electronico);
   }
-}
 
-createFormGroup() {
-  return new FormGroup({
-    nombre: new FormControl(''),
-    apellido: new FormControl(''),
-    fnacimiento: new FormControl(''),
-    cargo: new FormControl(''),
-    legajo: new FormControl(''),
-    nombre_usuario: new FormControl(''),
-    contrasenia: new FormControl(''),
-    ciudad: new FormControl(''),
-    pais: new FormControl(''),
-    provincia: new FormControl(''),
-    direccion: new FormControl(''),
-    correo_electronico: new FormControl(''),
-    estado: new FormControl(30)
-  })
-}
+  saveForm() {
 
+    let request = {
+      'apellido': this.userForm.controls.apellido.value,
+      'cargo' : this.userForm.controls.cargo.value,
+      'correo_electronico' : this.userForm.controls.correo_electronico.value,
+      "direccion": {
+        "calle": this.userForm.controls.calle.value,
+        "ciudad": this.userForm.controls.ciudad.value,
+        "id": 0,
+        "numero": this.userForm.controls.numero.value,
+        "pais": this.userForm.controls.pais.value,
+        "provincia": this.userForm.controls.provincia.value
+      },
+      'fnacimiento': this.userForm.controls.fnacimiento.value,
+      'legajo': this.userForm.controls.legajo.value,
+      'nombre': this.userForm.controls.nombre.value
+    }
+
+
+    if (this.mode === 'add') {
+      this.UserService.postUser(request).subscribe(
+        user => {
+          this.showSuccess();
+          this.router.navigate(['main/personal']);
+        },
+        error => this.showError(error.error)
+      );
+    } else {
+      this.UserService.updateUser(this.userId, this.userForm).subscribe(
+        user => {
+          this.messageBody = "El usuario se ha editado correctamente"
+          this.showSuccess();
+        },
+        error => this.showError(error.error)
+      );
+    }
+  }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-getUser(id) {
-  this.UserService.getUser(id).pipe(first()).subscribe(
-    user => {
-      this.loadUser(user);
-    }
-  )
-}
+  getUser(id) {
+    this.UserService.getUser(id).pipe(first()).subscribe(
+      user => {
+        this.loadUser(user);
+      }
+    )
+  }
 
-getCargos() {
-  this.TipoService.getTipos('Cargos').subscribe(
-    (data: any) => {
-      this.dataSourceCargos = data.map(
-        val => {
-          return {
-            "id": val.id,
-            "descripcion": val.nombre
+  getCargos() {
+    this.TipoService.getTipos('Cargos').subscribe(
+      (data: any) => {
+        this.dataSourceCargos = data.map(
+          val => {
+            return {
+              "id": val.id,
+              "descripcion": val.nombre
+            }
           }
-        }
-      );
-    },
-    (error) => {
-      console.error(error);
-    }
-  );
-}
+        );
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

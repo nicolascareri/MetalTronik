@@ -15,19 +15,19 @@ export class UserService {
   }
 
   getUsers() {
-    return this.http.get(this.path.SERVER.serve + this.path.USUARIOS.GET);
+    return this.http.get(this.path.SERVER.serve + this.path.PERSONAL.GET);
   }
 
   getUser(id){
-    return this.http.get(this.path.SERVER.serve + this.path.USUARIOS.GETID + id);
+    return this.http.get(this.path.SERVER.serve + this.path.PERSONAL.GETID + id);
   }
 
-  postUser(userForm){
-    return this.http.post<any>(this.path.SERVER.serve + this.path.USUARIOS.POST, userForm.value);
+  postUser(request){
+    return this.http.post<any>(this.path.SERVER.serve + this.path.PERSONAL.POST, request);
   }
 
   updateUser(id, user){
-    return this.http.put<any>(this.path.SERVER.serve + this.path.USUARIOS.PUT + id, user.value);
+    return this.http.put<any>(this.path.SERVER.serve + this.path.PERSONAL.PUT + id, user.value);
   }
 
   getCargos(){

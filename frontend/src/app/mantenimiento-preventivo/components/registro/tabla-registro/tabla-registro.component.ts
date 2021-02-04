@@ -127,7 +127,7 @@ export class TablaRegistroComponent implements OnInit {
       name: 'Observaciones',
       sort: '',
       filterValue: '',
-      width: '35%'
+      width: '65%'
     },
 
   ];

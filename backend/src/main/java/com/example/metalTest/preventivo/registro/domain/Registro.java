@@ -1,7 +1,7 @@
 package com.example.metalTest.preventivo.registro.domain;
 
 import com.example.metalTest.preventivo.tarea.tareas.domain.Tareas;
-import com.example.metalTest.usuarios.usuario.domain.Usuario;
+import com.example.metalTest.usuarios.personal.domain.Personal;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,5 +31,5 @@ public class Registro {
     private String observaciones;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
-    private Usuario encargado;
+    private Personal encargado;
 }
