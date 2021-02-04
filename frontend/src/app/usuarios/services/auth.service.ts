@@ -18,11 +18,12 @@ export class AuthService {
     .subscribe((data: any) => {
       
       localStorage.setItem('token', data.token);
-      if(this.logIn()){
+      if(this.logIn()){        
         this.router.navigate(['main']);
       }else{
         this.router.navigate(['login']);
       }
+
     })
   }
 

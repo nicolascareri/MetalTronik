@@ -32,8 +32,8 @@ export class FormPlanificacionComponent implements OnInit {
   public tareaForm: FormGroup = new FormGroup({
     frecuencia: new FormControl(''),
     inicio: new FormControl(''),
-    maquina_cod: new FormControl(''),
-    parte_cod: new FormControl(''),
+    maquina_id: new FormControl(''),
+    parte_id: new FormControl(''),
     tarea: new FormControl('')
   });
   
@@ -84,8 +84,8 @@ export class FormPlanificacionComponent implements OnInit {
     this.buttonName = 'Confirmar cambios';
     this.tareaForm.controls.inicio.setValue(tarea.inicio.replace(' ', 'T'));
     this.tareaForm.controls.frecuencia.setValue(tarea.frecuencia);
-    this.tareaForm.controls.maquina_cod.setValue(tarea.maquina.id);
-    this.tareaForm.controls.parte_cod.setValue(tarea.parte.id);
+    this.tareaForm.controls.maquina_id.setValue(tarea.maquina.id);
+    this.tareaForm.controls.parte_id.setValue(tarea.parte.id);
     this.tareaForm.controls.tarea.setValue(tarea.tarea);
   }
 

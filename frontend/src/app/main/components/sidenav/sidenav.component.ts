@@ -47,5 +47,4 @@ export class SidenavComponent{
       this.selected = object;
   }
 
-
 }

@@ -56,22 +56,6 @@ export class TablaUsuarioComponent implements OnInit {
       }, 
       {
         id: 6,
-        property:'nombre_usuario',
-        name: 'Nombre de usuario del sistema',
-        sort: '',
-        filterValue: '',
-        width: '15%'
-      }, 
-      {
-        id: 7,
-        property:'contrasenia',
-        name: 'Contraseñia asociada',
-        sort: '',
-        filterValue: '',
-        width: '350px'
-      }, 
-      {
-        id: 8,
         property:'ciudad',
         name: 'Ciudad',
         sort: '',
@@ -79,7 +63,7 @@ export class TablaUsuarioComponent implements OnInit {
         width: '350px'
       },
       {
-        id: 9,
+        id: 7,
         property:'pais',
         name: 'Pais',
         sort: '',
@@ -87,7 +71,7 @@ export class TablaUsuarioComponent implements OnInit {
         width: '20%'
       }, 
       {
-        id: 10,
+        id: 8,
         property:'provincia',
         name: 'Provincia',
         sort: '',
@@ -95,15 +79,23 @@ export class TablaUsuarioComponent implements OnInit {
         width: '20%'
       }, 
       {
-        id: 11,
-        property:'direccion',
-        name: 'Direccion',
+        id: 9,
+        property:'calle',
+        name: 'Calle',
         sort: '',
         filterValue: '',
         width: '20%'
       },
       {
-        id: 12,
+        id: 10,
+        property:'numero',
+        name: 'Numero de calle',
+        sort: '',
+        filterValue: '',
+        width: '20%'
+      },
+      {
+        id: 11,
         property:'correo_electronico',
         name: 'Correo electronico',
         sort: '',
@@ -136,7 +128,7 @@ export class TablaUsuarioComponent implements OnInit {
   getUsuarios(){
     this.UserService.getUsers().subscribe(
       (data: any)  => { 
-        this.dataSourceUsers = this.CoreService.replaceFormat(data, ['cargo']);
+        this.dataSourceUsers = this.CoreService.replaceFormat(data, ['cargo', 'direccion']);
       },
       (error) => {
         console.error(error);
