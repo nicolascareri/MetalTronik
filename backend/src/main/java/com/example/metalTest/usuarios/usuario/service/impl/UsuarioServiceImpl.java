@@ -36,10 +36,14 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Personal create(UsuarioRequest usuarioRequest, Integer id) throws ValidateFieldException {
-       Personal personal = personalRepository.findById(id).get();
+        //Busco el personal por id en la tabla personal
+        Personal personal = personalRepository.findById(id).get();
         Set<Rol> roles = new HashSet<>();
+        //busco el rol en la db
         roles.add(rolRepository.findById(usuarioRequest.getRol()).get());
+        //creo una credencial(nombre usuario y pass encriptada)
         Credencial credencial = new Credencial(usuarioRequest.getNombre_usuario(), passwordEncoder.encode(usuarioRequest.getContrasenia()), roles);
+        //cuando seteo la credencial se guarda sola en la tabla Credencial
         personal.setCredencial(credencialRepository.save(credencial));
         personalRepository.save(personal);
         return personal;
