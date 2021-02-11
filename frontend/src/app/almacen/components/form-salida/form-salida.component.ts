@@ -31,8 +31,8 @@ export class FormSalidaComponent implements OnInit {
     cantidad: new FormControl(''),
     fecha: new FormControl(''),
     repuesto_cod: new FormControl(''),
-    sector_cod: new FormControl(''),
-    solicitante_cod: new FormControl(''),
+    sector_id: new FormControl(''),
+    solicitante_id: new FormControl(''),
   });
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -81,8 +81,8 @@ export class FormSalidaComponent implements OnInit {
     this.salidaForm.controls.cantidad.setValue(salida.cantidad);
     this.salidaForm.controls.fecha.setValue(salida.fecha);
     this.salidaForm.controls.repuesto_cod.setValue(salida.repuesto_cod);
-    this.salidaForm.controls.sector_cod.setValue(salida.sector_cod);
-    this.salidaForm.controls.solicitante_cod.setValue(salida.solicitante_cod);
+    this.salidaForm.controls.sector_id.setValue(salida.sector_id);
+    this.salidaForm.controls.solicitante_id.setValue(salida.solicitante_id);
   }
 
   saveForm() {
