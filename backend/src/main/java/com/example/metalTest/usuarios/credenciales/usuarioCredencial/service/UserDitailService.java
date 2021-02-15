@@ -20,3 +20,4 @@ public class UserDitailService implements UserDetailsService {
         return UsuarioCredencialController.build(personal);
     }
 }
+

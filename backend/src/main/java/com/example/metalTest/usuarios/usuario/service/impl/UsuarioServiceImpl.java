@@ -72,8 +72,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public JwtDto login(LoginRequest loginRequest) {
-
-       JwtDto jwtDto = getJwtDto(loginRequest, new Rol());
+        Rol rol = personalRepository.getByNombreUsuario(loginRequest.getNombre_usuario()).getCredencial().getRol();
+       JwtDto jwtDto = getJwtDto(loginRequest, rol);
 
         return jwtDto;
     }
