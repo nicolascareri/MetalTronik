@@ -16,13 +16,19 @@ import java.util.List;
 public class RolController {
     @Autowired
     RolService rolService;
-    @GetMapping()
-    public ResponseEntity<List<Rol>> getByTipo(@PathVariable String tipo){
-       // return new ResponseEntity<>(rolService, HttpStatus.OK);
-        return null;
-    }
     @PostMapping
     public ResponseEntity<Rol> create(@RequestBody RolRequest rolRequest) throws ValidateFieldException {
         return new ResponseEntity<>(rolService.create(rolRequest), HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Rol>> getAll() {
+        return new ResponseEntity<>(rolService.getAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Rol> getById(@PathVariable Integer id) throws ValidateFieldException {
+        return new ResponseEntity<>(rolService.getById(id), HttpStatus.OK);
+
     }
 }

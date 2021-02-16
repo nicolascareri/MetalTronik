@@ -44,4 +44,14 @@ public class RolServiceImpl implements RolService {
     public Rol findByRango(String rango) {
         return rolRepository.findByRango(rango).get();
     }
+
+    @Override
+    public List<Rol> getAll() {
+        return rolRepository.findAll();
+    }
+
+    @Override
+    public Rol getById(Integer id) {
+        return rolRepository.getOne(id);
+    }
 }

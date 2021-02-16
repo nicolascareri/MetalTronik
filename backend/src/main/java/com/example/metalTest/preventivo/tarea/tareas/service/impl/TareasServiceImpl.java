@@ -1,6 +1,7 @@
 package com.example.metalTest.preventivo.tarea.tareas.service.impl;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
+import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
 import com.example.metalTest.parte.repository.ParteRepository;
 import com.example.metalTest.parte.service.impl.ParteBuscador;
@@ -44,7 +45,7 @@ public class TareasServiceImpl implements TareasService {
     public TareasResponse getById(Integer id) throws ValidateFieldException {
         Optional<Tareas> optionalTarea = tareasRepository.findById(id);
         if (!optionalTarea.isPresent()){
-            throw new ValidateFieldException("La tareas que intenta acceder no existe", "id", String.valueOf(id));
+            throw new ValidateFieldException("El recurso que desea acceder no existe", "id", String.valueOf(id));
         }
         return tareasMapper.toTareaResponse(optionalTarea.get());
     }
@@ -53,15 +54,19 @@ public class TareasServiceImpl implements TareasService {
     public TareasResponse update(Integer id, TareasRequest tareasRequest) throws ValidateFieldException {
         Optional<Tareas> optionalTarea = tareasRepository.findById(id);
         if (!optionalTarea.isPresent()){
-            throw new ValidateFieldException("La tareas que intenta acceder no existe", "id", String.valueOf(id));
+            throw new ValidateFieldException("El recurso que desea acceder no existe", "id", String.valueOf(id));
         }
-        Integer maquinaCod = tareasRequest.getMaquina_id();
+        Integer maquina_id = tareasRequest.getMaquina_id();
         Tareas tarea = optionalTarea.get();
         tareaHistorialService.create(tarea);
         tarea.setFrecuencia(tareasRequest.getFrecuencia());
         tarea.setInicio(tareasRequest.getInicio());
-        tarea.setMaquina(maquinaRepository.findById(maquinaCod).get());
-        tarea.setParte(parteBuscador.getParte(tareasRequest.getParte_id(),parteRepository.getAllByMaquina(maquinaCod)));
+        Optional opt = maquinaRepository.findById(maquina_id);
+        if (!opt.isPresent()) {
+            throw new ValidateFieldException("El recurso que desea acceder no existe", "id", String.valueOf(maquina_id));
+        }
+        tarea.setMaquina((Maquina)opt.get());
+        tarea.setParte(parteBuscador.getParte(tareasRequest.getParte_id(),parteRepository.getAllByMaquina(maquina_id)));
         tarea.setTarea(tareasRequest.getTarea());
         return tareasMapper.toTareaResponse(tareasRepository.save(tarea));
     }
@@ -69,9 +74,13 @@ public class TareasServiceImpl implements TareasService {
     @Override
     public TareasResponse create(TareasRequest tareasRequest) throws ValidateFieldException {
         Tareas tarea = tareasMapper.tareaRequestToTarea(tareasRequest);
-        Integer maquinaCod = tareasRequest.getMaquina_id();
-        tarea.setMaquina(maquinaRepository.findById(maquinaCod).get());
-        tarea.setParte(parteBuscador.getParte(tareasRequest.getParte_id(), parteRepository.getAllByMaquina(maquinaCod)));
+        Integer maquina_id = tareasRequest.getMaquina_id();
+        Optional opt = maquinaRepository.findById(maquina_id);
+        if (!opt.isPresent()) {
+            throw new ValidateFieldException("El recurso que desea acceder no existe", "id", String.valueOf(maquina_id));
+        }
+        tarea.setMaquina((Maquina)opt.get());
+        tarea.setParte(parteBuscador.getParte(tareasRequest.getParte_id(), parteRepository.getAllByMaquina(maquina_id)));
         return tareasMapper.toTareaResponse(tareasRepository.save(tarea));
     }
 }

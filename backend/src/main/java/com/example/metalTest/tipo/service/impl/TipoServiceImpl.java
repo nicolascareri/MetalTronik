@@ -63,5 +63,20 @@ public class TipoServiceImpl implements TipoService {
         return tipoRepository.getTipos();
     }
 
+    @Override
+    public Boolean delete(Integer id) throws ValidateFieldException {
+            Optional opt = tipoRepository.findById(id);
+        if (!opt.isPresent()) {
+            throw new ValidateFieldException("El tipo que desea acceder no existe", "id", String.valueOf(id));
+        }
+        try{
+            tipoRepository.deleteById(id);
+        }catch (Exception e){
+            throw new ValidateFieldException(e.getMessage(), "  id", String.valueOf(id));
+        }
+        return true;
+
+    }
+
 
 }

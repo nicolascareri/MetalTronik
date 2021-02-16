@@ -4,6 +4,7 @@ import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.tipo.controller.request.TipoRequest;
 import com.example.metalTest.tipo.domain.Tipo;
 import com.example.metalTest.tipo.service.TipoService;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,5 +47,10 @@ public class TipoController {
     @GetMapping("/tipos")
     public ResponseEntity<List<String>> getTipos(){
         return new ResponseEntity<>(tipoService.getTipos(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Boolean> delete(@PathVariable Integer id) throws ValidateFieldException {
+        return new ResponseEntity<Boolean>( tipoService.delete(id), HttpStatus.OK);
     }
 }
