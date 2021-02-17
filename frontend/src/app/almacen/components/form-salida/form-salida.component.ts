@@ -90,7 +90,7 @@ export class FormSalidaComponent implements OnInit {
       this.SalidaService.postSalida(this.salidaForm).subscribe(
         salida => {
           this.showSuccess();
-          this.router.navigate(['main/almacen']);
+          this.router.navigate(['main/almacen/salida']);
         },
         error => this.showError(error.error)
       );
@@ -99,6 +99,7 @@ export class FormSalidaComponent implements OnInit {
         salida => {
           this.messageBody = "La salida se ha editado correctamente"
           this.showSuccess();
+          this.router.navigate(['main/almacen/salida']);
         },
         error => this.showError(error.error)
         );

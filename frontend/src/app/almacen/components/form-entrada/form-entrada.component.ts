@@ -95,7 +95,7 @@ export class FormEntradaComponent implements OnInit {
       this.EntradaService.postEntrada(request).subscribe(
         entrada => {
           this.showSuccess();
-          this.router.navigate(['main/almacen']);
+          this.router.navigate(['main/almacen/entrada']);
         },
         error => this.showError(error.error)
       );
@@ -104,6 +104,7 @@ export class FormEntradaComponent implements OnInit {
         entrada => {
           this.messageBody = "La entrada se ha editado correctamente"
           this.showSuccess();
+          this.router.navigate(['main/almacen/entrada']);
         },
         error => this.showError(error.error)
         );

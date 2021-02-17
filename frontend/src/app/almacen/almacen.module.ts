@@ -12,10 +12,11 @@ import { FormEntradaComponent } from './components/form-entrada/form-entrada.com
 import { FormSalidaComponent } from "./components/form-salida/form-salida.component";
 import { TablaAjusteComponent } from "./components/tabla-ajuste/tabla-ajuste.component";
 import { FormAjusteComponent } from './components/form-ajuste/form-ajuste.component';
+import { NavComponent } from './components/nav/nav.component';
 
 
 @NgModule({
-  declarations: [TablaExistenciaComponent, FormExistenciaComponent, TablaEntradaComponent, TablaSalidaComponent, FormEntradaComponent, FormSalidaComponent,TablaAjusteComponent, FormAjusteComponent],
+  declarations: [TablaExistenciaComponent, FormExistenciaComponent, TablaEntradaComponent, TablaSalidaComponent, FormEntradaComponent, FormSalidaComponent,TablaAjusteComponent, FormAjusteComponent, NavComponent],
   imports: [
     CommonModule,
     AlmacenRoutingModule,

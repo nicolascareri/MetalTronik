@@ -72,7 +72,7 @@ export class FormAjusteComponent implements OnInit {
     this.AlmacenService.addAjuste(this.repuestoId, request).subscribe(
       data => {
         this.showSuccess();
-        this.router.navigate(['main/almacen']);
+        this.router.navigate(['main/almacen/ajuste']);
       },
       error => this.showError(error.error)
     );

@@ -96,7 +96,7 @@ export class FormExistenciaComponent implements OnInit {
       this.AlmacenService.postRepuesto(this.repuestForm).subscribe(
         repuesto => {
           this.showSuccess();
-          this.router.navigate(['main/almacen']);
+          this.router.navigate(['main/almacen/existencia']);
         },
         error => this.showError(error.error)
       );
@@ -105,6 +105,7 @@ export class FormExistenciaComponent implements OnInit {
         repuesto => {
           this.messageBody = "El repuesto se ha editado correctamente"
           this.showSuccess();
+          this.router.navigate(['main/almacen/existencia']);
         },
         error => this.showError(error.error)
         );

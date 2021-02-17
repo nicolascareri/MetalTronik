@@ -94,7 +94,7 @@ export class FormPlanificacionComponent implements OnInit {
       this.TareaService.postTarea(this.tareaForm).subscribe(
         tarea => {
           this.showSuccess();
-          this.router.navigate(['main/mantenimientosPreventivos']);
+          this.router.navigate(['main/mantenimientosPreventivos/planificacion']);
         },
         error => this.showError(error.error)
       );
@@ -103,7 +103,7 @@ export class FormPlanificacionComponent implements OnInit {
         tarea => {
           this.messageBody = "La tarea se ha editado correctamente"
           this.showSuccess();
-          this.router.navigate(['main/mantenimientosPreventivos']);
+          this.router.navigate(['main/mantenimientosPreventivos/planificacion']);
         },
         error => this.showError(error.error)
         );
