@@ -4,7 +4,6 @@ import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.tipo.controller.request.TipoRequest;
 import com.example.metalTest.tipo.domain.Tipo;
 import com.example.metalTest.tipo.service.TipoService;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

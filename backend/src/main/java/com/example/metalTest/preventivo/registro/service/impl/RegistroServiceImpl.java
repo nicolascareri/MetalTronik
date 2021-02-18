@@ -2,6 +2,7 @@
 package com.example.metalTest.preventivo.registro.service.impl;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
+import com.example.metalTest.common.validator.RepositoryValidator;
 import com.example.metalTest.preventivo.registro.controller.request.RegistroRequest;
 import com.example.metalTest.preventivo.registro.domain.Registro;
 import com.example.metalTest.preventivo.registro.repository.RegistroRepository;
@@ -27,6 +28,9 @@ public class RegistroServiceImpl implements RegistroService {
 
     @Autowired
     TareasMapper tareasMapper;
+
+    @Autowired
+    RepositoryValidator repositoryValidator;
 
     @Override
     public List<Registro> getForMonth(Date date) {
@@ -69,11 +73,7 @@ public class RegistroServiceImpl implements RegistroService {
 
     @Override
     public Registro update(RegistroRequest registroRequest, Integer id) throws ValidateFieldException {
-        Optional<Registro> optionalRegistro = registroRepository.findById(id);
-        if (!optionalRegistro.isPresent()){
-            throw new ValidateFieldException("El registro que desea acceder no existe","id", String.valueOf(id));
-        }
-        Registro registro = optionalRegistro.get();
+        Registro registro = (Registro) repositoryValidator.getObject(registroRepository, id);
         registro.setFechaPlanificada(registroRequest.getFechaPlanificada());
         registro.setObservaciones(registroRequest.getObservaciones());
         registro.setRealizo(registroRequest.getRealizo());
@@ -94,11 +94,7 @@ public class RegistroServiceImpl implements RegistroService {
 
     @Override
     public Registro getById(Integer id) throws ValidateFieldException {
-        Optional<Registro> optionalRegistro = registroRepository.findById(id);
-        if (!optionalRegistro.isPresent()){
-            throw new ValidateFieldException("El registro que desea acceder no existe", "id", String.valueOf(id));
-        }
-        return optionalRegistro.get();
+        return (Registro) repositoryValidator.getObject(registroRepository, id);
     }
 
 

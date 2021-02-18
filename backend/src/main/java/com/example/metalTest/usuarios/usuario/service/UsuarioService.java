@@ -14,8 +14,10 @@ public interface UsuarioService {
 
     List<Personal> getAll();
 
-    Personal getById(Integer id);
+    Personal getById(Integer id) throws ValidateFieldException;
 
     JwtDto login(LoginRequest loginRequest);
+
+    Personal findFyNombreUsuario(String s);
 
 }

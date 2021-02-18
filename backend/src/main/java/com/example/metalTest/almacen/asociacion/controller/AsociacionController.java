@@ -4,6 +4,7 @@ import com.example.metalTest.almacen.asociacion.controller.request.AsociarList;
 import com.example.metalTest.almacen.asociacion.domain.Asociacion;
 import com.example.metalTest.almacen.asociacion.service.AsosiacionService;
 import com.example.metalTest.almacen.repuesto.domain.Repuesto;
+import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.maquina.domain.Maquina;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +27,7 @@ public class AsociacionController {
     }
 
     @PutMapping("/vincular/maquina-parte")
-    public Repuesto asociar(@Valid @RequestBody AsociarList asociarList){
+    public Repuesto asociar(@Valid @RequestBody AsociarList asociarList) throws ValidateFieldException {
         asosiacionService.asociar(asociarList);
         return null;
     }

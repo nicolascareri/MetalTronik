@@ -15,5 +15,4 @@ public interface PersonalService {
 
     Personal update(Integer id, PersonalRequest usuario) throws ValidateFieldException;
 
-    Personal findFyNombreUsuario(String s);
 }

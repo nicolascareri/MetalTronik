@@ -1,5 +1,8 @@
 package com.example.metalTest.usuarios.credenciales.rol.service.impl;
 
+import com.example.metalTest.apiError.exception.ValidateFieldException;
+import com.example.metalTest.common.validator.RepositoryValidator;
+import com.example.metalTest.tipo.domain.Tipo;
 import com.example.metalTest.tipo.repository.TipoRepository;
 import com.example.metalTest.usuarios.credenciales.permiso.domain.Permiso;
 import com.example.metalTest.usuarios.credenciales.permiso.repository.PermisoRepository;
@@ -24,16 +27,19 @@ public class RolServiceImpl implements RolService {
     RolRepository rolRepository;
     @Autowired
     PermisoRepository permisoRepository;
+    @Autowired
+    RepositoryValidator repositoryValidator;
+
     @Override
-    public Rol create(RolRequest rolRequest) {
+    public Rol create(RolRequest rolRequest) throws ValidateFieldException {
         Rol rol = new Rol();
         rol.setNombre(rolRequest.getNombre());
         rol.setRango(RolRango.ROLE_PERSONAL);
         List<Permiso> permisos = new ArrayList<>();
         for (PermisoRequest permisoRequest: rolRequest.getPermisos() ) {
             Permiso permiso = new Permiso();
-            permiso.setPermiso(tipoRepository.findById(permisoRequest.getPermiso()).get());
-            permiso.setSector(tipoRepository.findById(permisoRequest.getSector()).get());
+            permiso.setPermiso((Tipo) repositoryValidator.getObject(tipoRepository, permisoRequest.getPermiso()));
+            permiso.setSector((Tipo) repositoryValidator.getObject(tipoRepository, permisoRequest.getSector()));
             permisos.add(permiso);
         }
         rol.setPermisos(permisos);
@@ -51,7 +57,7 @@ public class RolServiceImpl implements RolService {
     }
 
     @Override
-    public Rol getById(Integer id) {
-        return rolRepository.getOne(id);
+    public Rol getById(Integer id) throws ValidateFieldException {
+        return (Rol) repositoryValidator.getObject(rolRepository, id);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.metalTest.usuarios.usuario.service.impl;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
+import com.example.metalTest.common.validator.RepositoryValidator;
 import com.example.metalTest.security.jwt.JwtDto;
 import com.example.metalTest.security.jwt.JwtProvider;
 import com.example.metalTest.tipo.service.TipoService;
@@ -46,12 +47,16 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Autowired
     JwtProvider jwtProvider;
 
+    @Autowired
+    RepositoryValidator repositoryValidator;
+
     @Override
     public Personal create(UsuarioRequest usuarioRequest, Integer id) throws ValidateFieldException {
         //Busco el personal por id en la tabla personal
-        Personal personal = personalRepository.findById(id).get();
+        Personal personal = (Personal) repositoryValidator.getObject(personalRepository, id);
+
         //busco el rol en la db
-        Rol rol = rolRepository.findById(usuarioRequest.getRol()).get();
+        Rol rol = (Rol) repositoryValidator.getObject(rolRepository, usuarioRequest.getRol());
         //creo una credencial(nombre usuario y pass encriptada)
         Credencial credencial = new Credencial(usuarioRequest.getNombre_usuario(), passwordEncoder.encode(usuarioRequest.getContrasenia()), rol);
         //cuando seteo la credencial se guarda sola en la tabla Credencial
@@ -66,15 +71,19 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Personal getById(Integer id) {
-        return personalRepository.findById(id).get();
+    public Personal getById(Integer id) throws ValidateFieldException {
+        return (Personal) repositoryValidator.getObject(personalRepository, id);
+    }
+    @Override
+    public Personal findFyNombreUsuario(String s) {
+        Personal personal = personalRepository.getByNombreUsuario(s);
+        return personal;
     }
 
     @Override
     public JwtDto login(LoginRequest loginRequest) {
         Rol rol = personalRepository.getByNombreUsuario(loginRequest.getNombre_usuario()).getCredencial().getRol();
-       JwtDto jwtDto = getJwtDto(loginRequest, rol);
-
+        JwtDto jwtDto = getJwtDto(loginRequest, rol);
         return jwtDto;
     }
 

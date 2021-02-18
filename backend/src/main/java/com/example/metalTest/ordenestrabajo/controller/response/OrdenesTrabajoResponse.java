@@ -1,5 +1,6 @@
 package com.example.metalTest.ordenestrabajo.controller.response;
 
+import com.example.metalTest.common.estado.Estado;
 import com.example.metalTest.maquina.controller.response.MaquinaReducidoResponse;
 import com.example.metalTest.parte.controller.response.ParteParaOrdenResponse;
 import com.example.metalTest.tipo.domain.Tipo;
@@ -27,7 +28,7 @@ public class OrdenesTrabajoResponse {
     private Date fechaRealizar;
     private Personal encargo;
     private Personal responsable;
-    private short estado;
+    private Estado estado;
     private String observaciones;
     private int ordenTerciarizacion;
 }

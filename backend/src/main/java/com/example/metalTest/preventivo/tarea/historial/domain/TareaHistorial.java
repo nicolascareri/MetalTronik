@@ -1,6 +1,5 @@
 package com.example.metalTest.preventivo.tarea.historial.domain;
 
-import com.example.metalTest.preventivo.tarea.tareas.domain.Tareas;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,12 +30,4 @@ public class TareaHistorial {
     @Column
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
     private Date fecha_cambio;
-
-    @ManyToOne
-    @JoinColumn
-    private Tareas tareas;
-
-
-
-
 }

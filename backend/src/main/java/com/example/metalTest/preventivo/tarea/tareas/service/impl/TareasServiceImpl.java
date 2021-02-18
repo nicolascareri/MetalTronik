@@ -1,6 +1,8 @@
 package com.example.metalTest.preventivo.tarea.tareas.service.impl;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
+import com.example.metalTest.preventivo.tarea.tareas.domain.Tareas;
+import com.example.metalTest.common.validator.RepositoryValidator;
 import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
 import com.example.metalTest.parte.repository.ParteRepository;
@@ -8,7 +10,6 @@ import com.example.metalTest.parte.service.impl.ParteBuscador;
 import com.example.metalTest.preventivo.tarea.historial.service.TareaHistorialService;
 import com.example.metalTest.preventivo.tarea.tareas.controller.Response.TareasResponse;
 import com.example.metalTest.preventivo.tarea.tareas.controller.request.TareasRequest;
-import com.example.metalTest.preventivo.tarea.tareas.domain.Tareas;
 import com.example.metalTest.preventivo.tarea.tareas.mapper.TareasMapper;
 import com.example.metalTest.preventivo.tarea.tareas.repository.TareasRepository;
 import com.example.metalTest.preventivo.tarea.tareas.service.TareasService;
@@ -33,6 +34,8 @@ public class TareasServiceImpl implements TareasService {
     TareaHistorialService tareaHistorialService;
     @Autowired
     PersonalRepository personalRepository;
+    @Autowired
+    RepositoryValidator repositoryValidator;
 
     ParteBuscador parteBuscador = new ParteBuscador();
 
@@ -43,29 +46,19 @@ public class TareasServiceImpl implements TareasService {
 
     @Override
     public TareasResponse getById(Integer id) throws ValidateFieldException {
-        Optional<Tareas> optionalTarea = tareasRepository.findById(id);
-        if (!optionalTarea.isPresent()){
-            throw new ValidateFieldException("El recurso que desea acceder no existe", "id", String.valueOf(id));
-        }
-        return tareasMapper.toTareaResponse(optionalTarea.get());
+        Tareas tarea = (Tareas) repositoryValidator.getObject(tareasRepository, id);
+        return tareasMapper.toTareaResponse(tarea);
     }
 
     @Override
     public TareasResponse update(Integer id, TareasRequest tareasRequest) throws ValidateFieldException {
-        Optional<Tareas> optionalTarea = tareasRepository.findById(id);
-        if (!optionalTarea.isPresent()){
-            throw new ValidateFieldException("El recurso que desea acceder no existe", "id", String.valueOf(id));
-        }
+        Tareas tarea = (Tareas) repositoryValidator.getObject(tareasRepository, id);
         Integer maquina_id = tareasRequest.getMaquina_id();
-        Tareas tarea = optionalTarea.get();
         tareaHistorialService.create(tarea);
         tarea.setFrecuencia(tareasRequest.getFrecuencia());
         tarea.setInicio(tareasRequest.getInicio());
-        Optional opt = maquinaRepository.findById(maquina_id);
-        if (!opt.isPresent()) {
-            throw new ValidateFieldException("El recurso que desea acceder no existe", "id", String.valueOf(maquina_id));
-        }
-        tarea.setMaquina((Maquina)opt.get());
+        Maquina maquina = (Maquina) repositoryValidator.getObject(maquinaRepository, tareasRequest.getMaquina_id());
+        tarea.setMaquina(maquina);
         tarea.setParte(parteBuscador.getParte(tareasRequest.getParte_id(),parteRepository.getAllByMaquina(maquina_id)));
         tarea.setTarea(tareasRequest.getTarea());
         return tareasMapper.toTareaResponse(tareasRepository.save(tarea));
@@ -75,11 +68,8 @@ public class TareasServiceImpl implements TareasService {
     public TareasResponse create(TareasRequest tareasRequest) throws ValidateFieldException {
         Tareas tarea = tareasMapper.tareaRequestToTarea(tareasRequest);
         Integer maquina_id = tareasRequest.getMaquina_id();
-        Optional opt = maquinaRepository.findById(maquina_id);
-        if (!opt.isPresent()) {
-            throw new ValidateFieldException("El recurso que desea acceder no existe", "id", String.valueOf(maquina_id));
-        }
-        tarea.setMaquina((Maquina)opt.get());
+        Maquina maquina = (Maquina) repositoryValidator.getObject(maquinaRepository, tareasRequest.getMaquina_id());
+        tarea.setMaquina(maquina);
         tarea.setParte(parteBuscador.getParte(tareasRequest.getParte_id(), parteRepository.getAllByMaquina(maquina_id)));
         return tareasMapper.toTareaResponse(tareasRepository.save(tarea));
     }

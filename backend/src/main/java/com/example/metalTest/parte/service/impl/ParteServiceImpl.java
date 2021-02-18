@@ -1,6 +1,7 @@
 package com.example.metalTest.parte.service.impl;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
+import com.example.metalTest.common.validator.RepositoryValidator;
 import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
 import com.example.metalTest.parte.controller.request.ParteRequest;
@@ -14,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ParteServiceImpl implements ParteService {
@@ -26,6 +26,9 @@ public class ParteServiceImpl implements ParteService {
 
     @Autowired
     ParteMapper parteMapper;
+
+    @Autowired
+    RepositoryValidator repositoryValidator;
 
     @Override
     public List<ParteResponse> getAll() {
@@ -46,21 +49,13 @@ public class ParteServiceImpl implements ParteService {
 
     @Override
     public ParteResponse getById(Integer id) throws ValidateFieldException {
-        Optional<Parte> parteOptional = parteRepository.findById(id);
-        if (!parteOptional.isPresent()){
-            throw new ValidateFieldException("La parte que desea acceder no existe", "id", String.valueOf(id));
-        }
-        return parteMapper.toParteResponse(parteOptional.get());
+        return (ParteResponse) repositoryValidator.getObject(parteRepository, id);
     }
 
     @Override
     public List<ParteResponse> vincular(Integer id_maquina, List<Integer> idPartes) throws ValidateFieldException {
         List<Parte> parteList = parteRepository.findAllById(idPartes);
-        Optional<Maquina> optionalMaquina = maquinaRepository.findById(id_maquina);
-        if (!optionalMaquina.isPresent()){
-            throw new ValidateFieldException("La maquina que desea acceder no existe", "id", String.valueOf(id_maquina));
-        }
-        Maquina maquina = optionalMaquina.get();
+        Maquina maquina = (Maquina) repositoryValidator.getObject(maquinaRepository, id_maquina);
         maquina.setParteList(new ArrayList<>());
         parteList.forEach(parte -> {
             parte.setMaquinaId(maquina.getId());
@@ -78,10 +73,7 @@ public class ParteServiceImpl implements ParteService {
 
     @Override
     public void delete(Integer id) throws ValidateFieldException {
-        Optional<Parte> parteOptional = parteRepository.findById(id);
-        if (!parteOptional.isPresent()){
-            throw new ValidateFieldException("La parte que desea eliminar no existe", "id", String.valueOf(id));
-        }
-        parteRepository.delete(parteOptional.get());
+        Parte parte = (Parte) repositoryValidator.getObject(parteRepository, id);
+        parteRepository.delete(parte);
     }
 }

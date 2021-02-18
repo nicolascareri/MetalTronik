@@ -9,7 +9,7 @@ import java.util.List;
 public interface EntradaService {
     List<EntradaResponse> getAll();
 
-    EntradaResponse create(EntradaRequest entradaRequest);
+    EntradaResponse create(EntradaRequest entradaRequest) throws ValidateFieldException;
 
     EntradaResponse getById(Integer id) throws ValidateFieldException;
 }
