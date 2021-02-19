@@ -47,4 +47,9 @@ public class TipoController {
     public ResponseEntity<List<String>> getTipos(){
         return new ResponseEntity<>(tipoService.getTipos(), HttpStatus.OK);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Boolean> delete(@PathVariable Integer id) throws ValidateFieldException {
+        return new ResponseEntity<Boolean>( tipoService.delete(id), HttpStatus.OK);
+    }
 }

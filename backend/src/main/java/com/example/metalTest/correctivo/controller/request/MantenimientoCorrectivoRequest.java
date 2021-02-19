@@ -36,7 +36,7 @@ public class MantenimientoCorrectivoRequest {
 
     private String repuestosColocados;
 
-    private int ordenTrabajo_id;
+    private Integer ordenTrabajo_id;
 
     @NotNull
     private int nrocorrectivo;

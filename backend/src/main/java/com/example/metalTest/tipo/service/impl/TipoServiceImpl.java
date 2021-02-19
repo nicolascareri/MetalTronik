@@ -1,7 +1,8 @@
 package com.example.metalTest.tipo.service.impl;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
-import com.example.metalTest.common.ordenes.Estado;
+import com.example.metalTest.common.estado.Estado;
+import com.example.metalTest.common.validator.RepositoryValidator;
 import com.example.metalTest.tipo.controller.request.TipoRequest;
 import com.example.metalTest.tipo.domain.Tipo;
 import com.example.metalTest.tipo.mapper.TipoMapper;
@@ -11,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TipoServiceImpl implements TipoService {
@@ -21,6 +21,8 @@ public class TipoServiceImpl implements TipoService {
 
     @Autowired
     TipoMapper tipoMapper;
+    @Autowired
+    RepositoryValidator repositoryValidator;
 
     @Override
     public List<Tipo> getAll() {
@@ -29,38 +31,46 @@ public class TipoServiceImpl implements TipoService {
 
     @Override
     public Tipo getById(Integer id) throws ValidateFieldException {
-        Optional<Tipo> opt = tipoRepository.findById(id);
-        if (!opt.isPresent()) {
-            throw new ValidateFieldException("El tipo que desea acceder no existe", "id", String.valueOf(id));
-        }
-        return opt.get();
+        return (Tipo)repositoryValidator.getObject(tipoRepository, id);
     }
 
     @Override
     public Tipo create(TipoRequest tipoRequest) throws ValidateFieldException {
         Tipo tipo = tipoMapper.tipoRequestToTipo(tipoRequest);
+        tipo.setEstado(Estado.ACTIVO);
         return tipoRepository.save(tipo);
     }
 
     @Override
     public Tipo update(TipoRequest tipoRequest, Integer id) throws ValidateFieldException {
-        Optional<Tipo> opt = tipoRepository.findById(id);
-        Tipo tipo = tipoMapper.tipoRequestToTipo(tipoRequest);
-        if (!opt.isPresent()) {
-            throw new ValidateFieldException("El tipo que desea acceder no existe", "id", String.valueOf(id));
-        }
+        Tipo tipo = (Tipo) repositoryValidator.getObject(tipoRepository, id);
+        tipo.setTipo(tipoRequest.getTipo());
+        tipo.setNombre(tipoRequest.getNombre());
+        tipo.setEstado(tipoRequest.getEstado());
         tipo.setId(id);
         return tipoRepository.save(tipo);
     }
 
     @Override
     public List<Tipo> getByTipo(String tipo) {
-        return tipoRepository.getTipo(tipo);
+        return tipoRepository.getTipo(tipo, Estado.ACTIVO);
     }
 
     @Override
     public List<String> getTipos() {
-        return tipoRepository.getTipos();
+        return tipoRepository.getTipos(Estado.ACTIVO);
+    }
+
+    @Override
+    public Boolean delete(Integer id) throws ValidateFieldException {
+        repositoryValidator.getObject(tipoRepository, id);
+        try{
+            tipoRepository.deleteById(id);
+        }catch (Exception e){
+            throw new ValidateFieldException(e.getMessage(), "  id", String.valueOf(id));
+        }
+        return true;
+
     }
 
 

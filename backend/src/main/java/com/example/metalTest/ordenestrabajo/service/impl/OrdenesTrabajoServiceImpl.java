@@ -1,8 +1,10 @@
 package com.example.metalTest.ordenestrabajo.service.impl;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
-import com.example.metalTest.common.ordenes.EstadoOrden;
+import com.example.metalTest.common.estado.Estado;
+import com.example.metalTest.common.validator.RepositoryValidator;
 import com.example.metalTest.correctivo.repository.MantenimientoCorrectivoRepository;
+import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
 import com.example.metalTest.ordenestrabajo.controller.request.OrdenesTrabajoRequest;
 import com.example.metalTest.ordenestrabajo.controller.response.OrdenesTrabajoResponse;
@@ -12,14 +14,14 @@ import com.example.metalTest.ordenestrabajo.repository.OrdenesTrabajoRepository;
 import com.example.metalTest.ordenestrabajo.service.OrdenesTrabajoService;
 import com.example.metalTest.parte.repository.ParteRepository;
 import com.example.metalTest.parte.service.impl.ParteBuscador;
+import com.example.metalTest.tipo.domain.Tipo;
 import com.example.metalTest.tipo.repository.TipoRepository;
+import com.example.metalTest.usuarios.personal.domain.Personal;
 import com.example.metalTest.usuarios.personal.repository.PersonalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
@@ -43,6 +45,9 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
     ParteRepository parteRepository;
 
     @Autowired
+    RepositoryValidator repositoryValidator;
+
+    @Autowired
     MantenimientoCorrectivoRepository mantenimientoCorrectivoRepository;
     ParteBuscador parteBuscador = new ParteBuscador();
 
@@ -54,12 +59,7 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
 
     @Override
     public OrdenesTrabajoResponse getById(Integer id) throws ValidateFieldException {
-        Optional<OrdenesTrabajo> opt = ordenesTrabajoRepository.findById(id);
-        if (opt.isPresent()) {
-            return ordenesTrabajoMapper.toOrdenesTrabajoResponse(opt.get());
-        } else {
-            throw new ValidateFieldException("La orden de trabajo que desea acceder no existe", "id", String.valueOf(id));
-        }
+        return ordenesTrabajoMapper.toOrdenesTrabajoResponse((OrdenesTrabajo) repositoryValidator.getObject(ordenesTrabajoRepository, id));
     }
 
     @Override
@@ -77,16 +77,16 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
      * @param ordenesTrabajoRequest json enviado del frontend
      * @return orden de trabajo seteada
      */
-    private OrdenesTrabajo setOrdenesTrabajo(OrdenesTrabajoRequest ordenesTrabajoRequest){
+    private OrdenesTrabajo setOrdenesTrabajo(OrdenesTrabajoRequest ordenesTrabajoRequest) throws ValidateFieldException {
         OrdenesTrabajo ordenesTrabajo = new OrdenesTrabajo();
-        Integer maquinaCod = ordenesTrabajoRequest.getMaquina_id();
-        ordenesTrabajo.setMaquina(maquinaRepository.findById(maquinaCod).get());
-        ordenesTrabajo.setParte(parteBuscador.getParte(ordenesTrabajoRequest.getParte_id(), parteRepository.getAllByMaquina(maquinaCod)));
-        ordenesTrabajo.setEncargo(personalRepository.findById(ordenesTrabajoRequest.getEncargo_id()).get());
-        ordenesTrabajo.setResponsable(personalRepository.findById(ordenesTrabajoRequest.getResponsable_id()).get());
-        ordenesTrabajo.setTipo(tipoRepository.findById(ordenesTrabajoRequest.getTipo_id()).get());
-        ordenesTrabajo.setPrioridad(tipoRepository.findById(ordenesTrabajoRequest.getPrioridad_id()).get());
-        ordenesTrabajo.setEstado(EstadoOrden.PENDIENTE.getValue());
+        Integer maquina_id = ordenesTrabajoRequest.getMaquina_id();
+        ordenesTrabajo.setMaquina((Maquina) repositoryValidator.getObject(maquinaRepository, maquina_id));
+        ordenesTrabajo.setParte(parteBuscador.getParte(ordenesTrabajoRequest.getParte_id(), parteRepository.getAllByMaquina(maquina_id)));
+        ordenesTrabajo.setEncargo((Personal)repositoryValidator.getObject(personalRepository, ordenesTrabajoRequest.getEncargo_id()));
+        ordenesTrabajo.setResponsable((Personal)repositoryValidator.getObject(personalRepository, ordenesTrabajoRequest.getResponsable_id()));
+        ordenesTrabajo.setTipo((Tipo) repositoryValidator.getObject(tipoRepository, ordenesTrabajoRequest.getTipo_id()));
+        ordenesTrabajo.setPrioridad((Tipo) repositoryValidator.getObject(tipoRepository, ordenesTrabajoRequest.getPrioridad_id()));
+        ordenesTrabajo.setEstado(Estado.PENDIENTE);
         ordenesTrabajo.setFechaEntrega(ordenesTrabajoRequest.getFechaEntrega());
         ordenesTrabajo.setFechaRealizar(ordenesTrabajoRequest.getFechaRealizar());
         ordenesTrabajo.setObservaciones(ordenesTrabajoRequest.getObservaciones());
@@ -99,11 +99,7 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
 
     @Override
     public OrdenesTrabajoResponse update(OrdenesTrabajoRequest ordenesTrabajoRequest, Integer id) throws ValidateFieldException {
-        Optional<OrdenesTrabajo> opt = ordenesTrabajoRepository.findById(id);
-        if (!opt.isPresent()) {
-            throw new ValidateFieldException("La orden de trabajo a la que intenta acceder no existe", "id", String.valueOf(id));
-        }
-        OrdenesTrabajo ordenesTrabajo = opt.get();
+        OrdenesTrabajo ordenesTrabajo = (OrdenesTrabajo) repositoryValidator.getObject(ordenesTrabajoRepository, id);
         Integer maquinaCod=ordenesTrabajo.getMaquina().getId();
         ordenesTrabajo.setPedidoMateriales(ordenesTrabajoRequest.getPedidoMateriales());
         ordenesTrabajo.setTarea(ordenesTrabajoRequest.getTarea());

@@ -1,7 +1,8 @@
 package com.example.metalTest.maquina.service.impl;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
-import com.example.metalTest.common.ordenes.Estado;
+import com.example.metalTest.common.estado.Estado;
+import com.example.metalTest.common.validator.RepositoryValidator;
 import com.example.metalTest.maquina.controller.request.MaquinaRequest;
 import com.example.metalTest.maquina.controller.response.MaquinaReducidoResponse;
 import com.example.metalTest.maquina.controller.response.MaquinaResponse;
@@ -16,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class   MaquinaServiceImpl implements MaquinaService {
@@ -35,6 +35,9 @@ public class   MaquinaServiceImpl implements MaquinaService {
     @Autowired
     TipoRepository tipoRepository;
 
+    @Autowired
+    RepositoryValidator repositoryValidator;
+
     @Override
     public List<MaquinaReducidoResponse> getAll() {
         return maquinaMapper.toMaquinaReducidoResponseList(maquinaRepository.findAll());
@@ -42,12 +45,7 @@ public class   MaquinaServiceImpl implements MaquinaService {
 
     @Override
     public MaquinaResponse getById(Integer id) throws ValidateFieldException {
-        Optional<Maquina> opt = maquinaRepository.findById(id);
-        if (opt.isPresent()) {
-            return maquinaMapper.toMaquinaResponse(opt.get());
-        } else {
-            throw new ValidateFieldException("La maquina que desea acceder no existe", "id", id.toString());
-        }
+        return maquinaMapper.toMaquinaResponse((Maquina) repositoryValidator.getObject(maquinaRepository, id));
 
     }
 
@@ -58,9 +56,8 @@ public class   MaquinaServiceImpl implements MaquinaService {
             throw new ValidateFieldException("El codigo ya tiene una maquina asociada", "maquina_cod", maquina.getMaquina_cod());
         }
 
-        if (maquina.getEstado() != Estado.ACTIVO.getValue() && maquina.getEstado() != Estado.ELIMINADO.getValue()) {
+        if (maquina.getEstado() != Estado.ACTIVO && maquina.getEstado() != Estado.ELIMINADO) {
             throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(maquina.getEstado()));
-
         }
         maquina.setPlanta(tipoRepository.findById(maquinaRequest.getPlanta_id()).get());
         maquina.setSector(tipoRepository.findById(maquinaRequest.getSector_id()).get());
@@ -69,13 +66,8 @@ public class   MaquinaServiceImpl implements MaquinaService {
 
     @Override
     public MaquinaResponse update(MaquinaRequest maquinaRequest, Integer id) throws ValidateFieldException {
-
-        Optional<Maquina> op = maquinaRepository.findById(id);
-        if (!op.isPresent()) {
-            throw new ValidateFieldException("El personal que desea acceder no existe", "id", String.valueOf(id));
-        }
-        Maquina maquina = op.get();
-        if (maquina.getEstado() != Estado.ACTIVO.getValue() && maquina.getEstado() != Estado.ELIMINADO.getValue()) {
+        Maquina maquina = (Maquina) repositoryValidator.getObject(maquinaRepository, id);
+        if (maquina.getEstado() != Estado.ACTIVO && maquina.getEstado() != Estado.ELIMINADO) {
             throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(maquina.getEstado()));
         }
         maquina.setPlanta(tipoRepository.findById(maquinaRequest.getPlanta_id()).get());

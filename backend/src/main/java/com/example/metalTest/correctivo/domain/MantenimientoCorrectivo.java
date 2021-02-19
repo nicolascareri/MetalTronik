@@ -11,6 +11,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity()
 @Getter
@@ -71,6 +72,9 @@ public class MantenimientoCorrectivo{
     @JoinColumn
     @OneToOne(cascade = CascadeType.ALL)
     private Personal encargo3;
+
+    @OneToMany
+    private List<Personal> personalList;
 
 
 

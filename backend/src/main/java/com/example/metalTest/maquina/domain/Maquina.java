@@ -1,5 +1,6 @@
 package com.example.metalTest.maquina.domain;
 
+import com.example.metalTest.common.estado.Estado;
 import com.example.metalTest.parte.domain.Parte;
 import com.example.metalTest.tipo.domain.Tipo;
 import lombok.Getter;
@@ -22,7 +23,7 @@ public class Maquina {
     private String maquina_cod;
 
     @Column
-    private short estado;
+    private Estado estado;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn

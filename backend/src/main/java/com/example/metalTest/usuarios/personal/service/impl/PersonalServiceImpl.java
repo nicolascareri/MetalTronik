@@ -1,6 +1,8 @@
 package com.example.metalTest.usuarios.personal.service.impl;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
+import com.example.metalTest.common.validator.RepositoryValidator;
+import com.example.metalTest.tipo.domain.Tipo;
 import com.example.metalTest.tipo.repository.TipoRepository;
 import com.example.metalTest.usuarios.credenciales.credencial.repository.CredencialRepository;
 import com.example.metalTest.usuarios.personal.controller.request.PersonalRequest;
@@ -34,6 +36,9 @@ public class PersonalServiceImpl implements PersonalService {
     @Autowired
     CredencialRepository credencialRepository;
 
+    @Autowired
+    RepositoryValidator repositoryValidator;
+
     @Override
     public List<Personal> getAll() {
         return personalRepository.findAllByCredencialIsNull();
@@ -41,28 +46,23 @@ public class PersonalServiceImpl implements PersonalService {
 
     @Override
     public Personal getById(Integer id) throws ValidateFieldException {
-        Optional<Personal> op = personalRepository.findById(id);
-        if (op.isPresent()) {
-            return op.get();
-        } else {
-            throw new ValidateFieldException("El personal quE desea acceder no existe", "id", id.toString());
-        }
+        return (Personal) repositoryValidator.getObject(personalRepository, id);
 
     }
 
     @Override
-    public Personal create(PersonalRequest usuario){
+    public Personal create(PersonalRequest usuario) throws ValidateFieldException {
         Personal usrActual = personalMapper.personalRequestToPersonal(usuario);
         Direccion direccion = usuario.getDireccion();
         usrActual.setDireccion(new Direccion(direccion.getPais(), direccion.getProvincia(), direccion.getCiudad(), direccion.getCalle(), direccion.getNumero()));
-        usrActual.setCargo(tipoRepository.findById(usuario.getCargo()).get());
+        usrActual.setCargo((Tipo) repositoryValidator.getObject(tipoRepository, usuario.getCargo()));
         return personalRepository.save(usrActual);
     }
 
     @Override
-    public Personal update(Integer id, PersonalRequest usuario){
+    public Personal update(Integer id, PersonalRequest usuario) throws ValidateFieldException {
         Personal usrActual = personalMapper.personalRequestToPersonal(usuario);
-        usrActual.setCargo(tipoRepository.findById(usuario.getCargo()).get());
+        usrActual.setCargo((Tipo) repositoryValidator.getObject(tipoRepository, usuario.getCargo()));
         Direccion direccionReq = usuario.getDireccion();
         Direccion direccion = usrActual.getDireccion();
         direccion.setCalle(direccionReq.getCalle());
@@ -75,11 +75,6 @@ public class PersonalServiceImpl implements PersonalService {
         return  personalRepository.save(usrActual);
     }
 
-    @Override
-    public Personal findFyNombreUsuario(String s) {
-        Personal personal = personalRepository.getByNombreUsuario(s);
-        System.out.println(personal.getNombre());
-        return personal;
-    }
+
 
 }

@@ -18,22 +18,18 @@ public class RepuestoRequest {
     @NotEmpty
     private String modelo;
 
-    private String codigoProducto;
+    @NotNull
+    private String codigo_producto;
 
     @NotEmpty
     private String marca;
 
     @NotNull
-    private int existencia;
+    private StockRequest stock;
 
     @NotNull
     private String unidad;
 
-    @NotNull
-    private int puntoPedido;
-
-    @NotNull
-    private int stockObjetivo;
 
     @NotNull
     @ValidEntity(repository = TipoRepository.class)

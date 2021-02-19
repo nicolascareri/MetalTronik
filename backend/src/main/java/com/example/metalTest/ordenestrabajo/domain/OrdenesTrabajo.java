@@ -1,5 +1,6 @@
 package com.example.metalTest.ordenestrabajo.domain;
 
+import com.example.metalTest.common.estado.Estado;
 import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.parte.domain.Parte;
 import com.example.metalTest.tipo.domain.Tipo;
@@ -64,7 +65,7 @@ public class OrdenesTrabajo implements Comparable<OrdenesTrabajo>{
     private Personal responsable;
 
     @Column
-    private short estado;
+    private Estado estado;
 
     @Column
     private String observaciones;

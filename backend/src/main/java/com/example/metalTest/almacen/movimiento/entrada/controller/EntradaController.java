@@ -29,7 +29,7 @@ public class EntradaController {
         return new ResponseEntity<>(entradaService.getById(id), HttpStatus.OK);
     }
     @PostMapping
-    public ResponseEntity<EntradaResponse> create(@Valid @RequestBody EntradaRequest entradaRequest){
+    public ResponseEntity<EntradaResponse> create(@Valid @RequestBody EntradaRequest entradaRequest) throws ValidateFieldException {
         return new ResponseEntity<>(entradaService.create(entradaRequest),HttpStatus.CREATED);
     }
 }

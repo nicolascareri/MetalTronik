@@ -23,5 +23,6 @@ public class Rol {
     private RolRango rango;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JoinColumn
     private List<Permiso> permisos;
 }

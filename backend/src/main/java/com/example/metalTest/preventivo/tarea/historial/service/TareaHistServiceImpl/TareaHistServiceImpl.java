@@ -1,5 +1,6 @@
 package com.example.metalTest.preventivo.tarea.historial.service.TareaHistServiceImpl;
 
+import com.example.metalTest.common.validator.RepositoryValidator;
 import com.example.metalTest.parte.domain.Parte;
 import com.example.metalTest.preventivo.tarea.historial.domain.TareaHistorial;
 import com.example.metalTest.preventivo.tarea.historial.repository.TareaHistorialRepository;
@@ -18,10 +19,12 @@ public class TareaHistServiceImpl implements TareaHistorialService {
     @Autowired
     TareaHistorialRepository tareaHistorialRepository;
 
+    @Autowired
+    RepositoryValidator repositoryValidator;
+
     @Override
     public List<TareaHistorial> getById(Integer id) {
-
-        return tareaHistorialRepository.findByTarea(id);
+        return  tareaHistorialRepository.findByTarea(id);
     }
 
     @Override
@@ -36,7 +39,6 @@ public class TareaHistServiceImpl implements TareaHistorialService {
         }
         newTareaHistorial.setTarea_id(tareas.getId());
         newTareaHistorial.setTarea(tareas.getTarea());
-
         Date date = new Date();
         newTareaHistorial.setFecha_cambio(date);
         return tareaHistorialRepository.save(newTareaHistorial);

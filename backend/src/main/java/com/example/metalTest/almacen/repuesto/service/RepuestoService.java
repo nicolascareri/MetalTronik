@@ -11,7 +11,7 @@ public interface RepuestoService {
 
     Repuesto getById(Integer id) throws ValidateFieldException;
 
-    Repuesto create(RepuestoRequest repuestoRequest);
+    Repuesto create(RepuestoRequest repuestoRequest) throws ValidateFieldException;
 
     Repuesto update(RepuestoRequest repuestoRequest, Integer id) throws ValidateFieldException;
 
