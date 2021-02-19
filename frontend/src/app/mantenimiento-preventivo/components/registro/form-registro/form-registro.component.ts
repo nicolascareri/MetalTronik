@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { RegistroService } from "../../../services/registro.service";
 import { MessageService } from "../../../../core/service/message.service";
@@ -42,6 +42,7 @@ export class FormRegistroComponent implements OnInit {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   constructor( private route: ActivatedRoute,
+               private router: Router,
                private RegistroService: RegistroService,
                private MessageService: MessageService,
                private UserService: UserService) { }
@@ -93,6 +94,7 @@ export class FormRegistroComponent implements OnInit {
       tarea => {
         this.messageBody = "El registro se ha editado correctamente"
         this.showSuccess();
+        this.router.navigate(['main/mantenimientosPreventivos/registro']);
       },
       error => this.showError(error.error)
       );
@@ -103,7 +105,6 @@ export class FormRegistroComponent implements OnInit {
   getTarea(id) {
     this.RegistroService.getRegistroById(id).pipe(first()).subscribe(
       tarea => {
-        console.log(tarea);
         this.tarea = tarea;
         this.loadTarea(tarea);
       }

@@ -8,9 +8,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormPlanificacionComponent } from './components/planificacion/form-planificacion/form-planificacion.component';
 import { TablaRegistroComponent } from './components/registro/tabla-registro/tabla-registro.component';
 import { FormRegistroComponent } from './components/registro/form-registro/form-registro.component';
+import { NavComponent } from './components/nav/nav.component';
 
 @NgModule({
-  declarations: [TablaPlanificacionComponent, FormPlanificacionComponent, TablaRegistroComponent, FormRegistroComponent],
+  declarations: [TablaPlanificacionComponent, FormPlanificacionComponent, TablaRegistroComponent, FormRegistroComponent, NavComponent],
   imports: [
     CommonModule,
     MantenimientoPreventivoRoutingModule,

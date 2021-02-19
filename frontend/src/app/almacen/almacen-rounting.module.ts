@@ -1,6 +1,9 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {TablaExistenciaComponent} from "./components/tabla-existencia/tabla-existencia.component";
+import { TablaEntradaComponent } from "./components/tabla-entrada/tabla-entrada.component";
+import { TablaSalidaComponent } from "./components/tabla-salida/tabla-salida.component";
+import { TablaAjusteComponent } from "./components/tabla-ajuste/tabla-ajuste.component";
 import {FormExistenciaComponent} from "../almacen/components/form-existencia/form-existencia.component";
 import { FormEntradaComponent } from "../almacen/components/form-entrada/form-entrada.component";
 import { FormSalidaComponent } from "../almacen/components/form-salida/form-salida.component";
@@ -16,6 +19,26 @@ const routes: Routes = [
         component: TablaExistenciaComponent
       },
       {
+        path: 'existencia',
+        component: TablaExistenciaComponent
+      },
+      {
+        path: 'entrada',
+        component: TablaEntradaComponent
+      },
+      {
+        path: 'salida',
+        component: TablaSalidaComponent
+      },
+      {
+        path: 'ajuste',
+        component: TablaAjusteComponent
+      },
+      {
+        path: 'existencia/formexistencia',
+        component: FormExistenciaComponent
+      },
+      {
         path: 'formexistencia',
         component: FormExistenciaComponent
       },
@@ -24,7 +47,7 @@ const routes: Routes = [
         component: FormExistenciaComponent
       },
       {
-        path: 'formentrada',
+        path: 'entrada/formentrada',
         component: FormEntradaComponent
       },
       {
@@ -32,7 +55,7 @@ const routes: Routes = [
         component: FormEntradaComponent
       },
       {
-        path: 'formsalida',
+        path: 'salida/formsalida',
         component: FormSalidaComponent
       },
       {
@@ -40,7 +63,7 @@ const routes: Routes = [
         component: FormSalidaComponent
       },
       {
-        path: 'formajuste',
+        path: 'ajuste/formajuste',
         component: FormAjusteComponent
       },
       {

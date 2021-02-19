@@ -1,7 +1,5 @@
-<mat-tab-group>
-
-    <mat-tab label="Existencia">
-      <app-tabla class="table" [ds]='dataSourceRepuestos' 
+<app-nav></app-nav>
+<app-tabla class="table" [ds]='dataSourceRepuestos' 
                              [columns]='columnsToDisplay' 
                              [width]="'98%'"
                              (clickRow)="clickedRow($event)"
@@ -9,20 +7,6 @@
                              [includeButton]="true"
                              [nameForButton]="['Nuevo repuesto']"
                              [routeForButton]="['formexistencia']">
-      </app-tabla>
+</app-tabla>
 
-    </mat-tab>
 
-    <mat-tab label="Entrada">
-      <app-tabla-entrada></app-tabla-entrada>
-    </mat-tab>
-  
-    <mat-tab label="Salida">
-      <app-tabla-salida></app-tabla-salida>
-    </mat-tab>
-
-    <mat-tab label="Ajustes de stock">
-      <app-tabla-ajuste></app-tabla-ajuste>
-    </mat-tab>
-      
-</mat-tab-group>

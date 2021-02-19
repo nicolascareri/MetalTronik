@@ -22,15 +22,13 @@
               </div>
         
               <div class="col">
-              <label for="sector_cod">Sector</label>
+              <label for="sector_id">Sector</label>
               <app-input [type]="'select-pair'" 
                          [parentForm]="salidaForm"  
-                         [control]="salidaForm.controls.sector_cod"
+                         [control]="salidaForm.controls.sector_id"
                          [options]="dataSourceSectors">
               </app-input>
               </div>
-      
-            
   
           </div>
   
@@ -59,15 +57,13 @@
           <div class="form-row">
   
             <div class="col">
-            <label for="solicitante_cod">Solicitante</label>
+            <label for="solicitante_id">Solicitante</label>
             <app-input [type]="'select-pair'" 
                        [parentForm]="salidaForm"  
-                       [control]="salidaForm.controls.solicitante_cod"
+                       [control]="salidaForm.controls.solicitante_id"
                        [options]="dataSourceUsuarios">
             </app-input>
             </div>
-  
-         
   
           </div>
   
@@ -80,4 +76,4 @@
       </div>
     </div>
   
-  </div>
+</div>
