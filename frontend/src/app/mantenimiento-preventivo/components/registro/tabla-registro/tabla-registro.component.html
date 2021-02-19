@@ -1,78 +1,78 @@
 <app-nav></app-nav>
 
 
-<div class="container pt-4">
+<div class="container-fluid">
+    <div class="col-6 col-sm-4" style="margin: 1% 0% 1% 0%">
+        <form [formGroup]="formForTask" (ngSubmit)="getTareas()">
 
-    <form [formGroup]="formForTask" (ngSubmit)="getTareas()">
+            <label for="">
+                <h2>Buscador de tareas programadas</h2>
 
-        <div class="row">
-            <div class="col-lg-6 col-12">
+                Ingrese mes y año para buscar.
+            </label>
 
-                <label for="">
-                    <h2>Buscador de tareas</h2>
-                        Ingrese mes y año para buscar.
-                </label>
+            <div class="input-group">
 
                 <app-input [type]="'datetime-month'" [parentForm]="formForTask"
                            [control]="formForTask.controls.fecha">
-                </app-input>
+                </app-input> 
 
-            </div>
-
-            <div class="col-lg-6 col-12 d-flex flex-column flex-lg-row align-self-end justify-content-between">
-
-                <button type="submit" class="btn btn-primary">
-                            Buscar
-                </button>                     
-
-            </div>
-
-        </div>
-
-    </form>
-
-</div>
-
-        <app-tabla class="table" [ds]='dataSourceTareas' 
-                                 [columns]='columnsToDisplay' 
-                                 [width]="'98%'" 
-                                 [title]="[' ']"
-                                 [includeButton]="false">
-        </app-tabla>
-
-
-
-        
-        <div>
-            <form [formGroup]="formForSaves" (ngSubmit)="getSaves()">
-            <div class="row">
-                    <div class="col-lg-6 col-12">
-                        <label for="">
-                            <h2>Buscar planificaciones guardardas</h2>
-                            Ingrese mes y año para buscar.
-                        </label>
-                        
-                        <app-input [type]="'datetime-month'" [parentForm]="formForSaves"
-                            [control]="formForSaves.controls.fecha">
-                        </app-input>
-
-                    </div>
-                    <div class="col-lg-6 col-12 d-flex flex-column flex-lg-row align-self-end justify-content-between">
-
-                        <button type="submit" class="btn btn-primary">
-                            Buscar planificación actual
-                        </button>
-
-
-                        <button (click)="saveCurrent()" class="btn btn-success ">
-                            Guardar planificación actual
-                        </button>
-
-                    </div>
+                <span class="input-group-btn" style="margin: 0% 0% 0% 3%;">
+                    <button type="submit" class="btn btn-primary"> Buscar </button>            
+                </span>
 
             </div>
 
         </form>
+    </div>
+
+    <div class="col-12" style="margin: 0% 0% 5% -1%">
+        <app-tabla class="table" [ds]='dataSourceTareas' 
+                                 [columns]='columnsToDisplay' 
+                                 [width]="'100%'" 
+                                 [title]="['']"
+                                 [includeButton]="false">
+        </app-tabla>
+    </div>
+</div>
+
+<hr class="my-6">
+
+<div class="container-fluid">
+    <div class="col-6 col-sm-4" style="margin: 1% 0% 1% 0%">
+        <form [formGroup]="formForSaves" (ngSubmit)="getSaves()">
+
+            <label for="">
+                <h2>Buscar planificaciones guardadas</h2>
+                    Ingrese mes y año para buscar.
+            </label>
+
+            <div class="input-group">
+                        
+                <app-input [type]="'datetime-month'" [parentForm]="formForSaves"
+                            [control]="formForSaves.controls.fecha">
+                </app-input>
+
+                <span class="input-group-btn" style="margin: 0% 0% 0% 3%;">
+
+                        <button type="submit" class="btn btn-primary">
+                            Buscar
+                        </button>
+                </span>
+
+                <!-- <span class="input-group-btn" style="margin: 0% 0% 0% 3%;">
+
+                        <button (click)="saveCurrent()" class="btn btn-success ">
+                            Guardar planificación actual
+                        </button>
+                </span> -->
+
+            </div>
+
+        </form>
+    </div>
+
+    <div class="col-12" style="margin: 0% 0% 5% -1%">
 
             <app-tabla class="table"  [ds]='dataSourceSaves' 
                                       [columns]='columnsToDisplayForSaves' 
@@ -82,7 +82,8 @@
                                       (clickRow)="clickedRow($event)">
             </app-tabla>
             
-        </div>
+    </div>
+</div>
 
 
 

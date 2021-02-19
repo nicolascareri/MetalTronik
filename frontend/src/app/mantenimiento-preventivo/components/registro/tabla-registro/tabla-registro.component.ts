@@ -36,7 +36,7 @@ export class TablaRegistroComponent implements OnInit {
       name: 'Fecha planificada',
       sort: 'up',
       filterValue: '',
-      width: '35%'
+      width: '65%'
     },
     {
       id: 2,
@@ -52,7 +52,7 @@ export class TablaRegistroComponent implements OnInit {
       name: 'Maquina',
       sort: '',
       filterValue: '',
-      width: '35%'
+      width: '65%'
     },
     {
       id: 4,
@@ -60,7 +60,7 @@ export class TablaRegistroComponent implements OnInit {
       name: 'Sector',
       sort: '',
       filterValue: '',
-      width: '35%'
+      width: '65%'
     },
 
   ];
