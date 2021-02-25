@@ -9,8 +9,10 @@ html, body{
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #192222 !important; };
 
-.mat-tab-labels { background-color: #205F5F !important };
-.mat-tab-links { background-color: #205F5F !important; };
+.mat-tab-labels { background-color: #205F5F !important; };
+.mat-tab-label .mat-tab-label-content { color: white !important;}
+.mat-tab-label-content { color: white !important;}
+.mat-tab-link { color: white !important; };
 
 @import '~ngx-toastr/toastr.css';
 

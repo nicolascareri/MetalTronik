@@ -39,6 +39,7 @@ export class FormMantenimientoCorrectivoComponent implements OnInit {
   public dataSourceTipos: any;
   public mantenimientoId: any;
   public maquinaId: any;
+  public routeButton = "../";
   public mode = 'add';
   public section = 'Nuevo mantenimiento correctivo';
   public buttonName = 'Crear mantenimiento correctivo'
@@ -97,7 +98,7 @@ export class FormMantenimientoCorrectivoComponent implements OnInit {
       this.MantenimientoCorrectivoService.postMantenimientoCorrectivo(this.mantenimientoCorrectivoForm).subscribe(
         mantenimiento => {
           this.showSuccess();
-          this.router.navigate(['main/ordenes']);
+          this.router.navigate(['main/mantenimientosCorrectivos']);
         },
         error => this.showError(error.error)
       );
@@ -107,7 +108,7 @@ export class FormMantenimientoCorrectivoComponent implements OnInit {
         mantenimiento => {
           this.messageBody = "El mantenimiento se edito correctamente"
           this.showSuccess();
-          this.router.navigate(['main/ordenes']);
+          this.router.navigate(['main/mantenimientosCorrectivos']);
         },
         error => this.showError(error.error)
       );
@@ -117,6 +118,7 @@ export class FormMantenimientoCorrectivoComponent implements OnInit {
   loadMantenimiento(mantenimiento) {
     this.getPartes(mantenimiento.maquina.id);
     this.mode = "edit";
+    this.routeButton = "../../";
     this.section = 'Editar mantenimiento correctivo';
     this.buttonName = 'Confirmar cambios';
     this.mantenimientoCorrectivoForm.controls.nrocorrectivo.setValue(mantenimiento.nrocorrectivo);

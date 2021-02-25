@@ -19,6 +19,7 @@ export class FormMaquinaComponent implements OnInit {
   public dataSourcePlants: any;
   public dataSourceSectors: any;
   public maquinaId: any;
+  public routeButton = "../";
   public mode = 'add';
   public section = 'Nueva maquina - 1/3';
   public buttonName = 'Siguiente';
@@ -85,6 +86,7 @@ export class FormMaquinaComponent implements OnInit {
 
   loadMaquina(maquina) {
     this.mode = "edit";
+    this.routeButton = "../../";
     this.section = 'Editar maquina';
     this.buttonName = 'Confirmar cambios';
     this.machinesForm.controls.maquina_cod.setValue(maquina.maquina_cod);
@@ -117,6 +119,7 @@ export class FormMaquinaComponent implements OnInit {
         error => this.showError(error.error)
       );
     } else {
+
       this.MaquinaService.updateMaquina(this.maquinaId, this.machinesForm).subscribe(
         maquina => {
           this.partForDelete.forEach(parte => {
