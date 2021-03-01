@@ -21,12 +21,12 @@ export class FormMaquinaComponent implements OnInit {
   public maquinaId: any;
   public routeButton = "../";
   public mode = 'add';
-  public section = 'Nueva maquina - 1/3';
+  public section = 'Nueva máquina - 1/3';
   public buttonName = 'Siguiente';
   public path = 'form-partes'
   public messageTitleSuccess: any = "DONE";
   public messageTitleError: any = "ERROR";
-  public messageBody: any = "La maquina se ha creado correctamente";
+  public messageBody: any = "La máquina se ha creado correctamente";
   public machinesForm: FormGroup = new FormGroup({
     maquina_cod: new FormControl(''),
     equipo: new FormControl(''),
@@ -87,7 +87,7 @@ export class FormMaquinaComponent implements OnInit {
   loadMaquina(maquina) {
     this.mode = "edit";
     this.routeButton = "../../";
-    this.section = 'Editar maquina';
+    this.section = 'Editar máquina';
     this.buttonName = 'Confirmar cambios';
     this.machinesForm.controls.maquina_cod.setValue(maquina.maquina_cod);
     this.machinesForm.controls.equipo.setValue(maquina.equipo);
@@ -126,7 +126,7 @@ export class FormMaquinaComponent implements OnInit {
             this.deletePart(parte);
           });
           this.linkParts();
-          this.messageBody = "La maquina se ha editado correctamente"
+          this.messageBody = "La máquina se ha editado correctamente"
           this.showSuccess();
           this.router.navigate(['main/maquinas']);
         },

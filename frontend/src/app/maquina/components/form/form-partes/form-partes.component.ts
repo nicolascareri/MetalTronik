@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './form-partes.component.html',
   styleUrls: ['./form-partes.component.scss']
 })
+
 export class FormPartesComponent implements OnInit {
 
   public messageTitleSuccess: any = "DONE";

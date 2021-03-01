@@ -14,8 +14,13 @@ export class SidenavComponent{
 
   constructor(private AuthService: AuthService) {}
 
+  ngOnInit(): void {
+    this.userName = this.AuthService.getUserName();
+  }
+
   public mobileQuery: MediaQueryList;
   public selected: any;
+  public userName;
 
   fillerNav = [
     { name: 'Ordenes', route: 'ordenes', icon: '' },
