@@ -4,6 +4,7 @@ import { ParteService } from "../../services/parte.service";
 import { CoreService } from 'src/app/core/service/core.service';
 import { Router } from '@angular/router';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { MessageService } from "../../../core/service/message.service";
 
 @Component({
   selector: 'app-tabla-maquina',
@@ -65,18 +66,42 @@ export class TablaMaquinaComponent implements OnInit {
   title = 'appBootstrap';
   closeResult: string;
 
+  //Errors variables
+  public messageTitleSuccess: any = "DONE";
+  public messageTitleError: any = "ERROR";
+  public messageBody: any = "Máquina elminada correctamente";
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   constructor(private MaquinaService: MaquinaService,
               private coreService: CoreService,
               private router: Router,
               private modalService: NgbModal,
-              private ParteService: ParteService) {
+              private ParteService: ParteService,
+              private MessageService: MessageService) {
    }
 
    ngOnInit(): void {
     this.getMaquinas();
   }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  showSuccess(){
+    this.MessageService.showSuccess({
+      title: this.messageTitleSuccess,
+      body: this.messageBody
+    });
+  }
+
+  showError(message){
+    this.MessageService.showError({
+      title: this.messageTitleError,
+      body: message.errors ? message.errors[0].defaultMessage + ". campo: " + message.errors[0].field + ", Valor rechazado: " + message.errors[0].rejectedValue : message.error
+    })
+  }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -115,6 +140,17 @@ export class TablaMaquinaComponent implements OnInit {
   editMaquina(id){
     this.router.navigate(['main/maquinas/form/' + id]);
     this.modalService.dismissAll();
+  }
+
+  deleteMaquina(id){
+    this.MaquinaService.deleteMaquina(id).subscribe(
+      maquina => {
+        this.showSuccess();
+        this.ngOnInit();
+        this.modalService.dismissAll('by pressing ESC');      
+      },
+      error => this.showError(error.error)
+    );
   }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

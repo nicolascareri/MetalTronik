@@ -33,7 +33,7 @@ export class FormMaquinaComponent implements OnInit {
     descripcion: new FormControl(''),
     planta_id: new FormControl(''),
     sector_id: new FormControl(''),
-    estado: new FormControl(30)
+    estado: new FormControl(1)
   });
   public partsForm: FormGroup = new FormGroup({
     codigo: new FormControl(''),

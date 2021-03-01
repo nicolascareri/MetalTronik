@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ParteService } from "../../../services/parte.service";
 import { MessageService } from "../../../../core/service/message.service";
 import { Router } from '@angular/router';
-
+import { MaquinaService } from "../../../services/maquina.service";
 
 @Component({
   selector: 'app-form-partes',
@@ -26,7 +26,8 @@ export class FormPartesComponent implements OnInit {
 
   constructor(private ParteService: ParteService,
               private MessageService: MessageService,
-              private router: Router) { }
+              private router: Router,
+              private MaquinaService: MaquinaService) { }
 
   ngOnInit(): void {
   }
@@ -42,6 +43,13 @@ export class FormPartesComponent implements OnInit {
       error => this.showError(error.error)
     );
   }
+
+  // cancel(){
+  //   console.log(this.MaquinaService.getLastInsert());
+  //   console.log("in");
+    
+  //   // this.MaquinaService.deleteMaquina()
+  // }
 
   delete(part){
     var index = this.parts.indexOf(part);

@@ -40,6 +40,10 @@ export class MaquinaService {
     return this.http.put<any>(this.path.SERVER.serve + this.path.MAQUINAS.PUT + id, maquina.value);
   }
 
+  deleteMaquina(id){
+    return this.http.delete(this.path.SERVER.serve + this.path.MAQUINAS.DELETE + id);
+  }
+
 
   
 

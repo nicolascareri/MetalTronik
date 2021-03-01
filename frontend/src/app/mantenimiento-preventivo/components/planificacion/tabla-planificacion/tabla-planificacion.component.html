@@ -1,5 +1,12 @@
 <app-nav></app-nav>
 
+                <div class="input-group-btn" style="margin: 1% 0% 0% 1%;">
+
+                        <button (click)="saveCurrent()" class="btn btn-success ">
+                            Guardar planificación actual
+                        </button>
+                    </div>
+
 <app-tabla class="table" [ds]='dataSourceTareas' 
                          [columns]='columnsToDisplay' 
                          [width]="'98%'"

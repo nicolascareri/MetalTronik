@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TareaService } from "../../../services/tarea.service";
 import { Router } from '@angular/router';
 import { CoreService } from 'src/app/core/service/core.service';
+import { MessageService } from "../../../../core/service/message.service";
+import { RegistroService } from '../../../services/registro.service';
 
 @Component({
   selector: 'app-tabla-planificacion',
@@ -65,14 +67,36 @@ export class TablaPlanificacionComponent implements OnInit {
     } 
   ]
 
+  public messageTitleSuccess: any = "DONE";
+  public messageTitleError: any = "ERROR";
+  public messageBody: any = "";
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   constructor(private TareaService: TareaService,
               private Router: Router,
-              private CoreService: CoreService) { }
+              private CoreService: CoreService,
+              private RegistroService: RegistroService,
+              private MessageService: MessageService) { }
 
   ngOnInit(): void {
     this.getTareas();
+  }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  showSuccess(){
+    this.MessageService.showSuccess({
+      title: this.messageTitleSuccess,
+      body: this.messageBody
+    });
+  }
+
+  showError(message){
+    this.MessageService.showError({
+      title: this.messageTitleError,
+      body: message.errors ? message.errors[0].defaultMessage + ". campo: " + message.errors[0].field + ", Valor rechazado: " + message.errors[0].rejectedValue : message.error
+    })
   }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -91,6 +115,16 @@ export class TablaPlanificacionComponent implements OnInit {
       (error) => {
         console.error(error);
       }
+    );
+  }
+
+  saveCurrent(){
+    this.RegistroService.saveCurrent("").subscribe(
+      (data: any) => {
+        this.messageBody = "Planificacion actual guardada correctamente"
+          this.showSuccess();
+      },
+      error => this.showError(error.error)
     );
   }
 

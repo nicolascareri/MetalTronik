@@ -44,7 +44,8 @@ export const ENDPOINTS = {
         GET: 'api/maquina',
         GETID: 'api/maquina/',
         POST: 'api/maquina',
-        PUT: 'api/maquina/'
+        PUT: 'api/maquina/',
+        DELETE: 'api/maquina/'
     },
 
     SECTORES: {

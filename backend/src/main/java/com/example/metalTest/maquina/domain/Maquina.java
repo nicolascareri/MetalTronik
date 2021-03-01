@@ -25,11 +25,11 @@ public class Maquina {
     @Column
     private Estado estado;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn
     private Tipo planta;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn
     private Tipo sector;
 
@@ -39,6 +39,6 @@ public class Maquina {
     @Column
     private String descripcion;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Parte> parteList = new ArrayList<>();
 }

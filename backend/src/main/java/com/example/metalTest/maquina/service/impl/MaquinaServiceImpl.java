@@ -4,7 +4,6 @@ import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.common.estado.Estado;
 import com.example.metalTest.common.validator.RepositoryValidator;
 import com.example.metalTest.maquina.controller.request.MaquinaRequest;
-import com.example.metalTest.maquina.controller.response.MaquinaReducidoResponse;
 import com.example.metalTest.maquina.controller.response.MaquinaResponse;
 import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.maquina.mapper.MaquinaMapper;
@@ -14,12 +13,10 @@ import com.example.metalTest.parte.mapper.ParteMapper;
 import com.example.metalTest.parte.repository.ParteRepository;
 import com.example.metalTest.tipo.domain.Tipo;
 import com.example.metalTest.tipo.repository.TipoRepository;
-import com.example.metalTest.usuarios.personal.domain.Personal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class   MaquinaServiceImpl implements MaquinaService {
@@ -41,8 +38,8 @@ public class   MaquinaServiceImpl implements MaquinaService {
     RepositoryValidator<Maquina> repositoryValidator = new  RepositoryValidator<Maquina>();
 
     @Override
-    public List<MaquinaReducidoResponse> getAll() {
-        return maquinaMapper.toMaquinaReducidoResponseList(maquinaRepository.findAll());
+    public List<Maquina> getAll() {
+        return maquinaRepository.findAll();
     }
 
     @Override
@@ -86,9 +83,10 @@ public class   MaquinaServiceImpl implements MaquinaService {
     @Override
     public boolean delete(Integer id) throws Exception {
         try{
-            Maquina maquina = repositoryValidator.getObject(maquinaRepository,id);
-            maquinaRepository.delete(maquina);
+            //Maquina maquina = repositoryValidator.getObject(maquinaRepository,id);
+            maquinaRepository.deleteById(id);
         }catch (Exception e){
+            System.out.println(e.getCause());
             throw new Exception(e);
         }
         return true;
