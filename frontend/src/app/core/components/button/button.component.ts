@@ -12,7 +12,7 @@ export class ButtonComponent implements OnInit {
   @Input() name: string = " ";
   @Input() click: any;
   @Input() type = 'text';
-  @Input() routeForButton = "";
+  @Input() routeForButton = "..";
 
 
   constructor() { }

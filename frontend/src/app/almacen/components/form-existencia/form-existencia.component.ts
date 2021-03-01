@@ -20,6 +20,7 @@ export class FormExistenciaComponent implements OnInit {
   public dataSourceTipos;
   public repuestoId: any;
   public mode = 'add';
+  public routeButton = "../";
   public section = 'Nuevo repuesto';
   public buttonName = 'Crear repuesto';
   public messageTitleSuccess: any = "DONE";
@@ -78,6 +79,7 @@ export class FormExistenciaComponent implements OnInit {
 
   loadRepuesto(repuesto) {
     this.mode = "edit";
+    this.routeButton = "../../";
     this.section = 'Editar repuesto';
     this.buttonName = 'Confirmar cambios';
     this.repuestForm.controls.codigoProducto.setValue(repuesto.codigoProducto);

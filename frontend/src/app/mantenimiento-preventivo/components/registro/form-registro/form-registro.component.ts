@@ -35,6 +35,7 @@ export class FormRegistroComponent implements OnInit {
     tarea_cod: new FormControl(''),
     encargado: new FormControl('')
   });
+  public routeButton = "../";
   public messageTitleSuccess: any = "DONE";
   public messageTitleError: any = "ERROR";
   public messageBody: any = "La tarea se ha programado correctamente";
@@ -78,6 +79,7 @@ export class FormRegistroComponent implements OnInit {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   loadTarea(tarea) {
+    this.routeButton = "../../";
     this.tareaForm.controls.fechaPlanificada.setValue(tarea.fechaPlanificada.replace(' ', 'T'));
     if(this.tareaForm.controls.fechaRealizada == null){
       this.tareaForm.controls.fechaRealizada.setValue(tarea.fechaRealizada.replace(' ','T'));
