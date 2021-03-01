@@ -21,8 +21,8 @@ public class TipoServiceImpl implements TipoService {
 
     @Autowired
     TipoMapper tipoMapper;
-    @Autowired
-    RepositoryValidator repositoryValidator;
+
+    RepositoryValidator<Tipo> repositoryValidator = new RepositoryValidator<>(new Tipo());
 
     @Override
     public List<Tipo> getAll() {
@@ -31,7 +31,7 @@ public class TipoServiceImpl implements TipoService {
 
     @Override
     public Tipo getById(Integer id) throws ValidateFieldException {
-        return (Tipo)repositoryValidator.getObject(tipoRepository, id);
+        return repositoryValidator.getObject(tipoRepository, id);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class TipoServiceImpl implements TipoService {
 
     @Override
     public Tipo update(TipoRequest tipoRequest, Integer id) throws ValidateFieldException {
-        Tipo tipo = (Tipo) repositoryValidator.getObject(tipoRepository, id);
+        Tipo tipo = repositoryValidator.getObject(tipoRepository, id);
         tipo.setTipo(tipoRequest.getTipo());
         tipo.setNombre(tipoRequest.getNombre());
         tipo.setEstado(tipoRequest.getEstado());
@@ -62,12 +62,14 @@ public class TipoServiceImpl implements TipoService {
     }
 
     @Override
-    public Boolean delete(Integer id) throws ValidateFieldException {
-        repositoryValidator.getObject(tipoRepository, id);
-        try{
-            tipoRepository.deleteById(id);
+    public Boolean delete(Integer id) throws Exception {
+        Tipo tipo = repositoryValidator.getObject(tipoRepository, id);
+        try {
+            tipo.setEstado(Estado.ELIMINADO);
+            tipo.setId(1);
+            tipoRepository.save(tipo);
         }catch (Exception e){
-            throw new ValidateFieldException(e.getMessage(), "  id", String.valueOf(id));
+            throw new ValidateFieldException("error interno del sistema, ", "no se pudo eliminar", tipo.getTipo()+", "+tipo.getNombre());
         }
         return true;
 

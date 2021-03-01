@@ -12,11 +12,14 @@ import com.example.metalTest.maquina.repository.MaquinaRepository;
 import com.example.metalTest.maquina.service.MaquinaService;
 import com.example.metalTest.parte.mapper.ParteMapper;
 import com.example.metalTest.parte.repository.ParteRepository;
+import com.example.metalTest.tipo.domain.Tipo;
 import com.example.metalTest.tipo.repository.TipoRepository;
+import com.example.metalTest.usuarios.personal.domain.Personal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class   MaquinaServiceImpl implements MaquinaService {
@@ -35,8 +38,7 @@ public class   MaquinaServiceImpl implements MaquinaService {
     @Autowired
     TipoRepository tipoRepository;
 
-    @Autowired
-    RepositoryValidator repositoryValidator;
+    RepositoryValidator<Maquina> repositoryValidator = new  RepositoryValidator<Maquina>();
 
     @Override
     public List<MaquinaReducidoResponse> getAll() {
@@ -45,7 +47,7 @@ public class   MaquinaServiceImpl implements MaquinaService {
 
     @Override
     public MaquinaResponse getById(Integer id) throws ValidateFieldException {
-        return maquinaMapper.toMaquinaResponse((Maquina) repositoryValidator.getObject(maquinaRepository, id));
+        return maquinaMapper.toMaquinaResponse(repositoryValidator.getObject(maquinaRepository, id));
 
     }
 
@@ -59,14 +61,15 @@ public class   MaquinaServiceImpl implements MaquinaService {
         if (maquina.getEstado() != Estado.ACTIVO && maquina.getEstado() != Estado.ELIMINADO) {
             throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(maquina.getEstado()));
         }
-        maquina.setPlanta(tipoRepository.findById(maquinaRequest.getPlanta_id()).get());
-        maquina.setSector(tipoRepository.findById(maquinaRequest.getSector_id()).get());
+        RepositoryValidator<Tipo> tipoRepositoryValidator = new RepositoryValidator<Tipo>();
+        maquina.setPlanta(tipoRepositoryValidator.getObject(tipoRepository, maquinaRequest.getPlanta_id()));
+        maquina.setSector(tipoRepositoryValidator.getObject(tipoRepository, maquinaRequest.getSector_id()));
         return maquinaMapper.toMaquinaResponse(maquinaRepository.save(maquina));
     }
 
     @Override
     public MaquinaResponse update(MaquinaRequest maquinaRequest, Integer id) throws ValidateFieldException {
-        Maquina maquina = (Maquina) repositoryValidator.getObject(maquinaRepository, id);
+        Maquina maquina = repositoryValidator.getObject(maquinaRepository, id);
         if (maquina.getEstado() != Estado.ACTIVO && maquina.getEstado() != Estado.ELIMINADO) {
             throw new ValidateFieldException("Valor en campo invalido", "estado", String.valueOf(maquina.getEstado()));
         }
@@ -78,6 +81,17 @@ public class   MaquinaServiceImpl implements MaquinaService {
         maquina.setDescripcion(maquinaRequest.getDescripcion());
         maquina.setId(id);
         return maquinaMapper.toMaquinaResponse(maquinaRepository.save(maquina));
+    }
+
+    @Override
+    public boolean delete(Integer id) throws Exception {
+        try{
+            Maquina maquina = repositoryValidator.getObject(maquinaRepository,id);
+            maquinaRepository.delete(maquina);
+        }catch (Exception e){
+            throw new Exception(e);
+        }
+        return true;
     }
 
 }

@@ -3,7 +3,7 @@ package com.example.metalTest.ordenestrabajo.service.impl;
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.common.estado.Estado;
 import com.example.metalTest.common.validator.RepositoryValidator;
-import com.example.metalTest.correctivo.repository.MantenimientoCorrectivoRepository;
+import com.example.metalTest.mantenimientos.correctivo.repository.MantenimientoCorrectivoRepository;
 import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
 import com.example.metalTest.ordenestrabajo.controller.request.OrdenesTrabajoRequest;
@@ -44,8 +44,8 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
     @Autowired
     ParteRepository parteRepository;
 
-    @Autowired
-    RepositoryValidator repositoryValidator;
+
+    RepositoryValidator<OrdenesTrabajo> repositoryValidator = new RepositoryValidator<OrdenesTrabajo>();
 
     @Autowired
     MantenimientoCorrectivoRepository mantenimientoCorrectivoRepository;
@@ -59,7 +59,7 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
 
     @Override
     public OrdenesTrabajoResponse getById(Integer id) throws ValidateFieldException {
-        return ordenesTrabajoMapper.toOrdenesTrabajoResponse((OrdenesTrabajo) repositoryValidator.getObject(ordenesTrabajoRepository, id));
+        return ordenesTrabajoMapper.toOrdenesTrabajoResponse( repositoryValidator.getObject(ordenesTrabajoRepository, id));
     }
 
     @Override
@@ -80,12 +80,17 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
     private OrdenesTrabajo setOrdenesTrabajo(OrdenesTrabajoRequest ordenesTrabajoRequest) throws ValidateFieldException {
         OrdenesTrabajo ordenesTrabajo = new OrdenesTrabajo();
         Integer maquina_id = ordenesTrabajoRequest.getMaquina_id();
-        ordenesTrabajo.setMaquina((Maquina) repositoryValidator.getObject(maquinaRepository, maquina_id));
+        RepositoryValidator<Maquina> maquinaRepositoryValidator = new  RepositoryValidator<Maquina>();
+        ordenesTrabajo.setMaquina( maquinaRepositoryValidator.getObject(maquinaRepository, maquina_id));
         ordenesTrabajo.setParte(parteBuscador.getParte(ordenesTrabajoRequest.getParte_id(), parteRepository.getAllByMaquina(maquina_id)));
-        ordenesTrabajo.setEncargo((Personal)repositoryValidator.getObject(personalRepository, ordenesTrabajoRequest.getEncargo_id()));
-        ordenesTrabajo.setResponsable((Personal)repositoryValidator.getObject(personalRepository, ordenesTrabajoRequest.getResponsable_id()));
-        ordenesTrabajo.setTipo((Tipo) repositoryValidator.getObject(tipoRepository, ordenesTrabajoRequest.getTipo_id()));
-        ordenesTrabajo.setPrioridad((Tipo) repositoryValidator.getObject(tipoRepository, ordenesTrabajoRequest.getPrioridad_id()));
+
+        RepositoryValidator<Personal> personalRepositoryValidator = new  RepositoryValidator<Personal>();
+        ordenesTrabajo.setEncargo(personalRepositoryValidator.getObject(personalRepository, ordenesTrabajoRequest.getEncargo_id()));
+        ordenesTrabajo.setResponsable(personalRepositoryValidator.getObject(personalRepository, ordenesTrabajoRequest.getResponsable_id()));
+
+        RepositoryValidator<Tipo> tipoRepositoryValidator = new RepositoryValidator<>();
+        ordenesTrabajo.setTipo(tipoRepositoryValidator.getObject(tipoRepository, ordenesTrabajoRequest.getTipo_id()));
+        ordenesTrabajo.setPrioridad(tipoRepositoryValidator.getObject(tipoRepository, ordenesTrabajoRequest.getPrioridad_id()));
         ordenesTrabajo.setEstado(Estado.PENDIENTE);
         ordenesTrabajo.setFechaEntrega(ordenesTrabajoRequest.getFechaEntrega());
         ordenesTrabajo.setFechaRealizar(ordenesTrabajoRequest.getFechaRealizar());
@@ -99,7 +104,7 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
 
     @Override
     public OrdenesTrabajoResponse update(OrdenesTrabajoRequest ordenesTrabajoRequest, Integer id) throws ValidateFieldException {
-        OrdenesTrabajo ordenesTrabajo = (OrdenesTrabajo) repositoryValidator.getObject(ordenesTrabajoRepository, id);
+        OrdenesTrabajo ordenesTrabajo = repositoryValidator.getObject(ordenesTrabajoRepository, id);
         Integer maquinaCod=ordenesTrabajo.getMaquina().getId();
         ordenesTrabajo.setPedidoMateriales(ordenesTrabajoRequest.getPedidoMateriales());
         ordenesTrabajo.setTarea(ordenesTrabajoRequest.getTarea());

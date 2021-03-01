@@ -27,6 +27,12 @@ public class Repuesto {
 
     @Column
     private String marca;
+    @Column
+    private Integer existencia;
+    @Column
+    private Integer stock_objetivo;
+    @Column
+    private Integer punto_pedido;
 
     @Column
     private int precio_unitario;

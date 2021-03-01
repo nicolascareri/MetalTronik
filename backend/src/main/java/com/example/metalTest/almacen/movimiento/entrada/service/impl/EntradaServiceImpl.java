@@ -27,8 +27,8 @@ public class EntradaServiceImpl implements EntradaService {
     @Autowired
     EntradaMapper entradaMapper;
 
-    @Autowired
-    RepositoryValidator repositoryValidator;
+
+    RepositoryValidator<Repuesto> repositoryValidator = new  RepositoryValidator();
 
     @Override
     public List<EntradaResponse> getAll() {
@@ -38,7 +38,7 @@ public class EntradaServiceImpl implements EntradaService {
     @Override
     public EntradaResponse create(EntradaRequest entradaRequest) throws ValidateFieldException {
         Entrada entrada = entradaMapper.entradaRequestToEntrada(entradaRequest);
-        Repuesto repuesto = (Repuesto) repositoryValidator.getObject(repuestoRepository, entradaRequest.getRepuesto_id());
+        Repuesto repuesto = repositoryValidator.getObject(repuestoRepository, entradaRequest.getRepuesto_id());
         Stock stock = repuesto.getStock();
         stock.setActual(repuesto.getStock().getActual() + entradaRequest.getCantidad());
         repuesto.setStock(stock);
@@ -55,7 +55,8 @@ public class EntradaServiceImpl implements EntradaService {
 
     @Override
     public EntradaResponse getById(Integer id) throws ValidateFieldException {
-        Entrada entrada = (Entrada) repositoryValidator.getObject(entradaRepository, id);
+        RepositoryValidator<Entrada> entradaRepositoryValidator = new  RepositoryValidator();
+        Entrada entrada = entradaRepositoryValidator.getObject(entradaRepository, id);
         return entradaMapper.toEntradaResponse(entradaRepository.save(entrada));
     }
 }

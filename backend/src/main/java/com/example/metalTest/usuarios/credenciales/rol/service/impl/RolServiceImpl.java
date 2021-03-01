@@ -12,6 +12,7 @@ import com.example.metalTest.usuarios.credenciales.rol.domain.Rol;
 import com.example.metalTest.usuarios.credenciales.rol.enums.RolRango;
 import com.example.metalTest.usuarios.credenciales.rol.repository.RolRepository;
 import com.example.metalTest.usuarios.credenciales.rol.service.RolService;
+import com.example.metalTest.usuarios.personal.domain.Personal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +28,8 @@ public class RolServiceImpl implements RolService {
     RolRepository rolRepository;
     @Autowired
     PermisoRepository permisoRepository;
-    @Autowired
-    RepositoryValidator repositoryValidator;
+
+    RepositoryValidator<Rol> repositoryValidator = new  RepositoryValidator<Rol>();
 
     @Override
     public Rol create(RolRequest rolRequest) throws ValidateFieldException {
@@ -38,8 +39,9 @@ public class RolServiceImpl implements RolService {
         List<Permiso> permisos = new ArrayList<>();
         for (PermisoRequest permisoRequest: rolRequest.getPermisos() ) {
             Permiso permiso = new Permiso();
-            permiso.setPermiso((Tipo) repositoryValidator.getObject(tipoRepository, permisoRequest.getPermiso()));
-            permiso.setSector((Tipo) repositoryValidator.getObject(tipoRepository, permisoRequest.getSector()));
+            RepositoryValidator<Tipo> tipoRepositoryValidator = new RepositoryValidator<Tipo>();
+            permiso.setPermiso(tipoRepositoryValidator.getObject(tipoRepository, permisoRequest.getPermiso()));
+            permiso.setSector(tipoRepositoryValidator.getObject(tipoRepository, permisoRequest.getSector()));
             permisos.add(permiso);
         }
         rol.setPermisos(permisos);

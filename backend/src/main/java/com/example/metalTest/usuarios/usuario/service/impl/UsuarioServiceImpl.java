@@ -4,6 +4,7 @@ import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.common.validator.RepositoryValidator;
 import com.example.metalTest.security.jwt.JwtDto;
 import com.example.metalTest.security.jwt.JwtProvider;
+import com.example.metalTest.tipo.domain.Tipo;
 import com.example.metalTest.tipo.service.TipoService;
 import com.example.metalTest.usuarios.credenciales.credencial.domain.Credencial;
 import com.example.metalTest.usuarios.credenciales.credencial.repository.CredencialRepository;
@@ -47,16 +48,15 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Autowired
     JwtProvider jwtProvider;
 
-    @Autowired
-    RepositoryValidator repositoryValidator;
+    RepositoryValidator<Personal> repositoryValidator = new  RepositoryValidator<Personal>();
 
     @Override
     public Personal create(UsuarioRequest usuarioRequest, Integer id) throws ValidateFieldException {
         //Busco el personal por id en la tabla personal
-        Personal personal = (Personal) repositoryValidator.getObject(personalRepository, id);
-
+        Personal personal = repositoryValidator.getObject(personalRepository, id);
+        RepositoryValidator<Rol> rolRepositoryValidator = new RepositoryValidator<Rol>();
         //busco el rol en la db
-        Rol rol = (Rol) repositoryValidator.getObject(rolRepository, usuarioRequest.getRol());
+        Rol rol =  rolRepositoryValidator.getObject(rolRepository, usuarioRequest.getRol());
         //creo una credencial(nombre usuario y pass encriptada)
         Credencial credencial = new Credencial(usuarioRequest.getNombre_usuario(), passwordEncoder.encode(usuarioRequest.getContrasenia()), rol);
         //cuando seteo la credencial se guarda sola en la tabla Credencial
@@ -72,7 +72,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Personal getById(Integer id) throws ValidateFieldException {
-        return (Personal) repositoryValidator.getObject(personalRepository, id);
+        return repositoryValidator.getObject(personalRepository, id);
     }
     @Override
     public Personal findFyNombreUsuario(String s) {

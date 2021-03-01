@@ -4,7 +4,7 @@ import com.example.metalTest.indicadores.controller.response.Torta;
 import com.example.metalTest.indicadores.mapper.IndicadoresMapper;
 import com.example.metalTest.indicadores.mapper.ToIndicadoresMapper;
 import com.example.metalTest.indicadores.service.IndicadoresService;
-import com.example.metalTest.correctivo.repository.MantenimientoCorrectivoRepository;
+import com.example.metalTest.mantenimientos.correctivo.repository.MantenimientoCorrectivoRepository;
 import com.example.metalTest.indicadores.controller.response.IndicatorResponse;
 import com.example.metalTest.ordenestrabajo.repository.OrdenesTrabajoRepository;
 import org.springframework.beans.factory.annotation.Autowired;

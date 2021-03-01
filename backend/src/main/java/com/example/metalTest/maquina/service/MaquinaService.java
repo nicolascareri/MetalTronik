@@ -16,4 +16,5 @@ public interface MaquinaService {
 
     MaquinaResponse update(MaquinaRequest maquinaRequestToMaquina, Integer id) throws ValidateFieldException;
 
+    boolean delete(Integer id) throws Exception;
 }

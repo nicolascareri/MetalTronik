@@ -57,4 +57,10 @@ public class MaquinaController {
         return new ResponseEntity<>(parteService.findAllByMaquina(id),HttpStatus.OK);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id) throws ValidateFieldException {
+        parteService.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

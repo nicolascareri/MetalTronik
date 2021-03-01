@@ -19,5 +19,5 @@ public interface TipoService {
 
     List<String> getTipos();
 
-    Boolean delete(Integer id) throws ValidateFieldException;
+    Boolean delete(Integer id) throws ValidateFieldException, Exception;
 }

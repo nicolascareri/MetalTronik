@@ -5,6 +5,7 @@ import com.example.metalTest.almacen.asociacion.controller.request.RepuestoAsoci
 import com.example.metalTest.almacen.asociacion.domain.Asociacion;
 import com.example.metalTest.almacen.asociacion.repository.AsociacionRepository;
 import com.example.metalTest.almacen.asociacion.service.AsosiacionService;
+import com.example.metalTest.almacen.movimiento.entrada.domain.Entrada;
 import com.example.metalTest.almacen.repuesto.domain.Repuesto;
 import com.example.metalTest.almacen.repuesto.mapper.RepuestoMapper;
 import com.example.metalTest.almacen.repuesto.repository.RepuestoRepository;
@@ -38,19 +39,19 @@ public class AsociacionServiceImpl implements AsosiacionService {
     @Autowired
     AsociacionRepository asociacionRepository;
 
-    @Autowired
-    RepositoryValidator repositoryValidator;
 
     @Override
     public void asociar(AsociarList asociarList) throws ValidateFieldException {
         Integer maquina_id = asociarList.getMaquina_id();
-        Maquina maquina =(Maquina) repositoryValidator.getObject(maquinaRepository, maquina_id);
+        RepositoryValidator<Maquina> maquinaRepositoryValidator = new  RepositoryValidator();
+        Maquina maquina =maquinaRepositoryValidator.getObject(maquinaRepository, maquina_id);
         Parte parte = parteBuscador.getParte(asociarList.getParte_id(), parteRepository.getAllByMaquina(maquina_id));
         String observaciones = asociarList.getObservaciones();
         for (RepuestoAsociarRequest ra: asociarList.getRequestList()) {
             Integer cantidad_instalada = ra.getCantidad_instalada();
             Integer repuesto_id = ra.getRepuesto_id();
-            Repuesto repuesto = (Repuesto) repositoryValidator.getObject(repuestoRepository, repuesto_id);
+            RepositoryValidator<Repuesto> repuestoRepositoryValidator = new  RepositoryValidator();
+            Repuesto repuesto = repuestoRepositoryValidator.getObject(repuestoRepository, repuesto_id);
             updateRepuesto(repuesto, cantidad_instalada, repuesto_id);
             Asociacion asociacion = setCampos(maquina, parte, repuesto, cantidad_instalada, observaciones);
             asociacionRepository.save(asociacion);

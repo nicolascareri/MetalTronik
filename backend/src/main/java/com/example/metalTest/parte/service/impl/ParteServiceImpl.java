@@ -27,8 +27,7 @@ public class ParteServiceImpl implements ParteService {
     @Autowired
     ParteMapper parteMapper;
 
-    @Autowired
-    RepositoryValidator repositoryValidator;
+    RepositoryValidator<Parte> repositoryValidator = new RepositoryValidator<Parte>();
 
     @Override
     public List<ParteResponse> getAll() {
@@ -49,13 +48,14 @@ public class ParteServiceImpl implements ParteService {
 
     @Override
     public ParteResponse getById(Integer id) throws ValidateFieldException {
-        return (ParteResponse) repositoryValidator.getObject(parteRepository, id);
+        return parteMapper.toParteResponse(repositoryValidator.getObject(parteRepository, id));
     }
 
     @Override
     public List<ParteResponse> vincular(Integer id_maquina, List<Integer> idPartes) throws ValidateFieldException {
         List<Parte> parteList = parteRepository.findAllById(idPartes);
-        Maquina maquina = (Maquina) repositoryValidator.getObject(maquinaRepository, id_maquina);
+        RepositoryValidator<Maquina> repositoryValidator = new RepositoryValidator<Maquina>();
+        Maquina maquina = repositoryValidator.getObject(maquinaRepository, id_maquina);
         maquina.setParteList(new ArrayList<>());
         parteList.forEach(parte -> {
             parte.setMaquinaId(maquina.getId());
@@ -73,7 +73,7 @@ public class ParteServiceImpl implements ParteService {
 
     @Override
     public void delete(Integer id) throws ValidateFieldException {
-        Parte parte = (Parte) repositoryValidator.getObject(parteRepository, id);
+        Parte parte = repositoryValidator.getObject(parteRepository, id);
         parteRepository.delete(parte);
     }
 }

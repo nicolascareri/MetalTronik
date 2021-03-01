@@ -33,8 +33,7 @@ public class SalidaServiceImpl implements SalidaService {
     @Autowired
     TipoRepository tipoRepository;
 
-    @Autowired
-    RepositoryValidator repositoryValidator;
+    RepositoryValidator<Repuesto> repositoryValidator = new  RepositoryValidator<Repuesto>();
 
 
     @Override
@@ -45,14 +44,16 @@ public class SalidaServiceImpl implements SalidaService {
     @Override
     public SalidaResponse create(SalidaRequest salidaRequest) throws ValidateFieldException {
         Salida salida = salidaMapper.salidaRequestToSalida(salidaRequest);
-        Repuesto repuesto = (Repuesto) repositoryValidator.getObject(repuestoRepository, salidaRequest.getRepuesto_id());
+        Repuesto repuesto = repositoryValidator.getObject(repuestoRepository, salidaRequest.getRepuesto_id());
         Stock stock = repuesto.getStock();
         stock.setActual(repuesto.getStock().getActual() - salidaRequest.getCantidad());
         repuesto.setStock(stock);
         repuesto.setPrecio_total(repuesto.getPrecio_unitario() * repuesto.getStock().getActual());
         salida.setRepuesto(repuesto);
-        salida.setSector((Tipo) repositoryValidator.getObject(tipoRepository,salidaRequest.getSector_id()));
-        salida.setSolicitante((Personal)repositoryValidator.getObject(personalRepository, salidaRequest.getSolicitante_id()));
+        RepositoryValidator<Tipo> tipoRepositoryValidator = new  RepositoryValidator<Tipo>();
+        salida.setSector(tipoRepositoryValidator.getObject(tipoRepository,salidaRequest.getSector_id()));
+        RepositoryValidator<Personal> personalRepositoryValidator = new  RepositoryValidator<Personal>();
+        salida.setSolicitante(personalRepositoryValidator.getObject(personalRepository, salidaRequest.getSolicitante_id()));
         return salidaMapper.toSalidaResponse(salidaRepository.save(salida));
     }
 }

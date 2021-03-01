@@ -25,8 +25,6 @@ public class AjusteServiceImpl implements AjusteService {
     AjusteMapper ajusteMapper;
     @Autowired
     RepuestoRepository repuestoRepository;
-    @Autowired
-    RepositoryValidator repositoryValidator;
 
     @Override
     public List<AjusteResponse> getAll() {
@@ -46,7 +44,8 @@ public class AjusteServiceImpl implements AjusteService {
     @Override
     public AjusteResponse create(AjusteRequest ajusteRequest, Integer repuesto_id) throws ValidateFieldException {
         AjusteStock ajuste = ajusteMapper.ajusteRequestToAjusteStock(ajusteRequest);
-        Repuesto repuesto = (Repuesto) repositoryValidator.getObject(repuestoRepository,repuesto_id);
+        RepositoryValidator<Repuesto> repuestoRepositoryValidator = new  RepositoryValidator();
+        Repuesto repuesto = repuestoRepositoryValidator.getObject(repuestoRepository,repuesto_id);
         repuesto.setPrecio_total(repuesto.getPrecio_unitario() * ajusteRequest.getStock());
         repuesto.setMarca(ajusteRequest.getMarca());
         repuesto.setId(repuesto_id);
