@@ -14,7 +14,7 @@ export const ESTADOS = [
 export const ENDPOINTS = {
 
     SERVER: {
-        serve: 'https://metaltronik.herokuapp.com/',
+        serve: 'http://localhost:8080/',
         // local: 'http://localhost:8080/'
         // heroku: 'https://metaltronik.herokuapp.com/'
     },
@@ -44,7 +44,8 @@ export const ENDPOINTS = {
         GET: 'api/maquina',
         GETID: 'api/maquina/',
         POST: 'api/maquina',
-        PUT: 'api/maquina/'
+        PUT: 'api/maquina/',
+        DELETE: 'api/maquina/'
     },
 
     SECTORES: {

@@ -4,6 +4,7 @@ import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.maquina.controller.request.MaquinaRequest;
 import com.example.metalTest.maquina.controller.response.MaquinaReducidoResponse;
 import com.example.metalTest.maquina.controller.response.MaquinaResponse;
+import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.maquina.mapper.MaquinaMapper;
 import com.example.metalTest.maquina.service.MaquinaService;
 import com.example.metalTest.parte.controller.response.ParteResponse;
@@ -29,7 +30,7 @@ public class MaquinaController {
     ParteService parteService;
 
     @GetMapping
-    public ResponseEntity<List<MaquinaReducidoResponse>> getAll() {
+    public ResponseEntity<List<Maquina>> getAll() {
         return new ResponseEntity<>(maquinaService.getAll(), HttpStatus.OK);
     }
 
@@ -55,6 +56,12 @@ public class MaquinaController {
     @GetMapping("/partesByIdMaquina/{id}")
     public ResponseEntity<List<ParteResponse>> getAllByMaquina(@PathVariable Integer id){
         return new ResponseEntity<>(parteService.findAllByMaquina(id),HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id) throws Exception {
+        maquinaService.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

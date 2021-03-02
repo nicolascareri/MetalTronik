@@ -6,12 +6,13 @@ import com.example.metalTest.almacen.repuesto.domain.Repuesto;
 import com.example.metalTest.almacen.repuesto.mapper.RepuestoMapper;
 import com.example.metalTest.almacen.repuesto.repository.RepuestoRepository;
 import com.example.metalTest.almacen.repuesto.service.RepuestoService;
+import com.example.metalTest.common.validator.RepositoryValidator;
+import com.example.metalTest.tipo.domain.Tipo;
 import com.example.metalTest.tipo.repository.TipoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class RepuestoImpl implements RepuestoService {
@@ -24,26 +25,26 @@ public class RepuestoImpl implements RepuestoService {
     @Autowired
     TipoRepository tipoRepository;
 
+
+    RepositoryValidator<Repuesto> repositoryValidator = new  RepositoryValidator();
+
     @Override
     public List<Repuesto> getAll() {
-        List<Repuesto> a = repuestoRepository.findAll();
-        return a;
+        return repuestoRepository.findAll();
     }
 
     @Override
     public Repuesto getById(Integer id) throws ValidateFieldException {
-        Optional<Repuesto> opt = repuestoRepository.findById(id);
-        if (!opt.isPresent()) {
-            throw new ValidateFieldException("El repuesto que desea acceder no existe", "id", String.valueOf(id));
-        }
-        return opt.get();
+        return repositoryValidator.getObject(repuestoRepository, id);
     }
 
 
     @Override
-    public Repuesto create(RepuestoRequest repuestoRequest) {
+    public Repuesto create(RepuestoRequest repuestoRequest) throws ValidateFieldException {
         Repuesto repuesto = repuestoMapper.repuestoRequestToRepuesto(repuestoRequest);
-        repuesto.setTipo_repuesto(tipoRepository.findById(repuestoRequest.getTipoRepuesto_id()).get());
+        RepositoryValidator<Tipo> tipoRepositoryValidator = new  RepositoryValidator();
+        repuesto.setTipo_repuesto(tipoRepositoryValidator.getObject(tipoRepository, repuestoRequest.getTipoRepuesto_id()));
+        repuesto.setStock(repuestoMapper.stockRequestToStock(repuestoRequest.getStock()));
         repuesto.setCantidad_instalada(0);
         repuesto.setPrecio_unitario(0);
         repuesto.setPrecio_total(0);
@@ -52,11 +53,10 @@ public class RepuestoImpl implements RepuestoService {
 
     @Override
     public Repuesto update(RepuestoRequest repuestoRequest, Integer id) throws ValidateFieldException {
+        repositoryValidator.getObject(repuestoRepository, id);
         Repuesto repuesto = repuestoMapper.repuestoRequestToRepuesto(repuestoRequest);
-        Optional<Repuesto> opt = repuestoRepository.findById(id);
-        if (!opt.isPresent()) {
-            throw new ValidateFieldException("El repuesto que desea acceder no existe", "id", String.valueOf(id));
-        }
+        RepositoryValidator<Tipo> tipoRepositoryValidator = new  RepositoryValidator();
+        repuesto.setTipo_repuesto(tipoRepositoryValidator.getObject(tipoRepository, repuestoRequest.getTipoRepuesto_id()));
         repuesto.setId(id);
         return repuestoRepository.save(repuesto);
     }

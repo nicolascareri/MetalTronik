@@ -1,5 +1,6 @@
 package com.example.metalTest.ordenestrabajo.controller.request;
 
+import com.example.metalTest.common.estado.Estado;
 import com.example.metalTest.common.validator.ValidEntity;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
 import com.example.metalTest.tipo.repository.TipoRepository;
@@ -44,5 +45,5 @@ public class OrdenesTrabajoRequest {
 
     private int ordenTerciarizacion;
 
-    private short estado;
+    private Estado estado;
 }

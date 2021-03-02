@@ -4,11 +4,12 @@ import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.maquina.controller.request.MaquinaRequest;
 import com.example.metalTest.maquina.controller.response.MaquinaReducidoResponse;
 import com.example.metalTest.maquina.controller.response.MaquinaResponse;
+import com.example.metalTest.maquina.domain.Maquina;
 
 import java.util.List;
 
 public interface MaquinaService {
-    List<MaquinaReducidoResponse> getAll();
+    List<Maquina> getAll();
 
     MaquinaResponse getById(Integer id) throws ValidateFieldException;
 
@@ -16,4 +17,5 @@ public interface MaquinaService {
 
     MaquinaResponse update(MaquinaRequest maquinaRequestToMaquina, Integer id) throws ValidateFieldException;
 
+    boolean delete(Integer id) throws Exception;
 }

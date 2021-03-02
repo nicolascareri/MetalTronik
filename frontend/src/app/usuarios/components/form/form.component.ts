@@ -29,6 +29,7 @@ export class FormUsuarioComponent implements OnInit {
     numero: new FormControl('')
   });
   public userId: any;
+  public routeButton = "../";
   public mode = 'add';
   public section = 'Nuevo personal';
   public buttonName = 'Confirmar';
@@ -76,6 +77,7 @@ export class FormUsuarioComponent implements OnInit {
 
   loadUser(user) {
     this.mode = "edit";
+    this.routeButton = "../../";
     this.section = 'Editar usuario';
     this.buttonName = 'Confirmar cambios';
     this.userForm.controls.nombre.setValue(user.nombre);

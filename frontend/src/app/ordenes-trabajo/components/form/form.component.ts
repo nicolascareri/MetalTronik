@@ -43,6 +43,7 @@ export class FormComponent implements OnInit, AfterViewInit {
   public dataSourcePartes: any;
   public ordenId: any;
   public mode = 'add';
+  public routeButton = "../";
   public section = 'Nueva orden';
   public buttonName = 'Crear orden';
   public messageTitleSuccess: any = "DONE";
@@ -100,6 +101,7 @@ export class FormComponent implements OnInit, AfterViewInit {
   loadOrden(orden) {
     this.getPartes(orden.maquina.id);
     this.mode = "edit";
+    this.routeButton = "../../";
     this.section = 'Editar Orden';
     this.buttonName = 'Confirmar cambios';
     this.ordenForm.controls.encargo_id.setValue(orden.encargo.id);

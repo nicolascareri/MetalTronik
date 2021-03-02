@@ -47,4 +47,9 @@ public class TipoController {
     public ResponseEntity<List<String>> getTipos(){
         return new ResponseEntity<>(tipoService.getTipos(), HttpStatus.OK);
     }
+
+    @PostMapping("/{id}")
+    public ResponseEntity<Boolean> delete(@PathVariable Integer id) throws Exception {
+        return new ResponseEntity<>(tipoService.delete(id), HttpStatus.OK);
+    }
 }

@@ -24,6 +24,7 @@ export class FormPlanificacionComponent implements OnInit {
   public tareaId: any;
   public maquinaId: any;
   public mode = 'add';
+  public routeButton = "../";
   public section = 'Programar tarea';
   public buttonName = 'Crear tarea'
   public messageTitleSuccess: any = "DONE";
@@ -80,6 +81,7 @@ export class FormPlanificacionComponent implements OnInit {
     this.getPartes(tarea.maquina.id);
     this.getHistorial(tarea.id);
     this.mode = "edit";
+    this.routeButton = "../../";
     this.section = 'Editar tarea';
     this.buttonName = 'Confirmar cambios';
     this.tareaForm.controls.inicio.setValue(tarea.inicio.replace(' ', 'T'));

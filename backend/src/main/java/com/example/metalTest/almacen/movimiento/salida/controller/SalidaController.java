@@ -3,6 +3,7 @@ package com.example.metalTest.almacen.movimiento.salida.controller;
 import com.example.metalTest.almacen.movimiento.salida.controller.request.SalidaRequest;
 import com.example.metalTest.almacen.movimiento.salida.controller.response.SalidaResponse;
 import com.example.metalTest.almacen.movimiento.salida.service.SalidaService;
+import com.example.metalTest.apiError.exception.ValidateFieldException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public class SalidaController {
         return new ResponseEntity<>(salidaService.getAll(), HttpStatus.OK);
     }
     @PostMapping
-    public ResponseEntity<SalidaResponse> create(@Valid @RequestBody SalidaRequest salidaRequest){
+    public ResponseEntity<SalidaResponse> create(@Valid @RequestBody SalidaRequest salidaRequest) throws ValidateFieldException {
         return new ResponseEntity<>(salidaService.create(salidaRequest), HttpStatus.CREATED);
     }
 }

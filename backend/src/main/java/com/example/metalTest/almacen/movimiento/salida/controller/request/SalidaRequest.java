@@ -14,7 +14,7 @@ import java.util.Date;
 @Setter
 public class SalidaRequest {
     @ValidEntity(repository = RepuestoRepository.class)
-    private int repuesto_cod;
+    private Integer repuesto_id;
     @NotNull
     private Date fecha;
     @ValidEntity(repository = PersonalRepository.class)

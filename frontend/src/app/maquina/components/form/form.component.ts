@@ -19,20 +19,21 @@ export class FormMaquinaComponent implements OnInit {
   public dataSourcePlants: any;
   public dataSourceSectors: any;
   public maquinaId: any;
+  public routeButton = "../";
   public mode = 'add';
-  public section = 'Nueva maquina - 1/3';
+  public section = 'Nueva máquina - 1/3';
   public buttonName = 'Siguiente';
   public path = 'form-partes'
   public messageTitleSuccess: any = "DONE";
   public messageTitleError: any = "ERROR";
-  public messageBody: any = "La maquina se ha creado correctamente";
+  public messageBody: any = "La máquina se ha creado correctamente";
   public machinesForm: FormGroup = new FormGroup({
     maquina_cod: new FormControl(''),
     equipo: new FormControl(''),
     descripcion: new FormControl(''),
     planta_id: new FormControl(''),
     sector_id: new FormControl(''),
-    estado: new FormControl(30)
+    estado: new FormControl(1)
   });
   public partsForm: FormGroup = new FormGroup({
     codigo: new FormControl(''),
@@ -85,7 +86,8 @@ export class FormMaquinaComponent implements OnInit {
 
   loadMaquina(maquina) {
     this.mode = "edit";
-    this.section = 'Editar maquina';
+    this.routeButton = "../../";
+    this.section = 'Editar máquina';
     this.buttonName = 'Confirmar cambios';
     this.machinesForm.controls.maquina_cod.setValue(maquina.maquina_cod);
     this.machinesForm.controls.equipo.setValue(maquina.equipo);
@@ -117,13 +119,14 @@ export class FormMaquinaComponent implements OnInit {
         error => this.showError(error.error)
       );
     } else {
+
       this.MaquinaService.updateMaquina(this.maquinaId, this.machinesForm).subscribe(
         maquina => {
           this.partForDelete.forEach(parte => {
             this.deletePart(parte);
           });
           this.linkParts();
-          this.messageBody = "La maquina se ha editado correctamente"
+          this.messageBody = "La máquina se ha editado correctamente"
           this.showSuccess();
           this.router.navigate(['main/maquinas']);
         },

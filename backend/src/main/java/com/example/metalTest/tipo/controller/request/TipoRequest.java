@@ -1,5 +1,6 @@
 package com.example.metalTest.tipo.controller.request;
 
+import com.example.metalTest.common.estado.Estado;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,5 +15,7 @@ public class TipoRequest {
     private String nombre;
     @NotNull
     private String tipo;
+    @NotNull
+    private Estado estado;
 
 }

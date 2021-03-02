@@ -2,6 +2,7 @@ package com.example.metalTest.almacen.repuesto.domain;
 import com.example.metalTest.tipo.domain.Tipo;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 
@@ -17,8 +18,8 @@ public class Repuesto {
     private String nombre;
 
 
-    @Column //Codigo de barras
-    private String codigoProducto;
+    @Column(unique = true) //Codigo de barras
+    private String codigo_producto;
 
 
     @Column
@@ -26,6 +27,12 @@ public class Repuesto {
 
     @Column
     private String marca;
+    @Column
+    private Integer existencia;
+    @Column
+    private Integer stock_objetivo;
+    @Column
+    private Integer punto_pedido;
 
     @Column
     private int precio_unitario;
@@ -33,20 +40,17 @@ public class Repuesto {
     private int precio_total;
 
     @Column
-    private int existencia;
-
-    @Column
     private String unidad;
 
-    @Column //stock minimo
-    private int puntoPedido;
-
-    @Column
-    private int stockObjetivo;
 
     @JoinColumn
     @ManyToOne(cascade = {CascadeType.ALL})
     private Tipo tipo_repuesto;
+
+    @OneToOne(cascade = {CascadeType.ALL})
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    @JoinColumn
+    private Stock stock;
 
     @Column
     private String ubicacion;

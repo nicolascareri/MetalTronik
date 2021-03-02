@@ -5,9 +5,12 @@ import com.example.metalTest.almacen.asociacion.controller.request.RepuestoAsoci
 import com.example.metalTest.almacen.asociacion.domain.Asociacion;
 import com.example.metalTest.almacen.asociacion.repository.AsociacionRepository;
 import com.example.metalTest.almacen.asociacion.service.AsosiacionService;
+import com.example.metalTest.almacen.movimiento.entrada.domain.Entrada;
 import com.example.metalTest.almacen.repuesto.domain.Repuesto;
 import com.example.metalTest.almacen.repuesto.mapper.RepuestoMapper;
 import com.example.metalTest.almacen.repuesto.repository.RepuestoRepository;
+import com.example.metalTest.apiError.exception.ValidateFieldException;
+import com.example.metalTest.common.validator.RepositoryValidator;
 import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
 import com.example.metalTest.parte.domain.Parte;
@@ -36,15 +39,19 @@ public class AsociacionServiceImpl implements AsosiacionService {
     @Autowired
     AsociacionRepository asociacionRepository;
 
+
     @Override
-    public void asociar(AsociarList asociarList){
-        Maquina maquina = maquinaRepository.findById(asociarList.getMaquina_id()).get();
-        Parte parte = parteBuscador.getParte(asociarList.getParte_id(), parteRepository.getAllByMaquina(asociarList.getMaquina_id()));
+    public void asociar(AsociarList asociarList) throws ValidateFieldException {
+        Integer maquina_id = asociarList.getMaquina_id();
+        RepositoryValidator<Maquina> maquinaRepositoryValidator = new  RepositoryValidator();
+        Maquina maquina =maquinaRepositoryValidator.getObject(maquinaRepository, maquina_id);
+        Parte parte = parteBuscador.getParte(asociarList.getParte_id(), parteRepository.getAllByMaquina(maquina_id));
         String observaciones = asociarList.getObservaciones();
         for (RepuestoAsociarRequest ra: asociarList.getRequestList()) {
             Integer cantidad_instalada = ra.getCantidad_instalada();
             Integer repuesto_id = ra.getRepuesto_id();
-            Repuesto repuesto = repuestoRepository.findById(repuesto_id).get();
+            RepositoryValidator<Repuesto> repuestoRepositoryValidator = new  RepositoryValidator();
+            Repuesto repuesto = repuestoRepositoryValidator.getObject(repuestoRepository, repuesto_id);
             updateRepuesto(repuesto, cantidad_instalada, repuesto_id);
             Asociacion asociacion = setCampos(maquina, parte, repuesto, cantidad_instalada, observaciones);
             asociacionRepository.save(asociacion);
@@ -53,9 +60,9 @@ public class AsociacionServiceImpl implements AsosiacionService {
 
     private Asociacion setCampos(Maquina maquina, Parte parte, Repuesto repuesto, Integer cantidad_instalada, String observaciones) {
         if (parte != null)
-            return new Asociacion(0, maquina.getMaquina_cod(), maquina.getDescripcion(), maquina.getSector().getNombre(), maquina.getPlanta().getNombre(), repuesto.getNombre(), repuesto.getModelo(),repuesto.getCodigoProducto(), cantidad_instalada, parte.getNombre(), observaciones);
+            return new Asociacion(0, maquina.getMaquina_cod(), maquina.getDescripcion(), maquina.getSector().getNombre(), maquina.getPlanta().getNombre(), repuesto.getNombre(), repuesto.getModelo(),repuesto.getCodigo_producto(), cantidad_instalada, parte.getNombre(), observaciones);
         else
-            return new Asociacion(0, maquina.getMaquina_cod(), maquina.getDescripcion(), maquina.getSector().getNombre(), maquina.getPlanta().getNombre(), repuesto.getNombre(), repuesto.getModelo(),repuesto.getCodigoProducto(), cantidad_instalada, "-----", observaciones);
+            return new Asociacion(0, maquina.getMaquina_cod(), maquina.getDescripcion(), maquina.getSector().getNombre(), maquina.getPlanta().getNombre(), repuesto.getNombre(), repuesto.getModelo(),repuesto.getCodigo_producto(), cantidad_instalada, "-----", observaciones);
     }
 
 
@@ -68,6 +75,7 @@ public class AsociacionServiceImpl implements AsosiacionService {
     public List<Maquina> getSinVincular() {
         return asociacionRepository.getSinAsociar();
     }
+
     private void updateRepuesto(Repuesto repuesto, Integer cantidad, Integer repuesto_id){
         repuesto.setCantidad_instalada(repuesto.getCantidad_instalada() + cantidad);
         repuesto.setId(repuesto_id);

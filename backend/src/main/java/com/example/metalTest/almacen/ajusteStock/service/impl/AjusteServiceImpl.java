@@ -8,6 +8,8 @@ import com.example.metalTest.almacen.ajusteStock.repository.AjusteRepository;
 import com.example.metalTest.almacen.ajusteStock.service.AjusteService;
 import com.example.metalTest.almacen.repuesto.domain.Repuesto;
 import com.example.metalTest.almacen.repuesto.repository.RepuestoRepository;
+import com.example.metalTest.apiError.exception.ValidateFieldException;
+import com.example.metalTest.common.validator.RepositoryValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,7 @@ public class AjusteServiceImpl implements AjusteService {
     AjusteMapper ajusteMapper;
     @Autowired
     RepuestoRepository repuestoRepository;
+
     @Override
     public List<AjusteResponse> getAll() {
         List<AjusteStock> correcciones = ajusteRepository.findAll();
@@ -35,15 +38,14 @@ public class AjusteServiceImpl implements AjusteService {
             a.setStock_ajustado(correccion.getStock_ajustado());
             response.add(a);
         }
-
         return response;
     }
 
     @Override
-    public AjusteResponse create(AjusteRequest ajusteRequest, Integer repuesto_id) {
+    public AjusteResponse create(AjusteRequest ajusteRequest, Integer repuesto_id) throws ValidateFieldException {
         AjusteStock ajuste = ajusteMapper.ajusteRequestToAjusteStock(ajusteRequest);
-        Repuesto repuesto = repuestoRepository.findById(repuesto_id).get();
-        repuesto.setExistencia(ajusteRequest.getStock());
+        RepositoryValidator<Repuesto> repuestoRepositoryValidator = new  RepositoryValidator();
+        Repuesto repuesto = repuestoRepositoryValidator.getObject(repuestoRepository,repuesto_id);
         repuesto.setPrecio_total(repuesto.getPrecio_unitario() * ajusteRequest.getStock());
         repuesto.setMarca(ajusteRequest.getMarca());
         repuesto.setId(repuesto_id);

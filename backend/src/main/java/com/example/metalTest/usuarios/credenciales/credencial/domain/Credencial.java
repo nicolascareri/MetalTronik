@@ -26,13 +26,13 @@ public class Credencial {
     @Column
     private String contrasenia;
 
-    @ManyToMany
-    @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "rol_id"))
-    private Set<Rol> roles = new HashSet<>();
+    @OneToOne
+    @JoinColumn
+    Rol rol;
 
-    public Credencial(String nombre_usuario, String contrasenia, Set<Rol> roles) {
+    public Credencial(String nombre_usuario, String contrasenia, Rol rol) {
         this.nombre_usuario = nombre_usuario;
         this.contrasenia = contrasenia;
-        this.roles = roles;
+        this.rol = rol;
     }
 }

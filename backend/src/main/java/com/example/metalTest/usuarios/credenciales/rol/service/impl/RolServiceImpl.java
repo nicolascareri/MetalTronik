@@ -1,5 +1,8 @@
 package com.example.metalTest.usuarios.credenciales.rol.service.impl;
 
+import com.example.metalTest.apiError.exception.ValidateFieldException;
+import com.example.metalTest.common.validator.RepositoryValidator;
+import com.example.metalTest.tipo.domain.Tipo;
 import com.example.metalTest.tipo.repository.TipoRepository;
 import com.example.metalTest.usuarios.credenciales.permiso.domain.Permiso;
 import com.example.metalTest.usuarios.credenciales.permiso.repository.PermisoRepository;
@@ -9,6 +12,7 @@ import com.example.metalTest.usuarios.credenciales.rol.domain.Rol;
 import com.example.metalTest.usuarios.credenciales.rol.enums.RolRango;
 import com.example.metalTest.usuarios.credenciales.rol.repository.RolRepository;
 import com.example.metalTest.usuarios.credenciales.rol.service.RolService;
+import com.example.metalTest.usuarios.personal.domain.Personal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,16 +28,20 @@ public class RolServiceImpl implements RolService {
     RolRepository rolRepository;
     @Autowired
     PermisoRepository permisoRepository;
+
+    RepositoryValidator<Rol> repositoryValidator = new  RepositoryValidator<Rol>();
+
     @Override
-    public Rol create(RolRequest rolRequest) {
+    public Rol create(RolRequest rolRequest) throws ValidateFieldException {
         Rol rol = new Rol();
         rol.setNombre(rolRequest.getNombre());
         rol.setRango(RolRango.ROLE_PERSONAL);
         List<Permiso> permisos = new ArrayList<>();
         for (PermisoRequest permisoRequest: rolRequest.getPermisos() ) {
             Permiso permiso = new Permiso();
-            permiso.setPermiso(tipoRepository.findById(permisoRequest.getPermiso()).get());
-            permiso.setSector(tipoRepository.findById(permisoRequest.getSector()).get());
+            RepositoryValidator<Tipo> tipoRepositoryValidator = new RepositoryValidator<Tipo>();
+            permiso.setPermiso(tipoRepositoryValidator.getObject(tipoRepository, permisoRequest.getPermiso()));
+            permiso.setSector(tipoRepositoryValidator.getObject(tipoRepository, permisoRequest.getSector()));
             permisos.add(permiso);
         }
         rol.setPermisos(permisos);
@@ -43,5 +51,15 @@ public class RolServiceImpl implements RolService {
     @Override
     public Rol findByRango(String rango) {
         return rolRepository.findByRango(rango).get();
+    }
+
+    @Override
+    public List<Rol> getAll() {
+        return rolRepository.findAll();
+    }
+
+    @Override
+    public Rol getById(Integer id) throws ValidateFieldException {
+        return (Rol) repositoryValidator.getObject(rolRepository, id);
     }
 }
