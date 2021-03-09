@@ -2,7 +2,9 @@ package com.example.metalTest.correctivo.domain;
 
 import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
-import com.example.metalTest.usuario.domain.Usuario;
+import com.example.metalTest.parte.domain.Parte;
+import com.example.metalTest.tipo.domain.Tipo;
+import com.example.metalTest.usuarios.personal.domain.Personal;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,8 +22,12 @@ public class MantenimientoCorrectivo{
     private int id;
 
     @JoinColumn
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Maquina maquina;
+
+    @JoinColumn
+    @OneToOne(cascade = CascadeType.ALL)
+    private Parte parte;
 
     @Column
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT-3")
@@ -31,8 +37,9 @@ public class MantenimientoCorrectivo{
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT-3")
     private Date fechaFin;
 
-    @Column
-    private short tipofalla;
+    @JoinColumn
+    @OneToOne(cascade = CascadeType.ALL)
+    private Tipo tipo;
 
     @Column
     private int horasProduccionAfectadas;
@@ -44,46 +51,27 @@ public class MantenimientoCorrectivo{
     private String repuestosColocados;
 
     @JoinColumn
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private OrdenesTrabajo ordenTrabajo;
 
     @Column
     private int nrocorrectivo;
 
     @Column
-    private long tiempoReparacion;
+    private int tiempoReparacion;
 
     @JoinColumn
-    @OneToOne
-    private Usuario encargo1;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Personal encargo1;
 
     @JoinColumn
-    @OneToOne
-    private Usuario encargo2;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Personal encargo2;
 
     @JoinColumn
-    @OneToOne
-    private Usuario encargo3;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Personal encargo3;
 
-    @Override
-    public String toString() {
-        return "MantenimientoCorrectivo{" +
-                "id=" + id +
-                ", maquina=" + maquina +
-                ", fechainicio=" + fechainicio +
-                ", fechaFin=" + fechaFin +
-                ", tipofalla=" + tipofalla +
-                ", horasProduccionAfectadas=" + horasProduccionAfectadas +
-                ", observaciones='" + observaciones + '\'' +
-                ", repuestosColocados='" + repuestosColocados + '\'' +
-                ", ordenTrabajo=" + ordenTrabajo +
-                ", nrocorrectivo=" + nrocorrectivo +
-                ", tiempoReparacion=" + tiempoReparacion +
-                ", encargo1=" + encargo1 +
-                ", encargo2=" + encargo2 +
-                ", encargo3=" + encargo3 +
-                '}';
-    }
 
 
 }

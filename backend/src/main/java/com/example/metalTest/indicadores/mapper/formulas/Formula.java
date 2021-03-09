@@ -9,6 +9,7 @@ import java.util.List;
 public abstract class Formula {
 
     public abstract List<IndicatorResponse> getResultado(List<String[]> consult);
+
     List<IndicatorResponse> getResultados(List<String[]> consult){
         List<IndicatorResponse> indicadores = new ArrayList<>();
         for(Object[] ob : consult){

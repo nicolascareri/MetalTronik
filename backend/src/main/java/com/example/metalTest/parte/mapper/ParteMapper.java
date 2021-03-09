@@ -16,4 +16,5 @@ public interface ParteMapper {
     ParteResponse toParteResponse (Parte parte);
 
     List<ParteResponse> toParteResponseList (List<Parte> parteLista);
+
 }

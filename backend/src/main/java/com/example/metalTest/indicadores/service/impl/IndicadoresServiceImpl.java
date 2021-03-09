@@ -6,7 +6,6 @@ import com.example.metalTest.indicadores.mapper.ToIndicadoresMapper;
 import com.example.metalTest.indicadores.service.IndicadoresService;
 import com.example.metalTest.correctivo.repository.MantenimientoCorrectivoRepository;
 import com.example.metalTest.indicadores.controller.response.IndicatorResponse;
-import com.example.metalTest.ordenestrabajo.domain.OrdenesTrabajo;
 import com.example.metalTest.ordenestrabajo.repository.OrdenesTrabajoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,8 +24,8 @@ public class IndicadoresServiceImpl implements IndicadoresService {
 
     //FORMULA 1
     @Override
-    public List<IndicatorResponse> getIndicatorsForm1Usuario() {
-        List<String[]> ordenesList = ordenesTrabajoRepository.getOrdenesFormula1Usuario();
+    public List<IndicatorResponse> getIndicatorsForm1Personal() {
+        List<String[]> ordenesList = ordenesTrabajoRepository.getOrdenesFormula1Personal();
         return toIndicadoresMapper.toIndicadoresResponseFormula1(ordenesList);
     }
 
@@ -38,8 +37,8 @@ public class IndicadoresServiceImpl implements IndicadoresService {
 
     //FORMULA 2
     @Override
-    public List<IndicatorResponse> getIndicatorForm2Usuario(){
-        List<String[]> ordenesList = this.ordenesTrabajoRepository.getOrdenesFormula2Usuario();
+    public List<IndicatorResponse> getIndicatorForm2Personal(){
+        List<String[]> ordenesList = this.ordenesTrabajoRepository.getOrdenesFormula2Personal();
 
         return toIndicadoresMapper.toIndicadoresResponseFormula2(ordenesList);
     }
@@ -59,6 +58,12 @@ public class IndicadoresServiceImpl implements IndicadoresService {
     public Torta getGrafTortaPrioridad(){
         List<String[]>  a =  ordenesTrabajoRepository.getOrdenesTrabajoByPrioridad();
         return toIndicadoresMapper.toTorta(a);
+    }
+
+    @Override
+    public List<IndicatorResponse> getLineChartMaquina(){
+        List<String[]>  a =  mantenimientoCorrectivoRepository.getPromHorasMantenimientoMaquina();
+        return toIndicadoresMapper.getLineChartMaquina(a);
     }
 
 }

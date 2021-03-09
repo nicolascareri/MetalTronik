@@ -1,12 +1,9 @@
 package com.example.metalTest.almacen.repuesto.domain;
-
-import com.example.metalTest.almacen.repuestoMaquina.domain.RepuestoMaquina;
+import com.example.metalTest.tipo.domain.Tipo;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -19,20 +16,21 @@ public class Repuesto {
     @Column
     private String nombre;
 
-    @Column
-    private String modelo;
-
-    @OneToMany(mappedBy = "repuestoMaquinaPk.repuesto",fetch = FetchType.LAZY , cascade = { CascadeType.MERGE })
-    private List<RepuestoMaquina> repuestoMaquinaList = new ArrayList<>();
 
     @Column //Codigo de barras
     private String codigoProducto;
+
+
+    @Column
+    private String modelo;
 
     @Column
     private String marca;
 
     @Column
-    private int precio;
+    private int precio_unitario;
+    @Column
+    private int precio_total;
 
     @Column
     private int existencia;
@@ -46,10 +44,16 @@ public class Repuesto {
     @Column
     private int stockObjetivo;
 
-    @Column
-    private short tipoRepuesto;
+    @JoinColumn
+    @ManyToOne(cascade = {CascadeType.ALL})
+    private Tipo tipo_repuesto;
 
     @Column
     private String ubicacion;
+
+    @Column
+    private int cantidad_instalada;
+
+
 
 }

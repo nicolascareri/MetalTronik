@@ -11,9 +11,8 @@ import java.util.Date;
 public class TareasRequest {
     private String tarea;
     @ValidEntity(repository = MaquinaRepository.class)
-    private Integer maquina_cod;
-    private Integer parte_cod;
+    private Integer maquina_id;
+    private Integer parte_id;
     private int frecuencia;
     private Date inicio;
-    private Short estado;
 }

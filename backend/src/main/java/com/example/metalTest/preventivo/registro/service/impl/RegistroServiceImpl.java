@@ -2,7 +2,6 @@
 package com.example.metalTest.preventivo.registro.service.impl;
 
 import com.example.metalTest.apiError.exception.ValidateFieldException;
-import com.example.metalTest.common.ordenes.Estado;
 import com.example.metalTest.preventivo.registro.controller.request.RegistroRequest;
 import com.example.metalTest.preventivo.registro.domain.Registro;
 import com.example.metalTest.preventivo.registro.repository.RegistroRepository;
@@ -10,8 +9,7 @@ import com.example.metalTest.preventivo.registro.service.RegistroService;
 import com.example.metalTest.preventivo.tarea.tareas.domain.Tareas;
 import com.example.metalTest.preventivo.tarea.tareas.mapper.TareasMapper;
 import com.example.metalTest.preventivo.tarea.tareas.repository.TareasRepository;
-import com.example.metalTest.usuario.domain.Usuario;
-import com.example.metalTest.usuario.repository.UsuarioRepository;
+import com.example.metalTest.usuarios.personal.repository.PersonalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +23,7 @@ public class RegistroServiceImpl implements RegistroService {
     @Autowired
     RegistroRepository registroRepository;
     @Autowired
-    UsuarioRepository usuarioRepository;
+    PersonalRepository personalRepository;
 
     @Autowired
     TareasMapper tareasMapper;
@@ -79,8 +77,8 @@ public class RegistroServiceImpl implements RegistroService {
         registro.setFechaPlanificada(registroRequest.getFechaPlanificada());
         registro.setObservaciones(registroRequest.getObservaciones());
         registro.setRealizo(registroRequest.getRealizo());
-        registro.setTarea(tareasRepository.getOne(registroRequest.getTarea_cod()));
-        registro.setEncargado(usuarioRepository.findById(registroRequest.getEncargado()).get());
+        registro.setTarea(tareasRepository.getOne(registroRequest.getTarea_id()));
+        registro.setEncargado(personalRepository.findById(registroRequest.getEncargado()).get());
         registro.setFechaRealizada(registroRequest.getFechaRealizada());
         return registroRepository.save(registro);
     }
@@ -107,7 +105,7 @@ public class RegistroServiceImpl implements RegistroService {
     private Boolean tareaValida(Tareas tarea, Calendar fechaPlanificada){
         Calendar fechaInicio = Calendar.getInstance();
         fechaInicio.setTime(tarea.getInicio());
-        return tarea.getEstado().equals(Estado.ACTIVO.getValue()) && fechaInicio.get(Calendar.MONTH) <= fechaPlanificada.get(Calendar.MONTH);
+        return true;
     }
 
     private Calendar calcularFechaInicio(Calendar fechaPlanificada, Calendar fechaInicio, int frecuencia){

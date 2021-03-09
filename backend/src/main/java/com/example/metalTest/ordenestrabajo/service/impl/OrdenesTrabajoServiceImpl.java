@@ -12,9 +12,8 @@ import com.example.metalTest.ordenestrabajo.repository.OrdenesTrabajoRepository;
 import com.example.metalTest.ordenestrabajo.service.OrdenesTrabajoService;
 import com.example.metalTest.parte.repository.ParteRepository;
 import com.example.metalTest.parte.service.impl.ParteBuscador;
-import com.example.metalTest.prioridades.repository.PrioridadesRepository;
 import com.example.metalTest.tipo.repository.TipoRepository;
-import com.example.metalTest.usuario.repository.UsuarioRepository;
+import com.example.metalTest.usuarios.personal.repository.PersonalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,10 +34,7 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
     MaquinaRepository maquinaRepository;
 
     @Autowired
-    UsuarioRepository usuarioRepository;
-
-    @Autowired
-    PrioridadesRepository prioridadesRepository;
+    PersonalRepository personalRepository;
 
     @Autowired
     TipoRepository tipoRepository;
@@ -66,7 +62,6 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         }
     }
 
-    @Transactional
     @Override
     public OrdenesTrabajoResponse create(OrdenesTrabajoRequest ordenesTrabajoRequest) throws ValidateFieldException {
         if (ordenesTrabajoRequest.getFechaEntrega().after(ordenesTrabajoRequest.getFechaRealizar())) {
@@ -87,10 +82,10 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         Integer maquinaCod = ordenesTrabajoRequest.getMaquina_id();
         ordenesTrabajo.setMaquina(maquinaRepository.findById(maquinaCod).get());
         ordenesTrabajo.setParte(parteBuscador.getParte(ordenesTrabajoRequest.getParte_id(), parteRepository.getAllByMaquina(maquinaCod)));
-        ordenesTrabajo.setEncargo(usuarioRepository.findById(ordenesTrabajoRequest.getEncargo_cod()).get());
-        ordenesTrabajo.setResponsable(usuarioRepository.findById(ordenesTrabajoRequest.getResponsable_cod()).get());
-        ordenesTrabajo.setTipo(tipoRepository.findById(ordenesTrabajoRequest.getTipo_cod()).get());
-        ordenesTrabajo.setPrioridad(prioridadesRepository.findById(ordenesTrabajoRequest.getPrioridad_cod()).get());
+        ordenesTrabajo.setEncargo(personalRepository.findById(ordenesTrabajoRequest.getEncargo_id()).get());
+        ordenesTrabajo.setResponsable(personalRepository.findById(ordenesTrabajoRequest.getResponsable_id()).get());
+        ordenesTrabajo.setTipo(tipoRepository.findById(ordenesTrabajoRequest.getTipo_id()).get());
+        ordenesTrabajo.setPrioridad(tipoRepository.findById(ordenesTrabajoRequest.getPrioridad_id()).get());
         ordenesTrabajo.setEstado(EstadoOrden.PENDIENTE.getValue());
         ordenesTrabajo.setFechaEntrega(ordenesTrabajoRequest.getFechaEntrega());
         ordenesTrabajo.setFechaRealizar(ordenesTrabajoRequest.getFechaRealizar());
@@ -112,12 +107,12 @@ public class OrdenesTrabajoServiceImpl implements OrdenesTrabajoService {
         Integer maquinaCod=ordenesTrabajo.getMaquina().getId();
         ordenesTrabajo.setPedidoMateriales(ordenesTrabajoRequest.getPedidoMateriales());
         ordenesTrabajo.setTarea(ordenesTrabajoRequest.getTarea());
-        ordenesTrabajo.setPrioridad(prioridadesRepository.findById(ordenesTrabajoRequest.getPrioridad_cod()).get());
-        ordenesTrabajo.setTipo(tipoRepository.findById(ordenesTrabajoRequest.getTipo_cod()).get());
+        ordenesTrabajo.setPrioridad(tipoRepository.findById(ordenesTrabajoRequest.getPrioridad_id()).get());
+        ordenesTrabajo.setTipo(tipoRepository.findById(ordenesTrabajoRequest.getTipo_id()).get());
         ordenesTrabajo.setFechaEntrega(ordenesTrabajoRequest.getFechaEntrega());
         ordenesTrabajo.setFechaRealizar(ordenesTrabajoRequest.getFechaRealizar());
-        ordenesTrabajo.setEncargo(usuarioRepository.findById(ordenesTrabajoRequest.getEncargo_cod()).get());
-        ordenesTrabajo.setResponsable(usuarioRepository.findById(ordenesTrabajoRequest.getResponsable_cod()).get());
+        ordenesTrabajo.setEncargo(personalRepository.findById(ordenesTrabajoRequest.getEncargo_id()).get());
+        ordenesTrabajo.setResponsable(personalRepository.findById(ordenesTrabajoRequest.getResponsable_id()).get());
         ordenesTrabajo.setObservaciones(ordenesTrabajoRequest.getObservaciones());
         ordenesTrabajo.setOrdenTerciarizacion(ordenesTrabajoRequest.getOrdenTerciarizacion());
         ordenesTrabajo.setEstado(ordenesTrabajoRequest.getEstado());

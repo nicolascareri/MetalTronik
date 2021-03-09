@@ -1,9 +1,7 @@
 package com.example.metalTest.maquina.domain;
 
 import com.example.metalTest.parte.domain.Parte;
-import com.example.metalTest.planta.domain.Planta;
-import com.example.metalTest.almacen.repuestoMaquina.domain.RepuestoMaquina;
-import com.example.metalTest.sector.domain.Sector;
+import com.example.metalTest.tipo.domain.Tipo;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,22 +24,19 @@ public class Maquina {
     @Column
     private short estado;
 
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn
-    private Planta planta;
+    private Tipo planta;
 
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn
-    private Sector sector;
+    private Tipo sector;
 
     @Column
     private String equipo;
 
     @Column
     private String descripcion;
-
-    @OneToMany(mappedBy = "repuestoMaquinaPk.maquina", fetch = FetchType.LAZY ,cascade = { CascadeType.ALL })
-    private List<RepuestoMaquina> repuestoMaquinaList = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Parte> parteList = new ArrayList<>();
