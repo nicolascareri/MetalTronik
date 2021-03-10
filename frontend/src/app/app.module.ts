@@ -22,7 +22,7 @@ import {MantenimientoPreventivoModule} from "./mantenimiento-preventivo/mantenim
 import { ChartsModule } from 'ng2-charts';
 import { IndicadoresModule } from './indicadores/indicadores.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { NgxPopper } from 'angular-popper';
+// import { NgxPopper } from 'angular-popper';
 import { CanActivateViaAuthGuard } from './core/CanActivateViaAuthGuard'
 
 
@@ -51,7 +51,7 @@ import { CanActivateViaAuthGuard } from './core/CanActivateViaAuthGuard'
     ChartsModule,
     IndicadoresModule,
     NgbModule,
-    NgxPopper
+    // NgxPopper
   ],
   providers: [UserService,
     OrdenestrabajoService,
