@@ -8,6 +8,7 @@ import { TipoService } from '../../../tipo/services/tipo.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MessageService } from "../../../core/service/message.service";
 import { ParteService } from "../../../maquina/services/parte.service";
+import { NgbAlertConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-form',
@@ -20,7 +21,6 @@ export class FormComponent implements OnInit, AfterViewInit {
 
   public ordenForm = new FormGroup({
     encargo_id: new FormControl(''),
-    estado: new FormControl(''),
     fechaEntrega: new FormControl(''),
     fechaRealizar: new FormControl(''),
     maquina_id: new FormControl(''),

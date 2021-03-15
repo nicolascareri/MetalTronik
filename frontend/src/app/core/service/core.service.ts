@@ -138,7 +138,7 @@ export class CoreService {
               }  
               break;
             case 'parteOrden':
-              if(result.ordenTrabajo){
+              if(result.ordenTrabajo.parte){
                 result.parte = result.ordenTrabajo.parte.codigo;
               }  
                 break;
@@ -256,7 +256,7 @@ export class CoreService {
                   break;
             case 'estado':
               if(result.estado){
-                result.estado === 1? result.estado = 'Pendiente': result.estado = 'Ok';
+                result.estado === 'PENDIENTE'? result.estado = 'PENDIENTE': result.estado = 'OK';
               }
           }
         }

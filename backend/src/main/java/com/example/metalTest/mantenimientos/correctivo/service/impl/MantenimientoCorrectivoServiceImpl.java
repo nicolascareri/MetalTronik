@@ -73,7 +73,12 @@ public class MantenimientoCorrectivoServiceImpl implements MantenimientoCorrecti
         mantenimientoCorrectivo.setEncargo2(this.getIfExist(personalRepository.findById(mantenimientoCorrectivoRequest.getEncargo2_id())));
         mantenimientoCorrectivo.setEncargo3(this.getIfExist(personalRepository.findById(mantenimientoCorrectivoRequest.getEncargo3_id())));
         RepositoryValidator<OrdenesTrabajo> OTRepositoryValidator = new  RepositoryValidator();
+        OrdenesTrabajo ordenesTrabajo = OTRepositoryValidator.getObject(ordenesTrabajoRepository, mantenimientoCorrectivoRequest.getOrdenTrabajo_id());
+        if (ordenesTrabajo != null ) {
+            ordenesTrabajo.setEstado(Estado.OK);
+        }
         mantenimientoCorrectivo.setOrdenTrabajo(OTRepositoryValidator.getObject(ordenesTrabajoRepository, mantenimientoCorrectivoRequest.getOrdenTrabajo_id()));
+
         if (mantenimientoCorrectivoRequest.getFechainicio().after(mantenimientoCorrectivoRequest.getFechaFin())) {
             throw new ValidateFieldException("La fecha de fin no puede ser menor que la fecha de inicio", "Fecha de entrega", String.valueOf(mantenimientoCorrectivoRequest.getFechaFin()));
         }
