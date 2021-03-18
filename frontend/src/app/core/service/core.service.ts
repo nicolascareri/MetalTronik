@@ -89,7 +89,7 @@ export class CoreService {
               break;  
             case 'encargo': 
                 if(result.encargo){
-                  result.encargo = result.encargo.nombre + " " + result.encargo.apellido;
+                  result.encargo = result.encargo.nombre + " " + result.encargo.apellido + "(" + result.encargo.legajo + ")";
                 }
                 break;
             case 'encargado': 
@@ -119,7 +119,7 @@ export class CoreService {
                 break;    
             case 'responsable':
               if(result.responsable){
-                result.responsable = result.responsable.nombre;
+                result.responsable = result.responsable.nombre + " " + result.responsable.apellido + "(" + result.responsable.legajo + ")" ;
               }
               break;
             case 'maquina':
