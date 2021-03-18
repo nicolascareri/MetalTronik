@@ -22,7 +22,7 @@ export class TablaSalidaComponent implements OnInit {
     }, 
     {
       id: 2,
-      property:'codigoProducto',
+      property:'codigo_producto',
       name: 'Codigo de producto',
       sort: '',
       filterValue: '',

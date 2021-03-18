@@ -30,7 +30,7 @@ export class FormSalidaComponent implements OnInit {
   public salidaForm: FormGroup = new FormGroup({
     cantidad: new FormControl(''),
     fecha: new FormControl(''),
-    repuesto_cod: new FormControl(''),
+    repuesto_id: new FormControl(''),
     sector_id: new FormControl(''),
     solicitante_id: new FormControl(''),
   });
@@ -80,7 +80,7 @@ export class FormSalidaComponent implements OnInit {
     this.mode = "edit";
     this.salidaForm.controls.cantidad.setValue(salida.cantidad);
     this.salidaForm.controls.fecha.setValue(salida.fecha);
-    this.salidaForm.controls.repuesto_cod.setValue(salida.repuesto_cod);
+    this.salidaForm.controls.repuesto_id.setValue(salida.repuesto_id);
     this.salidaForm.controls.sector_id.setValue(salida.sector_id);
     this.salidaForm.controls.solicitante_id.setValue(salida.solicitante_id);
   }
@@ -141,7 +141,7 @@ export class FormSalidaComponent implements OnInit {
           val => {
             return {
               "id": val.id,
-              "descripcion": val.codigoProducto
+              "descripcion": val.codigo_producto
             }
           }
         );

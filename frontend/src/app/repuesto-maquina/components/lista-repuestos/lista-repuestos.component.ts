@@ -139,7 +139,7 @@ export class ListaRepuestosComponent implements OnInit {
           val => {
             return {
               "id": val.id,
-              "descripcion": val.codigoProducto + " - " + val.nombre
+              "descripcion": val.codigo_producto + " - " + val.nombre
             }
           }
         );

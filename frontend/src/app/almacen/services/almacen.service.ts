@@ -25,11 +25,11 @@ export class AlmacenService {
   }
 
   postRepuesto(repuestForm){
-    return this.http.post<any>(this.path.SERVER.serve + this.path.REPUESTOS.POST, repuestForm.value);
+    return this.http.post<any>(this.path.SERVER.serve + this.path.REPUESTOS.POST, repuestForm);
   }
 
   updateRepuesto(id, repuesto){
-    return this.http.put<any>(this.path.SERVER.serve + this.path.REPUESTOS.PUT + id, repuesto.value);
+    return this.http.put<any>(this.path.SERVER.serve + this.path.REPUESTOS.PUT + id, repuesto);
   }
 
   ///AJUSTE DE STOCK///

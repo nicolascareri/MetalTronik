@@ -15,7 +15,7 @@ export class TablaAjusteComponent implements OnInit {
   public columnsToDisplay: any[] = [
     {
       id: 1,
-      property:'codigoProducto',
+      property:'codigo_producto',
       name: 'Código de producto',
       sort: 'up',
       filterValue: '',

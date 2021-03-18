@@ -85,7 +85,7 @@ export class TablaRepuestosComponent implements OnInit {
     {
       id: 7,
       property: 'parte_nombre',
-      name: 'Nombre parte',
+      name: 'Parte de máquina',
       sort: '',
       filterValue: '',
       width: '25%'

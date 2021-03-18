@@ -82,8 +82,6 @@ export class CoreService {
               break;
             case 'inicio':
               if (result.inicio && moment(result.inicio, this.dateServerFormat).isValid()) {
-                console.log(result);
-                
                 result.inicio = this.getFormatDate(result.inicio);
               } else {
                 result.inicio = '';
@@ -182,7 +180,7 @@ export class CoreService {
                   break;
             case 'codigoProducto':
                   if(result.repuesto){
-                    result.codigoProducto = result.repuesto.codigoProducto;
+                    result.codigo_producto = result.repuesto.codigo_producto;
                   }
                   break;
             case 'modelo':
@@ -252,6 +250,13 @@ export class CoreService {
                     result.ciudad = result.direccion.ciudad;
                     result.pais = result.direccion.pais;
                     result.provincia = result.direccion.provincia;
+                  }
+                  break;
+            case 'stock':
+                  if(result.stock){
+                    result.actual = result.stock.actual;
+                    result.minimo = result.stock.minimo;
+                    result.objetivo = result.stock.objetivo;
                   }
                   break;
             case 'estado':

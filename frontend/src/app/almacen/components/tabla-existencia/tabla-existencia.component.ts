@@ -18,7 +18,7 @@ export class TablaExistenciaComponent implements OnInit {
   public columnsToDisplay: any[] = [
     {
       id: 1,
-      property:'codigoProducto',
+      property:'codigo_producto',
       name: 'Codigo de producto',
       sort: '',
       filterValue: '',
@@ -90,7 +90,7 @@ export class TablaExistenciaComponent implements OnInit {
     },
     {
       id: 10,
-      property: 'puntoPedido',
+      property: 'minimo',
       name: 'Stock mínimo',
       sort: '',
       filtervalue: '',
@@ -98,7 +98,7 @@ export class TablaExistenciaComponent implements OnInit {
     },
     {
       id: 11,
-      property: 'stockObjetivo',
+      property: 'objetivo',
       name: 'Stock objetivo',
       sort: '',
       filtervalue: '',
@@ -106,7 +106,7 @@ export class TablaExistenciaComponent implements OnInit {
     },
     {
       id: 12,
-      property: 'existencia',
+      property: 'actual',
       name: 'Stock actual',
       sort: '',
       filtervalue: '',
@@ -145,7 +145,7 @@ export class TablaExistenciaComponent implements OnInit {
   getRepuestos(){
     this.AlmacenService.getRepuestos().subscribe(
       (data: any)  => {        
-        this.dataSourceRepuestos = this.coreService.replaceFormat(data, ['tipoExistencia']);
+        this.dataSourceRepuestos = this.coreService.replaceFormat(data, ['tipoExistencia', 'stock']);
       },
       (error) => {
 

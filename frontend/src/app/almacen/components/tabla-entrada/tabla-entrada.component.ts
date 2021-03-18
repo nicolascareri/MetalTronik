@@ -48,7 +48,7 @@ export class TablaEntradaComponent implements OnInit {
     }, 
     {
       id: 5,
-      property:'codigoProducto',
+      property:'codigo_producto',
       name: 'Cod producto',
       sort: '',
       filterValue: '',

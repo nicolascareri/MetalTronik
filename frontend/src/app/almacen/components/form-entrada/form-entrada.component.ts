@@ -128,7 +128,7 @@ export class FormEntradaComponent implements OnInit {
           val => {
             return {
               "id": val.id,
-              "descripcion": val.codigoProducto
+              "descripcion": val.codigo_producto
             }
           }
         );

@@ -13,10 +13,10 @@
           <div class="form-row">
       
             <div class="col">
-            <label for="codigoProducto">Codigo producto</label>
+            <label for="codigo_producto">Codigo producto</label>
             <app-input [type]="'input'" 
                        [parentForm]="repuestForm"  
-                       [control]="repuestForm.controls.codigoProducto"
+                       [control]="repuestForm.controls.codigo_producto"
                        [placeholder]="'Ingrese codigo de producto'">
             </app-input>
             </div>
@@ -92,19 +92,19 @@
           <div class="form-row">
   
             <div class="col">
-            <label for="puntoPedido">Stock mínimo</label>
+            <label for="minimo">Stock mínimo</label>
             <app-input [type]="'onlyNumber'"
                        [parentForm]="repuestForm" 
-                       [control]="repuestForm.controls.puntoPedido" 
+                       [control]="repuestForm.controls.minimo" 
                        [placeholder]="'Ingrese punto pedido'">
             </app-input>
             </div>
      
             <div class="col">
-            <label for="stockObjetivo">Stock objetivo</label>
+            <label for="objetivo">Stock objetivo</label>
             <app-input [type]="'onlyNumber'"
                        [parentForm]="repuestForm" 
-                       [control]="repuestForm.controls.stockObjetivo" 
+                       [control]="repuestForm.controls.objetivo" 
                        [placeholder]="'Ingrese stock objetivo'">
             </app-input>
             </div>

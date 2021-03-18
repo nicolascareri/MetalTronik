@@ -28,15 +28,15 @@ export class FormExistenciaComponent implements OnInit {
   public messageBody: any = "El repuesto se ha creado correctamente";
   public unidades: any;
   public repuestForm: FormGroup = new FormGroup({
-    codigoProducto: new FormControl(''),
+    codigo_producto: new FormControl(''),
     nombre: new FormControl(''),
     marca: new FormControl(''),
     modelo: new FormControl(''),
     tipoRepuesto_id: new FormControl(''),
     unidad: new FormControl(''),
     ubicacion: new FormControl(''),
-    puntoPedido: new FormControl(''),
-    stockObjetivo: new FormControl('')
+    minimo: new FormControl(''),
+    objetivo: new FormControl('')
   });
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -82,28 +82,43 @@ export class FormExistenciaComponent implements OnInit {
     this.routeButton = "../../";
     this.section = 'Editar repuesto';
     this.buttonName = 'Confirmar cambios';
-    this.repuestForm.controls.codigoProducto.setValue(repuesto.codigoProducto);
+    this.repuestForm.controls.codigo_producto.setValue(repuesto.codigo_producto);
     this.repuestForm.controls.nombre.setValue(repuesto.nombre);
     this.repuestForm.controls.marca.setValue(repuesto.marca);
     this.repuestForm.controls.modelo.setValue(repuesto.modelo);
     this.repuestForm.controls.tipoRepuesto_id.setValue(repuesto.tipo_repuesto.id);
     this.repuestForm.controls.unidad.setValue(repuesto.unidad);
     this.repuestForm.controls.ubicacion.setValue(repuesto.ubicacion);
-    this.repuestForm.controls.puntoPedido.setValue(repuesto.puntoPedido);
-    this.repuestForm.controls.stockObjetivo.setValue(repuesto.stockObjetivo);
+    this.repuestForm.controls.minimo.setValue(repuesto.stock.minimo);
+    this.repuestForm.controls.objetivo.setValue(repuesto.stock.objetivo);
   }
 
   saveForm() {
+    let request = {
+      codigo_producto : this.repuestForm.controls.codigo_producto.value,
+      marca : this.repuestForm.controls.marca.value,
+      modelo: this.repuestForm.controls.modelo.value,
+      nombre: this.repuestForm.controls.nombre.value,
+      stock : {
+        actual: 0,
+        minimo: this.repuestForm.controls.minimo.value,
+        objetivo: this.repuestForm.controls.objetivo.value
+      },
+      tipoRepuesto_id : this.repuestForm.controls.tipoRepuesto_id.value,
+      ubicacion: this.repuestForm.controls.ubicacion.value,
+      unidad: this.repuestForm.controls.unidad.value
+    }   
     if (this.mode === 'add') {
-      this.AlmacenService.postRepuesto(this.repuestForm).subscribe(
+   
+      this.AlmacenService.postRepuesto(request).subscribe(
         repuesto => {
           this.showSuccess();
           this.router.navigate(['main/almacen/existencia']);
         },
         error => this.showError(error.error)
       );
-    } else {
-      this.AlmacenService.updateRepuesto(this.repuestoId, this.repuestForm).subscribe(
+    } else { 
+      this.AlmacenService.updateRepuesto(this.repuestoId, request).subscribe(
         repuesto => {
           this.messageBody = "El repuesto se ha editado correctamente"
           this.showSuccess();
