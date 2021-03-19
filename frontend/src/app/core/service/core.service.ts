@@ -89,7 +89,7 @@ export class CoreService {
               break;  
             case 'encargo': 
                 if(result.encargo){
-                  result.encargo = result.encargo.nombre + " " + result.encargo.apellido + "(" + result.encargo.legajo + ")";
+                  result.encargo = result.encargo.nombre + " " + result.encargo.apellido + " " + "(" + result.encargo.legajo + ")";
                 }
                 break;
             case 'encargado': 
@@ -105,21 +105,27 @@ export class CoreService {
             case 'encargo1': 
                 if(result.encargo1){
                   result.encargo1 = result.encargo1.nombre + " " + result.encargo1.apellido;
+                }else{
+                  result.encargo1 = "---";
                 }
                 break;
             case 'encargo2': 
                 if(result.encargo2){
                   result.encargo2 = result.encargo2.nombre + " " + result.encargo2.apellido;
+                }else{
+                  result.encargo2 = "---";
                 }
                 break;
             case 'encargo3': 
                 if(result.encargo3){
                   result.encargo3 = result.encargo3.nombre + " " + result.encargo3.apellido;
+                }else{
+                  result.encargo3 = "---";
                 }
                 break;    
             case 'responsable':
               if(result.responsable){
-                result.responsable = result.responsable.nombre + " " + result.responsable.apellido + "(" + result.responsable.legajo + ")" ;
+                result.responsable = result.responsable.nombre + " " + result.responsable.apellido + " " + "(" + result.responsable.legajo + ")" ;
               }
               break;
             case 'maquina':
@@ -132,8 +138,9 @@ export class CoreService {
             case 'parte':
               if(result.parte){
                 result.parte = result.parte.codigo;
-                
-              }  
+              }else{
+                result.parte = "---"
+              }
               break;
             case 'parteOrden':
               if(result.ordenTrabajo.parte){
