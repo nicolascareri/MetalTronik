@@ -26,8 +26,8 @@ export class UserService {
     return this.http.post<any>(this.path.SERVER.serve + this.path.PERSONAL.POST, request);
   }
 
-  updateUser(id, user){
-    return this.http.put<any>(this.path.SERVER.serve + this.path.PERSONAL.PUT + id, user.value);
+  updateUser(id, request){
+    return this.http.put<any>(this.path.SERVER.serve + this.path.PERSONAL.PUT + id, request);
   }
 
   getCargos(){

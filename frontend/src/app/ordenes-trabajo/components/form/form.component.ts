@@ -196,7 +196,7 @@ getUsuarios() {
         val => {
           return {
             "id": val.id,
-            "descripcion": val.nombre + " " + val.apellido
+            "descripcion": val.nombre + " " + val.apellido + " " + "(" + val.legajo + ")"
           }
         }
       );

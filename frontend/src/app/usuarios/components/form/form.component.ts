@@ -122,10 +122,11 @@ export class FormUsuarioComponent implements OnInit {
         error => this.showError(error.error)
       );
     } else {
-      this.UserService.updateUser(this.userId, this.userForm).subscribe(
+      this.UserService.updateUser(this.userId, request).subscribe(
         user => {
           this.messageBody = "El usuario se ha editado correctamente"
           this.showSuccess();
+          this.router.navigate(['main/personal']);
         },
         error => this.showError(error.error)
       );
