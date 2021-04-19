@@ -47,15 +47,22 @@ public class AsociacionServiceImpl implements AsosiacionService {
         Maquina maquina =maquinaRepositoryValidator.getObject(maquinaRepository, maquina_id);
         Parte parte = parteBuscador.getParte(asociarList.getParte_id(), parteRepository.getAllByMaquina(maquina_id));
         String observaciones = asociarList.getObservaciones();
-        for (RepuestoAsociarRequest ra: asociarList.getRequestList()) {
-            Integer cantidad_instalada = ra.getCantidad_instalada();
-            Integer repuesto_id = ra.getRepuesto_id();
-            RepositoryValidator<Repuesto> repuestoRepositoryValidator = new  RepositoryValidator();
-            Repuesto repuesto = repuestoRepositoryValidator.getObject(repuestoRepository, repuesto_id);
-            updateRepuesto(repuesto, cantidad_instalada, repuesto_id);
-            Asociacion asociacion = setCampos(maquina, parte, repuesto, cantidad_instalada, observaciones);
-            asociacionRepository.save(asociacion);
-        }
+        Integer cantidad_instalada = asociarList.getCantidad_instalada();
+        Integer repuesto_id = asociarList.getRepuesto_id();
+        RepositoryValidator<Repuesto> repuestoRepositoryValidator = new  RepositoryValidator();
+        Repuesto repuesto = repuestoRepositoryValidator.getObject(repuestoRepository, repuesto_id);
+        updateRepuesto(repuesto, cantidad_instalada, repuesto_id);
+        Asociacion asociacion = setCampos(maquina, parte, repuesto, cantidad_instalada, observaciones);
+        asociacionRepository.save(asociacion);
+//        for (RepuestoAsociarRequest ra: asociarList.getRequestList()) {
+//            Integer cantidad_instalada = ra.getCantidad_instalada();
+//            Integer repuesto_id = ra.getRepuesto_id();
+//            RepositoryValidator<Repuesto> repuestoRepositoryValidator = new  RepositoryValidator();
+//            Repuesto repuesto = repuestoRepositoryValidator.getObject(repuestoRepository, repuesto_id);
+//            updateRepuesto(repuesto, cantidad_instalada, repuesto_id);
+//            Asociacion asociacion = setCampos(maquina, parte, repuesto, cantidad_instalada, observaciones);
+//            asociacionRepository.save(asociacion);
+//        }
     }
 
     private Asociacion setCampos(Maquina maquina, Parte parte, Repuesto repuesto, Integer cantidad_instalada, String observaciones) {

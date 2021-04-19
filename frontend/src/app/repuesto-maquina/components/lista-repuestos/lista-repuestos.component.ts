@@ -16,6 +16,7 @@ export class ListaRepuestosComponent implements OnInit {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   
+  public routeButton = "../";
   public dataSourceRepuestos: any = [];
   public dataSourceMaquinas: any;
   public dataSourcePartes: any;
@@ -30,12 +31,13 @@ export class ListaRepuestosComponent implements OnInit {
   public cntInstalada: any;
   public idSeleccion = 0;
   public repuestosFilter: any;
-  public maquina: FormGroup = new FormGroup({
-    maquina_id: new FormControl(''),
-    parte_id: new FormControl(''),
-  });
+  public repuesto_id: any;
+  // public maquina: FormGroup = new FormGroup({
+  //   maquina_id: new FormControl(''),
+  //   parte_id: new FormControl(''),
+  // });
   public form: FormGroup;
-  public requestList: any = [];
+  // public requestList: any = [];
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -55,6 +57,8 @@ export class ListaRepuestosComponent implements OnInit {
     this.getMaquinas();
 
     this.form = this.formBuilder.group({
+      maquina_id: [''],
+      parte_id: [''],
       repuesto_id: [''],
       cantidad_instalada: [''],
       observaciones: ''
@@ -88,13 +92,14 @@ export class ListaRepuestosComponent implements OnInit {
     let request = {
       'maquina_id': this.maquinaPart,
       'parte_id' : this.partId,
-      'observaciones': this.observaciones,
-      'requestList': this.seleccion
+      'repuesto_id': this.form.controls.repuesto_id.value,
+      'observaciones': this.form.controls.observaciones.value,
+      'cantidad_instalada': this.form.controls.cantidad_instalada.value
     }
-
+    console.log(request);
+    
     this.RepuestoMaquinaService.asociarRepuestos(request).subscribe(
       repuestos => {
-
         this.messageBody = "Asociación creada correctamente";
         this.showSuccess();
         this.router.navigate(['main/repuestos']);
@@ -108,27 +113,27 @@ export class ListaRepuestosComponent implements OnInit {
   }
   
 
-  agruopData() {
-    const ctrl = this.form.controls;
-    const repuesto = {
-      "cantidad_instalada": ctrl.cantidad_instalada.value,
-      "repuesto_id": ctrl.repuesto_id.value
-    };
+  // agruopData() {
+  //   const ctrl = this.form.controls;
+  //   const repuesto = {
+  //     "cantidad_instalada": ctrl.cantidad_instalada.value,
+  //     "repuesto_id": ctrl.repuesto_id.value
+  //   };
   
-    this.repuestos.push(repuesto);
+  //   this.repuestos.push(repuesto);
 
-    const seleccion = {
-      "cantidad_instalada": ctrl.cantidad_instalada.value,
-      "repuesto_id": ctrl.repuesto_id.value,
-    }
-    this.seleccion.push(seleccion);
-    this.requestList.push(this.repuestos);
-  }
+  //   const seleccion = {
+  //     "cantidad_instalada": ctrl.cantidad_instalada.value,
+  //     "repuesto_id": ctrl.repuesto_id.value,
+  //   }
+  //   this.seleccion.push(seleccion);
+  //   this.requestList.push(this.repuestos);
+  // }
 
 
-  deleteSelection() {
-    this.seleccion.pop();
-  }
+  // deleteSelection() {
+  //   this.seleccion.pop();
+  // }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -173,7 +178,6 @@ export class ListaRepuestosComponent implements OnInit {
         
       }
     );
-    console.log(this.requestList);
   }
 
 
@@ -206,6 +210,12 @@ export class ListaRepuestosComponent implements OnInit {
     this.partId = id.split(" ");
     id = this.partId[1];
     this.partId = id;
+  }
+
+  getRepuestId(id){
+    this.repuesto_id = id.split(" ");
+    id = this.repuesto_id[1];
+    this.repuesto_id = id;
   }
 
   getObservaciones(ob){
