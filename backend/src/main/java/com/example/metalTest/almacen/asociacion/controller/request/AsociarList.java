@@ -1,5 +1,6 @@
 package com.example.metalTest.almacen.asociacion.controller.request;
 
+import com.example.metalTest.almacen.repuesto.repository.RepuestoRepository;
 import com.example.metalTest.common.validator.ValidEntity;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
 import lombok.Getter;
@@ -13,7 +14,10 @@ import java.util.List;
 @Setter
 public class AsociarList {
     @NotNull
-    List<RepuestoAsociarRequest> requestList;
+    private Integer cantidad_instalada;
+    @NotNull
+    @ValidEntity(repository = RepuestoRepository.class)
+    private Integer repuesto_id;
     @NotNull
     @ValidEntity(repository = MaquinaRepository.class)
     private Integer maquina_id;

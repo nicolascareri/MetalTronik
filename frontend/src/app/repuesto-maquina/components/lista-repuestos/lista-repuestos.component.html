@@ -8,6 +8,91 @@
 
     <div class="card-body">
 
+      <form [formGroup]="form" (ngSubmit)="asociar()">
+
+        <div class="form-row">
+    
+            <div class="col">
+            <label for="repuesto_id">Repuesto</label>
+            <app-input [type]="'select-pair'"
+                       [parentForm]="form" 
+                       [control]="form.controls.repuesto_id" 
+                       [options]="dataSourceRepuestos"
+                       (change)="getRepuestId($event.target.value)">
+            </app-input>
+            </div>
+     
+            <div class="col">
+            <label for="cantidad_instalada">Cantidad a asociar</label>
+            <app-input [type]="'onlyNumber'"
+                       [parentForm]="form" 
+                       [control]="form.controls.cantidad_instalada">
+            </app-input>
+            </div>
+
+        </div>
+
+        <div class="form-row">
+          <div class="col">
+          <label for="maquina_id">Maquina</label>
+          <app-input [type]="'select-pair'"
+                     [parentForm]="form" 
+                     [control]="form.controls.maquina_id" 
+                     [options]="dataSourceMaquinas"
+                     (change)="getMachineId($event.target.value)">
+          </app-input>
+          </div>
+      
+          <div class="col">
+          <label for="cantidad_instalada">Parte de maquina</label>
+          <app-input [type]="'select-pair'"
+                     [parentForm]="form" 
+                     [control]="form.controls.cantidad_instalada"
+                     [options]="dataSourcePartes"
+                     (change)="getPartId($event.target.value)">
+          </app-input>
+          </div>
+
+        </div>
+
+        <div class="form-row">
+
+          <div class="col">
+          <label for="observaciones">Observaciones</label>
+          <app-input [type]="'textarea'" 
+               [parentForm]="form"  
+               [control]="form.controls.observaciones">
+          </app-input>
+          </div>
+
+        </div>
+
+        <div style="margin-top: 3%" class="btn-group btn-group-toggle" data-toggle="buttons">
+          <app-button [name]="'Aceptar'" type="submit" [type]="'success'"></app-button>
+          <app-button [name]="'Cancelar'" [type]="'cancel'" [routeForButton]="routeButton"></app-button>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+<!-- <div class="form-container">
+
+  <div class="card">
+
+    <h2 class="card-header">
+      Asociar repuestos
+    </h2>
+
+    <div class="card-body">
+
       <div class="form-row">
 
         <div class="col">
@@ -114,7 +199,7 @@
 
 
 
-
+ -->
 
 
 
