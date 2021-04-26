@@ -106,6 +106,7 @@ public class AsociacionServiceImpl implements AsosiacionService {
         Repuesto repuesto = repuestoRepositoryValidator.getObject(repuestoRepository, asociarList.getRepuesto_id());
         updateRepuesto(repuesto, cantidad_instalada, asociarList.getRepuesto_id());
         Asociacion asociacion = setCampos(maquina, parte, repuesto, cantidad_instalada, observaciones);
+        asociacionRepository.deleteById(id);
         return asociacionMapper.toAsociacionResponse(asociacionRepository.save(asociacion));
     }
 }
