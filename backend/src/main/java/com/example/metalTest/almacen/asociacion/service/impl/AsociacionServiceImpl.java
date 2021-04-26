@@ -1,11 +1,11 @@
 package com.example.metalTest.almacen.asociacion.service.impl;
 
 import com.example.metalTest.almacen.asociacion.controller.request.AsociarList;
-import com.example.metalTest.almacen.asociacion.controller.request.RepuestoAsociarRequest;
+import com.example.metalTest.almacen.asociacion.controller.response.AsociacionResponse;
 import com.example.metalTest.almacen.asociacion.domain.Asociacion;
+import com.example.metalTest.almacen.asociacion.mapper.AsociacionMapper;
 import com.example.metalTest.almacen.asociacion.repository.AsociacionRepository;
 import com.example.metalTest.almacen.asociacion.service.AsosiacionService;
-import com.example.metalTest.almacen.movimiento.entrada.domain.Entrada;
 import com.example.metalTest.almacen.repuesto.domain.Repuesto;
 import com.example.metalTest.almacen.repuesto.mapper.RepuestoMapper;
 import com.example.metalTest.almacen.repuesto.repository.RepuestoRepository;
@@ -34,10 +34,16 @@ public class AsociacionServiceImpl implements AsosiacionService {
     RepuestoMapper repuestoMapper;
 
     @Autowired
+    AsociacionMapper asociacionMapper;
+
+    @Autowired
     ParteRepository parteRepository;
     ParteBuscador parteBuscador = new ParteBuscador();
+
     @Autowired
     AsociacionRepository asociacionRepository;
+
+    RepositoryValidator<AsociarList> repositoryValidator = new RepositoryValidator<AsociarList>();
 
 
     @Override
@@ -87,5 +93,19 @@ public class AsociacionServiceImpl implements AsosiacionService {
         repuesto.setCantidad_instalada(repuesto.getCantidad_instalada() + cantidad);
         repuesto.setId(repuesto_id);
         repuestoRepository.save(repuesto);
+    }
+
+    @Override
+    public AsociacionResponse update(AsociarList asociarList, Integer id) throws ValidateFieldException {
+        RepositoryValidator<Maquina> maquinaRepositoryValidator = new  RepositoryValidator();
+        Integer cantidad_instalada = asociarList.getCantidad_instalada();
+        String observaciones = asociarList.getObservaciones();
+        Maquina maquina = maquinaRepositoryValidator.getObject(maquinaRepository, asociarList.getMaquina_id());
+        Parte parte = parteBuscador.getParte(asociarList.getParte_id(), parteRepository.getAllByMaquina(asociarList.getMaquina_id()));
+        RepositoryValidator<Repuesto> repuestoRepositoryValidator = new  RepositoryValidator();
+        Repuesto repuesto = repuestoRepositoryValidator.getObject(repuestoRepository, asociarList.getRepuesto_id());
+        updateRepuesto(repuesto, cantidad_instalada, asociarList.getRepuesto_id());
+        Asociacion asociacion = setCampos(maquina, parte, repuesto, cantidad_instalada, observaciones);
+        return asociacionMapper.toAsociacionResponse(asociacionRepository.save(asociacion));
     }
 }
