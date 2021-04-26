@@ -21,7 +21,7 @@ export class RepuestoMaquinaService {
   }
 
   asociarRepuestos(request){
-    return this.http.put<any>(this.path.SERVER.serve + this.path.REPUESTOMAQUINA.POST, request);
+    return this.http.post<any>(this.path.SERVER.serve + this.path.REPUESTOMAQUINA.POST, request);
   }
 
   getMaquinasSinAsoc(){
