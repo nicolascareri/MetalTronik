@@ -102,7 +102,7 @@ export class ListaRepuestosComponent implements OnInit {
 
   asociar() {
     let request = {
-      'maquina_id': this.maquinaId,
+      'maquina_id': this.maquinaPart,
       'parte_id' : this.partId,
       'repuesto_id': this.form.controls.repuesto_id.value,
       'observaciones': this.form.controls.observaciones.value,
