@@ -44,10 +44,10 @@
           </div>
       
           <div class="col">
-          <label for="cantidad_instalada">Parte de maquina</label>
+          <label for="parte_id">Parte de maquina</label>
           <app-input [type]="'select-pair'"
                      [parentForm]="form" 
-                     [control]="form.controls.cantidad_instalada"
+                     [control]="form.controls.parte_id"
                      [options]="dataSourcePartes"
                      (change)="getPartId($event.target.value)">
           </app-input>
