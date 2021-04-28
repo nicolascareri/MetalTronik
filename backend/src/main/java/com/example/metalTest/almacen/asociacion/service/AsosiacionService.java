@@ -5,6 +5,7 @@ import com.example.metalTest.almacen.asociacion.controller.response.AsociacionRe
 import com.example.metalTest.almacen.asociacion.domain.Asociacion;
 import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.maquina.domain.Maquina;
+import com.example.metalTest.ordenestrabajo.controller.response.OrdenesTrabajoResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,8 @@ public interface AsosiacionService {
     List<Asociacion> getVinculados();
 
     List<Maquina> getSinVincular();
+
+    AsociacionResponse getById(Integer id) throws ValidateFieldException;
 
     AsociacionResponse update(AsociarList asociarList, Integer id) throws ValidateFieldException;
 }

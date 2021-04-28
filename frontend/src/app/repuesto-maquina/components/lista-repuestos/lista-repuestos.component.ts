@@ -4,7 +4,8 @@ import { MaquinaService } from "../../../maquina/services/maquina.service";
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { ParteService } from "../../../maquina/services/parte.service";
 import { MessageService } from "../../../core/service/message.service";
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-lista-repuestos',
@@ -38,6 +39,10 @@ export class ListaRepuestosComponent implements OnInit {
   // });
   public form: FormGroup;
   // public requestList: any = [];
+  public asocId: any;
+  public mode = 'add';
+  public section = 'Nueva asociacion';
+  public buttonName = 'Aceptar';
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,13 +51,14 @@ export class ListaRepuestosComponent implements OnInit {
   constructor(private RepuestoMaquinaService: RepuestoMaquinaService,
               private MaquinaService: MaquinaService,
               private formBuilder: FormBuilder,
+              private route: ActivatedRoute,
               private ParteService: ParteService,
               private MessageService: MessageService,
               private router: Router,) 
   {}
 
   ngOnInit(): void {
-
+    this.asocId = this.route.snapshot.params.id;
     this.getRepuestos();
     this.getMaquinas();
 
@@ -64,6 +70,12 @@ export class ListaRepuestosComponent implements OnInit {
       observaciones: ''
     });
 
+  }
+
+  ngAfterViewInit(): void {
+    if (this.asocId) {
+      this.getAsoc(this.asocId);
+    }
   }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -90,29 +102,46 @@ export class ListaRepuestosComponent implements OnInit {
 
   asociar() {
     let request = {
-      'maquina_id': this.maquinaPart,
+      'maquina_id': this.maquinaId,
       'parte_id' : this.partId,
       'repuesto_id': this.form.controls.repuesto_id.value,
       'observaciones': this.form.controls.observaciones.value,
       'cantidad_instalada': this.form.controls.cantidad_instalada.value
     }
-    console.log(request);
-    
-    this.RepuestoMaquinaService.asociarRepuestos(request).subscribe(
-      repuestos => {
-        this.messageBody = "Asociación creada correctamente";
-        this.showSuccess();
-        this.router.navigate(['main/repuestos']);
-    },
-    (error) => {
-      this.messageBody = "ERROR"
-      this.showError(this.messageBody);
+    if (this.mode === 'add') {
+      this.RepuestoMaquinaService.asociarRepuestos(request).subscribe(
+        repuestos => {
+          this.messageBody = "Asociación creada correctamente";
+          this.showSuccess();
+          this.router.navigate(['main/repuestos']);
+      },
+      (error) => {
+        this.messageBody = "ERROR"
+        this.showError(this.messageBody);
+      });
+    } else {
+      this.RepuestoMaquinaService.updateAsociacion(this.asocId, request).subscribe(
+        asoc => {
+          this.messageBody = "La asociacion se ha editado correctamente"
+          this.showSuccess();
+          this.router.navigate(['main/repuestos']);
+        },
+        error => this.showError(error.error)
+        );
     }
-
-      );
   }
   
-
+  loadAsoc(asoc) {
+    this.mode = "edit";
+    this.routeButton = "../../";
+    this.section = 'Editar asociacion';
+    this.buttonName = 'Confirmar cambios';
+    this.form.controls.maquina_id.setValue(asoc.maquina_id);
+    this.form.controls.parte_id.setValue(asoc.parte.id);
+    this.form.controls.repuesto_id.setValue(asoc.repuesto_id);
+    this.form.controls.cantidad_instalada.setValue(asoc.cantidad_instalada);
+    this.form.controls.observaciones.setValue(asoc.observaciones);
+  }
   // agruopData() {
   //   const ctrl = this.form.controls;
   //   const repuesto = {
@@ -160,7 +189,6 @@ export class ListaRepuestosComponent implements OnInit {
     );
   }
 
-
   getMaquinas(){
     this.MaquinaService.getMaquinas().subscribe(
       (data: any) => {
@@ -197,6 +225,14 @@ export class ListaRepuestosComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+
+  getAsoc(id){
+    this.RepuestoMaquinaService.getAsocById(id).pipe(first()).subscribe(
+      asoc => {
+        this.loadAsoc(asoc);
+      }
+    )
   }
 
   getMachineId(id){
