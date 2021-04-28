@@ -2,6 +2,7 @@
                            [columns]='columnsToDisplay' 
                            [width]="'98%'"
                            [title]="['Asociaciones']"
+                           (clickRow)="clickedRow($event)"
                            [includeButton]="true"
                            [nameForButton]="['Nueva asociación']"
                            [routeForButton]="['lista-repuestos']">

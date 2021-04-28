@@ -29,6 +29,11 @@ public class AsociacionController {
         return new ResponseEntity<>(asosiacionService.getVinculados(), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<AsociacionResponse> getById(@PathVariable Integer id) throws ValidateFieldException {
+        return new ResponseEntity<>(asosiacionService.getById(id), HttpStatus.OK);
+    }
+
     @PostMapping("/vincular/maquina-parte")
     public Repuesto asociar(@Valid @RequestBody AsociarList asociarList) throws ValidateFieldException {
         asosiacionService.asociar(asociarList);

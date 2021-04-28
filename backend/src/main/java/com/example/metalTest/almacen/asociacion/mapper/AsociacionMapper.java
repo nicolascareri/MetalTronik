@@ -14,4 +14,5 @@ public interface AsociacionMapper {
     Asociacion asociacionRequestToAsociacion(AsociarList asociarList);
     AsociacionResponse toAsociacionResponse(Asociacion asociacion);
     List<AsociacionResponse> toAsociacionResponseList(List<Asociacion> asociaciones);
+    AsociacionResponse toAsociacionResponse(AsociarList object);
 }

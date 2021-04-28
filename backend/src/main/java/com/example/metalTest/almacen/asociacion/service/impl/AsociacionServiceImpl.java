@@ -13,6 +13,7 @@ import com.example.metalTest.apiError.exception.ValidateFieldException;
 import com.example.metalTest.common.validator.RepositoryValidator;
 import com.example.metalTest.maquina.domain.Maquina;
 import com.example.metalTest.maquina.repository.MaquinaRepository;
+import com.example.metalTest.ordenestrabajo.controller.response.OrdenesTrabajoResponse;
 import com.example.metalTest.parte.domain.Parte;
 import com.example.metalTest.parte.repository.ParteRepository;
 import com.example.metalTest.parte.service.impl.ParteBuscador;
@@ -89,6 +90,11 @@ public class AsociacionServiceImpl implements AsosiacionService {
         return asociacionRepository.getSinAsociar();
     }
 
+    @Override
+    public AsociacionResponse getById(Integer id) throws ValidateFieldException {
+        return asociacionMapper.toAsociacionResponse(repositoryValidator.getObject(asociacionRepository, id));
+    }
+    
     private void updateRepuesto(Repuesto repuesto, Integer cantidad, Integer repuesto_id){
         repuesto.setCantidad_instalada(repuesto.getCantidad_instalada() + cantidad);
         repuesto.setId(repuesto_id);

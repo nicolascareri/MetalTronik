@@ -16,6 +16,10 @@ export class RepuestoMaquinaService {
     return this.http.get(this.path.SERVER.serve + this.path.REPUESTOS.GET);
   }
 
+  getAsocById(id){
+    return this.http.get(this.path.SERVER.serve + this.path.REPUESTOMAQUINA.GETID + id);
+  }
+
   getRepuestoMaquina(){
     return this.http.get(this.path.SERVER.serve + this.path.REPUESTOMAQUINA.GET);
   }
@@ -26,6 +30,10 @@ export class RepuestoMaquinaService {
 
   getMaquinasSinAsoc(){
     return this.http.get(this.path.SERVER.serve + this.path.REPUESTOMAQUINA.GETSINASOC);
+  }
+
+  updateAsociacion(id, request){
+    return this.http.put<any>(this.path.SERVER.serve + this.path.REPUESTOMAQUINA.PUT + id, request);
   }
                             
 }

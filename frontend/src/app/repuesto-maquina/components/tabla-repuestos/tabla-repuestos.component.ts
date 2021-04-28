@@ -3,6 +3,7 @@ import { RepuestoMaquinaService } from "../../services/repuesto-maquina.service"
 import { CoreService } from 'src/app/core/service/core.service';
 import { MessageService } from "../../../core/service/message.service";
 import { MaquinaService } from "../../../maquina/services/maquina.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tabla-repuestos',
@@ -120,6 +121,7 @@ export class TablaRepuestosComponent implements OnInit {
 
   constructor(private RepuestoMaquinaService: RepuestoMaquinaService,
               private coreService: CoreService,
+              private router: Router,
               private MessageService: MessageService,
               private MaquinaService: MaquinaService) { }
 
@@ -128,6 +130,10 @@ export class TablaRepuestosComponent implements OnInit {
     this.getRepuestosMaquina();
     this.getMaquinas();
     this.getMaquinasSinAsoc();
+  }
+
+  clickedRow(row){
+    this.router.navigate(['main/repuestos/lista-repuestos/' +  row.id]);
   }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
