@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlmacenService } from "../../services/almacen.service";
 import { Router } from '@angular/router';
 import { CoreService } from 'src/app/core/service/core.service';
+import { ExporterService } from "../../../core/service/exporter.service";
 
 
 @Component({
@@ -127,7 +128,8 @@ export class TablaExistenciaComponent implements OnInit {
 
   constructor(private AlmacenService: AlmacenService,
               private Router: Router,
-              private coreService: CoreService
+              private coreService: CoreService,
+              private ExporterService: ExporterService
               ) { }
 
   ngOnInit(): void {
@@ -152,6 +154,10 @@ export class TablaExistenciaComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+
+  exportAsXLSX(){
+    this.ExporterService.exportToExcel(this.dataSourceRepuestos, 'test_export')
   }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

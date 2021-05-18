@@ -1,4 +1,8 @@
 <app-nav></app-nav>
+<h3>Exportar</h3>
+<div class="container">
+    <button mat-raised-button color="primary" (click)="exportAsXLSX()">Exportar</button>
+</div>
 <app-tabla class="table" [ds]='dataSourceRepuestos' 
                              [columns]='columnsToDisplay' 
                              [width]="'98%'"
