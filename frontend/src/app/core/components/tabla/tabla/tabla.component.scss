@@ -1,10 +1,20 @@
 @import "../../../../../assets/themes";
 
-
+.mat-icon{
+    height: 129%;
+}
 .button-container{
     display:inline-block;
     margin-left:auto;
     margin-right: 1%;
+    margin-bottom: -3.3%;
+    text-align:right;
+}
+
+.button-container-export{
+    display:inline-block;
+    margin-left:auto;
+    margin-right: 5%;
     text-align:right;
 }
 

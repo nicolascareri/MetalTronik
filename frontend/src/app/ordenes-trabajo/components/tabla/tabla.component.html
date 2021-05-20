@@ -4,6 +4,8 @@
                          (clickRow)="clickedRow($event)"
                          [title]="['Ordenes de trabajo']"
                          [includeButton]="true"
+                         [includeButtonImport]="true"
+                         [dataSource]='dataSourceOrdenes'
                          [nameForButton]="['Nueva orden']"
                          [routeForButton]="['form']">
 </app-tabla>

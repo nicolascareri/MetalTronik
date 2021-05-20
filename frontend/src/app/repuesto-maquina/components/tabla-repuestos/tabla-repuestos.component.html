@@ -4,6 +4,8 @@
                            [title]="['Asociaciones']"
                            (clickRow)="clickedRow($event)"
                            [includeButton]="true"
+                           [includeButtonImport]="true"
+                           [dataSource]="dataSourceRespuestoMaquina"
                            [nameForButton]="['Nueva asociación']"
                            [routeForButton]="['lista-repuestos']">
 </app-tabla>

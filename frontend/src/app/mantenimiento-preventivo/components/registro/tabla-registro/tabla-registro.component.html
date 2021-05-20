@@ -29,7 +29,8 @@
     <div class="col-12" style="margin: 0% 0% 5% -1%">
         <app-tabla class="table" [ds]='dataSourceTareas' 
                                  [columns]='columnsToDisplay' 
-                                 [width]="'100%'" 
+                                 [width]="'100%'"
+                                 [includeButtonImport]="false" 
                                  [title]="['']"
                                  [includeButton]="false">
         </app-tabla>
@@ -79,6 +80,7 @@
                                       [width]="'92%'"
                                       [title]="[' ']" 
                                       [includeButton]="false"
+                                      [includeButtonImport]="false"
                                       (clickRow)="clickedRow($event)">
             </app-tabla>
             

@@ -9,6 +9,7 @@ import { InputComponent } from './components/input/input.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import { ToastrModule } from "ngx-toastr";
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ToastrModule } from "ngx-toastr";
     MatTableModule,
     ReactiveFormsModule,
     MatCardModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatIconModule
   ],
   exports: [
     ButtonComponent,

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { CoreService } from 'src/app/core/service/core.service';
+import { ExporterService } from "../../../service/exporter.service";
 
 @Component({
   selector: 'app-tabla',
@@ -10,6 +11,7 @@ export class TablaComponent implements OnInit {
   
   @Input() actionForButton : any;
   @Input() includeButton = true;
+  @Input() includeButtonImport = true;
   @Input() routeForButton = "route";
   @Input() nameForButton= "nameForButton";
   @Input() title = "title";
@@ -19,6 +21,7 @@ export class TablaComponent implements OnInit {
   @Input() search = true;
   @Input() paginated = false;
   @Input() pageSize;
+  @Input() dataSource;
   @Output() clickRow  = new EventEmitter();
 
 
@@ -33,7 +36,8 @@ export class TablaComponent implements OnInit {
 
   private filters = [];
 
-  constructor( private core: CoreService ) { }
+  constructor( private core: CoreService,
+               private ExporterService: ExporterService ) { }
 
   ngOnInit(): void {
     this.pageableData = this.displayData = this.ds;
@@ -55,7 +59,11 @@ export class TablaComponent implements OnInit {
 
   recordSelected(row: any) {
     this.clickRow.emit(row);
-  }  
+  }
+  
+  @Input() export(dataSource) {
+    this.ExporterService.exportToExcel(dataSource, 'table')
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if ( changes.ds ) {
