@@ -13,6 +13,8 @@
                          (clickRow)="clickedRow($event)"
                          [title]="['Tareas']"
                          [includeButton]="true"
+                         [includeButtonImport]="true"
+                         [dataSource]="dataSourceTareas"
                          [nameForButton]="['Programar tarea']"
                          [routeForButton]="['formTarea']">
 </app-tabla>

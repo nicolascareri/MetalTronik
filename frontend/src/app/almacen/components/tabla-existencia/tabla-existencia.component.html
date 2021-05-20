@@ -1,14 +1,15 @@
 <app-nav></app-nav>
-<h3>Exportar</h3>
+<!-- <h3>Exportar</h3>
 <div class="container">
     <button mat-raised-button color="primary" (click)="exportAsXLSX()">Exportar</button>
-</div>
+</div> -->
 <app-tabla class="table" [ds]='dataSourceRepuestos' 
                              [columns]='columnsToDisplay' 
                              [width]="'98%'"
                              (clickRow)="clickedRow($event)"
                              [title]="['Existencia']"
                              [includeButton]="true"
+                             [dataSource]='dataSourceRepuestos'
                              [nameForButton]="['Nuevo repuesto']"
                              [routeForButton]="['formexistencia']">
 </app-tabla>

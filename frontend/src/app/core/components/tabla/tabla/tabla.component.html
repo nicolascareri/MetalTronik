@@ -3,7 +3,13 @@
     <h2 class="card-header">
       {{title}}
     </h2>
-    <div class="button-container" *ngIf="includeButton == true">
+    <div class="button-container" *ngIf="includeButtonImport == true">
+      <button mat-icon-button  title="Importar tabla" (click)="export(dataSource)" class="nav-link drop" ngbDropdownToggle style="padding: 5px;"><mat-icon aria-hidden="false" aria-label="Example home icon" style="color: black;">file_download</mat-icon></button>
+    </div>
+    <div class="button-container" *ngIf="includeButtonImport == false">
+      <button mat-icon-button  title="Tabla no exportable" class="nav-link drop" ngbDropdownToggle style="padding: 5px;"><mat-icon aria-hidden="false" aria-label="Example home icon" style="color: gray;">file_download</mat-icon></button>
+    </div>
+    <div class="button-container-export" *ngIf="includeButton == true">
       <app-button [routerLink]="routeForButton" [name]="nameForButton" [type]="'primary'" [click]="actionForButton"></app-button>
     </div>
     <div class="table-box">

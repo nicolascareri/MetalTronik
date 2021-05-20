@@ -156,9 +156,9 @@ export class TablaExistenciaComponent implements OnInit {
     );
   }
 
-  exportAsXLSX(){
-    this.ExporterService.exportToExcel(this.dataSourceRepuestos, 'test_export')
-  }
+  // exportAsXLSX(){
+  //   this.ExporterService.exportToExcel(this.dataSourceRepuestos, 'test_export')
+  // }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
