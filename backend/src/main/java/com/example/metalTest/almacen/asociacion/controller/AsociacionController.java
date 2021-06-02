@@ -21,6 +21,7 @@ import java.util.List;
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT})
 @RequestMapping("/api/asociacion")
 public class AsociacionController {
+
     @Autowired
     AsosiacionService asosiacionService;
 

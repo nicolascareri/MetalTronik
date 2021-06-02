@@ -15,6 +15,10 @@ const routes: Routes = [
       {
         path: 'lista-repuestos',
         component: ListaRepuestosComponent
+      },
+      {
+        path: 'lista-repuestos/:id',
+        component: ListaRepuestosComponent
       }
 
     ]
