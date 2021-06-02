@@ -95,7 +95,7 @@ export const ENDPOINTS = {
     REPUESTOMAQUINA: {
         POST: 'api/asociacion/vincular/maquina-parte',
         GET: 'api/asociacion/vinculados',
-        GETID: 'api/asocacion/',
+        GETID: 'api/asociacion/',
         GETSINASOC: 'api/asociacion/sin-vincular',
         PUT: 'api/asociacion/'
     },
