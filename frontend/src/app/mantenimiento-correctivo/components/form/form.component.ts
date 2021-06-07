@@ -209,7 +209,7 @@ export class FormMantenimientoCorrectivoComponent implements OnInit {
         this.dataSourceUsers = data.map(
           val => { return {
               "id": val.id,
-              "descripcion": val.nombre + " " + val.apellido
+              "descripcion": val.nombre + " " + val.apellido + " " + "-" + " " + val.legajo
             }
           }
         );

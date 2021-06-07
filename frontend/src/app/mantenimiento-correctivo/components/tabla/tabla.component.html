@@ -4,7 +4,8 @@
                          (clickRow)="clickedRow($event)"
                          [title]="['Mantenimientos correctivos']"
                          [includeButton]="true"
-                         [includeButtonImport]="false"
+                         [includeButtonImport]="true"
+                         [dataSource]='dataSourceMantenimientosCorrectivos'
                          [nameForButton]="['Nuevo correctivo']"
                          [routeForButton]="['formcorrectivo']">
 </app-tabla>

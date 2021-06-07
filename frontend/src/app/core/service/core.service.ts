@@ -284,8 +284,9 @@ export class CoreService {
     const dateMoment = moment(date, this.dateServerFormat);
     const month = dateMoment.format('MMMM');
     const day = dateMoment.format('DD');
-    const year = dateMoment.format('YYYY');    
-    return day + ' de ' + month[0].toUpperCase() + month.substr(1) + ' de ' + year;
+    const year = dateMoment.format('YYYY');
+    const hs = dateMoment.format('h:mm a')    
+    return day + ' de ' + month[0].toUpperCase() + month.substr(1) + ' de ' + year + " " + "-" + " " + hs;
   }
 
   isNumeric(str) {
