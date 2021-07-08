@@ -176,7 +176,19 @@ export class ListaRepuestosComponent implements OnInit {
               "descripcion": val.codigo_producto + " - " + val.nombre
             }
           }
-        );
+          );
+          //Ordeno el resultado por orden alfabetico jaja xd
+          this.dataSourceRepuestos.sort(function (a, b) {
+            if (a.descripcion > b.descripcion) {
+              return 1;
+            }
+            if (a.descripcion < b.descripcion) {
+              return -1;
+            }
+            // a must be equal to b
+            return 0;
+          });
+
         data.forEach(repuesto => {
           if (!this.modelos.includes(repuesto.modelo)) {
             this.modelos.push(repuesto.modelo)
