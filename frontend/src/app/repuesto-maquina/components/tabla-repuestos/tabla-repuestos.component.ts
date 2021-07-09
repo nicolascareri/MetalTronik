@@ -45,7 +45,7 @@ export class TablaRepuestosComponent implements OnInit {
     },
     {
       id: 2,
-      property: 'repuesto_modelo',
+      property: 'repuesto_nombre',
       name: 'Nombre',
       sort: 'up',
       filterValue: '',
@@ -53,11 +53,11 @@ export class TablaRepuestosComponent implements OnInit {
     },
     {
       id: 3,
-      property: 'repuesto_nombre',
+      property: 'repuesto_modelo',
       name: 'Modelo',
       sort: '',
       filterValue: '',
-      width: '25%'
+      width: '45%'
     },
     {
       id: 4,
@@ -202,12 +202,26 @@ export class TablaRepuestosComponent implements OnInit {
         //     // }            
         // });
       this.dataSourceRespuestoMaquina = this.coreService.replaceFormat(data, ['nombre', 'modelo', 'maquina']);
+      //Ordeno los datos por orden alfabetico
+      this.dataSourceRespuestoMaquina.sort(function (a, b) {
+        if (a.repuesto_codigo > b.repuesto_codigo) {
+          return 1;
+        }
+        if (a.repuesto_codigo < b.repuesto_codigo) {
+          return -1;
+        }
+        // a must be equal to b
+        return 0;
+      });
+
       },
       (error) => {
         console.error(error);
 
       }
-    );
+      );
+    
+
   }
 
   getMaquinasSinAsoc(){

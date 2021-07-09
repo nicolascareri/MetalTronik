@@ -27,6 +27,7 @@ export class InputComponent implements OnInit {
   @Input() commentMode = 1;
   @Input() typeInputFilter = false;
   @Input() disableControl = '';
+  @Input() orderBY = '';
 
   @Output() select = new EventEmitter();
   @Output() valueChange = new EventEmitter();

@@ -47,26 +47,26 @@ export class TablaExistenciaComponent implements OnInit {
       name: 'Modelo',
       sort: '',
       filterValue: '',
-      width: '35%'
+      width: '65%'
     },
+    // {
+    //   id: 5,
+    //   property:'precio_unitario',
+    //   name: 'Precio unitario',
+    //   sort: '',
+    //   filterValue: '',
+    //   width: '15%'
+    // },
+    // {
+    //   id: 6,
+    //   property:'precio_total',
+    //   name: 'Precio total',
+    //   sort: '',
+    //   filterValue: '',
+    //   width: '35%'
+    // },  
     {
       id: 5,
-      property:'precio_unitario',
-      name: 'Precio unitario',
-      sort: '',
-      filterValue: '',
-      width: '15%'
-    },
-    {
-      id: 6,
-      property:'precio_total',
-      name: 'Precio total',
-      sort: '',
-      filterValue: '',
-      width: '35%'
-    },  
-    {
-      id: 7,
       property:'tipo_repuesto',
       name: 'Tipo de repuesto',
       sort: '',
@@ -74,7 +74,7 @@ export class TablaExistenciaComponent implements OnInit {
       width: '35%'
     }, 
     {
-      id: 8,
+      id: 6,
       property:'ubicacion',
       name: 'Ubicacion',
       sort: '',
@@ -82,7 +82,7 @@ export class TablaExistenciaComponent implements OnInit {
       width: '35%'
     }, 
     {
-      id: 9,
+      id: 7,
       property:'unidad',
       name: 'Unidad',
       sort: '',
@@ -90,7 +90,7 @@ export class TablaExistenciaComponent implements OnInit {
       width: '350px'
     },
     {
-      id: 10,
+      id: 8,
       property: 'minimo',
       name: 'Stock mínimo',
       sort: '',
@@ -98,15 +98,15 @@ export class TablaExistenciaComponent implements OnInit {
       width: '25%'
     },
     {
-      id: 11,
+      id: 9,
       property: 'objetivo',
-      name: 'Stock objetivo',
+      name: 'Stock maximo',
       sort: '',
       filtervalue: '',
       width: '25%'
     },
     {
-      id: 12,
+      id: 10,
       property: 'actual',
       name: 'Stock actual',
       sort: '',
@@ -114,7 +114,7 @@ export class TablaExistenciaComponent implements OnInit {
       width: '25%'
     },
     {
-      id: 13,
+      id: 11,
       property: 'cantidad_instalada',
       name: 'Cantidad instalada',
       sort: '',
